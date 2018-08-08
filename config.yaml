@@ -1,0 +1,25 @@
+window_title: "SeeK-path: the k-path finder and visualizer"
+page_title: "SeeK-path: the k-path finder and visualizer"
+
+#custom_css_files:
+# input_data:
+#    - custom.css
+#  process_data:
+#    - custom.css
+
+#custom_js_files:
+#  input_data:
+#    - custom.js
+#  process_data:
+#    - custom.js
+
+templates:
+  how_to_cite: "how_to_cite.html"
+  about: "custom_about.html"
+  select_content: "visualizer_select_structure.html"
+
+use_upload_structure_block: True
+
+additional_accordion_entries:
+  - header: "SeeK-path definitions and advantages"
+    template_page: definitions.html
