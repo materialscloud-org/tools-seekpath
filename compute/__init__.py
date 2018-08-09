@@ -3,9 +3,9 @@ import flask
 from flask import Blueprint
 import os
 
-from seekpath_web_module import process_structure_core, FlaskRedirectException
-import seekpath, seekpath.hpkot, seekpath.brillouinzone, seekpath.brillouinzone.brillouinzone
-from seekpath.hpkot import SymmetryDetectionError
+from compute.seekpath_web_module import process_structure_core, FlaskRedirectException
+import compute.seekpath, compute.seekpath.hpkot, compute.seekpath.brillouinzone, compute.seekpath.brillouinzone.brillouinzone
+from compute.seekpath.hpkot import SymmetryDetectionError
 
 
 blueprint = Blueprint('compute', __name__, url_prefix='/compute')
@@ -128,9 +128,5 @@ def process_structure_example():
         except FlaskRedirectException as e:
             flask.flash(str(e))
             return flask.redirect(flask.url_for('input_data'))
-
-
-        return "This was a POST"
     else:
-        #return "This was a GET"
         return flask.redirect(flask.url_for('input_data'))

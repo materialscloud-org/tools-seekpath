@@ -4,23 +4,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SeeK-path: the k-path finder and visualizer</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/jquery-ui.1.12.1.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../user_static/css/jquery-ui.1.12.1.min.css"/>
 
-    <link rel="stylesheet" type="text/css" href="../static/css/visualizer.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/visualizer_base.min.css"/>
-    <script src="../static/js/three.min.js"></script>
-    <script src="../static/js/OrbitControls.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../user_static/css/visualizer.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../user_static/css/visualizer_base.min.css"/>
+    <script src="../../user_static/js/three.min.js"></script>
+    <script src="../../user_static/js/OrbitControls.min.js"></script>
 
     <!-- Next two lines optional, only needed if we want to use the SVG renderer -->
-    <script src="../static/js/Projector.min.js"></script>
-    <script src="../static/js/SVGRenderer.min.js"></script>
+    <script src="../../user_static/js/Projector.min.js"></script>
+    <script src="../../user_static/js/SVGRenderer.min.js"></script>
 
-    <script src="../static/js/jquery-3.1.0.min.js"></script>
-    <script src="../static/js/jquery-ui.1.12.1.min.js"></script>
-    <script src="../static/js/BZVisualizer.min.js"></script>
-    <script src="../static/js/webglcheck.min.js"></script>
-    <script src="../static/js/clipboard.min.js"></script>
-    <script src="../static/js/download.min.js"></script>
+    <script src="../../user_static/js/jquery-3.1.0.min.js"></script>
+    <script src="../../user_static/js/jquery-ui.1.12.1.min.js"></script>
+    <script src="../../user_static/js/BZVisualizer.min.js"></script>
+    <script src="../../user_static/js/webglcheck.min.js"></script>
+    <script src="../../user_static/js/clipboard.min.js"></script>
+    <script src="../../user_static/js/download.min.js"></script>
     <script>
     $( function() {
       $( "#accordion" ).accordion({
@@ -43,8 +43,8 @@
     }
     </style>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link rel="stylesheet" href="../static/css/ChemDoodleWeb.min.css" type="text/css">
-    <script type="text/javascript" src="../static/js/ChemDoodleWeb.min.js"></script>
+    <link rel="stylesheet" href="../../user_static/css/ChemDoodleWeb.min.css" type="text/css">
+    <script type="text/javascript" src="../../user_static/js/ChemDoodleWeb.min.js"></script>
 
     <script>
     var jsondata = {{ jsondata|safe }};
@@ -77,7 +77,7 @@
     {% block customheads %}
     {% endblock %}
 
-    <script src="../static/js/iframeResizer.contentWindow.min.js"></script>
+    <script src="../../user_static/js/iframeResizer.contentWindow.min.js"></script>
 
 </head>
 <body onresize='resize_canvases()'>
@@ -523,7 +523,7 @@
         <div>
           <p>
             <button class="clipboardbtn" data-clipboard-target="#qepwdata">
-              <img src="../static/img/clippy.svg" width="12" alt="Copy to clipboard"/>&nbsp;Copy to clipboard</button>
+              <img src="../../user_static/img/clippy.svg" width="12" alt="Copy to clipboard"/>&nbsp;Copy to clipboard</button>
              (Replace <code>&lt;...&gt;</code> with the actual content for your
             simulation</code>)
             </p>
@@ -539,7 +539,7 @@
         <div>
           <p>
             <button class="clipboardbtn" data-clipboard-target="#cp2kdata">
-              <img src="../static/img/clippy.svg" width="12" alt="Copy to clipboard"/>&nbsp;Copy to clipboard</button>
+              <img src="../../user_static/img/clippy.svg" width="12" alt="Copy to clipboard"/>&nbsp;Copy to clipboard</button>
                (Replace <code>&lt;...&gt;</code> with the actual content for your
               simulation</code>)
           </p>
@@ -549,7 +549,7 @@
         <div>
           <p>
             <button class="clipboardbtn" data-clipboard-target="#rawcodedata">
-              <img src="../static/img/clippy.svg" width="12" alt="Copy to clipboard"/>&nbsp;Copy to clipboard</button>
+              <img src="../../user_static/img/clippy.svg" width="12" alt="Copy to clipboard"/>&nbsp;Copy to clipboard</button>
           </p>
 
           <p><code id="rawcodedata">{{ raw_code|safe }}</code></p>

@@ -1,6 +1,6 @@
 import ase.io
 from ase.data import atomic_numbers
-from seekpath.util import atoms_num_dict
+from compute.seekpath.util import atoms_num_dict
 import pymatgen
 import qe_tools
 import numpy as np

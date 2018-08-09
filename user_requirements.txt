@@ -1,0 +1,3 @@
+seekpath
+pymatgen==2018.8.7
+qe-tools==1.1.0
