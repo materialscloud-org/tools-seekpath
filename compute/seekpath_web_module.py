@@ -159,7 +159,7 @@ def process_structure_core(filecontent,
         is the message to be flashed via Flask (or in general shown to
         the user).
     """
-    from structure_importers import get_structure_tuple, UnknownFormatError
+    from compute.structure_importers import get_structure_tuple, UnknownFormatError
 
     start_time = time.time()
     fileobject = io.StringIO(str(filecontent))
