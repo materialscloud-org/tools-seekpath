@@ -8,7 +8,7 @@ function gen_pwd_char() {
     echo -n ${s:$p:1}
 }
 
-SECRET_KEY_FILE=/home/app/code/seekpath/webservice/SECRET_KEY
+SECRET_KEY_FILE=/home/app/code/webservice/SECRET_KEY
 if [ ! -e "$SECRET_KEY_FILE" ]
 then
 

@@ -4,6 +4,9 @@ MAINTAINER Giovanni Pizzi <giovanni.pizzi@epfl.ch>
 
 COPY ./config.yaml /home/app/code/webservice/static/config.yaml
 COPY ./user_requirements.txt /home/app/code/user_requirements.txt
+COPY ./optional-requirements.txt /home/app/code/optional-requirements.txt
+COPY ./setup.py /home/app/code/setup.py
+COPY ./README.rst /home/app/code/README.rst
 COPY ./user_templates/* /home/app/code/webservice/templates/user_templates/
 COPY ./user_static/* /home/app/code/webservice/user_static/
 COPY ./compute/ /home/app/code/webservice/compute/
@@ -21,10 +24,6 @@ USER app
 # Install SeeK-path
 # Note: if you want to deploy with python3, use 'pip3' instead of 'pip'
 WORKDIR /home/app/code
-# First install pinned versions of packages
-RUN pip3 install --user -r user_requirements.txt --only-binary numpy,scipy
-# Then install the code without extra dependencies
-RUN pip3 install --user .
 
 # Create a proper wsgi file file
 #
@@ -33,6 +32,11 @@ RUN echo "import sys" > $SP_WSGI_FILE && \
     echo "sys.path.insert(0, '/home/app/code/webservice')" >> $SP_WSGI_FILE && \
     echo "from seekpath_app import app as application" >> $SP_WSGI_FILE
 
+# First install pinned versions of packages
+RUN pip3 install --user -r optional-requirements.txt --only-binary numpy,scipy
+# Then install the code without extra dependencies
+RUN pip3 install --user .
+
 # Go back to root.
 # Also, it should remain as user root for startup
 USER root
@@ -40,12 +44,12 @@ USER root
 # Setup apache
 # Disable default apache site, enable seekpath site; also
 # enable needed modules
-ADD ./.docker_files/seekpath-apache.conf /etc/apache2/sites-available/seekpath.conf
+ADD .docker_files/seekpath-apache.conf /etc/apache2/sites-available/seekpath.conf
 RUN a2enmod wsgi && a2enmod xsendfile && \
     a2dissite 000-default && a2ensite seekpath
 
 # Activate apache at startup
-RUN mkdir /etc/service/apache
+#RUN mkdir /etc/service/apache
 ADD ./.docker_files/apache_run.sh /etc/service/apache/run
 
 # Set startup script to create the secret key
