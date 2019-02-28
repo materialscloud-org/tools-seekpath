@@ -1,0 +1,8 @@
+version: '3'
+services:
+  tools-seekpath:
+    build: .
+    ports:
+     - "8092:80"
+    container_name: tools-seekpath-instance
+    image: tools-seekpath
