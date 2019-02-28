@@ -23,3 +23,7 @@ use_upload_structure_block: True
 additional_accordion_entries:
   - header: "SeeK-path definitions and advantages"
     template_page: definitions.html
+
+about_section_title: "What SeeK-path does"
+
+data_folder: "user_static/data/"

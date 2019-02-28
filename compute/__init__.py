@@ -1,9 +1,23 @@
+#!/usr/bin/env python
+"""
+Main Flask python function that manages the server backend
+
+If you just want to try it out, just run this file and connect to
+http://localhost:5000 from a browser. Otherwise, read the instructions
+in README_DEPLOY.md to deploy on a Apache server.
+"""
+from __future__ import unicode_literals
+from future import standard_library
+standard_library.install_aliases()
+
+import datetime
 import logging
 import flask
 from flask import Blueprint
 import os
 
-from compute.seekpath_web_module import process_structure_core, FlaskRedirectException
+from compute.seekpath_web_module import (generate_log, FlaskRedirectException, logme,
+                                 process_structure_core)
 import compute.seekpath, compute.seekpath.hpkot, compute.seekpath.brillouinzone, compute.seekpath.brillouinzone.brillouinzone
 from compute.seekpath.hpkot import SymmetryDetectionError
 
@@ -73,23 +87,36 @@ valid_examples = {
 @blueprint.route('/process_structure/', methods=['GET', 'POST'])
 def process_structure():
     if flask.request.method == 'POST':
+        # check if the post request has the file part
+        if 'structurefile' not in flask.request.files:
+            return flask.redirect(flask.url_for('input_structure'))
         structurefile = flask.request.files['structurefile']
         fileformat = flask.request.form.get('fileformat', 'unknown')
         filecontent = structurefile.read().decode('utf-8')
 
         try:
-            return "FORMAT: {}<br>CONTENT:<br><code><pre>{}</pre></code>".format(fileformat, filecontent)
-        #except FlaskRedirectException as e:
-            #flask.flash(str(e))
-            #return flask.redirect(flask.url_for('input_data'))
-        except Exception:
-            flask.flash("Unable to process the data, sorry...")
+            data_for_template = process_structure_core(
+                filecontent=filecontent,
+                fileformat=fileformat,
+                seekpath_module=compute.seekpath,
+                call_source="process_structure",
+                logger=logger,
+                flask_request=flask.request)
+            return flask.render_template(
+                "user_templates/visualizer.html", **data_for_template)
+        except FlaskRedirectException as e:
+            flask.flash(str(e))
+            return flask.redirect(flask.url_for('input_structure'))
+        except SymmetryDetectionError:
+            flask.flash("Unable to detect symmetry... "
+                        "Maybe you have overlapping atoms?")
             return flask.redirect(flask.url_for('input_data'))
+        except Exception:
+            flask.flash("Unable to process the structure, sorry...")
+            return flask.redirect(flask.url_for('input_data'))
+    else:  # GET Request
+        return flask.redirect(flask.url_for('input_data'))
 
-    else:
-        return flask.redirect(flask.url_for('compute.process_structure_example'))
-        #flask.flash("Redirecting...")
-        #return flask.redirect(flask.url_for('input_data'))
 
 @blueprint.route('/process_example_structure/', methods=['GET', 'POST'])
 def process_structure_example():
@@ -110,7 +137,7 @@ def process_structure_example():
         # existing files, so I don't try/except here
         with open(
                 os.path.join(
-                    os.path.split(seekpath.__file__)[0], 'hpkot',
+                    os.path.split(compute.seekpath.__file__)[0], 'hpkot',
                     'band_path_data', ext_bravais,
                     poscarfile)) as structurefile:
             filecontent = structurefile.read()
@@ -119,7 +146,7 @@ def process_structure_example():
             data_for_template = process_structure_core(
                 filecontent=filecontent,
                 fileformat=fileformat,
-                seekpath_module=seekpath,
+                seekpath_module=compute.seekpath,
                 call_source="process_example_structure[{}]".format(
                     examplestructure),
                 logger=logger,
@@ -128,5 +155,6 @@ def process_structure_example():
         except FlaskRedirectException as e:
             flask.flash(str(e))
             return flask.redirect(flask.url_for('input_data'))
-    else:
+
+    else:  # GET Request
         return flask.redirect(flask.url_for('input_data'))
