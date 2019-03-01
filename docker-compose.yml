@@ -1,12 +1,12 @@
 version: '3'
 services:
-  seekpath:
+  tools-seekpath:
     restart: always
     build: .
     ports:
      - "8092:80"
-    container_name: seekpath-instance
-    image: seekpath
+    container_name: tools-seekpath-instance
+    image: tools-seekpath
     volumes:
      - "seekpathlogs:logs:rw"
 

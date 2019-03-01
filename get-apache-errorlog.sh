@@ -1,2 +1,2 @@
 #!/bin/bash
-docker exec -it seekpath-instance cat /var/log/apache2/error.log
+docker exec -it tools-seekpath-instance cat /var/log/apache2/error.log

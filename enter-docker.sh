@@ -1,2 +1,2 @@
 #!/bin/bash
-docker exec -it seekpath-instance bash
+docker exec -it tools-seekpath-instance bash
