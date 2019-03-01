@@ -18,8 +18,8 @@ import os
 
 from compute.seekpath_web_module import (generate_log, FlaskRedirectException, logme,
                                  process_structure_core)
-import compute.seekpath, compute.seekpath.hpkot, compute.seekpath.brillouinzone, compute.seekpath.brillouinzone.brillouinzone
-from compute.seekpath.hpkot import SymmetryDetectionError
+import seekpath, seekpath.hpkot, seekpath.brillouinzone, seekpath.brillouinzone.brillouinzone
+from seekpath.hpkot import SymmetryDetectionError
 
 
 blueprint = Blueprint('compute', __name__, url_prefix='/compute')
@@ -98,7 +98,7 @@ def process_structure():
             data_for_template = process_structure_core(
                 filecontent=filecontent,
                 fileformat=fileformat,
-                seekpath_module=compute.seekpath,
+                seekpath_module=seekpath,
                 call_source="process_structure",
                 logger=logger,
                 flask_request=flask.request)
@@ -137,7 +137,7 @@ def process_structure_example():
         # existing files, so I don't try/except here
         with open(
                 os.path.join(
-                    os.path.split(compute.seekpath.__file__)[0], 'hpkot',
+                    os.path.split(seekpath.__file__)[0], 'hpkot',
                     'band_path_data', ext_bravais,
                     poscarfile)) as structurefile:
             filecontent = structurefile.read()
@@ -146,7 +146,7 @@ def process_structure_example():
             data_for_template = process_structure_core(
                 filecontent=filecontent,
                 fileformat=fileformat,
-                seekpath_module=compute.seekpath,
+                seekpath_module=seekpath,
                 call_source="process_example_structure[{}]".format(
                     examplestructure),
                 logger=logger,
