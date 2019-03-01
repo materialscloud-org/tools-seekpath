@@ -9,3 +9,6 @@ services:
     image: tools-seekpath
     volumes:
      - "seekpathlogs:logs:rw"
+
+volumes:
+  seekpathlogs:
