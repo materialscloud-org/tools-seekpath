@@ -19,4 +19,4 @@ else
     echo "Starting from image 'tools-barebone' with id $BAREBONE_IMAGE"
 fi
 
-docker build -t tools-seekpath .
+docker build -t seekpath .
