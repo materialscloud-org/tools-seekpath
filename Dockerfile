@@ -35,7 +35,7 @@ RUN echo "import sys" > $SP_WSGI_FILE && \
 # First install pinned versions of packages
 RUN pip3 install --user -r optional-requirements.txt --only-binary numpy,scipy
 # Then install the code without extra dependencies
-RUN pip3 install --user .
+RUN pip3 install --user -r user_requirements.txt
 
 # Go back to root.
 # Also, it should remain as user root for startup
