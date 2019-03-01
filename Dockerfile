@@ -8,7 +8,7 @@ COPY ./optional-requirements.txt /home/app/code/optional-requirements.txt
 COPY ./setup.py /home/app/code/setup.py
 COPY ./README.rst /home/app/code/README.rst
 COPY ./user_templates/* /home/app/code/webservice/templates/user_templates/
-COPY ./user_static/* /home/app/code/webservice/user_static/
+COPY ./user_static/ /home/app/code/webservice/user_static/
 COPY ./compute/ /home/app/code/webservice/compute/
 COPY ./.docker_files/ /home/app/code/.docker_files/
 
