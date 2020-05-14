@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 """
-Main Flask python function that manages the server backend
-
-If you just want to try it out, just run this file and connect to
-http://localhost:5000 from a browser. Otherwise, read the instructions
-in README_DEPLOY.md to deploy on a Apache server.
+Main Flask python function that manages the server backend.
 """
 from __future__ import unicode_literals
 from future import standard_library
@@ -21,6 +17,18 @@ from compute.seekpath_web_module import (generate_log, FlaskRedirectException, l
 import seekpath, seekpath.hpkot, seekpath.brillouinzone, seekpath.brillouinzone.brillouinzone
 from seekpath.hpkot import SymmetryDetectionError
 
+view_folder = os.path.join(os.path.split(os.path.realpath(__file__))[0], os.pardir, 'user_views')
+
+
+## TODO: import from tools-barebone
+def get_style_version(request):
+    return request.environ.get("HTTP_X_APP_STYLE", "")
+
+def get_visualizer_template(request):
+    if get_style_version(request) == 'lite':
+        return 'user_templates/visualizer_lite.html'
+    else:
+        return 'user_templates/visualizer.html'
 
 blueprint = Blueprint('compute', __name__, url_prefix='/compute')
 
@@ -47,7 +55,6 @@ valid_examples = {
     "oF1_inv": ("oF1", True),
     "oF3_inv": ("oF3", True),
     "oI1_inv": ("oI1", True),
-    "oI2_inv": ("oI2", True),
     "oI3_inv": ("oI3", True),
     "oP1_inv": ("oP1", True),
     "tI1_inv": ("tI1", True),
@@ -86,6 +93,9 @@ valid_examples = {
 
 @blueprint.route('/process_structure/', methods=['GET', 'POST'])
 def process_structure():
+    """
+    Process a structure (uploaded from POST request)
+    """
     if flask.request.method == 'POST':
         # check if the post request has the file part
         if 'structurefile' not in flask.request.files:
@@ -102,24 +112,28 @@ def process_structure():
                 call_source="process_structure",
                 logger=logger,
                 flask_request=flask.request)
-            return flask.render_template(
-                "user_templates/visualizer.html", **data_for_template)
+            return flask.render_template(get_visualizer_template(flask.request),
+                                         **data_for_template)
         except FlaskRedirectException as e:
             flask.flash(str(e))
             return flask.redirect(flask.url_for('input_structure'))
         except SymmetryDetectionError:
             flask.flash("Unable to detect symmetry... "
                         "Maybe you have overlapping atoms?")
-            return flask.redirect(flask.url_for('input_data'))
+            return flask.redirect(flask.url_for('input_structure'))
         except Exception:
             flask.flash("Unable to process the structure, sorry...")
-            return flask.redirect(flask.url_for('input_data'))
+            return flask.redirect(flask.url_for('input_structure'))
+
     else:  # GET Request
-        return flask.redirect(flask.url_for('input_data'))
+        return flask.redirect(flask.url_for('input_structure'))
 
 
 @blueprint.route('/process_example_structure/', methods=['GET', 'POST'])
-def process_structure_example():
+def process_example_structure():
+    """
+    Process an example structure (example name from POST request)
+    """
     if flask.request.method == 'POST':
         examplestructure = flask.request.form.get('examplestructure', '<none>')
         fileformat = "vasp-ase"
@@ -129,7 +143,7 @@ def process_structure_example():
         except KeyError:
             flask.flash(
                 "Invalid example structure '{}'".format(examplestructure))
-            return flask.redirect(flask.url_for('input_data'))
+            return flask.redirect(flask.url_for('input_structure'))
 
         poscarfile = "POSCAR_inversion" if withinv else "POSCAR_noinversion"
 
@@ -151,10 +165,27 @@ def process_structure_example():
                     examplestructure),
                 logger=logger,
                 flask_request=flask.request)
-            return flask.render_template("user_templates/visualizer.html", **data_for_template)
+            return flask.render_template(get_visualizer_template(flask.request),
+                                         **data_for_template)
         except FlaskRedirectException as e:
             flask.flash(str(e))
             return flask.redirect(flask.url_for('input_data'))
 
     else:  # GET Request
         return flask.redirect(flask.url_for('input_data'))
+
+
+@blueprint.route('/bravaissymbol_explanation/')
+def bravaissymbol_explanation():
+    """
+    View for the explanation of the Bravais symbol
+    """
+    return flask.send_from_directory(view_folder,
+                                     'bravaissymbol_explanation.html')
+
+@blueprint.route('/termsofuse/')
+def termsofuse():
+    """
+    View for the terms of use
+    """
+    return flask.send_from_directory(view_folder, 'termsofuse.html')

@@ -1,0 +1,11 @@
+seekpath==1.9.7
+spglib==1.15.1
+# The following is needed to get the Brillouin zone
+scipy==1.4.1
+numpy==1.18.4 # needs a more recent version of numpy
+
+# The following are needed for the web service importer - to be moved to the tools barebone!
+ase==3.19.1
+qe-tools==1.1.4
+pymatgen==2019.7.2
+

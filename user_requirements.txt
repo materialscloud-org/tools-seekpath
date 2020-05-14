@@ -1,4 +1,0 @@
-numpy==1.13.3
-spglib>=1.9.9,<1.9.10
-future==0.16.0
-seekpath==1.8.4
