@@ -2,11 +2,6 @@
 Most of the functions needed by the web service are here. 
 In seekpath_app.py we just keep the main web logic.
 """
-from __future__ import unicode_literals
-from future import standard_library
-standard_library.install_aliases()
-from builtins import str
-from builtins import zip
 import os
 
 import copy

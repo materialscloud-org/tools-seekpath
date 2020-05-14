@@ -2,10 +2,6 @@
 """
 Main Flask python function that manages the server backend.
 """
-from __future__ import unicode_literals
-from future import standard_library
-standard_library.install_aliases()
-
 import datetime
 import logging
 import flask
