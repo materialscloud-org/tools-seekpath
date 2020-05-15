@@ -64,7 +64,7 @@ And the following is a screenshot of the main output window, showing the Brillou
 =========================================
 Docker image and running the tool locally
 =========================================
-Docker images are automatically built and hosted on [DockerHub under the reposiotry materialscloud/tools-seekpath](https://hub.docker.com/repository/docker/materialscloud/tools-seekpath).
+Docker images are automatically built and hosted on `DockerHub under the repository materialscloud/tools-seekpath`_.
 
 If you want to run locally the latest version, you can execute::
 
@@ -78,3 +78,4 @@ and then connect to ``http://localhost:8092`` with your browser.
 .. _spglib: http://atztogo.github.io/spglib/
 .. _Materials Cloud: http://www.materialscloud.org/tools/seekpath/
 .. _seekpath: http://www.github.com/giovannipizzi/seekpath/
+.. _DockerHub under the repository materialscloud/tools-seekpath: https://hub.docker.com/repository/docker/materialscloud/tools-seekpath
