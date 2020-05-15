@@ -5,6 +5,7 @@ templates:
   how_to_cite: "how_to_cite.html"
   about: "custom_about.html"
   select_content: "visualizer_select_example.html"
+  upload_structure_additional_content: "upload_structure_additional_content.html"
 
 use_upload_structure_block: True
 

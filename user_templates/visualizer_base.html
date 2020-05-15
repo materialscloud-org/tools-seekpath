@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../../static/css/jquery-ui.1.12.1.min.css"/>
 
     <link rel="stylesheet" type="text/css" href="../../user_static/css/visualizer.min.css"/>
-    <link rel="stylesheet" type="text/css" href="../../user_static/css/visualizer_base.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../static/css/visualizer_base.min.css"/>
     <script src="../../user_static/js/three.min.js"></script>
     <script src="../../user_static/js/OrbitControls.min.js"></script>
 
@@ -19,7 +19,7 @@
     <script src="../../static/js/jquery-ui.1.12.1.min.js"></script>        
     <script src="../../user_static/js/BZVisualizer.min.js"></script>        
     <script src="../../user_static/js/webglcheck.min.js"></script>
-    <script src="../../user_static/js/clipboard.min.js"></script>
+    <script src="../../static/js/clipboard.min.js"></script>
     <script src="../../static/js/download.min.js"></script>
     <script>
     $( function() {
@@ -535,7 +535,7 @@
           <div style="font-size: small;"><a href="https://www.quantum-espresso.org/Doc/INPUT_PW.html" target="_blank">[FORMAT DESCRIPTION]</a></div>
           <p>
             <button class="clipboardbtn" data-clipboard-target="#qepwdata">
-              <img src="../../user_static/img/clippy.svg" width="12" alt="Copy to clipboard"/>&nbsp;Copy to clipboard</button>
+              <img src="../../static/img/clippy.svg" width="12" alt="Copy to clipboard"/>&nbsp;Copy to clipboard</button>
              (Replace <code>&lt;...&gt;</code> with the actual content for your 
             simulation</code>)
             </p>
@@ -552,7 +552,7 @@
           <div style="font-size: small;"><a href="https://manual.cp2k.org/trunk/CP2K_INPUT/FORCE_EVAL/DFT/PRINT/BAND_STRUCTURE/KPOINT_SET.html" target="_blank">[FORMAT DESCRIPTION]</a></div>
           <p>
             <button class="clipboardbtn" data-clipboard-target="#cp2kdata">
-              <img src="../../user_static/img/clippy.svg" width="12" alt="Copy to clipboard"/>&nbsp;Copy to clipboard</button>
+              <img src="../../static/img/clippy.svg" width="12" alt="Copy to clipboard"/>&nbsp;Copy to clipboard</button>
                (Replace <code>&lt;...&gt;</code> with the actual content for your
               simulation</code>)
           </p>
@@ -563,7 +563,7 @@
           <div style="font-size: small;"><a href="http://tutorials.crystalsolutions.eu/tutorial.html?td=properties&tf=properties_tut" target="_blank">[FORMAT DESCRIPTION]</a> (see also page 263 in the <a href="http://www.crystal.unito.it/Manuals/crystal17.pdf" target="_blank">PDF manual</a>)</div>
           <p>
             <button class="clipboardbtn" data-clipboard-target="#crystaldata">
-              <img src="../../user_static/img/clippy.svg" width="12" alt="Copy to clipboard"/>&nbsp;Copy to clipboard</button>
+              <img src="../../static/img/clippy.svg" width="12" alt="Copy to clipboard"/>&nbsp;Copy to clipboard</button>
                (Replace <code>&lt;...&gt;</code> with the actual content for your
               simulation</code>)
           </p>
@@ -585,7 +585,7 @@
           <div style="font-size: small;"><a href="https://www.vasp.at/wiki/index.php/KPOINTS" target="_blank">[FORMAT DESCRIPTION]</a></div>
           <p>
             <button class="clipboardbtn" data-clipboard-target="#vaspgendata">
-              <img src="../../user_static/img/clippy.svg" width="12" alt="Copy to clipboard"/>&nbsp;Copy to clipboard</button>
+              <img src="../../static/img/clippy.svg" width="12" alt="Copy to clipboard"/>&nbsp;Copy to clipboard</button>
                (Replace <code>&lt;...&gt;</code> with the actual content for your
               simulation</code>)
           </p>
@@ -643,7 +643,7 @@
     </script>
 
     <div id='finalinfo'>
-        <p><span style="font-weight: bold;">Technical info</span>: Time spent to compute quantities: {{ '%.3f' % compute_time }} s. SeeK-path version: {{ seekpath_version }}. spglib version: {{ spglib_version }}.
+        <p><span style="font-weight: bold;">Technical info</span>: Time spent to compute quantities: {{ '%.3f' % compute_time }} s. <a href="https://github.com/giovannipizzi/seekpath">seekpath</a> version: {{ seekpath_version }}. <a href="https://spglib.github.io/spglib/">spglib</a> version: {{ spglib_version }}. <a href="https://github.com/materialscloud-org/tools-barebone">tools-barebone</a> version: {{tools_barebone_version}}. <a href="https://github.com/materialscloud-org/tools-seekpath">tools-seekpath</a> version: {{tools_seekpath_version}}.
     </div>
 
     </div>

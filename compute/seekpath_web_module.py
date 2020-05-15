@@ -2,25 +2,27 @@
 Most of the functions needed by the web service are here. 
 In seekpath_app.py we just keep the main web logic.
 """
-import os
-
 import copy
-import numpy as np
-import time, datetime
-
-from ase.data import chemical_symbols
-import json
 import io
+import json
+import time
+import traceback
 
+import numpy as np
 import jinja2
 import spglib  # Mainly to get its version
 
+from ase.data import chemical_symbols
+from compute.structure_importers import get_structure_tuple, UnknownFormatError
+from tools_barebone import logme, get_tools_barebone_version  # pylint: disable=import-error
+
+# Version of tools-seekpath
+__version__ = "2.0.0"
 
 class FlaskRedirectException(Exception):
     """
     Class used to return immediately with a flash message and a redirect.
     """
-    pass
 
 
 MAX_NUMBER_OF_ATOMS = 1000
@@ -28,54 +30,7 @@ time_reversal_note = ("The second half of the path is required only if "
                       "the system does not have time-reversal symmetry")
 
 
-def logme(logger, *args, **kwargs):
-    """
-    Log information on the passed logger. 
-
-    See docstring of generate_log for more info on the
-    accepted kwargs.
-
-    :param logger: a valid logger. If you pass `None`, no log is output.
-    """
-    if logger is not None:
-        logger.debug(generate_log(*args, **kwargs))
-
-
-def generate_log(filecontent,
-                 fileformat,
-                 request,
-                 call_source,
-                 reason,
-                 extra={}):
-    """
-    Given a string with the file content, a file format, a Flask request and 
-    a string identifying the reason for logging, stores the 
-    correct logs.
-
-    :param filecontent: a string with the file content
-    :param fileformat: string with the file format
-    :param request: a Flask request
-    :param call_source: a string identifying who called the function
-    :param reason: a string identifying the reason for this log
-    :param extra: additional data to add to the logged dictionary. 
-        NOTE! it must be JSON-serializable
-    """
-    # I don't know the fileformat
-    data = {'filecontent': filecontent, 'fileformat': fileformat}
-
-    logdict = {
-        'data': data,
-        'reason': reason,
-        'request': str(request.headers),
-        'call_source': call_source,
-        'source': request.headers.get('X-Forwarded-For', request.remote_addr),
-        'time': datetime.datetime.now().isoformat()
-    }
-    logdict.update(extra)
-    return json.dumps(logdict)
-
-
-def get_json_for_visualizer(cell, relcoords, atomic_numbers, seekpath_module):
+def get_json_for_visualizer(cell, relcoords, atomic_numbers, seekpath_module):  # pylint: disable=too-many-locals
     #from seekpath_module import hpkot, brillouinzone
     hpkot = seekpath_module.hpkot
     brillouinzone = seekpath_module.brillouinzone
@@ -125,7 +80,7 @@ def get_json_for_visualizer(cell, relcoords, atomic_numbers, seekpath_module):
     return response, res
 
 
-def process_structure_core(filecontent,
+def process_structure_core(filecontent,  # pylint: disable=too-many-locals,too-many-statements,too-many-arguments
                            fileformat,
                            seekpath_module,
                            call_source="",
@@ -154,8 +109,6 @@ def process_structure_core(filecontent,
         is the message to be flashed via Flask (or in general shown to
         the user).
     """
-    from compute.structure_importers import get_structure_tuple, UnknownFormatError
-
     start_time = time.time()
     fileobject = io.StringIO(str(filecontent))
     form_data = dict(flask_request.form)
@@ -176,7 +129,6 @@ def process_structure_core(filecontent,
         raise FlaskRedirectException("Unknown format '{}'".format(fileformat))
     except Exception:
         # There was an exception...
-        import traceback
         logme(logger,
               filecontent,
               fileformat,
@@ -349,7 +301,6 @@ def process_structure_core(filecontent,
 
         compute_time = time.time() - start_time
     except Exception:
-        import traceback
         logme(logger,
               filecontent,
               fileformat,
@@ -405,6 +356,8 @@ def process_structure_core(filecontent,
         compute_time=compute_time,
         seekpath_version=seekpath_module.__version__,
         spglib_version=spglib.__version__,
+        tools_barebone_version=get_tools_barebone_version(),
+        tools_seekpath_version=__version__,
         time_reversal_note=(time_reversal_note
                             if path_results['augmented_path'] else ""),
         xsfstructure=xsfstructure)
@@ -454,7 +407,7 @@ def get_qe_pw(raw_data, out_json_data):
     return "\n".join(lines)
 
 
-def get_qe_matdyn(raw_data, out_json_data):
+def get_qe_matdyn(raw_data, out_json_data):  # pylint: disable=unused-argument
     """
     Return the data in format of the QE matdyn.x input
     """
@@ -536,7 +489,7 @@ def get_cp2k(raw_data):
     )
 
 
-def get_crystal(raw_data):
+def get_crystal(raw_data):  # pylint: disable=too-many-locals
     """
     Return the data in format of a CRYSTAL d3 input
     """
@@ -595,7 +548,7 @@ def get_crystal(raw_data):
     kpath = np.float64(kpath)
     kpath_flat = kpath.flatten()
     fraction_kpath = float_to_fraction(kpath_flat)
-    numerator = fraction_kpath[:, 0]
+    # numerator = fraction_kpath[:, 0]
     denominator = fraction_kpath[:, 1]
     shrinking_fac = np.lcm.reduce(denominator)
     kpath_new = shrinking_fac * kpath_flat
@@ -624,7 +577,6 @@ def get_vasp_gga(raw_data):
     lines.append("<...>  ! intersections ")
     lines.append("line-mode")
     lines.append("reciprocal")
-    kpath = []
     for s in raw_data['path']:
         c0 = raw_data['kpoints_rel'][s[0]]
         c1 = raw_data['kpoints_rel'][s[1]]

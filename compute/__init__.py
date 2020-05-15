@@ -2,29 +2,28 @@
 """
 Main Flask python function that manages the server backend.
 """
-import datetime
 import logging
 import flask
 from flask import Blueprint
 import os
 
-from compute.seekpath_web_module import (generate_log, FlaskRedirectException, logme,
-                                 process_structure_core)
-import seekpath, seekpath.hpkot, seekpath.brillouinzone, seekpath.brillouinzone.brillouinzone
+import seekpath
+import seekpath.hpkot
+import seekpath.brillouinzone
+import seekpath.brillouinzone.brillouinzone
 from seekpath.hpkot import SymmetryDetectionError
+
+from compute.seekpath_web_module import FlaskRedirectException, process_structure_core
+from tools_barebone import get_style_version  # pylint: disable=import-error
 
 view_folder = os.path.join(os.path.split(os.path.realpath(__file__))[0], os.pardir, 'user_views')
 
 
-## TODO: import from tools-barebone
-def get_style_version(request):
-    return request.environ.get("HTTP_X_APP_STYLE", "")
-
 def get_visualizer_template(request):
     if get_style_version(request) == 'lite':
         return 'user_templates/visualizer_lite.html'
-    else:
-        return 'user_templates/visualizer.html'
+    return 'user_templates/visualizer.html'
+
 
 blueprint = Blueprint('compute', __name__, url_prefix='/compute')
 
@@ -95,7 +94,7 @@ def process_structure():
     if flask.request.method == 'POST':
         # check if the post request has the file part
         if 'structurefile' not in flask.request.files:
-            return flask.redirect(flask.url_for('input_structure'))
+            return flask.redirect(flask.url_for('input_data'))
         structurefile = flask.request.files['structurefile']
         fileformat = flask.request.form.get('fileformat', 'unknown')
         filecontent = structurefile.read().decode('utf-8')
@@ -112,17 +111,17 @@ def process_structure():
                                          **data_for_template)
         except FlaskRedirectException as e:
             flask.flash(str(e))
-            return flask.redirect(flask.url_for('input_structure'))
+            return flask.redirect(flask.url_for('input_data'))
         except SymmetryDetectionError:
             flask.flash("Unable to detect symmetry... "
                         "Maybe you have overlapping atoms?")
-            return flask.redirect(flask.url_for('input_structure'))
+            return flask.redirect(flask.url_for('input_data'))
         except Exception:
             flask.flash("Unable to process the structure, sorry...")
-            return flask.redirect(flask.url_for('input_structure'))
+            return flask.redirect(flask.url_for('input_data'))
 
     else:  # GET Request
-        return flask.redirect(flask.url_for('input_structure'))
+        return flask.redirect(flask.url_for('input_data'))
 
 
 @blueprint.route('/process_example_structure/', methods=['GET', 'POST'])
@@ -139,7 +138,7 @@ def process_example_structure():
         except KeyError:
             flask.flash(
                 "Invalid example structure '{}'".format(examplestructure))
-            return flask.redirect(flask.url_for('input_structure'))
+            return flask.redirect(flask.url_for('input_data'))
 
         poscarfile = "POSCAR_inversion" if withinv else "POSCAR_noinversion"
 

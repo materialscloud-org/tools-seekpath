@@ -61,6 +61,17 @@ And the following is a screenshot of the main output window, showing the Brillou
      :width: 50%
      :align: center
 
+=========================================
+Docker image and running the tool locally
+=========================================
+Docker images are automatically built and hosted on [DockerHub under the reposiotry materialscloud/tools-seekpath](https://hub.docker.com/repository/docker/materialscloud/tools-seekpath).
+
+If you want to run locally the latest version, you can execute::
+
+  docker run -p 8092:80 materialscloud/tools-seekpath
+
+and then connect to ``http://localhost:8092`` with your browser.
+
 .. _HPKOT paper: http://dx.doi.org/10.1016/j.commatsci.2016.10.015
 .. _JOURNAL LINK: http://dx.doi.org/10.1016/j.commatsci.2016.10.015
 .. _arXiv link: https://arxiv.org/abs/1602.06402
