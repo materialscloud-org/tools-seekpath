@@ -1,4 +1,4 @@
-FROM tools-barebone
+FROM tools-barebone:latest
 
 LABEL maintainer="Giovanni Pizzi <giovanni.pizzi@epfl.ch>"
 
