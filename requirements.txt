@@ -1,5 +1,4 @@
-seekpath==1.9.7
-spglib==1.15.1
+seekpath==2.0.0a1
 # The following is needed to get the Brillouin zone
 scipy==1.4.1
 numpy==1.18.4 # needs a more recent version of numpy

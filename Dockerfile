@@ -10,7 +10,7 @@ RUN pip3 install -U 'pip>=10' setuptools wheel
 USER app
 WORKDIR /home/app/code
 # Install pinned versions of packages
-RUN pip3 install --user -r requirements.txt
+RUN pip3 install --user --pre -r requirements.txt
 # Go back to root.
 # Also, it should remain as user root for startup
 USER root
