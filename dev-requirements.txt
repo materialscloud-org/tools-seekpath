@@ -5,4 +5,3 @@ prospector==1.2.0
 pytest==5.3.5
 pytest-selenium==1.17.0
 
--e git+https://github.com/materialscloud-org/tools-barebone.git@develop#egg=tools_barebone
