@@ -53,9 +53,27 @@ def get_file_examples():
         if not os.path.isdir(parser_dir):
             continue
         for filename in os.listdir(parser_dir):
-            if filename.endswith("~") or filename.startswith("."):
+            file_abspath = os.path.join(parser_dir, filename)
+            if (
+                filename.endswith("~")
+                or filename.startswith(".")
+                or filename.endswith(".expectedstrings.txt")
+            ):
                 continue
-            retval.append((parser_name, filename))
+            expected_strings_file = os.path.join(
+                os.path.dirname(file_abspath),
+                "{}.expectedstrings.txt".format(os.path.basename(file_abspath)),
+            )
+            assert os.path.isfile(
+                expected_strings_file
+            ), "You need to define a file {} with a list of strings to check".format(
+                expected_strings_file
+            )
+            with open(expected_strings_file) as fhandle:
+                expected_strings = [line.strip() for line in fhandle.readlines()]
+            # remove empty strings
+            expected_strings = [line for line in expected_strings if line]
+            retval.append((parser_name, filename, expected_strings))
 
     return retval
 
@@ -95,8 +113,10 @@ def submit_structure(selenium, file_abspath, parser_name):
 
 
 @pytest.mark.nondestructive
-@pytest.mark.parametrize("parser_name, file_relpath", get_file_examples())
-def test_send_structure(selenium, parser_name, file_relpath):
+@pytest.mark.parametrize(
+    "parser_name, file_relpath, expected_strings", get_file_examples()
+)
+def test_send_structure(selenium, parser_name, file_relpath, expected_strings):
     """Test submitting various files."""
     selenium.get(TEST_URL)
 
@@ -107,4 +127,7 @@ def test_send_structure(selenium, parser_name, file_relpath):
     # We should have been redirected back to /
     assert urlparse(selenium.current_url).path == "/compute/process_structure/"
 
-    assert "Primitive" in selenium.page_source
+    assert "Brillouin" in selenium.page_source
+
+    for expected_string in expected_strings:
+        assert expected_string in selenium.page_source
