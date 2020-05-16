@@ -1,0 +1,50 @@
+name: Continuous integration
+
+on: [push, pull_request]
+
+jobs:
+  precommit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Set up Python 3.6
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.6
+
+      - name: Install python dependencies (prospector, etc.)
+        run: |
+          pip install -r dev-requirements.txt
+          pip freeze
+
+      - name: Run pre-commit
+        run:
+          pre-commit run --all-files || ( git status --short ; git diff ; exit 1 )
+
+  dockertests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install system dependencies
+        # remove occasionally problematic repositories we don't use anyway
+        run: |
+          sudo rm -f /etc/apt/sources.list.d/dotnetdev.list /etc/apt/sources.list.d/microsoft-prod.list
+          sudo apt update
+          sudo apt install chromium-browser chromium-chromedriver
+
+      - name: Set up Python 3.6
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.6
+
+      - name: Install python dependencies (pytest, etc.)
+        run: |
+          pip install -r dev-requirements.txt
+          pip freeze
+
+      - name: Build the Docker image
+        run: ./admin-tools/build-docker.sh && ./admin-tools/run-docker.sh &&  ./.ci/wait-for-it.sh localhost:8092 -t 120 && sleep 5 && pytest --driver Chrome
