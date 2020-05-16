@@ -5,13 +5,13 @@ this.vwr = null;
 this.privateKey = 0;
 Clazz.instantialize (this, arguments);
 }, JV, "OutputManager");
-Clazz.defineMethod (c$, "setViewer", 
+Clazz.defineMethod (c$, "setViewer",
 function (vwr, privateKey) {
 this.vwr = vwr;
 this.privateKey = privateKey;
 return this;
 }, "JV.Viewer,~N");
-Clazz.defineMethod (c$, "writeToOutputChannel", 
+Clazz.defineMethod (c$, "writeToOutputChannel",
  function (params) {
 var type = params.get ("type");
 var fileName = params.get ("fileName");
@@ -50,7 +50,7 @@ var pt = fileName.indexOf ("?POST?");
 if (pt >= 0) fileName = fileName.substring (0, pt);
 return (len < 0 ? "Creation of " + fileName + " failed: " + (ret == null ? this.vwr.getErrorMessageUn () : ret) : "OK " + type + " " + (len > 0 ? len + " " : "") + fileName + (quality == -2147483648 ? "" : "; quality=" + quality));
 }, "java.util.Map");
-Clazz.defineMethod (c$, "getOrSaveImage", 
+Clazz.defineMethod (c$, "getOrSaveImage",
  function (params) {
 var bytes = null;
 var errMsg = null;
@@ -122,7 +122,7 @@ return fileName;
 }}
 return (errMsg == null ? bytes : errMsg);
 }, "java.util.Map");
-Clazz.defineMethod (c$, "getWrappedState", 
+Clazz.defineMethod (c$, "getWrappedState",
 function (pngjName, scripts, objImage, pgjOut) {
 var width = this.vwr.apiPlatform.getImageWidth (objImage);
 var height = this.vwr.apiPlatform.getImageHeight (objImage);
@@ -138,7 +138,7 @@ s = "Jmol " + JV.Viewer.getJmolVersion ();
 }
 return s;
 }, "~S,~A,~O,JU.OC");
-Clazz.defineMethod (c$, "createTheImage", 
+Clazz.defineMethod (c$, "createTheImage",
  function (objImage, type, out, params, errRet) {
 type = type.substring (0, 1) + type.substring (1).toLowerCase ();
 var isZipData = type.equals ("Zipdata");
@@ -193,7 +193,7 @@ if (doClose) out.closeChannel ();
 }
 return (errRet[0] == null);
 }, "~O,~S,JU.OC,java.util.Map,~A");
-Clazz.defineMethod (c$, "encodeImage", 
+Clazz.defineMethod (c$, "encodeImage",
  function (width, height, objImage) {
 if (width < 0) return null;
 var pixels;
@@ -205,11 +205,11 @@ pixels = null;
 }pixels = this.vwr.apiPlatform.grabPixels (objImage, width, height, pixels, 0, height);
 }return pixels;
 }, "~N,~N,~O");
-Clazz.defineMethod (c$, "outputToFile", 
+Clazz.defineMethod (c$, "outputToFile",
 function (params) {
 return this.handleOutputToFile (params, true);
 }, "java.util.Map");
-Clazz.defineMethod (c$, "getOutputChannel", 
+Clazz.defineMethod (c$, "getOutputChannel",
 function (fileName, fullPath) {
 if (!this.vwr.haveAccess (JV.Viewer.ACCESS.ALL)) return null;
 var isCache = (fileName != null && fileName.startsWith ("cache://"));
@@ -229,7 +229,7 @@ throw e;
 }
 }
 }, "~S,~A");
-Clazz.defineMethod (c$, "processWriteOrCapture", 
+Clazz.defineMethod (c$, "processWriteOrCapture",
 function (params) {
 var fileName = params.get ("fileName");
 if (fileName == null) return this.vwr.clipImageOrPasteText (params.get ("text"));
@@ -237,12 +237,12 @@ var bsFrames = params.get ("bsFrames");
 var nVibes = JV.OutputManager.getInt (params, "nVibes", 0);
 return (bsFrames != null || nVibes != 0 ? this.processMultiFrameOutput (fileName, bsFrames, nVibes, params) : this.handleOutputToFile (params, true));
 }, "java.util.Map");
-c$.getInt = Clazz.defineMethod (c$, "getInt", 
+c$.getInt = Clazz.defineMethod (c$, "getInt",
  function (params, key, def) {
 var p = params.get (key);
 return (p == null ? def : p.intValue ());
 }, "java.util.Map,~S,~N");
-Clazz.defineMethod (c$, "processMultiFrameOutput", 
+Clazz.defineMethod (c$, "processMultiFrameOutput",
  function (fileName, bsFrames, nVibes, params) {
 var info = "";
 var n = 0;
@@ -270,7 +270,7 @@ if (!this.writeFrame (++n, rootExt, params, sb)) return "ERROR WRITING FILE SET:
 }if (info.length == 0) info = "OK\n";
 return info + "\n" + n + " files created";
 }, "~S,JU.BS,~N,java.util.Map");
-c$.getRootExt = Clazz.defineMethod (c$, "getRootExt", 
+c$.getRootExt = Clazz.defineMethod (c$, "getRootExt",
  function (fileName, rootExt, n) {
 if (fileName == null) {
 fileName = "0000" + n;
@@ -283,7 +283,7 @@ rootExt[0] = froot;
 rootExt[1] = fileName.substring (ptDot);
 return rootExt;
 }, "~S,~A,~N");
-Clazz.defineMethod (c$, "setFullPath", 
+Clazz.defineMethod (c$, "setFullPath",
  function (params, fileName) {
 var fullPath = params.get ("fullPath");
 if (fullPath != null) fullPath[0] = fileName;
@@ -291,7 +291,7 @@ if (fileName == null) return null;
 params.put ("fileName", fileName);
 return fileName;
 }, "java.util.Map,~S");
-Clazz.defineMethod (c$, "getOutputFromExport", 
+Clazz.defineMethod (c$, "getOutputFromExport",
 function (params) {
 var width = JV.OutputManager.getInt (params, "width", 0);
 var height = JV.OutputManager.getInt (params, "height", 0);
@@ -308,7 +308,7 @@ var data = this.vwr.rm.renderExport (this.vwr.gdata, this.vwr.ms, params);
 this.vwr.resizeImage (saveWidth, saveHeight, true, true, true);
 return data;
 }, "java.util.Map");
-Clazz.defineMethod (c$, "getImageAsBytes", 
+Clazz.defineMethod (c$, "getImageAsBytes",
 function (type, width, height, quality, errMsg) {
 var saveWidth = this.vwr.dimScreen.width;
 var saveHeight = this.vwr.dimScreen.height;
@@ -346,7 +346,7 @@ this.vwr.creatingImage = false;
 this.vwr.resizeImage (saveWidth, saveHeight, true, false, true);
 return bytes;
 }, "~S,~N,~N,~N,~A");
-Clazz.defineMethod (c$, "writeFileData", 
+Clazz.defineMethod (c$, "writeFileData",
 function (fileName, type, modelIndex, plotParameters) {
 var fullPath =  new Array (1);
 var out = this.getOutputChannel (fileName, fullPath);
@@ -364,7 +364,7 @@ out.closeChannel ();
 if (msg != null) msg = "OK " + msg + " " + fileName;
 return msg;
 }, "~S,~S,~N,~A");
-Clazz.defineMethod (c$, "writeFrame", 
+Clazz.defineMethod (c$, "writeFrame",
  function (n, rootExt, params, sb) {
 var fileName = JV.OutputManager.getRootExt (null, rootExt, n);
 fileName = this.setFullPath (params, fileName);
@@ -374,7 +374,7 @@ this.vwr.scriptEcho (msg);
 sb.append (msg).append ("\n");
 return msg.startsWith ("OK");
 }, "~N,~A,java.util.Map,JU.SB");
-Clazz.defineMethod (c$, "getOutputFileNameFromDialog", 
+Clazz.defineMethod (c$, "getOutputFileNameFromDialog",
  function (fileName, quality, params) {
 if (fileName == null || this.vwr.$isKiosk) return null;
 var useDialog = fileName.startsWith ("?");
@@ -384,7 +384,7 @@ fileName = JV.FileManager.getLocalPathForWritingFile (this.vwr, fileName);
 if (useDialog) fileName = this.vwr.dialogAsk (quality == -2147483648 ? "Save" : "Save Image", fileName, params);
 return fileName;
 }, "~S,~N,java.util.Map");
-Clazz.defineMethod (c$, "handleOutputToFile", 
+Clazz.defineMethod (c$, "handleOutputToFile",
 function (params, doCheck) {
 var fileName = params.get ("fileName");
 var out = params.get ("outputChannel");
@@ -520,7 +520,7 @@ if (quality != -2147483648 && saveWidth > 0) this.vwr.resizeImage (saveWidth, sa
 }
 return sret;
 }, "java.util.Map,~B");
-Clazz.defineMethod (c$, "setLogFile", 
+Clazz.defineMethod (c$, "setLogFile",
 function (value) {
 var path = null;
 if (this.vwr.logFilePath == null || value.indexOf ("\\") >= 0) {
@@ -542,7 +542,7 @@ this.vwr.logFileName = path;
 this.vwr.g.setO ("_logFile", this.vwr.isApplet ? value : path);
 }return value;
 }, "~S");
-Clazz.defineMethod (c$, "logToFile", 
+Clazz.defineMethod (c$, "logToFile",
 function (data) {
 try {
 var doClear = (data.equals ("$CLEAR$"));
@@ -566,7 +566,7 @@ throw e;
 }
 }
 }, "~S");
-Clazz.defineMethod (c$, "createZipSet", 
+Clazz.defineMethod (c$, "createZipSet",
  function (script, scripts, includeRemoteFiles, out, pngjName) {
 var v =  new JU.Lst ();
 var fm = this.vwr.fm;
@@ -636,7 +636,7 @@ v.addLast (null);
 v.addLast (bytes);
 }}return this.writeZipFile (out, v, "OK JMOL", pngjName);
 }, "~S,~A,~B,JU.OC,~S");
-Clazz.defineMethod (c$, "addPngFileBytes", 
+Clazz.defineMethod (c$, "addPngFileBytes",
  function (name, ret, iFile, crcMap, isSparDir, newName, ptSlash, v) {
 var crcValue = Integer.$valueOf (this.vwr.getJzt ().getCrcValue (ret));
 if (crcMap.containsKey (crcValue)) {
@@ -653,7 +653,7 @@ v.addLast (ret);
 crcMap.put (crcValue, newName);
 }return newName;
 }, "~S,~A,~N,java.util.Hashtable,~B,~S,~N,JU.Lst");
-Clazz.defineMethod (c$, "writeZipFile", 
+Clazz.defineMethod (c$, "writeZipFile",
  function (out, fileNamesAndByteArrays, msg, pngjName) {
 var buf =  Clazz.newByteArray (1024, 0);
 var nBytesOut = 0;
@@ -724,7 +724,7 @@ throw e;
 var fileName = out.getFileName ();
 return (fileName == null ? null : msg + " " + nBytes + " " + fileName);
 }, "JU.OC,JU.Lst,~S,~S");
-Clazz.defineMethod (c$, "wrapPathForAllFiles", 
+Clazz.defineMethod (c$, "wrapPathForAllFiles",
 function (cmd, strCatch) {
 var vname = "v__" + ("" + Math.random ()).substring (3);
 return "# Jmol script\n{\n\tVar " + vname + " = pathForAllFiles\n\tpathForAllFiles=\"$SCRIPT_PATH$\"\n\ttry{\n\t\t" + cmd + "\n\t}catch(e){" + strCatch + "}\n\tpathForAllFiles = " + vname + "\n}\n";

@@ -1,15 +1,15 @@
 Clazz.declarePackage ("JU");
 Clazz.load (["JU.BS"], "JU.Elements", ["java.util.Hashtable", "JU.PT", "JU.Logger"], function () {
 c$ = Clazz.declareType (JU, "Elements");
-c$.getNaturalIsotope = Clazz.defineMethod (c$, "getNaturalIsotope", 
+c$.getNaturalIsotope = Clazz.defineMethod (c$, "getNaturalIsotope",
 function (elementNumber) {
 return JU.Elements.isotopeMass[elementNumber & 0x7F];
 }, "~N");
-c$.getAtomicMass = Clazz.defineMethod (c$, "getAtomicMass", 
+c$.getAtomicMass = Clazz.defineMethod (c$, "getAtomicMass",
 function (i) {
 return (i < 1 || i >= JU.Elements.atomicMass.length ? 0 : JU.Elements.atomicMass[i]);
 }, "~N");
-c$.elementNumberFromSymbol = Clazz.defineMethod (c$, "elementNumberFromSymbol", 
+c$.elementNumberFromSymbol = Clazz.defineMethod (c$, "elementNumberFromSymbol",
 function (elementSymbol, isSilent) {
 if (JU.Elements.htElementMap == null) {
 var map =  new java.util.Hashtable ();
@@ -42,7 +42,7 @@ return isotope;
 }}}if (!isSilent) JU.Logger.error ("'" + elementSymbol + "' is not a recognized symbol");
 return 0;
 }, "~S,~B");
-c$.elementSymbolFromNumber = Clazz.defineMethod (c$, "elementSymbolFromNumber", 
+c$.elementSymbolFromNumber = Clazz.defineMethod (c$, "elementSymbolFromNumber",
 function (elemNo) {
 var isoNumber = 0;
 if (elemNo >= JU.Elements.elementNumberMax) {
@@ -53,12 +53,12 @@ elemNo %= 128;
 return "" + isoNumber + JU.Elements.getElementSymbol (elemNo);
 }return JU.Elements.getElementSymbol (elemNo);
 }, "~N");
-c$.getElementSymbol = Clazz.defineMethod (c$, "getElementSymbol", 
+c$.getElementSymbol = Clazz.defineMethod (c$, "getElementSymbol",
  function (elemNo) {
 if (elemNo < 0 || elemNo >= JU.Elements.elementNumberMax) elemNo = 0;
 return JU.Elements.elementSymbols[elemNo];
 }, "~N");
-c$.elementNameFromNumber = Clazz.defineMethod (c$, "elementNameFromNumber", 
+c$.elementNameFromNumber = Clazz.defineMethod (c$, "elementNameFromNumber",
 function (elementNumber) {
 if (elementNumber >= JU.Elements.elementNumberMax) {
 for (var j = JU.Elements.altElementMax; --j >= 0; ) if (elementNumber == JU.Elements.altElementNumbers[j]) return JU.Elements.altElementNames[j];
@@ -67,66 +67,66 @@ elementNumber %= 128;
 }if (elementNumber < 0 || elementNumber >= JU.Elements.elementNumberMax) elementNumber = 0;
 return JU.Elements.elementNames[elementNumber];
 }, "~N");
-c$.elementNumberFromName = Clazz.defineMethod (c$, "elementNumberFromName", 
+c$.elementNumberFromName = Clazz.defineMethod (c$, "elementNumberFromName",
 function (name) {
 for (var i = 1; i < JU.Elements.elementNumberMax; i++) if (JU.Elements.elementNames[i].equalsIgnoreCase (name)) return i;
 
 return -1;
 }, "~S");
-c$.altElementNameFromIndex = Clazz.defineMethod (c$, "altElementNameFromIndex", 
+c$.altElementNameFromIndex = Clazz.defineMethod (c$, "altElementNameFromIndex",
 function (i) {
 return JU.Elements.altElementNames[i];
 }, "~N");
-c$.altElementNumberFromIndex = Clazz.defineMethod (c$, "altElementNumberFromIndex", 
+c$.altElementNumberFromIndex = Clazz.defineMethod (c$, "altElementNumberFromIndex",
 function (i) {
 return JU.Elements.altElementNumbers[i];
 }, "~N");
-c$.altElementSymbolFromIndex = Clazz.defineMethod (c$, "altElementSymbolFromIndex", 
+c$.altElementSymbolFromIndex = Clazz.defineMethod (c$, "altElementSymbolFromIndex",
 function (i) {
 return JU.Elements.altElementSymbols[i];
 }, "~N");
-c$.altIsotopeSymbolFromIndex = Clazz.defineMethod (c$, "altIsotopeSymbolFromIndex", 
+c$.altIsotopeSymbolFromIndex = Clazz.defineMethod (c$, "altIsotopeSymbolFromIndex",
 function (i) {
 var code = JU.Elements.altElementNumbers[i];
 return (code >> 7) + JU.Elements.elementSymbolFromNumber (code & 127);
 }, "~N");
-c$.altIsotopeSymbolFromIndex2 = Clazz.defineMethod (c$, "altIsotopeSymbolFromIndex2", 
+c$.altIsotopeSymbolFromIndex2 = Clazz.defineMethod (c$, "altIsotopeSymbolFromIndex2",
 function (i) {
 var code = JU.Elements.altElementNumbers[i];
 return JU.Elements.elementSymbolFromNumber (code & 127) + (code >> 7);
 }, "~N");
-c$.getElementNumber = Clazz.defineMethod (c$, "getElementNumber", 
+c$.getElementNumber = Clazz.defineMethod (c$, "getElementNumber",
 function (atomicAndIsotopeNumber) {
 return atomicAndIsotopeNumber & 127;
 }, "~N");
-c$.getIsotopeNumber = Clazz.defineMethod (c$, "getIsotopeNumber", 
+c$.getIsotopeNumber = Clazz.defineMethod (c$, "getIsotopeNumber",
 function (atomicAndIsotopeNumber) {
 return atomicAndIsotopeNumber >> 7;
 }, "~N");
-c$.getAtomicAndIsotopeNumber = Clazz.defineMethod (c$, "getAtomicAndIsotopeNumber", 
+c$.getAtomicAndIsotopeNumber = Clazz.defineMethod (c$, "getAtomicAndIsotopeNumber",
 function (n, mass) {
 return ((n < 0 ? 0 : n) + (mass <= 0 ? 0 : mass << 7));
 }, "~N,~N");
-c$.altElementIndexFromNumber = Clazz.defineMethod (c$, "altElementIndexFromNumber", 
+c$.altElementIndexFromNumber = Clazz.defineMethod (c$, "altElementIndexFromNumber",
 function (atomicAndIsotopeNumber) {
 for (var i = 0; i < JU.Elements.altElementMax; i++) if (JU.Elements.altElementNumbers[i] == atomicAndIsotopeNumber) return i;
 
 return 0;
 }, "~N");
-c$.isNaturalIsotope = Clazz.defineMethod (c$, "isNaturalIsotope", 
+c$.isNaturalIsotope = Clazz.defineMethod (c$, "isNaturalIsotope",
 function (isotopeSymbol) {
 return ("1H,12C,14N".indexOf (isotopeSymbol + ",") >= 0);
 }, "~S");
-c$.getBondingRadius = Clazz.defineMethod (c$, "getBondingRadius", 
+c$.getBondingRadius = Clazz.defineMethod (c$, "getBondingRadius",
 function (atomicNumberAndIsotope, charge) {
 var atomicNumber = atomicNumberAndIsotope & 127;
 return (charge > 0 && JU.Elements.bsCations.get (atomicNumber) ? JU.Elements.getBondingRadFromTable (atomicNumber, charge, JU.Elements.cationLookupTable) : charge < 0 && JU.Elements.bsAnions.get (atomicNumber) ? JU.Elements.getBondingRadFromTable (atomicNumber, charge, JU.Elements.anionLookupTable) : JU.Elements.defaultBondingMars[(atomicNumber << 1) + JU.Elements.bondingVersion] / 1000);
 }, "~N,~N");
-c$.getCovalentRadius = Clazz.defineMethod (c$, "getCovalentRadius", 
+c$.getCovalentRadius = Clazz.defineMethod (c$, "getCovalentRadius",
 function (atomicNumberAndIsotope) {
 return JU.Elements.defaultBondingMars[((atomicNumberAndIsotope & 127) << 1) + JU.Elements.covalentVersion] / 1000;
 }, "~N");
-c$.getBondingRadFromTable = Clazz.defineMethod (c$, "getBondingRadFromTable", 
+c$.getBondingRadFromTable = Clazz.defineMethod (c$, "getBondingRadFromTable",
 function (atomicNumber, charge, table) {
 var ionic = (atomicNumber << 4) + (charge + 4);
 var iVal = 0;
@@ -145,19 +145,19 @@ iVal = table[iMid << 1];
 if (atomicNumber != (iVal >> 4)) iMid++;
 return table[(iMid << 1) + 1] / 1000;
 }, "~N,~N,~A");
-c$.getVanderwaalsMar = Clazz.defineMethod (c$, "getVanderwaalsMar", 
+c$.getVanderwaalsMar = Clazz.defineMethod (c$, "getVanderwaalsMar",
 function (atomicAndIsotopeNumber, type) {
 return JU.Elements.vanderwaalsMars[((atomicAndIsotopeNumber & 127) << 2) + (type.pt % 4)];
 }, "~N,J.c.VDW");
-c$.getHydrophobicity = Clazz.defineMethod (c$, "getHydrophobicity", 
+c$.getHydrophobicity = Clazz.defineMethod (c$, "getHydrophobicity",
 function (i) {
 return (i < 1 || i >= JU.Elements.hydrophobicities.length ? 0 : JU.Elements.hydrophobicities[i]);
 }, "~N");
-c$.getAllredRochowElectroNeg = Clazz.defineMethod (c$, "getAllredRochowElectroNeg", 
+c$.getAllredRochowElectroNeg = Clazz.defineMethod (c$, "getAllredRochowElectroNeg",
 function (elemno) {
 return (elemno > 0 && elemno < JU.Elements.electroNegativities.length ? JU.Elements.electroNegativities[elemno] : 0);
 }, "~N");
-c$.isElement = Clazz.defineMethod (c$, "isElement", 
+c$.isElement = Clazz.defineMethod (c$, "isElement",
 function (atomicAndIsotopeNumber, elemNo) {
 return ((atomicAndIsotopeNumber & 127) == elemNo);
 }, "~N,~N");

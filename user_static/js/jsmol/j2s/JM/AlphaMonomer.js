@@ -5,54 +5,54 @@ this.proteinStructure = null;
 this.nitrogenHydrogenPoint = null;
 Clazz.instantialize (this, arguments);
 }, JM, "AlphaMonomer", JM.Monomer);
-Clazz.overrideMethod (c$, "isProtein", 
+Clazz.overrideMethod (c$, "isProtein",
 function () {
 return true;
 });
-c$.validateAndAllocateA = Clazz.defineMethod (c$, "validateAndAllocateA", 
+c$.validateAndAllocateA = Clazz.defineMethod (c$, "validateAndAllocateA",
 function (chain, group3, seqcode, firstIndex, lastIndex, specialAtomIndexes) {
 return (firstIndex != lastIndex || specialAtomIndexes[2] != firstIndex ? null :  new JM.AlphaMonomer ().set2 (chain, group3, seqcode, firstIndex, lastIndex, JM.AlphaMonomer.alphaOffsets));
 }, "JM.Chain,~S,~N,~N,~N,~A");
-Clazz.overrideConstructor (c$, 
+Clazz.overrideConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "isAlphaMonomer", 
+Clazz.defineMethod (c$, "isAlphaMonomer",
 function () {
 return true;
 });
-Clazz.overrideMethod (c$, "getStructure", 
+Clazz.overrideMethod (c$, "getStructure",
 function () {
 return this.proteinStructure;
 });
-Clazz.defineMethod (c$, "setStructure", 
+Clazz.defineMethod (c$, "setStructure",
 function (ps) {
 if ((this.proteinStructure = ps) == null) this.nitrogenHydrogenPoint = null;
 }, "JM.ProteinStructure");
-Clazz.overrideMethod (c$, "setStrucNo", 
+Clazz.overrideMethod (c$, "setStrucNo",
 function (n) {
 if (this.proteinStructure != null) this.proteinStructure.strucNo = n;
 }, "~N");
-Clazz.overrideMethod (c$, "getProteinStructureType", 
+Clazz.overrideMethod (c$, "getProteinStructureType",
 function () {
 return this.proteinStructure == null ? J.c.STR.NONE : this.proteinStructure.type;
 });
-Clazz.overrideMethod (c$, "getProteinStructureSubType", 
+Clazz.overrideMethod (c$, "getProteinStructureSubType",
 function () {
 return this.proteinStructure == null ? J.c.STR.NONE : this.proteinStructure.subtype;
 });
-Clazz.overrideMethod (c$, "getStrucNo", 
+Clazz.overrideMethod (c$, "getStrucNo",
 function () {
 return this.proteinStructure != null ? this.proteinStructure.strucNo : 0;
 });
-Clazz.overrideMethod (c$, "isHelix", 
+Clazz.overrideMethod (c$, "isHelix",
 function () {
 return this.proteinStructure != null && this.proteinStructure.type === J.c.STR.HELIX;
 });
-Clazz.overrideMethod (c$, "isSheet", 
+Clazz.overrideMethod (c$, "isSheet",
 function () {
 return this.proteinStructure != null && this.proteinStructure.type === J.c.STR.SHEET;
 });
-Clazz.overrideMethod (c$, "setProteinStructureType", 
+Clazz.overrideMethod (c$, "setProteinStructureType",
 function (type, monomerIndexCurrent) {
 if (this.proteinStructure != null) this.proteinStructure.removeMonomer (this.monomerIndex);
 if (monomerIndexCurrent < 0 || monomerIndexCurrent > 0 && this.monomerIndex == 0) {
@@ -77,30 +77,30 @@ this.setStructure (this.bioPolymer.getProteinStructure (monomerIndexCurrent));
 if (this.proteinStructure != null) this.proteinStructure.addMonomer (this.monomerIndex);
 }return this.monomerIndex;
 }, "J.c.STR,~N");
-Clazz.defineMethod (c$, "getAtom", 
+Clazz.defineMethod (c$, "getAtom",
 function (specialAtomID) {
 return (specialAtomID == 2 ? this.getLeadAtom () : null);
 }, "~N");
-Clazz.defineMethod (c$, "getAtomPoint", 
+Clazz.defineMethod (c$, "getAtomPoint",
 function (specialAtomID) {
 return (specialAtomID == 2 ? this.getLeadAtom () : null);
 }, "~N");
-Clazz.overrideMethod (c$, "isConnectedAfter", 
+Clazz.overrideMethod (c$, "isConnectedAfter",
 function (possiblyPreviousMonomer) {
 if (possiblyPreviousMonomer == null) return true;
 var atom1 = this.getLeadAtom ();
 var atom2 = possiblyPreviousMonomer.getLeadAtom ();
 return atom1.isBonded (atom2) || atom1.distance (atom2) <= 4.2;
 }, "JM.Monomer");
-Clazz.overrideMethod (c$, "getQuaternionFrameCenter", 
+Clazz.overrideMethod (c$, "getQuaternionFrameCenter",
 function (qType) {
 return this.getQuaternionFrameCenterAlpha (qType);
 }, "~S");
-Clazz.overrideMethod (c$, "isWithinStructure", 
+Clazz.overrideMethod (c$, "isWithinStructure",
 function (type) {
 return (this.proteinStructure != null && this.proteinStructure.type === type && this.proteinStructure.isWithin (this.monomerIndex));
 }, "J.c.STR");
-Clazz.defineMethod (c$, "getQuaternionFrameCenterAlpha", 
+Clazz.defineMethod (c$, "getQuaternionFrameCenterAlpha",
 function (qType) {
 switch (qType) {
 case 'b':
@@ -117,15 +117,15 @@ case 'q':
 return null;
 }
 }, "~S");
-Clazz.overrideMethod (c$, "getHelixData", 
+Clazz.overrideMethod (c$, "getHelixData",
 function (tokType, qType, mStep) {
 return this.getHelixData2 (tokType, qType, mStep);
 }, "~N,~S,~N");
-Clazz.overrideMethod (c$, "getQuaternion", 
+Clazz.overrideMethod (c$, "getQuaternion",
 function (qType) {
 return this.getQuaternionAlpha (qType);
 }, "~S");
-Clazz.defineMethod (c$, "getQuaternionAlpha", 
+Clazz.defineMethod (c$, "getQuaternionAlpha",
 function (qType) {
 if (this.monomerIndex < 0) return null;
 var vA =  new JU.V3 ();

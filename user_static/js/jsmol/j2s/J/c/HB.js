@@ -1,7 +1,7 @@
 Clazz.declarePackage ("J.c");
 Clazz.load (["java.lang.Enum"], "J.c.HB", null, function () {
 c$ = Clazz.declareType (J.c, "HB", Enum);
-c$.getType = Clazz.defineMethod (c$, "getType", 
+c$.getType = Clazz.defineMethod (c$, "getType",
 function (atom) {
 var group = atom.group;
 var considerHydrogens = !atom.isHetero ();
@@ -45,7 +45,7 @@ return J.c.HB.ACCEPTOR;
 return J.c.HB.UNKNOWN;
 }
 }, "JM.Atom");
-c$.isPossibleHBond = Clazz.defineMethod (c$, "isPossibleHBond", 
+c$.isPossibleHBond = Clazz.defineMethod (c$, "isPossibleHBond",
 function (typeA, typeB) {
 return (typeA === J.c.HB.NOT || typeB === J.c.HB.NOT ? false : typeA === J.c.HB.UNKNOWN || typeA !== typeB);
 }, "J.c.HB,J.c.HB");

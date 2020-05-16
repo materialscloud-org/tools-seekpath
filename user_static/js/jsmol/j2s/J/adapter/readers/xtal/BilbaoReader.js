@@ -11,7 +11,7 @@ this.nAtoms = 0;
 this.isBCSfile = false;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.xtal, "BilbaoReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.normDispl = !this.checkFilterKey ("NONORM");
 this.doDisplace = this.isTrajectory;
@@ -23,7 +23,7 @@ if (this.rd ().indexOf ("<") < 0) {
 this.readBilbaoDataFile ();
 this.continuing = false;
 }});
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.contains (">Bilbao Crystallographic Server<")) {
 this.line = this.line.substring (this.line.lastIndexOf (">") + 1).trim ();
@@ -40,7 +40,7 @@ this.readBilbaoFormat ("low symmetry after origin shift", NaN);
 this.readVirtual ();
 }return true;
 });
-Clazz.defineMethod (c$, "readBilbaoDataFile", 
+Clazz.defineMethod (c$, "readBilbaoDataFile",
  function () {
 this.isBCSfile = true;
 this.checkComment ();
@@ -53,7 +53,7 @@ this.readDisplacements (1);
 this.rdLine ();
 }}
 });
-Clazz.defineMethod (c$, "checkComment", 
+Clazz.defineMethod (c$, "checkComment",
  function () {
 if (!this.line.startsWith ("#") || this.line.indexOf ("disp-par") >= 0) return false;
 if (this.isBCSfile) {
@@ -61,7 +61,7 @@ this.appendLoadNote (this.line);
 if (this.line.startsWith ("# Title:")) this.asc.setAtomSetName (this.line.substring (8).trim ());
 }return true;
 });
-Clazz.defineMethod (c$, "readBilbaoFormat", 
+Clazz.defineMethod (c$, "readBilbaoFormat",
  function (title, fAmp) {
 this.setFractionalCoordinates (true);
 if (!this.doGetModel (++this.modelNumber, title)) return;
@@ -97,7 +97,7 @@ return;
 }this.line = null;
 this.readDisplacements (fAmp);
 }, "~S,~N");
-Clazz.defineMethod (c$, "readDisplacements", 
+Clazz.defineMethod (c$, "readDisplacements",
  function (fAmp) {
 for (var i = 0; i < this.nAtoms; i++) {
 if (this.line == null) this.rdLine ();
@@ -117,19 +117,19 @@ v.scale (1 / fAmp);
 }}
 this.appendLoadNote ((this.asc.ac - this.i0) + " displacements");
 }, "~N");
-Clazz.defineMethod (c$, "setTitle", 
+Clazz.defineMethod (c$, "setTitle",
  function (title) {
 if (title != null) {
 this.asc.setAtomSetName (title);
 this.appendLoadNote (title);
 }}, "~S");
-Clazz.defineMethod (c$, "rdLine", 
+Clazz.defineMethod (c$, "rdLine",
  function () {
 while (this.rd () != null && (this.line.trim ().length == 0 || this.checkComment ())) {
 }
 return this.line;
 });
-Clazz.defineMethod (c$, "readVirtual", 
+Clazz.defineMethod (c$, "readVirtual",
  function () {
 if (this.line.contains ("<h3>K-vector:")) this.kvec = this.line.substring (this.line.indexOf ("("), this.line.indexOf (")") + 1);
 var s = this.getLinesUntil ("\"BCS\"");
@@ -142,7 +142,7 @@ if (irrep.indexOf (":") >= 0) irrep = irrep.substring (0, irrep.indexOf (":"));
 this.line = this.line.substring (this.line.indexOf ("value=") + 7);
 this.readBilbaoFormat (this.kvec + " " + irrep + " (" + amp + " Ang.)", fAmp);
 });
-Clazz.defineMethod (c$, "getAttr", 
+Clazz.defineMethod (c$, "getAttr",
  function (s, key) {
 var pt = s.indexOf ("value", s.indexOf ("\"" + key + "\""));
 s = JU.PT.getQuotedStringAt (s, pt);
@@ -150,7 +150,7 @@ s = JU.PT.rep (s, "<i>", "");
 s = JU.PT.rep (s, "</i>", "");
 return s.trim ();
 }, "~S,~S");
-Clazz.defineMethod (c$, "getLinesUntil", 
+Clazz.defineMethod (c$, "getLinesUntil",
  function (key) {
 var sb =  new JU.SB ();
 do {

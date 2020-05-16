@@ -54,7 +54,7 @@ Encoding.convert2UTF8 = function (str) {
 	} else if (encoding == Encoding.UTF16) {
 		startIdx = 2;
 	}
-	
+
 	var offset = 0;
 	var arrs = new Array(offset + str.length - startIdx);
 	/*

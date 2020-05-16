@@ -5,7 +5,7 @@ this.ac = 0;
 this.isAngstroms = false;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.simple, "CubeReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.asc.newAtomSet ();
 this.readTitleLines ();
@@ -15,7 +15,7 @@ this.readAtoms ();
 this.applySymmetryAndSetTrajectory ();
 this.continuing = false;
 });
-Clazz.defineMethod (c$, "readTitleLines", 
+Clazz.defineMethod (c$, "readTitleLines",
  function () {
 if (this.rd ().indexOf ("#JVXL") == 0) while (this.rd ().indexOf ("#") == 0) {
 }
@@ -25,7 +25,7 @@ this.rd ();
 this.checkCurrentLineForScript ();
 this.asc.setAtomSetName (name + " - " + this.line.trim ());
 });
-Clazz.defineMethod (c$, "readAtomCountAndOrigin", 
+Clazz.defineMethod (c$, "readAtomCountAndOrigin",
  function () {
 this.rd ();
 this.isAngstroms = (this.line.indexOf ("ANGSTROMS") >= 0);
@@ -33,7 +33,7 @@ var tokens = this.getTokens ();
 if (tokens[0].charAt (0) == '+') tokens[0] = tokens[0].substring (1);
 this.ac = Math.abs (this.parseIntStr (tokens[0]));
 });
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function () {
 var f = (this.isAngstroms ? 1 : 0.5291772);
 for (var i = 0; i < this.ac; ++i) {

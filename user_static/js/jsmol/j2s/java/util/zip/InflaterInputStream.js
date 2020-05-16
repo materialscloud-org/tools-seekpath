@@ -4,7 +4,7 @@ c$ = Clazz.decorateAsClass (function () {
 this.inf = null;
 Clazz.instantialize (this, arguments);
 }, java.util.zip, "InflaterInputStream", JU.InflaterInputStream);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function ($in, inflater, size) {
 Clazz.superConstructor (this, java.util.zip.InflaterInputStream, [$in, inflater, size, true]);
 this.inf = inflater;

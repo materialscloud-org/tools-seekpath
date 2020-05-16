@@ -9,19 +9,19 @@ this.line = null;
 this.lineNo = 0;
 Clazz.instantialize (this, arguments);
 }, JSV.source, "JDXSourceStreamTokenizer");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (br) {
 this.br = br;
 }, "java.io.BufferedReader");
-Clazz.defineMethod (c$, "peakLabel", 
+Clazz.defineMethod (c$, "peakLabel",
 function () {
 return this.nextLabel (false);
 });
-Clazz.defineMethod (c$, "getLabel", 
+Clazz.defineMethod (c$, "getLabel",
 function () {
 return this.nextLabel (true);
 });
-Clazz.defineMethod (c$, "nextLabel", 
+Clazz.defineMethod (c$, "nextLabel",
  function (isGet) {
 this.rawLabel = null;
 this.value = null;
@@ -55,7 +55,7 @@ if (isGet) this.line = this.line.substring (pt + 1);
 if (JU.Logger.debugging) JU.Logger.info (this.rawLabel);
 return JSV.source.JDXSourceStreamTokenizer.cleanLabel (this.rawLabel);
 }, "~B");
-c$.cleanLabel = Clazz.defineMethod (c$, "cleanLabel", 
+c$.cleanLabel = Clazz.defineMethod (c$, "cleanLabel",
 function (label) {
 if (label == null) return null;
 var i;
@@ -75,7 +75,7 @@ break;
 }
 return str.toString ().toUpperCase ();
 }, "~S");
-Clazz.defineMethod (c$, "getValue", 
+Clazz.defineMethod (c$, "getValue",
 function () {
 if (this.value != null) return this.value;
 var sb =  new JU.SB ().append (this.line);
@@ -96,7 +96,7 @@ this.value = (this.rawLabel.startsWith ("##$") ? sb.toString ().trim () : JSV.so
 if (JU.Logger.debugging) JU.Logger.info (this.value);
 return this.value;
 });
-Clazz.defineMethod (c$, "readLineTrimmed", 
+Clazz.defineMethod (c$, "readLineTrimmed",
 function () {
 this.readLine ();
 if (this.line == null) return null;
@@ -104,19 +104,19 @@ if (this.line.indexOf ("$$") < 0) return this.line.trim ();
 var sb =  new JU.SB ().append (this.line);
 return JSV.source.JDXSourceStreamTokenizer.trimLines (sb);
 });
-Clazz.defineMethod (c$, "flushLine", 
+Clazz.defineMethod (c$, "flushLine",
 function () {
 var sb =  new JU.SB ().append (this.line);
 this.line = null;
 return JSV.source.JDXSourceStreamTokenizer.trimLines (sb);
 });
-Clazz.defineMethod (c$, "readLine", 
+Clazz.defineMethod (c$, "readLine",
  function () {
 this.line = this.br.readLine ();
 this.lineNo++;
 return this.line;
 });
-c$.trimLines = Clazz.defineMethod (c$, "trimLines", 
+c$.trimLines = Clazz.defineMethod (c$, "trimLines",
  function (v) {
 var n = v.length ();
 var ilast = n - 1;
@@ -149,19 +149,19 @@ buffer[pt++] = ch;
 if (pt > 0 && buffer[pt - 1] == '\n') --pt;
 return ( String.instantialize (buffer)).substring (0, pt).trim ();
 }, "JU.SB");
-c$.ptNonWhite = Clazz.defineMethod (c$, "ptNonWhite", 
+c$.ptNonWhite = Clazz.defineMethod (c$, "ptNonWhite",
  function (v, pt, n) {
 while (pt < n && Character.isWhitespace (v.charAt (pt))) pt++;
 
 return pt;
 }, "JU.SB,~N,~N");
-c$.ptNonSpace = Clazz.defineMethod (c$, "ptNonSpace", 
+c$.ptNonSpace = Clazz.defineMethod (c$, "ptNonSpace",
  function (v, pt, n) {
 while (pt < n && (v.charAt (pt) == ' ' || v.charAt (pt) == '\t')) pt++;
 
 return pt;
 }, "JU.SB,~N,~N");
-c$.ptNonSpaceRev = Clazz.defineMethod (c$, "ptNonSpaceRev", 
+c$.ptNonSpaceRev = Clazz.defineMethod (c$, "ptNonSpaceRev",
  function (v, pt) {
 while (--pt >= 0 && (v.charAt (pt) == ' ' || v.charAt (pt) == '\t')) {
 }

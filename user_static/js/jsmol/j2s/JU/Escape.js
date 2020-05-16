@@ -1,11 +1,11 @@
 Clazz.declarePackage ("JU");
 Clazz.load (null, "JU.Escape", ["java.lang.Float", "java.util.Map", "JU.A4", "$.AU", "$.BS", "$.Lst", "$.M3", "$.M34", "$.M4", "$.P3", "$.P4", "$.PT", "$.Quat", "$.SB", "$.T3", "$.V3", "JS.SV"], function () {
 c$ = Clazz.declareType (JU, "Escape");
-c$.escapeColor = Clazz.defineMethod (c$, "escapeColor", 
+c$.escapeColor = Clazz.defineMethod (c$, "escapeColor",
 function (argb) {
 return (argb == 0 ? null : "[x" + JU.Escape.getHexColorFromRGB (argb) + "]");
 }, "~N");
-c$.getHexColorFromRGB = Clazz.defineMethod (c$, "getHexColorFromRGB", 
+c$.getHexColorFromRGB = Clazz.defineMethod (c$, "getHexColorFromRGB",
 function (argb) {
 if (argb == 0) return null;
 var r = "00" + Integer.toHexString ((argb >> 16) & 0xFF);
@@ -16,26 +16,26 @@ var b = "00" + Integer.toHexString (argb & 0xFF);
 b = b.substring (b.length - 2);
 return r + g + b;
 }, "~N");
-c$.eP = Clazz.defineMethod (c$, "eP", 
+c$.eP = Clazz.defineMethod (c$, "eP",
 function (xyz) {
 if (xyz == null) return "null";
 return "{" + xyz.x + " " + xyz.y + " " + xyz.z + "}";
 }, "JU.T3");
-c$.matrixToScript = Clazz.defineMethod (c$, "matrixToScript", 
+c$.matrixToScript = Clazz.defineMethod (c$, "matrixToScript",
 function (m) {
 return JU.PT.replaceAllCharacters (m.toString (), "\n\r ", "").$replace ('\t', ' ');
 }, "~O");
-c$.eP4 = Clazz.defineMethod (c$, "eP4", 
+c$.eP4 = Clazz.defineMethod (c$, "eP4",
 function (x) {
 return "{" + x.x + " " + x.y + " " + x.z + " " + x.w + "}";
 }, "JU.P4");
-c$.drawQuat = Clazz.defineMethod (c$, "drawQuat", 
+c$.drawQuat = Clazz.defineMethod (c$, "drawQuat",
 function (q, prefix, id, ptCenter, scale) {
 var strV = " VECTOR " + JU.Escape.eP (ptCenter) + " ";
 if (scale == 0) scale = 1;
 return "draw " + prefix + "x" + id + strV + JU.Escape.eP (q.getVectorScaled (0, scale)) + " color red\n" + "draw " + prefix + "y" + id + strV + JU.Escape.eP (q.getVectorScaled (1, scale)) + " color green\n" + "draw " + prefix + "z" + id + strV + JU.Escape.eP (q.getVectorScaled (2, scale)) + " color blue\n";
 }, "JU.Quat,~S,~S,JU.P3,~N");
-c$.e = Clazz.defineMethod (c$, "e", 
+c$.e = Clazz.defineMethod (c$, "e",
 function (x) {
 if (x == null) return "null";
 if (JU.PT.isNonStringPrimitive (x)) return x.toString ();
@@ -55,7 +55,7 @@ return "{" + a.x + " " + a.y + " " + a.z + " " + (a.angle * 180 / 3.141592653589
 var s = JU.PT.nonArrayString (x);
 return (s == null ? JU.PT.toJSON (null, x) : s);
 }, "~O");
-c$.eV = Clazz.defineMethod (c$, "eV", 
+c$.eV = Clazz.defineMethod (c$, "eV",
 function (list) {
 if (list == null) return JU.PT.esc ("");
 var s =  new JU.SB ();
@@ -67,7 +67,7 @@ s.append (JU.Escape.escapeNice (list.get (i).asString ()));
 s.append ("]");
 return s.toString ();
 }, "JU.Lst");
-c$.escapeMap = Clazz.defineMethod (c$, "escapeMap", 
+c$.escapeMap = Clazz.defineMethod (c$, "escapeMap",
 function (ht) {
 var sb =  new JU.SB ();
 sb.append ("{ ");
@@ -83,7 +83,7 @@ sep = ",";
 sb.append (" }");
 return sb.toString ();
 }, "java.util.Map");
-c$.escapeFloatA = Clazz.defineMethod (c$, "escapeFloatA", 
+c$.escapeFloatA = Clazz.defineMethod (c$, "escapeFloatA",
 function (f, asArray) {
 if (asArray) return JU.PT.toJSON (null, f);
 var sb =  new JU.SB ();
@@ -93,7 +93,7 @@ sb.appendF (f[i]);
 }
 return sb.toString ();
 }, "~A,~B");
-c$.escapeFloatAA = Clazz.defineMethod (c$, "escapeFloatAA", 
+c$.escapeFloatAA = Clazz.defineMethod (c$, "escapeFloatAA",
 function (f, addSemi) {
 var sb =  new JU.SB ();
 var eol = (addSemi ? ";\n" : "\n");
@@ -104,7 +104,7 @@ for (var j = 0; j < f[i].length; j++) sb.appendF (f[i][j]).appendC ('\t');
 }
 return sb.toString ();
 }, "~A,~B");
-c$.escapeFloatAAA = Clazz.defineMethod (c$, "escapeFloatAAA", 
+c$.escapeFloatAAA = Clazz.defineMethod (c$, "escapeFloatAAA",
 function (f, addSemi) {
 var sb =  new JU.SB ();
 var eol = (addSemi ? ";\n" : "\n");
@@ -120,7 +120,7 @@ for (var k = 0; k < f[i][j].length; k++) sb.appendF (f[i][j][k]).appendC ('\t');
 }
 return sb.toString ();
 }, "~A,~B");
-c$.eAS = Clazz.defineMethod (c$, "eAS", 
+c$.eAS = Clazz.defineMethod (c$, "eAS",
 function (list, nicely) {
 if (list == null) return JU.PT.esc ("");
 var s =  new JU.SB ();
@@ -132,7 +132,7 @@ s.append (nicely ? JU.Escape.escapeNice (list[i]) : JU.PT.esc (list[i]));
 s.append ("]");
 return s.toString ();
 }, "~A,~B");
-c$.eAI = Clazz.defineMethod (c$, "eAI", 
+c$.eAI = Clazz.defineMethod (c$, "eAI",
 function (ilist) {
 if (ilist == null) return JU.PT.esc ("");
 var s =  new JU.SB ();
@@ -143,7 +143,7 @@ s.appendI (ilist[i]);
 }
 return s.append ("]").toString ();
 }, "~A");
-c$.eAD = Clazz.defineMethod (c$, "eAD", 
+c$.eAD = Clazz.defineMethod (c$, "eAD",
 function (dlist) {
 if (dlist == null) return JU.PT.esc ("");
 var s =  new JU.SB ();
@@ -154,7 +154,7 @@ s.appendD (dlist[i]);
 }
 return s.append ("]").toString ();
 }, "~A");
-c$.eAF = Clazz.defineMethod (c$, "eAF", 
+c$.eAF = Clazz.defineMethod (c$, "eAF",
 function (flist) {
 if (flist == null) return JU.PT.esc ("");
 var s =  new JU.SB ();
@@ -165,7 +165,7 @@ s.appendF (flist[i]);
 }
 return s.append ("]").toString ();
 }, "~A");
-c$.eAP = Clazz.defineMethod (c$, "eAP", 
+c$.eAP = Clazz.defineMethod (c$, "eAP",
 function (plist) {
 if (plist == null) return JU.PT.esc ("");
 var s =  new JU.SB ();
@@ -176,24 +176,24 @@ s.append (JU.Escape.eP (plist[i]));
 }
 return s.append ("]").toString ();
 }, "~A");
-c$.escapeNice = Clazz.defineMethod (c$, "escapeNice", 
+c$.escapeNice = Clazz.defineMethod (c$, "escapeNice",
  function (s) {
 if (s == null) return "null";
 var f = JU.PT.parseFloatStrict (s);
 return (Float.isNaN (f) ? JU.PT.esc (s) : s);
 }, "~S");
-c$.uABsM = Clazz.defineMethod (c$, "uABsM", 
+c$.uABsM = Clazz.defineMethod (c$, "uABsM",
 function (s) {
 if (s.charAt (0) == '{') return JU.Escape.uP (s);
 if ((JU.Escape.isStringArray (s) || s.startsWith ("[{") && s.indexOf ("[{") == s.lastIndexOf ("[{")) && s.indexOf (',') < 0 && s.indexOf ('.') < 0 && s.indexOf ('-') < 0) return JU.BS.unescape (s);
 if (s.startsWith ("[[")) return JU.Escape.unescapeMatrix (s);
 return s;
 }, "~S");
-c$.isStringArray = Clazz.defineMethod (c$, "isStringArray", 
+c$.isStringArray = Clazz.defineMethod (c$, "isStringArray",
 function (s) {
 return s.startsWith ("({") && s.lastIndexOf ("({") == 0 && s.indexOf ("})") == s.length - 2;
 }, "~S");
-c$.uP = Clazz.defineMethod (c$, "uP", 
+c$.uP = Clazz.defineMethod (c$, "uP",
 function (strPoint) {
 if (strPoint == null || strPoint.length == 0) return strPoint;
 var str = strPoint.$replace ('\n', ' ').trim ();
@@ -213,7 +213,7 @@ if (nPoints == 3) return JU.P3.new3 (points[0], points[1], points[2]);
 if (nPoints == 4) return JU.P4.new4 (points[0], points[1], points[2], points[3]);
 return strPoint;
 }, "~S");
-c$.unescapeMatrix = Clazz.defineMethod (c$, "unescapeMatrix", 
+c$.unescapeMatrix = Clazz.defineMethod (c$, "unescapeMatrix",
 function (strMatrix) {
 if (strMatrix == null || strMatrix.length == 0) return strMatrix;
 var str = strMatrix.$replace ('\n', ' ').trim ();
@@ -232,15 +232,15 @@ if (nPoints == 9) return JU.M3.newA9 (points);
 if (nPoints == 16) return JU.M4.newA16 (points);
 return strMatrix;
 }, "~S");
-c$.eBS = Clazz.defineMethod (c$, "eBS", 
+c$.eBS = Clazz.defineMethod (c$, "eBS",
 function (bs) {
 return JU.BS.escape (bs, '(', ')');
 }, "JU.BS");
-c$.eBond = Clazz.defineMethod (c$, "eBond", 
+c$.eBond = Clazz.defineMethod (c$, "eBond",
 function (bs) {
 return JU.BS.escape (bs, '[', ']');
 }, "JU.BS");
-c$.toReadable = Clazz.defineMethod (c$, "toReadable", 
+c$.toReadable = Clazz.defineMethod (c$, "toReadable",
 function (name, info) {
 var sb =  new JU.SB ();
 var sep = "";
@@ -347,21 +347,21 @@ sb.append (JU.Escape.toReadable ((name == null ? "" : name + ".") + key, (info).
 return sb.toString ();
 }return JU.Escape.packageReadable (name, null, JU.PT.toJSON (null, info));
 }, "~S,~O");
-c$.packageReadableSb = Clazz.defineMethod (c$, "packageReadableSb", 
+c$.packageReadableSb = Clazz.defineMethod (c$, "packageReadableSb",
  function (infoName, infoType, sb) {
 return JU.Escape.packageReadable (infoName, infoType, sb.toString ());
 }, "~S,~S,JU.SB");
-c$.packageReadable = Clazz.defineMethod (c$, "packageReadable", 
+c$.packageReadable = Clazz.defineMethod (c$, "packageReadable",
  function (infoName, infoType, info) {
 var s = (infoType == null ? "" : infoType + "\t");
 if (infoName == null) return s + info;
 return "\n" + infoName + "\t" + (infoType == null ? "" : "*" + infoType + "\t") + info;
 }, "~S,~S,~S");
-c$.escapeModelFileNumber = Clazz.defineMethod (c$, "escapeModelFileNumber", 
+c$.escapeModelFileNumber = Clazz.defineMethod (c$, "escapeModelFileNumber",
 function (iv) {
 return "" + (Clazz.doubleToInt (iv / 1000000)) + "." + (iv % 1000000);
 }, "~N");
-c$.encapsulateData = Clazz.defineMethod (c$, "encapsulateData", 
+c$.encapsulateData = Clazz.defineMethod (c$, "encapsulateData",
 function (name, data, depth) {
 var s;
 switch (depth) {
@@ -380,7 +380,7 @@ break;
 }
 return "  DATA \"" + name + "\"\n" + s + "    END \"" + name + "\";\n";
 }, "~S,~O,~N");
-c$.unescapeUnicode = Clazz.defineMethod (c$, "unescapeUnicode", 
+c$.unescapeUnicode = Clazz.defineMethod (c$, "unescapeUnicode",
 function (s) {
 var ichMax = s.length;
 var sb = JU.SB.newN (ichMax);
@@ -407,14 +407,14 @@ ch = String.fromCharCode (unicode);
 }
 return sb.toString ();
 }, "~S");
-c$.getHexitValue = Clazz.defineMethod (c$, "getHexitValue", 
+c$.getHexitValue = Clazz.defineMethod (c$, "getHexitValue",
 function (ch) {
 if (ch.charCodeAt (0) >= 48 && ch.charCodeAt (0) <= 57) return ch.charCodeAt (0) - 48;
  else if (ch.charCodeAt (0) >= 97 && ch.charCodeAt (0) <= 102) return 10 + ch.charCodeAt (0) - 97;
  else if (ch.charCodeAt (0) >= 65 && ch.charCodeAt (0) <= 70) return 10 + ch.charCodeAt (0) - 65;
  else return -1;
 }, "~S");
-c$.unescapeStringArray = Clazz.defineMethod (c$, "unescapeStringArray", 
+c$.unescapeStringArray = Clazz.defineMethod (c$, "unescapeStringArray",
 function (data) {
 if (data == null || !data.startsWith ("[") || !data.endsWith ("]")) return null;
 var v =  new JU.Lst ();
@@ -429,12 +429,12 @@ while (next[0] < data.length && data.charAt (next[0]) != '"') next[0]++;
 }
 return v.toArray ( new Array (v.size ()));
 }, "~S");
-c$.isAV = Clazz.defineMethod (c$, "isAV", 
+c$.isAV = Clazz.defineMethod (c$, "isAV",
 function (x) {
 {
 return Clazz.instanceOf(x[0], JS.SV);
 }}, "~O");
-c$.escapeHelical = Clazz.defineMethod (c$, "escapeHelical", 
+c$.escapeHelical = Clazz.defineMethod (c$, "escapeHelical",
 function (id, tokType, a, b, pts) {
 switch (tokType) {
 case 134217751:

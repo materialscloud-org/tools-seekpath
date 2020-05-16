@@ -26,7 +26,7 @@ this.modelStrings = "";
 this.done = false;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.cif, "MMCifReader", J.adapter.readers.cif.CifReader);
-Clazz.overrideMethod (c$, "initSubclass", 
+Clazz.overrideMethod (c$, "initSubclass",
 function () {
 this.setIsPDB ();
 this.mident = JU.M4.newM4 (null);
@@ -46,7 +46,7 @@ this.chainAtomMap =  new java.util.Hashtable ();
 this.chainAtomCounts =  new java.util.Hashtable ();
 }this.isLigandBondBug = (this.stateScriptVersionInt >= 140204 && this.stateScriptVersionInt <= 140208 || this.stateScriptVersionInt >= 140304 && this.stateScriptVersionInt <= 140308);
 });
-Clazz.overrideMethod (c$, "processSubclassEntry", 
+Clazz.overrideMethod (c$, "processSubclassEntry",
 function () {
 if (this.key0.startsWith ("_pdbx_struct_assembly_gen.") || this.key0.startsWith ("_struct_conn.") || this.key0.startsWith ("_struct_ref_seq_dif.") || this.key0.startsWith ("_struct_conf.") || this.key0.startsWith ("_struct_sheet_range.")) this.processSubclassLoopBlock ();
  else if (this.key.equals ("_rna3d")) {
@@ -56,7 +56,7 @@ this.addedDataKey = this.key;
 this.dssr = this.vwr.parseJSONMap (this.reader.readLine ());
 this.reader.readLine ();
 }});
-Clazz.overrideMethod (c$, "processSubclassLoopBlock", 
+Clazz.overrideMethod (c$, "processSubclassLoopBlock",
 function () {
 if (this.key0.startsWith ("_struct_ncs_oper.")) return this.processStructOperListBlock (true);
 if (this.key0.startsWith ("_pdbx_struct_oper_list.")) return this.processStructOperListBlock (false);
@@ -72,7 +72,7 @@ if (this.key0.startsWith ("_chem_comp_bond.")) return this.processCompBondLoopBl
 if (this.key0.startsWith ("_struct_conn.")) return this.processStructConnLoopBlock ();
 return false;
 });
-Clazz.defineMethod (c$, "sortAssemblyModels", 
+Clazz.defineMethod (c$, "sortAssemblyModels",
 function () {
 var natoms = this.asc.ac;
 var lastSet = -1;
@@ -101,7 +101,7 @@ this.asc.atoms = newAtoms;
 this.asc.bsAtoms = bsAtomsNew;
 if (++lastSet < this.asc.atomSetCount) this.asc.atomSetCount = lastSet;
 });
-Clazz.overrideMethod (c$, "finalizeSubclass", 
+Clazz.overrideMethod (c$, "finalizeSubclass",
 function () {
 if (this.byChain && !this.isBiomolecule) for (var id, $id = this.chainAtomMap.keySet ().iterator (); $id.hasNext () && ((id = $id.next ()) || true);) this.createParticle (id);
 
@@ -142,14 +142,14 @@ if (this.byChain) return true;
 if (this.requiresSorting) this.sortAssemblyModels ();
 return true;
 });
-Clazz.overrideMethod (c$, "checkSubclassSymmetry", 
+Clazz.overrideMethod (c$, "checkSubclassSymmetry",
 function () {
 this.asc.checkSpecial = false;
 var modelIndex = this.asc.iSet;
 this.asc.setCurrentModelInfo ("PDB_CONECT_firstAtom_count_max",  Clazz.newIntArray (-1, [this.asc.getAtomSetAtomIndex (modelIndex), this.asc.getAtomSetAtomCount (modelIndex), this.maxSerial]));
 return false;
 });
-Clazz.defineMethod (c$, "setBonds", 
+Clazz.defineMethod (c$, "setBonds",
  function () {
 if (this.htBondMap == null) return;
 var bsAtoms = this.asc.bsAtoms;
@@ -193,7 +193,7 @@ map.put (comp + a.atomName + a.altLoc, Integer.$valueOf (a.index));
 this.processBonds (this.structConnMap, map, true);
 }this.appendLoadNote (this.asc.bondCount + " bonds added");
 });
-Clazz.defineMethod (c$, "processBonds", 
+Clazz.defineMethod (c$, "processBonds",
  function (cmap, map, isStructConn) {
 var i1;
 var i2;
@@ -204,7 +204,7 @@ if (this.debugging) JU.Logger.debug ((isStructConn ? "_struct_conn" : "_comp_bon
 this.asc.addNewBondWithOrder (i1.intValue (), i2.intValue (), (o[2]).intValue ());
 }
 }, "JU.Lst,java.util.Map,~B");
-Clazz.defineMethod (c$, "processSequence", 
+Clazz.defineMethod (c$, "processSequence",
  function () {
 this.parseLoopParameters (J.adapter.readers.cif.MMCifReader.structRefFields);
 var g1;
@@ -216,7 +216,7 @@ this.htGroup1.put (g3, g1);
 }
 return true;
 });
-Clazz.defineMethod (c$, "processAssemblyGenBlock", 
+Clazz.defineMethod (c$, "processAssemblyGenBlock",
  function () {
 this.parseLoopParameters (J.adapter.readers.cif.MMCifReader.assemblyFields);
 while (this.parser.getData ()) {
@@ -238,7 +238,7 @@ if (count == 3) this.addAssembly (assem);
 }
 return true;
 });
-Clazz.defineMethod (c$, "addAssembly", 
+Clazz.defineMethod (c$, "addAssembly",
 function (assem) {
 var id = assem[0];
 var list = assem[2];
@@ -266,11 +266,11 @@ this.vBiomolecules.addLast (info);
 (info.get ("operators")).addLast (this.decodeAssemblyOperators (operators));
 this.checkFilterAssembly (id, info);
 }, "~A");
-Clazz.defineMethod (c$, "checkFilterAssembly", 
+Clazz.defineMethod (c$, "checkFilterAssembly",
 function (id, info) {
 if (this.checkFilterKey ("ASSEMBLY " + id + ";") || this.checkFilterKey ("ASSEMBLY=" + id + ";")) this.thisBiomolecule = info;
 }, "~S,java.util.Map");
-Clazz.defineMethod (c$, "decodeAssemblyOperators", 
+Clazz.defineMethod (c$, "decodeAssemblyOperators",
  function (ops) {
 var pt = ops.indexOf (")(");
 if (pt >= 0) return this.crossBinary (this.decodeAssemblyOperators (ops.substring (0, pt + 1)), this.decodeAssemblyOperators (ops.substring (pt + 1)));
@@ -280,7 +280,7 @@ ops = JU.PT.rep (ops, " ", "");
 ops = ops.substring (1, ops.length - 1);
 }return ops;
 }, "~S");
-Clazz.defineMethod (c$, "crossBinary", 
+Clazz.defineMethod (c$, "crossBinary",
  function (ops1, ops2) {
 var sb =  new JU.SB ();
 var opsLeft = JU.PT.split (ops1, ",");
@@ -290,7 +290,7 @@ for (var i = 0; i < opsLeft.length; i++) for (var j = 0; j < opsRight.length; j+
 
 return sb.toString ().substring (1);
 }, "~S,~S");
-Clazz.defineMethod (c$, "processStructOperListBlock", 
+Clazz.defineMethod (c$, "processStructOperListBlock",
  function (isNCS) {
 this.parseLoopParametersFor ((isNCS ? "_struct_ncs_oper" : "_pdbx_struct_oper_list"), isNCS ? J.adapter.readers.cif.MMCifReader.ncsoperFields : J.adapter.readers.cif.MMCifReader.operFields);
 var m =  Clazz.newFloatArray (16, 0);
@@ -329,7 +329,7 @@ this.addMatrix (id, m4, isNCS);
 }}
 return true;
 }, "~B");
-Clazz.defineMethod (c$, "addMatrix", 
+Clazz.defineMethod (c$, "addMatrix",
 function (id, m4, isNCS) {
 if (isNCS) {
 if (m4.equals (this.mident)) return;
@@ -340,7 +340,7 @@ this.lstNCS.addLast (m4);
 if (this.htBiomts == null) this.htBiomts =  new java.util.Hashtable ();
 this.htBiomts.put (id, m4);
 }}, "~S,JU.M4,~B");
-Clazz.defineMethod (c$, "processChemCompLoopBlock", 
+Clazz.defineMethod (c$, "processChemCompLoopBlock",
  function () {
 this.parseLoopParameters (J.adapter.readers.cif.MMCifReader.chemCompFields);
 var groupName;
@@ -349,7 +349,7 @@ while (this.parser.getData ()) if (!this.isNull (groupName = this.getField (0)) 
 
 return true;
 });
-Clazz.defineMethod (c$, "addHetero", 
+Clazz.defineMethod (c$, "addHetero",
 function (groupName, hetName, doCheck, addNote) {
 if (doCheck && !this.vwr.getJBR ().isHetero (groupName)) return;
 if (this.htHetero == null) this.htHetero =  new java.util.Hashtable ();
@@ -357,7 +357,7 @@ if (doCheck && this.htHetero.containsKey (groupName)) return;
 this.htHetero.put (groupName, hetName);
 if (addNote) this.appendLoadNote (groupName + " = " + hetName);
 }, "~S,~S,~B,~B");
-Clazz.defineMethod (c$, "processStructConfLoopBlock", 
+Clazz.defineMethod (c$, "processStructConfLoopBlock",
  function () {
 if (this.ignoreStructure) {
 this.parser.skipLoop (false);
@@ -378,7 +378,7 @@ this.addStructure (structure);
 }
 return true;
 });
-Clazz.defineMethod (c$, "addStructure", 
+Clazz.defineMethod (c$, "addStructure",
  function (structure) {
 structure.startChainID = this.vwr.getChainID (structure.startChainStr = this.getField (1), true);
 structure.startSequenceNumber = this.parseIntStr (this.getField (2));
@@ -388,7 +388,7 @@ structure.endSequenceNumber = this.parseIntStr (this.getField (5));
 structure.endInsertionCode = this.getField (6).charAt (0);
 this.asc.addStructure (structure);
 }, "J.adapter.smarter.Structure");
-Clazz.defineMethod (c$, "processStructSheetRangeLoopBlock", 
+Clazz.defineMethod (c$, "processStructSheetRangeLoopBlock",
  function () {
 if (this.ignoreStructure) {
 this.parser.skipLoop (false);
@@ -401,7 +401,7 @@ return false;
 
 return true;
 });
-Clazz.defineMethod (c$, "processStructSiteBlock", 
+Clazz.defineMethod (c$, "processStructSiteBlock",
  function () {
 this.parseLoopParametersFor ("_struct_site_gen", J.adapter.readers.cif.MMCifReader.structSiteFields);
 var htSite = null;
@@ -425,7 +425,7 @@ htSite.put ("groups", groups);
 }
 return true;
 });
-Clazz.defineMethod (c$, "setBiomolecules", 
+Clazz.defineMethod (c$, "setBiomolecules",
  function () {
 if (this.assemblyIdAtoms == null && this.chainAtomCounts == null) return;
 var bsAll =  new JU.BS ();
@@ -437,7 +437,7 @@ if (this.isBiomolecule && bsAll.cardinality () < this.asc.ac) {
 if (this.asc.bsAtoms != null) this.asc.bsAtoms.and (bsAll);
  else if (!this.isCourseGrained) this.asc.bsAtoms = bsAll;
 }});
-Clazz.defineMethod (c$, "setBiomolecule", 
+Clazz.defineMethod (c$, "setBiomolecule",
  function (biomolecule, bsAll) {
 var biomtchains = biomolecule.get ("chains");
 var biomts = biomolecule.get ("biomts");
@@ -497,7 +497,7 @@ nAtomsTotal += nAtoms;
 biomolecule.put ("atomCount", Integer.$valueOf (nAtomsTotal));
 return nAtomsTotal;
 }, "java.util.Map,JU.BS");
-Clazz.defineMethod (c$, "createParticle", 
+Clazz.defineMethod (c$, "createParticle",
  function (id) {
 var asum = this.chainAtomMap.get (id);
 var c = this.chainAtomCounts.get (id)[0];
@@ -509,7 +509,7 @@ this.setChainID (a, id);
 a.radius = 16;
 this.asc.addAtom (a);
 }, "~S");
-Clazz.defineMethod (c$, "getOpMatrix", 
+Clazz.defineMethod (c$, "getOpMatrix",
  function (ops) {
 if (this.htBiomts == null) return JU.M4.newM4 (null);
 var pt = ops.indexOf ("|");
@@ -519,7 +519,7 @@ m.mul (this.htBiomts.get (ops.substring (pt + 1)));
 return m;
 }return this.htBiomts.get (ops);
 }, "~S");
-Clazz.defineMethod (c$, "processStructConnLoopBlock", 
+Clazz.defineMethod (c$, "processStructConnLoopBlock",
  function () {
 this.parseLoopParametersFor ("_struct_conn", J.adapter.readers.cif.MMCifReader.structConnFields);
 while (this.parser.getData ()) {
@@ -539,7 +539,7 @@ if (this.structConnList.indexOf (key2) < 0) this.structConnList += key2;
 }
 return true;
 });
-Clazz.defineMethod (c$, "processCompBondLoopBlock", 
+Clazz.defineMethod (c$, "processCompBondLoopBlock",
  function () {
 this.doSetBonds = true;
 this.parseLoopParametersFor ("_chem_comp_bond", J.adapter.readers.cif.MMCifReader.chemCompBondFields);
@@ -566,7 +566,7 @@ cmap.addLast ( Clazz.newArray (-1, [atom1, atom2, Integer.$valueOf (this.haveHAt
 }}
 return true;
 });
-Clazz.overrideMethod (c$, "processSubclassAtom", 
+Clazz.overrideMethod (c$, "processSubclassAtom",
 function (atom, assemblyId, strChain) {
 if (this.isBiomolecule) {
 if (this.isCourseGrained) {
@@ -594,13 +594,13 @@ if (bs == null) this.assemblyIdAtoms.put (assemblyId, bs =  new JU.BS ());
 bs.set (this.ac);
 }return true;
 }, "J.adapter.smarter.Atom,~S,~S");
-Clazz.overrideMethod (c$, "checkPDBModelField", 
+Clazz.overrideMethod (c$, "checkPDBModelField",
 function (modelField, currentModelNo) {
 this.fieldProperty (modelField);
 var modelNo = this.parseIntStr (this.field);
 return (modelNo == currentModelNo ? modelNo : this.incrementModel (modelNo));
 }, "~N,~N");
-Clazz.defineMethod (c$, "incrementModel", 
+Clazz.defineMethod (c$, "incrementModel",
 function (modelNo) {
 var isAssembly = (this.thisDataSetName != null && this.thisDataSetName.indexOf ("-assembly-") >= 0);
 if (isAssembly) {
@@ -627,7 +627,7 @@ this.modelMap.put ("" + modelNo, Integer.$valueOf (Math.max (0, this.asc.iSet)))
 this.modelMap.put ("_" + Math.max (0, this.asc.iSet), Integer.$valueOf (modelNo));
 }return modelNo;
 }, "~N");
-Clazz.defineMethod (c$, "setHetero", 
+Clazz.defineMethod (c$, "setHetero",
  function () {
 if (this.htHetero != null) {
 this.asc.setCurrentModelInfo ("hetNames", this.htHetero);

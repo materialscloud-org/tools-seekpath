@@ -4,15 +4,15 @@ c$ = Clazz.decorateAsClass (function () {
 this.isBXSF = false;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.readers, "XsfReader", J.jvxl.readers.VolumeFileReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.XsfReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2VFR (sg, br);
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "readParameters", 
+Clazz.overrideMethod (c$, "readParameters",
 function () {
 this.isAngstroms = false;
 this.params.blockCubeData = true;
@@ -46,7 +46,7 @@ if (this.isBXSF) {
 } else {
 this.swapXZ ();
 }});
-Clazz.overrideMethod (c$, "gotoData", 
+Clazz.overrideMethod (c$, "gotoData",
 function (n, nPoints) {
 if (!this.params.blockCubeData) return;
 if (n > 0) JU.Logger.info ("skipping " + n + " data sets, " + nPoints + " points each");
@@ -54,7 +54,7 @@ if (this.isBXSF) JU.Logger.info (this.rd ());
 for (var i = 0; i < n; i++) this.skipData (nPoints);
 
 }, "~N,~N");
-Clazz.overrideMethod (c$, "skipData", 
+Clazz.overrideMethod (c$, "skipData",
 function (nPoints) {
 this.skipDataVFR (nPoints);
 if (this.isBXSF) JU.Logger.info (this.rd ());

@@ -9,22 +9,22 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.shiftRefsPPM =  new java.util.Hashtable ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.overrideMethod (c$, "setViewer", 
+Clazz.overrideMethod (c$, "setViewer",
 function (vwr) {
 this.vwr = vwr;
 this.getData ();
 return this;
 }, "JV.Viewer");
-Clazz.overrideMethod (c$, "getQuadrupolarConstant", 
+Clazz.overrideMethod (c$, "getQuadrupolarConstant",
 function (efg) {
 if (efg == null) return 0;
 var a = this.vwr.ms.at[efg.atomIndex1];
 return (this.getIsotopeData (a, 2) * efg.eigenValues[2] * 2.349647144641375E8);
 }, "JU.Tensor");
-Clazz.defineMethod (c$, "getInteractionTensorList", 
+Clazz.defineMethod (c$, "getInteractionTensorList",
  function (type, bsA) {
 if (type != null) type = type.toLowerCase ();
 var bsModels = this.vwr.ms.getModelBS (bsA, false);
@@ -42,7 +42,7 @@ if (type == null || t.type.equals (type) && t.isSelected (bs1, iAtom)) list.addL
 }
 return list;
 }, "~S,JU.BS");
-Clazz.defineMethod (c$, "getAtomSiteBS", 
+Clazz.defineMethod (c$, "getAtomSiteBS",
  function (bsA) {
 if (bsA == null) return null;
 var bs =  new JU.BS ();
@@ -55,7 +55,7 @@ bs.set (models[a.mi].firstAtomIndex - 1 + a.atomSite);
 }
 return bs;
 }, "JU.BS");
-Clazz.overrideMethod (c$, "getUniqueTensorSet", 
+Clazz.overrideMethod (c$, "getUniqueTensorSet",
 function (bsAtoms) {
 var bs =  new JU.BS ();
 var atoms = this.vwr.ms.at;
@@ -87,11 +87,11 @@ break;
 }
 return bs;
 }, "JU.BS");
-Clazz.defineMethod (c$, "getJCouplingHz", 
+Clazz.defineMethod (c$, "getJCouplingHz",
 function (a1, a2, type, isc) {
 return this.getIsoOrAnisoHz (true, a1, a2, type, isc);
 }, "JM.Atom,JM.Atom,~S,JU.Tensor");
-Clazz.overrideMethod (c$, "getIsoOrAnisoHz", 
+Clazz.overrideMethod (c$, "getIsoOrAnisoHz",
 function (isIso, a1, a2, type, isc) {
 if (isc == null) {
 type = this.getISCtype (a1, type);
@@ -107,7 +107,7 @@ a1 = this.vwr.ms.at[isc.atomIndex1];
 a2 = this.vwr.ms.at[isc.atomIndex2];
 }return (this.getIsotopeData (a1, 1) * this.getIsotopeData (a2, 1) * (isIso ? isc.isotropy () : isc.anisotropy ()) * 0.0167840302932219);
 }, "~B,JM.Atom,JM.Atom,~S,JU.Tensor");
-Clazz.defineMethod (c$, "getISCtype", 
+Clazz.defineMethod (c$, "getISCtype",
  function (a1, type) {
 var tensors = this.vwr.ms.getInfo (a1.mi, "interactionTensors");
 if (tensors == null) return null;
@@ -117,27 +117,27 @@ if ((pt = type.indexOf ("_hz")) >= 0 || (pt = type.indexOf ("_khz")) >= 0 || (pt
 if (type.length == 0) type = "isc";
 return type;
 }, "JM.Atom,~S");
-Clazz.overrideMethod (c$, "getDipolarConstantHz", 
+Clazz.overrideMethod (c$, "getDipolarConstantHz",
 function (a1, a2) {
 if (JU.Logger.debugging) JU.Logger.debug (a1 + " g=" + this.getIsotopeData (a1, 1) + "; " + a2 + " g=" + this.getIsotopeData (a2, 1));
 var v = (-this.getIsotopeData (a1, 1) * this.getIsotopeData (a2, 1) / Math.pow (a1.distance (a2), 3) * 1054.5717253362893);
 return (v == 0 || a1 === a2 ? NaN : v);
 }, "JM.Atom,JM.Atom");
-Clazz.overrideMethod (c$, "getDipolarCouplingHz", 
+Clazz.overrideMethod (c$, "getDipolarCouplingHz",
 function (a1, a2, vField) {
 var v12 = JU.V3.newVsub (a2, a1);
 var r = v12.length ();
 var costheta = v12.dot (vField) / r / vField.length ();
 return (this.getDipolarConstantHz (a1, a2) * (3 * costheta - 1) / 2);
 }, "JM.Atom,JM.Atom,JU.V3");
-Clazz.defineMethod (c$, "getIsotopeData", 
+Clazz.defineMethod (c$, "getIsotopeData",
  function (a, iType) {
 var iso = a.getIsotopeNumber ();
 var sym = a.getElementSymbolIso (false);
 var d = this.isotopeData.get (iso == 0 ? sym : "" + iso + sym);
 return (d == null ? 0 : d[iType]);
 }, "JM.Atom,~N");
-Clazz.defineMethod (c$, "getData", 
+Clazz.defineMethod (c$, "getData",
  function () {
 var br = null;
 try {
@@ -183,7 +183,7 @@ throw ee;
 }
 }
 });
-Clazz.overrideMethod (c$, "getInfo", 
+Clazz.overrideMethod (c$, "getInfo",
 function (what) {
 if (what.equals ("all")) {
 var map =  new java.util.Hashtable ();
@@ -198,26 +198,26 @@ if (JU.PT.isDigit (key.charAt (0)) && key.endsWith (what)) info.addLast (e.getVa
 }
 return info;
 }, "~S");
-Clazz.overrideMethod (c$, "getChemicalShift", 
+Clazz.overrideMethod (c$, "getChemicalShift",
 function (atom) {
 var v = this.getMagneticShielding (atom);
 if (Float.isNaN (v)) return v;
 var ref = this.shiftRefsPPM.get (atom.getElementSymbol ());
 return (ref == null ? 0 : ref.floatValue ()) - v;
 }, "JM.Atom");
-Clazz.overrideMethod (c$, "getMagneticShielding", 
+Clazz.overrideMethod (c$, "getMagneticShielding",
 function (atom) {
 var t = this.vwr.ms.getAtomTensor (atom.i, "ms");
 return (t == null ? NaN : t.isotropy ());
 }, "JM.Atom");
-Clazz.overrideMethod (c$, "getState", 
+Clazz.overrideMethod (c$, "getState",
 function (sb) {
 if (this.shiftRefsPPM.isEmpty ()) return false;
 for (var nuc, $nuc = this.shiftRefsPPM.entrySet ().iterator (); $nuc.hasNext () && ((nuc = $nuc.next ()) || true);) sb.append ("  set shift_").append (nuc.getKey ()).append (" ").appendO (nuc.getValue ()).append ("\n");
 
 return true;
 }, "JU.SB");
-Clazz.overrideMethod (c$, "setChemicalShiftReference", 
+Clazz.overrideMethod (c$, "setChemicalShiftReference",
 function (element, value) {
 if (element == null) {
 this.shiftRefsPPM.clear ();
@@ -226,7 +226,7 @@ return false;
 this.shiftRefsPPM.put (element, Float.$valueOf (value));
 return true;
 }, "~S,~N");
-Clazz.overrideMethod (c$, "getTensorInfo", 
+Clazz.overrideMethod (c$, "getTensorInfo",
 function (tensorType, infoType, bs) {
 if ("".equals (tensorType)) tensorType = null;
 infoType = (infoType == null ? ";all." : ";" + infoType + ".");
@@ -270,7 +270,7 @@ data.addLast (t == null ? (isFloat ? Float.$valueOf (0) : "") : isChi ? Float.$v
 }}
 return data;
 }, "~S,~S,JU.BS");
-Clazz.overrideMethod (c$, "getMinDistances", 
+Clazz.overrideMethod (c$, "getMinDistances",
 function (md) {
 var bsPoints1 = md.points.get (0);
 var n1 = bsPoints1.cardinality ();

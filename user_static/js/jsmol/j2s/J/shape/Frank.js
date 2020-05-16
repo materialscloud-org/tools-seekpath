@@ -15,13 +15,13 @@ this.scaling = 0;
 this.font3d = null;
 Clazz.instantialize (this, arguments);
 }, J.shape, "Frank", J.shape.Shape);
-Clazz.overrideMethod (c$, "initShape", 
+Clazz.overrideMethod (c$, "initShape",
 function () {
 this.myType = "frank";
 this.baseFont3d = this.font3d = this.vwr.gdata.getFont3DFSS ("SansSerif", "Plain", 16);
 this.calcMetrics ();
 });
-Clazz.overrideMethod (c$, "setProperty", 
+Clazz.overrideMethod (c$, "setProperty",
 function (propertyName, value, bs) {
 if ("font" === propertyName) {
 var f = value;
@@ -30,13 +30,13 @@ this.baseFont3d = f;
 this.scaling = 0;
 }}return;
 }, "~S,~O,JU.BS");
-Clazz.overrideMethod (c$, "wasClicked", 
+Clazz.overrideMethod (c$, "wasClicked",
 function (x, y) {
 var width = this.vwr.getScreenWidth ();
 var height = this.vwr.getScreenHeight ();
 return (width > 0 && height > 0 && x > width - this.frankWidth - 4 && y > height - this.frankAscent - 4);
 }, "~N,~N");
-Clazz.overrideMethod (c$, "checkObjectHovered", 
+Clazz.overrideMethod (c$, "checkObjectHovered",
 function (x, y, bsVisible) {
 if (!this.vwr.getShowFrank () || !this.wasClicked (x, y) || !this.vwr.menuEnabled ()) return false;
 if (this.vwr.gdata.antialiasEnabled && !this.vwr.isSingleThreaded) {
@@ -45,7 +45,7 @@ y <<= 1;
 }this.vwr.hoverOnPt (x, y, J.i18n.GT._ ("Click for menu..."), null, null);
 return true;
 }, "~N,~N,JU.BS");
-Clazz.defineMethod (c$, "calcMetrics", 
+Clazz.defineMethod (c$, "calcMetrics",
 function () {
 if (this.vwr.isJS) this.frankString = "JSmol";
  else if (this.vwr.isSignedApplet) this.frankString = "Jmol_S";
@@ -55,14 +55,14 @@ this.frankWidth = this.font3d.stringWidth (this.frankString);
 this.frankDescent = this.font3d.getDescent ();
 this.frankAscent = this.font3d.getAscent ();
 });
-Clazz.defineMethod (c$, "getFont", 
+Clazz.defineMethod (c$, "getFont",
 function (imageFontScaling) {
 if (imageFontScaling != this.scaling) {
 this.scaling = imageFontScaling;
 this.font3d = this.vwr.gdata.getFont3DScaled (this.baseFont3d, imageFontScaling);
 this.calcMetrics ();
 }}, "~N");
-Clazz.overrideMethod (c$, "getShapeState", 
+Clazz.overrideMethod (c$, "getShapeState",
 function () {
 return null;
 });

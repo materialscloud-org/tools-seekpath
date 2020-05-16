@@ -13,10 +13,10 @@ this.bsSizeDefault = null;
 this.rd = null;
 Clazz.instantialize (this, arguments);
 }, J.shape, "AtomShape", J.shape.Shape);
-Clazz.overrideMethod (c$, "initShape", 
+Clazz.overrideMethod (c$, "initShape",
 function () {
 });
-Clazz.overrideMethod (c$, "initModelSet", 
+Clazz.overrideMethod (c$, "initModelSet",
 function () {
 this.atoms = this.ms.at;
 this.ac = this.ms.ac;
@@ -24,15 +24,15 @@ if (this.mads != null) this.mads = JU.AU.arrayCopyShort (this.mads, this.ac);
 if (this.colixes != null) this.colixes = JU.AU.arrayCopyShort (this.colixes, this.ac);
 if (this.paletteIDs != null) this.paletteIDs = JU.AU.arrayCopyByte (this.paletteIDs, this.ac);
 });
-Clazz.overrideMethod (c$, "getSize", 
+Clazz.overrideMethod (c$, "getSize",
 function (atomIndex) {
 return (this.mads == null ? 0 : this.mads[atomIndex]);
 }, "~N");
-Clazz.overrideMethod (c$, "setSize", 
+Clazz.overrideMethod (c$, "setSize",
 function (size, bsSelected) {
 this.setSize2 (size, bsSelected);
 }, "~N,JU.BS");
-Clazz.defineMethod (c$, "setSize2", 
+Clazz.defineMethod (c$, "setSize2",
 function (size, bsSelected) {
 if (size == 0) {
 this.setSizeRD (null, bsSelected);
@@ -41,7 +41,7 @@ return;
  else this.rd.value = size;
 this.setSizeRD (this.rd, bsSelected);
 }, "~N,JU.BS");
-Clazz.overrideMethod (c$, "setSizeRD", 
+Clazz.overrideMethod (c$, "setSizeRD",
 function (rd, bsSelected) {
 if (this.atoms == null) return;
 this.isActive = true;
@@ -53,14 +53,14 @@ if (this.mads == null && i0 >= 0) this.mads =  Clazz.newShortArray (this.ac, 0);
 for (var i = i0; i >= 0; i = (isAll ? i - 1 : bsSelected.nextSetBit (i + 1))) this.setSizeRD2 (i, rd, isVisible);
 
 }, "J.atomdata.RadiusData,JU.BS");
-Clazz.defineMethod (c$, "setSizeRD2", 
+Clazz.defineMethod (c$, "setSizeRD2",
 function (i, rd, isVisible) {
 var atom = this.atoms[i];
 this.mads[i] = atom.calculateMad (this.vwr, rd);
 this.bsSizeSet.setBitTo (i, isVisible);
 atom.setShapeVisibility (this.vf, isVisible);
 }, "~N,J.atomdata.RadiusData,~B");
-Clazz.defineMethod (c$, "setPropAS", 
+Clazz.defineMethod (c$, "setPropAS",
 function (propertyName, value, bs) {
 if ("color" === propertyName) {
 this.isActive = true;
@@ -115,7 +115,7 @@ JU.BSUtil.deleteBits (this.bsColixSet, bs);
 return;
 }this.setPropS (propertyName, value, bs);
 }, "~S,~O,JU.BS");
-Clazz.defineMethod (c$, "checkColixLength", 
+Clazz.defineMethod (c$, "checkColixLength",
 function (colix, n) {
 n = Math.min (this.ac, n);
 if (colix == 0) return (this.colixes == null ? 0 : this.colixes.length);
@@ -125,14 +125,14 @@ this.paletteIDs = JU.AU.ensureLengthByte (this.paletteIDs, n);
 }if (this.bsColixSet == null) this.bsColixSet = JU.BS.newN (this.ac);
 return n;
 }, "~N,~N");
-Clazz.defineMethod (c$, "setColixAndPalette", 
+Clazz.defineMethod (c$, "setColixAndPalette",
 function (colix, paletteID, atomIndex) {
 if (this.colixes == null) System.out.println ("ATOMSHAPE ERROR");
 this.colixes[atomIndex] = colix = this.getColixI (colix, paletteID, atomIndex);
 this.bsColixSet.setBitTo (atomIndex, colix != 0 || this.shapeID == 0);
 this.paletteIDs[atomIndex] = paletteID;
 }, "~N,~N,~N");
-Clazz.overrideMethod (c$, "setAtomClickability", 
+Clazz.overrideMethod (c$, "setAtomClickability",
 function () {
 if (!this.isActive) return;
 for (var i = this.ac; --i >= 0; ) {
@@ -141,11 +141,11 @@ if ((atom.shapeVisibilityFlags & this.vf) == 0 || this.ms.isAtomHidden (i)) cont
 atom.setClickable (this.vf);
 }
 });
-Clazz.defineMethod (c$, "getInfoAsString", 
+Clazz.defineMethod (c$, "getInfoAsString",
 function (i) {
 return null;
 }, "~N");
-Clazz.overrideMethod (c$, "getShapeState", 
+Clazz.overrideMethod (c$, "getShapeState",
 function () {
 return null;
 });

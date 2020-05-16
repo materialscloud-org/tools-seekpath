@@ -20,7 +20,7 @@ this.bsFixed = null;
 this.minimizer = null;
 Clazz.instantialize (this, arguments);
 }, JM.FF, "ForceField");
-Clazz.defineMethod (c$, "setModelFields", 
+Clazz.defineMethod (c$, "setModelFields",
 function () {
 this.minAtoms = this.minimizer.minAtoms;
 this.minBonds = this.minimizer.minBonds;
@@ -30,13 +30,13 @@ this.bsFixed = this.minimizer.bsMinFixed;
 this.minAtomCount = this.minAtoms.length;
 this.minBondCount = this.minBonds.length;
 });
-Clazz.defineMethod (c$, "setConstraints", 
+Clazz.defineMethod (c$, "setConstraints",
 function (m) {
 this.bsFixed = m.bsMinFixed;
 this.calc.setConstraints (m.constraints);
 this.coordSaved = null;
 }, "JM.Minimizer");
-Clazz.defineMethod (c$, "steepestDescentInitialize", 
+Clazz.defineMethod (c$, "steepestDescentInitialize",
 function (stepMax, criterion) {
 this.stepMax = stepMax;
 this.criterion = criterion / this.toUserUnits (1);
@@ -56,12 +56,12 @@ s = JU.PT.sprintf (" Initial " + this.name + " E = %10.3f " + this.minimizer.uni
 this.minimizer.report (s, false);
 this.calc.appendLogData (s);
 }, "~N,~N");
-Clazz.defineMethod (c$, "clearForces", 
+Clazz.defineMethod (c$, "clearForces",
  function () {
 for (var i = 0; i < this.minAtomCount; i++) this.minAtoms[i].force[0] = this.minAtoms[i].force[1] = this.minAtoms[i].force[2] = 0;
 
 });
-Clazz.defineMethod (c$, "steepestDescentTakeNSteps", 
+Clazz.defineMethod (c$, "steepestDescentTakeNSteps",
 function (n) {
 if (this.stepMax == 0) return false;
 var isPreliminary = true;
@@ -95,7 +95,7 @@ this.e0 = this.energyFull (false, false);
 }}
 return true;
 }, "~N");
-Clazz.defineMethod (c$, "getEnergies", 
+Clazz.defineMethod (c$, "getEnergies",
  function (terms, gradients) {
 if ((terms & 1) != 0) return this.energyFull (gradients, true);
 var e = 0.0;
@@ -108,7 +108,7 @@ if ((terms & 64) != 0) e += this.energyVDW (gradients);
 if ((terms & 128) != 0) e += this.energyES (gradients);
 return e;
 }, "~N,~B");
-Clazz.defineMethod (c$, "setForcesUsingNumericalDerivative", 
+Clazz.defineMethod (c$, "setForcesUsingNumericalDerivative",
  function (atom, terms) {
 var delta = 1.0e-5;
 atom.force[0] = -this.getDE (atom, terms, 0, delta);
@@ -116,14 +116,14 @@ atom.force[1] = -this.getDE (atom, terms, 1, delta);
 atom.force[2] = -this.getDE (atom, terms, 2, delta);
 return;
 }, "JM.MinAtom,~N");
-Clazz.defineMethod (c$, "getDE", 
+Clazz.defineMethod (c$, "getDE",
  function (atom, terms, i, delta) {
 atom.coord[i] += delta;
 var e = this.getEnergies (terms, false);
 atom.coord[i] -= delta;
 return (e - this.e0) / delta;
 }, "JM.MinAtom,~N,~N,~N");
-Clazz.defineMethod (c$, "energyFull", 
+Clazz.defineMethod (c$, "energyFull",
 function (gradients, isSilent) {
 var energy;
 if (gradients) this.clearForces ();
@@ -131,35 +131,35 @@ energy = this.energyBond (gradients) + this.energyAngle (gradients) + this.energ
 if (!isSilent && this.calc.loggingEnabled) this.calc.appendLogData (JU.PT.sprintf ("\nTOTAL %s ENERGY = %8.3f %s/mol\n", "sfs",  Clazz.newArray (-1, [this.name, Float.$valueOf (this.toUserUnits (energy)), this.minimizer.units])));
 return energy;
 }, "~B,~B");
-Clazz.defineMethod (c$, "energyStretchBend", 
+Clazz.defineMethod (c$, "energyStretchBend",
 function (gradients) {
 return this.calc.energyStretchBend (gradients);
 }, "~B");
-Clazz.defineMethod (c$, "energyBond", 
+Clazz.defineMethod (c$, "energyBond",
 function (gradients) {
 return this.calc.energyBond (gradients);
 }, "~B");
-Clazz.defineMethod (c$, "energyAngle", 
+Clazz.defineMethod (c$, "energyAngle",
 function (gradients) {
 return this.calc.energyAngle (gradients);
 }, "~B");
-Clazz.defineMethod (c$, "energyTorsion", 
+Clazz.defineMethod (c$, "energyTorsion",
 function (gradients) {
 return this.calc.energyTorsion (gradients);
 }, "~B");
-Clazz.defineMethod (c$, "energyOOP", 
+Clazz.defineMethod (c$, "energyOOP",
 function (gradients) {
 return this.calc.energyOOP (gradients);
 }, "~B");
-Clazz.defineMethod (c$, "energyVDW", 
+Clazz.defineMethod (c$, "energyVDW",
 function (gradients) {
 return this.calc.energyVDW (gradients);
 }, "~B");
-Clazz.defineMethod (c$, "energyES", 
+Clazz.defineMethod (c$, "energyES",
 function (gradients) {
 return this.calc.energyES (gradients);
 }, "~B");
-Clazz.defineMethod (c$, "linearSearch", 
+Clazz.defineMethod (c$, "linearSearch",
  function () {
 var step = 0.23;
 var trustRadius = 0.3;
@@ -195,20 +195,20 @@ step *= 2.15;
 if (step > 1.0) step = 1.0;
 }}
 });
-Clazz.defineMethod (c$, "saveCoordinates", 
+Clazz.defineMethod (c$, "saveCoordinates",
  function () {
 if (this.coordSaved == null) this.coordSaved =  Clazz.newDoubleArray (this.minAtomCount, 3, 0);
 for (var i = 0; i < this.minAtomCount; i++) for (var j = 0; j < 3; j++) this.coordSaved[i][j] = this.minAtoms[i].coord[j];
 
 
 });
-Clazz.defineMethod (c$, "restoreCoordinates", 
+Clazz.defineMethod (c$, "restoreCoordinates",
  function () {
 for (var i = 0; i < this.minAtomCount; i++) for (var j = 0; j < 3; j++) this.minAtoms[i].coord[j] = this.coordSaved[i][j];
 
 
 });
-Clazz.defineMethod (c$, "detectExplosion", 
+Clazz.defineMethod (c$, "detectExplosion",
 function () {
 for (var i = 0; i < this.minAtomCount; i++) {
 var atom = this.minAtoms[i];
@@ -221,43 +221,43 @@ if (JM.Util.distance2 (this.minAtoms[bond.data[0]].coord, this.minAtoms[bond.dat
 }
 return false;
 });
-Clazz.defineMethod (c$, "getCurrentStep", 
+Clazz.defineMethod (c$, "getCurrentStep",
 function () {
 return this.currentStep;
 });
-Clazz.defineMethod (c$, "getEnergy", 
+Clazz.defineMethod (c$, "getEnergy",
 function () {
 return this.e0;
 });
-Clazz.defineMethod (c$, "getAtomList", 
+Clazz.defineMethod (c$, "getAtomList",
 function (title) {
 return this.calc.getAtomList (title);
 }, "~S");
-Clazz.defineMethod (c$, "getEnergyDiff", 
+Clazz.defineMethod (c$, "getEnergyDiff",
 function () {
 return this.dE;
 });
-Clazz.defineMethod (c$, "getLogData", 
+Clazz.defineMethod (c$, "getLogData",
 function () {
 return this.calc.getLogData ();
 });
-Clazz.defineMethod (c$, "getNormalizedDE", 
+Clazz.defineMethod (c$, "getNormalizedDE",
 function () {
 return Math.abs (this.dE / this.criterion);
 });
-Clazz.defineMethod (c$, "toUserUnits", 
+Clazz.defineMethod (c$, "toUserUnits",
 function (energy) {
 return this.toUnits (energy, this.calc.getUnits ());
 }, "~N");
-Clazz.defineMethod (c$, "toUnits", 
+Clazz.defineMethod (c$, "toUnits",
  function (energy, units) {
 return (units.equalsIgnoreCase (this.minimizer.units) ? energy : energy * (this.minimizer.units.equals ("kJ") ? 4.1868 : 0.23884589662749595));
 }, "~N,~S");
-Clazz.defineMethod (c$, "log", 
+Clazz.defineMethod (c$, "log",
 function (s) {
 this.calc.appendLogData (s);
 }, "~S");
-Clazz.defineMethod (c$, "getBufferedReader", 
+Clazz.defineMethod (c$, "getBufferedReader",
 function (resourceName) {
 return JV.FileManager.getBufferedReaderForResource (this.minimizer.vwr, this, "JM/FF/", "data/" + resourceName);
 }, "~S");

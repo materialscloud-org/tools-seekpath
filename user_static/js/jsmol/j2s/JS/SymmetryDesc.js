@@ -4,15 +4,15 @@ c$ = Clazz.decorateAsClass (function () {
 this.modelSet = null;
 Clazz.instantialize (this, arguments);
 }, JS, "SymmetryDesc");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (modelSet) {
 this.modelSet = modelSet;
 return this;
 }, "JM.ModelSet");
-Clazz.defineMethod (c$, "getSymopInfo", 
+Clazz.defineMethod (c$, "getSymopInfo",
 function (iAtom, xyz, op, pt, pt2, id, type, scaleFactor, nth) {
 if (type == 0) type = JS.SymmetryDesc.getType (id);
 var ret = (type == 1140850689 ?  new JU.BS () : "");
@@ -30,7 +30,7 @@ for (op = 0; op < n; op++) s += this.getSymmetryInfo (uc, iModel, iAtom, uc, xyz
 
 }return s;
 }, "~N,~S,~N,JU.P3,JU.P3,~S,~N,~N,~N");
-Clazz.defineMethod (c$, "getSpaceGroupInfo", 
+Clazz.defineMethod (c$, "getSpaceGroupInfo",
 function (sym, modelIndex, sgName, symOp, pt1, pt2, drawID, scaleFactor, nth, isFull, isForModel) {
 var info = null;
 var cellInfo = null;
@@ -99,7 +99,7 @@ if (data == null || data.equals ("?")) data = "could not identify space group fr
 }info.put ("spaceGroupInfo", data);
 return info;
 }, "JS.Symmetry,~N,~S,~N,JU.P3,JU.P3,~S,~N,~N,~B,~B");
-c$.getType = Clazz.defineMethod (c$, "getType", 
+c$.getType = Clazz.defineMethod (c$, "getType",
  function (id) {
 var type;
 if (id == null) return 1073742001;
@@ -114,7 +114,7 @@ for (type = 0; type < JS.SymmetryDesc.keys.length; type++) if (id.equalsIgnoreCa
 
 return 1073741961;
 }, "~S");
-c$.getInfo = Clazz.defineMethod (c$, "getInfo", 
+c$.getInfo = Clazz.defineMethod (c$, "getInfo",
  function (info, type) {
 if (info == null) return "";
 if (type < 0 && type >= -JS.SymmetryDesc.keys.length) return info[-1 - type];
@@ -159,7 +159,7 @@ case 1073741974:
 return info[16];
 }
 }, "~A,~N");
-Clazz.defineMethod (c$, "createInfoArray", 
+Clazz.defineMethod (c$, "createInfoArray",
  function (op, uc, pta00, ptTarget, id, scaleFactor) {
 if (!op.isFinalized) op.doFinalize ();
 var isTimeReversed = (op.timeReversal == -1);
@@ -494,27 +494,27 @@ m2.m23 += vtrans.z;
 if (op.timeReversal != 0) xyzNew = op.fixMagneticXYZ (m2, xyzNew, true);
 return  Clazz.newArray (-1, [xyzNew, op.xyzOriginal, info1, cmds, JS.SymmetryDesc.approx0 (ftrans), JS.SymmetryDesc.approx0 (trans), JS.SymmetryDesc.approx0 (ipt), JS.SymmetryDesc.approx0 (pa1), plane == null ? JS.SymmetryDesc.approx0 (ax1) : null, ang1 != 0 ? Integer.$valueOf (ang1) : null, m2, vtrans.lengthSquared () > 0 ? vtrans : null, op.getCentering (), Integer.$valueOf (op.timeReversal), plane, type, Integer.$valueOf (op.index)]);
 }, "JS.SymmetryOperation,J.api.SymmetryInterface,JU.P3,JU.P3,~S,~N");
-c$.drawLine = Clazz.defineMethod (c$, "drawLine", 
+c$.drawLine = Clazz.defineMethod (c$, "drawLine",
  function (s, id, diameter, pt0, pt1, color) {
 s.append (id).append (" diameter ").appendF (diameter).append (JU.Escape.eP (pt0)).append (JU.Escape.eP (pt1)).append (" color ").append (color);
 }, "JU.SB,~S,~N,JU.P3,JU.P3,~S");
-c$.drawFrameLine = Clazz.defineMethod (c$, "drawFrameLine", 
+c$.drawFrameLine = Clazz.defineMethod (c$, "drawFrameLine",
  function (xyz, pt, v, width, ptemp, draw1, key, color) {
 ptemp.setT (pt);
 ptemp.add (v);
 JS.SymmetryDesc.drawLine (draw1, key + "Pt" + xyz, width, pt, ptemp, "translucent " + color);
 }, "~S,JU.P3,JU.V3,~N,JU.P3,JU.SB,~S,~S");
-c$.drawVector = Clazz.defineMethod (c$, "drawVector", 
+c$.drawVector = Clazz.defineMethod (c$, "drawVector",
  function (draw1, drawid, label, type, pt1, v, color) {
 draw1.append (drawid).append (label).append (" diameter 0.1 ").append (type).append (JU.Escape.eP (pt1)).append (JU.Escape.eP (v)).append (" color ").append (color);
 }, "JU.SB,~S,~S,~S,JU.T3,JU.T3,~S");
-c$.setFractional = Clazz.defineMethod (c$, "setFractional", 
+c$.setFractional = Clazz.defineMethod (c$, "setFractional",
  function (uc, pt00, pt01, offset) {
 pt01.setT (pt00);
 if (offset != null) uc.toUnitCell (pt01, offset);
 uc.toFractional (pt01, false);
 }, "J.api.SymmetryInterface,JU.T3,JU.P3,JU.P3");
-c$.rotTransCart = Clazz.defineMethod (c$, "rotTransCart", 
+c$.rotTransCart = Clazz.defineMethod (c$, "rotTransCart",
  function (op, uc, pt00, vtrans) {
 var p0 = JU.P3.newP (pt00);
 uc.toFractional (p0, false);
@@ -523,12 +523,12 @@ p0.add (vtrans);
 uc.toCartesian (p0, false);
 return p0;
 }, "JS.SymmetryOperation,J.api.SymmetryInterface,JU.P3,JU.V3");
-c$.strCoord = Clazz.defineMethod (c$, "strCoord", 
+c$.strCoord = Clazz.defineMethod (c$, "strCoord",
  function (p, isBio) {
 JS.SymmetryDesc.approx0 (p);
 return (isBio ? p.x + " " + p.y + " " + p.z : JS.SymmetryOperation.fcoord (p));
 }, "JU.T3,~B");
-c$.approx0 = Clazz.defineMethod (c$, "approx0", 
+c$.approx0 = Clazz.defineMethod (c$, "approx0",
  function (pt) {
 if (pt != null) {
 if (Math.abs (pt.x) < 0.0001) pt.x = 0;
@@ -536,7 +536,7 @@ if (Math.abs (pt.y) < 0.0001) pt.y = 0;
 if (Math.abs (pt.z) < 0.0001) pt.z = 0;
 }return pt;
 }, "JU.T3");
-c$.approx = Clazz.defineMethod (c$, "approx", 
+c$.approx = Clazz.defineMethod (c$, "approx",
  function (pt) {
 if (pt != null) {
 pt.x = JS.SymmetryOperation.approxF (pt.x);
@@ -544,7 +544,7 @@ pt.y = JS.SymmetryOperation.approxF (pt.y);
 pt.z = JS.SymmetryOperation.approxF (pt.z);
 }return pt;
 }, "JU.T3");
-Clazz.defineMethod (c$, "getSymmetryInfo", 
+Clazz.defineMethod (c$, "getSymmetryInfo",
  function (sym, iModel, iatom, uc, xyz, op, pt, pt2, id, type, scaleFactor, nth) {
 if (type == 1073741994) return uc.getLatticeType ();
 var ret = (type == 135176 ? "draw ID sym_* delete" : type == 1140850689 ?  new JU.BS () : "");
@@ -606,7 +606,7 @@ if (!(Clazz.instanceOf (pt, JM.Atom)) && !(Clazz.instanceOf (pt2, JM.Atom))) iat
 return (info == null ?  new JU.BS () : this.getAtom (uc, iModel, iatom, info[7]));
 }}return JS.SymmetryDesc.getInfo (info, type);
 }, "JS.Symmetry,~N,~N,JS.Symmetry,~S,~N,JU.P3,JU.P3,~S,~N,~N,~N");
-Clazz.defineMethod (c$, "getAtom", 
+Clazz.defineMethod (c$, "getAtom",
  function (uc, iModel, iAtom, sympt) {
 var bsElement = null;
 if (iAtom >= 0) this.modelSet.getAtomBitsMDa (1094715402, Integer.$valueOf (this.modelSet.at[iAtom].getElementNumber ()), bsElement =  new JU.BS ());
@@ -621,7 +621,7 @@ this.modelSet.getAtomsWithin (0.02, sympt, bsResult, iModel);
 if (bsElement != null) bsResult.and (bsElement);
 }return bsResult;
 }, "JS.Symmetry,~N,~N,JU.T3");
-Clazz.defineMethod (c$, "getSymopInfoForPoints", 
+Clazz.defineMethod (c$, "getSymopInfoForPoints",
  function (sym, modelIndex, symOp, pt1, pt2, drawID, stype, scaleFactor, nth, asString) {
 var strOperations = "";
 var infolist;

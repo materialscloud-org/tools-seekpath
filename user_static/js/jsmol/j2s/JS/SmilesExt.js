@@ -5,16 +5,16 @@ this.e = null;
 this.sm = null;
 Clazz.instantialize (this, arguments);
 }, JS, "SmilesExt");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "init", 
+Clazz.defineMethod (c$, "init",
 function (se) {
 this.e = se;
 this.sm = this.e.vwr.getSmilesMatcher ();
 return this;
 }, "~O");
-Clazz.defineMethod (c$, "getSmilesCorrelation", 
+Clazz.defineMethod (c$, "getSmilesCorrelation",
 function (bsA, bsB, smiles, ptsA, ptsB, m4, vReturn, asMap, mapSet, center, bestMap, flags) {
 var tolerance = (mapSet == null ? 0.1 : 3.4028235E38);
 try {
@@ -76,7 +76,7 @@ throw ex;
 }
 return 0;
 }, "JU.BS,JU.BS,~S,JU.Lst,JU.Lst,JU.M4,JU.Lst,~B,~A,JU.P3,~B,~N");
-Clazz.defineMethod (c$, "getSmilesMatches", 
+Clazz.defineMethod (c$, "getSmilesMatches",
 function (pattern, smiles, bsSelected, bsMatch3D, flags, asOneBitset, firstMatchOnly) {
 if (pattern.length == 0 || pattern.endsWith ("///") || pattern.equals ("H") || pattern.equals ("top") || pattern.equalsIgnoreCase ("NOAROMATIC")) {
 try {
@@ -135,7 +135,7 @@ for (var j = 0; j < b.length; j++) list.addLast (b[j]);
 
 return list;
 }, "~S,~S,JU.BS,JU.BS,~N,~B,~B");
-Clazz.defineMethod (c$, "getFlexFitList", 
+Clazz.defineMethod (c$, "getFlexFitList",
 function (bs1, bs2, smiles1, isSmarts) {
 var mapSet = JU.AU.newInt2 (2);
 this.getSmilesCorrelation (bs1, bs2, smiles1, null, null, null, null, false, mapSet, null, false, isSmarts ? 2 : 1);
@@ -159,7 +159,7 @@ data[pt++] = angles[i][1];
 }
 return data;
 }, "JU.BS,JU.BS,~S,~B");
-c$.getTorsions = Clazz.defineMethod (c$, "getTorsions", 
+c$.getTorsions = Clazz.defineMethod (c$, "getTorsions",
  function (atoms, bondMap, diff, pt) {
 for (var i = bondMap.length; --i >= 0; ) {
 var map = bondMap[i];

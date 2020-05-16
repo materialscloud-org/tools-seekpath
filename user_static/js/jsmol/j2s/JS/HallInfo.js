@@ -15,7 +15,7 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.rotationTerms =  new Array (16);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (hallSymbol) {
 try {
 var str = this.hallSymbol = hallSymbol.trim ();
@@ -44,7 +44,7 @@ throw e;
 }
 }
 }, "~S");
-Clazz.defineMethod (c$, "dumpInfo", 
+Clazz.defineMethod (c$, "dumpInfo",
 function () {
 var sb =  new JU.SB ();
 sb.append ("\nHall symbol: ").append (this.hallSymbol).append ("\nprimitive Hall symbol: ").append (this.primitiveHallSymbol).append ("\nlattice type: ").append (this.getLatticeDesignation ());
@@ -53,11 +53,11 @@ sb.append ("\n\nrotation term ").appendI (i + 1).append (this.rotationTerms[i].d
 }
 return sb.toString ();
 });
-Clazz.defineMethod (c$, "getLatticeDesignation", 
+Clazz.defineMethod (c$, "getLatticeDesignation",
  function () {
 return JS.HallTranslation.getLatticeDesignation2 (this.latticeCode, this.isCentrosymmetric);
 });
-Clazz.defineMethod (c$, "extractLatticeInfo", 
+Clazz.defineMethod (c$, "extractLatticeInfo",
  function (name) {
 var i = name.indexOf (" ");
 if (i < 0) return "";
@@ -68,7 +68,7 @@ this.isCentrosymmetric = true;
 this.latticeCode = term.charAt (1);
 }return name.substring (i + 1).trim ();
 }, "~S");
-Clazz.defineMethod (c$, "extractVectorInfo", 
+Clazz.defineMethod (c$, "extractVectorInfo",
  function (name) {
 this.vector12ths =  new JU.P3i ();
 this.vectorCode = "";
@@ -89,7 +89,7 @@ term = term.substring (i + 1).trim ();
 }}this.vector12ths.z = Integer.parseInt (term);
 }return name;
 }, "~S");
-Clazz.defineMethod (c$, "extractRotationInfo", 
+Clazz.defineMethod (c$, "extractRotationInfo",
  function (name, prevOrder, prevAxisType) {
 var i = name.indexOf (" ");
 var code;

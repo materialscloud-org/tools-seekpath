@@ -18,7 +18,7 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.seitzMatrix12ths =  new JU.M4 ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (hallInfo, code, prevOrder, prevAxisType) {
 this.inputCode = code;
 code += "   ";
@@ -115,7 +115,7 @@ this.seitzMatrix12ths.mul (m2);
 }if (JU.Logger.debugging) {
 JU.Logger.debug ("code = " + code + "; primitive code =" + this.primitiveCode + "\n Seitz Matrix(12ths):" + this.seitzMatrix12ths);
 }}, "JS.HallInfo,~S,~N,~S");
-Clazz.defineMethod (c$, "dumpInfo", 
+Clazz.defineMethod (c$, "dumpInfo",
 function (vectorCode) {
 var sb =  new JU.SB ();
 sb.append ("\ninput code: ").append (this.inputCode).append ("; primitive code: ").append (this.primitiveCode).append ("\norder: ").appendI (this.order).append (this.isImproper ? " (improper axis)" : "");
@@ -127,7 +127,7 @@ if (vectorCode.length > 0) sb.append ("; vector offset: ").append (vectorCode);
 if (this.rotation != null) sb.append ("\noperator: ").append (this.getXYZ (this.allPositive)).append ("\nSeitz matrix:\n").append (JS.SymmetryOperation.dumpSeitz (this.seitzMatrix12ths, false));
 return sb.toString ();
 }, "~S");
-Clazz.defineMethod (c$, "getXYZ", 
+Clazz.defineMethod (c$, "getXYZ",
 function (allPositive) {
 return JS.SymmetryOperation.getXYZFromMatrix (this.seitzMatrix12ths, true, allPositive, true);
 }, "~B");

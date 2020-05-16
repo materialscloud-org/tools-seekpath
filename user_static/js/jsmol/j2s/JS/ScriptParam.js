@@ -13,22 +13,22 @@ this.coordinatesAreFractional = false;
 this.isBondSet = false;
 Clazz.instantialize (this, arguments);
 }, JS, "ScriptParam", JS.ScriptError);
-Clazz.defineMethod (c$, "getToken", 
+Clazz.defineMethod (c$, "getToken",
 function (i) {
 if (!this.checkToken (i)) this.error (13);
 this.theToken = this.st[i];
 this.theTok = this.theToken.tok;
 return this.theToken;
 }, "~N");
-Clazz.defineMethod (c$, "tokAt", 
+Clazz.defineMethod (c$, "tokAt",
 function (i) {
 return (i < this.slen && this.st[i] != null ? this.st[i].tok : 0);
 }, "~N");
-Clazz.defineMethod (c$, "checkToken", 
+Clazz.defineMethod (c$, "checkToken",
 function (i) {
 return (this.iToken = i) < this.slen;
 }, "~N");
-Clazz.defineMethod (c$, "getParameter", 
+Clazz.defineMethod (c$, "getParameter",
 function (key, tokType, nullAsString) {
 var v = this.getContextVariableAsVariable (key, false);
 if (v == null) {
@@ -47,14 +47,14 @@ return sb.toString ();
 }
 return JS.SV.oValue (v);
 }, "~S,~N,~B");
-Clazz.defineMethod (c$, "getVarParameter", 
+Clazz.defineMethod (c$, "getVarParameter",
 function ($var, orReturnName) {
 var v = this.getContextVariableAsVariable ($var, false);
 if (v != null) return (orReturnName ? v.asString () : JS.SV.oValue (v));
 var val = this.vwr.getP ($var);
 return (orReturnName && ("" + val).length == 0 ? $var : val);
 }, "~S,~B");
-Clazz.defineMethod (c$, "getContextVariableAsVariable", 
+Clazz.defineMethod (c$, "getContextVariableAsVariable",
 function ($var, isLocal) {
 if ($var.equals ("expressionBegin")) return null;
 if ($var.equalsIgnoreCase ("_caller")) {
@@ -67,18 +67,18 @@ return JS.SV.newV (6,  new java.util.Hashtable ());
 }$var = $var.toLowerCase ();
 return (this.contextVariables != null && this.contextVariables.containsKey ($var) ? this.contextVariables.get ($var) : isLocal || this.thisContext == null ? null : this.thisContext.getVariable ($var));
 }, "~S,~B");
-Clazz.defineMethod (c$, "paramAsStr", 
+Clazz.defineMethod (c$, "paramAsStr",
 function (i) {
 this.getToken (i);
 if (this.theToken == null) this.error (13);
 return JS.SV.sValue (this.theToken);
 }, "~N");
-Clazz.defineMethod (c$, "stringParameter", 
+Clazz.defineMethod (c$, "stringParameter",
 function (index) {
 if (!this.checkToken (index) || this.getToken (index).tok != 4) this.error (41);
 return this.theToken.value;
 }, "~N");
-Clazz.defineMethod (c$, "stringParameterSet", 
+Clazz.defineMethod (c$, "stringParameterSet",
 function (i) {
 switch (this.tokAt (i)) {
 case 4:
@@ -121,12 +121,12 @@ sParams[j] = v.get (j);
 }
 return sParams;
 }, "~N");
-Clazz.defineMethod (c$, "objectNameParameter", 
+Clazz.defineMethod (c$, "objectNameParameter",
 function (index) {
 if (!this.checkToken (index)) this.error (37);
 return this.paramAsStr (index);
 }, "~N");
-Clazz.defineMethod (c$, "atomCenterOrCoordinateParameter", 
+Clazz.defineMethod (c$, "atomCenterOrCoordinateParameter",
 function (i, ret) {
 switch (this.getToken (i).tok) {
 case 10:
@@ -148,16 +148,16 @@ return this.getPoint3f (i, true);
 this.invArg ();
 return null;
 }, "~N,~A");
-Clazz.defineMethod (c$, "isCenterParameter", 
+Clazz.defineMethod (c$, "isCenterParameter",
 function (i) {
 var tok = this.tokAt (i);
 return (tok == 1073742330 || tok == 1073742332 || tok == 1073742325 || tok == 8 || tok == 10);
 }, "~N");
-Clazz.defineMethod (c$, "centerParameter", 
+Clazz.defineMethod (c$, "centerParameter",
 function (i, ret) {
 return this.centerParameterForModel (i, -2147483648, ret);
 }, "~N,~A");
-Clazz.defineMethod (c$, "centerParameterForModel", 
+Clazz.defineMethod (c$, "centerParameterForModel",
 function (i, modelIndex, ret) {
 var center = null;
 if (this.checkToken (i)) {
@@ -185,7 +185,7 @@ break;
 }if (center == null) this.error (11);
 return center;
 }, "~N,~N,~A");
-Clazz.defineMethod (c$, "planeParameter", 
+Clazz.defineMethod (c$, "planeParameter",
 function (i) {
 var vTemp =  new JU.V3 ();
 var vTemp2 =  new JU.V3 ();
@@ -253,7 +253,7 @@ if (isNegated) {
 plane.scale4 (-1);
 }return plane;
 }, "~N");
-Clazz.defineMethod (c$, "hklParameter", 
+Clazz.defineMethod (c$, "hklParameter",
 function (i) {
 if (!this.chk && this.vwr.getCurrentUnitCell () == null) this.error (33);
 var pt = this.getPointOrPlane (i, false, true, false, true, 3, 3);
@@ -262,7 +262,7 @@ if (p == null) this.error (3);
 if (!this.chk && JU.Logger.debugging) JU.Logger.debug ("defined plane: " + p);
 return p;
 }, "~N");
-Clazz.defineMethod (c$, "getHklPlane", 
+Clazz.defineMethod (c$, "getHklPlane",
 function (pt) {
 var pt1 = JU.P3.new3 (pt.x == 0 ? 1 : 1 / pt.x, 0, 0);
 var pt2 = JU.P3.new3 (0, pt.y == 0 ? 1 : 1 / pt.y, 0);
@@ -289,7 +289,7 @@ this.vwr.toCartesian (pt2, false);
 this.vwr.toCartesian (pt3, false);
 return JU.Measure.getPlaneThroughPoints (pt1, pt2, pt3,  new JU.V3 (),  new JU.V3 (),  new JU.P4 ());
 }, "JU.P3");
-Clazz.defineMethod (c$, "getPointOrPlane", 
+Clazz.defineMethod (c$, "getPointOrPlane",
 function (index, integerOnly, allowFractional, doConvert, implicitFractional, minDim, maxDim) {
 var coord =  Clazz.newFloatArray (6, 0);
 var code555 =  Clazz.newIntArray (6, 0);
@@ -369,7 +369,7 @@ var plane = JU.P4.new4 (coord[0], coord[1], coord[2], coord[3]);
 return plane;
 }return coord;
 }, "~N,~B,~B,~B,~B,~N,~N");
-Clazz.defineMethod (c$, "isPoint3f", 
+Clazz.defineMethod (c$, "isPoint3f",
 function (i) {
 var isOK;
 if ((isOK = (this.tokAt (i) == 8)) || this.tokAt (i) == 9 || this.isFloatParameter (i + 1) && this.isFloatParameter (i + 2) && this.isFloatParameter (i + 3) && this.isFloatParameter (i + 4)) return isOK;
@@ -389,15 +389,15 @@ this.ignoreError = false;
 this.iToken = t;
 return isOK;
 }, "~N");
-Clazz.defineMethod (c$, "getPoint3f", 
+Clazz.defineMethod (c$, "getPoint3f",
 function (i, allowFractional) {
 return this.getPointOrPlane (i, false, allowFractional, true, false, 3, 3);
 }, "~N,~B");
-Clazz.defineMethod (c$, "getPoint4f", 
+Clazz.defineMethod (c$, "getPoint4f",
 function (i) {
 return this.getPointOrPlane (i, false, false, false, false, 4, 4);
 }, "~N");
-Clazz.defineMethod (c$, "xypParameter", 
+Clazz.defineMethod (c$, "xypParameter",
 function (index) {
 var tok = this.tokAt (index);
 if (tok == 1073742195) tok = this.tokAt (++index);
@@ -414,7 +414,7 @@ this.iToken = index;
 pt.z = (isPercent ? -1 : 1) * 3.4028235E38;
 return pt;
 }, "~N");
-Clazz.defineMethod (c$, "xyzpParameter", 
+Clazz.defineMethod (c$, "xyzpParameter",
 function (index) {
 var tok = this.tokAt (index);
 if (tok == 1073742195) tok = this.tokAt (++index);
@@ -434,17 +434,17 @@ this.iToken = index;
 pt.w = (isPercent ? -1 : 1) * 3.4028235E38;
 return pt;
 }, "~N");
-Clazz.defineMethod (c$, "optParameterAsString", 
+Clazz.defineMethod (c$, "optParameterAsString",
 function (i) {
 return (i >= this.slen ? "" : this.paramAsStr (i));
 }, "~N");
-Clazz.defineMethod (c$, "intParameter", 
+Clazz.defineMethod (c$, "intParameter",
 function (index) {
 if (this.checkToken (index)) if (this.getToken (index).tok == 2) return this.theToken.intValue;
 this.error (20);
 return 0;
 }, "~N");
-Clazz.defineMethod (c$, "isFloatParameter", 
+Clazz.defineMethod (c$, "isFloatParameter",
 function (index) {
 switch (this.tokAt (index)) {
 case 2:
@@ -453,7 +453,7 @@ return true;
 }
 return false;
 }, "~N");
-Clazz.defineMethod (c$, "floatParameter", 
+Clazz.defineMethod (c$, "floatParameter",
 function (index) {
 if (this.checkToken (index)) {
 this.getToken (index);
@@ -470,7 +470,7 @@ return (this.theToken.value).floatValue ();
 }this.error (34);
 return 0;
 }, "~N");
-Clazz.defineMethod (c$, "getPointArray", 
+Clazz.defineMethod (c$, "getPointArray",
 function (i, nPoints, allowNull) {
 if (nPoints == 2147483647) nPoints = -1;
 var points = (nPoints < 0 ? null :  new Array (nPoints));
@@ -516,7 +516,7 @@ if (points == null) points = vp.toArray ( new Array (vp.size ()));
 if (nPoints > 0 && points[nPoints - 1] == null) this.invArg ();
 return points;
 }, "~N,~N,~B");
-Clazz.defineMethod (c$, "listParameter", 
+Clazz.defineMethod (c$, "listParameter",
 function (i, nMin, nMax) {
 var v =  new JU.Lst ();
 var tok = this.tokAt (i);
@@ -561,7 +561,7 @@ if (haveBrace && this.tokAt (i++) != 1073742338 || haveSquare && this.tokAt (i++
 this.iToken = i - 1;
 return v;
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "floatParameterSet", 
+Clazz.defineMethod (c$, "floatParameterSet",
 function (i, nMin, nMax) {
 var v = null;
 var fparams = null;
@@ -590,7 +590,7 @@ for (var j = 0; j < n; j++) fparams[j] = (v.get (j)).floatValue ();
 
 }return fparams;
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "isArrayParameter", 
+Clazz.defineMethod (c$, "isArrayParameter",
 function (i) {
 switch (this.tokAt (i)) {
 case 7:
@@ -602,7 +602,7 @@ return true;
 }
 return false;
 }, "~N");
-Clazz.defineMethod (c$, "getQuaternionParameter", 
+Clazz.defineMethod (c$, "getQuaternionParameter",
 function (i, bsAtoms, divideByCurrent) {
 switch (this.tokAt (i)) {
 case 7:
@@ -616,11 +616,11 @@ default:
 return JU.Quat.newP4 (this.getPoint4f (i));
 }
 }, "~N,JU.BS,~B");
-Clazz.defineMethod (c$, "checkLast", 
+Clazz.defineMethod (c$, "checkLast",
 function (i) {
 return this.checkLength (i + 1) - 1;
 }, "~N");
-Clazz.defineMethod (c$, "checkLength", 
+Clazz.defineMethod (c$, "checkLength",
 function (length) {
 if (length >= 0) return this.checkLengthErrorPt (length, 0);
 if (this.slen > -length) {
@@ -628,7 +628,7 @@ this.iToken = -length;
 this.bad ();
 }return this.slen;
 }, "~N");
-Clazz.defineMethod (c$, "checkLengthErrorPt", 
+Clazz.defineMethod (c$, "checkLengthErrorPt",
 function (length, errorPt) {
 if (this.slen != length) {
 this.iToken = errorPt > 0 ? errorPt : this.slen;
@@ -636,19 +636,19 @@ if (errorPt > 0) this.invArg ();
  else this.bad ();
 }return this.slen;
 }, "~N,~N");
-Clazz.defineMethod (c$, "checkLength23", 
+Clazz.defineMethod (c$, "checkLength23",
 function () {
 this.iToken = this.slen;
 if (this.slen != 2 && this.slen != 3) this.bad ();
 return this.slen;
 });
-Clazz.defineMethod (c$, "checkLength34", 
+Clazz.defineMethod (c$, "checkLength34",
 function () {
 this.iToken = this.slen;
 if (this.slen != 3 && this.slen != 4) this.bad ();
 return this.slen;
 });
-Clazz.defineMethod (c$, "modelNumberParameter", 
+Clazz.defineMethod (c$, "modelNumberParameter",
 function (index) {
 var iFrame = 0;
 var useModelNumber = false;
@@ -666,7 +666,7 @@ this.invArg ();
 }
 return this.vwr.ms.getModelNumberIndex (iFrame, useModelNumber, true);
 }, "~N");
-Clazz.defineMethod (c$, "getMadParameter", 
+Clazz.defineMethod (c$, "getMadParameter",
 function () {
 var mad = 1;
 switch (this.getToken (1).tok) {
@@ -693,7 +693,7 @@ this.error (6);
 }
 return mad;
 });
-Clazz.defineMethod (c$, "intParameterRange", 
+Clazz.defineMethod (c$, "intParameterRange",
 function (i, min, max) {
 var val = this.intParameter (i);
 if (val < min || val > max) {
@@ -701,7 +701,7 @@ this.integerOutOfRange (min, max);
 return 2147483647;
 }return val;
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "floatParameterRange", 
+Clazz.defineMethod (c$, "floatParameterRange",
 function (i, min, max) {
 var val = this.floatParameter (i);
 if (val < min || val > max) {
@@ -709,7 +709,7 @@ this.numberOutOfRange (min, max);
 return NaN;
 }return val;
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "getPointVector", 
+Clazz.defineMethod (c$, "getPointVector",
 function (t, i) {
 switch (t.tok) {
 case 10:
@@ -726,7 +726,7 @@ return data;
 if (i > 0) return this.vwr.ms.getAtomPointVector ((this).atomExpressionAt (i));
 return null;
 }, "JS.T,~N");
-c$.getFloatEncodedInt = Clazz.defineMethod (c$, "getFloatEncodedInt", 
+c$.getFloatEncodedInt = Clazz.defineMethod (c$, "getFloatEncodedInt",
 function (strDecimal) {
 var pt = strDecimal.indexOf (".");
 if (pt < 1 || strDecimal.charAt (0) == '-' || strDecimal.endsWith (".") || strDecimal.contains (".0")) return 2147483647;
@@ -754,34 +754,34 @@ throw e;
 i = i * 1000000 + j;
 return (i < 0 ? 2147483647 : i);
 }, "~S");
-c$.getPartialBondOrderFromFloatEncodedInt = Clazz.defineMethod (c$, "getPartialBondOrderFromFloatEncodedInt", 
+c$.getPartialBondOrderFromFloatEncodedInt = Clazz.defineMethod (c$, "getPartialBondOrderFromFloatEncodedInt",
 function (bondOrderInteger) {
 return (((Clazz.doubleToInt (bondOrderInteger / 1000000)) % 7) << 5) + ((bondOrderInteger % 1000000) & 0x1F);
 }, "~N");
-c$.getBondOrderFromString = Clazz.defineMethod (c$, "getBondOrderFromString", 
+c$.getBondOrderFromString = Clazz.defineMethod (c$, "getBondOrderFromString",
 function (s) {
 return (s.indexOf (' ') < 0 ? JU.Edge.getBondOrderFromString (s) : s.toLowerCase ().indexOf ("partial ") == 0 ? JS.ScriptParam.getPartialBondOrderFromString (s.substring (8).trim ()) : 131071);
 }, "~S");
-c$.getPartialBondOrderFromString = Clazz.defineMethod (c$, "getPartialBondOrderFromString", 
+c$.getPartialBondOrderFromString = Clazz.defineMethod (c$, "getPartialBondOrderFromString",
  function (s) {
 return JS.ScriptParam.getPartialBondOrderFromFloatEncodedInt (JS.ScriptParam.getFloatEncodedInt (s));
 }, "~S");
-Clazz.defineMethod (c$, "isColorParam", 
+Clazz.defineMethod (c$, "isColorParam",
 function (i) {
 var tok = this.tokAt (i);
 return (tok == 570425378 || tok == 1073742195 || tok == 268435520 || tok == 7 || tok == 8 || this.isPoint3f (i) || (tok == 4 || JS.T.tokAttr (tok, 1073741824)) && JU.CU.getArgbFromString (this.st[i].value) != 0);
 }, "~N");
-Clazz.defineMethod (c$, "getArgbParam", 
+Clazz.defineMethod (c$, "getArgbParam",
 function (index) {
 return this.getArgbParamOrNone (index, false);
 }, "~N");
-Clazz.defineMethod (c$, "getArgbParamLast", 
+Clazz.defineMethod (c$, "getArgbParamLast",
 function (index, allowNone) {
 var icolor = this.getArgbParamOrNone (index, allowNone);
 this.checkLast (this.iToken);
 return icolor;
 }, "~N,~B");
-Clazz.defineMethod (c$, "getArgbParamOrNone", 
+Clazz.defineMethod (c$, "getArgbParamOrNone",
 function (index, allowNone) {
 var pt = null;
 if (this.checkToken (index)) {
@@ -811,7 +811,7 @@ if (allowNone) return 0;
 }if (pt == null) this.error (8);
 return JU.CU.colorPtToFFRGB (pt);
 }, "~N,~B");
-Clazz.defineMethod (c$, "getColorTriad", 
+Clazz.defineMethod (c$, "getColorTriad",
  function (i) {
 var colors =  Clazz.newFloatArray (3, 0);
 var n = 0;
@@ -869,7 +869,7 @@ if (pt != null) return JU.CU.colorPtToFFRGB (pt);
 if ((n = JU.CU.getArgbFromString ("[" + hex + "]")) == 0) this.error (4);
 return n;
 }, "~N");
-Clazz.defineMethod (c$, "tickParamAsStr", 
+Clazz.defineMethod (c$, "tickParamAsStr",
 function (index, allowUnitCell, allowScale, allowFirst) {
 this.iToken = index - 1;
 if (this.tokAt (index) != 1073742164) return null;
@@ -906,21 +906,21 @@ tickInfo.scale = this.getPoint3f (this.iToken + 2, true);
 }}if (allowFirst) if (this.tokAt (this.iToken + 1) == 1073741942) tickInfo.first = this.floatParameter (this.iToken + 2);
 return tickInfo;
 }, "~N,~B,~B,~B");
-Clazz.defineMethod (c$, "setBooleanProperty", 
+Clazz.defineMethod (c$, "setBooleanProperty",
 function (key, value) {
 if (!this.chk) this.vwr.setBooleanProperty (key, value);
 }, "~S,~B");
-Clazz.defineMethod (c$, "setIntProperty", 
+Clazz.defineMethod (c$, "setIntProperty",
 function (key, value) {
 if (!this.chk) this.vwr.setIntProperty (key, value);
 return true;
 }, "~S,~N");
-Clazz.defineMethod (c$, "setFloatProperty", 
+Clazz.defineMethod (c$, "setFloatProperty",
 function (key, value) {
 if (!this.chk) this.vwr.setFloatProperty (key, value);
 return true;
 }, "~S,~N");
-Clazz.defineMethod (c$, "setStringProperty", 
+Clazz.defineMethod (c$, "setStringProperty",
 function (key, value) {
 if (!this.chk) this.vwr.setStringProperty (key, value);
 }, "~S,~S");

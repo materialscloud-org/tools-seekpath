@@ -1,7 +1,7 @@
 Clazz.declarePackage ("J.render");
 Clazz.load (["J.render.ShapeRenderer"], "J.render.BallsRenderer", ["J.shape.Shape"], function () {
 c$ = Clazz.declareType (J.render, "BallsRenderer", J.render.ShapeRenderer);
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 var needTranslucent = false;
 if (this.isExport || this.vwr.checkMotionRendering (1140850689)) {

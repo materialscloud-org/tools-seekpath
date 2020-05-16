@@ -21,10 +21,10 @@ this.vwr = null;
 this.iNext = 0;
 Clazz.instantialize (this, arguments);
 }, JM, "AtomIteratorWithinModel", null, J.api.AtomIndexIterator);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "initialize", 
+Clazz.defineMethod (c$, "initialize",
 function (bspf, bsSelected, isGreaterOnly, isZeroBased, hemisphereOnly, threadSafe) {
 this.bspf = bspf;
 this.bsSelected = bsSelected;
@@ -34,7 +34,7 @@ this.hemisphereOnly = hemisphereOnly;
 this.threadSafe = threadSafe;
 this.cubeIterator = null;
 }, "J.bspt.Bspf,JU.BS,~B,~B,~B,~B");
-Clazz.overrideMethod (c$, "setModel", 
+Clazz.overrideMethod (c$, "setModel",
 function (modelSet, modelIndex, firstModelAtom, atomIndex, center, distance, rd) {
 if (this.threadSafe) modelIndex = -1 - modelIndex;
 if (modelIndex != this.modelIndex || this.cubeIterator == null) {
@@ -53,21 +53,21 @@ this.vdw1 = this.atoms[atomIndex].getVanderwaalsRadiusFloat (this.vwr, rd.vdwTyp
 }this.checkGreater = (this.isGreaterOnly && atomIndex != 2147483647);
 this.setCenter (center, distance);
 }, "JM.ModelSet,~N,~N,~N,JU.T3,~N,J.atomdata.RadiusData");
-Clazz.overrideMethod (c$, "setCenter", 
+Clazz.overrideMethod (c$, "setCenter",
 function (center, distance) {
 this.setCenter2 (center, distance);
 }, "JU.T3,~N");
-Clazz.defineMethod (c$, "setCenter2", 
+Clazz.defineMethod (c$, "setCenter2",
 function (center, distance) {
 if (this.cubeIterator == null) return;
 this.cubeIterator.initialize (center, distance, this.hemisphereOnly);
 this.distanceSquared = distance * distance;
 }, "JU.T3,~N");
-Clazz.overrideMethod (c$, "hasNext", 
+Clazz.overrideMethod (c$, "hasNext",
 function () {
 return this.hasNext2 ();
 });
-Clazz.defineMethod (c$, "hasNext2", 
+Clazz.defineMethod (c$, "hasNext2",
 function () {
 if (this.atomIndex >= 0) while (this.cubeIterator.hasMoreElements ()) {
 var a = this.cubeIterator.nextElement ();
@@ -81,15 +81,15 @@ return true;
 }this.iNext = -1;
 return false;
 });
-Clazz.overrideMethod (c$, "next", 
+Clazz.overrideMethod (c$, "next",
 function () {
 return this.iNext - this.zeroBase;
 });
-Clazz.overrideMethod (c$, "foundDistance2", 
+Clazz.overrideMethod (c$, "foundDistance2",
 function () {
 return (this.cubeIterator == null ? -1 : this.cubeIterator.foundDistance2 ());
 });
-Clazz.overrideMethod (c$, "addAtoms", 
+Clazz.overrideMethod (c$, "addAtoms",
 function (bsResult) {
 var iAtom;
 while (this.hasNext ()) if ((iAtom = this.next ()) >= 0) {
@@ -110,13 +110,13 @@ d = this.distanceSquared;
 }if (this.foundDistance2 () <= d) bsResult.set (iAtom);
 }
 }, "JU.BS");
-Clazz.overrideMethod (c$, "release", 
+Clazz.overrideMethod (c$, "release",
 function () {
 if (this.cubeIterator != null) {
 this.cubeIterator.release ();
 this.cubeIterator = null;
 }});
-Clazz.overrideMethod (c$, "getPosition", 
+Clazz.overrideMethod (c$, "getPosition",
 function () {
 return null;
 });

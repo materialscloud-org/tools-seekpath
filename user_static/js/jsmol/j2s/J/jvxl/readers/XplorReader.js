@@ -6,17 +6,17 @@ this.linePt = 2147483647;
 this.nRead = 0;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.readers, "XplorReader", J.jvxl.readers.MapFileReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.XplorReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2MFR (sg, br);
 if (this.params.thePlane == null) this.params.insideOut = !this.params.insideOut;
 this.nSurfaces = 1;
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "readParameters", 
+Clazz.overrideMethod (c$, "readParameters",
 function () {
 this.jvxlFileHeaderBuffer =  new JU.SB ();
 var nLines = this.parseIntStr (this.getLine ());
@@ -49,14 +49,14 @@ this.getVectorsAndOrigin ();
 this.setCutoffAutomatic ();
 this.nBlock = this.voxelCounts[2] * this.voxelCounts[1];
 });
-Clazz.defineMethod (c$, "getLine", 
+Clazz.defineMethod (c$, "getLine",
  function () {
 this.rd ();
 while (this.line != null && (this.line.length == 0 || this.line.indexOf ("REMARKS") >= 0 || this.line.indexOf ("XPLOR:") >= 0)) this.rd ();
 
 return this.line;
 });
-Clazz.overrideMethod (c$, "nextVoxel", 
+Clazz.overrideMethod (c$, "nextVoxel",
 function () {
 if (this.linePt >= this.line.length) {
 this.rd ();

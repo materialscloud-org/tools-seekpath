@@ -6,17 +6,17 @@ this.next = 0;
 this.$mark = 0;
 Clazz.instantialize (this, arguments);
 }, java.io, "StringReader", java.io.Reader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (s) {
 Clazz.superConstructor (this, java.io.StringReader, [s]);
 this.str = s;
 this.length = s.length;
 }, "~S");
-Clazz.defineMethod (c$, "ensureOpen", 
+Clazz.defineMethod (c$, "ensureOpen",
  function () {
 if (this.str == null) throw  new java.io.IOException ("Stream closed");
 });
-Clazz.overrideMethod (c$, "read", 
+Clazz.overrideMethod (c$, "read",
 function (cbuf, off, len) {
 {
 this.ensureOpen ();
@@ -30,7 +30,7 @@ this.str.getChars (this.next, this.next + n, cbuf, off);
 this.next += n;
 return n;
 }}, "~A,~N,~N");
-Clazz.overrideMethod (c$, "skip", 
+Clazz.overrideMethod (c$, "skip",
 function (ns) {
 {
 this.ensureOpen ();
@@ -40,17 +40,17 @@ n = Math.max (-this.next, n);
 this.next += n;
 return n;
 }}, "~N");
-Clazz.overrideMethod (c$, "ready", 
+Clazz.overrideMethod (c$, "ready",
 function () {
 {
 this.ensureOpen ();
 return true;
 }});
-Clazz.overrideMethod (c$, "markSupported", 
+Clazz.overrideMethod (c$, "markSupported",
 function () {
 return true;
 });
-Clazz.overrideMethod (c$, "mark", 
+Clazz.overrideMethod (c$, "mark",
 function (readAheadLimit) {
 if (readAheadLimit < 0) {
 throw  new IllegalArgumentException ("Read-ahead limit < 0");
@@ -58,13 +58,13 @@ throw  new IllegalArgumentException ("Read-ahead limit < 0");
 this.ensureOpen ();
 this.$mark = this.next;
 }}, "~N");
-Clazz.overrideMethod (c$, "reset", 
+Clazz.overrideMethod (c$, "reset",
 function () {
 {
 this.ensureOpen ();
 this.next = this.$mark;
 }});
-Clazz.overrideMethod (c$, "close", 
+Clazz.overrideMethod (c$, "close",
 function () {
 this.str = null;
 });

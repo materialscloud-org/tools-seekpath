@@ -8,15 +8,15 @@ this.nPolygons = 0;
 this.htVertices = null;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.readers, "Ras3DReader", J.jvxl.readers.PolygonFileReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.Ras3DReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2PR (sg, br);
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.defineMethod (c$, "init2PR", 
+Clazz.defineMethod (c$, "init2PR",
 function (sg, br) {
 this.init2PFR (sg, br);
 var fileName = (sg.getReaderData ())[0];
@@ -24,17 +24,17 @@ if (fileName == null) return;
 this.type = "ras3d";
 this.setHeader ();
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.defineMethod (c$, "setHeader", 
+Clazz.defineMethod (c$, "setHeader",
 function () {
 this.jvxlFileHeaderBuffer.append (this.type + " file format\nvertices and triangles only\n");
 J.jvxl.data.JvxlCoder.jvxlCreateHeaderWithoutTitleOrAtoms (this.volumeData, this.jvxlFileHeaderBuffer);
 });
-Clazz.overrideMethod (c$, "getSurfaceData", 
+Clazz.overrideMethod (c$, "getSurfaceData",
 function () {
 if (this.readVerticesAndPolygons ()) JU.Logger.info (this.type + " file contains " + this.nVertices + " vertices and " + this.nPolygons + " polygons for " + this.nTriangles + " triangles");
  else JU.Logger.error (this.params.fileName + ": " + (this.pmeshError == null ? "Error reading pmesh data " : this.pmeshError));
 });
-Clazz.defineMethod (c$, "readVerticesAndPolygons", 
+Clazz.defineMethod (c$, "readVerticesAndPolygons",
 function () {
 try {
 if (this.readVertices ()) return true;
@@ -47,7 +47,7 @@ throw e;
 }
 return false;
 });
-Clazz.defineMethod (c$, "readVertices", 
+Clazz.defineMethod (c$, "readVertices",
  function () {
 this.htVertices =  new java.util.Hashtable ();
 var v0 =  Clazz.newIntArray (3, 0);
@@ -85,7 +85,7 @@ this.addTriangleCheck (v0[0], v0[1], v0[2], 7, 0, false, c0);
 }
 return true;
 });
-Clazz.defineMethod (c$, "getPoint", 
+Clazz.defineMethod (c$, "getPoint",
  function (tokens, i) {
 var key = tokens[i] + ";" + tokens[i + 1] + ";" + tokens[i + 2];
 var v = this.htVertices.get (key);

@@ -4,17 +4,17 @@ c$ = Clazz.decorateAsClass (function () {
 this.minimizer = null;
 Clazz.instantialize (this, arguments);
 }, JM, "MinimizationThread", J.thread.JmolThread);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JM.MinimizationThread, []);
 });
-Clazz.overrideMethod (c$, "setManager", 
+Clazz.overrideMethod (c$, "setManager",
 function (manager, vwr, options) {
 this.minimizer = manager;
 this.setViewer (vwr, "MinimizationThread");
 return 0;
 }, "~O,JV.Viewer,~O");
-Clazz.overrideMethod (c$, "run1", 
+Clazz.overrideMethod (c$, "run1",
 function (mode) {
 while (true) switch (mode) {
 case -1:
@@ -45,7 +45,7 @@ return;
 }
 
 }, "~N");
-Clazz.overrideMethod (c$, "oops", 
+Clazz.overrideMethod (c$, "oops",
 function (e) {
 if (this.minimizer.minimizationOn ()) JU.Logger.error (e.toString ());
 }, "Exception");

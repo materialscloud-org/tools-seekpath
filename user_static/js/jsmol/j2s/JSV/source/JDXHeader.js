@@ -17,47 +17,47 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.headerTable =  new JU.Lst ();
 });
-Clazz.defineMethod (c$, "setTitle", 
+Clazz.defineMethod (c$, "setTitle",
 function (title) {
 this.title = title;
 }, "~S");
-Clazz.defineMethod (c$, "setJcampdx", 
+Clazz.defineMethod (c$, "setJcampdx",
 function (versionNum) {
 this.jcampdx = versionNum;
 }, "~S");
-Clazz.defineMethod (c$, "setDataType", 
+Clazz.defineMethod (c$, "setDataType",
 function (dataType) {
 this.dataType = dataType;
 }, "~S");
-Clazz.defineMethod (c$, "setDataClass", 
+Clazz.defineMethod (c$, "setDataClass",
 function (dataClass) {
 this.dataClass = dataClass;
 }, "~S");
-Clazz.defineMethod (c$, "setOrigin", 
+Clazz.defineMethod (c$, "setOrigin",
 function (origin) {
 this.origin = origin;
 }, "~S");
-Clazz.defineMethod (c$, "setOwner", 
+Clazz.defineMethod (c$, "setOwner",
 function (owner) {
 this.owner = owner;
 }, "~S");
-Clazz.defineMethod (c$, "setLongDate", 
+Clazz.defineMethod (c$, "setLongDate",
 function (longDate) {
 this.longDate = longDate;
 }, "~S");
-Clazz.defineMethod (c$, "setDate", 
+Clazz.defineMethod (c$, "setDate",
 function (date) {
 this.date = date;
 }, "~S");
-Clazz.defineMethod (c$, "setTime", 
+Clazz.defineMethod (c$, "setTime",
 function (time) {
 this.time = time;
 }, "~S");
-Clazz.defineMethod (c$, "getTitle", 
+Clazz.defineMethod (c$, "getTitle",
 function () {
 return this.title;
 });
-c$.getTypeName = Clazz.defineMethod (c$, "getTypeName", 
+c$.getTypeName = Clazz.defineMethod (c$, "getTypeName",
 function (type) {
 type = type.toUpperCase ();
 for (var i = 0; i < JSV.source.JDXHeader.typeNames.length; i++) if (JSV.source.JDXHeader.typeNames[i].startsWith (type)) {
@@ -65,51 +65,51 @@ return JSV.source.JDXHeader.typeNames[i].substring (18);
 }
 return type;
 }, "~S");
-Clazz.defineMethod (c$, "getQualifiedDataType", 
+Clazz.defineMethod (c$, "getQualifiedDataType",
 function () {
 return (this.qualifiedType == null ? (this.qualifiedType = JSV.source.JDXHeader.getTypeName (this.dataType)) : this.qualifiedType);
 });
-Clazz.defineMethod (c$, "getJcampdx", 
+Clazz.defineMethod (c$, "getJcampdx",
 function () {
 return this.jcampdx;
 });
-Clazz.defineMethod (c$, "getDataType", 
+Clazz.defineMethod (c$, "getDataType",
 function () {
 return this.dataType;
 });
-Clazz.defineMethod (c$, "getOrigin", 
+Clazz.defineMethod (c$, "getOrigin",
 function () {
 return this.origin;
 });
-Clazz.defineMethod (c$, "getOwner", 
+Clazz.defineMethod (c$, "getOwner",
 function () {
 return this.owner;
 });
-Clazz.defineMethod (c$, "getLongDate", 
+Clazz.defineMethod (c$, "getLongDate",
 function () {
 return this.longDate;
 });
-Clazz.defineMethod (c$, "getDate", 
+Clazz.defineMethod (c$, "getDate",
 function () {
 return this.date;
 });
-Clazz.defineMethod (c$, "getTime", 
+Clazz.defineMethod (c$, "getTime",
 function () {
 return this.time;
 });
-Clazz.defineMethod (c$, "getDataClass", 
+Clazz.defineMethod (c$, "getDataClass",
 function () {
 return this.dataClass;
 });
-Clazz.defineMethod (c$, "setHeaderTable", 
+Clazz.defineMethod (c$, "setHeaderTable",
 function (table) {
 this.headerTable = table;
 }, "JU.Lst");
-Clazz.defineMethod (c$, "getHeaderTable", 
+Clazz.defineMethod (c$, "getHeaderTable",
 function () {
 return this.headerTable;
 });
-Clazz.defineMethod (c$, "getHeaderRowDataAsArray", 
+Clazz.defineMethod (c$, "getHeaderRowDataAsArray",
 function (addDataClass, nMore) {
 var rowData =  new Array ((addDataClass ? 6 : 5) + this.headerTable.size () + nMore);
 var i = 0;
@@ -123,7 +123,7 @@ for (var j = 0; j < this.headerTable.size (); j++) rowData[i++] = this.getRow (j
 
 return rowData;
 }, "~B,~N");
-Clazz.defineMethod (c$, "getRow", 
+Clazz.defineMethod (c$, "getRow",
  function (j) {
 var s = this.headerTable.get (j);
 {

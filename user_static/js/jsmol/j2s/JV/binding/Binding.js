@@ -8,7 +8,7 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.bindings =  new java.util.Hashtable ();
 });
-c$.getMouseAction = Clazz.defineMethod (c$, "getMouseAction", 
+c$.getMouseAction = Clazz.defineMethod (c$, "getMouseAction",
 function (clickCount, modifiers, mode) {
 if (clickCount > 2) clickCount = 2;
 switch (clickCount) {
@@ -38,7 +38,7 @@ mode = 32;
 }
 return (modifiers & 63) | clickCount | mode;
 }, "~N,~N,~N");
-c$.getMouseActionStr = Clazz.defineMethod (c$, "getMouseActionStr", 
+c$.getMouseActionStr = Clazz.defineMethod (c$, "getMouseActionStr",
 function (desc) {
 if (desc == null) return 0;
 var mouseAction = 0;
@@ -58,15 +58,15 @@ if (desc.indexOf ("CTRL") >= 0) mouseAction |= 2;
 if (desc.indexOf ("SHIFT") >= 0) mouseAction |= 1;
 return mouseAction;
 }, "~S");
-c$.getButtonMods = Clazz.defineMethod (c$, "getButtonMods", 
+c$.getButtonMods = Clazz.defineMethod (c$, "getButtonMods",
 function (mouseAction) {
 return mouseAction & 63;
 }, "~N");
-c$.getClickCount = Clazz.defineMethod (c$, "getClickCount", 
+c$.getClickCount = Clazz.defineMethod (c$, "getClickCount",
 function (mouseAction) {
 return (mouseAction & 768) >> 8;
 }, "~N");
-c$.getMouseActionName = Clazz.defineMethod (c$, "getMouseActionName", 
+c$.getMouseActionName = Clazz.defineMethod (c$, "getMouseActionName",
 function (mouseAction, addSortCode) {
 var sb =  new JU.SB ();
 if (mouseAction == 0) return "";
@@ -110,33 +110,33 @@ sb.append ("+click");
 code[0] = '4';
 }return (addSortCode ?  String.instantialize (code) + ":" + sb.toString () : sb.toString ());
 }, "~N,~B");
-Clazz.defineMethod (c$, "getBindings", 
+Clazz.defineMethod (c$, "getBindings",
 function () {
 return this.bindings;
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "bindAction", 
+Clazz.defineMethod (c$, "bindAction",
 function (mouseAction, jmolAction) {
 this.addBinding (mouseAction + "\t" + jmolAction,  Clazz.newIntArray (-1, [mouseAction, jmolAction]));
 }, "~N,~N");
-Clazz.defineMethod (c$, "bindName", 
+Clazz.defineMethod (c$, "bindName",
 function (mouseAction, name) {
 this.addBinding (mouseAction + "\t", Boolean.TRUE);
 this.addBinding (mouseAction + "\t" + name,  Clazz.newArray (-1, [JV.binding.Binding.getMouseActionName (mouseAction, false), name]));
 }, "~N,~S");
-Clazz.defineMethod (c$, "unbindAction", 
+Clazz.defineMethod (c$, "unbindAction",
 function (mouseAction, jmolAction) {
 if (mouseAction == 0) this.unbindJmolAction (jmolAction);
  else this.removeBinding (null, mouseAction + "\t" + jmolAction);
 }, "~N,~N");
-Clazz.defineMethod (c$, "unbindName", 
+Clazz.defineMethod (c$, "unbindName",
 function (mouseAction, name) {
 if (name == null) this.unbindMouseAction (mouseAction);
  else this.removeBinding (null, mouseAction + "\t" + name);
 }, "~N,~S");
-Clazz.defineMethod (c$, "unbindJmolAction", 
+Clazz.defineMethod (c$, "unbindJmolAction",
 function (jmolAction) {
 var e = this.bindings.keySet ().iterator ();
 var skey = "\t" + jmolAction;
@@ -145,18 +145,18 @@ var key = e.next ();
 if (key.endsWith (skey)) this.removeBinding (e, key);
 }
 }, "~N");
-Clazz.defineMethod (c$, "addBinding", 
+Clazz.defineMethod (c$, "addBinding",
  function (key, value) {
 if (JU.Logger.debugging) JU.Logger.debug ("adding binding " + key + "\t==\t" + JU.Escape.e (value));
 this.bindings.put (key, value);
 }, "~S,~O");
-Clazz.defineMethod (c$, "removeBinding", 
+Clazz.defineMethod (c$, "removeBinding",
  function (e, key) {
 if (JU.Logger.debugging) JU.Logger.debug ("removing binding " + key);
 if (e == null) this.bindings.remove (key);
  else e.remove ();
 }, "java.util.Iterator,~S");
-Clazz.defineMethod (c$, "unbindUserAction", 
+Clazz.defineMethod (c$, "unbindUserAction",
 function (script) {
 var e = this.bindings.keySet ().iterator ();
 var skey = "\t" + script;
@@ -165,7 +165,7 @@ var key = e.next ();
 if (key.endsWith (skey)) this.removeBinding (e, key);
 }
 }, "~S");
-Clazz.defineMethod (c$, "unbindMouseAction", 
+Clazz.defineMethod (c$, "unbindMouseAction",
 function (mouseAction) {
 var e = this.bindings.keySet ().iterator ();
 var skey = mouseAction + "\t";
@@ -174,15 +174,15 @@ var key = e.next ();
 if (key.startsWith (skey)) this.removeBinding (e, key);
 }
 }, "~N");
-Clazz.defineMethod (c$, "isBound", 
+Clazz.defineMethod (c$, "isBound",
 function (mouseAction, jmolAction) {
 return this.bindings.containsKey (mouseAction + "\t" + jmolAction);
 }, "~N,~N");
-Clazz.defineMethod (c$, "isUserAction", 
+Clazz.defineMethod (c$, "isUserAction",
 function (mouseAction) {
 return this.bindings.containsKey (mouseAction + "\t");
 }, "~N");
-Clazz.defineMethod (c$, "getBindingInfo", 
+Clazz.defineMethod (c$, "getBindingInfo",
 function (actionInfo, actionNames, qualifiers) {
 var sb =  new JU.SB ();
 var qlow = (qualifiers == null || qualifiers.equalsIgnoreCase ("all") ? null : qualifiers.toLowerCase ());
@@ -212,7 +212,7 @@ this.addInfo (sb,  Clazz.newArray (-1, ["USER:::" + info[0]]), "user-defined", i
 }
 return sb.toString ();
 }, "~A,~A,~S");
-Clazz.defineMethod (c$, "addInfo", 
+Clazz.defineMethod (c$, "addInfo",
  function (sb, list, name, info) {
 java.util.Arrays.sort (list);
 JU.PT.leftJustify (sb, "                      ", name);
@@ -227,11 +227,11 @@ len = sb.length () - len;
 if (len < 20) sb.append ("                 ".substring (0, 20 - len));
 sb.append ("\t").append (info).appendC ('\n');
 }, "JU.SB,~A,~S,~S");
-c$.includes = Clazz.defineMethod (c$, "includes", 
+c$.includes = Clazz.defineMethod (c$, "includes",
  function (mouseAction, mod) {
 return ((mouseAction & mod) == mod);
 }, "~N,~N");
-c$.newBinding = Clazz.defineMethod (c$, "newBinding", 
+c$.newBinding = Clazz.defineMethod (c$, "newBinding",
 function (vwr, name) {
 return J.api.Interface.getInterface ("JV.binding." + name + "Binding", vwr, "script");
 }, "JV.Viewer,~S");

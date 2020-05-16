@@ -8,7 +8,7 @@ this.oopCalc = null;
 this.vdwCalc = null;
 Clazz.instantialize (this, arguments);
 }, JM.FF, "CalculationsUFF", JM.FF.Calculations);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (ff, ffParams, minAtoms, minBonds, minAngles, minTorsions, minPositions, constraints) {
 Clazz.superConstructor (this, JM.FF.CalculationsUFF, [ff, minAtoms, minBonds, minAngles, minTorsions, minPositions, constraints]);
 this.ffParams = ffParams;
@@ -18,11 +18,11 @@ this.torsionCalc =  new JM.FF.UFFTorsionCalc ().set (this);
 this.oopCalc =  new JM.FF.UFFOOPCalc ().set (this);
 this.vdwCalc =  new JM.FF.UFFVDWCalc ().set (this);
 }, "JM.FF.ForceField,java.util.Map,~A,~A,~A,~A,~A,JU.Lst");
-Clazz.overrideMethod (c$, "getUnits", 
+Clazz.overrideMethod (c$, "getUnits",
 function () {
 return "kJ";
 });
-Clazz.overrideMethod (c$, "setupCalculations", 
+Clazz.overrideMethod (c$, "setupCalculations",
 function () {
 var calc;
 var distanceCalc =  new JM.FF.UFFDistanceCalc ().set (this);
@@ -52,7 +52,7 @@ if (a.nBonds == 3 && JM.FF.CalculationsUFF.isInvertible (elemNo = a.atom.getElem
 this.pairSearch (this.calculations[5] =  new JU.Lst (),  new JM.FF.UFFVDWCalc ().set (this), null, null);
 return true;
 });
-c$.isInvertible = Clazz.defineMethod (c$, "isInvertible", 
+c$.isInvertible = Clazz.defineMethod (c$, "isInvertible",
  function (n) {
 switch (n) {
 case 6:
@@ -67,14 +67,14 @@ default:
 return false;
 }
 }, "~N");
-c$.calculateR0 = Clazz.defineMethod (c$, "calculateR0", 
+c$.calculateR0 = Clazz.defineMethod (c$, "calculateR0",
 function (ri, rj, chiI, chiJ, bondorder) {
 var rbo = -0.1332 * (ri + rj) * Math.log (bondorder);
 var dchi = Math.sqrt (chiI) - Math.sqrt (chiJ);
 var ren = ri * rj * dchi * dchi / (chiI * ri + chiJ * rj);
 return (ri + rj + rbo - ren);
 }, "~N,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "compute", 
+Clazz.overrideMethod (c$, "compute",
 function (iType, dataIn) {
 switch (iType) {
 case 0:
@@ -90,7 +90,7 @@ return this.vdwCalc.compute (dataIn);
 }
 return 0.0;
 }, "~N,~A");
-Clazz.overrideMethod (c$, "getDebugHeader", 
+Clazz.overrideMethod (c$, "getDebugHeader",
 function (iType) {
 switch (iType) {
 case -1:
@@ -99,7 +99,7 @@ default:
 return this.getDebugHeader2 (iType);
 }
 }, "~N");
-Clazz.overrideMethod (c$, "getParameterObj", 
+Clazz.overrideMethod (c$, "getParameterObj",
 function (o) {
 return null;
 }, "JM.MinObject");

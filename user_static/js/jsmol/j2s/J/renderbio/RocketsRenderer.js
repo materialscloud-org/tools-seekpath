@@ -8,19 +8,19 @@ this.cordMidPoints = null;
 this.rr = null;
 Clazz.instantialize (this, arguments);
 }, J.renderbio, "RocketsRenderer", J.renderbio.StrandsRenderer);
-Clazz.overrideMethod (c$, "renderBioShape", 
+Clazz.overrideMethod (c$, "renderBioShape",
 function (bioShape) {
 if (!this.setupRR (bioShape, true)) return;
 this.calcRopeMidPoints ();
 this.renderRockets ();
 this.vwr.freeTempPoints (this.cordMidPoints);
 }, "J.shapebio.BioShape");
-Clazz.defineMethod (c$, "renderRockets", 
+Clazz.defineMethod (c$, "renderRockets",
 function () {
 if (this.rr == null) this.rr = (javajs.api.Interface.getInterface ("J.renderbio.RocketRenderer")).set (this);
 this.rr.renderRockets ();
 });
-Clazz.defineMethod (c$, "setupRR", 
+Clazz.defineMethod (c$, "setupRR",
 function (bioShape, isRockets) {
 this.isRockets = isRockets;
 if (this.wireframeOnly) {
@@ -33,7 +33,7 @@ this.renderArrowHeads = val;
 }return true;
 }return false;
 }, "J.shapebio.BioShape,~B");
-Clazz.defineMethod (c$, "calcRopeMidPoints", 
+Clazz.defineMethod (c$, "calcRopeMidPoints",
 function () {
 var midPointCount = this.monomerCount + 1;
 this.cordMidPoints = this.vwr.allocTempPoints (midPointCount);

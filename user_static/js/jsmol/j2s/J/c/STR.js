@@ -5,30 +5,30 @@ this.id = 0;
 this.color = 0;
 Clazz.instantialize (this, arguments);
 }, J.c, "STR", Enum);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function (id, color) {
 this.id = id;
 this.color = color;
 }, "~N,~N");
-Clazz.defineMethod (c$, "getId", 
+Clazz.defineMethod (c$, "getId",
 function () {
 return this.id;
 });
-Clazz.defineMethod (c$, "getColor", 
+Clazz.defineMethod (c$, "getColor",
 function () {
 return this.color;
 });
-c$.getProteinStructureType = Clazz.defineMethod (c$, "getProteinStructureType", 
+c$.getProteinStructureType = Clazz.defineMethod (c$, "getProteinStructureType",
 function (name) {
 for (var item, $item = 0, $$item = J.c.STR.values (); $item < $$item.length && ((item = $$item[$item]) || true); $item++) if (name.equalsIgnoreCase (item.name ())) return (item.isProtein () ? item : J.c.STR.NOT);
 
 return J.c.STR.NOT;
 }, "~S");
-Clazz.defineMethod (c$, "getBioStructureTypeName", 
+Clazz.defineMethod (c$, "getBioStructureTypeName",
 function (isGeneric) {
 return (this.id < 0 ? "" : isGeneric && this.isProtein () ? "protein" : this.name ());
 }, "~B");
-Clazz.defineMethod (c$, "isProtein", 
+Clazz.defineMethod (c$, "isProtein",
  function () {
 return this.id >= 0 && this.id <= 3 || this.id >= 7;
 });

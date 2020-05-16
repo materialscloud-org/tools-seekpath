@@ -9,7 +9,7 @@ this.bsSelected = null;
 this.bondSelectionModeOr = false;
 Clazz.instantialize (this, arguments);
 }, JM, "BondIteratorSelected", null, JM.BondIterator);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (bonds, bondCount, bondType, bsSelected, bondSelectionModeOr) {
 this.bonds = bonds;
 this.bondCount = bondCount;
@@ -17,7 +17,7 @@ this.bondType = bondType;
 this.bsSelected = bsSelected;
 this.bondSelectionModeOr = bondSelectionModeOr;
 }, "~A,~N,~N,JU.BS,~B");
-Clazz.overrideMethod (c$, "hasNext", 
+Clazz.overrideMethod (c$, "hasNext",
 function () {
 if (this.bondType == 131071) {
 this.iBond = this.bsSelected.nextSetBit (this.iBond);
@@ -33,11 +33,11 @@ if ((!this.bondSelectionModeOr && isSelected1 && isSelected2) || (this.bondSelec
 }
 return false;
 });
-Clazz.overrideMethod (c$, "nextIndex", 
+Clazz.overrideMethod (c$, "nextIndex",
 function () {
 return this.iBond;
 });
-Clazz.overrideMethod (c$, "next", 
+Clazz.overrideMethod (c$, "next",
 function () {
 return this.bonds[this.iBond++];
 });

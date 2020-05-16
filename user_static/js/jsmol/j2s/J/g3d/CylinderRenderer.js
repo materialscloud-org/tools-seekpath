@@ -54,13 +54,13 @@ this.xyzfRaster =  Clazz.newArray (-1, [ Clazz.newIntArray (32, 0),  Clazz.newIn
 this.ptA0i =  new JU.P3i ();
 this.ptB0i =  new JU.P3i ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (g3d) {
 this.g3d = g3d;
 this.line3d = g3d.line3d;
 this.shader = g3d.shader;
 }, "J.g3d.Graphics3D");
-Clazz.defineMethod (c$, "renderOld", 
+Clazz.defineMethod (c$, "renderOld",
 function (colixA, colixB, screen, endcaps, diameter, xa, ya, za, xb, yb, zb) {
 var r = Clazz.doubleToInt (diameter / 2) + 1;
 var g = this.g3d;
@@ -120,7 +120,7 @@ this.line3d.plotLineDeltaOld (this.shadesA[fpzBack], this.shadesB[fpzBack], this
 g.setZMargin (0);
 if (endcaps == 3) this.renderSphericalEndcaps ();
 }, "~N,~N,~N,~N,~N,~N,~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "renderBitsFloat", 
+Clazz.defineMethod (c$, "renderBitsFloat",
 function (colixA, colixB, screen, endcaps, diameter, ptA, ptB) {
 var g = this.g3d;
 if (this.ptA0 == null) {
@@ -205,7 +205,7 @@ this.xAf += this.dxBf;
 this.yAf += this.dyBf;
 this.zAf += this.dzBf;
 }, "~N,~N,~N,~N,~N,JU.P3,JU.P3");
-Clazz.defineMethod (c$, "renderBits", 
+Clazz.defineMethod (c$, "renderBits",
 function (colixA, colixB, screen, endcaps, diameter, ptA, ptB) {
 var g = this.g3d;
 if (diameter == 0 || diameter == 1) {
@@ -290,7 +290,7 @@ this.xAf += this.dxBf;
 this.yAf += this.dyBf;
 this.zAf += this.dzBf;
 }, "~N,~N,~N,~N,~N,JU.P3i,JU.P3i");
-Clazz.defineMethod (c$, "renderConeOld", 
+Clazz.defineMethod (c$, "renderConeOld",
 function (colix, endcap, diameter, xa, ya, za, xtip, ytip, ztip, doFill, isBarb) {
 this.dxBf = (xtip) - (this.xAf = xa);
 this.dyBf = (ytip) - (this.yAf = ya);
@@ -351,7 +351,7 @@ this.line3d.plotLineDeltaOld (argb, argb, Clazz.floatToInt (xDn), Clazz.floatToI
 }}}
 g3d.setZMargin (0);
 }, "~N,~N,~N,~N,~N,~N,~N,~N,~N,~B,~B");
-Clazz.defineMethod (c$, "generateBaseEllipsePrecisely", 
+Clazz.defineMethod (c$, "generateBaseEllipsePrecisely",
  function (isBarb) {
 this.calcCosSin (this.dxBf, this.dyBf, this.dzBf);
 this.calcPoints (isBarb ? 2 : 3, true);
@@ -361,13 +361,13 @@ for (var i = 3; --i >= 0; ) for (var j = this.rasterCount; --j >= 0; ) this.xyzf
 
 
 }, "~B");
-Clazz.defineMethod (c$, "calcPoints", 
+Clazz.defineMethod (c$, "calcPoints",
  function (count, isPrecise) {
 this.calcRotatedPoint (0, 0, isPrecise, this.xyzfRaster, this.xyztRaster);
 this.calcRotatedPoint (0.5, 1, isPrecise, this.xyzfRaster, this.xyztRaster);
 if ((this.rasterCount = count) == 3) this.calcRotatedPoint (1, 2, isPrecise, this.xyzfRaster, this.xyztRaster);
 }, "~N,~B");
-Clazz.defineMethod (c$, "calcCosSin", 
+Clazz.defineMethod (c$, "calcCosSin",
  function (dx, dy, dz) {
 var mag2d2 = dx * dx + dy * dy;
 if (mag2d2 == 0) {
@@ -381,7 +381,7 @@ this.cosTheta = dz / mag3d;
 this.cosPhi = dx / mag2d;
 this.sinPhi = dy / mag2d;
 }}, "~N,~N,~N");
-Clazz.defineMethod (c$, "calcRotatedPoint", 
+Clazz.defineMethod (c$, "calcRotatedPoint",
  function (t, i, isPrecision, xyzf, xyzt) {
 xyzt[3][i] = t;
 var tPI = t * 3.141592653589793;
@@ -405,7 +405,7 @@ xyzf[1][i] = Clazz.doubleToInt (yR);
 xyzf[2][i] = Clazz.doubleToInt (zR + 0.5);
 }xyzf[3][i] = this.shader.getShadeFp8 (xR, yR, zR);
 }, "~N,~N,~B,~A,~A");
-Clazz.defineMethod (c$, "allocRaster", 
+Clazz.defineMethod (c$, "allocRaster",
  function (isPrecision, xyzf, xyzt) {
 if (this.rasterCount >= xyzf[0].length) while (this.rasterCount >= xyzf[0].length) {
 for (var i = 4; --i >= 0; ) xyzf[i] = JU.AU.doubleLengthI (xyzf[i]);
@@ -418,7 +418,7 @@ for (var i = 3; --i >= 0; ) xyzt[i] = JU.AU.doubleLengthF (xyzt[i]);
 }
 return this.rasterCount++;
 }, "~B,~A,~A");
-Clazz.defineMethod (c$, "interpolate", 
+Clazz.defineMethod (c$, "interpolate",
  function (iLower, iUpper, xyzf, xyzt) {
 var x = xyzf[0];
 var y = xyzf[1];
@@ -450,7 +450,7 @@ return;
 x[iMid] = x[iLower];
 y[iMid] = y[iUpper];
 }, "~N,~N,~A,~A");
-Clazz.defineMethod (c$, "interpolatePrecisely", 
+Clazz.defineMethod (c$, "interpolatePrecisely",
  function (iLower, iUpper, xyzf, xyzt) {
 var x = xyzt[0];
 var y = xyzt[1];
@@ -484,7 +484,7 @@ return;
 x[iMid] = x[iLower];
 y[iMid] = y[iUpper];
 }, "~N,~N,~A,~A");
-Clazz.defineMethod (c$, "renderFlatEndcap", 
+Clazz.defineMethod (c$, "renderFlatEndcap",
  function (isCylinder, isPrecise, xyzf) {
 var xT;
 var yT;
@@ -552,12 +552,12 @@ this.g3d.setColorNoisy (this.endcapShadeIndex);
 this.g3d.plotPixelsClippedRaster (count, xT + xMin, yT + y, zT - zXMin - 1, zT - zXMax - 1, null, null);
 }
 }, "~B,~B,~A");
-Clazz.defineMethod (c$, "renderSphericalEndcaps", 
+Clazz.defineMethod (c$, "renderSphericalEndcaps",
  function () {
 if (this.colixA != 0 && this.g3d.setC (this.colixA)) this.g3d.fillSphereXYZ (this.diameter, this.xA, this.yA, this.zA + 1);
 if (this.colixB != 0 && this.g3d.setC (this.colixB)) this.g3d.fillSphereXYZ (this.diameter, this.xA + this.dxB, this.yA + this.dyB, this.zA + this.dzB + 1);
 });
-Clazz.defineMethod (c$, "calcArgbEndcap", 
+Clazz.defineMethod (c$, "calcArgbEndcap",
  function (tCylinder, isFloat) {
 this.tEvenDiameter = ((this.diameter & 1) == 0);
 this.radius = this.diameter / 2.0;

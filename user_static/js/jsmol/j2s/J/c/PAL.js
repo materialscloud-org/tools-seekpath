@@ -5,32 +5,32 @@ this.$$name = null;
 this.id = 0;
 Clazz.instantialize (this, arguments);
 }, J.c, "PAL", Enum);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function (name, id) {
 this.$$name = name;
 this.id = id;
 }, "~S,~N");
-c$.pidOf = Clazz.defineMethod (c$, "pidOf", 
+c$.pidOf = Clazz.defineMethod (c$, "pidOf",
 function (value) {
 return (Clazz.instanceOf (value, J.c.PAL) ? (value).id : Clazz.instanceOf (value, Byte) ? (value).byteValue () : J.c.PAL.UNKNOWN.id);
 }, "~O");
-c$.isPaletteVariable = Clazz.defineMethod (c$, "isPaletteVariable", 
+c$.isPaletteVariable = Clazz.defineMethod (c$, "isPaletteVariable",
 function (pid) {
 return ((pid & 64) != 0);
 }, "~N");
-c$.getPalette = Clazz.defineMethod (c$, "getPalette", 
+c$.getPalette = Clazz.defineMethod (c$, "getPalette",
 function (paletteName) {
 if (paletteName.indexOf ('_') < 0) for (var item, $item = 0, $$item = J.c.PAL.values (); $item < $$item.length && ((item = $$item[$item]) || true); $item++) if (paletteName.equalsIgnoreCase (item.$$name)) return item;
 
 return (paletteName.indexOf ("property_") == 0 ? J.c.PAL.PROPERTY : J.c.PAL.UNKNOWN);
 }, "~S");
-c$.getPaletteID = Clazz.defineMethod (c$, "getPaletteID", 
+c$.getPaletteID = Clazz.defineMethod (c$, "getPaletteID",
 function (paletteName) {
 if (paletteName.indexOf ('_') < 0) for (var item, $item = 0, $$item = J.c.PAL.values (); $item < $$item.length && ((item = $$item[$item]) || true); $item++) if (paletteName.equalsIgnoreCase (item.$$name)) return item.id;
 
 return (paletteName.indexOf ("property_") == 0 ? J.c.PAL.PROPERTY.id : J.c.PAL.UNKNOWN.id);
 }, "~S");
-c$.getPaletteName = Clazz.defineMethod (c$, "getPaletteName", 
+c$.getPaletteName = Clazz.defineMethod (c$, "getPaletteName",
 function (pid) {
 for (var item, $item = 0, $$item = J.c.PAL.values (); $item < $$item.length && ((item = $$item[$item]) || true); $item++) if (item.id == pid) return item.$$name;
 

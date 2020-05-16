@@ -10,60 +10,60 @@ this.zIndex = 9000;
 this.loc = null;
 Clazz.instantialize (this, arguments);
 }, J.awtjs.swing, "JDialog", javajs.awt.Container);
-Clazz.defineMethod (c$, "setZIndex", 
+Clazz.defineMethod (c$, "setZIndex",
 function (zIndex) {
 this.zIndex = zIndex;
 }, "~N");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.awtjs.swing.JDialog, ["JD"]);
 this.add (this.contentPane =  new J.awtjs.swing.JContentPane ());
 this.setBackground (javajs.awt.Color.get3 (210, 210, 240));
 this.contentPane.setBackground (javajs.awt.Color.get3 (230, 230, 230));
 });
-Clazz.defineMethod (c$, "setLocation", 
+Clazz.defineMethod (c$, "setLocation",
 function (loc) {
 this.loc = loc;
 }, "~A");
-Clazz.defineMethod (c$, "getContentPane", 
+Clazz.defineMethod (c$, "getContentPane",
 function () {
 return this.contentPane;
 });
-Clazz.defineMethod (c$, "setTitle", 
+Clazz.defineMethod (c$, "setTitle",
 function (title) {
 this.title = title;
 }, "~S");
-Clazz.defineMethod (c$, "pack", 
+Clazz.defineMethod (c$, "pack",
 function () {
 this.html = null;
 });
-Clazz.defineMethod (c$, "validate", 
+Clazz.defineMethod (c$, "validate",
 function () {
 this.html = null;
 });
-Clazz.defineMethod (c$, "setVisible", 
+Clazz.defineMethod (c$, "setVisible",
 function (tf) {
 if (tf && this.html == null) this.setDialog ();
 Clazz.superCall (this, J.awtjs.swing.JDialog, "setVisible", [tf]);
 if (tf) this.toFront ();
 }, "~B");
-Clazz.defineMethod (c$, "dispose", 
+Clazz.defineMethod (c$, "dispose",
 function () {
 {
 {
 SwingController.dispose(this);
 }}});
-Clazz.overrideMethod (c$, "repaint", 
+Clazz.overrideMethod (c$, "repaint",
 function () {
 this.setDialog ();
 });
-Clazz.defineMethod (c$, "setDialog", 
+Clazz.defineMethod (c$, "setDialog",
  function () {
 this.html = this.toHTML ();
 {
 SwingController.setDialog(this);
 }});
-Clazz.overrideMethod (c$, "toHTML", 
+Clazz.overrideMethod (c$, "toHTML",
 function () {
 this.renderWidth = Math.max (this.width, this.getSubcomponentWidth ());
 if (this.renderWidth == 0) this.renderWidth = this.defaultWidth;
@@ -78,7 +78,7 @@ sb.append (this.contentPane.toHTML ());
 sb.append ("\n</div></div>\n");
 return sb.toString ();
 });
-Clazz.defineMethod (c$, "toFront", 
+Clazz.defineMethod (c$, "toFront",
 function () {
 {
 SwingController.setFront(this);

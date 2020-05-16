@@ -19,10 +19,10 @@ this.nAtoms = 0;
 this.listPt = 0;
 Clazz.instantialize (this, arguments);
 }, JS, "UnitCellIterator", null, J.api.AtomIndexIterator);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (unitCell, atom, atoms, bsAtoms, distance) {
 this.unitCell = unitCell;
 this.atoms = atoms;
@@ -31,10 +31,10 @@ this.p =  new JU.P3 ();
 if (distance > 0) this.setCenter (atom, distance);
 return this;
 }, "J.api.SymmetryInterface,JM.Atom,~A,JU.BS,~N");
-Clazz.overrideMethod (c$, "setModel", 
+Clazz.overrideMethod (c$, "setModel",
 function (modelSet, modelIndex, zeroBase, atomIndex, center, distance, rd) {
 }, "JM.ModelSet,~N,~N,~N,JU.T3,~N,J.atomdata.RadiusData");
-Clazz.overrideMethod (c$, "setCenter", 
+Clazz.overrideMethod (c$, "setCenter",
 function (center, distance) {
 if (distance == 0) return;
 this.maxDistance2 = distance * distance;
@@ -64,7 +64,7 @@ if (JU.Logger.debugging) JU.Logger.info ("UnitCellIterator minxyz/maxxyz " + thi
 this.t = JU.P3i.new3 (this.minXYZ.x - 1, this.minXYZ.y, this.minXYZ.z);
 this.nextCell ();
 }, "JU.T3,~N");
-Clazz.overrideMethod (c$, "addAtoms", 
+Clazz.overrideMethod (c$, "addAtoms",
 function (bsAtoms) {
 this.done = (bsAtoms == null);
 if (this.done) return;
@@ -94,7 +94,7 @@ this.nAtoms = this.unitList.size ();
 this.done = (this.nAtoms == 0);
 if (JU.Logger.debugging) JU.Logger.info ("UnitCellIterator " + this.nAtoms + " unique points found");
 }, "JU.BS");
-Clazz.overrideMethod (c$, "hasNext", 
+Clazz.overrideMethod (c$, "hasNext",
 function () {
 while ((this.ipt < this.nAtoms || this.nextCell ())) {
 this.p.add2 (this.unitList.get (this.listPt = this.ipt++)[1], this.translation);
@@ -104,7 +104,7 @@ return true;
 }}
 return false;
 });
-Clazz.defineMethod (c$, "nextCell", 
+Clazz.defineMethod (c$, "nextCell",
  function () {
 if (this.done) return false;
 if (++this.t.x >= this.maxXYZ.x) {
@@ -120,19 +120,19 @@ this.unitCell.toCartesian (this.translation, false);
 this.ipt = 0;
 return true;
 });
-Clazz.overrideMethod (c$, "next", 
+Clazz.overrideMethod (c$, "next",
 function () {
 return (this.done || this.ipt < 0 ? -1 : this.getAtom ().i);
 });
-Clazz.defineMethod (c$, "getAtom", 
+Clazz.defineMethod (c$, "getAtom",
  function () {
 return (this.unitList.get (this.listPt)[0]);
 });
-Clazz.overrideMethod (c$, "foundDistance2", 
+Clazz.overrideMethod (c$, "foundDistance2",
 function () {
 return (this.nFound > 0 ? this.distance2 : 3.4028235E38);
 });
-Clazz.overrideMethod (c$, "getPosition", 
+Clazz.overrideMethod (c$, "getPosition",
 function () {
 var a = this.getAtom ();
 if (JU.Logger.debugging) JU.Logger.info ("draw ID p_" + this.nFound + " " + this.p + " //" + a + " " + this.t);
@@ -143,7 +143,7 @@ p.i = a.i;
 p.sD = a.getElementNumber ();
 return p;
 });
-Clazz.overrideMethod (c$, "release", 
+Clazz.overrideMethod (c$, "release",
 function () {
 this.atoms = null;
 this.center = null;

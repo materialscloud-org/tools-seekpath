@@ -4,21 +4,21 @@ c$ = Clazz.decorateAsClass (function () {
 this.vwr = null;
 Clazz.instantialize (this, arguments);
 }, JV, "ChimeMessenger", null, JV.JmolChimeMessenger);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.overrideMethod (c$, "set", 
+Clazz.overrideMethod (c$, "set",
 function (vwr) {
 this.vwr = vwr;
 return this;
 }, "JV.Viewer");
-Clazz.overrideMethod (c$, "getInfoXYZ", 
+Clazz.overrideMethod (c$, "getInfoXYZ",
 function (a) {
 var group3 = a.getGroup3 (true);
 var chainID = a.group.chain.chainID;
 return "Atom: " + (group3 == null ? a.getElementSymbol () : a.getAtomName ()) + " " + a.getAtomNumber () + (group3 != null && group3.length > 0 ? (a.isHetero () ? " Hetero: " : " Group: ") + group3 + " " + a.getResno () + (chainID != 0 && chainID != 32 ? " Chain: " + a.group.chain.getIDStr () : "") : "") + " Model: " + a.getModelNumber () + " Coordinates: " + a.x + " " + a.y + " " + a.z;
 }, "JM.Atom");
-Clazz.overrideMethod (c$, "showHash", 
+Clazz.overrideMethod (c$, "showHash",
 function (outputBuffer, s) {
 if (s == null) return;
 if (outputBuffer == null) {
@@ -27,24 +27,24 @@ this.vwr.scriptStatus (s);
 } else {
 outputBuffer.append (s).appendC ('\n');
 }}, "JU.SB,~S");
-Clazz.overrideMethod (c$, "reportSelection", 
+Clazz.overrideMethod (c$, "reportSelection",
 function (n) {
 this.vwr.reportSelection ((n == 0 ? "No atoms" : n == 1 ? "1 atom" : n + " atoms") + " selected!");
 }, "~N");
-Clazz.overrideMethod (c$, "update", 
+Clazz.overrideMethod (c$, "update",
 function (msg) {
 if (msg == null) msg = "script <exiting>";
  else msg = "Requesting " + msg;
 this.vwr.scriptStatus (msg);
 }, "~S");
-Clazz.overrideMethod (c$, "scriptCompleted", 
+Clazz.overrideMethod (c$, "scriptCompleted",
 function (sm, statusMessage, strErrorMessageUntranslated) {
 var data =  Clazz.newArray (-1, [null, "script <exiting>", statusMessage, Integer.$valueOf (-1), strErrorMessageUntranslated]);
 if (sm.notifyEnabled (J.c.CBK.SCRIPT)) sm.cbl.notifyCallback (J.c.CBK.SCRIPT, data);
 sm.processScript (data);
 return "Jmol script completed.";
 }, "JV.StatusManager,~S,~S");
-Clazz.overrideMethod (c$, "getAllChimeInfo", 
+Clazz.overrideMethod (c$, "getAllChimeInfo",
 function (sb) {
 var nHetero = 0;
 var nH = -1;

@@ -44,15 +44,15 @@ Clazz.prepareFields (c$, function () {
 this.eigenValues =  Clazz.newFloatArray (3, 0);
 this.yzPlanesRho = JU.AU.newFloat2 (2);
 });
-Clazz.overrideMethod (c$, "getNoValue", 
+Clazz.overrideMethod (c$, "getNoValue",
 function () {
 return 100.0;
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.quantum.NciCalculation, []);
 });
-Clazz.defineMethod (c$, "setupCalculation", 
+Clazz.defineMethod (c$, "setupCalculation",
 function (volumeData, bsSelected, bsExcluded, bsMolecules, atomCoordAngstroms, firstAtomOffset, isReducedDensity, points, parameters, testFlags) {
 this.useAbsolute = (testFlags == 2);
 this.bsExcluded = bsExcluded;
@@ -134,14 +134,14 @@ this.type = 0;
 this.doDebug = (JU.Logger.debugging);
 return true;
 }, "J.jvxl.data.VolumeData,JU.BS,JU.BS,~A,~A,~N,~B,~A,~A,~N");
-c$.getParameter = Clazz.defineMethod (c$, "getParameter", 
+c$.getParameter = Clazz.defineMethod (c$, "getParameter",
  function (parameters, i, def, name) {
 var param = (parameters == null || parameters.length < i + 1 ? 0 : parameters[i]);
 if (param == 0) param = def;
 JU.Logger.info ("NCI calculation parameters[" + i + "] (" + name + ") = " + param);
 return param;
 }, "~A,~N,~N,~S");
-Clazz.defineMethod (c$, "getBsOK", 
+Clazz.defineMethod (c$, "getBsOK",
  function () {
 if (this.noValuesAtAll || this.nMolecules == 1) return;
 this.bsOK = JU.BS.newN (this.nX * this.nY * this.nZ);
@@ -152,23 +152,23 @@ for (var ix = 0, index = 0; ix < this.countsXYZ[0]; ix++) for (var iy = 0; iy < 
 
 JU.Logger.info ("NCI calculation SCF " + (this.type == 1 ? "intra" : "inter") + "molecular grid points = " + this.bsOK.cardinality ());
 });
-Clazz.overrideMethod (c$, "createCube", 
+Clazz.overrideMethod (c$, "createCube",
 function () {
 this.setXYZBohr (this.points);
 this.process ();
 });
-Clazz.overrideMethod (c$, "initializeOnePoint", 
+Clazz.overrideMethod (c$, "initializeOnePoint",
 function () {
 if (this.eigen == null) this.initializeEigen ();
 this.isReducedDensity = false;
 this.initializeOnePointQC ();
 });
-Clazz.defineMethod (c$, "initializeEigen", 
+Clazz.defineMethod (c$, "initializeEigen",
  function () {
 this.eigen =  new JU.Eigen ().set (3);
 this.hess =  Clazz.newDoubleArray (3, 3, 0);
 });
-Clazz.overrideMethod (c$, "getPlane", 
+Clazz.overrideMethod (c$, "getPlane",
 function (ix, yzPlane) {
 if (this.noValuesAtAll) {
 for (var j = 0; j < this.yzCount; j++) yzPlane[j] = NaN;
@@ -183,7 +183,7 @@ for (var iy = 0, i = 0; iy < this.countsXYZ[1]; iy++) for (var iz = 0; iz < this
 
 
 }, "~N,~A");
-Clazz.defineMethod (c$, "process", 
+Clazz.defineMethod (c$, "process",
 function () {
 if (this.noValuesAtAll) return;
 for (var ix = this.xMax; --ix >= this.xMin; ) {
@@ -194,7 +194,7 @@ for (var iz = this.zMin; iz < this.zMax; iz++) vd[(this.havePoints ? 0 : iz)] = 
 }
 }
 });
-Clazz.defineMethod (c$, "getValue", 
+Clazz.defineMethod (c$, "getValue",
  function (rho, isReducedDensity) {
 var s;
 if (rho == 100.0) return NaN;
@@ -214,7 +214,7 @@ this.eigen.fillFloatArrays (null, this.eigenValues);
 s = (this.eigenValues[1] < 0 ? -rho : rho);
 }return s;
 }, "~N,~B");
-Clazz.defineMethod (c$, "processAtoms", 
+Clazz.defineMethod (c$, "processAtoms",
  function (ix, iy, iz, index) {
 var rho = 0;
 if (this.isReducedDensity) {
@@ -283,12 +283,12 @@ if (this.useAbsolute) this.grad = this.gxTemp + this.gyTemp + this.gzTemp;
  else this.grad = Math.sqrt (this.gxTemp * this.gxTemp + this.gyTemp * this.gyTemp + this.gzTemp * this.gzTemp);
 }return rho;
 }, "~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "setPlanes", 
+Clazz.overrideMethod (c$, "setPlanes",
 function (planes) {
 this.yzPlanesRaw = planes;
 this.yzCount = this.nY * this.nZ;
 }, "~A");
-Clazz.overrideMethod (c$, "calcPlane", 
+Clazz.overrideMethod (c$, "calcPlane",
 function (x, plane) {
 this.yzPlanesRho[0] = this.yzPlanesRho[1];
 this.yzPlanesRho[1] = plane;
@@ -327,13 +327,13 @@ plane[i] = this.getValue (rho, true);
 }}
 
 }, "~N,~A");
-Clazz.defineMethod (c$, "process", 
+Clazz.defineMethod (c$, "process",
 function (vA, vB, f) {
 var valueA = this.getPlaneValue (vA);
 var valueB = this.getPlaneValue (vB);
 return (valueA + f * (valueB - valueA));
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "getPlaneValue", 
+Clazz.defineMethod (c$, "getPlaneValue",
  function (vA) {
 var i = (vA % this.yzCount);
 var x = Clazz.doubleToInt (vA / this.yzCount);

@@ -1,7 +1,7 @@
 Clazz.declarePackage ("J.render");
 Clazz.load (["J.render.LabelsRenderer"], "J.render.EchoRenderer", ["JM.Atom", "J.render.TextRenderer", "JU.C", "$.Txt"], function () {
 c$ = Clazz.declareType (J.render, "EchoRenderer", J.render.LabelsRenderer);
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 if (this.vwr.isPreviewOnly) return false;
 var echo = this.shape;
@@ -41,7 +41,7 @@ if (frameTitle.indexOf ("%{") >= 0 || frameTitle.indexOf ("@{") >= 0) frameTitle
 this.renderFrameTitle (frameTitle);
 }}}return haveTranslucent;
 });
-Clazz.defineMethod (c$, "renderFrameTitle", 
+Clazz.defineMethod (c$, "renderFrameTitle",
  function (frameTitle) {
 this.vwr.gdata.setFontFid (this.vwr.gdata.getFontFidFS ("arial", Clazz.floatToInt (24 * this.imageFontScaling)));
 var y = Clazz.doubleToInt (Math.floor (this.vwr.getScreenHeight () * (this.g3d.isAntialiased () ? 2 : 1) - 10 * this.imageFontScaling));

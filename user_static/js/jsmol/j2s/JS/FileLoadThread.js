@@ -6,7 +6,7 @@ this.cacheName = null;
 this.key = null;
 Clazz.instantialize (this, arguments);
 }, JS, "FileLoadThread", J.thread.JmolThread);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (eval, vwr, fileName, key, cacheName) {
 this.setViewer (vwr, "FileLoadThread");
 this.fileName = fileName;
@@ -15,7 +15,7 @@ this.cacheName = cacheName;
 this.setEval (eval);
 this.sc.pc--;
 }, "J.api.JmolScriptEvaluator,JV.Viewer,~S,~S,~S");
-Clazz.overrideMethod (c$, "run1", 
+Clazz.overrideMethod (c$, "run1",
 function (mode) {
 while (true) switch (mode) {
 case -1:
@@ -41,7 +41,7 @@ return;
 }
 
 }, "~N");
-Clazz.defineMethod (c$, "setData", 
+Clazz.defineMethod (c$, "setData",
 function (fileName, fileName0, data, myData) {
 var isCanceled = fileName.equals ("#CANCELED#");
 this.sc.parentContext.htFileCache.put (this.key, (isCanceled ? fileName : (this.cacheName = this.cacheName.substring (0, this.cacheName.lastIndexOf ("_") + 1) + fileName)));

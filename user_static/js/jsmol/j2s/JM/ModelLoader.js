@@ -57,7 +57,7 @@ Clazz.prepareFields (c$, function () {
 this.htAtomMap =  new java.util.Hashtable ();
 this.structuresDefinedInFile =  new JU.BS ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (vwr, modelSetName, loadScript, asc, modelSet0, bsNew) {
 this.vwr = vwr;
 this.ms =  new JM.ModelSet (vwr, modelSetName);
@@ -83,7 +83,7 @@ this.createModelSet (adapter, asc, bsNew);
 if (this.jbr != null) this.jbr.setLoader (null);
 this.jbr = null;
 }, "JV.Viewer,~S,JU.SB,~O,JM.ModelSet,JU.BS");
-Clazz.defineMethod (c$, "initializeInfo", 
+Clazz.defineMethod (c$, "initializeInfo",
  function (name, info) {
 this.ms.g3d = this.vwr.gdata;
 this.ms.modelSetTypeName = name;
@@ -133,23 +133,23 @@ this.ms.msInfo.put ("someModelsHaveUnitcells", Boolean.$valueOf (this.someModels
 this.ms.msInfo.put ("someModelsHaveFractionalCoordinates", Boolean.$valueOf (this.ms.someModelsHaveFractionalCoordinates));
 this.ms.msInfo.put ("someModelsHaveAromaticBonds", Boolean.$valueOf (this.ms.someModelsHaveAromaticBonds));
 }}, "~S,java.util.Map");
-Clazz.defineMethod (c$, "newTrajectory", 
+Clazz.defineMethod (c$, "newTrajectory",
  function (ms, steps) {
 return (J.api.Interface.getInterface ("JM.Trajectory", this.vwr, "load")).set (this.vwr, ms, steps);
 }, "JM.ModelSet,JU.Lst");
-Clazz.defineMethod (c$, "getGroup3", 
+Clazz.defineMethod (c$, "getGroup3",
 function (iGroup) {
 return (iGroup >= this.group3Of.length ? null : this.group3Of[iGroup]);
 }, "~N");
-Clazz.defineMethod (c$, "getFirstAtomIndex", 
+Clazz.defineMethod (c$, "getFirstAtomIndex",
 function (iGroup) {
 return this.firstAtomIndexes[iGroup];
 }, "~N");
-Clazz.defineMethod (c$, "getAtomCount", 
+Clazz.defineMethod (c$, "getAtomCount",
 function () {
 return this.ms.ac;
 });
-Clazz.defineMethod (c$, "createModelSet", 
+Clazz.defineMethod (c$, "createModelSet",
  function (adapter, asc, bsNew) {
 var nAtoms = (adapter == null ? 0 : adapter.getAtomCount (asc));
 if (nAtoms > 0) JU.Logger.info ("reading " + nAtoms + " atoms");
@@ -214,7 +214,7 @@ if (this.modelSet0 != null) {
 this.modelSet0.releaseModelSet ();
 }this.modelSet0 = null;
 }, "J.api.JmolAdapter,~O,JU.BS");
-Clazz.defineMethod (c$, "mergeTrajAndVib", 
+Clazz.defineMethod (c$, "mergeTrajAndVib",
  function (oldSet, newSet) {
 this.baseModelCount = oldSet.mc;
 this.baseTrajectoryCount = 0;
@@ -241,7 +241,7 @@ newSet.trajectory = this.newTrajectory (newSet, null);
 newSet.trajectory.steps = oldSet.trajectory.steps;
 oldSet.trajectory = null;
 }, "JM.ModelSet,JM.ModelSet");
-Clazz.defineMethod (c$, "setDefaultRendering", 
+Clazz.defineMethod (c$, "setDefaultRendering",
  function (maxAtoms) {
 if (this.isPyMOLsession) return;
 var sb =  new JU.SB ();
@@ -256,7 +256,7 @@ if (script == null) script = "";
 sb.append (script);
 this.ms.msInfo.put ("jmolscript", sb.toString ());
 }, "~N");
-Clazz.defineMethod (c$, "setAtomProperties", 
+Clazz.defineMethod (c$, "setAtomProperties",
  function () {
 var modelCount = this.ms.mc;
 for (var i = this.baseModelIndex; i < modelCount; i++) {
@@ -278,7 +278,7 @@ this.vwr.setData (key,  Clazz.newArray (-1, [key, value, bs, Integer.$valueOf (-
 }
 }
 });
-Clazz.defineMethod (c$, "initializeAtomBondModelCounts", 
+Clazz.defineMethod (c$, "initializeAtomBondModelCounts",
  function (nAtoms) {
 var trajectoryCount = this.adapterTrajectoryCount;
 if (this.merging) {
@@ -312,7 +312,7 @@ this.ms.frameTitles = JU.AU.arrayCopyS (this.ms.frameTitles, this.ms.mc);
 if (this.merging) for (var i = 0; i < this.modelSet0.mc; i++) (this.ms.am[i] = this.modelSet0.am[i]).ms = this.ms;
 
 }, "~N");
-Clazz.defineMethod (c$, "mergeGroups", 
+Clazz.defineMethod (c$, "mergeGroups",
  function () {
 var info = this.modelSet0.getAuxiliaryInfo (null);
 var mergeGroup3Lists = info.get ("group3Lists");
@@ -327,7 +327,7 @@ this.group3Lists[0] = mergeGroup3Lists[0];
 this.group3Counts[0] = mergeGroup3Counts[0];
 }if (!this.appendNew && this.ms.haveBioModels) this.structuresDefinedInFile.clear (this.baseModelIndex);
 });
-Clazz.defineMethod (c$, "iterateOverAllNewModels", 
+Clazz.defineMethod (c$, "iterateOverAllNewModels",
  function (adapter, asc) {
 this.group3Lists =  new Array (this.ms.mc + 1);
 this.group3Counts = JU.AU.newInt2 (this.ms.mc + 1);
@@ -372,7 +372,7 @@ this.structuresDefinedInFile.set (i);
 }
 }this.finalizeModels (this.baseModelCount);
 }, "J.api.JmolAdapter,~O");
-Clazz.defineMethod (c$, "setModelNameNumberProperties", 
+Clazz.defineMethod (c$, "setModelNameNumberProperties",
  function (modelIndex, trajectoryBaseIndex, modelName, modelNumber, modelProperties, modelAuxiliaryInfo, jmolData) {
 if (this.appendNew) {
 var modelIsPDB = (modelAuxiliaryInfo != null && Boolean.TRUE === modelAuxiliaryInfo.get ("isPDB"));
@@ -399,7 +399,7 @@ models[modelIndex].insertionCount = (codes == null ? 0 : codes.length);
 var isModelKit = (this.ms.modelSetName != null && this.ms.modelSetName.startsWith ("Jmol Model Kit") || modelName.startsWith ("Jmol Model Kit") || "Jme".equals (this.ms.getInfo (modelIndex, "fileType")));
 models[modelIndex].isModelKit = isModelKit;
 }, "~N,~N,~S,~N,java.util.Properties,java.util.Map,~S");
-Clazz.defineMethod (c$, "finalizeModels", 
+Clazz.defineMethod (c$, "finalizeModels",
  function (baseModelCount) {
 var modelCount = this.ms.mc;
 if (modelCount == baseModelCount) return;
@@ -453,7 +453,7 @@ if (codes != null) {
 JU.Logger.info ("model " + this.ms.getModelNumberDotted (i) + " alternative locations: " + codes);
 }}
 }, "~N");
-Clazz.defineMethod (c$, "iterateOverAllNewAtoms", 
+Clazz.defineMethod (c$, "iterateOverAllNewAtoms",
  function (adapter, asc) {
 var iLast = -1;
 var isPdbThisModel = false;
@@ -503,7 +503,7 @@ vdwtypeLast = vdwtype;
 }}}
 JU.Logger.info (nRead + " atoms created");
 }, "J.api.JmolAdapter,~O");
-Clazz.defineMethod (c$, "addJmolDataProperties", 
+Clazz.defineMethod (c$, "addJmolDataProperties",
  function (m, jmolDataProperties) {
 if (jmolDataProperties == null) return;
 var bs = m.bsAtoms;
@@ -528,11 +528,11 @@ this.vwr.setData (key,  Clazz.newArray (-1, [key, data, bs, Integer.$valueOf (1)
 }
 }
 }, "JM.Model,java.util.Map");
-Clazz.defineMethod (c$, "getPdbCharge", 
+Clazz.defineMethod (c$, "getPdbCharge",
  function (group3, name) {
 return (group3.equals ("ARG") && name.equals ("NH1") || group3.equals ("LYS") && name.equals ("NZ") || group3.equals ("HIS") && name.equals ("ND1") ? 1 : 0);
 }, "~S,~S");
-Clazz.defineMethod (c$, "addAtom", 
+Clazz.defineMethod (c$, "addAtom",
  function (isPDB, atomSymmetry, atomSite, atomUid, atomicAndIsotopeNumber, atomName, formalCharge, partialCharge, tensors, occupancy, bfactor, xyz, isHetero, atomSerial, atomSeqID, group3, vib, alternateLocationID, radius) {
 var specialAtomID = 0;
 var atomType = null;
@@ -549,7 +549,7 @@ if (specialAtomID == 2 && "CA".equalsIgnoreCase (group3)) specialAtomID = 0;
 atom.altloc = alternateLocationID;
 this.htAtomMap.put (atomUid, atom);
 }, "~B,JU.BS,~N,~O,~N,~S,~N,~N,JU.Lst,~N,~N,JU.P3,~B,~N,~N,~S,JU.V3,~S,~N");
-Clazz.defineMethod (c$, "checkNewGroup", 
+Clazz.defineMethod (c$, "checkNewGroup",
  function (adapter, chainID, group3, groupSequenceNumber, groupInsertionCode, addH, isLegacyHAddition) {
 var group3i = (group3 == null ? null : group3.intern ());
 if (chainID != this.currentChainID) {
@@ -578,14 +578,14 @@ this.group3Of[this.groupCount] = group3;
 this.seqcodes[this.groupCount] = JM.Group.getSeqcodeFor (groupSequenceNumber, groupInsertionCode);
 ++this.groupCount;
 }}, "J.api.JmolAdapter,~N,~S,~N,~S,~B,~B");
-Clazz.defineMethod (c$, "getOrAllocateChain", 
+Clazz.defineMethod (c$, "getOrAllocateChain",
  function (model, chainID) {
 var chain = model.getChain (chainID);
 if (chain != null) return chain;
 if (model.chainCount == model.chains.length) model.chains = JU.AU.doubleLength (model.chains);
 return model.chains[model.chainCount++] =  new JM.Chain (model, chainID, (chainID == 0 || chainID == 32 ? 0 : ++this.iChain));
 }, "JM.Model,~N");
-Clazz.defineMethod (c$, "iterateOverAllNewBonds", 
+Clazz.defineMethod (c$, "iterateOverAllNewBonds",
  function (adapter, asc) {
 var iterBond = adapter.getBondIterator (asc);
 if (iterBond == null) return;
@@ -607,7 +607,7 @@ b.order |= (iOrder & 98304);
 if (haveMultipleBonds && this.ms.someModelsHaveSymmetry && !this.vwr.getBoolean (603979794)) JU.Logger.info ("ModelSet: use \"set appletSymmetryToBonds TRUE \" to apply the file-based multiple bonds to symmetry-generated atoms.");
 this.ms.defaultCovalentMad = mad;
 }, "J.api.JmolAdapter,~O");
-Clazz.defineMethod (c$, "bondAtoms", 
+Clazz.defineMethod (c$, "bondAtoms",
  function (atomUid1, atomUid2, order) {
 var atom1 = this.htAtomMap.get (atomUid1);
 if (atom1 == null) {
@@ -635,7 +635,7 @@ this.ms.bo = JU.AU.arrayCopyObject (this.ms.bo, this.ms.bondCount + 250);
 }this.ms.setBond (this.ms.bondCount++, bond);
 return bond;
 }, "~O,~O,~N");
-Clazz.defineMethod (c$, "initializeUnitCellAndSymmetry", 
+Clazz.defineMethod (c$, "initializeUnitCellAndSymmetry",
  function () {
 if (this.someModelsAreModulated && this.ms.bsModulated == null) this.ms.bsModulated =  new JU.BS ();
 if (this.someModelsHaveUnitcells) {
@@ -681,7 +681,7 @@ if (roundCoords) JU.PT.fixPtFloats (atoms[i], 10000.0);
 for (var imodel = this.baseModelIndex; imodel < this.ms.mc; imodel++) if (this.ms.isTrajectory (imodel)) this.ms.trajectory.setUnitCell (imodel);
 
 }});
-Clazz.defineMethod (c$, "initializeBonding", 
+Clazz.defineMethod (c$, "initializeBonding",
  function () {
 var bsExclude = (this.ms.getInfoM ("someModelsHaveCONECT") == null ? null :  new JU.BS ());
 if (bsExclude != null) this.ms.setPdbConectBonding (this.baseAtomIndex, this.baseModelIndex, bsExclude);
@@ -713,7 +713,7 @@ JU.Logger.info ("ModelSet: autobonding; use  autobond=false  to not generate bon
 } else {
 JU.Logger.info ("ModelSet: not autobonding; use  forceAutobond=true  to force automatic bond creation");
 }});
-Clazz.defineMethod (c$, "finalizeGroupBuild", 
+Clazz.defineMethod (c$, "finalizeGroupBuild",
  function () {
 this.groups =  new Array (this.groupCount);
 if (this.merging) for (var i = 0; i < this.$mergeGroups.length; i++) (this.groups[i] = this.$mergeGroups[i]).chain.model.ms = this.ms;
@@ -726,7 +726,7 @@ this.ms.msInfo.put ("group3Counts", this.group3Counts);
 for (var i = 0; i < this.group3Counts.length; i++) if (this.group3Counts[i] == null) this.group3Counts[i] =  Clazz.newIntArray (0, 0);
 
 }});
-Clazz.defineMethod (c$, "distinguishAndPropagateGroup", 
+Clazz.defineMethod (c$, "distinguishAndPropagateGroup",
  function (groupIndex, chain, group3, seqcode, firstAtomIndex, lastAtomIndex) {
 if (lastAtomIndex < firstAtomIndex) throw  new NullPointerException ();
 var group = (group3 == null || this.jbr == null ? null : this.jbr.distinguishAndPropagateGroup (chain, group3, seqcode, firstAtomIndex, lastAtomIndex, this.specialAtomIndexes, this.ms.at));
@@ -748,12 +748,12 @@ group.groupIndex = groupIndex;
 for (var i = lastAtomIndex + 1; --i >= firstAtomIndex; ) this.ms.at[i].group = group;
 
 }, "~N,JM.Chain,~S,~N,~N,~N");
-Clazz.defineMethod (c$, "addGroup", 
+Clazz.defineMethod (c$, "addGroup",
  function (chain, group) {
 if (chain.groupCount == chain.groups.length) chain.groups = JU.AU.doubleLength (chain.groups);
 chain.groups[chain.groupCount++] = group;
 }, "JM.Chain,JM.Group");
-Clazz.defineMethod (c$, "countGroup", 
+Clazz.defineMethod (c$, "countGroup",
  function (modelIndex, code, group3) {
 var ptm = modelIndex + 1;
 if (this.group3Lists == null || this.group3Lists[ptm] == null) return;
@@ -768,7 +768,7 @@ pt = this.group3Lists[ptm].indexOf (",[" + g3code);
 if (pt >= 0) this.group3Lists[ptm] = this.group3Lists[ptm].substring (0, pt) + code + this.group3Lists[ptm].substring (pt + 2);
 if (modelIndex >= 0) this.countGroup (-1, code, group3);
 }, "~N,~S,~S");
-Clazz.defineMethod (c$, "freeze", 
+Clazz.defineMethod (c$, "freeze",
  function () {
 this.htAtomMap.clear ();
 if (this.ms.ac < this.ms.at.length) this.ms.growAtomArrays (this.ms.ac);
@@ -791,7 +791,7 @@ return;
 var ret = this.ms.calculateStructuresAllExcept (this.structuresDefinedInFile, asDSSP, false, true, true, asDSSP, JV.JC.versionInt >= 1405000 && this.ms.getInfoM ("DSSP1") == null ? 2 : 1);
 if (ret.length > 0) JU.Logger.info (ret);
 });
-Clazz.defineMethod (c$, "findElementsPresent", 
+Clazz.defineMethod (c$, "findElementsPresent",
  function () {
 this.ms.elementsPresent =  new Array (this.ms.mc);
 for (var i = 0; i < this.ms.mc; i++) this.ms.elementsPresent[i] = JU.BS.newN (64);
@@ -802,7 +802,7 @@ if (n >= JU.Elements.elementNumberMax) n = JU.Elements.elementNumberMax + JU.Ele
 this.ms.elementsPresent[this.ms.at[i].mi].set (n);
 }
 });
-Clazz.defineMethod (c$, "applyStereochemistry", 
+Clazz.defineMethod (c$, "applyStereochemistry",
  function () {
 this.set2dZ (this.baseAtomIndex, this.ms.ac);
 if (this.vStereo != null) {
@@ -823,7 +823,7 @@ b.atom2.y = (b.atom1.y + b.atom2.y) / 2;
 this.vStereo = null;
 }this.is2D = false;
 });
-Clazz.defineMethod (c$, "set2dZ", 
+Clazz.defineMethod (c$, "set2dZ",
  function (iatom1, iatom2) {
 var atomlist = JU.BS.newN (iatom2);
 var bsBranch =  new JU.BS ();
@@ -837,7 +837,7 @@ bsBranch = this.getBranch2dZ (i, -1, bs0, bsBranch, v, v0, v1);
 atomlist.or (bsBranch);
 }
 }, "~N,~N");
-Clazz.defineMethod (c$, "getBranch2dZ", 
+Clazz.defineMethod (c$, "getBranch2dZ",
  function (atomIndex, atomIndexNot, bs0, bsBranch, v, v0, v1) {
 var bs = JU.BS.newN (this.ms.ac);
 if (atomIndex < 0) return bs;
@@ -847,7 +847,7 @@ if (atomIndexNot >= 0) bsToTest.clear (atomIndexNot);
 JM.ModelLoader.setBranch2dZ (this.ms.at[atomIndex], bs, bsToTest, v, v0, v1);
 return bs;
 }, "~N,~N,JU.BS,JU.BS,JU.V3,JU.V3,JU.V3");
-c$.setBranch2dZ = Clazz.defineMethod (c$, "setBranch2dZ", 
+c$.setBranch2dZ = Clazz.defineMethod (c$, "setBranch2dZ",
  function (atom, bs, bsToTest, v, v0, v1) {
 var atomIndex = atom.i;
 if (!bsToTest.get (atomIndex)) return;
@@ -862,7 +862,7 @@ JM.ModelLoader.setAtom2dZ (atom, atom2, v, v0, v1);
 JM.ModelLoader.setBranch2dZ (atom2, bs, bsToTest, v, v0, v1);
 }
 }, "JM.Atom,JU.BS,JU.BS,JU.V3,JU.V3,JU.V3");
-c$.setAtom2dZ = Clazz.defineMethod (c$, "setAtom2dZ", 
+c$.setAtom2dZ = Clazz.defineMethod (c$, "setAtom2dZ",
  function (atomRef, atom2, v, v0, v1) {
 v.sub2 (atom2, atomRef);
 v.z = 0;
@@ -871,7 +871,7 @@ v1.cross (v0, v);
 var theta = Math.acos (v.dot (v0));
 atom2.z = atomRef.z + (0.8 * Math.sin (4 * theta));
 }, "JM.Atom,JM.Atom,JU.V3,JU.V3,JU.V3");
-Clazz.defineMethod (c$, "finalizeShapes", 
+Clazz.defineMethod (c$, "finalizeShapes",
  function () {
 this.ms.sm = this.vwr.shm;
 this.ms.sm.setModelSet (this.ms);
@@ -881,11 +881,11 @@ this.ms.sm.loadDefaultShapes (this.ms);
 if (this.ms.someModelsHaveAromaticBonds && this.vwr.getBoolean (603979944)) this.ms.assignAromaticBondsBs (false, null);
 if (this.merging && this.baseModelCount == 1) this.ms.sm.setShapePropertyBs (6, "clearModelIndex", null, null);
 });
-Clazz.defineMethod (c$, "undeleteAtom", 
+Clazz.defineMethod (c$, "undeleteAtom",
 function (iAtom) {
 this.ms.at[iAtom].valence = 0;
 }, "~N");
-c$.createAtomDataSet = Clazz.defineMethod (c$, "createAtomDataSet", 
+c$.createAtomDataSet = Clazz.defineMethod (c$, "createAtomDataSet",
 function (vwr, modelSet, tokType, asc, bsSelected) {
 if (asc == null) return null;
 var adapter = vwr.getModelAdapter ();

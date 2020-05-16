@@ -32,11 +32,11 @@ this.pfactor =  Clazz.newDoubleArray (10, 0);
 this.ptPsi =  new JU.P3 ();
 this.psi_normalization = 1 / (2 * Math.sqrt (3.141592653589793));
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.IsoShapeReader, []);
 });
-Clazz.overrideMethod (c$, "init", 
+Clazz.overrideMethod (c$, "init",
 function (sg) {
 this.initVDR (sg);
 var o = sg.getReaderData ();
@@ -51,7 +51,7 @@ this.psi_m = Clazz.floatToInt (data[2]);
 this.psi_Znuc = data[3];
 this.monteCarloCount = Clazz.floatToInt (data[4]);
 }}, "J.jvxl.readers.SurfaceGenerator");
-Clazz.overrideMethod (c$, "setup", 
+Clazz.overrideMethod (c$, "setup",
 function (isMapData) {
 this.volumeData.sr = this;
 this.precalculateVoxelData = false;
@@ -110,19 +110,19 @@ break;
 if (this.monteCarloCount == 0) this.setVolumeData ();
 this.setHeader (type + "\n");
 }, "~B");
-Clazz.overrideMethod (c$, "setVolumeData", 
+Clazz.overrideMethod (c$, "setVolumeData",
 function () {
 this.setVoxelRange (0, -this.radius, this.radius, this.ptsPerAngstrom, this.maxGrid, 0);
 this.setVoxelRange (1, -this.radius, this.radius, this.ptsPerAngstrom, this.maxGrid, 0);
 if (this.allowNegative) this.setVoxelRange (2, -this.radius, this.radius, this.ptsPerAngstrom, this.maxGrid, 0);
  else this.setVoxelRange (2, 0, this.radius / this.eccentricityRatio, this.ptsPerAngstrom, this.maxGrid, 0);
 });
-Clazz.overrideMethod (c$, "getValue", 
+Clazz.overrideMethod (c$, "getValue",
 function (x, y, z, ptyz) {
 this.volumeData.voxelPtToXYZ (x, y, z, this.ptPsi);
 return this.getValueAtPoint (this.ptPsi, false);
 }, "~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "getValueAtPoint", 
+Clazz.overrideMethod (c$, "getValueAtPoint",
 function (pt, getSource) {
 this.ptTemp.sub2 (pt, this.center);
 if (this.isEccentric) this.eccentricityMatrixInverse.rotate (this.ptTemp);
@@ -138,7 +138,7 @@ return this.sphere_radiusAngstroms - Math.sqrt (this.ptTemp.x * this.ptTemp.x + 
 if (Math.abs (value) < 1.0E-7) value = 0;
 return (this.allowNegative || value >= 0 ? value : 0);
 }, "JU.T3,~B");
-Clazz.defineMethod (c$, "setHeader", 
+Clazz.defineMethod (c$, "setHeader",
  function (line1) {
 this.jvxlFileHeaderBuffer =  new JU.SB ();
 this.jvxlFileHeaderBuffer.append (line1);
@@ -149,7 +149,7 @@ this.jvxlFileHeaderBuffer.append (" n=").appendI (this.psi_n).append (", l=").ap
 }this.jvxlFileHeaderBuffer.append (this.isAnisotropic ? " anisotropy=(" + this.anisotropy[0] + "," + this.anisotropy[1] + "," + this.anisotropy[2] + ")\n" : "\n");
 J.jvxl.data.JvxlCoder.jvxlCreateHeaderWithoutTitleOrAtoms (this.volumeData, this.jvxlFileHeaderBuffer);
 }, "~S");
-Clazz.defineMethod (c$, "calcFactors", 
+Clazz.defineMethod (c$, "calcFactors",
  function (n, el, m) {
 var abm = Math.abs (m);
 var NnlLnl = Math.pow (2 * this.psi_Znuc / n / 0.52918, 1.5) * Math.sqrt (J.jvxl.readers.IsoShapeReader.fact[n - el - 1] * J.jvxl.readers.IsoShapeReader.fact[n + el] / 2 / n);
@@ -159,7 +159,7 @@ for (var p = 0; p <= n - el - 1; p++) this.rfactor[p] = NnlLnl / J.jvxl.readers.
 for (var p = abm; p <= el; p++) this.pfactor[p] = Math.pow (-1, el - p) * Plm / J.jvxl.readers.IsoShapeReader.fact[p] / J.jvxl.readers.IsoShapeReader.fact[el + abm - p] / J.jvxl.readers.IsoShapeReader.fact[el - p] / J.jvxl.readers.IsoShapeReader.fact[p - abm];
 
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "autoScaleOrbital", 
+Clazz.defineMethod (c$, "autoScaleOrbital",
  function () {
 this.aoMax = 0;
 var rmax = 0;
@@ -249,7 +249,7 @@ if (d > this.aoMax2) this.aoMax2 = d;
 if (this.aoMax2 < 0.001) this.aoMax2 = 0;
  else this.aoMax2 *= this.aoMax2;
 }}});
-Clazz.defineMethod (c$, "radialPart", 
+Clazz.defineMethod (c$, "radialPart",
  function (r) {
 var rho = 2 * this.psi_Znuc * r / this.psi_n / 0.52918;
 var sum = 0;
@@ -257,7 +257,7 @@ for (var p = 0; p <= this.psi_n - this.psi_l - 1; p++) sum += Math.pow (-rho, p)
 
 return Math.exp (-rho / 2) * Math.pow (rho, this.psi_l) * sum;
 }, "~N");
-Clazz.defineMethod (c$, "hydrogenAtomPsi", 
+Clazz.defineMethod (c$, "hydrogenAtomPsi",
  function (pt) {
 var x2y2 = pt.x * pt.x + pt.y * pt.y;
 this.rnl = this.radialPart (Math.sqrt (x2y2 + pt.z * pt.z));
@@ -266,7 +266,7 @@ var th = Math.atan2 (Math.sqrt (x2y2), pt.z);
 var theta_lm_phi_m = this.angularPart (th, ph, this.psi_m);
 return this.rnl * theta_lm_phi_m;
 }, "JU.P3");
-Clazz.defineMethod (c$, "angularPart", 
+Clazz.defineMethod (c$, "angularPart",
  function (th, ph, m) {
 var cth = Math.cos (th);
 var sth = Math.sin (th);
@@ -283,7 +283,7 @@ if (m == 0) phi_m = 1;
  else phi_m = Math.sin (m * ph) * 1.414214;
 return (Math.abs (phi_m) < 0.0000000001 ? 0 : theta_lm * phi_m * this.psi_normalization);
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "createMonteCarloOrbital", 
+Clazz.defineMethod (c$, "createMonteCarloOrbital",
  function () {
 if (this.surfaceDone || this.aoMax2 == 0 || this.params.distance > this.radius) return;
 var isS = (this.psi_m == 0 && this.psi_l == 0);
@@ -328,7 +328,7 @@ i++;
 }
 if (this.params.distance == 0) JU.Logger.info ("Atomic Orbital mean radius = " + rave / this.monteCarloCount + " for " + this.monteCarloCount + " points (" + this.nTries + " tries)");
 });
-Clazz.overrideMethod (c$, "readSurfaceData", 
+Clazz.overrideMethod (c$, "readSurfaceData",
 function (isMapData) {
 switch (this.params.dataType) {
 case 1294:
@@ -351,7 +351,7 @@ return;
 }}
 this.readSurfaceDataVDR (isMapData);
 }, "~B");
-Clazz.defineMethod (c$, "createGeodesic", 
+Clazz.defineMethod (c$, "createGeodesic",
  function () {
 var ms = JU.MeshSurface.getSphereData (4);
 var pts = ms.altVertices;

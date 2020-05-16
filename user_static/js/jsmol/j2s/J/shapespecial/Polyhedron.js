@@ -35,10 +35,10 @@ this.faceTriangles = null;
 this.elemNos = null;
 Clazz.instantialize (this, arguments);
 }, J.shapespecial, "Polyhedron");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (id, modelIndex, atomOrPt, points, nPoints, vertexCount, triangles, triangleCount, faces, faceTriangles, normals, bsFlat, collapsed, distanceRef, pointScale) {
 this.pointScale = pointScale;
 this.distanceRef = distanceRef;
@@ -65,7 +65,7 @@ for (var i = triangleCount; --i >= 0; ) this.triangles[i] = triangles[i];
 this.collapsed = collapsed;
 return this;
 }, "~S,~N,JU.P3,~A,~N,~N,~A,~N,~A,~A,~A,JU.BS,~B,~N,~N");
-Clazz.defineMethod (c$, "setInfo", 
+Clazz.defineMethod (c$, "setInfo",
 function (vwr, info, at) {
 try {
 var o = info.get ("id");
@@ -152,7 +152,7 @@ throw e;
 }
 return this;
 }, "JV.Viewer,java.util.Map,~A");
-Clazz.defineMethod (c$, "toInt2", 
+Clazz.defineMethod (c$, "toInt2",
  function (isSV, o) {
 var lst = (isSV ? (o).getList () : o);
 var ai = JU.AU.newInt2 (lst.size ());
@@ -168,7 +168,7 @@ ai[i] = o;
 }}
 return ai;
 }, "~B,~O");
-Clazz.defineMethod (c$, "getInfo", 
+Clazz.defineMethod (c$, "getInfo",
 function (vwr, property) {
 var isState = (property == null);
 var isFaceCalc = (!isState);
@@ -260,7 +260,7 @@ if (!isState) info.put ("normals", n);
 info.put ("triangles", JU.AU.arrayCopyII (this.triangles, this.triangles.length));
 }return info;
 }, "JV.Viewer,~S");
-Clazz.defineMethod (c$, "getElemNos", 
+Clazz.defineMethod (c$, "getElemNos",
 function () {
 if (this.elemNos == null) {
 this.elemNos =  Clazz.newIntArray (this.nVertices, 0);
@@ -270,7 +270,7 @@ this.elemNos[i] = (Clazz.instanceOf (pt, JU.Node) ? (pt).getElementNumber () : C
 }
 }return this.elemNos;
 });
-Clazz.defineMethod (c$, "getSymmetry", 
+Clazz.defineMethod (c$, "getSymmetry",
 function (vwr, withPointGroup) {
 if (this.id == null) {
 if (this.smarts == null) {
@@ -298,7 +298,7 @@ for (var i = pts.length; --i >= 0; ) pts[i] = JU.P3.newP (this.vertices[i]);
 this.pointGroupFamily = vwr.getSymTemp ().setPointGroup (null, null, pts, null, false, vwr.getFloat (570425382), vwr.getFloat (570425384), true);
 }return (this.center == null ? this.centralAtom : this.center) + "    \t" + this.pointGroup.getPointGroupName () + "\t" + this.pointGroupFamily.getPointGroupName ();
 }, "JV.Viewer,~B");
-Clazz.defineMethod (c$, "getVolume", 
+Clazz.defineMethod (c$, "getVolume",
  function () {
 if (this.volume != null) return this.volume;
 var vAB =  new JU.V3 ();
@@ -311,14 +311,14 @@ v += this.triangleVolume (t[0], t[1], t[2], vAB, vAC, vTemp);
 }
 return Float.$valueOf (v / 6);
 });
-Clazz.defineMethod (c$, "triangleArea", 
+Clazz.defineMethod (c$, "triangleArea",
  function (i, j, k, vAB, vAC, vTemp) {
 vAB.sub2 (this.vertices[j], this.vertices[i]);
 vAC.sub2 (this.vertices[k], this.vertices[i]);
 vTemp.cross (vAB, vAC);
 return vTemp.length ();
 }, "~N,~N,~N,JU.V3,JU.V3,JU.V3");
-Clazz.defineMethod (c$, "triangleVolume", 
+Clazz.defineMethod (c$, "triangleVolume",
  function (i, j, k, vAB, vAC, vTemp) {
 vAB.setT (this.vertices[i]);
 vAC.setT (this.vertices[j]);
@@ -326,12 +326,12 @@ vTemp.cross (vAB, vAC);
 vAC.setT (this.vertices[k]);
 return vAC.dot (vTemp);
 }, "~N,~N,~N,JU.V3,JU.V3,JU.V3");
-Clazz.defineMethod (c$, "getState", 
+Clazz.defineMethod (c$, "getState",
 function (vwr) {
 var ident = (this.id == null ? "({" + this.centralAtom.i + "})" : "ID " + JU.Escape.e (this.id));
 return "  polyhedron @{" + JU.Escape.e (this.getInfo (vwr, null)) + "} " + (this.isFullyLit ? " fullyLit" : "") + ";" + (this.visible ? "" : "polyhedra " + ident + " off;") + "\n";
 }, "JV.Viewer");
-Clazz.defineMethod (c$, "move", 
+Clazz.defineMethod (c$, "move",
 function (mat, bsMoved) {
 this.info = null;
 for (var i = 0; i < this.nVertices; i++) {
@@ -345,7 +345,7 @@ for (var i = this.normals.length; --i >= 0; ) mat.rotate (this.normals[i]);
 
 this.normixes = null;
 }, "JU.M4,JU.BS");
-Clazz.defineMethod (c$, "getNormixes", 
+Clazz.defineMethod (c$, "getNormixes",
 function () {
 if (this.normixes == null) {
 this.normixes =  Clazz.newShortArray (this.normals.length, 0);
@@ -354,7 +354,7 @@ for (var i = this.normals.length; --i >= 0; ) this.normixes[i] = (this.bsFlat.ge
 
 }return this.normixes;
 });
-Clazz.defineMethod (c$, "setOffset", 
+Clazz.defineMethod (c$, "setOffset",
 function (value) {
 this.planes = null;
 if (this.center == null) return;

@@ -8,7 +8,7 @@ this.u = null;
 this.x = null;
 Clazz.instantialize (this, arguments);
 }, JU, "InfTree");
-Clazz.defineMethod (c$, "huft_build", 
+Clazz.defineMethod (c$, "huft_build",
  function (b, bindex, n, s, d, e, t, m, hp, hn, v) {
 var a;
 var f;
@@ -137,7 +137,7 @@ mask = (1 << w) - 1;
 }
 return y != 0 && g != 1 ? -5 : 0;
 }, "~A,~N,~N,~N,~A,~A,~A,~A,~A,~A,~A");
-Clazz.defineMethod (c$, "inflate_trees_bits", 
+Clazz.defineMethod (c$, "inflate_trees_bits",
 function (c, bb, tb, hp, z) {
 var result;
 this.initWorkArea (19);
@@ -150,7 +150,7 @@ z.msg = "incomplete dynamic bit lengths tree";
 result = -3;
 }return result;
 }, "~A,~A,~A,~A,JU.ZStream");
-Clazz.defineMethod (c$, "inflate_trees_dynamic", 
+Clazz.defineMethod (c$, "inflate_trees_dynamic",
 function (nl, nd, c, bl, bd, tl, td, hp, z) {
 var result;
 this.initWorkArea (288);
@@ -177,7 +177,7 @@ result = -3;
 }return result;
 }return 0;
 }, "~N,~N,~A,~A,~A,~A,~A,~A,JU.ZStream");
-c$.inflate_trees_fixed = Clazz.defineMethod (c$, "inflate_trees_fixed", 
+c$.inflate_trees_fixed = Clazz.defineMethod (c$, "inflate_trees_fixed",
 function (bl, bd, tl, td, z) {
 bl[0] = 9;
 bd[0] = 5;
@@ -185,7 +185,7 @@ tl[0] = JU.InfTree.fixed_tl;
 td[0] = JU.InfTree.fixed_td;
 return 0;
 }, "~A,~A,~A,~A,JU.ZStream");
-Clazz.defineMethod (c$, "initWorkArea", 
+Clazz.defineMethod (c$, "initWorkArea",
  function (vsize) {
 if (this.hn == null) {
 this.hn =  Clazz.newIntArray (1, 0);

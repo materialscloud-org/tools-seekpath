@@ -10,11 +10,11 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.unitCellData =  Clazz.newFloatArray (9, 0);
 });
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.doApplySymmetry = true;
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.contains ("ANIMSTEP")) {
 this.readNostep ();
@@ -26,30 +26,30 @@ this.readUnitCell ();
 this.readCoordinates ();
 }return true;
 });
-Clazz.defineMethod (c$, "readNostep", 
+Clazz.defineMethod (c$, "readNostep",
  function () {
 this.animation = true;
 });
-Clazz.defineMethod (c$, "readUnitCell", 
+Clazz.defineMethod (c$, "readUnitCell",
  function () {
 this.setSymmetry ();
 this.fillFloatArray (null, 0, this.unitCellData);
 this.setUnitCell ();
 });
-Clazz.defineMethod (c$, "setUnitCell", 
+Clazz.defineMethod (c$, "setUnitCell",
  function () {
 this.addExplicitLatticeVector (0, this.unitCellData, 0);
 this.addExplicitLatticeVector (1, this.unitCellData, 3);
 this.addExplicitLatticeVector (2, this.unitCellData, 6);
 });
-Clazz.defineMethod (c$, "setSymmetry", 
+Clazz.defineMethod (c$, "setSymmetry",
  function () {
 this.applySymmetryAndSetTrajectory ();
 this.asc.newAtomSet ();
 this.setSpaceGroupName ("P1");
 this.setFractionalCoordinates (false);
 });
-Clazz.defineMethod (c$, "readCoordinates", 
+Clazz.defineMethod (c$, "readCoordinates",
  function () {
 var atomStr = JU.PT.getTokens (this.rd ());
 this.nAtoms = Integer.parseInt (atomStr[0]);

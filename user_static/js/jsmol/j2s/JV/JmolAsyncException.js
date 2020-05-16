@@ -4,12 +4,12 @@ c$ = Clazz.decorateAsClass (function () {
 this.fileName = null;
 Clazz.instantialize (this, arguments);
 }, JV, "JmolAsyncException", java.io.IOException);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (cacheName) {
 Clazz.superConstructor (this, JV.JmolAsyncException, []);
 this.fileName = cacheName;
 }, "~S");
-Clazz.defineMethod (c$, "getFileName", 
+Clazz.defineMethod (c$, "getFileName",
 function () {
 return this.fileName;
 });

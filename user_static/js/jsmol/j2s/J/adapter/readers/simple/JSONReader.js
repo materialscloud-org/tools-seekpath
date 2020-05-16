@@ -4,7 +4,7 @@ c$ = Clazz.decorateAsClass (function () {
 this.scale = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.simple, "JSONReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.asc.setCollectionName ("JSON");
 this.asc.newAtomSet ();
@@ -19,7 +19,7 @@ this.readAtoms (this.getSection (s, "a", true));
 this.readBonds (this.getSection (s, "b", true));
 this.continuing = false;
 });
-Clazz.defineMethod (c$, "getScaling", 
+Clazz.defineMethod (c$, "getScaling",
  function (s) {
 var xyz = JU.PT.split (s[0], ":");
 this.scale = JU.P3.new3 (1, 1, 1);
@@ -37,7 +37,7 @@ break;
 
 JU.Logger.info ("scale set to " + this.scale);
 }, "~A");
-Clazz.defineMethod (c$, "getSection", 
+Clazz.defineMethod (c$, "getSection",
  function (json, key, isArray) {
 var a = JU.PT.split (json, key + ":" + (isArray ? "[" : "") + "{");
 if (a.length < 2) return a;
@@ -45,7 +45,7 @@ var data = a[1];
 data = data.substring (0, data.indexOf ((isArray ? "]" : "}"))) + ":";
 return JU.PT.split (data, "{");
 }, "~S,~S,~B");
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function (atoms) {
 for (var i = 0; i < atoms.length; ++i) {
 var lxyz = JU.PT.split (atoms[i], ":");
@@ -77,7 +77,7 @@ z /= this.scale.z;
 atom.elementSymbol = l;
 }
 }, "~A");
-Clazz.defineMethod (c$, "readBonds", 
+Clazz.defineMethod (c$, "readBonds",
  function (bonds) {
 for (var i = 0; i < bonds.length; ++i) {
 var beo = JU.PT.split (bonds[i], ":");

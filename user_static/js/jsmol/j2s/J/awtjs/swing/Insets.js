@@ -6,7 +6,7 @@ this.bottom = 0;
 this.right = 0;
 Clazz.instantialize (this, arguments);
 }, J.awtjs.swing, "Insets");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (top, left, bottom, right) {
 this.top = top;
 this.left = left;

@@ -19,17 +19,17 @@ this.bsStructures = null;
 this.lastGroup = 0;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.cif, "MMTFReader", J.adapter.readers.cif.MMCifReader);
-Clazz.overrideMethod (c$, "addHeader", 
+Clazz.overrideMethod (c$, "addHeader",
 function () {
 });
-Clazz.overrideMethod (c$, "setup", 
+Clazz.overrideMethod (c$, "setup",
 function (fullPath, htParams, reader) {
 this.isBinary = true;
 this.isMMCIF = true;
 this.iHaveFractionalCoordinates = false;
 this.setupASCR (fullPath, htParams, reader);
 }, "~S,java.util.Map,~O");
-Clazz.overrideMethod (c$, "processBinaryDocument", 
+Clazz.overrideMethod (c$, "processBinaryDocument",
 function () {
 var doDoubleBonds = (!this.isCourseGrained && !this.checkFilterKey ("NODOUBLE"));
 this.isDSSP1 = !this.checkFilterKey ("DSSP2");
@@ -66,13 +66,13 @@ this.getMMTFBioAssembly ();
 this.setModelPDB (true);
 if (JU.Logger.debuggingHigh) JU.Logger.info (JS.SV.getVariable (this.map).asString ());
 });
-Clazz.defineMethod (c$, "applySymmetryAndSetTrajectory", 
+Clazz.defineMethod (c$, "applySymmetryAndSetTrajectory",
 function () {
 this.ac0 = this.ac;
 Clazz.superCall (this, J.adapter.readers.cif.MMTFReader, "applySymmetryAndSetTrajectory", []);
 if (this.haveStructure) this.addStructureSymmetry ();
 });
-Clazz.defineMethod (c$, "getMMTFAtoms", 
+Clazz.defineMethod (c$, "getMMTFAtoms",
  function (doMulti) {
 var chainsPerModel = this.map.get ("chainsPerModel");
 var groupsPerChain = this.map.get ("groupsPerChain");
@@ -180,7 +180,7 @@ this.addMMTFBonds (bo, bi, a0, doMulti, false);
 }}
 this.asc.setCurrentModelInfo ("pdbID", this.$pdbID);
 }, "~B");
-Clazz.defineMethod (c$, "addMMTFBonds", 
+Clazz.defineMethod (c$, "addMMTFBonds",
  function (bo, bi, a0, doMulti, isInter) {
 if (bi == null) return;
 doMulti = new Boolean (doMulti & (bo != null)).valueOf ();
@@ -194,14 +194,14 @@ if (JU.Logger.debugging && isInter) {
 JU.Logger.info ("inter-group (" + (a1.atomSetIndex + 1) + "." + a1.index + "/" + (a2.atomSetIndex + 1) + "." + a2.index + ") bond " + a1.group3 + a1.sequenceNumber + "." + a1.atomName + " - " + a2.group3 + a2.sequenceNumber + "." + a2.atomName + " " + bond.order);
 }}}
 }, "~A,~A,~N,~B,~B");
-Clazz.defineMethod (c$, "setMMTFSymmetry", 
+Clazz.defineMethod (c$, "setMMTFSymmetry",
  function () {
 this.setSpaceGroupName (this.map.get ("spaceGroup"));
 var o = this.map.get ("unitCell");
 if (o != null) for (var i = 0; i < 6; i++) this.setUnitCellItem (i, o[i]);
 
 });
-Clazz.defineMethod (c$, "getMMTFBioAssembly", 
+Clazz.defineMethod (c$, "getMMTFBioAssembly",
  function () {
 var o = this.map.get ("bioAssemblyList");
 if (o == null) return;
@@ -235,7 +235,7 @@ ops.addLast (id);
 }
 }
 });
-Clazz.defineMethod (c$, "getStructure", 
+Clazz.defineMethod (c$, "getStructure",
  function () {
 var a = this.decode ("secStructList");
 if (JU.Logger.debugging) JU.Logger.info (JU.PT.toJSON ("secStructList", a));
@@ -260,7 +260,7 @@ if (lastGroup >= 0) {
 this.haveStructure = true;
 this.asc.addStructure ( new J.adapter.smarter.Structure (n, null, null, null, 0, 0, this.bsStructures));
 }});
-Clazz.defineMethod (c$, "addStructureSymmetry", 
+Clazz.defineMethod (c$, "addStructureSymmetry",
  function () {
 if (this.asc.ac == 0) return;
 var atoms = this.asc.atoms;
@@ -279,7 +279,7 @@ if (dssp > 0) {
 this.bsStructures[dssp - 1].set (ptGroup);
 }}}
 });
-Clazz.defineMethod (c$, "decode", 
+Clazz.defineMethod (c$, "decode",
  function (key) {
 return JU.MessagePackReader.decode (this.map.get (key));
 }, "~S");

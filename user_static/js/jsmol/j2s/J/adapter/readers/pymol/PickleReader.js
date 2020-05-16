@@ -29,17 +29,17 @@ this.build =  new JU.Lst ();
 this.memo =  new java.util.Hashtable ();
 this.aTemp =  Clazz.newByteArray (16, 0);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (doc, vwr) {
 this.binaryDoc = doc;
 this.vwr = vwr;
 this.stack.ensureCapacity (1000);
 }, "javajs.api.GenericBinaryDocument,JV.Viewer");
-Clazz.defineMethod (c$, "log", 
+Clazz.defineMethod (c$, "log",
  function (s) {
 this.vwr.log (s + "\0");
 }, "~S");
-Clazz.defineMethod (c$, "getMap", 
+Clazz.defineMethod (c$, "getMap",
 function (logging) {
 this.logging = logging;
 var b;
@@ -205,7 +205,7 @@ map.put (this.bytesToString (a), o);
 this.memo = null;
 return map;
 }, "~B");
-Clazz.defineMethod (c$, "bytesToString", 
+Clazz.defineMethod (c$, "bytesToString",
  function (o) {
 try {
 return (JU.AU.isAB (o) ?  String.instantialize (o, "UTF-8") : o.toString ());
@@ -217,7 +217,7 @@ throw e;
 }
 }
 }, "~O");
-Clazz.defineMethod (c$, "putMemo", 
+Clazz.defineMethod (c$, "putMemo",
  function (i, doCheck) {
 var o = this.peek ();
 if (JU.AU.isAB (o)) o = this.bytesToString (o);
@@ -225,14 +225,14 @@ if (Clazz.instanceOf (o, String)) {
 if (doCheck && this.markCount >= 6 || this.markCount == 3 && this.inMovie) return;
 this.memo.put (Integer.$valueOf (i), o);
 }}, "~N,~B");
-Clazz.defineMethod (c$, "getMemo", 
+Clazz.defineMethod (c$, "getMemo",
  function (i) {
 var o = this.memo.get (Integer.$valueOf (i));
 if (o == null) return o;
 this.retrieveCount++;
 return o;
 }, "~N");
-Clazz.defineMethod (c$, "getObjects", 
+Clazz.defineMethod (c$, "getObjects",
  function (mark) {
 var n = this.stack.size () - mark;
 var args =  new JU.Lst ();
@@ -243,7 +243,7 @@ for (var i = this.stack.size (); --i >= mark; ) this.stack.removeItemAt (i);
 
 return args;
 }, "~N");
-Clazz.defineMethod (c$, "readStringAsBytes", 
+Clazz.defineMethod (c$, "readStringAsBytes",
  function () {
 var n = 0;
 var a = this.aTemp;
@@ -255,7 +255,7 @@ a[n++] = b;
 }
 return JU.AU.arrayCopyByte (a, n);
 });
-Clazz.defineMethod (c$, "putMark", 
+Clazz.defineMethod (c$, "putMark",
  function (i) {
 if (this.logging) this.log ("\n " + Integer.toHexString (this.binaryDoc.getPosition ()) + " [");
 this.marks.addLast (Integer.$valueOf (this.lastMark = i));
@@ -272,20 +272,20 @@ default:
 break;
 }
 }, "~N");
-Clazz.defineMethod (c$, "getMark", 
+Clazz.defineMethod (c$, "getMark",
  function () {
 return this.marks.removeItemAt (--this.markCount).intValue ();
 });
-Clazz.defineMethod (c$, "push", 
+Clazz.defineMethod (c$, "push",
  function (o) {
 if (this.logging && (Clazz.instanceOf (o, String) || Clazz.instanceOf (o, Double) || Clazz.instanceOf (o, Integer))) this.log ((Clazz.instanceOf (o, String) ? "'" + o + "'" : o) + ", ");
 this.stack.addLast (o);
 }, "~O");
-Clazz.defineMethod (c$, "peek", 
+Clazz.defineMethod (c$, "peek",
  function () {
 return this.stack.get (this.stack.size () - 1);
 });
-Clazz.defineMethod (c$, "pop", 
+Clazz.defineMethod (c$, "pop",
  function () {
 return this.stack.removeItemAt (this.stack.size () - 1);
 });

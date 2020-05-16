@@ -6,7 +6,7 @@ this.residueNames = null;
 this.atomNames = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.pdb, "JmolDataReader", J.adapter.readers.pdb.PdbReader);
-Clazz.overrideMethod (c$, "checkRemark", 
+Clazz.overrideMethod (c$, "checkRemark",
 function () {
 while (true) {
 if (this.line.length < 30 || this.line.indexOf ("Jmol") != 11) break;
@@ -71,12 +71,12 @@ break;
 }
 this.checkCurrentLineForScript ();
 });
-Clazz.overrideMethod (c$, "setAdditionalAtomParameters", 
+Clazz.overrideMethod (c$, "setAdditionalAtomParameters",
 function (atom) {
 if (this.residueNames != null && atom.index < this.residueNames.length) atom.group3 = this.residueNames[atom.index];
 if (this.atomNames != null && atom.index < this.atomNames.length) atom.atomName = this.atomNames[atom.index];
 }, "J.adapter.smarter.Atom");
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 this.asc.setCurrentModelInfo ("jmolDataProperties", this.props);
 this.finalizeReaderPDB ();

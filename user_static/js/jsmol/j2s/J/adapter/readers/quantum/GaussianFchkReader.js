@@ -5,7 +5,7 @@ this.fileData = null;
 this.atomCount = 0;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.quantum, "GaussianFchkReader", J.adapter.readers.quantum.GaussianReader);
-Clazz.defineMethod (c$, "initializeReader", 
+Clazz.defineMethod (c$, "initializeReader",
 function () {
 Clazz.superCall (this, J.adapter.readers.quantum.GaussianFchkReader, "initializeReader", []);
 this.energyUnits = "";
@@ -24,7 +24,7 @@ this.readMolecularObitals ();
 this.checkForFreq ();
 this.continuing = false;
 });
-Clazz.defineMethod (c$, "checkForFreq", 
+Clazz.defineMethod (c$, "checkForFreq",
  function () {
 var n = this.fileData.get ("Vib-NDim");
 if (n == null) {
@@ -64,14 +64,14 @@ throw e;
 }
 }
 });
-Clazz.defineMethod (c$, "fillFloat", 
+Clazz.defineMethod (c$, "fillFloat",
  function (f0, i, n) {
 var f =  Clazz.newFloatArray (n, 0);
 for (var i1 = 0, ilast = i + n; i < ilast; i++, i1++) f[i1] = f0[i];
 
 return f;
 }, "~A,~N,~N");
-Clazz.defineMethod (c$, "readAllData", 
+Clazz.defineMethod (c$, "readAllData",
  function () {
 while ((this.line == null ? this.rd () : this.line) != null) {
 if (this.line.length < 40) {
@@ -115,7 +115,7 @@ this.line = null;
 }if (o != null) this.fileData.put (name, o);
 }
 });
-Clazz.overrideMethod (c$, "readAtoms", 
+Clazz.overrideMethod (c$, "readAtoms",
 function () {
 var atomNumbers = this.fileData.get ("Atomicnumbers");
 var data = this.fileData.get ("Currentcartesiancoordinates");
@@ -130,7 +130,7 @@ if (atom.elementNumber < 0) atom.elementNumber = 0;
 this.setAtomCoordXYZ (atom, data[pt++] * f, data[pt++] * f, data[pt++] * f);
 }
 });
-Clazz.defineMethod (c$, "readBonds", 
+Clazz.defineMethod (c$, "readBonds",
 function () {
 try {
 var nBond = this.fileData.get ("NBond");
@@ -155,7 +155,7 @@ throw e;
 }
 }
 });
-Clazz.overrideMethod (c$, "readDipoleMoment", 
+Clazz.overrideMethod (c$, "readDipoleMoment",
 function () {
 var data = this.fileData.get ("DipoleMoment");
 if (data == null) return;
@@ -163,7 +163,7 @@ var dipole = JU.V3.new3 (data[0], data[1], data[2]);
 JU.Logger.info ("Molecular dipole for model " + this.asc.atomSetCount + " = " + dipole);
 this.asc.setCurrentModelInfo ("dipole", dipole);
 });
-Clazz.overrideMethod (c$, "readPartialCharges", 
+Clazz.overrideMethod (c$, "readPartialCharges",
 function () {
 var data = this.fileData.get ("Mulliken Charges");
 if (data == null) return;
@@ -175,7 +175,7 @@ if (Math.abs (c) > 0.8) atoms[i].formalCharge = Math.round (c);
 }
 JU.Logger.info ("Mulliken charges found for Model " + this.asc.atomSetCount);
 });
-Clazz.overrideMethod (c$, "readBasis", 
+Clazz.overrideMethod (c$, "readBasis",
 function () {
 var types = this.fileData.get ("Shelltypes");
 this.gaussianCount = 0;
@@ -212,7 +212,7 @@ this.gaussianCount++;
 JU.Logger.info (this.shellCount + " slater shells read");
 JU.Logger.info (this.gaussianCount + " gaussian primitives read");
 });
-Clazz.defineMethod (c$, "readMolecularObitals", 
+Clazz.defineMethod (c$, "readMolecularObitals",
 function () {
 if (this.shells == null) return;
 var nElec = (this.fileData.get ("Numberofelectrons")).intValue ();
@@ -229,7 +229,7 @@ this.getOrbitals (aenergies, acoefs, occ, n);
 if (bcoefs != null) this.getOrbitals (benergies, bcoefs, occ, nBeta);
 this.setMOData (false);
 });
-Clazz.defineMethod (c$, "getOrbitals", 
+Clazz.defineMethod (c$, "getOrbitals",
  function (e, c, occ, nElec) {
 var nOrb = e.length;
 var nCoef = c.length;

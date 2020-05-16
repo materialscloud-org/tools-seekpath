@@ -4,15 +4,15 @@ c$ = Clazz.decorateAsClass (function () {
 this.fm = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.spartan, "SpartanUtil");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (fm) {
 this.fm = fm;
 return this;
 }, "JV.FileManager");
-Clazz.defineMethod (c$, "getFileList", 
+Clazz.defineMethod (c$, "getFileList",
 function (name, isTypeCheckOnly) {
 var pt = name.lastIndexOf (".spardir");
 var info = null;
@@ -51,7 +51,7 @@ if (this.fm.spardirCache == null) this.fm.spardirCache =  new java.util.Hashtabl
 this.fm.spardirCache.put (name00.$replace ('\\', '/'), s.getBytes ());
 return JU.Rdr.getBR (s);
 }, "~S,~B");
-Clazz.defineMethod (c$, "getData", 
+Clazz.defineMethod (c$, "getData",
 function (is, zipDirectory) {
 var data =  new JU.SB ();
 data.append ("Zip File Directory: ").append ("\n").append (JU.Escape.eAS (zipDirectory, true)).append ("\n");
@@ -69,7 +69,7 @@ if (fileData.containsKey (name)) data.append (fileData.get (name));
 }
 return data;
 }, "java.io.InputStream,~A");
-Clazz.defineMethod (c$, "spartanFileList", 
+Clazz.defineMethod (c$, "spartanFileList",
  function (name, outputFileData) {
 var dirNums = this.getSpartanDirs (outputFileData);
 if (dirNums.length == 0) {
@@ -83,7 +83,7 @@ sname = name + "|" + JU.PT.rep (name.substring (pt + 1, name.length - 4), "DROP_
 return  Clazz.newArray (-1, ["SpartanSmol", sname, sname + "/output"]);
 }}}return this.getSpartanFileList (name, dirNums);
 }, "~S,~S");
-Clazz.defineMethod (c$, "getSpartanDirs", 
+Clazz.defineMethod (c$, "getSpartanDirs",
  function (outputFileData) {
 if (outputFileData == null) return  Clazz.newArray (-1, []);
 var v =  new JU.Lst ();
@@ -111,7 +111,7 @@ throw e;
 }
 return (v.size () == 0 ?  Clazz.newArray (-1, ["M0001"]) : v.toArray ( new Array (v.size ())));
 }, "~S");
-Clazz.defineMethod (c$, "getSpartanFileList", 
+Clazz.defineMethod (c$, "getSpartanFileList",
  function (name, dirNums) {
 var files =  new Array (2 + dirNums.length * 6);
 files[0] = "SpartanSmol";
@@ -133,7 +133,7 @@ files[pt++] = path + "proparc";
 }
 return files;
 }, "~S,~A");
-Clazz.defineMethod (c$, "spartanGetObjectAsSections", 
+Clazz.defineMethod (c$, "spartanGetObjectAsSections",
  function (name, header, fileData) {
 if (name == null) return null;
 var subFileList = null;

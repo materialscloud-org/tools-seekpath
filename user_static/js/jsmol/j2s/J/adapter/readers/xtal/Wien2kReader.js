@@ -7,7 +7,7 @@ this.doSymmetry = true;
 this.cxyz = " x y z";
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.xtal, "Wien2kReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.doSymmetry = !this.sgName.equals ("none");
 this.setFractionalCoordinates (true);
@@ -18,7 +18,7 @@ this.readSymmetry ();
 this.readEmbeddedScript ();
 this.continuing = false;
 });
-Clazz.defineMethod (c$, "readUnitCell", 
+Clazz.defineMethod (c$, "readUnitCell",
  function () {
 this.rd ();
 this.isrhombohedral = ((this.latticeCode = this.line.charAt (0)) == 'R');
@@ -49,7 +49,7 @@ if (Float.isNaN (beta) || beta == 0) beta = 90;
 if (Float.isNaN (gamma) || gamma == 0) gamma = 90;
 this.setUnitCell (a, b, c, alpha, beta, gamma);
 });
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function () {
 this.rd ();
 while (this.line != null && (this.line.indexOf ("ATOM") == 0 || !this.doSymmetry && this.line.indexOf (":") == 8)) {
@@ -73,7 +73,7 @@ while (this.rd () != null && this.line.indexOf ("ATOM") < 0 && this.line.indexOf
 }
 }
 });
-Clazz.defineMethod (c$, "addAtom", 
+Clazz.defineMethod (c$, "addAtom",
  function () {
 var a = this.parseFloatRange (this.line, 12, 22);
 var b = this.parseFloatRange (this.line, 25, 35);
@@ -81,7 +81,7 @@ var c = this.parseFloatRange (this.line, 38, 48);
 var atom = this.asc.addNewAtom ();
 this.setAtomCoordXYZ (atom, a, b, c);
 });
-Clazz.defineMethod (c$, "readSymmetry", 
+Clazz.defineMethod (c$, "readSymmetry",
  function () {
 if (this.line.indexOf ("SYMMETRY") < 0) return;
 var n = this.parseIntRange (this.line, 0, 4);
@@ -91,7 +91,7 @@ if (this.doSymmetry) this.setSymmetryOperator (xyz);
 this.rd ();
 }
 });
-Clazz.defineMethod (c$, "getJones", 
+Clazz.defineMethod (c$, "getJones",
  function () {
 this.rd ();
 var xyz = "";
@@ -105,7 +105,7 @@ if (trans != 0) xyz += trans;
 }}
 return xyz;
 });
-Clazz.defineMethod (c$, "readEmbeddedScript", 
+Clazz.defineMethod (c$, "readEmbeddedScript",
  function () {
 while (this.line != null) {
 this.checkCurrentLineForScript ();

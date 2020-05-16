@@ -4,11 +4,11 @@ c$ = Clazz.decorateAsClass (function () {
 this.code = 0;
 Clazz.instantialize (this, arguments);
 }, J.c, "FIL", Enum);
-Clazz.defineMethod (c$, "getCode", 
+Clazz.defineMethod (c$, "getCode",
 function () {
 return this.code;
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function (code) {
 this.code = code;
 }, "~N");

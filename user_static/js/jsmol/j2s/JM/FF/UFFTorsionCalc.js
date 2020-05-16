@@ -1,7 +1,7 @@
 Clazz.declarePackage ("JM.FF");
 Clazz.load (["JM.FF.Calculation"], "JM.FF.UFFTorsionCalc", ["JM.Util"], function () {
 c$ = Clazz.declareType (JM.FF, "UFFTorsionCalc", JM.FF.Calculation);
-Clazz.defineMethod (c$, "setData", 
+Clazz.defineMethod (c$, "setData",
 function (calc, t) {
 var cosNPhi0 = -1;
 var n = 0;
@@ -81,7 +81,7 @@ V = 2.0934;
 if (JM.Util.isNearZero (V)) return;
 calc.addLast ( Clazz.newArray (-1, [ Clazz.newIntArray (-1, [this.ia, this.ib, this.ic, this.id, n]),  Clazz.newDoubleArray (-1, [V, cosNPhi0])]));
 }, "JU.Lst,~A");
-Clazz.overrideMethod (c$, "compute", 
+Clazz.overrideMethod (c$, "compute",
 function (dataIn) {
 this.getPointers (dataIn);
 var n = this.iData[4];

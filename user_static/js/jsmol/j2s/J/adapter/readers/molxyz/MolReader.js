@@ -11,11 +11,11 @@ this.atomCount = 0;
 this.atomData = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.molxyz, "MolReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.optimize2D = this.checkFilterKey ("2D");
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 var isMDL = (this.line.startsWith ("$MDL"));
 if (isMDL) {
@@ -38,17 +38,17 @@ return false;
 }}if (this.line != null && this.line.indexOf ("$$$$") < 0) this.discardLinesUntilStartsWith ("$$$$");
 return true;
 });
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 this.finalizeReaderMR ();
 });
-Clazz.defineMethod (c$, "finalizeReaderMR", 
+Clazz.defineMethod (c$, "finalizeReaderMR",
 function () {
 if (this.optimize2D) this.set2D ();
 this.isTrajectory = false;
 this.finalizeReaderASCR ();
 });
-Clazz.defineMethod (c$, "processMolSdHeader", 
+Clazz.defineMethod (c$, "processMolSdHeader",
  function () {
 var header = "";
 var thisDataSetName = this.line.trim ();
@@ -71,7 +71,7 @@ this.checkCurrentLineForScript ();
 this.asc.setInfo ("fileHeader", header);
 this.newAtomSet (thisDataSetName);
 });
-Clazz.defineMethod (c$, "processCtab", 
+Clazz.defineMethod (c$, "processCtab",
  function (isMDL) {
 if (isMDL) this.discardLinesUntilStartsWith ("$CTAB");
 if (this.rd () == null) return;
@@ -84,7 +84,7 @@ this.vr.readAtomsAndBonds (this.getTokens ());
 this.readAtomsAndBonds (this.parseIntRange (this.line, 0, 3), this.parseIntRange (this.line, 3, 6));
 }this.applySymmetryAndSetTrajectory ();
 }, "~B");
-Clazz.defineMethod (c$, "readAtomsAndBonds", 
+Clazz.defineMethod (c$, "readAtomsAndBonds",
  function (ac, bc) {
 this.atomCount = ac;
 for (var i = 0; i < ac; ++i) {
@@ -149,7 +149,7 @@ var atomValueName = molData.get ("atom_value_name");
 molData.put (atomValueName == null ? "atom_values" : atomValueName.toString (), this.atomData);
 }if (!molData.isEmpty ()) this.asc.setCurrentModelInfo ("molData", molData);
 }, "~N,~N");
-Clazz.defineMethod (c$, "readAtomValues", 
+Clazz.defineMethod (c$, "readAtomValues",
  function () {
 this.atomData =  new Array (this.atomCount);
 for (var i = this.atomData.length; --i >= 0; ) this.atomData[i] = "";
@@ -164,7 +164,7 @@ this.atomData[iAtom - 1] = s;
 this.rd ();
 }
 });
-Clazz.defineMethod (c$, "readIsotopes", 
+Clazz.defineMethod (c$, "readIsotopes",
  function () {
 var n = this.parseIntAt (this.line, 6);
 try {
@@ -180,7 +180,7 @@ atom.elementSymbol = "" + iso + JU.PT.replaceAllCharacters (atom.elementSymbol, 
 }
 this.rd ();
 });
-Clazz.defineMethod (c$, "readMolData", 
+Clazz.defineMethod (c$, "readMolData",
  function (molData) {
 var atoms = this.asc.atoms;
 var dataName = JU.PT.trim (this.line, "> <").toLowerCase ();
@@ -229,7 +229,7 @@ JU.Logger.error ("error reading " + dataName + " field");
 }
 JU.Logger.info (ndata + " atom names read");
 }}, "java.util.Map");
-Clazz.defineMethod (c$, "addMolAtom", 
+Clazz.defineMethod (c$, "addMolAtom",
 function (iAtom, isotope, elementSymbol, charge, x, y, z) {
 switch (isotope) {
 case 0:
@@ -258,7 +258,7 @@ this.haveAtomSerials = true;
 atom.atomSerial = iAtom;
 this.asc.addAtomWithMappedSerialNumber (atom);
 }}, "~N,~N,~S,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "fixOrder", 
+Clazz.defineMethod (c$, "fixOrder",
 function (order, stereo) {
 switch (order) {
 default:
@@ -297,7 +297,7 @@ return 6;
 }
 return order;
 }, "~N,~N");
-Clazz.defineMethod (c$, "addMolBond", 
+Clazz.defineMethod (c$, "addMolBond",
 function (iAtom1, iAtom2, order, stereo) {
 order = this.fixOrder (order, stereo);
 if (this.haveAtomSerials) this.asc.addNewBondFromNames (iAtom1, iAtom2, order);

@@ -28,10 +28,10 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.triangles =  Clazz.newIntArray (-1, [1, 0, 3, 1, 3, 2, 0, 4, 7, 0, 7, 3, 4, 5, 6, 4, 6, 7, 5, 1, 2, 5, 2, 6, 2, 3, 7, 2, 7, 6, 0, 1, 5, 0, 5, 4]);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "renderNucleic", 
+Clazz.defineMethod (c$, "renderNucleic",
 function (renderer) {
 if (this.vwr == null) {
 this.rPt =  new Array (10);
@@ -69,7 +69,7 @@ if (this.cartoonRibose && bsVisible.get (i + 1)) this.renderNucleicBaseStep (i, 
  else this.renderNucleicBaseStep (i, null, null);
 }}
 }, "J.renderbio.BioShapeRenderer");
-Clazz.defineMethod (c$, "renderNucleicBaseStep", 
+Clazz.defineMethod (c$, "renderNucleicBaseStep",
  function (im, ptPnext, scrPnext) {
 if (this.bsr.isPhosphorusOnly) return;
 var nucleotide = this.bsr.monomers[im];
@@ -139,7 +139,7 @@ this.renderCyl (this.rScr[0], this.baseScreen, this.rPt[0], this.basePt);
 if (ptPnext != null) this.renderCyl (this.rScr[5], scrPnext, this.rPt[5], ptPnext);
 this.drawEdges (this.rScr, this.rPt, 5);
 }}, "~N,JU.T3,JU.T3");
-Clazz.defineMethod (c$, "renderSteps", 
+Clazz.defineMethod (c$, "renderSteps",
  function (g, i) {
 var bps = g.getBasePairs ();
 var atomA = g.getLeadAtom ();
@@ -154,19 +154,19 @@ var cB = JU.C.getColixInherited (this.colix, atomB.colixAtom);
 if (!checkPass2 || this.bsr.setBioColix (cA) || this.bsr.setBioColix (cB)) this.bsr.drawSegmentAB (atomA, atomB, cA, cB, 1000);
 }}
 }}, "JM.NucleicMonomer,~N");
-Clazz.defineMethod (c$, "transformPoints", 
+Clazz.defineMethod (c$, "transformPoints",
  function (count, angstroms, screens) {
 for (var i = count; --i >= 0; ) this.tm.transformPtScrT3 (angstroms[i], screens[i]);
 
 }, "~N,~A,~A");
-Clazz.defineMethod (c$, "drawEdges", 
+Clazz.defineMethod (c$, "drawEdges",
  function (scr, pt, n) {
 for (var i = n; --i >= 0; ) scr[i].z--;
 
 for (var i = n; --i > 0; ) this.renderEdge (scr, pt, i, i - 1);
 
 }, "~A,~A,~N");
-Clazz.defineMethod (c$, "renderBlock", 
+Clazz.defineMethod (c$, "renderBlock",
  function (g) {
 var atomA = g.getLeadAtom ();
 var cA = this.colix;
@@ -211,7 +211,7 @@ if (atomB != null && atomC != null) {
 this.bsr.drawSegmentAB (atomA, atomB, cA, cA, 1000);
 this.bsr.drawSegmentAB (atomB, atomC, cA, cA, 1000);
 }}, "JM.NucleicMonomer");
-Clazz.defineMethod (c$, "renderLeontisWesthofEdges", 
+Clazz.defineMethod (c$, "renderLeontisWesthofEdges",
  function (nucleotide) {
 if (!nucleotide.getEdgePoints (this.rPt)) return;
 this.transformPoints (6, this.rPt, this.rScr);
@@ -230,32 +230,32 @@ this.renderEdge (this.rScr, this.rPt, 3, 4);
 this.g3d.setC (colixHoogsteenEdge);
 this.renderEdge (this.rScr, this.rPt, 4, 5);
 }, "JM.NucleicMonomer");
-Clazz.defineMethod (c$, "renderEdge", 
+Clazz.defineMethod (c$, "renderEdge",
  function (scr, pt, i, j) {
 this.renderCyl (scr[i], scr[j], pt[i], pt[j]);
 }, "~A,~A,~N,~N");
-Clazz.defineMethod (c$, "renderCyl", 
+Clazz.defineMethod (c$, "renderCyl",
  function (s1, s2, p1, p2) {
 this.g3d.fillCylinderScreen3I (3, 3, s1, s2, p1, p2, 0.005);
 }, "JU.P3,JU.P3,JU.P3,JU.P3");
-Clazz.defineMethod (c$, "renderTriangle", 
+Clazz.defineMethod (c$, "renderTriangle",
  function (scr, pt, i, j, k, doShade) {
 this.g3d.fillTriangle3i (scr[i], scr[j], scr[k], pt[i], pt[j], pt[k], doShade);
 }, "~A,~A,~N,~N,~N,~B");
-Clazz.defineMethod (c$, "renderRing6", 
+Clazz.defineMethod (c$, "renderRing6",
  function () {
 this.renderTriangle (this.rScr, this.rPt, 0, 2, 4, true);
 this.renderTriangle (this.rScr, this.rPt, 0, 1, 2, false);
 this.renderTriangle (this.rScr, this.rPt, 0, 4, 5, false);
 this.renderTriangle (this.rScr, this.rPt, 2, 3, 4, false);
 });
-Clazz.defineMethod (c$, "renderRing5", 
+Clazz.defineMethod (c$, "renderRing5",
  function () {
 this.renderTriangle (this.rScr5, this.rPt5, 0, 1, 2, false);
 this.renderTriangle (this.rScr5, this.rPt5, 0, 2, 3, false);
 this.renderTriangle (this.rScr5, this.rPt5, 0, 3, 4, false);
 });
-Clazz.defineMethod (c$, "renderRibose", 
+Clazz.defineMethod (c$, "renderRibose",
  function () {
 this.renderTriangle (this.rScr, this.rPt, 0, 1, 9, true);
 this.renderTriangle (this.rScr, this.rPt, 1, 2, 9, true);

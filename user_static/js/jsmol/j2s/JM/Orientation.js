@@ -27,7 +27,7 @@ this.rotationMatrix =  new JU.M3 ();
 this.center =  new JU.P3 ();
 this.navCenter =  new JU.P3 ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (vwr, asDefault, pymolView) {
 this.vwr = vwr;
 if (pymolView != null) {
@@ -59,11 +59,11 @@ this.cameraDepth = vwr.tm.getCameraDepth ();
 this.cameraX = vwr.tm.camera.x;
 this.cameraY = vwr.tm.camera.y;
 }}, "JV.Viewer,~B,~A");
-Clazz.defineMethod (c$, "getMoveToText", 
+Clazz.defineMethod (c$, "getMoveToText",
 function (asCommand) {
 return (asCommand ? "   " + this.moveToText + "\n  save orientation " + JU.PT.esc (this.saveName.substring (12)) + ";\n" : this.moveToText);
 }, "~B");
-Clazz.defineMethod (c$, "restore", 
+Clazz.defineMethod (c$, "restore",
 function (timeSeconds, isAll) {
 if (isAll) {
 this.vwr.setBooleanProperty ("windowCentered", this.windowCenteredFlag);

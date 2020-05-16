@@ -1,12 +1,12 @@
 Clazz.declarePackage ("J.shapesurface");
 Clazz.load (["J.shapesurface.Isosurface"], "J.shapesurface.Pmesh", ["java.util.Hashtable", "JU.Measure", "$.P3", "$.V3"], function () {
 c$ = Clazz.declareType (J.shapesurface, "Pmesh", J.shapesurface.Isosurface);
-Clazz.defineMethod (c$, "initShape", 
+Clazz.defineMethod (c$, "initShape",
 function () {
 Clazz.superCall (this, J.shapesurface.Pmesh, "initShape", []);
 this.myType = "pmesh";
 });
-Clazz.overrideMethod (c$, "getProperty", 
+Clazz.overrideMethod (c$, "getProperty",
 function (property, index) {
 if (property === "face") {
 var m = this.currentMesh;
@@ -14,7 +14,7 @@ if (index >= 0 && (index >= this.meshCount || (m = this.meshes[index]) == null))
 return m == null ? null : this.getFace (m);
 }return this.getPropI (property, index);
 }, "~S,~N");
-Clazz.defineMethod (c$, "getFace", 
+Clazz.defineMethod (c$, "getFace",
  function (m) {
 if (m.haveQuads) return null;
 var vs = m.vs;

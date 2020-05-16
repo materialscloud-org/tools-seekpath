@@ -9,7 +9,7 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.htExponents =  new java.util.Hashtable ();
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.indexOf (":title") == 0) {
 this.title = this.rd ().substring (2);
@@ -25,7 +25,7 @@ if (this.doReadMolecularOrbitals) this.readMolecularOrbitals ();
 return true;
 }return true;
 });
-Clazz.defineMethod (c$, "readCoordinates", 
+Clazz.defineMethod (c$, "readCoordinates",
  function () {
 this.asc.newAtomSet ();
 this.asc.setAtomSetName (this.title);
@@ -36,7 +36,7 @@ if (tokens.length < 5) break;
 this.setAtomCoordScaled (null, tokens, 2, 0.5291772).elementSymbol = tokens[0];
 }
 });
-Clazz.defineMethod (c$, "readSlaterBasis", 
+Clazz.defineMethod (c$, "readSlaterBasis",
  function () {
 this.discardLinesUntilContains (":-");
 var ch = 'a';
@@ -52,7 +52,7 @@ code += "_" + ($c$ = ch, ch = String.fromCharCode (ch.charCodeAt (0) + 1), $c$);
 this.htExponents.put (code, Float.$valueOf (this.parseFloatStr (exp)));
 }
 });
-Clazz.defineMethod (c$, "readMolecularOrbitals", 
+Clazz.defineMethod (c$, "readMolecularOrbitals",
  function () {
 this.htFuncMap =  new java.util.Hashtable ();
 this.readLines (3);
@@ -116,7 +116,7 @@ this.sortOrbitals ();
 this.setSlaters (true, true);
 this.setMOs ("eV");
 });
-Clazz.defineMethod (c$, "createSlaterData", 
+Clazz.defineMethod (c$, "createSlaterData",
  function (iAtom, atomSymbol, xyz) {
 var ch;
 var abc = ' ';

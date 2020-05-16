@@ -87,7 +87,7 @@ return true;
 },"~O");
 
 /* BH disallow addAll(int,List)
- * 
+ *
 Clazz.defineMethod(c$,"addAll",
 function(location,collection){
 var size=this.size();
@@ -314,7 +314,7 @@ return i-this.firstIndex;
 Clazz.overrideMethod(c$,"remove",
 function(location){
 return (typeof location == "number" ? this._removeItemAt(location) : this._removeObject(location));
-},"~N"); 
+},"~N");
 
 Clazz.overrideMethod(c$,"_removeItemAt",
 function(location){
@@ -340,7 +340,7 @@ this.array[--this.lastIndex]=null;
 throw new IndexOutOfBoundsException();
 }this.modCount++;
 return result;
-},"~N"); 
+},"~N");
 
 Clazz.defineMethod(c$, "_removeObject", function(o) {
 	var i = this.indexOf(o);

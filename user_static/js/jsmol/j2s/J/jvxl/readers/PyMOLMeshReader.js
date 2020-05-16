@@ -9,11 +9,11 @@ this.isMesh = false;
 this.pt = 0;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.readers, "PyMOLMeshReader", J.jvxl.readers.MapFileReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.PyMOLMeshReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, brNull) {
 this.init2MFR (sg, null);
 this.allowSigma = true;
@@ -33,11 +33,11 @@ this.params.cutoffAutomatic = false;
 this.voxelList = J.jvxl.readers.PyMOLMeshReader.getList (J.jvxl.readers.PyMOLMeshReader.getList (J.jvxl.readers.PyMOLMeshReader.getList (this.data, 14), 2), 6);
 JU.Logger.info ("PyMOLMeshReader: Number of grid points = " + this.voxelList.size ());
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-c$.getList = Clazz.defineMethod (c$, "getList", 
+c$.getList = Clazz.defineMethod (c$, "getList",
  function (list, i) {
 return list.get (i);
 }, "JU.Lst,~N");
-Clazz.overrideMethod (c$, "readParameters", 
+Clazz.overrideMethod (c$, "readParameters",
 function () {
 var t;
 this.jvxlFileHeaderBuffer =  new JU.SB ();
@@ -86,18 +86,18 @@ this.maps = 1;
 this.getVectorsAndOrigin ();
 this.setCutoffAutomatic ();
 });
-Clazz.overrideMethod (c$, "nextVoxel", 
+Clazz.overrideMethod (c$, "nextVoxel",
 function () {
 return this.getFloat (this.voxelList, this.pt++);
 });
-Clazz.defineMethod (c$, "getFloat", 
+Clazz.defineMethod (c$, "getFloat",
  function (list, i) {
 return (list.get (i)).floatValue ();
 }, "JU.Lst,~N");
-Clazz.overrideMethod (c$, "skipData", 
+Clazz.overrideMethod (c$, "skipData",
 function (nPoints) {
 }, "~N");
-Clazz.overrideMethod (c$, "setCutoffAutomatic", 
+Clazz.overrideMethod (c$, "setCutoffAutomatic",
 function () {
 if (this.params.thePlane != null) return;
 if (Float.isNaN (this.params.sigma)) {
@@ -109,7 +109,7 @@ if (this.params.cutoff > this.dmax) this.params.cutoff = this.dmax / 4;
 this.params.cutoff = this.calculateCutoff ();
 }JU.Logger.info ("MapReader: setting cutoff to default value of " + this.params.cutoff + (this.boundingBox == null ? " (no BOUNDBOX parameter)\n" : "\n"));
 });
-Clazz.defineMethod (c$, "calculateCutoff", 
+Clazz.defineMethod (c$, "calculateCutoff",
  function () {
 var n = this.voxelList.size ();
 var sum = 0;

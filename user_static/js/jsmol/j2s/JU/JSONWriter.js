@@ -7,29 +7,29 @@ this.modifiedKeys = null;
 this.writeNullAsString = false;
 Clazz.instantialize (this, arguments);
 }, JU, "JSONWriter");
-Clazz.defineMethod (c$, "setModifyKeys", 
+Clazz.defineMethod (c$, "setModifyKeys",
 function (mapNewToOld) {
 this.modifiedKeys = mapNewToOld;
 }, "java.util.Map");
-Clazz.defineMethod (c$, "setWriteNullAsString", 
+Clazz.defineMethod (c$, "setWriteNullAsString",
 function (b) {
 this.writeNullAsString = b;
 }, "~B");
-Clazz.defineMethod (c$, "append", 
+Clazz.defineMethod (c$, "append",
 function (s) {
 if (s != null) this.oc.append ("\t\t\t\t\t\t\t\t\t\t\t\t\t\t".substring (0, Math.min (this.indent, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t".length))).append (s);
 return this.oc;
 }, "~S");
-Clazz.defineMethod (c$, "setStream", 
+Clazz.defineMethod (c$, "setStream",
 function (os) {
 this.oc =  new JU.OC ().setParams (null, null, true, os);
 }, "java.io.OutputStream");
-Clazz.defineMethod (c$, "closeStream", 
+Clazz.defineMethod (c$, "closeStream",
 function () {
 this.oc.closeChannel ();
 return true;
 });
-Clazz.defineMethod (c$, "writeObject", 
+Clazz.defineMethod (c$, "writeObject",
 function (o) {
 if (o == null) {
 this.writeNull ();
@@ -50,11 +50,11 @@ this.append ((o).toJSON ());
 } else {
 this.writeString (o.toString ());
 }}, "~O");
-Clazz.defineMethod (c$, "writeNull", 
+Clazz.defineMethod (c$, "writeNull",
 function () {
 this.oc.append (this.writeNullAsString ? "\"null\"" : "null");
 });
-Clazz.defineMethod (c$, "writeNumber", 
+Clazz.defineMethod (c$, "writeNumber",
 function (o) {
 var s = o.toString ();
 if (s.equals ("NaN")) {
@@ -62,19 +62,19 @@ this.writeString (s);
 } else {
 this.oc.append (s);
 }}, "Number");
-Clazz.defineMethod (c$, "writeBoolean", 
+Clazz.defineMethod (c$, "writeBoolean",
 function (o) {
 this.oc.append (o.toString ());
 }, "Boolean");
-Clazz.defineMethod (c$, "writeString", 
+Clazz.defineMethod (c$, "writeString",
 function (str) {
 this.oc.append (JU.PT.esc (str));
 }, "~S");
-Clazz.defineMethod (c$, "writeString", 
+Clazz.defineMethod (c$, "writeString",
 function (str, sbSym) {
 sbSym.append (JU.PT.esc (str));
 }, "~S,JU.SB");
-Clazz.defineMethod (c$, "writeMap", 
+Clazz.defineMethod (c$, "writeMap",
 function (map) {
 if (map.isEmpty ()) {
 this.append ("{}");
@@ -92,41 +92,41 @@ sep = ",\n";
 }
 }this.mapClose ();
 }, "java.util.Map");
-Clazz.defineMethod (c$, "getAndCheckValue", 
+Clazz.defineMethod (c$, "getAndCheckValue",
 function (map, key) {
 return map.get (key);
 }, "java.util.Map,~S");
-Clazz.defineMethod (c$, "mapOpen", 
+Clazz.defineMethod (c$, "mapOpen",
 function () {
 this.oc.append ("{\n");
 this.indent++;
 });
-Clazz.defineMethod (c$, "mapClose", 
+Clazz.defineMethod (c$, "mapClose",
 function () {
 this.indent--;
 this.oc.append ("\n");
 this.append ("}");
 });
-Clazz.defineMethod (c$, "mapAddKey", 
+Clazz.defineMethod (c$, "mapAddKey",
 function (key) {
 this.append ("");
 if (this.modifiedKeys != null && this.modifiedKeys.containsKey (key)) key = this.modifiedKeys.get (key);
 this.writeString (key);
 this.oc.append (":");
 }, "~S");
-Clazz.defineMethod (c$, "mapAddKeyValue", 
+Clazz.defineMethod (c$, "mapAddKeyValue",
 function (key, value, terminator) {
 this.mapAddKey (key);
 this.writeObject (value);
 if (terminator != null) this.oc.append (terminator);
 }, "~S,~O,~S");
-Clazz.defineMethod (c$, "mapAddKeyValueRaw", 
+Clazz.defineMethod (c$, "mapAddKeyValueRaw",
 function (key, value, terminator) {
 this.mapAddKey (key);
 this.oc.append (value.toString ());
 if (terminator != null) this.oc.append (terminator);
 }, "~S,~O,~S");
-Clazz.defineMethod (c$, "mapAddMapAllExcept", 
+Clazz.defineMethod (c$, "mapAddMapAllExcept",
 function (key, map, except) {
 this.mapAddKey (key);
 this.mapOpen ();
@@ -141,7 +141,7 @@ sep = ",\n";
 }
 }this.mapClose ();
 }, "~S,java.util.Map,~S");
-Clazz.defineMethod (c$, "writeList", 
+Clazz.defineMethod (c$, "writeList",
 function (list) {
 var n = list.size ();
 this.arrayOpen (false);
@@ -151,7 +151,7 @@ this.arrayAdd (list.get (i));
 }
 this.arrayClose (false);
 }, "java.util.List");
-Clazz.defineMethod (c$, "writeArray", 
+Clazz.defineMethod (c$, "writeArray",
 function (o) {
 this.arrayOpen (false);
 var n = java.lang.reflect.Array.getLength (o);
@@ -161,16 +161,16 @@ this.arrayAdd (java.lang.reflect.Array.get (o, i));
 }
 this.arrayClose (false);
 }, "~O");
-Clazz.defineMethod (c$, "arrayOpen", 
+Clazz.defineMethod (c$, "arrayOpen",
 function (andIndent) {
 this.oc.append ("[");
 if (andIndent) this.indent++;
 }, "~B");
-Clazz.defineMethod (c$, "arrayAdd", 
+Clazz.defineMethod (c$, "arrayAdd",
 function (o) {
 this.writeObject (Clazz.instanceOf (o, Float) && (o).isNaN () || Clazz.instanceOf (o, Double) && (o).isNaN () ? "NaN" : o);
 }, "~O");
-Clazz.defineMethod (c$, "arrayClose", 
+Clazz.defineMethod (c$, "arrayClose",
 function (andIndent) {
 if (andIndent) {
 this.indent--;

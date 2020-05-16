@@ -32,12 +32,12 @@ this.iList = 0;
 this.isStep = false;
 Clazz.instantialize (this, arguments);
 }, J.navigate, "Navigator", J.thread.JmolThread, J.api.JmolNavigatorInterface);
-Clazz.overrideMethod (c$, "set", 
+Clazz.overrideMethod (c$, "set",
 function (tm, vwr) {
 this.tm = tm;
 this.setViewer (vwr, "navigator");
 }, "JV.TransformManager,JV.Viewer");
-Clazz.overrideMethod (c$, "navigateList", 
+Clazz.overrideMethod (c$, "navigateList",
 function (eval, list) {
 this.setEval (eval);
 this.navigationList = list;
@@ -45,7 +45,7 @@ this.iList = 0;
 this.isStep = false;
 this.run ();
 }, "J.api.JmolScriptEvaluator,JU.Lst");
-Clazz.defineMethod (c$, "nextList", 
+Clazz.defineMethod (c$, "nextList",
  function (i, ptTemp) {
 var o = this.navigationList.get (i);
 var seconds = (o[1]).floatValue ();
@@ -99,7 +99,7 @@ this.navigateTo (seconds, null, NaN, null, percent, NaN, NaN);
 break;
 }
 }, "~N,JU.P3");
-Clazz.defineMethod (c$, "setNavPercent", 
+Clazz.defineMethod (c$, "setNavPercent",
  function (pt1) {
 this.tm.transformPt3f (this.tm.navigationCenter, this.tm.navigationOffset);
 var x = pt1.x;
@@ -109,7 +109,7 @@ if (!Float.isNaN (y)) y = this.tm.height * y / 100 + (Float.isNaN (x) ? this.tm.
 pt1.x = x;
 pt1.y = y;
 }, "JU.P3");
-Clazz.overrideMethod (c$, "navigateTo", 
+Clazz.overrideMethod (c$, "navigateTo",
 function (seconds, axis, degrees, center, depthPercent, xTrans, yTrans) {
 this.floatSecondsTotal = seconds;
 this.axis = axis;
@@ -122,14 +122,14 @@ this.setupNavTo ();
 this.isStep = true;
 this.run ();
 }, "~N,JU.V3,~N,JU.P3,~N,~N,~N");
-Clazz.overrideMethod (c$, "navigate", 
+Clazz.overrideMethod (c$, "navigate",
 function (seconds, pathGuide, path, theta, indexStart, indexEnd) {
 this.floatSecondsTotal = seconds;
 this.setupNav (seconds, pathGuide, path, indexStart, indexEnd);
 this.isStep = true;
 this.run ();
 }, "~N,~A,~A,~A,~N,~N");
-Clazz.overrideMethod (c$, "run1", 
+Clazz.overrideMethod (c$, "run1",
 function (mode) {
 var ptTemp =  new JU.P3 ();
 while (this.isJS || this.vwr.isScriptExecuting ()) switch (mode) {
@@ -172,7 +172,7 @@ return;
 }
 
 }, "~N");
-Clazz.defineMethod (c$, "doNavStep", 
+Clazz.defineMethod (c$, "doNavStep",
  function (iStep) {
 if (!this.isNavTo) {
 this.tm.setNavigatePt (this.points[iStep]);
@@ -197,7 +197,7 @@ this.setNavigationDepthPercent (this.depthStart + this.depthDelta * fStep);
 }this.tm.navigating = false;
 this.targetTime += this.frameTimeMillis;
 }, "~N");
-Clazz.defineMethod (c$, "setupNavTo", 
+Clazz.defineMethod (c$, "setupNavTo",
  function () {
 this.isNavTo = true;
 if (!this.vwr.haveDisplay) this.floatSecondsTotal = 0;
@@ -218,7 +218,7 @@ this.aaStepCenter = JU.V3.newVsub (this.center == null ? this.tm.navigationCente
 this.aaStepCenter.scale (1 / (this.totalSteps + 1));
 this.centerStart = JU.P3.newP (this.tm.navigationCenter);
 }});
-Clazz.defineMethod (c$, "setupNav", 
+Clazz.defineMethod (c$, "setupNav",
  function (seconds, pathGuide, path, indexStart, indexEnd) {
 this.isNavTo = false;
 if (seconds <= 0) seconds = 2;
@@ -249,7 +249,7 @@ this.vwr.setInMotion (true);
 this.frameTimeMillis = Clazz.floatToInt (1000 / this.tm.navFps);
 this.totalSteps = nSteps;
 }, "~N,~A,~A,~N,~N");
-Clazz.defineMethod (c$, "alignZX", 
+Clazz.defineMethod (c$, "alignZX",
  function (pt0, pt1, ptVectorWing) {
 var pt0s =  new JU.P3 ();
 var pt1s =  new JU.P3 ();
@@ -277,7 +277,7 @@ m.rotate2 (pt0, pt0s);
 m.rotate2 (pt1, pt1s);
 m.rotate2 (ptVectorWing, pt2s);
 }, "JU.P3,JU.P3,JU.P3");
-Clazz.overrideMethod (c$, "zoomByFactor", 
+Clazz.overrideMethod (c$, "zoomByFactor",
 function (factor, x, y) {
 var navZ = this.tm.navZ;
 if (navZ > 0) {
@@ -292,7 +292,7 @@ if (navZ > -5) navZ = 5;
  else if (navZ < -200) navZ = -200;
 }this.tm.navZ = navZ;
 }, "~N,~N,~N");
-Clazz.overrideMethod (c$, "calcNavigationPoint", 
+Clazz.overrideMethod (c$, "calcNavigationPoint",
 function () {
 this.calcNavigationDepthPercent ();
 if (!this.tm.navigating && this.tm.navMode != 1) {
@@ -348,14 +348,14 @@ this.tm.navigationOffset.z = this.tm.referencePlaneOffset;
 this.tm.navMode = 0;
 this.calcNavSlabAndDepthValues ();
 });
-Clazz.defineMethod (c$, "calcNavSlabAndDepthValues", 
+Clazz.defineMethod (c$, "calcNavSlabAndDepthValues",
  function () {
 this.tm.calcSlabAndDepthValues ();
 if (this.tm.slabEnabled) {
 this.tm.slabValue = (this.tm.mode == 1 ? -100 : 0) + Clazz.floatToInt (this.tm.referencePlaneOffset - this.tm.navigationSlabOffset);
 if (this.tm.zSlabPercentSetting == this.tm.zDepthPercentSetting) this.tm.zSlabValue = this.tm.slabValue;
 }});
-Clazz.defineMethod (c$, "newNavigationCenter", 
+Clazz.defineMethod (c$, "newNavigationCenter",
  function () {
 this.tm.mode = this.tm.defaultMode;
 var pt =  new JU.P3 ();
@@ -369,7 +369,7 @@ pt.z = this.tm.referencePlaneOffset;
 this.tm.matrixTransformInv.rotTrans2 (pt, this.tm.navigationCenter);
 this.tm.mode = 1;
 });
-Clazz.overrideMethod (c$, "setNavigationOffsetRelative", 
+Clazz.overrideMethod (c$, "setNavigationOffsetRelative",
 function () {
 if (this.tm.navigationDepthPercent < 0 && this.tm.navZ > 0 || this.tm.navigationDepthPercent > 100 && this.tm.navZ < 0) {
 this.tm.navZ = 0;
@@ -382,7 +382,7 @@ pts.z += this.tm.navZ;
 this.tm.unTransformPoint (pts, pt);
 this.tm.setNavigatePt (pt);
 });
-Clazz.overrideMethod (c$, "navigateKey", 
+Clazz.overrideMethod (c$, "navigateKey",
 function (keyCode, modifiers) {
 var key = null;
 var value = 0;
@@ -487,7 +487,7 @@ if (key != null) this.vwr.g.setF (key, value);
 this.tm.navigating = true;
 this.tm.finalizeTransformParameters ();
 }, "~N,~N");
-Clazz.overrideMethod (c$, "setNavigationDepthPercent", 
+Clazz.overrideMethod (c$, "setNavigationDepthPercent",
 function (percent) {
 this.vwr.g.setF ("navigationDepth", percent);
 this.tm.calcCameraFactors ();
@@ -495,21 +495,21 @@ this.tm.modelCenterOffset = this.tm.referencePlaneOffset - (1 - percent / 50) * 
 this.tm.calcCameraFactors ();
 this.tm.navMode = -1;
 }, "~N");
-Clazz.defineMethod (c$, "calcNavigationDepthPercent", 
+Clazz.defineMethod (c$, "calcNavigationDepthPercent",
  function () {
 this.tm.calcCameraFactors ();
 this.tm.navigationDepthPercent = (this.tm.modelRadiusPixels == 0 ? 50 : 50 * (1 + (this.tm.modelCenterOffset - this.tm.referencePlaneOffset) / this.tm.modelRadiusPixels));
 });
-Clazz.overrideMethod (c$, "getNavigationState", 
+Clazz.overrideMethod (c$, "getNavigationState",
 function () {
 return "# navigation state;\nnavigate 0 center " + JU.Escape.eP (this.tm.navigationCenter) + ";\nnavigate 0 translate " + this.tm.getNavigationOffsetPercent ('X') + " " + this.tm.getNavigationOffsetPercent ('Y') + ";\nset navigationDepth " + this.tm.navigationDepthPercent + ";\nset navigationSlab " + this.getNavigationSlabOffsetPercent () + ";\n\n";
 });
-Clazz.defineMethod (c$, "getNavigationSlabOffsetPercent", 
+Clazz.defineMethod (c$, "getNavigationSlabOffsetPercent",
  function () {
 this.tm.calcCameraFactors ();
 return 50 * this.tm.navigationSlabOffset / this.tm.modelRadiusPixels;
 });
-Clazz.overrideMethod (c$, "navigateAxis", 
+Clazz.overrideMethod (c$, "navigateAxis",
 function (rotAxis, degrees) {
 if (degrees == 0) return;
 this.tm.rotateAxisAngle (rotAxis, (degrees / 57.29577951308232));
@@ -518,7 +518,7 @@ this.tm.navigating = true;
 this.tm.finalizeTransformParameters ();
 this.tm.navigating = false;
 }, "JU.V3,~N");
-Clazz.overrideMethod (c$, "navTranslatePercentOrTo", 
+Clazz.overrideMethod (c$, "navTranslatePercentOrTo",
 function (seconds, x, y) {
 var pt1 = JU.P3.new3 (x, y, 0);
 if (seconds >= 0) this.setNavPercent (pt1);
@@ -529,7 +529,7 @@ this.tm.navigating = true;
 this.tm.finalizeTransformParameters ();
 this.tm.navigating = false;
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "oops", 
+Clazz.defineMethod (c$, "oops",
 function (e) {
 Clazz.superCall (this, J.navigate.Navigator, "oops", [e]);
 this.tm.navigating = false;

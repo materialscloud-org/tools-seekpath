@@ -7,7 +7,7 @@ Author: Giovanni Pizzi (2016-2017)
 Lincense: The MIT License (MIT)
 
 Copyright (c), 2016-2017, ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE
-(Theory and Simulation of Materials (THEOS) and National Centre for 
+(Theory and Simulation of Materials (THEOS) and National Centre for
 Computational Design and Discovery of Novel Materials (NCCR MARVEL)),
 Switzerland.
 
@@ -67,7 +67,7 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
     showAxes = (typeof showAxes !== 'undefined') ?  showAxes : true;
     showBVectors = (typeof showBVectors !== 'undefined') ?  showBVectors : true;
     // If you want to show the points of the explicit path
-    showPathpoints = (typeof showPathpoints !== 'undefined') ?  showPathpoints : false; 
+    showPathpoints = (typeof showPathpoints !== 'undefined') ?  showPathpoints : false;
 
     // if true, use the SVG renderer rather than the WebGL one
     // Note that it supports less functionality, and it requires an additional
@@ -76,10 +76,10 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
     // This is mainly useful if you want to get a vector image of the BZ
     // rather than a raster screenshot
     // I tried to convert everything I use to work also with SVG (in particular,
-    // the text is the trickiest). However, it's much slower. 
+    // the text is the trickiest). However, it's much slower.
     // So leave by default to false unless you need to take a screenshot.
     // Known issue: in Firefox, with useSVGRenderer = True, scrolling does not work
-    useSVGRenderer = (typeof useSVGRenderer !== 'undefined') ?  useSVGRenderer : false; 
+    useSVGRenderer = (typeof useSVGRenderer !== 'undefined') ?  useSVGRenderer : false;
 
     // strings to update
     var to_update = [];
@@ -97,7 +97,7 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
         color: 0x333333,
         opacity: 1.,
         transparent: false,
-        linewidth: 1, 
+        linewidth: 1,
     });
 
     var line_material = new THREE.LineBasicMaterial(
@@ -160,7 +160,7 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
                 camera.aspect = canvas3d_width / canvas3d_height;
                 camera.updateProjectionMatrix();
 
-                // propertly scale dom element *and* renderer to take into account 
+                // propertly scale dom element *and* renderer to take into account
                 // devicePixelRatio (that is e.g. 2 on Retina displays)
                 renderer.setSize( canvas3d_width * devicePixelRatio, canvas3d_height * devicePixelRatio);
                 renderer.domElement.style.width = canvas3d_width + "px";
@@ -168,7 +168,7 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
                 renderer.domElement.width = canvas3d_width * devicePixelRatio;
                 renderer.domElement.height = canvas3d_height * devicePixelRatio;
             }
-            render();        
+            render();
         }
     }
 
@@ -188,7 +188,7 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
             textdiv.innerHTML = label;
         }
         else
-        {    
+        {
             // Return a text div with the given label, and not unselectable
             var textdiv = document.createElement('div');
             textdiv.style.position = 'absolute';
@@ -208,19 +208,19 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
             textdiv.style.webkitUserSelect = "none";
             textdiv.style.MozUserSelect = "none";
             textdiv.setAttribute("unselectable", "on");
-            textdiv.style.pointerEvents = "none"; 
+            textdiv.style.pointerEvents = "none";
         }
         return textdiv;
     }
 
     var getDoubleClickText = function(the_class) {
-        
+
             // Return a text div with the given label, and not unselectable
             var textdiv = document.createElement('div');
             textdiv.classList.add(the_class);
             textdiv.style.position = 'absolute';
             textdiv.style.fontFamily = "'Helvetica Neue', Helvetica, Arial, sans-serif";
-            textdiv.style.zIndex = 1;    
+            textdiv.style.zIndex = 1;
             textdiv.style.width = "100%";
             textdiv.style.height = "100%";
             textdiv.style.display = "table";
@@ -234,7 +234,7 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
             textdiv.style.webkitUserSelect = "none";
             textdiv.style.MozUserSelect = "none";
             textdiv.setAttribute("unselectable", "on");
-            //textdiv.style.pointerEvents = "none"; 
+            //textdiv.style.pointerEvents = "none";
 
             var textspan = document.createElement('span');
             // start visible, anyway
@@ -242,7 +242,7 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
             textspan.style.color = "rgb(80, 80, 80)";
             textspan.style.fontSize = "24px";
             textspan.style.fontWeight = "bold";
-            textspan.style.backgroundColor = "rgba(230,230,230,0.5)";        
+            textspan.style.backgroundColor = "rgba(230,230,230,0.5)";
             textspan.style.display = "table-cell";
             textspan.style.verticalAlign = "middle";
             textspan.style.lineHeight = "normal";
@@ -251,14 +251,14 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
             textspan.style.webkitUserSelect = "none";
             textspan.style.MozUserSelect = "none";
             textspan.setAttribute("unselectable", "on");
-            //textspan.style.pointerEvents = "none"; 
+            //textspan.style.pointerEvents = "none";
 
-            textspan.onmouseover = function() 
+            textspan.onmouseover = function()
             {
                 this.style.backgroundColor = "rgba(230,230,230,0.5)";
                 this.innerHTML = "Double click to toggle interaction";
             }
-            textspan.onmouseleave = function() 
+            textspan.onmouseleave = function()
             {
                 // 0.0 for alpha doesn't work properly, apparently
                 this.style.backgroundColor = "rgba(255,255,255,0.01)";
@@ -301,16 +301,16 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
             renderer.setQuality('high');
         }
         else {
-            renderer = new THREE.WebGLRenderer({ 
+            renderer = new THREE.WebGLRenderer({
                 alpha: true,
             preserveDrawingBuffer: true, // to allow taking screenshots
                 //antialias: true // could be much slower!
-            });        
+            });
         }
         // white bg (not needed if I put alpha = true in WebGL)
         renderer.setClearColor( 0xffffff, 0);
 
-        // propertly scale dom element *and* renderer to take into account 
+        // propertly scale dom element *and* renderer to take into account
         // devicePixelRatio (that is e.g. 2 on Retina displays)
         renderer.setSize( canvas3d_width * devicePixelRatio, canvas3d_height * devicePixelRatio);
         renderer.domElement.style.width = canvas3d_width + "px";
@@ -363,20 +363,20 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
 
             // Label
             // prettify label
-            label = prettifyLabel(label,forSVG=useSVGRenderer);        
+            label = prettifyLabel(label,forSVG=useSVGRenderer);
             var textdiv = getText(label);
             if (useSVGRenderer) {
                 renderer.domElement.appendChild(textdiv);
                 to_update.push([
-                    new THREE.Vector3(pos[0], pos[1], pos[2]), 
+                    new THREE.Vector3(pos[0], pos[1], pos[2]),
                     label]);
-                
+
             }
             else {
-                canvas3d.appendChild(textdiv);        
+                canvas3d.appendChild(textdiv);
                 to_update.push([
-                    new THREE.Vector3(pos[0], pos[1], pos[2]), 
-                    textdiv]);            
+                    new THREE.Vector3(pos[0], pos[1], pos[2]),
+                    textdiv]);
             }
         }
 
@@ -402,14 +402,14 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
                     var origin = new THREE.Vector3( 0, 0, 0 );
                     var hex = 0x555555;
                     var arrow = new THREE.ArrowHelper(
-                        dir, 
+                        dir,
                         origin,
                         axeslength,
                         hex,
                         headLength=axeslength/10.,
                         headwidth=axeslength/20.);
                     //arrowX.line.material.linewidth = 2;
-                    scene.add( arrow );                
+                    scene.add( arrow );
 
                     // Label
                     the_color = '#555555';
@@ -417,17 +417,17 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
                     pos = dir.clone();
                     pos.sub(origin);
                     pos.multiplyScalar(axeslength);
-                    
+
                     if (useSVGRenderer) {
                         renderer.domElement.appendChild(textdiv);
                         to_update.push([
                             pos, label, the_color]);
-                        
+
                     }
                     else {
-                        canvas3d.appendChild(textdiv);        
+                        canvas3d.appendChild(textdiv);
                         to_update.push([
-                            pos, textdiv]);            
+                            pos, textdiv]);
                     }
                 });
         }
@@ -466,30 +466,30 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
                 var origin = new THREE.Vector3( 0, 0, 0 );
                 var hex = 0x000000;
                 var arrow = new THREE.ArrowHelper(
-                    dir, 
+                    dir,
                     origin,
                     length=b_length,
                     hex=hex,
                     headLength=b_length/10.,
                     headwidth=b_length/20.);
                 //arrowX.line.material.linewidth = 2;
-                scene.add( arrow );                
+                scene.add( arrow );
 
                 // Label
                 var textdiv = getText(label=label);
                 pos = dir.clone();
                 pos.sub(origin);
-                pos.multiplyScalar(b_length);            
+                pos.multiplyScalar(b_length);
                 if (useSVGRenderer) {
                     renderer.domElement.appendChild(textdiv);
                     to_update.push([
                         pos, label]);
-                    
+
                 }
                 else {
-                    canvas3d.appendChild(textdiv);        
+                    canvas3d.appendChild(textdiv);
                     to_update.push([
-                        pos, textdiv]);            
+                        pos, textdiv]);
                 }
             });
 
@@ -498,7 +498,7 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
         data['triangles_vertices'].forEach(function(vertex) {
             brillouinzone.vertices.push(
                 new THREE.Vector3(vertex[0], vertex[1], vertex[2]));
-        }); 
+        });
         data['triangles'].forEach(function(triangle) {
             brillouinzone.faces.push(
                 new THREE.Face3(triangle[0], triangle[1], triangle[2]));
@@ -528,7 +528,7 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
             var line = new THREE.Line(geometry, line_material);
             line.material.linewidth = 4;
             scene.add(line);
-        });        
+        });
 
 
         if (showPathpoints) {
@@ -550,19 +550,19 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
 
         render();
 
-        var bz_switch_enable = function(event, force_status){ 
+        var bz_switch_enable = function(event, force_status){
             if (typeof force_status == "undefined") {
                 var the_status = !controls.enabled;
             }
             else {
                 var the_status = force_status;
             }
-            
+
             controls.enabled = the_status;
 
             elems = canvas3d.getElementsByClassName("BZDoubleClickText");
             for (var i=0; i < elems.length; i++) {
-                canvas3d.removeChild(elems[i]);    
+                canvas3d.removeChild(elems[i]);
             }
             if (the_status) {
                 //scene.background = new THREE.Color( 0xffffff );
@@ -571,7 +571,7 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
             else {
                 //scene.background = new THREE.Color( 0xeeeeee );
                 //render();
-                canvas3d.appendChild(getDoubleClickText("BZDoubleClickText"));            
+                canvas3d.appendChild(getDoubleClickText("BZDoubleClickText"));
             }
         }
 
@@ -599,13 +599,13 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
             else {
                 if (event.targetTouches.length != 0) {
                     // activate this only when there is only a finger
-                    // if more than one finger is detected, cancel detection 
+                    // if more than one finger is detected, cancel detection
                     // of double tap
                     if (typeof dbltapTimeout !== 'undefined') {
                         // disable the timeout
                         clearTimeout(dbltapTimeout);
                         shortTap = false;
-                    }                    
+                    }
                     return;
                 }
                 // If we are here, no tap was recently detected
@@ -623,14 +623,14 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
                 // disable the timeout if the touch was canceled
                 clearTimeout(dbltapTimeout);
                 shortTap = false;
-            }                    
+            }
         });
         canvas3d.addEventListener('touchmove', function(event) {
             if (typeof dbltapTimeout !== 'undefined') {
                 // disable the timeout if the finger is being moved
                 clearTimeout(dbltapTimeout);
                 shortTap = false;
-            }        
+            }
         });
 
         // This is useful to print out the SVG for reuse
@@ -653,9 +653,9 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
             var heightHalf = 0.5 * renderer.domElement.viewBox.baseVal.height;
             var widthOffset = renderer.domElement.viewBox.baseVal.x;
             var heightOffset = renderer.domElement.viewBox.baseVal.y;
-            vector2D.x = ( vector2D.x * widthHalf ); 
+            vector2D.x = ( vector2D.x * widthHalf );
             vector2D.y = - ( vector2D.y * heightHalf );
-            
+
         }
         else {
             var widthHalf = 0.5*renderer.context.canvas.width / devicePixelRatio;
@@ -664,7 +664,7 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
             vector2D.y = - ( vector2D.y * heightHalf ) + heightHalf;
         }
 
-        return { 
+        return {
             left: vector2D.x,
             top: vector2D.y
         };
@@ -672,18 +672,18 @@ var BZVisualizer = function(showAxes, showBVectors, showPathpoints, useSVGRender
     };
 
     // render function
-    function render() { 
+    function render() {
         //requestAnimationFrame( render );  // activate only if you want to loop and make an animation
-        renderer.render( scene, camera ); 
-        
+        renderer.render( scene, camera );
+
         // IMPORTANT! In the case of the SVG renderer, I pass the string, rather
         // than the <div>, and I recreate a new <text> in here. I think this is needed
-        // because <text> elements seem to be cleaned up (at least partially) in 
+        // because <text> elements seem to be cleaned up (at least partially) in
         // the render function?
 
         if (useSVGRenderer) {
             to_update.forEach(function(data) {
-                // For SVG we don't use divs for text, but rather 
+                // For SVG we don't use divs for text, but rather
                 // <text> elements inside the SVG
                 pos = data[0];
                 textcontent = data[1];

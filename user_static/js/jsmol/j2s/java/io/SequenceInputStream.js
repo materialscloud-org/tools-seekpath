@@ -4,7 +4,7 @@ this.e = null;
 this.$in = null;
 Clazz.instantialize (this, arguments);
 }, java.io, "SequenceInputStream", java.io.InputStream);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (e) {
 Clazz.superConstructor (this, java.io.SequenceInputStream, []);
 this.e = e;
@@ -18,7 +18,7 @@ throw ex;
 }
 }
 }, "java.util.Enumeration");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (s1, s2) {
 Clazz.superConstructor (this, java.io.SequenceInputStream, []);
 var v =  new java.util.Vector (2);
@@ -35,7 +35,7 @@ throw ex;
 }
 }
 }, "java.io.InputStream,java.io.InputStream");
-Clazz.defineMethod (c$, "nextStream", 
+Clazz.defineMethod (c$, "nextStream",
 function () {
 if (this.$in != null) {
 this.$in.close ();
@@ -44,13 +44,13 @@ this.$in = this.e.nextElement ();
 if (this.$in == null) throw  new NullPointerException ();
 } else this.$in = null;
 });
-Clazz.defineMethod (c$, "available", 
+Clazz.defineMethod (c$, "available",
 function () {
 if (this.$in == null) {
 return 0;
 }return this.$in.available ();
 });
-Clazz.defineMethod (c$, "readByteAsInt", 
+Clazz.defineMethod (c$, "readByteAsInt",
 function () {
 if (this.$in == null) {
 return -1;
@@ -60,7 +60,7 @@ this.nextStream ();
 return this.readByteAsInt ();
 }return c;
 });
-Clazz.defineMethod (c$, "read", 
+Clazz.defineMethod (c$, "read",
 function (b, off, len) {
 if (this.$in == null) {
 return -1;
@@ -76,7 +76,7 @@ this.nextStream ();
 return this.read (b, off, len);
 }return n;
 }, "~A,~N,~N");
-Clazz.defineMethod (c$, "close", 
+Clazz.defineMethod (c$, "close",
 function () {
 do {
 this.nextStream ();

@@ -12,11 +12,11 @@ this.brickLayer = null;
 this.pt = 0;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.readers, "Dsn6BinaryReader", J.jvxl.readers.MapFileReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.Dsn6BinaryReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, brNull) {
 this.init2MFR (sg, this.br);
 this.binarydoc = this.newBinaryDocument ();
@@ -28,7 +28,7 @@ if (data == null) this.binarydoc.setStream (sg.atomDataServer.getBufferedInputSt
 if (this.params.thePlane == null) this.params.insideOut = !this.params.insideOut;
 this.nSurfaces = 1;
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "readParameters", 
+Clazz.overrideMethod (c$, "readParameters",
 function () {
 var header =  Clazz.newShortArray (19, 0);
 for (var i = 0; i < 19; i++) header[i] = this.binarydoc.readShort ();
@@ -90,13 +90,13 @@ this.jvxlFileHeaderBuffer =  new JU.SB ();
 this.jvxlFileHeaderBuffer.append ("DNS6/O progressive brick data reader\n");
 this.jvxlFileHeaderBuffer.append ("see http://www.uoxray.uoregon.edu/tnt/manual/node104.html\n");
 });
-Clazz.defineMethod (c$, "readBrickLayer", 
+Clazz.defineMethod (c$, "readBrickLayer",
  function () {
 this.binarydoc.readByteArray (this.brickLayer, 0, this.brickLayerByteCount);
 this.pt = 0;
 this.nBytes = this.binarydoc.getPosition ();
 });
-Clazz.defineMethod (c$, "getBrickValue", 
+Clazz.defineMethod (c$, "getBrickValue",
  function (pt) {
 var x = pt % this.n0;
 var y = (Clazz.doubleToInt (pt / this.n0)) % this.n1;
@@ -112,12 +112,12 @@ if (bPt % 2 == 0) bPt++;
 var value = (this.brickLayer[bPt] + 256) % 256;
 return this.dmin + value * this.byteFactor;
 }, "~N");
-Clazz.overrideMethod (c$, "nextVoxel", 
+Clazz.overrideMethod (c$, "nextVoxel",
 function () {
 if ((this.pt % this.brickLayerVoxelCount) == 0) this.readBrickLayer ();
 return this.getBrickValue (this.pt++);
 });
-Clazz.overrideMethod (c$, "skipData", 
+Clazz.overrideMethod (c$, "skipData",
 function (nPoints) {
 for (var i = 0; i < nPoints; i++) this.binarydoc.readByte ();
 

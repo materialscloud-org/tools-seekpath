@@ -12,19 +12,19 @@ Double.toString = Double.prototype.toString = function () {
 	}
 	return "" + this.valueOf ();
 };
-Clazz.makeConstructor (Double, 
+Clazz.makeConstructor (Double,
 function () {
 this.valueOf = function () {
 	return 0.0;
 };
 });
-Clazz.makeConstructor (Double, 
+Clazz.makeConstructor (Double,
 function (value) {
 this.valueOf = function () {
 	return value;
 };
 }, "Number");
-Clazz.makeConstructor (Double, 
+Clazz.makeConstructor (Double,
 function (s) {
 var value = Double.parseDouble (s);
 this.valueOf = function () {
@@ -40,18 +40,18 @@ Double.POSITIVE_INFINITY = Number.POSITIVE_INFINITY;
 Double.NaN = Number.NaN;
 Double.TYPE = Double.prototype.TYPE = Double;
 
-Clazz.defineMethod (Double, "isNaN", 
+Clazz.defineMethod (Double, "isNaN",
 function (num) {
 return isNaN (num);
 }, "Number");
 Double.isNaN = Double.prototype.isNaN;
-Clazz.defineMethod (Double, "isInfinite", 
+Clazz.defineMethod (Double, "isInfinite",
 function (num) {
 return !isFinite (num);
 }, "Number");
 Double.isInfinite = Double.prototype.isInfinite;
 
-Clazz.defineMethod (Double, "parseDouble", 
+Clazz.defineMethod (Double, "parseDouble",
 function (s) {
 if (s == null) {
 throw  new NumberFormatException ("null");
@@ -64,19 +64,19 @@ return doubleVal;
 }, "String");
 Double.parseDouble = Double.prototype.parseDouble;
 
-Clazz.defineMethod (Double, "$valueOf", 
+Clazz.defineMethod (Double, "$valueOf",
 function (s) {
 return new Double(this.parseDouble(s));
 }, "String");
 
-Clazz.defineMethod (Double, "$valueOf", 
+Clazz.defineMethod (Double, "$valueOf",
 function (v) {
 return new Double(v);
 }, "Number");
 
 Double.$valueOf = Double.prototype.$valueOf;
 
-Clazz.overrideMethod(Double, "equals", 
+Clazz.overrideMethod(Double, "equals",
 function (s) {
 if(s == null || ! Clazz.instanceOf(s, Double) ){
 	return false;

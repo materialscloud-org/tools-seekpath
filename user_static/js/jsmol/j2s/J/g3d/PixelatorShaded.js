@@ -8,12 +8,12 @@ this.zDepth = 0;
 this.zShadePower = 0;
 Clazz.instantialize (this, arguments);
 }, J.g3d, "PixelatorShaded", J.g3d.Pixelator);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (g) {
 Clazz.superConstructor (this, J.g3d.PixelatorShaded, [g]);
 this.tmp =  Clazz.newIntArray (3, 0);
 }, "J.g3d.Graphics3D");
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (zSlab, zDepth, zShadePower) {
 this.bgcolor = this.g.bgcolor;
 this.bgRGB =  Clazz.newIntArray (-1, [this.bgcolor & 0xFF, (this.bgcolor >> 8) & 0xFF, (this.g.bgcolor >> 16) & 0xFF]);
@@ -23,7 +23,7 @@ this.zShadePower = zShadePower;
 this.p0 = this.g.pixel0;
 return this;
 }, "~N,~N,~N");
-Clazz.overrideMethod (c$, "addPixel", 
+Clazz.overrideMethod (c$, "addPixel",
 function (offset, z, p) {
 if (z > this.zDepth) return;
 if (z >= this.zSlab && this.zShadePower > 0) {
@@ -40,7 +40,7 @@ for (var i = 0; i < 3; i++) t[i] = zs[i] + Clazz.floatToInt (f * ((t[i] & 0xFF) 
 p = (t[2] << 16) | (t[1] << 8) | t[0] | (p & 0xFF000000);
 }this.p0.addPixel (offset, z, p);
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "showZBuffer", 
+Clazz.defineMethod (c$, "showZBuffer",
 function () {
 for (var i = this.p0.zb.length; --i >= 0; ) {
 if (this.p0.pb[i] == 0) continue;

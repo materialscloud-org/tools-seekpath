@@ -11,12 +11,12 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.ptXY =  new JU.P3i ();
 });
-Clazz.overrideMethod (c$, "initShape", 
+Clazz.overrideMethod (c$, "initShape",
 function () {
 this.myMask = 1023;
 this.reportAll = false;
 });
-Clazz.overrideMethod (c$, "setSize", 
+Clazz.overrideMethod (c$, "setSize",
 function (size, bsSelected) {
 if (size == 2147483647) {
 this.selectedBonds = JU.BSUtil.copy (bsSelected);
@@ -33,7 +33,7 @@ this.bsSizeSet.set (iter.nextIndex ());
 iter.next ().setMad (mad);
 }
 }, "~N,JU.BS");
-Clazz.overrideMethod (c$, "setProperty", 
+Clazz.overrideMethod (c$, "setProperty",
 function (propertyName, value, bs) {
 if ("type" === propertyName) {
 this.myMask = (value).intValue ();
@@ -90,13 +90,13 @@ return;
 return;
 }this.setPropS (propertyName, value, bs);
 }, "~S,~O,JU.BS");
-Clazz.overrideMethod (c$, "getProperty", 
+Clazz.overrideMethod (c$, "getProperty",
 function (property, index) {
 if (property.equals ("selectionState")) return (this.selectedBonds != null ? "select BONDS " + JU.Escape.eBS (this.selectedBonds) + "\n" : "");
 if (property.equals ("sets")) return  Clazz.newArray (-1, [this.bsOrderSet, this.bsSizeSet, this.bsColixSet]);
 return null;
 }, "~S,~N");
-Clazz.overrideMethod (c$, "setAtomClickability", 
+Clazz.overrideMethod (c$, "setAtomClickability",
 function () {
 var bonds = this.ms.bo;
 for (var i = this.ms.bondCount; --i >= 0; ) {
@@ -106,11 +106,11 @@ bond.atom1.setClickable (this.vf);
 bond.atom2.setClickable (this.vf);
 }
 });
-Clazz.overrideMethod (c$, "getShapeState", 
+Clazz.overrideMethod (c$, "getShapeState",
 function () {
 return null;
 });
-Clazz.overrideMethod (c$, "checkObjectHovered", 
+Clazz.overrideMethod (c$, "checkObjectHovered",
 function (x, y, bsVisible) {
 var pt =  new JU.P3 ();
 var bond = this.findPickedBond (x, y, bsVisible, pt);
@@ -118,7 +118,7 @@ if (bond == null) return false;
 this.vwr.highlightBond (bond.index, true);
 return true;
 }, "~N,~N,JU.BS");
-Clazz.overrideMethod (c$, "checkObjectClicked", 
+Clazz.overrideMethod (c$, "checkObjectClicked",
 function (x, y, modifiers, bsVisible, drawPicking) {
 var pt =  new JU.P3 ();
 var bond = this.findPickedBond (x, y, bsVisible, pt);
@@ -135,7 +135,7 @@ map.put ("info", info);
 this.vwr.setStatusAtomPicked (-3, "[\"bond\",\"" + bond.getIdentity () + "\"," + pt.x + "," + pt.y + "," + pt.z + "]", map, false);
 return map;
 }, "~N,~N,~N,JU.BS,~B");
-Clazz.defineMethod (c$, "findPickedBond", 
+Clazz.defineMethod (c$, "findPickedBond",
  function (x, y, bsVisible, pt) {
 var dmin2 = 100;
 if (this.vwr.gdata.isAntialiased ()) {

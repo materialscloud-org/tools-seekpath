@@ -1,17 +1,17 @@
 Clazz.declarePackage ("J.jvxl.readers");
 Clazz.load (["J.jvxl.readers.JvxlXmlReader"], "J.jvxl.readers.JvxlReader", ["java.lang.NullPointerException", "JU.P4", "$.PT", "$.SB", "J.jvxl.data.JvxlCoder", "J.jvxl.readers.VolumeFileReader", "JU.C", "$.Escape", "$.Logger"], function () {
 c$ = Clazz.declareType (J.jvxl.readers, "JvxlReader", J.jvxl.readers.JvxlXmlReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.JvxlReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2JXR (sg, br);
 this.isXmlFile = false;
 this.JVXL_VERSION = "2.0";
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "readParameters", 
+Clazz.overrideMethod (c$, "readParameters",
 function () {
 this.jvxlFileHeaderBuffer =  new JU.SB ().append (this.skipComments (false));
 if (this.line == null || this.line.length == 0) this.line = "Line 1";
@@ -59,7 +59,7 @@ this.colorFractionRange = this.parseInt ();
 }this.cJvxlEdgeNaN = String.fromCharCode (this.edgeFractionBase + this.edgeFractionRange);
 this.vertexDataOnly = this.jvxlData.vertexDataOnly = (this.volumetricVectors[0].length () == 0);
 });
-Clazz.overrideMethod (c$, "jvxlReadFractionData", 
+Clazz.overrideMethod (c$, "jvxlReadFractionData",
 function (type, nPoints) {
 var str = "";
 try {
@@ -77,7 +77,7 @@ throw e;
 }
 return str;
 }, "~S,~N");
-Clazz.overrideMethod (c$, "gotoData", 
+Clazz.overrideMethod (c$, "gotoData",
 function (n, nPoints) {
 if (n > 0) JU.Logger.info ("skipping " + n + " data sets, " + nPoints + " points each");
 this.vertexDataOnly = this.jvxlData.vertexDataOnly = (nPoints == 0);
@@ -88,7 +88,7 @@ this.jvxlSkipData (nPoints, true);
 }
 this.jvxlReadDefinitionLine (true);
 }, "~N,~N");
-Clazz.defineMethod (c$, "jvxlReadDefinitionLine", 
+Clazz.defineMethod (c$, "jvxlReadDefinitionLine",
  function (showMsg) {
 var comment = this.skipComments (true);
 if (showMsg) JU.Logger.info ("reading jvxl data set: " + comment + this.line);
@@ -157,18 +157,18 @@ red = this.parseFloat ();
 blue = this.parseFloat ();
 }this.jvxlSetColorRanges (dataMin, dataMax, red, blue, insideOut);
 }, "~B");
-Clazz.overrideMethod (c$, "readSurfaceData", 
+Clazz.overrideMethod (c$, "readSurfaceData",
 function (isMapDataIgnored) {
 this.thisInside = !this.params.isContoured;
 if (!this.readSurfaceDataXML ()) this.readSurfaceDataJXR ();
 }, "~B");
-Clazz.overrideMethod (c$, "jvxlSkipData", 
+Clazz.overrideMethod (c$, "jvxlSkipData",
 function (nPoints, doSkipColorData) {
 if (this.surfaceDataCount > 0) this.jvxlSkipDataBlock (nPoints, true);
 if (this.edgeDataCount > 0) this.jvxlSkipDataBlock (this.edgeDataCount, false);
 if (this.jvxlDataIsColorMapped && doSkipColorData) this.jvxlSkipDataBlock (this.colorDataCount, false);
 }, "~N,~B");
-Clazz.defineMethod (c$, "jvxlSkipDataBlock", 
+Clazz.defineMethod (c$, "jvxlSkipDataBlock",
  function (nPoints, isInt) {
 var n = 0;
 while (n < nPoints) {
@@ -176,7 +176,7 @@ this.rd ();
 n += (isInt ? this.countData (this.line) : J.jvxl.data.JvxlCoder.jvxlDecompressString (this.line).length);
 }
 }, "~N,~B");
-Clazz.defineMethod (c$, "countData", 
+Clazz.defineMethod (c$, "countData",
  function (str) {
 var $private = Clazz.checkPrivateMethod (arguments);
 if ($private != null) {

@@ -4,13 +4,13 @@ c$ = Clazz.decorateAsClass (function () {
 this.transformManager = null;
 Clazz.instantialize (this, arguments);
 }, J.thread, "VibrationThread", J.thread.JmolThread);
-Clazz.overrideMethod (c$, "setManager", 
+Clazz.overrideMethod (c$, "setManager",
 function (manager, vwr, options) {
 this.transformManager = manager;
 this.setViewer (vwr, "VibrationThread");
 return 0;
 }, "~O,JV.Viewer,~O");
-Clazz.overrideMethod (c$, "run1", 
+Clazz.overrideMethod (c$, "run1",
 function (mode) {
 var elapsed;
 while (true) switch (mode) {

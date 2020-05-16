@@ -7,16 +7,16 @@ this.resMap = null;
 this.atomMap = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.cif, "MMCifValidationParser");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (reader) {
 this.reader = reader;
 this.asResidues = reader.checkFilterKey ("ASRES");
 return this;
 }, "J.adapter.smarter.AtomSetCollectionReader");
-Clazz.defineMethod (c$, "finalizeValidations", 
+Clazz.defineMethod (c$, "finalizeValidations",
 function (vwr, modelMap) {
 var map = this.reader.dssr;
 if (map != null) return vwr.getAnnotationParser (true).fixDSSRJSONMap (map);
@@ -27,7 +27,7 @@ var note = (retProps == null || retProps.size () == 0 ? null : this.setPropertie
 svMap.mapPut ("_note", JS.SV.newS (note));
 return note;
 }, "JV.Viewer,java.util.Map");
-Clazz.defineMethod (c$, "finalizeRna3d", 
+Clazz.defineMethod (c$, "finalizeRna3d",
 function (modelMap) {
 this.mapAtomResIDs (modelMap);
 var svMap = this.getRna3dMap (this.reader.addedData);
@@ -39,7 +39,7 @@ info.put ("rna3d", svMap);
 }
 return note;
 }, "java.util.Map");
-Clazz.defineMethod (c$, "getRna3dMap", 
+Clazz.defineMethod (c$, "getRna3dMap",
  function (addedData) {
 var map =  new java.util.Hashtable ();
 var next =  Clazz.newIntArray (1, 0);
@@ -70,7 +70,7 @@ list.addLast (m);
 }
 return JS.SV.getVariableMap (map);
 }, "~S");
-Clazz.defineMethod (c$, "mapAtomResIDs", 
+Clazz.defineMethod (c$, "mapAtomResIDs",
  function (modelMap) {
 var atoms = this.reader.asc.atoms;
 this.resMap =  new java.util.Hashtable ();
@@ -94,7 +94,7 @@ i0 += n;
 n = this.reader.asc.getAtomSetAtomCount (model++);
 }}
 }, "java.util.Map");
-Clazz.defineMethod (c$, "getModelAtomIndices", 
+Clazz.defineMethod (c$, "getModelAtomIndices",
  function () {
 var indices =  Clazz.newIntArray (this.reader.asc.atomSetCount + 1, 0);
 for (var m = indices.length - 1; --m >= 0; ) indices[m] = this.reader.baseAtomIndex + this.reader.asc.getAtomSetAtomIndex (m);
@@ -102,7 +102,7 @@ for (var m = indices.length - 1; --m >= 0; ) indices[m] = this.reader.baseAtomIn
 indices[indices.length - 1] = this.reader.asc.ac;
 return indices;
 });
-Clazz.defineMethod (c$, "setProperties", 
+Clazz.defineMethod (c$, "setProperties",
  function (propList) {
 var note = "Validations loaded:";
 for (var i = 0, n = propList.size (); i < n; ) {

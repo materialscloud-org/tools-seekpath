@@ -93,7 +93,7 @@
       d="
       #foreach ($coord in $xyCoords) M $coord.getXString() 0 L $coord.getXString() $coord.getYString()
       #end
-      #foreach ($item in $xScaleList) 
+      #foreach ($item in $xScaleList)
       M $item.number -0.8 v 0.3
       #end
       "/>

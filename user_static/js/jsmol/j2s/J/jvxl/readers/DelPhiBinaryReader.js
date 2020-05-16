@@ -5,11 +5,11 @@ this.data = null;
 this.pt = 0;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.readers, "DelPhiBinaryReader", J.jvxl.readers.VolumeFileReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.DelPhiBinaryReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 var fileName = (sg.getReaderData ())[0];
 this.init2VFR (sg, br);
@@ -20,7 +20,7 @@ if (this.params.thePlane == null) this.params.insideOut = !this.params.insideOut
 this.allowSigma = false;
 this.isAngstroms = true;
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "readParameters", 
+Clazz.overrideMethod (c$, "readParameters",
 function () {
 var uplbl = this.readString ();
 JU.Logger.info (uplbl);
@@ -50,7 +50,7 @@ this.volumetricOrigin.z -= dx;
 this.jvxlFileHeaderBuffer =  new JU.SB ();
 this.jvxlFileHeaderBuffer.append ("DelPhi DATA ").append (nxttoplbl.$replace ('\n', ' ').trim ()).append ("\n\n");
 });
-Clazz.defineMethod (c$, "readString", 
+Clazz.defineMethod (c$, "readString",
  function () {
 var n = this.binarydoc.readInt ();
 var buf =  Clazz.newByteArray (n, 0);
@@ -58,7 +58,7 @@ this.binarydoc.readByteArray (buf, 0, n);
 this.binarydoc.readInt ();
 return  String.instantialize (buf);
 });
-Clazz.defineMethod (c$, "readFloatArray", 
+Clazz.defineMethod (c$, "readFloatArray",
  function () {
 var n = this.binarydoc.readInt () >> 2;
 var a =  Clazz.newFloatArray (n, 0);
@@ -67,12 +67,12 @@ for (var i = 0; i < n; i++) a[i] = this.binarydoc.readFloat ();
 this.binarydoc.readInt ();
 return a;
 });
-Clazz.overrideMethod (c$, "nextVoxel", 
+Clazz.overrideMethod (c$, "nextVoxel",
 function () {
 this.nBytes += 4;
 return this.data[this.pt++];
 });
-Clazz.overrideMethod (c$, "skipData", 
+Clazz.overrideMethod (c$, "skipData",
 function (nPoints) {
 this.pt += nPoints;
 }, "~N");

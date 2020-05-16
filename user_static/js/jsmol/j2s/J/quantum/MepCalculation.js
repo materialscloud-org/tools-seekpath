@@ -10,18 +10,18 @@ this.htAtomicPotentials = null;
 this.resourceName = null;
 Clazz.instantialize (this, arguments);
 }, J.quantum, "MepCalculation", J.quantum.QuantumCalculation);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.quantum.MepCalculation, []);
 this.rangeBohrOrAngstroms = 8;
 this.distanceMode = 0;
 this.unitFactor = 1;
 });
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (vwr) {
 this.vwr = vwr;
 }, "JV.Viewer");
-Clazz.defineMethod (c$, "assignPotentials", 
+Clazz.defineMethod (c$, "assignPotentials",
 function (atoms, potentials, bsAromatic, bsCarbonyl, bsIgnore, data) {
 this.getAtomicPotentials (data, null);
 for (var i = 0; i < atoms.length; i++) {
@@ -35,14 +35,14 @@ if (Float.isNaN (f)) f = 0;
 potentials[i] = f;
 }
 }, "~A,~A,JU.BS,JU.BS,JU.BS,~S");
-Clazz.defineMethod (c$, "setup", 
+Clazz.defineMethod (c$, "setup",
 function (calcType, potentials, atomCoordAngstroms, bsSelected) {
 if (calcType >= 0) this.distanceMode = calcType;
 this.potentials = potentials;
 this.atomCoordAngstroms = atomCoordAngstroms;
 this.bsSelected = bsSelected;
 }, "~N,~A,~A,JU.BS");
-Clazz.defineMethod (c$, "calculate", 
+Clazz.defineMethod (c$, "calculate",
 function (volumeData, bsSelected, xyz, atoms, potentials, calcType) {
 this.setup (calcType, potentials, atoms, bsSelected);
 this.voxelData = volumeData.getVoxelData ();
@@ -52,7 +52,7 @@ this.setupCoordinates (volumeData.getOriginFloat (), volumeData.getVolumetricVec
 this.setXYZBohr (this.points);
 this.process ();
 }, "J.jvxl.data.VolumeData,JU.BS,~A,~A,~A,~N");
-Clazz.defineMethod (c$, "getValueAtPoint", 
+Clazz.defineMethod (c$, "getValueAtPoint",
 function (pt) {
 var value = 0;
 for (var i = this.bsSelected.nextSetBit (0); i >= 0; i = this.bsSelected.nextSetBit (i + 1)) {
@@ -62,7 +62,7 @@ value += this.valueFor (x, d2, this.distanceMode);
 }
 return value;
 }, "JU.P3");
-Clazz.overrideMethod (c$, "process", 
+Clazz.overrideMethod (c$, "process",
 function () {
 for (var atomIndex = this.qmAtoms.length; --atomIndex >= 0; ) {
 if ((this.thisAtom = this.qmAtoms[atomIndex]) == null) continue;
@@ -80,7 +80,7 @@ this.voxelData[ix][iy][iz] += this.valueFor (x0, dXY + this.Z2[iz], this.distanc
 }
 }
 });
-Clazz.defineMethod (c$, "valueFor", 
+Clazz.defineMethod (c$, "valueFor",
 function (x0, d2, distanceMode) {
 switch (distanceMode) {
 case 0:
@@ -94,7 +94,7 @@ return x0 * Math.exp (-Math.sqrt (d2));
 }
 return x0;
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "getTabulatedPotential", 
+Clazz.defineMethod (c$, "getTabulatedPotential",
 function (atom) {
 var name = atom.getAtomType ();
 var g1 = atom.getGroup1 ('\0');
@@ -107,7 +107,7 @@ var o = this.htAtomicPotentials.get (key);
 if (o == null && type.length > 0) o = this.htAtomicPotentials.get ("_" + type.charAt (0) + name);
 return (Clazz.instanceOf (o, Float) ? (o).floatValue () : NaN);
 }, "JM.Atom");
-Clazz.defineMethod (c$, "getAtomicPotentials", 
+Clazz.defineMethod (c$, "getAtomicPotentials",
 function (data, resourceName) {
 var br = null;
 this.htAtomicPotentials =  new java.util.Hashtable ();
@@ -138,7 +138,7 @@ throw e;
 }
 }
 }, "~S,~S");
-Clazz.overrideMethod (c$, "createCube", 
+Clazz.overrideMethod (c$, "createCube",
 function () {
 });
 Clazz.defineStatics (c$,

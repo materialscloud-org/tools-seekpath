@@ -21,7 +21,7 @@ this.haveCoeffMap = false;
 this.iMo0 = 1;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.quantum, "MOReader", J.adapter.readers.quantum.BasisFunctionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.line = "\nNBOs";
 this.getNBOs = (this.filter != null && this.filterMO ());
@@ -29,14 +29,14 @@ this.line = "\nNBOCHARGES";
 this.getNBOCharges = (this.filter != null && this.filterMO ());
 this.checkAndRemoveFilterKey ("NBOCHARGES");
 });
-Clazz.defineMethod (c$, "checkAndRemoveFilterKey", 
+Clazz.defineMethod (c$, "checkAndRemoveFilterKey",
 function (key) {
 if (!this.checkFilterKey (key)) return false;
 this.filter = JU.PT.rep (this.filter, key, "");
 if (this.filter.length < 3) this.filter = null;
 return true;
 }, "~S");
-Clazz.defineMethod (c$, "checkNboLine", 
+Clazz.defineMethod (c$, "checkNboLine",
 function () {
 if (this.getNBOs) {
 if (this.line.indexOf ("(Occupancy)   Bond orbital/ Coefficients/ Hybrids") >= 0) {
@@ -53,7 +53,7 @@ this.getNboCharges ();
 return true;
 }return true;
 });
-Clazz.defineMethod (c$, "getNboCharges", 
+Clazz.defineMethod (c$, "getNboCharges",
  function () {
 if (this.haveNboCharges) return;
 this.discardLinesUntilContains ("----");
@@ -75,7 +75,7 @@ if (this.debugging) JU.Logger.debug ("Atom " + i + " using NBOcharge: " + charge
 }
 JU.Logger.info ("Using NBO charges for Model " + this.asc.atomSetCount);
 });
-Clazz.defineMethod (c$, "getNboTypes", 
+Clazz.defineMethod (c$, "getNboTypes",
 function () {
 this.moTypes =  new JU.Lst ();
 this.iMo0 = (this.orbitals == null ? 0 : this.orbitals.size ()) + 1;
@@ -91,7 +91,7 @@ while (this.rd () != null && this.line.startsWith ("       ")) {
 }
 JU.Logger.info (n + " natural bond AO basis functions found");
 });
-Clazz.defineMethod (c$, "readMolecularOrbitals", 
+Clazz.defineMethod (c$, "readMolecularOrbitals",
 function (headerType) {
 if (this.ignoreMOs) {
 this.rd ();
@@ -213,7 +213,7 @@ this.setMOData (!this.alphaBeta.equals ("alpha"));
 this.haveCoeffMap = false;
 this.dfCoefMaps = null;
 }, "~N");
-Clazz.defineMethod (c$, "addCoef", 
+Clazz.defineMethod (c$, "addCoef",
 function (mo, coefs, type, energy, occ, moCount) {
 mo.put ("coefficients", coefs);
 if (this.moTypes != null) {
@@ -226,7 +226,7 @@ if (!Float.isNaN (energy)) mo.put ("energy", Float.$valueOf (energy));
 if (!Float.isNaN (occ)) mo.put ("occupancy", Float.$valueOf (occ));
 this.setMO (mo);
 }, "java.util.Map,~A,~S,~N,~N,~N");
-Clazz.defineMethod (c$, "getMOHeader", 
+Clazz.defineMethod (c$, "getMOHeader",
 function (headerType, tokens, mos, nThisLine) {
 this.rd ();
 switch (headerType) {
@@ -259,7 +259,7 @@ tokens = this.getTokens ();
 for (var i = 0; i < nThisLine; i++) mos[i].put ("symmetry", tokens[i]);
 
 }}, "~N,~A,~A,~N");
-Clazz.defineMethod (c$, "addMOData", 
+Clazz.defineMethod (c$, "addMOData",
 function (nColumns, data, mos) {
 for (var i = 0; i < nColumns; i++) {
 var coefs =  Clazz.newFloatArray (data[i].size (), 0);
@@ -269,7 +269,7 @@ mos[i].put ("coefficients", coefs);
 this.setMO (mos[i]);
 }
 }, "~N,~A,~A");
-Clazz.defineMethod (c$, "setMOData", 
+Clazz.defineMethod (c$, "setMOData",
 function (clearOrbitals) {
 if (this.shells != null && this.gaussians != null && (this.allowNoOrbitals || this.orbitals.size () != 0)) {
 this.moData.put ("calculationType", this.calculationType);
@@ -281,7 +281,7 @@ this.finalizeMOData (this.lastMoData = this.moData);
 }if (clearOrbitals) {
 this.clearOrbitals ();
 }}, "~B");
-Clazz.defineMethod (c$, "readSecondOrderData", 
+Clazz.defineMethod (c$, "readSecondOrderData",
  function () {
 this.readLines (5);
 if (this.lastMoData == null || this.moTypes == null) return;

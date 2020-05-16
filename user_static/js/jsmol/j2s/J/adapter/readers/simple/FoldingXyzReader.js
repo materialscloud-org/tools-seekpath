@@ -1,16 +1,16 @@
 Clazz.declarePackage ("J.adapter.readers.simple");
 Clazz.load (["J.adapter.smarter.AtomSetCollectionReader"], "J.adapter.readers.simple.FoldingXyzReader", ["java.util.Hashtable", "JU.PT", "J.adapter.smarter.Atom"], function () {
 c$ = Clazz.declareType (J.adapter.readers.simple, "FoldingXyzReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 });
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 if (this.asc.bondCount > 0) this.asc.setNoAutoBond ();
 this.isTrajectory = false;
 this.finalizeReaderASCR ();
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 var next =  Clazz.newIntArray (-1, [0]);
 var token = JU.PT.parseTokenNext (this.line, next);
@@ -25,7 +25,7 @@ this.asc.setAtomSetName (tokens.length == 2 ? "Protein " + tokens[1] : this.line
 this.continuing = !addAtoms || !this.isLastModel (this.modelNumber);
 return readLine;
 });
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
 function (ac, addAtoms) {
 var htBondCounts =  new java.util.Hashtable ();
 var bonds =  new Array (ac);
@@ -72,7 +72,7 @@ this.makeBonds (bonds, !checking && haveAtomTypes);
 this.applySymmetryAndSetTrajectory ();
 }return readNextLine;
 }, "~N,~B");
-Clazz.defineMethod (c$, "makeBonds", 
+Clazz.defineMethod (c$, "makeBonds",
  function (bonds, haveAtomTypes) {
 for (var i = bonds.length; --i >= 0; ) {
 var b = bonds[i];
@@ -86,7 +86,7 @@ if (a1.index < a2.index) this.asc.addNewBondWithOrderA (a1, a2, 1);
 }
 }
 }, "~A,~B");
-Clazz.defineMethod (c$, "getElement", 
+Clazz.defineMethod (c$, "getElement",
  function (name) {
 var n = name.length;
 switch (n) {

@@ -43,7 +43,7 @@ var startWebGLCheck = function() {
 
         // I moved an equivalent call in the <body> to have the div disappear
         // ASAP
-        
+
         // addClass($$("no-javascript"), "webgl-hidden");
         canvas = document.getElementById("webgl-logo");
         var ratio = (window.devicePixelRatio ? window.devicePixelRatio : 1);

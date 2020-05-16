@@ -12,14 +12,14 @@ this.vTemp =  new JU.V3 ();
 this.align1 =  new JU.V3 ();
 this.align2 =  new JU.V3 ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "setRef", 
+Clazz.defineMethod (c$, "setRef",
 function (vRef) {
 this.vRef = vRef;
 }, "JU.V3");
-Clazz.overrideMethod (c$, "compare", 
+Clazz.overrideMethod (c$, "compare",
 function (a, b) {
 var torA = (a[1]).floatValue ();
 var torB = (b[1]).floatValue ();
@@ -29,7 +29,7 @@ this.vTemp.sub2 (b[2], a[2]);
 torB = this.vRef.dot (this.vTemp);
 }return (torA < torB ? 1 : torA > torB ? -1 : 0);
 }, "~A,~A");
-Clazz.defineMethod (c$, "isAligned", 
+Clazz.defineMethod (c$, "isAligned",
 function (pt1, pt2, pt3) {
 this.align1.sub2 (pt1, pt2);
 this.align2.sub2 (pt2, pt3);

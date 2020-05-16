@@ -31,11 +31,11 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.countPlusIndices =  Clazz.newIntArray (5, 0);
 });
-Clazz.defineMethod (c$, "isTainted", 
+Clazz.defineMethod (c$, "isTainted",
 function () {
 return (this.tainted && !(this.tainted = false));
 });
-Clazz.defineMethod (c$, "setM", 
+Clazz.defineMethod (c$, "setM",
 function (modelSet, m, value, colix, strFormat, index) {
 this.ms = modelSet;
 this.index = index;
@@ -59,7 +59,7 @@ this.isTrajectory = modelSet.isTrajectoryMeasurement (this.countPlusIndices);
 this.formatMeasurement (null);
 return this;
 }, "JM.ModelSet,JM.Measurement,~N,~N,~S,~N");
-Clazz.defineMethod (c$, "setPoints", 
+Clazz.defineMethod (c$, "setPoints",
 function (modelSet, indices, points, tickInfo) {
 this.ms = modelSet;
 this.countPlusIndices = indices;
@@ -69,32 +69,32 @@ this.vwr = modelSet.vwr;
 this.tickInfo = tickInfo;
 return this;
 }, "JM.ModelSet,~A,~A,JM.TickInfo");
-Clazz.defineMethod (c$, "setCount", 
+Clazz.defineMethod (c$, "setCount",
 function (count) {
 this.setCountM (count);
 }, "~N");
-Clazz.defineMethod (c$, "setCountM", 
+Clazz.defineMethod (c$, "setCountM",
 function (count) {
 this.count = this.countPlusIndices[0] = count;
 }, "~N");
-Clazz.defineMethod (c$, "getAtomIndex", 
+Clazz.defineMethod (c$, "getAtomIndex",
 function (n) {
 return (n > 0 && n <= this.count ? this.countPlusIndices[n] : -1);
 }, "~N");
-Clazz.defineMethod (c$, "getAtom", 
+Clazz.defineMethod (c$, "getAtom",
 function (n) {
 var pt = this.countPlusIndices[n];
 return (pt < -1 ? this.pts[-2 - pt] : this.ms.at[pt]);
 }, "~N");
-Clazz.defineMethod (c$, "getLastIndex", 
+Clazz.defineMethod (c$, "getLastIndex",
 function () {
 return (this.count > 0 ? this.countPlusIndices[this.count] : -1);
 });
-Clazz.defineMethod (c$, "getString", 
+Clazz.defineMethod (c$, "getString",
 function () {
 return this.strMeasurement;
 });
-Clazz.defineMethod (c$, "getStringUsing", 
+Clazz.defineMethod (c$, "getStringUsing",
 function (vwr, strFormat, units) {
 this.vwr = vwr;
 this.value = this.getMeasurement (null);
@@ -102,17 +102,17 @@ this.formatMeasurementAs (strFormat, units, true);
 if (strFormat == null) return this.getInfoAsString (units);
 return this.strMeasurement;
 }, "JV.Viewer,~S,~S");
-Clazz.defineMethod (c$, "getStringDetail", 
+Clazz.defineMethod (c$, "getStringDetail",
 function () {
 return (this.count == 2 ? "Distance" : this.count == 3 ? "Angle" : "Torsion") + this.getMeasurementScript (" - ", false) + " : " + this.value;
 });
-Clazz.defineMethod (c$, "refresh", 
+Clazz.defineMethod (c$, "refresh",
 function (pts) {
 this.value = this.getMeasurement (pts);
 this.isTrajectory = this.ms.isTrajectoryMeasurement (this.countPlusIndices);
 this.formatMeasurement (null);
 }, "~A");
-Clazz.defineMethod (c$, "getMeasurementScript", 
+Clazz.defineMethod (c$, "getMeasurementScript",
 function (sep, withModelIndex) {
 var sb =  new JU.SB ();
 var asBitSet = (sep.equals (" "));
@@ -120,14 +120,14 @@ for (var i = 1; i <= this.count; i++) sb.append (i > 1 ? sep : " ").append (this
 
 return sb.toString ();
 }, "~S,~B");
-Clazz.defineMethod (c$, "formatMeasurementAs", 
+Clazz.defineMethod (c$, "formatMeasurementAs",
 function (strFormat, units, useDefault) {
 if (strFormat != null && strFormat.length == 0) strFormat = null;
 if (!useDefault && strFormat != null && strFormat.indexOf (this.countPlusIndices[0] + ":") != 0) return;
 this.strFormat = strFormat;
 this.formatMeasurement (units);
 }, "~S,~S,~B");
-Clazz.defineMethod (c$, "formatMeasurement", 
+Clazz.defineMethod (c$, "formatMeasurement",
 function (units) {
 this.tainted = true;
 switch (Float.isNaN (this.value) ? 0 : this.count) {
@@ -143,12 +143,12 @@ this.strMeasurement = this.formatAngle (this.value);
 return;
 }
 }, "~S");
-Clazz.defineMethod (c$, "reformatDistanceIfSelected", 
+Clazz.defineMethod (c$, "reformatDistanceIfSelected",
 function () {
 if (this.count != 2) return;
 if (this.vwr.slm.isSelected (this.countPlusIndices[1]) && this.vwr.slm.isSelected (this.countPlusIndices[2])) this.formatMeasurement (null);
 });
-Clazz.defineMethod (c$, "formatDistance", 
+Clazz.defineMethod (c$, "formatDistance",
  function (units) {
 var label = this.getLabelString ();
 if (label == null) return "";
@@ -166,7 +166,7 @@ if (label.length == 0) label = "%VALUE";
 }var f = this.fixValue (units, (label.indexOf ("%V") >= 0));
 return this.formatString (f, units, label);
 }, "~S");
-c$.fixUnits = Clazz.defineMethod (c$, "fixUnits", 
+c$.fixUnits = Clazz.defineMethod (c$, "fixUnits",
  function (units) {
 if (units.equals ("nanometers")) return "nm";
  else if (units.equals ("picometers")) return "pm";
@@ -174,7 +174,7 @@ if (units.equals ("nanometers")) return "nm";
  else if (units.equals ("vanderwaals") || units.equals ("vdw")) return "%";
 return units;
 }, "~S");
-Clazz.defineMethod (c$, "fixValue", 
+Clazz.defineMethod (c$, "fixValue",
 function (units, andRound) {
 if (this.count != 2) return this.value;
 var dist = this.value;
@@ -197,17 +197,17 @@ if (units.equals ("au")) return (andRound ? Math.round (dist / 0.5291772 * 1000)
 if (units.endsWith ("khz")) return (andRound ? Math.round (dist / 10) / 100 : dist / 1000);
 }return (andRound ? Math.round (dist * 100) / 100 : dist);
 }, "~S,~B");
-c$.nmrType = Clazz.defineMethod (c$, "nmrType", 
+c$.nmrType = Clazz.defineMethod (c$, "nmrType",
 function (units) {
 return (units.indexOf ("hz") < 0 ? 0 : units.startsWith ("dc_") || units.equals ("khz") ? 1 : 2);
 }, "~S");
-Clazz.defineMethod (c$, "formatAngle", 
+Clazz.defineMethod (c$, "formatAngle",
  function (angle) {
 var label = this.getLabelString ();
 if (label.indexOf ("%V") >= 0) angle = Math.round (angle * 10) / 10;
 return this.formatString (angle, "\u00B0", label);
 }, "~N");
-Clazz.defineMethod (c$, "getLabelString", 
+Clazz.defineMethod (c$, "getLabelString",
  function () {
 var s = this.countPlusIndices[0] + ":";
 var label = null;
@@ -221,11 +221,11 @@ label = this.vwr.getDefaultMeasurementLabel (this.countPlusIndices[0]);
 if (this.strFormat == null) this.strFormat = s + label;
 return label;
 });
-Clazz.defineMethod (c$, "formatString", 
+Clazz.defineMethod (c$, "formatString",
  function (value, units, label) {
 return JM.LabelToken.formatLabelMeasure (this.vwr, this, label, value, units);
 }, "~N,~S,~S");
-Clazz.defineMethod (c$, "sameAsPoints", 
+Clazz.defineMethod (c$, "sameAsPoints",
 function (indices, points) {
 if (this.count != indices[0]) return false;
 var isSame = true;
@@ -246,17 +246,17 @@ case 4:
 return this.sameAsIJ (indices, points, 1, 4) && this.sameAsIJ (indices, points, 2, 3) && this.sameAsIJ (indices, points, 3, 2) && this.sameAsIJ (indices, points, 4, 1);
 }
 }, "~A,~A");
-Clazz.defineMethod (c$, "sameAsIJ", 
+Clazz.defineMethod (c$, "sameAsIJ",
  function (atoms, points, i, j) {
 var ipt = this.countPlusIndices[i];
 var jpt = atoms[j];
 return (ipt >= 0 || jpt >= 0 ? ipt == jpt : this.pts[-2 - ipt].distance (points[-2 - jpt]) < 0.01);
 }, "~A,~A,~N,~N");
-Clazz.defineMethod (c$, "sameAs", 
+Clazz.defineMethod (c$, "sameAs",
 function (i, j) {
 return this.sameAsIJ (this.countPlusIndices, this.pts, i, j);
 }, "~N,~N");
-Clazz.defineMethod (c$, "getMeasurement", 
+Clazz.defineMethod (c$, "getMeasurement",
 function (pts) {
 if (this.countPlusIndices == null) return NaN;
 if (this.count < 2) return NaN;
@@ -280,23 +280,23 @@ default:
 return NaN;
 }
 }, "~A");
-Clazz.defineMethod (c$, "getLabel", 
+Clazz.defineMethod (c$, "getLabel",
 function (i, asBitSet, withModelIndex) {
 var atomIndex = this.countPlusIndices[i];
 return (atomIndex < 0 ? (withModelIndex ? "modelIndex " + this.getAtom (i).mi + " " : "") + JU.Escape.eP (this.getAtom (i)) : asBitSet ? "({" + atomIndex + "})" : this.vwr.getAtomInfo (atomIndex));
 }, "~N,~B,~B");
-Clazz.defineMethod (c$, "setModelIndex", 
+Clazz.defineMethod (c$, "setModelIndex",
 function (modelIndex) {
 if (this.pts == null) return;
 for (var i = 0; i < this.count; i++) {
 if (this.pts[i] != null) this.pts[i].mi = modelIndex;
 }
 }, "~N");
-Clazz.defineMethod (c$, "isValid", 
+Clazz.defineMethod (c$, "isValid",
 function () {
 return !(this.sameAs (1, 2) || this.count > 2 && this.sameAs (1, 3) || this.count == 4 && this.sameAs (2, 4));
 });
-c$.find = Clazz.defineMethod (c$, "find", 
+c$.find = Clazz.defineMethod (c$, "find",
 function (measurements, m) {
 var indices = m.countPlusIndices;
 var points = m.pts;
@@ -304,7 +304,7 @@ for (var i = measurements.size (); --i >= 0; ) if (measurements.get (i).sameAsPo
 
 return -1;
 }, "JU.Lst,JM.Measurement");
-Clazz.defineMethod (c$, "isConnected", 
+Clazz.defineMethod (c$, "isConnected",
 function (atoms, count) {
 var atomIndexLast = -1;
 for (var i = 1; i <= count; i++) {
@@ -315,7 +315,7 @@ atomIndexLast = atomIndex;
 }
 return true;
 }, "~A,~N");
-Clazz.defineMethod (c$, "getInfoAsString", 
+Clazz.defineMethod (c$, "getInfoAsString",
 function (units) {
 var f = this.fixValue (units, true);
 var sb =  new JU.SB ();
@@ -327,7 +327,7 @@ for (var i = 1; i <= this.count; i++) sb.append (" \t").append (this.getLabel (i
 if (this.thisID != null) sb.append (" \t").append (this.thisID);
 return sb.toString ();
 }, "~S");
-Clazz.defineMethod (c$, "isInRange", 
+Clazz.defineMethod (c$, "isInRange",
 function (radiusData, value) {
 if (radiusData.factorType === J.atomdata.RadiusData.EnumType.FACTOR) {
 var atom1 = this.getAtom (1);
@@ -336,7 +336,7 @@ var d = (atom1.getVanderwaalsRadiusFloat (this.vwr, radiusData.vdwType) + atom2.
 return (value <= d);
 }return (radiusData.values[0] == 3.4028235E38 || value >= radiusData.values[0] && value <= radiusData.values[1]);
 }, "J.atomdata.RadiusData,~N");
-Clazz.defineMethod (c$, "isIntramolecular", 
+Clazz.defineMethod (c$, "isIntramolecular",
 function (atoms, count) {
 var molecule = -1;
 for (var i = 1; i <= count; i++) {
@@ -348,7 +348,7 @@ if (molecule < 0) molecule = m;
 }
 return true;
 }, "~A,~N");
-Clazz.defineMethod (c$, "isMin", 
+Clazz.defineMethod (c$, "isMin",
 function (htMin) {
 var a1 = this.getAtom (1);
 var a2 = this.getAtom (2);

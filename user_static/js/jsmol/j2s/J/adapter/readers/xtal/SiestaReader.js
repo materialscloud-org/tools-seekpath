@@ -8,11 +8,11 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.unitCellData =  Clazz.newFloatArray (9, 0);
 });
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.doApplySymmetry = true;
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.contains ("%block LatticeVectors")) {
 if (this.doGetModel (++this.modelNumber, null)) this.readCellThenAtomsCartesian ();
@@ -22,14 +22,14 @@ if (this.doGetModel (++this.modelNumber, null)) this.readAtomsCartGeomThenCell (
 return true;
 }return true;
 });
-Clazz.defineMethod (c$, "setCell", 
+Clazz.defineMethod (c$, "setCell",
  function () {
 this.fillFloatArray (null, 0, this.unitCellData);
 this.addExplicitLatticeVector (0, this.unitCellData, 0);
 this.addExplicitLatticeVector (1, this.unitCellData, 3);
 this.addExplicitLatticeVector (2, this.unitCellData, 6);
 });
-Clazz.defineMethod (c$, "readCellThenAtomsCartesian", 
+Clazz.defineMethod (c$, "readCellThenAtomsCartesian",
  function () {
 this.newAtomSet ();
 this.setCell ();
@@ -42,14 +42,14 @@ this.addAtomXYZSymName (tokens, 0, null, tokens[4]);
 }
 this.noAtoms = this.asc.ac;
 });
-Clazz.defineMethod (c$, "newAtomSet", 
+Clazz.defineMethod (c$, "newAtomSet",
  function () {
 this.applySymmetryAndSetTrajectory ();
 this.asc.newAtomSet ();
 this.setSpaceGroupName ("P1");
 this.setFractionalCoordinates (false);
 });
-Clazz.defineMethod (c$, "readAtomsCartGeomThenCell", 
+Clazz.defineMethod (c$, "readAtomsCartGeomThenCell",
  function () {
 this.readLines (1);
 this.newAtomSet ();

@@ -7,54 +7,54 @@ this.id = 0;
 this.consumed = false;
 Clazz.instantialize (this, arguments);
 }, java.awt.event, "InputEvent");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (source, id, when, modifiers) {
 this.source = source;
 this.id = id;
 this.when = when;
 this.modifiers = modifiers;
 }, "~O,~N,~N,~N");
-Clazz.defineMethod (c$, "isShiftDown", 
+Clazz.defineMethod (c$, "isShiftDown",
 function () {
 return (this.modifiers & 1) != 0;
 });
-Clazz.defineMethod (c$, "ibsControlDown", 
+Clazz.defineMethod (c$, "ibsControlDown",
 function () {
 return (this.modifiers & 2) != 0;
 });
-Clazz.defineMethod (c$, "isMetaDown", 
+Clazz.defineMethod (c$, "isMetaDown",
 function () {
 return (this.modifiers & 4) != 0;
 });
-Clazz.defineMethod (c$, "isAltDown", 
+Clazz.defineMethod (c$, "isAltDown",
 function () {
 return (this.modifiers & 8) != 0;
 });
-Clazz.defineMethod (c$, "isAltGraphDown", 
+Clazz.defineMethod (c$, "isAltGraphDown",
 function () {
 return (this.modifiers & 32) != 0;
 });
-Clazz.defineMethod (c$, "getWhen", 
+Clazz.defineMethod (c$, "getWhen",
 function () {
 return this.when;
 });
-Clazz.defineMethod (c$, "getModifiers", 
+Clazz.defineMethod (c$, "getModifiers",
 function () {
 return this.modifiers & (-16321);
 });
-Clazz.defineMethod (c$, "getModifiersEx", 
+Clazz.defineMethod (c$, "getModifiersEx",
 function () {
 return this.modifiers & -64;
 });
-Clazz.defineMethod (c$, "consume", 
+Clazz.defineMethod (c$, "consume",
 function () {
 this.consumed = true;
 });
-Clazz.defineMethod (c$, "isConsumed", 
+Clazz.defineMethod (c$, "isConsumed",
 function () {
 return this.consumed;
 });
-c$.getModifiersExText = Clazz.defineMethod (c$, "getModifiersExText", 
+c$.getModifiersExText = Clazz.defineMethod (c$, "getModifiersExText",
 function (modifiers) {
 return "[" + modifiers + "]";
 }, "~N");

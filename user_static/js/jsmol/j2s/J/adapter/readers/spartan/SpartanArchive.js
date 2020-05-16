@@ -15,21 +15,21 @@ this.r = null;
 this.line = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.spartan, "SpartanArchive");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (r, bondData, endCheck, smolAtomCount) {
 this.initialize (r, bondData);
 this.modelAtomCount = smolAtomCount;
 this.endCheck = endCheck;
 this.isSMOL = (endCheck != null);
 }, "J.adapter.readers.quantum.BasisFunctionReader,~S,~S,~N");
-Clazz.defineMethod (c$, "initialize", 
+Clazz.defineMethod (c$, "initialize",
  function (r, bondData) {
 this.r = r;
 r.moData.put ("isNormalized", Boolean.TRUE);
 r.moData.put ("energyUnits", "");
 this.bondData = bondData;
 }, "J.adapter.readers.quantum.BasisFunctionReader,~S");
-Clazz.defineMethod (c$, "readArchive", 
+Clazz.defineMethod (c$, "readArchive",
 function (infoLine, haveGeometryLine, ac0, doAddAtoms) {
 this.modelAtomCount = this.setInfo (infoLine);
 this.line = (haveGeometryLine ? "GEOMETRY" : "");
@@ -67,7 +67,7 @@ break;
 if (haveMOData) this.r.finalizeMOData (this.r.moData);
 return this.modelAtomCount;
 }, "~S,~B,~N,~B");
-Clazz.defineMethod (c$, "readEnergy", 
+Clazz.defineMethod (c$, "readEnergy",
  function () {
 var tokens = JU.PT.getTokens (this.readLine ());
 var value = this.parseFloat (tokens[0]);
@@ -75,7 +75,7 @@ this.r.asc.setCurrentModelInfo ("energy", Float.$valueOf (value));
 if (this.isSMOL) (this.r).setEnergy (value);
 this.r.asc.setAtomSetEnergy (tokens[0], value);
 });
-Clazz.defineMethod (c$, "setInfo", 
+Clazz.defineMethod (c$, "setInfo",
  function (info) {
 var tokens = JU.PT.getTokens (info);
 if (JU.Logger.debugging) {
@@ -92,7 +92,7 @@ if (s == null) s = this.r.calculationType;
 this.r.moData.put ("calculationType", this.r.calculationType = s);
 return this.modelAtomCount;
 }, "~S");
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function (ac0, doAddAtoms) {
 for (var i = 0; i < this.modelAtomCount; i++) {
 var tokens = JU.PT.getTokens (this.readLine ());
@@ -103,7 +103,7 @@ this.r.setAtomCoordScaled (atom, tokens, 1, 0.5291772);
 if (doAddAtoms && JU.Logger.debugging) {
 JU.Logger.debug (this.r.asc.ac + " atoms read");
 }}, "~N,~B");
-Clazz.defineMethod (c$, "addBonds", 
+Clazz.defineMethod (c$, "addBonds",
 function (data, ac0) {
 var tokens = JU.PT.getTokens (data);
 for (var i = this.modelAtomCount; i < tokens.length; ) {
@@ -117,7 +117,7 @@ var bondCount = this.r.asc.bondCount;
 if (JU.Logger.debugging) {
 JU.Logger.debug (bondCount + " bonds read");
 }}, "~S,~N");
-Clazz.defineMethod (c$, "readBasis", 
+Clazz.defineMethod (c$, "readBasis",
 function () {
 var shells =  new JU.Lst ();
 var gaussians = JU.AU.newFloat2 (this.gaussianCount);
@@ -227,7 +227,7 @@ if (JU.Logger.debugging) {
 JU.Logger.debug (shells.size () + " slater shells read");
 JU.Logger.debug (gaussians.length + " gaussian primitives read");
 }});
-Clazz.defineMethod (c$, "readMolecularOrbital", 
+Clazz.defineMethod (c$, "readMolecularOrbital",
 function () {
 var tokenPt = 0;
 this.r.orbitals =  new JU.Lst ();
@@ -258,7 +258,7 @@ if (JU.Logger.debugging) {
 JU.Logger.debug (this.r.orbitals.size () + " molecular orbitals read");
 }this.r.moData.put ("mos", this.r.orbitals);
 });
-Clazz.defineMethod (c$, "readProperties", 
+Clazz.defineMethod (c$, "readProperties",
 function () {
 if (JU.Logger.debugging) JU.Logger.debug ("Reading PROPARC properties records...");
 while (this.readLine () != null && !this.line.startsWith ("ENDPROPARC") && !this.line.startsWith ("END Directory Entry ")) {
@@ -268,17 +268,17 @@ if (this.line.startsWith ("PROP")) this.readProperty ();
 }
 this.setVibrationsFromProperties ();
 });
-Clazz.defineMethod (c$, "readDipole", 
+Clazz.defineMethod (c$, "readDipole",
 function () {
 this.setDipole (JU.PT.getTokens (this.readLine ()));
 });
-Clazz.defineMethod (c$, "setDipole", 
+Clazz.defineMethod (c$, "setDipole",
  function (tokens) {
 if (tokens.length != 3) return;
 var dipole = JU.V3.new3 (this.parseFloat (tokens[0]), this.parseFloat (tokens[1]), this.parseFloat (tokens[2]));
 this.r.asc.setCurrentModelInfo ("dipole", dipole);
 }, "~A");
-Clazz.defineMethod (c$, "readProperty", 
+Clazz.defineMethod (c$, "readProperty",
  function () {
 var tokens = JU.PT.getTokens (this.line);
 if (tokens.length == 0) return;
@@ -323,7 +323,7 @@ JU.Logger.debug (" Skipping property line " + this.line);
 }}if (value != null) this.r.asc.setInfo (keyName, value);
 if (vector.size () != 0) this.r.asc.setInfo (keyName, vector);
 });
-Clazz.defineMethod (c$, "readVibFreqs", 
+Clazz.defineMethod (c$, "readVibFreqs",
 function () {
 this.readLine ();
 var label = "";
@@ -378,7 +378,7 @@ break;
 }}}
 this.r.asc.setInfo ("vibration", vibrations);
 });
-Clazz.defineMethod (c$, "setVibrationsFromProperties", 
+Clazz.defineMethod (c$, "setVibrationsFromProperties",
  function () {
 var freq_modes = this.r.asc.atomSetInfo.get ("FREQ_MODES");
 if (freq_modes == null) {
@@ -429,21 +429,21 @@ vibrations.addLast (vib);
 }
 this.r.asc.setInfo ("vibration", vibrations);
 });
-Clazz.defineMethod (c$, "getQuotedString", 
+Clazz.defineMethod (c$, "getQuotedString",
  function (strQuote) {
 var i = this.line.indexOf (strQuote);
 var j = this.line.lastIndexOf (strQuote);
 return (j == i ? "" : this.line.substring (i + 1, j));
 }, "~S");
-Clazz.defineMethod (c$, "parseInt", 
+Clazz.defineMethod (c$, "parseInt",
  function (info) {
 return this.r.parseIntStr (info);
 }, "~S");
-Clazz.defineMethod (c$, "parseFloat", 
+Clazz.defineMethod (c$, "parseFloat",
  function (info) {
 return this.r.parseFloatStr (info);
 }, "~S");
-Clazz.defineMethod (c$, "readLine", 
+Clazz.defineMethod (c$, "readLine",
  function () {
 return (this.line = this.r.rd ());
 });

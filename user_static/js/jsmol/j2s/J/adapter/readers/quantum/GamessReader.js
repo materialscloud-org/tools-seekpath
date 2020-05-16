@@ -6,7 +6,7 @@ this.calcOptions = null;
 this.isTypeSet = false;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.quantum, "GamessReader", J.adapter.readers.quantum.MOReader);
-Clazz.defineMethod (c$, "readEnergy", 
+Clazz.defineMethod (c$, "readEnergy",
 function () {
 var tokens = JU.PT.getTokens (this.line.substring (this.line.indexOf ("ENERGY")));
 if (tokens.length < 3) return;
@@ -14,7 +14,7 @@ var strEnergy = tokens[2];
 var e = this.parseFloatStr (strEnergy);
 if (!Float.isNaN (e)) this.asc.setAtomSetEnergy (strEnergy, e);
 });
-Clazz.defineMethod (c$, "readGaussianBasis", 
+Clazz.defineMethod (c$, "readGaussianBasis",
 function (initiator, terminator) {
 var gdata =  new JU.Lst ();
 this.gaussianCount = 0;
@@ -87,7 +87,7 @@ this.shells.addLast ( Clazz.newIntArray (-1, [i + 1, slater[0], slater[1] + 1, s
 JU.Logger.debug (this.shellCount + " slater shells read");
 JU.Logger.debug (this.gaussianCount + " gaussian primitives read");
 }}, "~S,~S");
-Clazz.defineMethod (c$, "readFrequencies", 
+Clazz.defineMethod (c$, "readFrequencies",
 function () {
 this.discardLinesUntilContains ("FREQUENCY:");
 var haveFreq = false;
@@ -131,7 +131,7 @@ this.fillFrequencyData (iAtom0, ac, ac, ignore, false, 20, 12, null, 0, null);
 this.readLines (13);
 }
 });
-c$.fixBasisLine = Clazz.defineMethod (c$, "fixBasisLine", 
+c$.fixBasisLine = Clazz.defineMethod (c$, "fixBasisLine",
 function (line) {
 var pt;
 var pt1;
@@ -146,7 +146,7 @@ line = line.substring (0, ++pt1) + line.substring (pt + 1);
 }
 return line;
 }, "~S");
-Clazz.defineMethod (c$, "setCalculationType", 
+Clazz.defineMethod (c$, "setCalculationType",
 function () {
 if (this.calcOptions == null || this.isTypeSet) return;
 this.isTypeSet = true;
@@ -219,15 +219,15 @@ this.calculationType += "MP" + perturb;
 if (this.calculationType.length > 0) this.calculationType += " ";
 this.calculationType += SCFtype + " " + Runtype;
 }}});
-Clazz.defineMethod (c$, "readControlInfo", 
+Clazz.defineMethod (c$, "readControlInfo",
 function () {
 this.readCalculationInfo ("contrl_options_");
 });
-Clazz.defineMethod (c$, "readBasisInfo", 
+Clazz.defineMethod (c$, "readBasisInfo",
 function () {
 this.readCalculationInfo ("basis_options_");
 });
-Clazz.defineMethod (c$, "readCalculationInfo", 
+Clazz.defineMethod (c$, "readCalculationInfo",
  function (type) {
 if (this.calcOptions == null) {
 this.calcOptions =  new java.util.Hashtable ();

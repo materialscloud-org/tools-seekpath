@@ -163,7 +163,7 @@ d="
  one could construct one's own JavaScript here to do this differently
 
  standard formula used here is:
- 
+
     int xUnitLabelX = rightPlotArea - 50;
     int xUnitLabelY = bottomPlotArea + 30;
     int yUnitLabelX = leftPlotArea - 80;
@@ -171,15 +171,15 @@ d="
     int tempX = yUnitLabelX;
     yUnitLabelX = -yUnitLabelY;
     yUnitLabelY = tempX;
-    
+
     WHERE
-    
+
     rightPlotArea  = $rightPlotArea
     bottomPlotArea = $bottomPlotArea
     leftPlotArea   = $leftPlotArea
     topPlotArea    = $topPlotArea
-    
- 
+
+
  -->
 <text id="xUnit" x='$xUnitLabelX' y='$xUnitLabelY' style="stroke:$unitsColor;">$xUnits</text>
 <text id="yUnit" transform='rotate(-90)' x='$yUnitLabelX' y='$yUnitLabelY' style="stroke:$unitsColor;">$yUnits</text>
@@ -203,7 +203,7 @@ d="
     M
     #foreach ($coord in $xyCoords)
       $coord.getXString() $coord.getYString()
-    #end    
+    #end
     "/>
   #end
 #else

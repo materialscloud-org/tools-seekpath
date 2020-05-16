@@ -23,7 +23,7 @@ Clazz.prepareFields (c$, function () {
 this.atomStartEnd =  Clazz.newIntArray (2, 0);
 this.modelStartEnd =  Clazz.newIntArray (-1, [-1, -1]);
 });
-c$.getHelixType = Clazz.defineMethod (c$, "getHelixType", 
+c$.getHelixType = Clazz.defineMethod (c$, "getHelixType",
 function (type) {
 switch (type) {
 case 1:
@@ -35,7 +35,7 @@ return J.c.STR.HELIX310;
 }
 return J.c.STR.HELIX;
 }, "~N");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (modelIndex, structureType, substructureType, structureID, serialID, strandCount, bsAll) {
 if (bsAll != null) {
 this.modelStartEnd =  Clazz.newIntArray (-1, [0, modelIndex]);
@@ -49,7 +49,7 @@ this.structureID = structureID;
 this.strandCount = strandCount;
 this.serialID = serialID;
 }, "~N,J.c.STR,J.c.STR,~S,~N,~N,~A");
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (startChainID, startSequenceNumber, startInsertionCode, endChainID, endSequenceNumber, endInsertionCode, istart, iend) {
 this.startChainID = startChainID;
 this.startSequenceNumber = startSequenceNumber;

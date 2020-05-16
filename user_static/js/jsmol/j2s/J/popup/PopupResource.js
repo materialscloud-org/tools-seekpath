@@ -5,23 +5,23 @@ this.structure = null;
 this.words = null;
 Clazz.instantialize (this, arguments);
 }, J.popup, "PopupResource");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (menuStructure, menuText) {
 this.structure =  new java.util.Properties ();
 this.words =  new java.util.Properties ();
 this.buildStructure (menuStructure);
 this.localize (menuStructure != null, menuText);
 }, "~S,java.util.Properties");
-Clazz.defineMethod (c$, "getStructure", 
+Clazz.defineMethod (c$, "getStructure",
 function (key) {
 return this.structure.getProperty (key);
 }, "~S");
-Clazz.defineMethod (c$, "getWord", 
+Clazz.defineMethod (c$, "getWord",
 function (key) {
 var str = this.words.getProperty (key);
 return (str == null ? key : str);
 }, "~S");
-Clazz.defineMethod (c$, "setStructure", 
+Clazz.defineMethod (c$, "setStructure",
 function (slist, gt) {
 var br =  new java.io.BufferedReader ( new java.io.StringReader (slist));
 var line;
@@ -58,7 +58,7 @@ throw e;
 }
 }
 }, "~S,J.api.Translator");
-Clazz.defineMethod (c$, "addItems", 
+Clazz.defineMethod (c$, "addItems",
 function (itemPairs) {
 var previous = "";
 for (var i = 0; i < itemPairs.length; i++) {
@@ -69,7 +69,7 @@ previous = str;
 this.structure.setProperty (pair[0], str);
 }
 }, "~A");
-Clazz.defineMethod (c$, "localize", 
+Clazz.defineMethod (c$, "localize",
  function (haveUserMenu, menuText) {
 var wordContents = this.getWordContents ();
 for (var i = 0; i < wordContents.length; i++) {
@@ -80,11 +80,11 @@ this.words.setProperty (item, word);
 if (menuText != null && item.indexOf ("Text") >= 0) menuText.setProperty (item, word);
 }
 }, "~B,java.util.Properties");
-Clazz.defineMethod (c$, "getStuctureAsText", 
+Clazz.defineMethod (c$, "getStuctureAsText",
 function (title, menuContents, structureContents) {
 return "# " + this.getMenuName () + ".mnu " + title + "\n\n" + "# Part I -- Menu Structure\n" + "# ------------------------\n\n" + this.dumpStructure (menuContents) + "\n\n" + "# Part II -- Key Definitions\n" + "# --------------------------\n\n" + this.dumpStructure (structureContents) + "\n\n" + "# Part III -- Word Translations\n" + "# -----------------------------\n\n" + this.dumpWords ();
 }, "~S,~A,~A");
-Clazz.defineMethod (c$, "dumpWords", 
+Clazz.defineMethod (c$, "dumpWords",
  function () {
 var wordContents = this.getWordContents ();
 var s =  new JU.SB ();
@@ -94,7 +94,7 @@ if (this.structure.getProperty (key) == null) s.append (key).append (" | ").appe
 }
 return s.toString ();
 });
-Clazz.defineMethod (c$, "dumpStructure", 
+Clazz.defineMethod (c$, "dumpStructure",
  function (items) {
 var previous = "";
 var s =  new JU.SB ();

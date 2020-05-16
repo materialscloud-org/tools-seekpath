@@ -49,7 +49,7 @@ function(a,c,d,e){
       a[i]=aux[i-fromIndex];
     }
     return;
-  case 4:  
+  case 4:
     var fromIndex = c;
     var toIndex = d;
     c = e;
@@ -141,7 +141,7 @@ if (arguments.length == 2) {
 		val = fromIndex;
 		fromIndex = 0;
 		toIndex = a.length;
-	}	
+	}
 	java.util.Arrays.rangeCheck(a.length,fromIndex,toIndex);
 	for(var i=fromIndex;i<toIndex;i++)a[i]=val;
 });

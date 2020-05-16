@@ -4,11 +4,11 @@ this.width = 0;
 this.height = 0;
 Clazz.instantialize (this, arguments);
 }, javajs.awt, "Dimension");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (w, h) {
 this.set (w, h);
 }, "~N,~N");
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (w, h) {
 this.width = w;
 this.height = h;

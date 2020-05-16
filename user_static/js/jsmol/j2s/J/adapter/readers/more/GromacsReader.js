@@ -1,13 +1,13 @@
 Clazz.declarePackage ("J.adapter.readers.more");
 Clazz.load (["J.adapter.smarter.AtomSetCollectionReader"], "J.adapter.readers.more.GromacsReader", ["java.lang.Float", "JU.P3", "J.adapter.smarter.Atom", "JU.Logger"], function () {
 c$ = Clazz.declareType (J.adapter.readers.more, "GromacsReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.setIsPDB ();
 this.asc.newAtomSet ();
 this.setModelPDB (true);
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 this.checkCurrentLineForScript ();
 this.asc.setAtomSetName (this.line.trim ());
@@ -16,7 +16,7 @@ this.readUnitCell ();
 this.continuing = false;
 return false;
 });
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function () {
 var modelAtomCount = this.parseIntStr (this.rd ());
 for (var i = 0; i < modelAtomCount; ++i) {
@@ -48,13 +48,13 @@ if (Float.isNaN (vx) || Float.isNaN (vy) || Float.isNaN (vz)) continue;
 this.asc.addVibrationVector (atom.index, vx, vy, vz);
 }
 });
-Clazz.defineMethod (c$, "setAtomName", 
+Clazz.defineMethod (c$, "setAtomName",
  function (atom, gname, aname) {
 atom.atomName = aname;
 if (gname.equals ("SOL") && aname.length == 3 && "OW1;HW2;HW3".indexOf (aname) >= 0) gname = "WAT";
 atom.group3 = gname;
 }, "J.adapter.smarter.Atom,~S,~S");
-Clazz.defineMethod (c$, "deduceElementSymbol", 
+Clazz.defineMethod (c$, "deduceElementSymbol",
 function (group3, atomName) {
 if (atomName.length <= 2 && group3.equals (atomName)) return atomName;
 var ch1 = (atomName.length == 4 ? atomName.charAt (0) : '\0');
@@ -65,7 +65,7 @@ if (J.adapter.smarter.Atom.isValidSym1 (ch2)) return "" + ch2;
 if (J.adapter.smarter.Atom.isValidSym1 (ch1)) return "" + ch1;
 return "Xx";
 }, "~S,~S");
-Clazz.defineMethod (c$, "readUnitCell", 
+Clazz.defineMethod (c$, "readUnitCell",
  function () {
 if (this.rd () == null) return;
 var tokens = this.getTokens ();

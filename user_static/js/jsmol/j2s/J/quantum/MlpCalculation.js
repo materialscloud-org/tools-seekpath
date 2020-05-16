@@ -1,12 +1,12 @@
 Clazz.declarePackage ("J.quantum");
 Clazz.load (["J.quantum.MepCalculation"], "J.quantum.MlpCalculation", ["java.lang.Float", "JU.Logger"], function () {
 c$ = Clazz.declareType (J.quantum, "MlpCalculation", J.quantum.MepCalculation);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.quantum.MlpCalculation);
 this.distanceMode = 3;
 });
-Clazz.overrideMethod (c$, "assignPotentials", 
+Clazz.overrideMethod (c$, "assignPotentials",
 function (atoms, potentials, bsAromatic, bsCarbonyl, bsIgnore, data) {
 this.getAtomicPotentials (data, "atomicLipophilicity.txt");
 for (var i = 0; i < atoms.length; i++) {

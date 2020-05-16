@@ -10,7 +10,7 @@ Clazz.prepareFields (c$, function () {
 this.nList =  new JU.Lst ();
 this.cList =  new JU.Lst ();
 });
-c$.getSize = Clazz.defineMethod (c$, "getSize", 
+c$.getSize = Clazz.defineMethod (c$, "getSize",
 function (i, is2D) {
 switch (i) {
 case -103:
@@ -34,7 +34,7 @@ default:
 return (i >= 0 && i < J.shapecgo.CGOMesh.sizes.length ? (is2D ? J.shapecgo.CGOMesh.sizes2D : J.shapecgo.CGOMesh.sizes)[i] : -1);
 }
 }, "~N,~B");
-c$.getKeyMap = Clazz.defineMethod (c$, "getKeyMap", 
+c$.getKeyMap = Clazz.defineMethod (c$, "getKeyMap",
 function () {
 var keyMap =  new java.util.Hashtable ();
 var tokens = JU.PT.getTokens ("BEGIN:2 END:3 STOP:0 POINT:0 POINTS:0 LINES:1 LINE_LOOP:2 LINE_STRIP:3 TRIANGLES:4 TRIANGLE_STRIP:5 TRIANGLE_FAN:6 LINE:1 VERTEX:4 NORMAL:5 COLOR:6 LINEWIDTH:10 SAUSAGE:14 DIAMETER:-100 SCREEN:-101 UVMAP:-102 PS:-103 NEWPATH:-104 CLOSEPATH:-105 STROKE:-106 SETLINEWIDTH:-107 SCALE:-108 MOVETO:-109 LINETO:-110 SHOWPAGE:-111");
@@ -44,7 +44,7 @@ keyMap.put (tokens[i].substring (0, pt), Integer.$valueOf (Integer.parseInt (tok
 }
 return keyMap;
 });
-c$.getData = Clazz.defineMethod (c$, "getData", 
+c$.getData = Clazz.defineMethod (c$, "getData",
 function (d) {
 if (J.shapecgo.CGOMesh.keyMap == null) J.shapecgo.CGOMesh.keyMap = J.shapecgo.CGOMesh.getKeyMap ();
 var st = d[0];
@@ -66,7 +66,7 @@ i += 5;
 }ai[0] = i;
 return true;
 }, "~A");
-c$.parseEPSData = Clazz.defineMethod (c$, "parseEPSData", 
+c$.parseEPSData = Clazz.defineMethod (c$, "parseEPSData",
  function (eps, data) {
 var pt = eps.indexOf ("%%BoundingBox:");
 if (pt < 0) return false;
@@ -94,7 +94,7 @@ stack.addLast (Float.$valueOf (f));
 }}
 return true;
 }, "~S,JU.Lst");
-c$.addItems = Clazz.defineMethod (c$, "addItems", 
+c$.addItems = Clazz.defineMethod (c$, "addItems",
  function (i, st, slen, data, vwr) {
 var tok;
 var t;
@@ -127,7 +127,7 @@ break;
 }
 return i;
 }, "~N,~A,~N,JU.Lst,JV.Viewer");
-c$.addKey = Clazz.defineMethod (c$, "addKey", 
+c$.addKey = Clazz.defineMethod (c$, "addKey",
  function (data, key) {
 key = key.toUpperCase ();
 var ii = J.shapecgo.CGOMesh.keyMap.get (key.toUpperCase ());
@@ -135,12 +135,12 @@ if (ii == null) return false;
 data.addLast (ii);
 return true;
 }, "JU.Lst,~S");
-Clazz.defineMethod (c$, "clear", 
+Clazz.defineMethod (c$, "clear",
 function (meshType) {
 Clazz.superCall (this, J.shapecgo.CGOMesh, "clear", [meshType]);
 this.useColix = false;
 }, "~S");
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (list) {
 this.width = 200;
 this.diameter = 0;
@@ -203,25 +203,25 @@ throw e;
 }
 }
 }, "JU.Lst");
-Clazz.defineMethod (c$, "addColix", 
+Clazz.defineMethod (c$, "addColix",
  function (i) {
 this.getPoint (i, this.vTemp);
 this.cList.addLast (Short.$valueOf (JU.C.getColix (JU.CU.colorPtToFFRGB (this.vTemp))));
 }, "~N");
-Clazz.defineMethod (c$, "addNormix", 
+Clazz.defineMethod (c$, "addNormix",
  function (i) {
 this.getPoint (i, this.vTemp);
 this.nList.addLast (Short.$valueOf (JU.Normix.get2SidedNormix (this.vTemp, this.bsTemp)));
 }, "~N");
-Clazz.defineMethod (c$, "getPoint", 
+Clazz.defineMethod (c$, "getPoint",
 function (i, pt) {
 pt.set (this.getFloat (i++), this.getFloat (i++), this.getFloat (i));
 }, "~N,JU.T3");
-Clazz.defineMethod (c$, "getInt", 
+Clazz.defineMethod (c$, "getInt",
 function (i) {
 return (this.cmds.get (i)).intValue ();
 }, "~N");
-Clazz.defineMethod (c$, "getFloat", 
+Clazz.defineMethod (c$, "getFloat",
 function (i) {
 return (this.cmds.get (i)).floatValue ();
 }, "~N");

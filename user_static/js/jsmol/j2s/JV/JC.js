@@ -1,7 +1,7 @@
 Clazz.declarePackage ("JV");
 Clazz.load (["java.util.Hashtable", "JU.SB", "$.V3", "JU.Elements"], "JV.JC", ["JU.PT"], function () {
 c$ = Clazz.declareType (JV, "JC");
-c$.getCIPChiralityName = Clazz.defineMethod (c$, "getCIPChiralityName", 
+c$.getCIPChiralityName = Clazz.defineMethod (c$, "getCIPChiralityName",
 function (flags) {
 switch (flags) {
 case 13:
@@ -36,11 +36,11 @@ default:
 return "";
 }
 }, "~N");
-c$.getCIPRuleName = Clazz.defineMethod (c$, "getCIPRuleName", 
+c$.getCIPRuleName = Clazz.defineMethod (c$, "getCIPRuleName",
 function (i) {
 return JV.JC.ruleNames[i];
 }, "~N");
-c$.getCIPChiralityCode = Clazz.defineMethod (c$, "getCIPChiralityCode", 
+c$.getCIPChiralityCode = Clazz.defineMethod (c$, "getCIPChiralityCode",
 function (c) {
 switch (c) {
 case 'Z':
@@ -65,7 +65,7 @@ default:
 return 0;
 }
 }, "~S");
-c$.resolveDataBase = Clazz.defineMethod (c$, "resolveDataBase", 
+c$.resolveDataBase = Clazz.defineMethod (c$, "resolveDataBase",
 function (database, id, format) {
 if (format == null) {
 if ((format = JV.JC.databases.get (database.toLowerCase ())) == null) return null;
@@ -84,7 +84,7 @@ format = format.substring (0, format.indexOf ("%FILE"));
 
 return (format.indexOf ("%FILE") >= 0 ? JU.PT.rep (format, "%FILE", id) : format.indexOf ("%file") >= 0 ? JU.PT.rep (format, "%file", id.toLowerCase ()) : format + id);
 }, "~S,~S,~S");
-c$.fixProtocol = Clazz.defineMethod (c$, "fixProtocol", 
+c$.fixProtocol = Clazz.defineMethod (c$, "fixProtocol",
 function (name) {
 if (name == null) return name;
 if (name.indexOf ("http://www.rcsb.org/pdb/files/") == 0) {
@@ -93,28 +93,28 @@ var id = name.substring (name.lastIndexOf ("/") + 1);
 return JV.JC.resolveDataBase (null, id, JV.JC.databases.get (isLigand ? "ligand" : "pdb"));
 }return (name.indexOf ("http://www.ebi") == 0 || name.indexOf ("http://pubchem") == 0 || name.indexOf ("http://cactus") == 0 || name.indexOf ("http://www.materialsproject") == 0 ? "https://" + name.substring (7) : name);
 }, "~S");
-c$.getMacroList = Clazz.defineMethod (c$, "getMacroList", 
+c$.getMacroList = Clazz.defineMethod (c$, "getMacroList",
 function () {
 var s =  new JU.SB ();
 for (var i = 0; i < JV.JC.macros.length; i += 3) s.append (JV.JC.macros[i]).append ("\t").append (JV.JC.macros[i + 1]).append ("\t").append (JV.JC.macros[i + 1]).append ("\n");
 
 return s.toString ();
 });
-c$.getMacro = Clazz.defineMethod (c$, "getMacro", 
+c$.getMacro = Clazz.defineMethod (c$, "getMacro",
 function (key) {
 for (var i = 0; i < JV.JC.macros.length; i += 3) if (JV.JC.macros[i].equals (key)) return JV.JC.macros[i + 1];
 
 return null;
 }, "~S");
-c$.embedScript = Clazz.defineMethod (c$, "embedScript", 
+c$.embedScript = Clazz.defineMethod (c$, "embedScript",
 function (s) {
 return "\n/**" + "**** Jmol Embedded Script ****" + " \n" + s + "\n**/";
 }, "~S");
-c$.getShapeVisibilityFlag = Clazz.defineMethod (c$, "getShapeVisibilityFlag", 
+c$.getShapeVisibilityFlag = Clazz.defineMethod (c$, "getShapeVisibilityFlag",
 function (shapeID) {
 return 16 << Math.min (shapeID, 26);
 }, "~N");
-c$.shapeTokenIndex = Clazz.defineMethod (c$, "shapeTokenIndex", 
+c$.shapeTokenIndex = Clazz.defineMethod (c$, "shapeTokenIndex",
 function (tok) {
 switch (tok) {
 case 1140850689:
@@ -197,36 +197,36 @@ return 36;
 }
 return -1;
 }, "~N");
-c$.getShapeClassName = Clazz.defineMethod (c$, "getShapeClassName", 
+c$.getShapeClassName = Clazz.defineMethod (c$, "getShapeClassName",
 function (shapeID, isRenderer) {
 if (shapeID < 0) return JV.JC.shapeClassBases[~shapeID];
 return "J." + (isRenderer ? "render" : "shape") + (shapeID >= 9 && shapeID < 16 ? "bio." : shapeID >= 16 && shapeID < 23 ? "special." : shapeID >= 24 && shapeID < 30 ? "surface." : shapeID == 23 ? "cgo." : ".") + JV.JC.shapeClassBases[shapeID];
 }, "~N,~B");
-c$.getEchoName = Clazz.defineMethod (c$, "getEchoName", 
+c$.getEchoName = Clazz.defineMethod (c$, "getEchoName",
 function (type) {
 return JV.JC.echoNames[type];
 }, "~N");
-c$.setZPosition = Clazz.defineMethod (c$, "setZPosition", 
+c$.setZPosition = Clazz.defineMethod (c$, "setZPosition",
 function (offset, pos) {
 return (offset & -49) | pos;
 }, "~N,~N");
-c$.setPointer = Clazz.defineMethod (c$, "setPointer", 
+c$.setPointer = Clazz.defineMethod (c$, "setPointer",
 function (offset, pointer) {
 return (offset & -4) | pointer;
 }, "~N,~N");
-c$.getPointer = Clazz.defineMethod (c$, "getPointer", 
+c$.getPointer = Clazz.defineMethod (c$, "getPointer",
 function (offset) {
 return offset & 3;
 }, "~N");
-c$.getPointerName = Clazz.defineMethod (c$, "getPointerName", 
+c$.getPointerName = Clazz.defineMethod (c$, "getPointerName",
 function (pointer) {
 return ((pointer & 1) == 0 ? "" : (pointer & 2) > 0 ? "background" : "on");
 }, "~N");
-c$.isOffsetAbsolute = Clazz.defineMethod (c$, "isOffsetAbsolute", 
+c$.isOffsetAbsolute = Clazz.defineMethod (c$, "isOffsetAbsolute",
 function (offset) {
 return ((offset & 64) != 0);
 }, "~N");
-c$.getOffset = Clazz.defineMethod (c$, "getOffset", 
+c$.getOffset = Clazz.defineMethod (c$, "getOffset",
 function (xOffset, yOffset, isAbsolute) {
 xOffset = Math.min (Math.max (xOffset, -500), 500);
 yOffset = (Math.min (Math.max (yOffset, -500), 500));
@@ -235,40 +235,40 @@ if (offset == JV.JC.LABEL_DEFAULT_OFFSET) offset = 0;
  else if (!isAbsolute && (xOffset == 0 || yOffset == 0)) offset |= 256;
 return offset;
 }, "~N,~N,~B");
-c$.getXOffset = Clazz.defineMethod (c$, "getXOffset", 
+c$.getXOffset = Clazz.defineMethod (c$, "getXOffset",
 function (offset) {
 if (offset == 0) return 4;
 var x = (offset >> 21) & 1023;
 x = (x > 500 ? x - 1023 - 1 : x);
 return x;
 }, "~N");
-c$.getYOffset = Clazz.defineMethod (c$, "getYOffset", 
+c$.getYOffset = Clazz.defineMethod (c$, "getYOffset",
 function (offset) {
 if (offset == 0) return 4;
 var y = (offset >> 11) & 1023;
 return (y > 500 ? y - 1023 - 1 : y);
 }, "~N");
-c$.getAlignment = Clazz.defineMethod (c$, "getAlignment", 
+c$.getAlignment = Clazz.defineMethod (c$, "getAlignment",
 function (offset) {
 return (offset & 12);
 }, "~N");
-c$.setHorizAlignment = Clazz.defineMethod (c$, "setHorizAlignment", 
+c$.setHorizAlignment = Clazz.defineMethod (c$, "setHorizAlignment",
 function (offset, hAlign) {
 return (offset & -13) | hAlign;
 }, "~N,~N");
-c$.getHorizAlignmentName = Clazz.defineMethod (c$, "getHorizAlignmentName", 
+c$.getHorizAlignmentName = Clazz.defineMethod (c$, "getHorizAlignmentName",
 function (align) {
 return JV.JC.hAlignNames[(align >> 2) & 3];
 }, "~N");
-c$.isSmilesCanonical = Clazz.defineMethod (c$, "isSmilesCanonical", 
+c$.isSmilesCanonical = Clazz.defineMethod (c$, "isSmilesCanonical",
 function (options) {
 return (options != null && JU.PT.isOneOf (options.toLowerCase (), ";/cactvs///;/cactus///;/nci///;/canonical///;"));
 }, "~S");
-c$.getServiceCommand = Clazz.defineMethod (c$, "getServiceCommand", 
+c$.getServiceCommand = Clazz.defineMethod (c$, "getServiceCommand",
 function (script) {
 return (script.length < 7 ? -1 : ("JSPECVIPEAKS: SELECT:JSVSTR:H1SIMULC13SIMUNBO:MODNBO:RUNNBO:VIENBO:SEANBO:CONNONESIM").indexOf (script.substring (0, 7).toUpperCase ()));
 }, "~S");
-c$.getUnitIDFlags = Clazz.defineMethod (c$, "getUnitIDFlags", 
+c$.getUnitIDFlags = Clazz.defineMethod (c$, "getUnitIDFlags",
 function (type) {
 var i = 14;
 if (type.indexOf ("-") == 0) {

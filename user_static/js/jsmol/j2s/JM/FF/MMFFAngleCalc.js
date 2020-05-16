@@ -1,13 +1,13 @@
 Clazz.declarePackage ("JM.FF");
 Clazz.load (["JM.FF.Calculation"], "JM.FF.MMFFAngleCalc", null, function () {
 c$ = Clazz.declareType (JM.FF, "MMFFAngleCalc", JM.FF.Calculation);
-Clazz.defineMethod (c$, "setData", 
+Clazz.defineMethod (c$, "setData",
 function (calc, angle) {
 var data = this.calcs.getParameterObj (angle);
 if (data == null) return;
 calc.addLast ( Clazz.newArray (-1, [angle.data, data, angle.key]));
 }, "JU.Lst,JM.MinAngle");
-Clazz.overrideMethod (c$, "compute", 
+Clazz.overrideMethod (c$, "compute",
 function (dataIn) {
 this.key = dataIn[2];
 this.getPointers (dataIn);

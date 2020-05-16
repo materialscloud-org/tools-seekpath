@@ -1,4 +1,4 @@
-FROM materialscloud/tools-barebone
+FROM tools-barebone
 
 LABEL maintainer="Giovanni Pizzi <giovanni.pizzi@epfl.ch>"
 

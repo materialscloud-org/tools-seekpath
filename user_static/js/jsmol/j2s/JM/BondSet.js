@@ -4,11 +4,11 @@ c$ = Clazz.decorateAsClass (function () {
 this.associatedAtoms = null;
 Clazz.instantialize (this, arguments);
 }, JM, "BondSet", JU.BS);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JM.BondSet, []);
 });
-c$.newBS = Clazz.defineMethod (c$, "newBS", 
+c$.newBS = Clazz.defineMethod (c$, "newBS",
 function (bs, atoms) {
 var b =  new JM.BondSet ();
 JU.BSUtil.copy2 (bs, b);

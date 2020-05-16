@@ -304,7 +304,7 @@ this.firstSlot=0;
 this.lastSlot=-1;
 this.modCount=0;
 Clazz.instantialize(this,arguments);
-},java.util,"Hashtable",java.util.Dictionary,[java.util.Map,Cloneable,java.io.Serializable]);	
+},java.util,"Hashtable",java.util.Dictionary,[java.util.Map,Cloneable,java.io.Serializable]);
 c$.newEntry=Clazz.defineMethod(c$,"newEntry",
 ($fz=function(key,value,hash){
 return new java.util.HashtableEntry(key,value);
@@ -405,7 +405,7 @@ return true;
 },"~O");
 Clazz.overrideMethod(c$,"get",
 function(key){
-	if(!key.hashCode) { 
+	if(!key.hashCode) {
 	  key.hashCode = function(){return 1};
   	if (!key.equals)
   		key.equals = function(a) {return this == a};
@@ -454,7 +454,7 @@ function(){
 if(this.elementCount==0){
 return java.util.Hashtable.EMPTY_ENUMERATION;
 }
-return new java.util.HashtableEnumerator(true, this); 
+return new java.util.HashtableEnumerator(true, this);
 });
 Clazz.overrideMethod(c$,"keySet",
 function(){

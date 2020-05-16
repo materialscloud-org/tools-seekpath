@@ -18,12 +18,12 @@ this.z = null;
 this.s = null;
 Clazz.instantialize (this, arguments);
 }, JU, "InfCodes");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (z, s) {
 this.z = z;
 this.s = s;
 }, "JU.ZStream,JU.InfBlocks");
-Clazz.defineMethod (c$, "init", 
+Clazz.defineMethod (c$, "init",
 function (bl, bd, tl, tl_index, td, td_index) {
 this.mode = 0;
 this.lbits = bl;
@@ -34,7 +34,7 @@ this.dtree = td;
 this.dtree_index = td_index;
 this.tree = null;
 }, "~N,~N,~A,~N,~A,~N");
-Clazz.defineMethod (c$, "proc", 
+Clazz.defineMethod (c$, "proc",
 function (r) {
 var j;
 var tindex;
@@ -311,10 +311,10 @@ return this.s.inflate_flush (r);
 }
 }
 }, "~N");
-Clazz.defineMethod (c$, "free", 
+Clazz.defineMethod (c$, "free",
 function (z) {
 }, "JU.ZStream");
-Clazz.defineMethod (c$, "inflate_fast", 
+Clazz.defineMethod (c$, "inflate_fast",
 function (bl, bd, tl, tl_index, td, td_index, s, z) {
 var t;
 var tp;

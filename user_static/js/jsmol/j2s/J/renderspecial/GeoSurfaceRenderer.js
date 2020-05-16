@@ -12,7 +12,7 @@ this.facePt1 =  new JU.P3 ();
 this.facePt2 =  new JU.P3 ();
 this.facePt3 =  new JU.P3 ();
 });
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 var gs = this.shape;
 this.iShowSolid = !(!this.vwr.checkMotionRendering (1112150021) && gs.ec.getDotsConvexMax () > 100);
@@ -25,7 +25,7 @@ this.render1 (gs);
 this.vwr.gdata.translucentCoverOnly = tCover;
 return this.requireTranslucent;
 });
-Clazz.overrideMethod (c$, "renderConvex", 
+Clazz.overrideMethod (c$, "renderConvex",
 function (colix, visibilityMap, nPoints) {
 this.colix = colix;
 if (this.iShowSolid) {
@@ -34,7 +34,7 @@ if (this.g3d.setC (colix)) this.renderSurface (visibilityMap);
 return;
 }this.renderDots (nPoints);
 }, "~N,JU.BS,~N");
-Clazz.defineMethod (c$, "renderSurface", 
+Clazz.defineMethod (c$, "renderSurface",
  function (points) {
 if (this.faceMap == null) return;
 var faces = JU.Geodesic.getFaceVertexes (this.screenLevel);

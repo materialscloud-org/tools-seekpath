@@ -42,11 +42,11 @@ this.ashades = JU.AU.newInt2 (128);
 this.sphereShadeIndexes =  Clazz.newByteArray (65536, 0);
 this.sphereShapeCache = JU.AU.newInt2 (128);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 this.setLightSource (-1.0, -1.0, 2.5);
 });
-Clazz.defineMethod (c$, "setLightSource", 
+Clazz.defineMethod (c$, "setLightSource",
  function (x, y, z) {
 this.lightSource.set (x, y, z);
 this.lightSource.normalize ();
@@ -54,7 +54,7 @@ this.xLight = this.lightSource.x;
 this.yLight = this.lightSource.y;
 this.zLight = this.lightSource.z;
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "setCel", 
+Clazz.defineMethod (c$, "setCel",
 function (celShading, celShadingPower, argb) {
 celShading = celShading && celShadingPower != 0;
 argb = JU.C.getArgb (JU.C.getBgContrast (argb));
@@ -67,7 +67,7 @@ this.celZ = 1 - Math.pow (2, -Math.abs (celShadingPower) / 10);
 this.celRGB = argb;
 this.flushCaches ();
 }, "~B,~N,~N");
-Clazz.defineMethod (c$, "flushCaches", 
+Clazz.defineMethod (c$, "flushCaches",
 function () {
 this.checkShades (JU.C.colixMax);
 for (var i = JU.C.colixMax; --i >= 0; ) this.ashades[i] = null;
@@ -77,14 +77,14 @@ for (var i = 128; --i >= 0; ) this.sphereShapeCache[i] = null;
 
 this.ellipsoidShades = null;
 });
-Clazz.defineMethod (c$, "setLastColix", 
+Clazz.defineMethod (c$, "setLastColix",
 function (argb, asGrey) {
 JU.C.allocateColix (argb, true);
 this.checkShades (2047);
 if (asGrey) JU.C.setLastGrey (argb);
 this.ashades[2047] = this.getShades2 (argb, false);
 }, "~N,~B");
-Clazz.defineMethod (c$, "getShades", 
+Clazz.defineMethod (c$, "getShades",
 function (colix) {
 this.checkShades (JU.C.colixMax);
 colix &= -30721;
@@ -92,7 +92,7 @@ var shades = this.ashades[colix];
 if (shades == null) shades = this.ashades[colix] = this.getShades2 (JU.C.argbs[colix], false);
 return shades;
 }, "~N");
-Clazz.defineMethod (c$, "getShadesG", 
+Clazz.defineMethod (c$, "getShadesG",
 function (colix) {
 this.checkShades (JU.C.colixMax);
 colix &= -30721;
@@ -101,14 +101,14 @@ var shadesGreyscale = this.ashadesGreyscale[colix];
 if (shadesGreyscale == null) shadesGreyscale = this.ashadesGreyscale[colix] = this.getShades2 (JU.C.argbs[colix], true);
 return shadesGreyscale;
 }, "~N");
-Clazz.defineMethod (c$, "checkShades", 
+Clazz.defineMethod (c$, "checkShades",
  function (n) {
 if (this.ashades != null && this.ashades.length >= n) return;
 if (n == 2047) n++;
 this.ashades = JU.AU.arrayCopyII (this.ashades, n);
 if (this.ashadesGreyscale != null) this.ashadesGreyscale = JU.AU.arrayCopyII (this.ashadesGreyscale, n);
 }, "~N");
-Clazz.defineMethod (c$, "getShades2", 
+Clazz.defineMethod (c$, "getShades2",
  function (rgb, greyScale) {
 var shades =  Clazz.newIntArray (64, 0);
 if (rgb == 0) return shades;
@@ -171,21 +171,21 @@ shades[i] = JU.CU.rgb (Clazz.doubleToInt (Math.floor (red)), Clazz.doubleToInt (
 
 return shades;
 }, "~N,~B");
-Clazz.defineMethod (c$, "getShadeIndex", 
+Clazz.defineMethod (c$, "getShadeIndex",
 function (x, y, z) {
 var magnitude = Math.sqrt (x * x + y * y + z * z);
 return Math.round (this.getShadeF ((x / magnitude), (y / magnitude), (z / magnitude)) * 63);
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "getShadeB", 
+Clazz.defineMethod (c$, "getShadeB",
 function (x, y, z) {
 return Math.round (this.getShadeF (x, y, z) * 63);
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "getShadeFp8", 
+Clazz.defineMethod (c$, "getShadeFp8",
 function (x, y, z) {
 var magnitude = Math.sqrt (x * x + y * y + z * z);
 return Clazz.doubleToInt (Math.floor (this.getShadeF ((x / magnitude), (y / magnitude), (z / magnitude)) * 63 * (256)));
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "getShadeF", 
+Clazz.defineMethod (c$, "getShadeF",
  function (x, y, z) {
 var NdotL = (this.useLight ? x * this.xLight + y * this.yLight + z * this.zLight : z);
 if (NdotL <= 0) return 0;
@@ -201,7 +201,7 @@ for (var n = this.specularExponent; --n >= 0 && k_specular > .0001; ) k_specular
 }intensity += k_specular * this.specularFactor;
 }}return (this.celOn && z < this.celZ ? 0 : intensity > 1 ? 1 : intensity);
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "getShadeN", 
+Clazz.defineMethod (c$, "getShadeN",
 function (x, y, z, r) {
 var fp8ShadeIndex = Clazz.doubleToInt (Math.floor (this.getShadeF (x / r, y / r, z / r) * 63 * (256)));
 var shadeIndex = fp8ShadeIndex >> 8;
@@ -212,7 +212,7 @@ if (random16bit < 21845 && shadeIndex > 0) --shadeIndex;
  else if (random16bit > 43690 && shadeIndex < 63) ++shadeIndex;
 return shadeIndex;
 }, "~N,~N,~N,~N");
-Clazz.defineMethod (c$, "calcSphereShading", 
+Clazz.defineMethod (c$, "calcSphereShading",
  function () {
 var xF = -127.5;
 var r2 = 16900;
@@ -229,13 +229,13 @@ shadeIndex = this.getShadeN (xF, yF, z, 130);
 }
 }
 });
-Clazz.defineMethod (c$, "nextRandom8Bit", 
+Clazz.defineMethod (c$, "nextRandom8Bit",
 function () {
 var t = this.seed;
 this.seed = t = ((t << 16) + (t << 1) + t) & 0x7FFFFFFF;
 return t >> 23;
 });
-Clazz.defineMethod (c$, "getEllipsoidShade", 
+Clazz.defineMethod (c$, "getEllipsoidShade",
 function (x, y, z, radius, mDeriv) {
 var tx = mDeriv.m00 * x + mDeriv.m01 * y + mDeriv.m02 * z + mDeriv.m03;
 var ty = mDeriv.m10 * x + mDeriv.m11 * y + mDeriv.m12 * z + mDeriv.m13;
@@ -256,7 +256,7 @@ outside = i < -20 || i >= 20 || j < -20 || j >= 20 || k < 0 || k >= 40;
  else this.nIn++;
 return (outside ? this.getShadeIndex (i, j, k) : this.ellipsoidShades[i + 20][j + 20][k]);
 }, "~N,~N,~N,~N,JU.M4");
-Clazz.defineMethod (c$, "createEllipsoidShades", 
+Clazz.defineMethod (c$, "createEllipsoidShades",
 function () {
 this.ellipsoidShades =  Clazz.newByteArray (40, 40, 40, 0);
 for (var ii = 0; ii < 40; ii++) for (var jj = 0; jj < 40; jj++) for (var kk = 0; kk < 40; kk++) this.ellipsoidShades[ii][jj][kk] = this.getShadeIndex (ii - 20, jj - 20, kk);

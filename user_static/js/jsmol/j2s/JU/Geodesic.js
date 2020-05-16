@@ -1,30 +1,30 @@
 Clazz.declarePackage ("JU");
 Clazz.load (["JU.AU"], "JU.Geodesic", ["java.lang.NullPointerException", "$.Short", "java.util.Hashtable", "JU.V3"], function () {
 c$ = Clazz.declareType (JU, "Geodesic");
-c$.getNeighborVertexesArrays = Clazz.defineMethod (c$, "getNeighborVertexesArrays", 
+c$.getNeighborVertexesArrays = Clazz.defineMethod (c$, "getNeighborVertexesArrays",
 function () {
 if (JU.Geodesic.vertexCounts == null) JU.Geodesic.createGeodesic (3);
 return JU.Geodesic.neighborVertexesArrays;
 });
-c$.getVertexCount = Clazz.defineMethod (c$, "getVertexCount", 
+c$.getVertexCount = Clazz.defineMethod (c$, "getVertexCount",
 function (level) {
 if (JU.Geodesic.vertexCounts == null) JU.Geodesic.createGeodesic (3);
 return JU.Geodesic.vertexCounts[level];
 }, "~N");
-c$.getVertexVectors = Clazz.defineMethod (c$, "getVertexVectors", 
+c$.getVertexVectors = Clazz.defineMethod (c$, "getVertexVectors",
 function () {
 if (JU.Geodesic.vertexCounts == null) JU.Geodesic.createGeodesic (3);
 return JU.Geodesic.vertexVectors;
 });
-c$.getVertexVector = Clazz.defineMethod (c$, "getVertexVector", 
+c$.getVertexVector = Clazz.defineMethod (c$, "getVertexVector",
 function (i) {
 return JU.Geodesic.vertexVectors[i];
 }, "~N");
-c$.getFaceVertexes = Clazz.defineMethod (c$, "getFaceVertexes", 
+c$.getFaceVertexes = Clazz.defineMethod (c$, "getFaceVertexes",
 function (level) {
 return JU.Geodesic.faceVertexesArrays[level];
 }, "~N");
-c$.createGeodesic = Clazz.defineMethod (c$, "createGeodesic", 
+c$.createGeodesic = Clazz.defineMethod (c$, "createGeodesic",
 function (lvl) {
 if (lvl < JU.Geodesic.currentLevel) return;
 JU.Geodesic.currentLevel = lvl;
@@ -47,7 +47,7 @@ for (var i = 0; i < lvl; ++i) JU.Geodesic.quadruple (i, v);
 
 JU.Geodesic.vertexCounts = v;
 }, "~N");
-c$.quadruple = Clazz.defineMethod (c$, "quadruple", 
+c$.quadruple = Clazz.defineMethod (c$, "quadruple",
  function (level, counts) {
 JU.Geodesic.htVertex =  new java.util.Hashtable ();
 var oldVertexCount = JU.Geodesic.vertexVectors.length;
@@ -125,7 +125,7 @@ if ((i < 12 && faceCount != 5) || (i >= 12 && faceCount != 6)) throw  new NullPo
 }
 }JU.Geodesic.htVertex = null;
 }, "~N,~A");
-c$.addNeighboringVertexes = Clazz.defineMethod (c$, "addNeighboringVertexes", 
+c$.addNeighboringVertexes = Clazz.defineMethod (c$, "addNeighboringVertexes",
  function (neighborVertexes, v1, v2) {
 for (var i = v1 * 6, iMax = i + 6; i < iMax; ++i) {
 if (neighborVertexes[i] == v2) return;
@@ -140,7 +140,7 @@ return;
 }}
 throw  new NullPointerException ();
 }, "~A,~N,~N");
-c$.getVertex = Clazz.defineMethod (c$, "getVertex", 
+c$.getVertex = Clazz.defineMethod (c$, "getVertex",
  function (v1, v2) {
 if (v1 > v2) {
 var t = v1;

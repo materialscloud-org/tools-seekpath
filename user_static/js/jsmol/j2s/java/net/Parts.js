@@ -5,7 +5,7 @@ this.query = null;
 this.ref = null;
 Clazz.instantialize (this, arguments);
 }, java.net, "Parts");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (file) {
 var ind = file.indexOf ('#');
 this.ref = ind < 0 ? null : file.substring (ind + 1);
@@ -17,15 +17,15 @@ this.path = file.substring (0, q);
 } else {
 this.path = file;
 }}, "~S");
-Clazz.defineMethod (c$, "getPath", 
+Clazz.defineMethod (c$, "getPath",
 function () {
 return this.path;
 });
-Clazz.defineMethod (c$, "getQuery", 
+Clazz.defineMethod (c$, "getQuery",
 function () {
 return this.query;
 });
-Clazz.defineMethod (c$, "getRef", 
+Clazz.defineMethod (c$, "getRef",
 function () {
 return this.ref;
 });

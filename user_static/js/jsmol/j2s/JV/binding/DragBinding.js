@@ -1,12 +1,12 @@
 Clazz.declarePackage ("JV.binding");
 Clazz.load (["JV.binding.JmolBinding"], "JV.binding.DragBinding", null, function () {
 c$ = Clazz.declareType (JV.binding, "DragBinding", JV.binding.JmolBinding);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JV.binding.DragBinding, []);
 this.set ("drag");
 });
-Clazz.overrideMethod (c$, "setSelectBindings", 
+Clazz.overrideMethod (c$, "setSelectBindings",
 function () {
 this.bindAction (33040, 30);
 this.bindAction (33041, 35);

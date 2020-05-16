@@ -71,7 +71,7 @@ for (var i = 0; i < this.points.length; i++) this.points[i] =  new JU.P3 ();
 for (var i = 0; i < this.screens.length; i++) this.screens[i] =  new JU.P3 ();
 
 }});
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 this.isSet = false;
 this.ellipsoids = this.shape;
@@ -84,7 +84,7 @@ needTranslucent = new Boolean (needTranslucent | this.renderEllipsoids (this.ell
 }this.coords = null;
 return needTranslucent;
 });
-Clazz.defineMethod (c$, "setGlobals", 
+Clazz.defineMethod (c$, "setGlobals",
  function () {
 this.bGlobals[1] = this.vwr.getBooleanProperty ("ellipsoidArcs");
 this.bGlobals[5] = this.vwr.getBooleanProperty ("ellipsoidArrows");
@@ -102,7 +102,7 @@ this.matScreenToCartesian.invertM (this.mat);
 this.setLogic ();
 return true;
 });
-Clazz.defineMethod (c$, "setOptions", 
+Clazz.defineMethod (c$, "setOptions",
  function (options) {
 for (var i = 0; i < 7; i++) this.bOptions[i] = this.bGlobals[i];
 
@@ -114,7 +114,7 @@ if (JU.PT.isOneOf (this.OPTS[i], options)) this.bOptions[i] = true;
 }
 }this.setLogic ();
 }, "~S");
-Clazz.defineMethod (c$, "setLogic", 
+Clazz.defineMethod (c$, "setLogic",
  function () {
 this.bOptions[0] = new Boolean (this.bOptions[0] & !this.bOptions[6]).valueOf ();
 this.bOptions[4] = new Boolean (this.bOptions[4] & !this.bOptions[6]).valueOf ();
@@ -131,7 +131,7 @@ this.dotScale = this.vwr.getInt (553648143);
 this.dotCount = (this.vwr.getP ("ellipsoidDotCount")).intValue ();
 if (this.coords == null || this.coords.length != this.dotCount * 3) this.coords =  Clazz.newIntArray (this.dotCount * 3, 0);
 }});
-Clazz.defineMethod (c$, "renderEllipsoids", 
+Clazz.defineMethod (c$, "renderEllipsoids",
  function (ht, isSimple) {
 var needTranslucent = false;
 var atom = null;
@@ -151,7 +151,7 @@ this.renderOne (ellipsoid);
 }
 return needTranslucent;
 }, "java.util.Map,~B");
-Clazz.defineMethod (c$, "renderOne", 
+Clazz.defineMethod (c$, "renderOne",
  function (e) {
 this.center = e.center;
 var maxPt = 2;
@@ -185,7 +185,7 @@ if (this.bOptions[1]) this.renderArcs ();
 }if (this.bOptions[0]) this.renderDots ();
 if (this.bOptions[5]) this.renderArrows ();
 }, "J.shapespecial.Ellipsoid");
-Clazz.defineMethod (c$, "setMatrices", 
+Clazz.defineMethod (c$, "setMatrices",
  function () {
 for (var i = 0; i < 3; i++) {
 this.v1.setT (this.axes[i]);
@@ -198,7 +198,7 @@ this.matEllipsoidToScreen.invertM (this.matScreenToEllipsoid);
 this.perspectiveFactor = this.vwr.tm.scaleToPerspective (Clazz.floatToInt (this.s0.z), 1.0);
 this.matScreenToEllipsoid.scale (1 / this.perspectiveFactor);
 });
-Clazz.defineMethod (c$, "setAxes", 
+Clazz.defineMethod (c$, "setAxes",
  function (maxPt) {
 for (var i = 0; i < 6; i++) {
 var iAxis = J.renderspecial.EllipsoidsRenderer.axisPoints[i];
@@ -211,20 +211,20 @@ this.screens[i + 32].set (Math.round (this.s0.x + this.pt1.x * this.perspectiveF
 }
 this.dx = 2 + Clazz.floatToInt (this.vwr.tm.scaleToScreen (Clazz.floatToInt (this.s0.z), Math.round ((Float.isNaN (this.factoredLengths[maxPt]) ? 1.0 : this.factoredLengths[maxPt]) * 1000)));
 }, "~N");
-Clazz.defineMethod (c$, "renderBall", 
+Clazz.defineMethod (c$, "renderBall",
  function () {
 this.setSelectedOctant ();
 J.shapespecial.Ellipsoid.getEquationForQuadricWithCenter (this.s0.x, this.s0.y, this.s0.z, this.matScreenToEllipsoid, this.v1, this.mTemp, this.coefs, this.mDeriv);
 this.g3d.fillEllipsoid (this.center, this.points, Clazz.floatToInt (this.s0.x), Clazz.floatToInt (this.s0.y), Clazz.floatToInt (this.s0.z), this.dx + this.dx, this.matScreenToEllipsoid, this.coefs, this.mDeriv, this.selectedOctant, this.selectedOctant >= 0 ? this.selectedPoints : null);
 });
-Clazz.defineMethod (c$, "renderArrows", 
+Clazz.defineMethod (c$, "renderArrows",
  function () {
 for (var i = 0; i < 6; i += 2) {
 var pt = (i == 0 ? 1 : i);
 this.fillConeScreen (this.screens[i], this.screens[i + 1], (this.eigenSignMask & pt) != 0);
 }
 });
-Clazz.defineMethod (c$, "fillConeScreen", 
+Clazz.defineMethod (c$, "fillConeScreen",
  function (p1, p2, isPositive) {
 if (this.diameter == 0) return;
 var diam = (this.diameter == 0 ? 1 : this.diameter) * 8;
@@ -254,7 +254,7 @@ this.s1.y += Clazz.floatToInt (this.v1.y);
 this.s1.z += Clazz.floatToInt (this.v1.z);
 }this.g3d.fillConeScreen3f (2, Clazz.floatToInt (diam), this.s1, this.s2, false);
 }, "JU.P3,JU.P3,~B");
-Clazz.defineMethod (c$, "renderAxes", 
+Clazz.defineMethod (c$, "renderAxes",
  function () {
 if (this.bOptions[4] && this.bOptions[3]) {
 this.g3d.fillCylinderBits (2, this.diameter, this.s0, this.selectedPoints[0]);
@@ -270,7 +270,7 @@ this.g3d.fillCylinderBits (2, this.diameter, this.screens[0], this.screens[1]);
 this.g3d.fillCylinderBits (2, this.diameter, this.screens[2], this.screens[3]);
 this.g3d.fillCylinderBits (2, this.diameter, this.screens[4], this.screens[5]);
 }});
-Clazz.defineMethod (c$, "renderDots", 
+Clazz.defineMethod (c$, "renderDots",
  function () {
 for (var i = 0; i < this.coords.length; ) {
 var fx = Math.random ();
@@ -290,7 +290,7 @@ this.coords[i++] = Clazz.floatToInt (this.s1.z);
 }
 this.g3d.drawPoints (this.dotCount, this.coords, this.dotScale);
 });
-Clazz.defineMethod (c$, "renderArcs", 
+Clazz.defineMethod (c$, "renderArcs",
  function () {
 if (this.g3d.drawEllipse (this.center, this.points[0], this.points[2], this.fillArc, this.bOptions[6])) {
 this.g3d.drawEllipse (this.center, this.points[2], this.points[5], this.fillArc, this.bOptions[6]);
@@ -302,7 +302,7 @@ this.renderArc (J.renderspecial.EllipsoidsRenderer.octants[pt + 1], J.renderspec
 this.renderArc (J.renderspecial.EllipsoidsRenderer.octants[pt + 2], J.renderspecial.EllipsoidsRenderer.octants[pt]);
 }
 });
-Clazz.defineMethod (c$, "renderArc", 
+Clazz.defineMethod (c$, "renderArc",
  function (ptA, ptB) {
 this.v1.sub2 (this.points[ptA], this.center);
 this.v2.sub2 (this.points[ptB], this.center);
@@ -332,7 +332,7 @@ for (var i = 0; i < 18; i++) {
 this.g3d.fillHermite (5, this.diameter, this.diameter, this.diameter, this.screens[i == 0 ? i + 6 : i + 5], this.screens[i + 6], this.screens[i + 7], this.screens[i == 17 ? i + 7 : i + 8]);
 }
 }}, "~N,~N");
-Clazz.defineMethod (c$, "setSelectedOctant", 
+Clazz.defineMethod (c$, "setSelectedOctant",
  function () {
 var zMin = 2147483647;
 this.selectedOctant = -1;

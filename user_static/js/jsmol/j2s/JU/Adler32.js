@@ -9,21 +9,21 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.b1 =  Clazz.newByteArray (1, 0);
 });
-Clazz.overrideMethod (c$, "resetLong", 
+Clazz.overrideMethod (c$, "resetLong",
 function (init) {
 this.s1 = init & 0xffff;
 this.s2 = (init >> 16) & 0xffff;
 }, "~N");
-Clazz.overrideMethod (c$, "reset", 
+Clazz.overrideMethod (c$, "reset",
 function () {
 this.s1 = 1;
 this.s2 = 0;
 });
-Clazz.overrideMethod (c$, "getValue", 
+Clazz.overrideMethod (c$, "getValue",
 function () {
 return ((this.s2 << 16) | this.s1);
 });
-Clazz.overrideMethod (c$, "update", 
+Clazz.overrideMethod (c$, "update",
 function (buf, index, len) {
 if (len == 1) {
 this.s1 += buf[index++] & 0xff;
@@ -52,7 +52,7 @@ this.s2 += this.s1;
 this.s1 %= 65521;
 this.s2 %= 65521;
 }, "~A,~N,~N");
-Clazz.overrideMethod (c$, "updateByteAsInt", 
+Clazz.overrideMethod (c$, "updateByteAsInt",
 function (b) {
 this.b1[0] = b;
 this.update (this.b1, 0, 1);

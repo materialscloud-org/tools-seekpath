@@ -6,7 +6,7 @@ this.kb = 0;
 this.delta2 = 0;
 Clazz.instantialize (this, arguments);
 }, JM.FF, "MMFFDistanceCalc", JM.FF.Calculation);
-Clazz.defineMethod (c$, "setData", 
+Clazz.defineMethod (c$, "setData",
 function (calc, bond) {
 this.ia = bond.data[0];
 this.ib = bond.data[1];
@@ -14,7 +14,7 @@ var data = this.calcs.getParameterObj (bond);
 if (data == null) return;
 calc.addLast ( Clazz.newArray (-1, [ Clazz.newIntArray (-1, [this.ia, this.ib]), data]));
 }, "JU.Lst,JM.MinBond");
-Clazz.overrideMethod (c$, "compute", 
+Clazz.overrideMethod (c$, "compute",
 function (dataIn) {
 this.getPointers (dataIn);
 this.kb = this.dData[0];

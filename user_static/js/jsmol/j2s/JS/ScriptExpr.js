@@ -10,50 +10,50 @@ this.tempStatement = null;
 this.ptTemp = null;
 Clazz.instantialize (this, arguments);
 }, JS, "ScriptExpr", JS.ScriptParam);
-Clazz.defineMethod (c$, "getCmdExt", 
+Clazz.defineMethod (c$, "getCmdExt",
 function () {
 return (this.cmdExt == null ? this.cmdExt = (this.getExt ("Cmd")).init (this) : this.cmdExt);
 });
-Clazz.defineMethod (c$, "getIsoExt", 
+Clazz.defineMethod (c$, "getIsoExt",
 function () {
 return (this.isoExt == null ? this.isoExt = (this.getExt ("Iso")).init (this) : this.isoExt);
 });
-Clazz.defineMethod (c$, "getMathExt", 
+Clazz.defineMethod (c$, "getMathExt",
 function () {
 return (this.mathExt == null ? (this.mathExt = this.getExt ("Math")).init (this) : this.mathExt);
 });
-Clazz.defineMethod (c$, "getSmilesExt", 
+Clazz.defineMethod (c$, "getSmilesExt",
 function () {
 return (this.smilesExt == null ? (this.smilesExt = this.getExt ("Smiles")).init (this) : this.smilesExt);
 });
-Clazz.defineMethod (c$, "getExt", 
+Clazz.defineMethod (c$, "getExt",
  function (type) {
 return J.api.Interface.getInterface ("JS." + type + "Ext", this.vwr, "script");
 }, "~S");
-Clazz.defineMethod (c$, "parameterExpressionList", 
+Clazz.defineMethod (c$, "parameterExpressionList",
 function (pt, ptAtom, isArrayItem) {
 return this.parameterExpression (pt, -1, null, true, true, ptAtom, isArrayItem, null, null, false);
 }, "~N,~N,~B");
-Clazz.defineMethod (c$, "parameterExpressionString", 
+Clazz.defineMethod (c$, "parameterExpressionString",
 function (pt, ptMax) {
 return this.parameterExpression (pt, ptMax, "", true, false, -1, false, null, null, false);
 }, "~N,~N");
-Clazz.defineMethod (c$, "parameterExpressionBoolean", 
+Clazz.defineMethod (c$, "parameterExpressionBoolean",
 function (pt, ptMax) {
 return (this.parameterExpression (pt, ptMax, null, true, false, -1, false, null, null, false)).booleanValue ();
 }, "~N,~N");
-Clazz.defineMethod (c$, "parameterExpressionToken", 
+Clazz.defineMethod (c$, "parameterExpressionToken",
 function (pt) {
 var result = this.parameterExpressionList (pt, -1, false);
 return (result.size () > 0 ? result.get (0) : JS.SV.newS (""));
 }, "~N");
-Clazz.defineMethod (c$, "parameterExpressionSelect", 
+Clazz.defineMethod (c$, "parameterExpressionSelect",
 function (h, where) {
 this.st = where;
 this.slen = this.st.length;
 return (this.parameterExpression (2, -2147483648, null, true, false, -1, false, h, null, false)).booleanValue ();
 }, "java.util.Map,~A");
-Clazz.defineMethod (c$, "parameterExpression", 
+Clazz.defineMethod (c$, "parameterExpression",
  function (pt, ptMax, key, ignoreComma, asVector, ptAtom, isArrayItem, localVars, localVar, isSpecialAssignment) {
 var isImplicitAtomProperty = (localVar != null);
 var isWhere = (localVar == null && localVars != null);
@@ -438,14 +438,14 @@ default:
 return result.value;
 }
 }, "~N,~N,~S,~B,~B,~N,~B,java.util.Map,~S,~B");
-Clazz.defineMethod (c$, "atomExpressionAt", 
+Clazz.defineMethod (c$, "atomExpressionAt",
 function (index) {
 if (!this.checkToken (index)) {
 this.iToken = index;
 this.bad ();
 }return this.atomExpression (this.st, index, 0, true, false, null, true);
 }, "~N");
-Clazz.defineMethod (c$, "atomExpression", 
+Clazz.defineMethod (c$, "atomExpression",
 function (code, pcStart, pcStop, allowRefresh, allowUnderflow, ret, andNotDeleted) {
 this.isBondSet = false;
 if (code !== this.st) {
@@ -727,7 +727,7 @@ this.st = this.tempStatement;
 this.tempStatement = null;
 }return bs;
 }, "~A,~N,~N,~B,~B,~A,~B");
-Clazz.defineMethod (c$, "getComparison", 
+Clazz.defineMethod (c$, "getComparison",
  function (t, tokWhat, tokOp, strOp, data) {
 var tokValue = t.tok;
 if (tokValue == 7) {
@@ -814,7 +814,7 @@ if (isIntProperty) comparisonInt = -comparisonInt;
  else if (!Float.isNaN (comparisonFloat)) comparisonFloat = -comparisonFloat;
 }return (isIntProperty ? this.compareInt (tokWhat, tokOp, comparisonInt) : isStringProperty ? this.compareString (tokWhat, tokOp, val) : this.compareFloatData (tokWhat, data, tokOp, comparisonFloat));
 }, "JS.T,~N,~N,~S,~A");
-Clazz.defineMethod (c$, "noCopy", 
+Clazz.defineMethod (c$, "noCopy",
 function (i, dir) {
 switch (this.tokAt (i + dir)) {
 case 268435650:
@@ -824,7 +824,7 @@ default:
 return false;
 }
 }, "~N,~N");
-Clazz.defineMethod (c$, "getAssocArray", 
+Clazz.defineMethod (c$, "getAssocArray",
 function (i) {
 var ht =  new java.util.Hashtable ();
 var closer = (this.tokAt (i) == 1073742332 ? 1073742338 : 268435521);
@@ -846,13 +846,13 @@ this.iToken = i;
 if (this.tokAt (i) != closer) this.invArg ();
 return ht;
 }, "~N");
-Clazz.defineMethod (c$, "listBS", 
+Clazz.defineMethod (c$, "listBS",
 function (bs) {
 var l =  new JU.Lst ();
 l.addLast (JS.SV.newV (10, bs));
 return l;
 }, "JU.BS");
-Clazz.defineMethod (c$, "compareFloatData", 
+Clazz.defineMethod (c$, "compareFloatData",
 function (tokWhat, data, tokOperator, comparisonFloat) {
 var bs =  new JU.BS ();
 var ac = this.vwr.ms.ac;
@@ -875,7 +875,7 @@ if (match) bs.set (i);
 }
 return bs;
 }, "~N,~A,~N,~N");
-Clazz.defineMethod (c$, "compareFloat", 
+Clazz.defineMethod (c$, "compareFloat",
 function (tokOperator, a, b) {
 switch (tokOperator) {
 case 268435859:
@@ -893,7 +893,7 @@ return a != b && !Float.isNaN (a);
 }
 return false;
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "compareString", 
+Clazz.defineMethod (c$, "compareString",
  function (tokWhat, tokOperator, comparisonString) {
 var bs =  new JU.BS ();
 var atoms = this.vwr.ms.at;
@@ -907,7 +907,7 @@ if (this.compareStringValues (tokOperator, propertyString, comparisonString)) bs
 }
 return bs;
 }, "~N,~N,~S");
-Clazz.defineMethod (c$, "compareStringValues", 
+Clazz.defineMethod (c$, "compareStringValues",
  function (tokOperator, propertyValue, comparisonValue) {
 switch (tokOperator) {
 case 268435860:
@@ -920,7 +920,7 @@ this.invArg ();
 }
 return false;
 }, "~N,~S,~S");
-Clazz.defineMethod (c$, "compareInt", 
+Clazz.defineMethod (c$, "compareInt",
  function (tokWhat, tokOperator, ival) {
 var ia = 2147483647;
 var propertyBitSet = null;
@@ -1063,7 +1063,7 @@ if (match) bs.set (i);
 }
 return bs;
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "getBitsetPropertySelector", 
+Clazz.defineMethod (c$, "getBitsetPropertySelector",
  function (i, xTok) {
 var tok = this.getToken (i).tok;
 switch (tok) {
@@ -1085,7 +1085,7 @@ break;
 }}
 return JS.SV.newSV (268435665, tok, this.paramAsStr (i));
 }, "~N,~N");
-Clazz.defineMethod (c$, "getBitsetProperty", 
+Clazz.defineMethod (c$, "getBitsetProperty",
 function (bs, pts, tok, ptRef, planeRef, tokenValue, opValue, useAtomMap, index, asVectorIfAll) {
 var haveIndex = (index != 2147483647);
 var isAtoms = haveIndex || !(Clazz.instanceOf (tokenValue, JM.BondSet));
@@ -1465,7 +1465,7 @@ break;
 }
 return Float.$valueOf (sum);
 }, "JU.BS,JU.Lst,~N,JU.P3,JU.P4,~O,~O,~B,~N,~B");
-Clazz.defineMethod (c$, "bitSetForModelFileNumber", 
+Clazz.defineMethod (c$, "bitSetForModelFileNumber",
  function (m) {
 var bs = JU.BS.newN (this.vwr.ms.ac);
 if (this.chk) return bs;
@@ -1487,7 +1487,7 @@ var modelIndex = this.vwr.ms.getModelNumberIndex (m, false, true);
 if (modelIndex >= 0) bs.or (this.vwr.getModelUndeletedAtomsBitSet (modelIndex));
 }return bs;
 }, "~N");
-Clazz.defineMethod (c$, "getStringObjectAsVariable", 
+Clazz.defineMethod (c$, "getStringObjectAsVariable",
  function (obj) {
 if (obj == null) return obj;
 if (Clazz.instanceOf (obj, String)) {
@@ -1500,15 +1500,15 @@ if (lst.get (0).asString ().contains ("|")) return this.vwr.ms.getAtoms (1086324
 var bs = JS.SV.unEscapeBitSetArray (lst, true);
 return (bs == null ? "" : bs);
 }, "~O");
-Clazz.defineMethod (c$, "getAtomBits", 
+Clazz.defineMethod (c$, "getAtomBits",
 function (tokType, specInfo) {
 return (this.chk ?  new JU.BS () : this.vwr.ms.getAtoms (tokType, specInfo));
 }, "~N,~O");
-c$.getSeqCode = Clazz.defineMethod (c$, "getSeqCode", 
+c$.getSeqCode = Clazz.defineMethod (c$, "getSeqCode",
 function (instruction) {
 return (instruction.intValue == 2147483647 ? (instruction.value).intValue () : JM.Group.getSeqcodeFor (instruction.intValue, ' '));
 }, "JS.T");
-Clazz.defineMethod (c$, "setVariable", 
+Clazz.defineMethod (c$, "setVariable",
 function (pt, ptMax, key, isSet) {
 var bs = null;
 var propertyName = "";
@@ -1629,7 +1629,7 @@ this.setStringProperty (key, vv);
 } else {
 }return tv;
 }, "~N,~N,~S,~B");
-Clazz.defineMethod (c$, "setBitsetProperty", 
+Clazz.defineMethod (c$, "setBitsetProperty",
  function (bs, tok, iValue, fValue, tokenValue) {
 if (this.chk || bs.cardinality () == 0) return;
 var list = null;
@@ -1724,7 +1724,7 @@ fvalues = null;
 }}if (!JS.T.tokAttr (tok, 2048)) this.error (56);
 this.vwr.setAtomProperty (bs, tok, iValue, fValue, sValue, fvalues, list);
 }, "JU.BS,~N,~N,~N,JS.T");
-Clazz.defineMethod (c$, "setStatement", 
+Clazz.defineMethod (c$, "setStatement",
 function (st0, pt0) {
 this.st = st0;
 this.slen = this.st.length;

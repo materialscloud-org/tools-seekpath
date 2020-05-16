@@ -9,17 +9,17 @@ this.findString = null;
 this.lastAtom = "";
 Clazz.instantialize (this, arguments);
 }, J.jvxl.readers, "KinemageReader", J.jvxl.readers.PmeshReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.KinemageReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2PR (sg, br);
 this.type = "kinemage";
 this.setHeader ();
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "readVolumeParameters", 
+Clazz.overrideMethod (c$, "readVolumeParameters",
 function (isMapData) {
 if (this.params.parameters != null && this.params.parameters.length >= 2) {
 this.vMin = this.params.parameters[1];
@@ -28,7 +28,7 @@ this.pointType = (this.params.parameters.length >= 4 ? Clazz.floatToInt (this.pa
 this.findString = this.params.calculationType;
 }return true;
 }, "~B");
-Clazz.overrideMethod (c$, "readVertices", 
+Clazz.overrideMethod (c$, "readVertices",
 function () {
 this.rd ();
 var n0;
@@ -50,7 +50,7 @@ continue;
 }
 return true;
 });
-Clazz.defineMethod (c$, "readDots", 
+Clazz.defineMethod (c$, "readDots",
  function () {
 var color =  Clazz.newIntArray (1, 0);
 while (this.rd () != null && this.line.indexOf ('@') < 0) {
@@ -60,7 +60,7 @@ this.nDots++;
 this.nTriangles = this.addTriangleCheck (i, i, i, 7, 0, false, color[0]);
 }
 });
-Clazz.defineMethod (c$, "readVectors", 
+Clazz.defineMethod (c$, "readVectors",
  function () {
 var color =  Clazz.newIntArray (1, 0);
 while (this.rd () != null && this.line.indexOf ('@') < 0) {
@@ -71,7 +71,7 @@ this.nPolygons++;
 this.nTriangles = this.addTriangleCheck (ia, ib, ib, 7, 0, false, color[0]);
 }
 });
-Clazz.defineMethod (c$, "getPoint", 
+Clazz.defineMethod (c$, "getPoint",
  function (line, i, retColor, checkType) {
 if (this.findString != null) {
 var atom = line.substring (0, line.indexOf ("}") + 1);
@@ -104,18 +104,18 @@ var pt = JU.P3.new3 (JU.PT.parseFloat (tokens[0]), JU.PT.parseFloat (tokens[1]),
 if (this.isAnisotropic) this.setVertexAnisotropy (pt);
 return this.addVertexCopy (pt, value, this.nVertices++, false);
 }, "~S,~N,~A,~B");
-Clazz.defineMethod (c$, "getColor", 
+Clazz.defineMethod (c$, "getColor",
  function (color) {
 if (color.equals ("sky")) color = "skyblue";
  else if (color.equals ("sea")) color = "seagreen";
 return JU.CU.getArgbFromString (color);
 }, "~S");
-Clazz.defineMethod (c$, "assignValueFromGapColorForKin", 
+Clazz.defineMethod (c$, "assignValueFromGapColorForKin",
  function (color) {
 var value = (color.equals ("greentint") ? 4 : color.equals ("blue") ? 0.35 : color.equals ("sky") ? 0.25 : color.equals ("sea") ? 0.15 : color.equals ("green") ? 0.0 : color.equals ("yellowtint") ? -0.1 : color.equals ("yellow") ? -0.2 : color.equals ("orange") ? -0.3 : color.equals ("red") ? -0.4 : -0.5);
 return (value >= this.vMin && value <= this.vMax ? value : NaN);
 }, "~S");
-Clazz.overrideMethod (c$, "readPolygons", 
+Clazz.overrideMethod (c$, "readPolygons",
 function () {
 return true;
 });

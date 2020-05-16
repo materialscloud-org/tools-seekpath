@@ -14,10 +14,10 @@ this.peakIndex = null;
 this.peakFilePath = null;
 Clazz.instantialize (this, arguments);
 }, J.jsv, "JDXMOLParser", null, J.api.JmolJDXMOLParser);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.overrideMethod (c$, "set", 
+Clazz.overrideMethod (c$, "set",
 function (loader, filePath, htParams) {
 this.loader = loader;
 this.peakFilePath = filePath;
@@ -32,12 +32,12 @@ htParams.put ("peakIndex", this.peakIndex);
 }if (!htParams.containsKey ("subFileName")) this.peakFilePath = JU.PT.split (filePath, "|")[0];
 }}return this;
 }, "J.api.JmolJDXMOLReader,~S,java.util.Map");
-Clazz.overrideMethod (c$, "getAttribute", 
+Clazz.overrideMethod (c$, "getAttribute",
 function (line, tag) {
 var attr = JU.PT.getQuotedAttribute (line, tag);
 return (attr == null ? "" : attr);
 }, "~S,~S");
-Clazz.overrideMethod (c$, "getRecord", 
+Clazz.overrideMethod (c$, "getRecord",
 function (key) {
 if (this.line == null || this.line.indexOf (key) < 0) return null;
 var s = this.line;
@@ -45,7 +45,7 @@ while (s.indexOf (">") < 0) s += " " + this.readLine ();
 
 return this.line = s;
 }, "~S");
-Clazz.overrideMethod (c$, "readModels", 
+Clazz.overrideMethod (c$, "readModels",
 function () {
 if (!this.findRecord ("Models")) return false;
 this.line = "";
@@ -59,7 +59,7 @@ isFirst = false;
 }
 return true;
 });
-Clazz.overrideMethod (c$, "readACDMolFile", 
+Clazz.overrideMethod (c$, "readACDMolFile",
 function () {
 var sb =  new JU.SB ();
 sb.append (this.line.substring (this.line.indexOf ("=") + 1)).appendC ('\n');
@@ -67,7 +67,7 @@ while (this.readLine () != null && !this.line.contains ("$$$$")) sb.append (this
 
 return JU.PT.rep (sb.toString (), "  $$ Empty String", "");
 });
-Clazz.overrideMethod (c$, "readACDAssignments", 
+Clazz.overrideMethod (c$, "readACDAssignments",
 function (nPoints, isPeakAssignment) {
 var list =  new JU.Lst ();
 try {
@@ -99,7 +99,7 @@ throw e;
 }
 return list;
 }, "~N,~B");
-Clazz.overrideMethod (c$, "setACDAssignments", 
+Clazz.overrideMethod (c$, "setACDAssignments",
 function (model, mytype, peakCount, acdlist, molFile) {
 try {
 if (peakCount >= 0) this.peakIndex =  Clazz.newIntArray (-1, [peakCount]);
@@ -154,7 +154,7 @@ throw e;
 }
 }
 }, "~S,~S,~N,JU.Lst,~S");
-Clazz.defineMethod (c$, "fixACDAtomList", 
+Clazz.defineMethod (c$, "fixACDAtomList",
  function (atoms, zzcMap, nAtoms) {
 atoms = atoms.trim ();
 var tokens = JU.PT.getTokens (atoms.$replace (';', ' '));
@@ -176,11 +176,11 @@ bs.set (JU.PT.parseInt (zzcMap.get (a)));
 var s = bs.toJSON ();
 return s.substring (1, s.length - 1);
 }, "~S,java.util.Map,~N");
-Clazz.defineMethod (c$, "getACDPeakWidth", 
+Clazz.defineMethod (c$, "getACDPeakWidth",
  function (type) {
 return (type.indexOf ("HNMR") >= 0 ? 0.05 : type.indexOf ("CNMR") >= 0 ? 1 : type.indexOf ("MASS") >= 0 ? 1 : 10);
 }, "~S");
-Clazz.overrideMethod (c$, "readPeaks", 
+Clazz.overrideMethod (c$, "readPeaks",
 function (isSignals, peakCount) {
 try {
 if (peakCount >= 0) this.peakIndex =  Clazz.newIntArray (-1, [peakCount]);
@@ -215,7 +215,7 @@ throw e;
 }
 }
 }, "~B,~N");
-Clazz.defineMethod (c$, "setPeakData", 
+Clazz.defineMethod (c$, "setPeakData",
  function (list, offset) {
 var nH = 0;
 var n = list.size ();
@@ -238,7 +238,7 @@ this.loader.addPeakData (info);
 this.loader.setSpectrumPeaks (nH, this.piUnitsX, this.piUnitsY);
 return n;
 }, "JU.Lst,~N");
-Clazz.defineMethod (c$, "getStringInfo", 
+Clazz.defineMethod (c$, "getStringInfo",
  function (file, title, mytype, model, atoms, htSets, key, list, more) {
 if ("HNMR".equals (mytype)) mytype = "1HNMR";
  else if ("CNMR".equals (mytype)) mytype = "13CNMR";
@@ -258,7 +258,7 @@ atoms = atoms.$replace (',', ' ');
 if (atoms.equals ("*")) atoms = "0:1000";
 bs.or (JU.BS.unescape ("({" + atoms + "})"));
 }}, "~S,~S,~S,~S,~S,java.util.Map,~S,JU.Lst,~S");
-Clazz.defineMethod (c$, "getModelData", 
+Clazz.defineMethod (c$, "getModelData",
  function (isFirst) {
 this.lastModel = this.thisModelID;
 this.thisModelID = this.getAttribute (this.line, "id");
@@ -279,17 +279,17 @@ while (this.readLine () != null && !this.line.contains ("</ModelData>")) sb.appe
 
 this.loader.processModelData (sb.toString (), this.thisModelID, modelType, this.baseModel, this.lastModel, NaN, this.vibScale, isFirst);
 }, "~B");
-Clazz.defineMethod (c$, "findRecord", 
+Clazz.defineMethod (c$, "findRecord",
  function (tag) {
 if (this.line == null) this.readLine ();
 if (this.line.indexOf ("<" + tag) < 0) this.line = this.loader.discardLinesUntilContains2 ("<" + tag, "##");
 return (this.line != null && this.line.indexOf ("<" + tag) >= 0);
 }, "~S");
-Clazz.defineMethod (c$, "readLine", 
+Clazz.defineMethod (c$, "readLine",
  function () {
 return this.line = this.loader.rd ();
 });
-Clazz.overrideMethod (c$, "setLine", 
+Clazz.overrideMethod (c$, "setLine",
 function (s) {
 this.line = s;
 }, "~S");

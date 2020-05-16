@@ -68,22 +68,22 @@ this.ChargesOnly =  new JU.Lst ();
 this.TemperatureOnly =  new JU.Lst ();
 this.noZapped =  Clazz.newArray (-1, ["surfaceMenu", "measureMenu", "pickingMenu", "computationMenu", "SIGNEDJAVAcaptureMenuSPECIAL"]);
 });
-Clazz.defineMethod (c$, "initialize", 
+Clazz.defineMethod (c$, "initialize",
 function (vwr, bundle, title) {
 this.vwr = vwr;
 this.initSwing (title, bundle, vwr.html5Applet, vwr.isJS, vwr.getBooleanProperty ("_signedApplet"), vwr.isWebGL);
 }, "JV.Viewer,J.popup.PopupResource,~S");
-Clazz.overrideMethod (c$, "jpiDispose", 
+Clazz.overrideMethod (c$, "jpiDispose",
 function () {
 this.helper.menuClearListeners (this.popupMenu);
 this.helper.menuClearListeners (this.frankPopup);
 this.popupMenu = this.frankPopup = this.thisPopup = null;
 });
-Clazz.overrideMethod (c$, "jpiGetMenuAsObject", 
+Clazz.overrideMethod (c$, "jpiGetMenuAsObject",
 function () {
 return this.popupMenu;
 });
-Clazz.overrideMethod (c$, "jpiShow", 
+Clazz.overrideMethod (c$, "jpiShow",
 function (x, y) {
 if (!this.vwr.haveDisplay) return;
 this.show (x, y, false);
@@ -98,7 +98,7 @@ return;
 }}this.appRestorePopupMenu ();
 this.menuShowPopup (this.popupMenu, this.thisx, this.thisy);
 }, "~N,~N");
-Clazz.overrideMethod (c$, "jpiUpdateComputedMenus", 
+Clazz.overrideMethod (c$, "jpiUpdateComputedMenus",
 function () {
 if (this.updateMode == -1) return;
 this.isTainted = true;
@@ -119,7 +119,7 @@ this.updateModelSetComputedMenu ();
 this.updateLanguageSubmenu ();
 this.updateAboutSubmenu ();
 });
-Clazz.overrideMethod (c$, "appCheckItem", 
+Clazz.overrideMethod (c$, "appCheckItem",
 function (item, newMenu) {
 if (item.indexOf ("!PDB") >= 0) {
 this.NotPDB.addLast (newMenu);
@@ -145,11 +145,11 @@ this.VibrationOnly.addLast (newMenu);
 this.SymmetryOnly.addLast (newMenu);
 }if (item.indexOf ("SPECIAL") >= 0) this.Special.addLast (newMenu);
 }, "~S,javajs.awt.SC");
-Clazz.overrideMethod (c$, "appFixLabel", 
+Clazz.overrideMethod (c$, "appFixLabel",
 function (label) {
 return label;
 }, "~S");
-Clazz.overrideMethod (c$, "appFixScript", 
+Clazz.overrideMethod (c$, "appFixScript",
 function (id, script) {
 var pt;
 if (script === "" || id.endsWith ("Checkbox")) return script;
@@ -170,15 +170,15 @@ script = JU.PT.rep (script, "FILE?", this.modelSetFileName);
 script = JU.PT.rep (script, "PdbId?", "=xxxx");
 }return script;
 }, "~S,~S");
-Clazz.overrideMethod (c$, "appGetBooleanProperty", 
+Clazz.overrideMethod (c$, "appGetBooleanProperty",
 function (name) {
 return this.vwr.getBooleanProperty (name);
 }, "~S");
-Clazz.overrideMethod (c$, "appGetMenuAsString", 
+Clazz.overrideMethod (c$, "appGetMenuAsString",
 function (title) {
 return ( new J.popup.MainPopupResourceBundle (this.strMenuStructure, null)).getMenuAsText (title);
 }, "~S");
-Clazz.overrideMethod (c$, "appIsSpecialCheckBox", 
+Clazz.overrideMethod (c$, "appIsSpecialCheckBox",
 function (item, basename, what, TF) {
 if (this.appGetBooleanProperty (basename) == TF) return true;
 if (!basename.endsWith ("P!")) return false;
@@ -190,7 +190,7 @@ what = "set picking " + basename.substring (0, basename.length - 2);
 }this.appRunScript (what);
 return true;
 }, "javajs.awt.SC,~S,~S,~B");
-Clazz.overrideMethod (c$, "appRestorePopupMenu", 
+Clazz.overrideMethod (c$, "appRestorePopupMenu",
 function () {
 this.thisPopup = this.popupMenu;
 if (this.vwr.isJS || this.nFrankList < 2) return;
@@ -200,18 +200,18 @@ this.helper.menuInsertSubMenu (f[0], f[1], (f[2]).intValue ());
 }
 this.nFrankList = 1;
 });
-Clazz.overrideMethod (c$, "appRunScript", 
+Clazz.overrideMethod (c$, "appRunScript",
 function (script) {
 this.vwr.evalStringQuiet (script);
 }, "~S");
-Clazz.overrideMethod (c$, "appUpdateSpecialCheckBoxValue", 
+Clazz.overrideMethod (c$, "appUpdateSpecialCheckBoxValue",
 function (item, what, TF) {
 if (what.indexOf ("#CONFIG") >= 0) {
 this.configurationSelected = what;
 this.updateConfigurationComputedMenu ();
 this.updateModelSetComputedMenu ();
 }}, "javajs.awt.SC,~S,~B");
-Clazz.defineMethod (c$, "setFrankMenu", 
+Clazz.defineMethod (c$, "setFrankMenu",
  function (id) {
 if (this.currentFrankId != null && this.currentFrankId === id && this.nFrankList > 0) return;
 if (this.frankPopup == null) this.frankPopup = this.helper.menuCreatePopup ("Frank", this.vwr.html5Applet);
@@ -231,11 +231,11 @@ i = iNew + 1;
 }
 this.thisPopup = this.popupMenu;
 }, "~S");
-Clazz.defineMethod (c$, "checkBoolean", 
+Clazz.defineMethod (c$, "checkBoolean",
  function (key) {
 return (this.modelSetInfo != null && this.modelSetInfo.get (key) === Boolean.TRUE);
 }, "~S");
-Clazz.defineMethod (c$, "getViewerData", 
+Clazz.defineMethod (c$, "getViewerData",
  function () {
 this.modelSetName = this.vwr.ms.modelSetName;
 this.modelSetFileName = this.vwr.getModelSetFileName ();
@@ -264,13 +264,13 @@ this.haveBFactors = (this.vwr.getBooleanProperty ("haveBFactors"));
 this.cnmrPeaks = this.modelInfo.get ("jdxAtomSelect_13CNMR");
 this.hnmrPeaks = this.modelInfo.get ("jdxAtomSelect_1HNMR");
 });
-Clazz.overrideMethod (c$, "appCheckSpecialMenu", 
+Clazz.overrideMethod (c$, "appCheckSpecialMenu",
 function (item, subMenu, word) {
 if ("modelSetMenu".equals (item)) {
 this.nullModelSetName = word;
 this.menuEnable (subMenu, false);
 }}, "~S,javajs.awt.SC,~S");
-Clazz.overrideMethod (c$, "appUpdateForShow", 
+Clazz.overrideMethod (c$, "appUpdateForShow",
 function () {
 if (this.updateMode == -1) return;
 this.isTainted = true;
@@ -285,7 +285,7 @@ this.updateAboutSubmenu ();
 for (var i = this.Special.size (); --i >= 0; ) this.updateSpecialMenuItem (this.Special.get (i));
 
 });
-Clazz.defineMethod (c$, "updateFileMenu", 
+Clazz.defineMethod (c$, "updateFileMenu",
  function () {
 var menu = this.htMenus.get ("fileMenu");
 if (menu == null) return;
@@ -299,19 +299,19 @@ this.menuEnable (menu, false);
 this.menuSetLabel (menu, J.i18n.GT.o (J.i18n.GT._ (text), this.modelSetFileName));
 this.menuEnable (menu, true);
 }});
-Clazz.defineMethod (c$, "getMenuText", 
+Clazz.defineMethod (c$, "getMenuText",
  function (key) {
 var str = this.menuText.getProperty (key);
 return (str == null ? key : str);
 }, "~S");
-Clazz.defineMethod (c$, "updateSelectMenu", 
+Clazz.defineMethod (c$, "updateSelectMenu",
  function () {
 var menu = this.htMenus.get ("selectMenuText");
 if (menu == null) return;
 this.menuEnable (menu, this.ac != 0);
 this.menuSetLabel (menu, this.gti ("selectMenuText", this.vwr.slm.getSelectionCount ()));
 });
-Clazz.defineMethod (c$, "updateElementsComputedMenu", 
+Clazz.defineMethod (c$, "updateElementsComputedMenu",
  function (elementsPresentBitSet) {
 var menu = this.htMenus.get ("elementsComputedMenu");
 if (menu == null) return;
@@ -335,7 +335,7 @@ this.menuCreateItem (menu, entryName, "SELECT " + elementName, null);
 }}
 this.menuEnable (menu, true);
 }, "JU.BS");
-Clazz.defineMethod (c$, "updateSpectraMenu", 
+Clazz.defineMethod (c$, "updateSpectraMenu",
  function () {
 var menuh = this.htMenus.get ("hnmrMenu");
 var menuc = this.htMenus.get ("cnmrMenu");
@@ -350,7 +350,7 @@ if (menuh != null) this.menuAddSubMenu (menu, menuh);
 if (menuc != null) this.menuAddSubMenu (menu, menuc);
 }this.menuEnable (menu, isOK);
 });
-Clazz.defineMethod (c$, "setSpectraMenu", 
+Clazz.defineMethod (c$, "setSpectraMenu",
  function (menu, peaks) {
 if (menu == null) return false;
 this.menuEnable (menu, false);
@@ -365,7 +365,7 @@ if (atoms != null) this.menuCreateItem (menu, title, "select visible & (@" + JU.
 this.menuEnable (menu, true);
 return true;
 }, "javajs.awt.SC,JU.Lst");
-Clazz.defineMethod (c$, "updateHeteroComputedMenu", 
+Clazz.defineMethod (c$, "updateHeteroComputedMenu",
  function (htHetero) {
 var menu = this.htMenus.get ("PDBheteroComputedMenu");
 if (menu == null) return;
@@ -383,7 +383,7 @@ n++;
 }
 this.menuEnable (menu, (n > 0));
 }, "java.util.Map");
-Clazz.defineMethod (c$, "updateSurfMoComputedMenu", 
+Clazz.defineMethod (c$, "updateSurfMoComputedMenu",
  function (moData) {
 var menu = this.htMenus.get ("surfMoComputedMenuText");
 if (menu == null) return;
@@ -415,7 +415,7 @@ var script = "mo " + (i + 1);
 this.menuCreateItem (subMenu, entryName, script, null);
 }
 }, "java.util.Map");
-Clazz.defineMethod (c$, "updateFileTypeDependentMenus", 
+Clazz.defineMethod (c$, "updateFileTypeDependentMenus",
  function () {
 for (var i = this.NotPDB.size (); --i >= 0; ) this.menuEnable (this.NotPDB.get (i), !this.isPDB);
 
@@ -441,7 +441,7 @@ for (var i = this.TemperatureOnly.size (); --i >= 0; ) this.menuEnable (this.Tem
 
 this.updateSignedAppletItems ();
 });
-Clazz.defineMethod (c$, "updateSceneComputedMenu", 
+Clazz.defineMethod (c$, "updateSceneComputedMenu",
  function () {
 var menu = this.htMenus.get ("sceneComputedMenu");
 if (menu == null) return;
@@ -453,7 +453,7 @@ for (var i = 0; i < scenes.length; i++) this.menuCreateItem (menu, scenes[i], "r
 
 this.menuEnable (menu, true);
 });
-Clazz.defineMethod (c$, "updatePDBComputedMenus", 
+Clazz.defineMethod (c$, "updatePDBComputedMenus",
  function () {
 var menu = this.htMenus.get ("PDBaaResiduesComputedMenu");
 if (menu == null) return;
@@ -489,7 +489,7 @@ nItems = this.augmentGroup3List (menu2, "c>", false);
 this.menuEnable (menu2, nItems > 0);
 this.menuEnable (this.htMenus.get ("PDBcarboMenu"), (nItems > 0));
 });
-Clazz.defineMethod (c$, "setSecStrucMenu", 
+Clazz.defineMethod (c$, "setSecStrucMenu",
  function (menu, dssr) {
 var counts = dssr.get ("counts");
 if (counts == null) return false;
@@ -502,7 +502,7 @@ for (var i = 0; i < keys.length; i++) this.menuCreateItem (menu, keys[i] + " (" 
 
 return true;
 }, "javajs.awt.SC,java.util.Map");
-Clazz.defineMethod (c$, "updateGroup3List", 
+Clazz.defineMethod (c$, "updateGroup3List",
  function (menu, name) {
 var nItems = 0;
 var n = this.group3Counts[Clazz.doubleToInt (this.group3List.indexOf (name) / 6)];
@@ -516,7 +516,7 @@ nItems++;
 if (n == 0) this.menuEnable (item, false);
 return nItems;
 }, "javajs.awt.SC,~S");
-Clazz.defineMethod (c$, "augmentGroup3List", 
+Clazz.defineMethod (c$, "augmentGroup3List",
  function (menu, type, addSeparator) {
 var pt = 138;
 var nItems = 0;
@@ -532,12 +532,12 @@ pt++;
 }
 return nItems;
 }, "javajs.awt.SC,~S,~B");
-Clazz.defineMethod (c$, "updateSYMMETRYComputedMenus", 
+Clazz.defineMethod (c$, "updateSYMMETRYComputedMenus",
  function () {
 this.updateSYMMETRYSelectComputedMenu ();
 this.updateSYMMETRYShowComputedMenu ();
 });
-Clazz.defineMethod (c$, "updateSYMMETRYShowComputedMenu", 
+Clazz.defineMethod (c$, "updateSYMMETRYShowComputedMenu",
  function () {
 var menu = this.htMenus.get ("SYMMETRYShowComputedMenu");
 if (menu == null) return;
@@ -568,7 +568,7 @@ this.menuEnable (this.menuCreateItem (subMenu, entryName, "draw SYMOP " + (i + 1
 }
 this.menuEnable (menu, true);
 });
-Clazz.defineMethod (c$, "updateSYMMETRYSelectComputedMenu", 
+Clazz.defineMethod (c$, "updateSYMMETRYSelectComputedMenu",
  function () {
 var menu = this.htMenus.get ("SYMMETRYSelectComputedMenu");
 if (menu == null) return;
@@ -594,7 +594,7 @@ this.menuEnable (this.menuCreateItem (subMenu, entryName, "SELECT symop=" + (i +
 }
 this.menuEnable (menu, true);
 });
-Clazz.defineMethod (c$, "updateFRAMESbyModelComputedMenu", 
+Clazz.defineMethod (c$, "updateFRAMESbyModelComputedMenu",
  function () {
 var menu = this.htMenus.get ("FRAMESbyModelComputedMenu");
 if (menu == null) return;
@@ -627,7 +627,7 @@ if (spectrumTypes != null) entryName += " (" + spectrumTypes + ")";
 this.menuCreateCheckboxItem (subMenu, entryName, "model " + script + " ##", null, (this.modelIndex == i), false);
 }
 });
-Clazz.defineMethod (c$, "updateConfigurationComputedMenu", 
+Clazz.defineMethod (c$, "updateConfigurationComputedMenu",
  function () {
 var menu = this.htMenus.get ("configurationComputedMenu");
 if (menu == null) return;
@@ -644,7 +644,7 @@ var entryName = "" + (i + 1) + " -- \"" + this.altlocs.charAt (i) + "\"";
 this.menuCreateCheckboxItem (menu, entryName, script, null, (this.updateMode == 1 && this.configurationSelected.equals (script)), false);
 }
 });
-Clazz.defineMethod (c$, "updateModelSetComputedMenu", 
+Clazz.defineMethod (c$, "updateModelSetComputedMenu",
  function () {
 var menu = this.htMenus.get ("modelSetMenu");
 if (menu == null) return;
@@ -691,20 +691,20 @@ this.menuCreateItem (submenu, entryName, script, null);
 this.menuAddSeparator (menu);
 this.menuCreateItem (menu, this.gto ("viewMenuText", this.modelSetFileName), "show url", null);
 }});
-Clazz.defineMethod (c$, "gti", 
+Clazz.defineMethod (c$, "gti",
  function (s, n) {
 return J.i18n.GT.i (J.i18n.GT._ (this.getMenuText (s)), n);
 }, "~S,~N");
-Clazz.defineMethod (c$, "gto", 
+Clazz.defineMethod (c$, "gto",
  function (s, o) {
 return J.i18n.GT.o (J.i18n.GT._ (this.getMenuText (s)), o);
 }, "~S,~O");
-Clazz.defineMethod (c$, "updateAboutSubmenu", 
+Clazz.defineMethod (c$, "updateAboutSubmenu",
  function () {
 if (this.isApplet) this.setText ("APPLETid", this.vwr.appletName);
 {
 }});
-Clazz.defineMethod (c$, "updateLanguageSubmenu", 
+Clazz.defineMethod (c$, "updateLanguageSubmenu",
  function () {
 var menu = this.htMenus.get ("languageComputedMenu");
 if (menu == null) return;
@@ -725,11 +725,11 @@ menuLabel += " - " + nativeName;
 this.menuCreateCheckboxItem (menu, menuLabel, "language = \"" + code + "\" ##" + name, id + "." + code, language.equals (code), false);
 }}
 });
-Clazz.defineMethod (c$, "updateSpecialMenuItem", 
+Clazz.defineMethod (c$, "updateSpecialMenuItem",
  function (m) {
 m.setText (this.getSpecialLabel (m.getName (), m.getText ()));
 }, "javajs.awt.SC");
-Clazz.defineMethod (c$, "getSpecialLabel", 
+Clazz.defineMethod (c$, "getSpecialLabel",
 function (name, text) {
 var pt = text.indexOf (" (");
 if (pt < 0) pt = text.length;

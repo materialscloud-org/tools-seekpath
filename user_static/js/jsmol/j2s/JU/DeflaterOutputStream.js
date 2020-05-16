@@ -13,7 +13,7 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.buf1 =  Clazz.newByteArray (1, 0);
 });
-Clazz.defineMethod (c$, "jzSetDOS", 
+Clazz.defineMethod (c$, "jzSetDOS",
 function (out, deflater, size, close_out) {
 this.jzSetFOS (out);
 if (size == 0) size = 512;
@@ -21,12 +21,12 @@ this.deflater = deflater;
 this.buffer =  Clazz.newByteArray (size, 0);
 this.close_out = close_out;
 }, "java.io.OutputStream,JU.Deflater,~N,~B");
-Clazz.overrideMethod (c$, "writeByteAsInt", 
+Clazz.overrideMethod (c$, "writeByteAsInt",
 function (b) {
 this.buf1[0] = (b & 0xff);
 this.write (this.buf1, 0, 1);
 }, "~N");
-Clazz.defineMethod (c$, "write", 
+Clazz.defineMethod (c$, "write",
 function (b, off, len) {
 if (this.deflater.finished ()) throw  new java.io.IOException ("finished");
 if ( new Boolean ( new Boolean (off < 0 | len < 0).valueOf () | off + len > b.length).valueOf ()) throw  new IndexOutOfBoundsException ();
@@ -38,13 +38,13 @@ var err = this.deflate (flush);
 if (err == 1) break;
 }
 }, "~A,~N,~N");
-Clazz.defineMethod (c$, "finish", 
+Clazz.defineMethod (c$, "finish",
 function () {
 while (!this.deflater.finished ()) {
 this.deflate (4);
 }
 });
-Clazz.overrideMethod (c$, "close", 
+Clazz.overrideMethod (c$, "close",
 function () {
 if (!this.closed) {
 this.finish ();
@@ -53,7 +53,7 @@ this.deflater.end ();
 }if (this.close_out) this.out.close ();
 this.closed = true;
 }});
-Clazz.defineMethod (c$, "deflate", 
+Clazz.defineMethod (c$, "deflate",
 function (flush) {
 this.deflater.setOutput (this.buffer, 0, this.buffer.length);
 var err = this.deflater.deflate (flush);
@@ -72,7 +72,7 @@ if (len > 0) {
 this.out.write (this.buffer, 0, len);
 }return err;
 }, "~N");
-Clazz.overrideMethod (c$, "flush", 
+Clazz.overrideMethod (c$, "flush",
 function () {
 if (this.syncFlush && !this.deflater.finished ()) {
 while (true) {
@@ -82,23 +82,23 @@ if (err == 1) break;
 }
 }this.out.flush ();
 });
-Clazz.defineMethod (c$, "getTotalIn", 
+Clazz.defineMethod (c$, "getTotalIn",
 function () {
 return this.deflater.getTotalIn ();
 });
-Clazz.defineMethod (c$, "getTotalOut", 
+Clazz.defineMethod (c$, "getTotalOut",
 function () {
 return this.deflater.getTotalOut ();
 });
-Clazz.defineMethod (c$, "setSyncFlush", 
+Clazz.defineMethod (c$, "setSyncFlush",
 function (syncFlush) {
 this.syncFlush = syncFlush;
 }, "~B");
-Clazz.defineMethod (c$, "getSyncFlush", 
+Clazz.defineMethod (c$, "getSyncFlush",
 function () {
 return this.syncFlush;
 });
-Clazz.defineMethod (c$, "getDeflater", 
+Clazz.defineMethod (c$, "getDeflater",
 function () {
 return this.deflater;
 });

@@ -56,7 +56,7 @@ this.p1 =  new JU.P3 ();
 this.p2 =  new JU.P3 ();
 this.bsForPass2 = JU.BS.newN (64);
 });
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 var bonds = this.ms.bo;
 if (bonds == null) return false;
@@ -89,7 +89,7 @@ this.bsForPass2.set (i);
 }}
 }return needTranslucent;
 });
-Clazz.defineMethod (c$, "getMultipleBondSettings", 
+Clazz.defineMethod (c$, "getMultipleBondSettings",
  function (isPymol) {
 this.useBananas = (this.vwr.getBoolean (603979886) && !isPymol);
 this.multipleBondSpacing = (isPymol ? 0.15 : this.vwr.getFloat (570425370));
@@ -101,7 +101,7 @@ if (this.multipleBondSpacing == 0 && this.isCartesian) this.multipleBondSpacing 
 this.modeMultipleBond = this.vwr.g.modeMultipleBond;
 this.showMultipleBonds = (this.multipleBondSpacing != 0 && this.modeMultipleBond != 0 && this.vwr.getBoolean (603979928));
 }, "~B");
-Clazz.defineMethod (c$, "renderBond", 
+Clazz.defineMethod (c$, "renderBond",
  function () {
 var atomA0;
 var atomB0;
@@ -258,7 +258,7 @@ break;
 }
 return needTranslucent;
 });
-Clazz.defineMethod (c$, "drawBond", 
+Clazz.defineMethod (c$, "drawBond",
  function (dottedMask) {
 var isDashed = (dottedMask & 1) != 0;
 if (this.isCartesian && this.bondOrder == 1 && !isDashed) {
@@ -352,7 +352,7 @@ if (--this.bondOrder <= 0) break;
 this.stepAxisCoordinates ();
 }
 }, "~N");
-Clazz.defineMethod (c$, "resetAxisCoordinates", 
+Clazz.defineMethod (c$, "resetAxisCoordinates",
  function () {
 var space = this.mag2d >> 3;
 if (this.multipleBondSpacing != -1 && this.multipleBondSpacing < 0) space *= -this.multipleBondSpacing;
@@ -369,14 +369,14 @@ this.yAxis1 -= Clazz.doubleToInt (this.dyStep * f / 2);
 this.xAxis2 -= Clazz.doubleToInt (this.dxStep * f / 2);
 this.yAxis2 -= Clazz.doubleToInt (this.dyStep * f / 2);
 });
-Clazz.defineMethod (c$, "stepAxisCoordinates", 
+Clazz.defineMethod (c$, "stepAxisCoordinates",
  function () {
 this.xAxis1 += this.dxStep;
 this.yAxis1 += this.dyStep;
 this.xAxis2 += this.dxStep;
 this.yAxis2 += this.dyStep;
 });
-Clazz.defineMethod (c$, "getAromaticDottedBondMask", 
+Clazz.defineMethod (c$, "getAromaticDottedBondMask",
  function () {
 var atomC = this.b.findAromaticNeighbor (this.a.i);
 if (atomC == null) return 1;
@@ -384,7 +384,7 @@ var dxAC = atomC.sX - this.xA;
 var dyAC = atomC.sY - this.yA;
 return ((this.dx * dyAC - this.dy * dxAC) < 0 ? 2 : 1);
 });
-Clazz.defineMethod (c$, "drawBanana", 
+Clazz.defineMethod (c$, "drawBanana",
  function (a, b, x, deg) {
 this.g3d.addRenderer (553648146);
 this.vectorT.sub2 (b, a);

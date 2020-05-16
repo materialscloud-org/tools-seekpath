@@ -56,16 +56,16 @@ this.T2 =  new JU.V3 ();
 this.depth1 =  new JU.V3 ();
 this.needToFill =  Clazz.newBooleanArray (16, false);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.overrideMethod (c$, "set", 
+Clazz.overrideMethod (c$, "set",
 function (g3d, gdata) {
 this.g3d = g3d;
 this.gdata = gdata;
 return this;
 }, "J.api.JmolRendererInterface,JU.GData");
-Clazz.defineMethod (c$, "renderHermiteRope", 
+Clazz.defineMethod (c$, "renderHermiteRope",
 function (fill, tension, diameterBeg, diameterMid, diameterEnd, p0, p1, p2, p3) {
 var z1 = Clazz.floatToInt (p1.z);
 var z2 = Clazz.floatToInt (p2.z);
@@ -127,7 +127,7 @@ this.pLeft[sp].setT (pMid);
 this.sLeft[sp] = s;
 } while (sp >= 0);
 }, "~B,~N,~N,~N,~N,JU.P3,JU.P3,JU.P3,JU.P3");
-Clazz.defineMethod (c$, "renderHermiteRibbon", 
+Clazz.defineMethod (c$, "renderHermiteRibbon",
 function (fill, border, tension, p0, p1, p2, p3, p4, p5, p6, p7, aspectRatio, fillType) {
 if (p0.z == 1 || p1.z == 1 || p2.z == 1 || p3.z == 1 || p4.z == 1 || p5.z == 1 || p6.z == 1 || p7.z == 1) return;
 if (!fill) {
@@ -261,14 +261,14 @@ this.c2.z += 1;
 this.a2.z += 1;
 this.g3d.fillQuadrilateral (this.a1, this.c1, this.c2, this.a2, false);
 }}, "~B,~B,~N,JU.P3,JU.P3,JU.P3,JU.P3,JU.P3,JU.P3,JU.P3,JU.P3,~N,~N");
-c$.isFront = Clazz.defineMethod (c$, "isFront", 
+c$.isFront = Clazz.defineMethod (c$, "isFront",
  function (a, b, c) {
 J.g3d.HermiteRenderer.vAB.sub2 (b, a);
 J.g3d.HermiteRenderer.vAC.sub2 (c, a);
 J.g3d.HermiteRenderer.vAB.cross (J.g3d.HermiteRenderer.vAB, J.g3d.HermiteRenderer.vAC);
 return (J.g3d.HermiteRenderer.vAB.z < 0 ? -1 : 1);
 }, "JU.P3,JU.P3,JU.P3");
-Clazz.defineMethod (c$, "renderParallelPair", 
+Clazz.defineMethod (c$, "renderParallelPair",
  function (fill, tension, p0, p1, p2, p3, p4, p5, p6, p7) {
 var endPoints =  Clazz.newArray (-1, [p2, p1, p6, p5]);
 var points =  new JU.Lst ();

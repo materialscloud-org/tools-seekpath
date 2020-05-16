@@ -5,10 +5,10 @@ this.nhChecked = false;
 this.ptTemp = null;
 Clazz.instantialize (this, arguments);
 }, JM, "AminoMonomer", JM.AlphaMonomer);
-Clazz.overrideConstructor (c$, 
+Clazz.overrideConstructor (c$,
 function () {
 });
-c$.validateAndAllocate = Clazz.defineMethod (c$, "validateAndAllocate", 
+c$.validateAndAllocate = Clazz.defineMethod (c$, "validateAndAllocate",
 function (chain, group3, seqcode, firstAtomIndex, lastAtomIndex, specialAtomIndexes, atoms) {
 var offsets = JM.Monomer.scanForOffsets (firstAtomIndex, specialAtomIndexes, JM.AminoMonomer.interestingAminoAtomIDs);
 if (offsets == null) return null;
@@ -16,51 +16,51 @@ JM.Monomer.checkOptional (offsets, 1, firstAtomIndex, specialAtomIndexes[5]);
 if (atoms[firstAtomIndex].isHetero () && !JM.AminoMonomer.isBondedCorrectly (firstAtomIndex, offsets, atoms)) return null;
 return  new JM.AminoMonomer ().set2 (chain, group3, seqcode, firstAtomIndex, lastAtomIndex, offsets);
 }, "JM.Chain,~S,~N,~N,~N,~A,~A");
-c$.isBondedCorrectlyRange = Clazz.defineMethod (c$, "isBondedCorrectlyRange", 
+c$.isBondedCorrectlyRange = Clazz.defineMethod (c$, "isBondedCorrectlyRange",
  function (offset1, offset2, firstAtomIndex, offsets, atoms) {
 var atomIndex1 = firstAtomIndex + (offsets[offset1] & 0xFF);
 var atomIndex2 = firstAtomIndex + (offsets[offset2] & 0xFF);
 return (atomIndex1 != atomIndex2 && atoms[atomIndex1].isBonded (atoms[atomIndex2]));
 }, "~N,~N,~N,~A,~A");
-c$.isBondedCorrectly = Clazz.defineMethod (c$, "isBondedCorrectly", 
+c$.isBondedCorrectly = Clazz.defineMethod (c$, "isBondedCorrectly",
  function (firstAtomIndex, offsets, atoms) {
 return (JM.AminoMonomer.isBondedCorrectlyRange (2, 0, firstAtomIndex, offsets, atoms) && JM.AminoMonomer.isBondedCorrectlyRange (0, 3, firstAtomIndex, offsets, atoms) && (!JM.Monomer.have (offsets, 1) || JM.AminoMonomer.isBondedCorrectlyRange (3, 1, firstAtomIndex, offsets, atoms)));
 }, "~N,~A,~A");
-Clazz.defineMethod (c$, "isAminoMonomer", 
+Clazz.defineMethod (c$, "isAminoMonomer",
 function () {
 return true;
 });
-Clazz.overrideMethod (c$, "getNitrogenAtom", 
+Clazz.overrideMethod (c$, "getNitrogenAtom",
 function () {
 return this.getAtomFromOffsetIndex (2);
 });
-Clazz.defineMethod (c$, "getCarbonylCarbonAtom", 
+Clazz.defineMethod (c$, "getCarbonylCarbonAtom",
 function () {
 return this.getAtomFromOffsetIndex (3);
 });
-Clazz.overrideMethod (c$, "getCarbonylOxygenAtom", 
+Clazz.overrideMethod (c$, "getCarbonylOxygenAtom",
 function () {
 return this.getWingAtom ();
 });
-Clazz.overrideMethod (c$, "getInitiatorAtom", 
+Clazz.overrideMethod (c$, "getInitiatorAtom",
 function () {
 return this.getNitrogenAtom ();
 });
-Clazz.overrideMethod (c$, "getTerminatorAtom", 
+Clazz.overrideMethod (c$, "getTerminatorAtom",
 function () {
 return this.getAtomFromOffsetIndex (JM.Monomer.have (this.offsets, 4) ? 4 : 3);
 });
-Clazz.defineMethod (c$, "hasOAtom", 
+Clazz.defineMethod (c$, "hasOAtom",
 function () {
 return JM.Monomer.have (this.offsets, 1);
 });
-Clazz.overrideMethod (c$, "isConnectedAfter", 
+Clazz.overrideMethod (c$, "isConnectedAfter",
 function (possiblyPreviousMonomer) {
 if (possiblyPreviousMonomer == null) return true;
 var other = possiblyPreviousMonomer;
 return other.getCarbonylCarbonAtom ().isBonded (this.getNitrogenAtom ());
 }, "JM.Monomer");
-Clazz.overrideMethod (c$, "findNearestAtomIndex", 
+Clazz.overrideMethod (c$, "findNearestAtomIndex",
 function (x, y, closest, madBegin, madEnd) {
 var competitor = closest[0];
 var nitrogen = this.getNitrogenAtom ();
@@ -77,19 +77,19 @@ if (radiusEnd < 4) radiusEnd = 4;
 var alpha = this.getLeadAtom ();
 if (this.isCursorOnTopOf (alpha, x, y, Clazz.doubleToInt ((radiusBegin + radiusEnd) / 2), competitor) || this.isCursorOnTopOf (nitrogen, x, y, radiusBegin, competitor) || this.isCursorOnTopOf (ccarbon, x, y, radiusEnd, competitor)) closest[0] = alpha;
 }, "~N,~N,~A,~N,~N");
-Clazz.defineMethod (c$, "resetHydrogenPoint", 
+Clazz.defineMethod (c$, "resetHydrogenPoint",
 function () {
 this.nhChecked = false;
 this.nitrogenHydrogenPoint = null;
 });
-Clazz.defineMethod (c$, "getNitrogenHydrogenPoint", 
+Clazz.defineMethod (c$, "getNitrogenHydrogenPoint",
 function () {
 if (this.nitrogenHydrogenPoint == null && !this.nhChecked) {
 this.nhChecked = true;
 this.nitrogenHydrogenPoint = this.getExplicitNH ();
 }return this.nitrogenHydrogenPoint;
 });
-Clazz.defineMethod (c$, "getExplicitNH", 
+Clazz.defineMethod (c$, "getExplicitNH",
 function () {
 var nitrogen = this.getNitrogenAtom ();
 var h = null;
@@ -98,7 +98,7 @@ if (bonds != null) for (var i = 0; i < bonds.length; i++) if ((h = bonds[i].getO
 
 return null;
 });
-Clazz.defineMethod (c$, "getNHPoint", 
+Clazz.defineMethod (c$, "getNHPoint",
 function (aminoHydrogenPoint, vNH, jmolHPoint, dsspIgnoreHydrogens) {
 if (this.monomerIndex <= 0 || this.groupID == 15) return false;
 var nitrogenPoint = this.getNitrogenAtom ();
@@ -124,7 +124,7 @@ this.nitrogenHydrogenPoint = JU.P3.newP (aminoHydrogenPoint);
 if (JU.Logger.debugging) JU.Logger.debug ("draw ID \"pta" + this.monomerIndex + "_" + nitrogenPoint.i + "\" " + JU.Escape.eP (nitrogenPoint) + JU.Escape.eP (aminoHydrogenPoint) + " # " + nitrogenPoint);
 return true;
 }, "JU.P3,JU.V3,~B,~B");
-Clazz.overrideMethod (c$, "getQuaternionFrameCenter", 
+Clazz.overrideMethod (c$, "getQuaternionFrameCenter",
 function (qType) {
 if (this.monomerIndex < 0) return null;
 switch (qType) {
@@ -147,7 +147,7 @@ pt.ave (this.getCarbonylCarbonAtom (), mNext.getNitrogenAtom ());
 return pt;
 }
 }, "~S");
-Clazz.overrideMethod (c$, "getQuaternion", 
+Clazz.overrideMethod (c$, "getQuaternion",
 function (qType) {
 if (this.monomerIndex < 0) return null;
 var ptC = this.getCarbonylCarbonAtom ();
@@ -190,12 +190,12 @@ return null;
 }
 return JU.Quat.getQuaternionFrameV (vA, vB, vC, false);
 }, "~S");
-Clazz.overrideMethod (c$, "getStructureId", 
+Clazz.overrideMethod (c$, "getStructureId",
 function () {
 if (this.proteinStructure == null || this.proteinStructure.structureID == null) return "";
 return this.proteinStructure.structureID;
 });
-Clazz.overrideMethod (c$, "getProteinStructureTag", 
+Clazz.overrideMethod (c$, "getProteinStructureTag",
 function () {
 if (this.proteinStructure == null || this.proteinStructure.structureID == null) return null;
 var tag = "%3N %3ID";
@@ -204,7 +204,7 @@ tag = JU.PT.formatStringS (tag, "ID", this.proteinStructure.structureID);
 if (this.proteinStructure.type === J.c.STR.SHEET) tag += JU.PT.formatStringI ("%2SC", "SC", this.proteinStructure.strandCount);
 return tag;
 });
-Clazz.overrideMethod (c$, "getBSSideChain", 
+Clazz.overrideMethod (c$, "getBSSideChain",
 function () {
 var bs =  new JU.BS ();
 this.setAtomBits (bs);
@@ -214,7 +214,7 @@ this.clear (bs, this.getCarbonylOxygenAtom (), false);
 this.clear (bs, this.getNitrogenAtom (), true);
 return bs;
 });
-Clazz.defineMethod (c$, "clear", 
+Clazz.defineMethod (c$, "clear",
  function (bs, a, andH) {
 if (a == null) return;
 bs.clear (a.i);

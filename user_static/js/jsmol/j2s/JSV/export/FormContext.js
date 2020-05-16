@@ -16,21 +16,21 @@ Clazz.prepareFields (c$, function () {
 this.context =  new java.util.Hashtable ();
 this.cmds =  new JU.Lst ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "put", 
+Clazz.defineMethod (c$, "put",
 function (key, value) {
 if (value == null) value = "";
 this.context.put (key, value);
 }, "~S,~O");
-Clazz.defineMethod (c$, "setTemplate", 
+Clazz.defineMethod (c$, "setTemplate",
 function (template) {
 var errMsg = this.getFormTokens (template);
 if (errMsg != null) return errMsg;
 return null;
 }, "~S");
-Clazz.defineMethod (c$, "getFormTokens", 
+Clazz.defineMethod (c$, "getFormTokens",
  function (template) {
 this.formTokens =  new JU.Lst ();
 if (template.indexOf ("\r\n") >= 0) template = JU.PT.replaceAllCharacters (template, "\r\n", "\n");
@@ -62,7 +62,7 @@ if (token.length > 0 && this.strError == null) {
 Clazz.innerTypeInstance (JSV["export"].FormContext.FormToken, this, null, token, 0);
 }return this.strError;
 }, "~S");
-Clazz.defineMethod (c$, "merge", 
+Clazz.defineMethod (c$, "merge",
 function (out) {
 var ptr;
 for (var i = 0; i < this.formTokens.size () && this.strError == null; i++) {
@@ -117,7 +117,7 @@ continue;
 }
 return (this.strError != null ? this.strError : out != null ? out.toString () : null);
 }, "JU.OC");
-Clazz.defineMethod (c$, "foreach", 
+Clazz.defineMethod (c$, "foreach",
  function (vt) {
 var data = vt.data;
 data = data.$replace ('(', ' ');
@@ -131,13 +131,13 @@ if (Clazz.instanceOf (vc, JU.Lst)) vt.vc = vc;
 vt.cmdPtr = vt.ptr;
 vt.pointCount = -1;
 }, "JSV.export.FormContext.FormToken");
-c$.findOp = Clazz.defineMethod (c$, "findOp", 
+c$.findOp = Clazz.defineMethod (c$, "findOp",
  function (op) {
 for (var i = JSV["export"].FormContext.ops.length; --i >= 0; ) if (JSV["export"].FormContext.ops[i].equals (op)) return i;
 
 return -1;
 }, "~S");
-Clazz.defineMethod (c$, "evaluate", 
+Clazz.defineMethod (c$, "evaluate",
  function (data, isIf) {
 var pt = data.indexOf ("(");
 if (pt < 0) {
@@ -198,11 +198,11 @@ throw e;
 }
 return isNot ? !x : x;
 }, "~S,~B");
-Clazz.defineMethod (c$, "getValue", 
+Clazz.defineMethod (c$, "getValue",
  function (key) {
 return (this.context.containsKey (key) ? this.context.get (key).toString () : "");
 }, "~S");
-Clazz.defineMethod (c$, "fillData", 
+Clazz.defineMethod (c$, "fillData",
  function (data) {
 var i = 0;
 var ccData = data.length;
@@ -244,7 +244,7 @@ this.pointCount = 0;
 this.data = null;
 Clazz.instantialize (this, arguments);
 }, JSV["export"].FormContext, "FormToken");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (a, b) {
 this.hasVariable = a.indexOf ("$") >= 0;
 this.data = a;

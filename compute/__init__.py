@@ -16,18 +16,20 @@ from seekpath.hpkot import SymmetryDetectionError
 from compute.seekpath_web_module import FlaskRedirectException, process_structure_core
 from tools_barebone import get_style_version  # pylint: disable=import-error
 
-view_folder = os.path.join(os.path.split(os.path.realpath(__file__))[0], os.pardir, 'user_views')
+view_folder = os.path.join(
+    os.path.split(os.path.realpath(__file__))[0], os.pardir, "user_views"
+)
 
 
 def get_visualizer_template(request):
-    if get_style_version(request) == 'lite':
-        return 'user_templates/visualizer_lite.html'
-    return 'user_templates/visualizer.html'
+    if get_style_version(request) == "lite":
+        return "user_templates/visualizer_lite.html"
+    return "user_templates/visualizer.html"
 
 
-blueprint = Blueprint('compute', __name__, url_prefix='/compute')
+blueprint = Blueprint("compute", __name__, url_prefix="/compute")
 
-logger = logging.getLogger('tools-app')
+logger = logging.getLogger("tools-app")
 
 valid_examples = {
     "aP2_inv": ("aP2", True),
@@ -86,18 +88,19 @@ valid_examples = {
     "tP1_noinv": ("tP1", False),
 }
 
-@blueprint.route('/process_structure/', methods=['GET', 'POST'])
+
+@blueprint.route("/process_structure/", methods=["GET", "POST"])
 def process_structure():
     """
     Process a structure (uploaded from POST request)
     """
-    if flask.request.method == 'POST':
+    if flask.request.method == "POST":
         # check if the post request has the file part
-        if 'structurefile' not in flask.request.files:
-            return flask.redirect(flask.url_for('input_data'))
-        structurefile = flask.request.files['structurefile']
-        fileformat = flask.request.form.get('fileformat', 'unknown')
-        filecontent = structurefile.read().decode('utf-8')
+        if "structurefile" not in flask.request.files:
+            return flask.redirect(flask.url_for("input_data"))
+        structurefile = flask.request.files["structurefile"]
+        fileformat = flask.request.form.get("fileformat", "unknown")
+        filecontent = structurefile.read().decode("utf-8")
 
         try:
             data_for_template = process_structure_core(
@@ -106,49 +109,55 @@ def process_structure():
                 seekpath_module=seekpath,
                 call_source="process_structure",
                 logger=logger,
-                flask_request=flask.request)
-            return flask.render_template(get_visualizer_template(flask.request),
-                                         **data_for_template)
+                flask_request=flask.request,
+            )
+            return flask.render_template(
+                get_visualizer_template(flask.request), **data_for_template
+            )
         except FlaskRedirectException as e:
             flask.flash(str(e))
-            return flask.redirect(flask.url_for('input_data'))
+            return flask.redirect(flask.url_for("input_data"))
         except SymmetryDetectionError:
-            flask.flash("Unable to detect symmetry... "
-                        "Maybe you have overlapping atoms?")
-            return flask.redirect(flask.url_for('input_data'))
+            flask.flash(
+                "Unable to detect symmetry... " "Maybe you have overlapping atoms?"
+            )
+            return flask.redirect(flask.url_for("input_data"))
         except Exception:
             flask.flash("Unable to process the structure, sorry...")
-            return flask.redirect(flask.url_for('input_data'))
+            return flask.redirect(flask.url_for("input_data"))
 
     else:  # GET Request
-        return flask.redirect(flask.url_for('input_data'))
+        return flask.redirect(flask.url_for("input_data"))
 
 
-@blueprint.route('/process_example_structure/', methods=['GET', 'POST'])
+@blueprint.route("/process_example_structure/", methods=["GET", "POST"])
 def process_example_structure():
     """
     Process an example structure (example name from POST request)
     """
-    if flask.request.method == 'POST':
-        examplestructure = flask.request.form.get('examplestructure', '<none>')
+    if flask.request.method == "POST":
+        examplestructure = flask.request.form.get("examplestructure", "<none>")
         fileformat = "vasp-ase"
 
         try:
             ext_bravais, withinv = valid_examples[examplestructure]
         except KeyError:
-            flask.flash(
-                "Invalid example structure '{}'".format(examplestructure))
-            return flask.redirect(flask.url_for('input_data'))
+            flask.flash("Invalid example structure '{}'".format(examplestructure))
+            return flask.redirect(flask.url_for("input_data"))
 
         poscarfile = "POSCAR_inversion" if withinv else "POSCAR_noinversion"
 
         # I expect that the valid_examples dictionary already filters only
         # existing files, so I don't try/except here
         with open(
-                os.path.join(
-                    os.path.split(seekpath.__file__)[0], 'hpkot',
-                    'band_path_data', ext_bravais,
-                    poscarfile)) as structurefile:
+            os.path.join(
+                os.path.split(seekpath.__file__)[0],
+                "hpkot",
+                "band_path_data",
+                ext_bravais,
+                poscarfile,
+            )
+        ) as structurefile:
             filecontent = structurefile.read()
 
         try:
@@ -156,31 +165,32 @@ def process_example_structure():
                 filecontent=filecontent,
                 fileformat=fileformat,
                 seekpath_module=seekpath,
-                call_source="process_example_structure[{}]".format(
-                    examplestructure),
+                call_source="process_example_structure[{}]".format(examplestructure),
                 logger=logger,
-                flask_request=flask.request)
-            return flask.render_template(get_visualizer_template(flask.request),
-                                         **data_for_template)
+                flask_request=flask.request,
+            )
+            return flask.render_template(
+                get_visualizer_template(flask.request), **data_for_template
+            )
         except FlaskRedirectException as e:
             flask.flash(str(e))
-            return flask.redirect(flask.url_for('input_data'))
+            return flask.redirect(flask.url_for("input_data"))
 
     else:  # GET Request
-        return flask.redirect(flask.url_for('input_data'))
+        return flask.redirect(flask.url_for("input_data"))
 
 
-@blueprint.route('/bravaissymbol_explanation/')
+@blueprint.route("/bravaissymbol_explanation/")
 def bravaissymbol_explanation():
     """
     View for the explanation of the Bravais symbol
     """
-    return flask.send_from_directory(view_folder,
-                                     'bravaissymbol_explanation.html')
+    return flask.send_from_directory(view_folder, "bravaissymbol_explanation.html")
 
-@blueprint.route('/termsofuse/')
+
+@blueprint.route("/termsofuse/")
 def termsofuse():
     """
     View for the terms of use
     """
-    return flask.send_from_directory(view_folder, 'termsofuse.html')
+    return flask.send_from_directory(view_folder, "termsofuse.html")

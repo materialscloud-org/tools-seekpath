@@ -1,0 +1,7 @@
+user_static/css/*.min.css* linguist-vendored
+user_static/js/*.min.js linguist-vendored
+user_static/js/jsmol/* linguist-vendored
+user_static/js/orig/dontautominify/three.js linguist-vendored
+user_static/js/orig/OrbitControl.js linguist-vendored
+user_static/js/orig/Projector.js linguist-vendored
+user_static/js/orig/SVGRenderer.js linguist-vendored

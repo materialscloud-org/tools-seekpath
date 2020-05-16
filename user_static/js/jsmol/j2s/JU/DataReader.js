@@ -4,15 +4,15 @@ c$ = Clazz.decorateAsClass (function () {
 this.ptMark = 0;
 Clazz.instantialize (this, arguments);
 }, JU, "DataReader", java.io.BufferedReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JU.DataReader, [ new java.io.StringReader ("")]);
 });
-Clazz.defineMethod (c$, "getBufferedReader", 
+Clazz.defineMethod (c$, "getBufferedReader",
 function () {
 return this;
 });
-Clazz.defineMethod (c$, "readBuf", 
+Clazz.defineMethod (c$, "readBuf",
 function (buf, off, len) {
 var nRead = 0;
 var line = this.readLine ();

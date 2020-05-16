@@ -1,11 +1,11 @@
 Clazz.declarePackage ("JS");
 Clazz.load (["J.api.SmilesMatcherInterface"], "JS.SmilesMatcher", ["JU.AU", "$.BS", "$.PT", "JS.InvalidSmilesException", "$.SmilesAtom", "$.SmilesBond", "$.SmilesGenerator", "$.SmilesParser", "$.SmilesSearch", "JU.BSUtil", "$.Elements", "$.Logger", "$.Node", "$.Point3fi"], function () {
 c$ = Clazz.declareType (JS, "SmilesMatcher", null, J.api.SmilesMatcherInterface);
-Clazz.overrideMethod (c$, "getLastException", 
+Clazz.overrideMethod (c$, "getLastException",
 function () {
 return JS.InvalidSmilesException.getLastError ();
 });
-Clazz.overrideMethod (c$, "getMolecularFormula", 
+Clazz.overrideMethod (c$, "getMolecularFormula",
 function (pattern, isSmarts) {
 JS.InvalidSmilesException.clear ();
 var search = JS.SmilesParser.newSearch ("/nostereo/" + pattern, isSmarts, true);
@@ -13,23 +13,23 @@ search.createTopoMap (null);
 search.nodes = search.targetAtoms;
 return search.getMolecularFormula (!isSmarts, null, false);
 }, "~S,~B");
-Clazz.overrideMethod (c$, "getSmiles", 
+Clazz.overrideMethod (c$, "getSmiles",
 function (atoms, ac, bsSelected, bioComment, flags) {
 JS.InvalidSmilesException.clear ();
 return ( new JS.SmilesGenerator ()).getSmiles (this, atoms, ac, bsSelected, bioComment, flags);
 }, "~A,~N,JU.BS,~S,~N");
-Clazz.overrideMethod (c$, "areEqual", 
+Clazz.overrideMethod (c$, "areEqual",
 function (smiles1, smiles2) {
 JS.InvalidSmilesException.clear ();
 var result = this.findPriv (smiles1, JS.SmilesParser.newSearch (smiles2, false, true), (smiles1.indexOf ("*") >= 0 ? 2 : 1) | 8, 2);
 return (result == null ? -1 : result.length);
 }, "~S,~S");
-Clazz.defineMethod (c$, "areEqualTest", 
+Clazz.defineMethod (c$, "areEqualTest",
 function (smiles, search) {
 var ret = this.findPriv (smiles, search, 9, 2);
 return (ret != null && ret.length == 1);
 }, "~S,JS.SmilesSearch");
-Clazz.overrideMethod (c$, "find", 
+Clazz.overrideMethod (c$, "find",
 function (pattern, target, flags) {
 JS.InvalidSmilesException.clear ();
 target = JS.SmilesParser.cleanPattern (target);
@@ -43,7 +43,7 @@ for (var j = a.length; --j >= 0; ) a[j] = (search.targetAtoms[a[j]]).mapIndex;
 }
 return array;
 }, "~S,~S,~N");
-Clazz.overrideMethod (c$, "getAtoms", 
+Clazz.overrideMethod (c$, "getAtoms",
 function (target) {
 JS.InvalidSmilesException.clear ();
 target = JS.SmilesParser.cleanPattern (target);
@@ -51,7 +51,7 @@ var search = JS.SmilesParser.newSearch (target, false, true);
 search.createTopoMap ( new JU.BS ());
 return search.targetAtoms;
 }, "~S");
-Clazz.overrideMethod (c$, "getRelationship", 
+Clazz.overrideMethod (c$, "getRelationship",
 function (smiles1, smiles2) {
 if (smiles1 == null || smiles2 == null || smiles1.length == 0 || smiles2.length == 0) return "";
 var mf1 = this.getMolecularFormula (smiles1, false);
@@ -72,18 +72,18 @@ if (check) return (n1 == n2 ? "diastereomers" : "ambiguous stereochemistry!");
 }return "constitutional isomers";
 }return "identical";
 }, "~S,~S");
-Clazz.overrideMethod (c$, "reverseChirality", 
+Clazz.overrideMethod (c$, "reverseChirality",
 function (smiles) {
 smiles = JU.PT.rep (smiles, "@@", "!@");
 smiles = JU.PT.rep (smiles, "@", "@@");
 smiles = JU.PT.rep (smiles, "!@@", "@");
 return smiles;
 }, "~S");
-Clazz.overrideMethod (c$, "getSubstructureSet", 
+Clazz.overrideMethod (c$, "getSubstructureSet",
 function (pattern, atoms, ac, bsSelected, flags) {
 return this.matchPriv (pattern, atoms, ac, bsSelected, null, true, flags | JS.SmilesParser.getFlags (pattern), 1);
 }, "~S,~A,~N,JU.BS,~N");
-Clazz.overrideMethod (c$, "getMMFF94AtomTypes", 
+Clazz.overrideMethod (c$, "getMMFF94AtomTypes",
 function (smarts, atoms, ac, bsSelected, ret, vRings) {
 JS.InvalidSmilesException.clear ();
 var sp =  new JS.SmilesParser (true, true);
@@ -112,15 +112,15 @@ bsDone.or (bs);
 if (bsDone.cardinality () == ac) return;
 }
 }, "~A,~A,~N,JU.BS,JU.Lst,~A");
-Clazz.overrideMethod (c$, "getSubstructureSetArray", 
+Clazz.overrideMethod (c$, "getSubstructureSetArray",
 function (pattern, atoms, ac, bsSelected, bsAromatic, flags) {
 return this.matchPriv (pattern, atoms, ac, bsSelected, bsAromatic, true, flags, 2);
 }, "~S,~A,~N,JU.BS,JU.BS,~N");
-Clazz.defineMethod (c$, "getAtropisomerKeys", 
+Clazz.defineMethod (c$, "getAtropisomerKeys",
 function (pattern, atoms, ac, bsSelected, bsAromatic, flags) {
 return this.matchPriv (pattern, atoms, ac, bsSelected, bsAromatic, false, flags, 4);
 }, "~S,~A,~N,JU.BS,JU.BS,~N");
-Clazz.overrideMethod (c$, "polyhedronToSmiles", 
+Clazz.overrideMethod (c$, "polyhedronToSmiles",
 function (center, faces, atomCount, points, flags, details) {
 var atoms =  new Array (atomCount);
 for (var i = 0; i < atomCount; i++) {
@@ -161,18 +161,18 @@ if ((flags & 65536) == 65536) {
 s = "//* " + center + " *//\t[" + JU.Elements.elementSymbolFromNumber (center.getElementNumber ()) + "@PH" + atomCount + (details == null ? "" : "/" + details + "/") + "]." + s;
 }return s;
 }, "JU.Node,~A,~N,~A,~N,~S");
-Clazz.overrideMethod (c$, "getCorrelationMaps", 
+Clazz.overrideMethod (c$, "getCorrelationMaps",
 function (pattern, atoms, atomCount, bsSelected, flags) {
 return this.matchPriv (pattern, atoms, atomCount, bsSelected, null, true, flags, 3);
 }, "~S,~A,~N,JU.BS,~N");
-Clazz.defineMethod (c$, "findPriv", 
+Clazz.defineMethod (c$, "findPriv",
  function (pattern, search, flags, mode) {
 var bsAromatic =  new JU.BS ();
 search.setFlags (search.flags | JS.SmilesParser.getFlags (pattern));
 search.createTopoMap (bsAromatic);
 return this.matchPriv (pattern, search.targetAtoms, -search.targetAtoms.length, null, bsAromatic, bsAromatic.isEmpty (), flags, mode);
 }, "~S,JS.SmilesSearch,~N,~N");
-Clazz.defineMethod (c$, "matchPriv", 
+Clazz.defineMethod (c$, "matchPriv",
  function (pattern, atoms, ac, bsSelected, bsAromatic, doTestAromatic, flags, mode) {
 JS.InvalidSmilesException.clear ();
 try {
@@ -223,11 +223,11 @@ throw e;
 }
 return null;
 }, "~S,~A,~N,JU.BS,JU.BS,~B,~N,~N");
-Clazz.overrideMethod (c$, "cleanSmiles", 
+Clazz.overrideMethod (c$, "cleanSmiles",
 function (smiles) {
 return JS.SmilesParser.cleanPattern (smiles);
 }, "~S");
-Clazz.overrideMethod (c$, "getMapForJME", 
+Clazz.overrideMethod (c$, "getMapForJME",
 function (jme, at, bsAtoms) {
 var molecule =  new JS.SmilesSearch ();
 var tokens = JU.PT.getTokens (jme);

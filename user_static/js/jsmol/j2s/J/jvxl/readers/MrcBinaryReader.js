@@ -4,11 +4,11 @@ c$ = Clazz.decorateAsClass (function () {
 this.labels = null;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.readers, "MrcBinaryReader", J.jvxl.readers.MapFileReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.MrcBinaryReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 var fileName = (sg.getReaderData ())[0];
 this.init2MFR (sg, br);
@@ -18,7 +18,7 @@ this.nSurfaces = 1;
 if (this.params.thePlane == null) this.params.insideOut = !this.params.insideOut;
 this.allowSigma = true;
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "readParameters", 
+Clazz.overrideMethod (c$, "readParameters",
 function () {
 var ispg;
 var nsymbt;
@@ -122,7 +122,7 @@ JU.Logger.info ("Cutoff set to (mean + rmsDeviation*" + sigma + " = " + this.par
 this.jvxlFileHeaderBuffer.append ("MRC DATA ").append (nlabel > 0 ? this.labels[0] : "").append ("\n");
 this.jvxlFileHeaderBuffer.append ("see http://ami.scripps.edu/software/mrctools/mrc_specification.php\n");
 });
-Clazz.overrideMethod (c$, "nextVoxel", 
+Clazz.overrideMethod (c$, "nextVoxel",
 function () {
 var voxelValue;
 switch (this.mode) {
@@ -151,7 +151,7 @@ break;
 this.nBytes = this.binarydoc.getPosition ();
 return voxelValue;
 });
-Clazz.overrideMethod (c$, "skipData", 
+Clazz.overrideMethod (c$, "skipData",
 function (nPoints) {
 for (var i = 0; i < nPoints; i++) switch (this.mode) {
 case 0:

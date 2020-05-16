@@ -18,11 +18,11 @@ this.range = 0;
 this.floatRange = 0;
 Clazz.instantialize (this, arguments);
 }, J.shapebio, "BioShape", J.shape.AtomShape);
-Clazz.overrideMethod (c$, "setProperty", 
+Clazz.overrideMethod (c$, "setProperty",
 function (propertyName, value, bsSelected) {
 this.setPropAS (propertyName, value, bsSelected);
 }, "~S,~O,JU.BS");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (shape, modelIndex, bioPolymer) {
 Clazz.superConstructor (this, J.shapebio.BioShape, []);
 this.shape = shape;
@@ -41,7 +41,7 @@ this.meshes =  new Array (this.monomerCount);
 this.wingVectors = bioPolymer.getWingVectors ();
 this.leadAtomIndices = bioPolymer.getLeadAtomIndices ();
 }}, "J.shapebio.BioShapeCollection,~N,JM.BioPolymer");
-Clazz.defineMethod (c$, "calcBfactorRange", 
+Clazz.defineMethod (c$, "calcBfactorRange",
 function () {
 this.bfactorMin = this.bfactorMax = this.monomers[0].getLeadAtom ().getBfactor100 ();
 for (var i = this.monomerCount; --i > 0; ) {
@@ -53,15 +53,15 @@ this.range = this.bfactorMax - this.bfactorMin;
 this.floatRange = this.range;
 this.hasBfactorRange = true;
 });
-Clazz.defineMethod (c$, "calcMeanPositionalDisplacement", 
+Clazz.defineMethod (c$, "calcMeanPositionalDisplacement",
 function (bFactor100) {
 return Clazz.doubleToShort (Math.sqrt (bFactor100 / 7895.6835208714865) * 1000);
 }, "~N");
-Clazz.overrideMethod (c$, "findNearestAtomIndex", 
+Clazz.overrideMethod (c$, "findNearestAtomIndex",
 function (xMouse, yMouse, closest, bsNot) {
 this.bioPolymer.findNearestAtomIndex (xMouse, yMouse, closest, this.mads, this.shape.vf, bsNot);
 }, "~N,~N,~A,JU.BS");
-Clazz.defineMethod (c$, "setMad", 
+Clazz.defineMethod (c$, "setMad",
 function (mad, bsSelected, values) {
 if (this.monomerCount < 2) return;
 this.isActive = true;
@@ -83,7 +83,7 @@ this.falsifyNearbyMesh (i);
 }}
 if (this.monomerCount > 1) this.mads[this.monomerCount] = this.mads[this.monomerCount - 1];
 }, "~N,JU.BS,~A");
-Clazz.defineMethod (c$, "getMad", 
+Clazz.defineMethod (c$, "getMad",
  function (groupIndex, mad) {
 this.bsSizeDefault.setBitTo (groupIndex, mad == -1 || mad == -2);
 if (mad >= 0) return mad;
@@ -119,20 +119,20 @@ return (2 * this.calcMeanPositionalDisplacement (atom.getBfactor100 ()));
 JU.Logger.error ("unrecognized setMad(" + mad + ")");
 return 0;
 }, "~N,~N");
-Clazz.defineMethod (c$, "falsifyMesh", 
+Clazz.defineMethod (c$, "falsifyMesh",
 function () {
 if (this.meshReady == null) return;
 for (var i = 0; i < this.monomerCount; i++) this.meshReady[i] = false;
 
 });
-Clazz.defineMethod (c$, "falsifyNearbyMesh", 
+Clazz.defineMethod (c$, "falsifyNearbyMesh",
  function (index) {
 if (this.meshReady == null) return;
 this.meshReady[index] = false;
 if (index > 0) this.meshReady[index - 1] = false;
 if (index < this.monomerCount - 1) this.meshReady[index + 1] = false;
 }, "~N");
-Clazz.defineMethod (c$, "setColixBS", 
+Clazz.defineMethod (c$, "setColixBS",
 function (colix, pid, bsSelected) {
 this.isActive = true;
 if (this.bsColixSet == null) this.bsColixSet = JU.BS.newN (this.monomerCount);
@@ -145,14 +145,14 @@ this.paletteIDs[i] = pid;
 this.bsColixSet.setBitTo (i, this.colixes[i] != 0);
 }}
 }, "~N,~N,JU.BS");
-Clazz.defineMethod (c$, "setColixBack", 
+Clazz.defineMethod (c$, "setColixBack",
 function (colix, bsSelected) {
 if (this.colixesBack == null) this.colixesBack =  Clazz.newShortArray (this.colixes.length, 0);
 if (this.colixesBack.length < this.colixes.length) this.colixesBack = JU.AU.ensureLengthShort (this.colixesBack, this.colixes.length);
 for (var i = this.monomerCount; --i >= 0; ) if (bsSelected.get (this.leadAtomIndices[i])) this.colixesBack[i] = colix;
 
 }, "~N,JU.BS");
-Clazz.defineMethod (c$, "setColixes", 
+Clazz.defineMethod (c$, "setColixes",
 function (atomColixes, bsSelected) {
 this.isActive = true;
 if (this.bsColixSet == null) this.bsColixSet = JU.BS.newN (this.monomerCount);
@@ -165,7 +165,7 @@ this.paletteIDs[i] = J.c.PAL.UNKNOWN.id;
 this.bsColixSet.set (i);
 }}
 }, "~A,JU.BS");
-Clazz.defineMethod (c$, "setParams", 
+Clazz.defineMethod (c$, "setParams",
 function (data, atomMap, bsSelected) {
 if (this.monomerCount == 0) return;
 var c = data[0];
@@ -186,7 +186,7 @@ this.paletteIDs[i] = J.c.PAL.UNKNOWN.id;
 this.bsColixSet.set (i);
 }}
 }, "~A,~A,JU.BS");
-Clazz.defineMethod (c$, "setTranslucent", 
+Clazz.defineMethod (c$, "setTranslucent",
 function (isTranslucent, bsSelected, translucentLevel) {
 this.isActive = true;
 if (this.bsColixSet == null) this.bsColixSet = JU.BS.newN (this.monomerCount);
@@ -196,7 +196,7 @@ if (this.colixesBack != null && this.colixesBack.length > i) this.colixesBack[i]
 this.bsColixSet.setBitTo (i, this.colixes[i] != 0);
 }
 }, "~B,JU.BS,~N");
-Clazz.overrideMethod (c$, "setAtomClickability", 
+Clazz.overrideMethod (c$, "setAtomClickability",
 function () {
 if (!this.isActive || this.wingVectors == null || this.monomerCount == 0) return;
 var setRingsClickable = (Clazz.instanceOf (this.bioPolymer, JM.NucleicPolymer) && this.shape.shapeID == 11);
@@ -210,7 +210,7 @@ if (setAlphaClickable) ms.at[iAtom].setClickable (1040384);
 if (setRingsClickable) (this.monomers[i]).setRingsClickable ();
 }
 });
-Clazz.defineMethod (c$, "getBioShapeState", 
+Clazz.defineMethod (c$, "getBioShapeState",
 function (type, translucentAllowed, temp, temp2) {
 if (this.monomerCount > 0) {
 if (!this.isActive || this.bsSizeSet == null && this.bsColixSet == null) return;
@@ -228,7 +228,7 @@ if (this.colixesBack != null && this.colixesBack.length > i && this.colixesBack[
 JU.BSUtil.setMapBitSet (temp2, atomIndex1, atomIndex2, s);
 }
 }}, "~S,~B,java.util.Map,java.util.Map");
-Clazz.overrideMethod (c$, "getShapeState", 
+Clazz.overrideMethod (c$, "getShapeState",
 function () {
 return null;
 });

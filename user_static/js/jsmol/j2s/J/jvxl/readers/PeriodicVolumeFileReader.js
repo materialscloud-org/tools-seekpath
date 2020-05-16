@@ -1,7 +1,7 @@
 Clazz.declarePackage ("J.jvxl.readers");
 Clazz.load (["J.jvxl.readers.VolumeFileReader"], "J.jvxl.readers.PeriodicVolumeFileReader", null, function () {
 c$ = Clazz.declareType (J.jvxl.readers, "PeriodicVolumeFileReader", J.jvxl.readers.VolumeFileReader);
-Clazz.overrideMethod (c$, "readSurfaceData", 
+Clazz.overrideMethod (c$, "readSurfaceData",
 function (isMapData) {
 this.initializeSurfaceData ();
 this.newVoxelDataCube ();

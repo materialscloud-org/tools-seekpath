@@ -18,7 +18,7 @@ Clazz.prepareFields (c$, function () {
 this.bsAtomOK =  new JU.BS ();
 this.bsBadIndex =  new JU.BS ();
 });
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.vibOnly = this.checkFilterKey ("VIBONLY");
 this.optOnly = this.checkFilterKey ("OPTONLY");
@@ -29,7 +29,7 @@ if (this.checkFilterKey ("ALPHA")) this.filter = "alpha";
  else if (this.checkFilterKey ("BETA")) this.filter = "beta";
  else this.filter = this.getFilter ("SYM=");
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (!this.line.contains ("[")) return true;
 this.line = this.line.toUpperCase ().trim ();
@@ -49,7 +49,7 @@ if (this.checkOrbitalType (this.line)) return true;
 if (this.checkSymmetry ()) return false;
 return true;
 });
-Clazz.defineMethod (c$, "checkSymmetry", 
+Clazz.defineMethod (c$, "checkSymmetry",
  function () {
 if (this.line.startsWith ("[SPACEGROUP]")) {
 this.setSpaceGroupName (this.rd ());
@@ -78,7 +78,7 @@ this.addExplicitLatticeVector (2, f, 6);
 return true;
 }return false;
 });
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 if (!this.bsBadIndex.isEmpty ()) try {
 var ilast = 0;
@@ -112,7 +112,7 @@ throw e;
 }
 this.finalizeReaderASCR ();
 });
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function () {
 var coordUnit = JU.PT.getTokens (this.line.$replace (']', ' '))[1];
 var isFractional = (coordUnit.indexOf ("FRACTIONAL") >= 0);
@@ -128,7 +128,7 @@ atom.atomName = tokens[0];
 atom.elementNumber = this.parseIntStr (tokens[2]);
 }
 });
-Clazz.defineMethod (c$, "readSlaterBasis", 
+Clazz.defineMethod (c$, "readSlaterBasis",
 function () {
 this.nCoef = 0;
 while (this.rd () != null && this.line.indexOf ("[") < 0) {
@@ -140,7 +140,7 @@ this.nCoef++;
 this.setSlaters (false, false);
 return false;
 });
-Clazz.defineMethod (c$, "readGaussianBasis", 
+Clazz.defineMethod (c$, "readGaussianBasis",
  function () {
 this.shells =  new JU.Lst ();
 var gdata =  new JU.Lst ();
@@ -195,7 +195,7 @@ JU.Logger.info (this.nCoef + " MO coefficients expected for orbital type " + thi
 this.asc.setCurrentModelInfo ("moData", this.moData);
 return false;
 });
-Clazz.defineMethod (c$, "readMolecularOrbitals", 
+Clazz.defineMethod (c$, "readMolecularOrbitals",
  function () {
 while (this.checkOrbitalType (this.rd ())) {
 }
@@ -258,7 +258,7 @@ this.setMOs ("eV");
 if (this.haveEnergy && this.doSort) this.sortMOs ();
 return false;
 });
-Clazz.defineMethod (c$, "sortMOs", 
+Clazz.defineMethod (c$, "sortMOs",
  function () {
 var list = this.orbitals.toArray ( new Array (this.orbitals.size ()));
 java.util.Arrays.sort (list, Clazz.innerTypeInstance (J.adapter.readers.quantum.BasisFunctionReader.MOEnergySorter, this, null));
@@ -266,11 +266,11 @@ this.orbitals.clear ();
 for (var i = 0; i < list.length; i++) this.orbitals.addLast (list[i]);
 
 });
-Clazz.defineMethod (c$, "getMoTokens", 
+Clazz.defineMethod (c$, "getMoTokens",
  function (line) {
 return (line == null && (line = this.rd ()) == null ? null : JU.PT.getTokens (line.$replace ('=', ' ')));
 }, "~S");
-Clazz.defineMethod (c$, "checkOrbitalType", 
+Clazz.defineMethod (c$, "checkOrbitalType",
  function (line) {
 if (line.length > 3 && "5D 6D 7F 10 9G 15 11 21".indexOf (line.substring (1, 3)) >= 0) {
 if (this.orbitalType.indexOf (line) >= 0) return true;
@@ -281,7 +281,7 @@ this.fixOrbitalType ();
 return true;
 }return false;
 }, "~S");
-Clazz.defineMethod (c$, "fixOrbitalType", 
+Clazz.defineMethod (c$, "fixOrbitalType",
  function () {
 if (this.orbitalType.contains ("5D")) {
 this.fixSlaterTypes (4, 3);
@@ -296,7 +296,7 @@ this.fixSlaterTypes (9, 10);
 this.fixSlaterTypes (7, 8);
 this.fixSlaterTypes (9, 10);
 }});
-Clazz.defineMethod (c$, "readFreqsAndModes", 
+Clazz.defineMethod (c$, "readFreqsAndModes",
  function () {
 var tokens;
 var frequencies =  new JU.Lst ();
@@ -323,7 +323,7 @@ this.asc.addVibrationVector (i + i0, this.parseFloatStr (tokens[0]) * 0.5291772,
 }
 return true;
 });
-Clazz.defineMethod (c$, "readGeometryOptimization", 
+Clazz.defineMethod (c$, "readGeometryOptimization",
  function () {
 var energies =  new JU.Lst ();
 this.rd ();
@@ -346,13 +346,13 @@ this.readLines (this.modelAtomCount);
 }}
 return true;
 });
-Clazz.defineMethod (c$, "skipTo", 
+Clazz.defineMethod (c$, "skipTo",
  function (key) {
 key = key.toUpperCase ();
 if (this.line == null || !this.line.toUpperCase ().contains (key)) while (this.rd () != null && this.line.toUpperCase ().indexOf (key) < 0) {
 }
 }, "~S");
-Clazz.defineMethod (c$, "readAtomSet", 
+Clazz.defineMethod (c$, "readAtomSet",
  function (atomSetName, isBohr, asClone) {
 if (asClone && this.desiredModelNumber < 0) this.asc.cloneFirstAtomSet (0);
 var f = (isBohr ? 0.5291772 : 1);

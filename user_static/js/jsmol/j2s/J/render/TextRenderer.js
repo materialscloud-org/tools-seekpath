@@ -1,7 +1,7 @@
 Clazz.declarePackage ("J.render");
 Clazz.load (null, "J.render.TextRenderer", ["java.lang.Float", "JM.Text"], function () {
 c$ = Clazz.declareType (J.render, "TextRenderer");
-c$.render = Clazz.defineMethod (c$, "render", 
+c$.render = Clazz.defineMethod (c$, "render",
 function (text, g3d, scalePixelsPerMicron, imageFontScaling, isAbsolute, boxXY, temp) {
 if (text == null || text.image == null && !text.doFormatText && text.lines == null) return false;
 var showText = g3d.setC (text.colix);
@@ -27,7 +27,7 @@ var y = text.boxY + (setY && text.boxY > text.atomY ? 0 : setY && text.boxY + h 
 g3d.drawLineXYZ (text.atomX, text.atomY, text.atomZ, Clazz.floatToInt (x), Clazz.floatToInt (y), text.zSlab);
 return true;
 }, "JM.Text,J.api.JmolRendererInterface,~N,~N,~B,~A,~A");
-c$.renderSimpleLabel = Clazz.defineMethod (c$, "renderSimpleLabel", 
+c$.renderSimpleLabel = Clazz.defineMethod (c$, "renderSimpleLabel",
 function (g3d, font, strLabel, colix, bgcolix, boxXY, z, zSlab, xOffset, yOffset, ascent, descent, doPointer, pointerColix, isAbsolute) {
 var boxWidth = font.stringWidth (strLabel) + 8;
 var boxHeight = ascent + descent + 8;
@@ -44,7 +44,7 @@ g3d.setC (pointerColix);
 if (xOffset > 0) g3d.drawLineXYZ (x0, y0, zSlab, Clazz.floatToInt (x), Clazz.floatToInt (y + boxHeight / 2), zSlab);
  else if (xOffset < 0) g3d.drawLineXYZ (x0, y0, zSlab, Clazz.floatToInt (x + boxWidth), Clazz.floatToInt (y + boxHeight / 2), zSlab);
 }}, "J.api.JmolRendererInterface,javajs.awt.Font,~S,~N,~N,~A,~N,~N,~N,~N,~N,~N,~B,~N,~B");
-c$.showBox = Clazz.defineMethod (c$, "showBox", 
+c$.showBox = Clazz.defineMethod (c$, "showBox",
  function (g3d, colix, x, y, z, zSlab, boxWidth, boxHeight, imageFontScaling, atomBased) {
 g3d.fillTextRect (x, y, z, zSlab, boxWidth, boxHeight);
 g3d.setC (colix);

@@ -8,7 +8,7 @@ this.$haveEnergy = true;
 this.lastBasisID = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.quantum, "QCJSONReader", J.adapter.readers.quantum.MoldenReader);
-Clazz.defineMethod (c$, "initializeReader", 
+Clazz.defineMethod (c$, "initializeReader",
 function () {
 Clazz.superCall (this, J.adapter.readers.quantum.QCJSONReader, "initializeReader", []);
 var sb =  new JU.SB ();
@@ -29,16 +29,16 @@ throw e;
 }
 this.continuing = false;
 });
-Clazz.defineMethod (c$, "processJob", 
+Clazz.defineMethod (c$, "processJob",
  function (job) {
 this.job = job;
 this.readSteps ();
 }, "java.util.Map");
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 this.finalizeReaderASCR ();
 });
-Clazz.defineMethod (c$, "readSteps", 
+Clazz.defineMethod (c$, "readSteps",
  function () {
 var steps = org.qcschema.QCSchemaUnits.getList (this.job, "steps");
 var nSteps = steps.size ();
@@ -88,7 +88,7 @@ if (this.loadVibrations) {
 this.readFreqsAndModes (org.qcschema.QCSchemaUnits.getList (step, "vibrations"));
 }}
 });
-Clazz.defineMethod (c$, "readFreqsAndModes", 
+Clazz.defineMethod (c$, "readFreqsAndModes",
  function (vibrations) {
 var $private = Clazz.checkPrivateMethod (arguments);
 if ($private != null) {
@@ -110,7 +110,7 @@ this.asc.addVibrationVector (j + i0, (vectors[pt++] * 0.5291772), (vectors[pt++]
 }
 }return true;
 }, "java.util.ArrayList");
-Clazz.defineMethod (c$, "readMolecularOrbitals", 
+Clazz.defineMethod (c$, "readMolecularOrbitals",
  function (molecular_orbitals) {
 var $private = Clazz.checkPrivateMethod (arguments);
 if ($private != null) {
@@ -158,14 +158,14 @@ this.setMOs (sunits == null || sunits.equals ("?") ? "?" : sunits);
 if (this.$haveEnergy && this.doSort) this.sortMOs ();
 return false;
 }, "java.util.Map");
-Clazz.defineMethod (c$, "toFloatArray", 
+Clazz.defineMethod (c$, "toFloatArray",
  function (da) {
 var fa =  Clazz.newFloatArray (da.length, 0);
 for (var j = da.length; --j >= 0; ) fa[j] = da[j];
 
 return fa;
 }, "~A");
-Clazz.defineMethod (c$, "readBasis", 
+Clazz.defineMethod (c$, "readBasis",
  function (moBasisID) {
 var moBasisData = J.adapter.readers.quantum.QCJSONReader.getMapSafely (this.job, "mo_bases");
 var moBasis = J.adapter.readers.quantum.QCJSONReader.getMapSafely (moBasisData, moBasisID);
@@ -187,7 +187,7 @@ this.readSlaterBasis (listS);
 this.readGaussianBasis (listG, listS);
 }return true;
 }, "~S");
-Clazz.defineMethod (c$, "readSlaterBasis", 
+Clazz.defineMethod (c$, "readSlaterBasis",
 function (listS) {
 this.nCoef = listS.size ();
 for (var i = 0; i < this.nCoef; i++) {
@@ -197,7 +197,7 @@ this.addSlater (Clazz.doubleToInt (a[0]), Clazz.doubleToInt (a[1]), Clazz.double
 this.setSlaters (false, false);
 return true;
 }, "java.util.ArrayList");
-Clazz.defineMethod (c$, "readGaussianBasis", 
+Clazz.defineMethod (c$, "readGaussianBasis",
  function (listG, listS) {
 var $private = Clazz.checkPrivateMethod (arguments);
 if ($private != null) {
@@ -217,7 +217,7 @@ JU.Logger.info (garray.length + " gaussian primitives read");
 this.asc.setCurrentModelInfo ("moData", this.moData);
 return false;
 }, "java.util.ArrayList,java.util.ArrayList");
-Clazz.defineMethod (c$, "sortMOs", 
+Clazz.defineMethod (c$, "sortMOs",
  function () {
 var $private = Clazz.checkPrivateMethod (arguments);
 if ($private != null) {
@@ -229,7 +229,7 @@ this.orbitals.clear ();
 for (var i = 0; i < list.length; i++) this.orbitals.addLast (list[i]);
 
 });
-c$.getMapSafely = Clazz.defineMethod (c$, "getMapSafely", 
+c$.getMapSafely = Clazz.defineMethod (c$, "getMapSafely",
  function (map, key) {
 return (map == null ? null : map.get (key));
 }, "java.util.Map,~S");

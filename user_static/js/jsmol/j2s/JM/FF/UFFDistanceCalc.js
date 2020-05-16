@@ -5,7 +5,7 @@ this.r0 = 0;
 this.kb = 0;
 Clazz.instantialize (this, arguments);
 }, JM.FF, "UFFDistanceCalc", JM.FF.Calculation);
-Clazz.overrideMethod (c$, "setData", 
+Clazz.overrideMethod (c$, "setData",
 function (calc, ia, ib, bondOrder) {
 this.calcs.parA = this.calcs.getParameter (this.calcs.minAtoms[ia].sType);
 this.calcs.parB = this.calcs.getParameter (this.calcs.minAtoms[ib].sType);
@@ -13,7 +13,7 @@ this.r0 = JM.FF.CalculationsUFF.calculateR0 (this.calcs.parA.dVal[0], this.calcs
 this.kb = 1390.2842991599998 * this.calcs.parA.dVal[5] * this.calcs.parB.dVal[5] / (this.r0 * this.r0 * this.r0);
 calc.addLast ( Clazz.newArray (-1, [ Clazz.newIntArray (-1, [ia, ib]),  Clazz.newDoubleArray (-1, [this.r0, this.kb, bondOrder])]));
 }, "JU.Lst,~N,~N,~N");
-Clazz.overrideMethod (c$, "compute", 
+Clazz.overrideMethod (c$, "compute",
 function (dataIn) {
 this.getPointers (dataIn);
 this.r0 = this.dData[0];

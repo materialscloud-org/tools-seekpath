@@ -7,7 +7,7 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.list =  Clazz.newIntArray (4, 0);
 });
-Clazz.defineMethod (c$, "setData", 
+Clazz.defineMethod (c$, "setData",
 function (calc, i) {
 if (this.calcs.minAtoms[i].nBonds != 3) return;
 var indices = this.calcs.minAtoms[i].getBondedAtomIndexes ();
@@ -22,7 +22,7 @@ calc.addLast ( Clazz.newArray (-1, [ Clazz.newIntArray (-1, [indices[0], i, indi
 calc.addLast ( Clazz.newArray (-1, [ Clazz.newIntArray (-1, [indices[1], i, indices[2], indices[0]]), dk]));
 calc.addLast ( Clazz.newArray (-1, [ Clazz.newIntArray (-1, [indices[2], i, indices[0], indices[1]]), dk]));
 }, "JU.Lst,~N");
-Clazz.overrideMethod (c$, "compute", 
+Clazz.overrideMethod (c$, "compute",
 function (dataIn) {
 this.getPointers (dataIn);
 this.calcs.setOopVariables (this, false);

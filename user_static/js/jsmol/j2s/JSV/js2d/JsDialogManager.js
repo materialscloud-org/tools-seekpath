@@ -1,29 +1,29 @@
 Clazz.declarePackage ("JSV.js2d");
 Clazz.load (["JSV.dialog.DialogManager"], "JSV.js2d.JsDialogManager", ["javajs.awt.Dimension", "JU.PT", "JSV.js2d.DialogTableModel", "$.JsDialog", "J.awtjs.swing.JDialog", "$.JEditorPane", "$.JLabel", "$.JScrollPane", "$.JTable"], function () {
 c$ = Clazz.declareType (JSV.js2d, "JsDialogManager", JSV.dialog.DialogManager);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JSV.js2d.JsDialogManager, []);
 });
-Clazz.overrideMethod (c$, "getDialog", 
+Clazz.overrideMethod (c$, "getDialog",
 function (jsvDialog) {
 return  new JSV.js2d.JsDialog (this, jsvDialog, this.registerDialog (jsvDialog));
 }, "JSV.dialog.JSVDialog");
-Clazz.overrideMethod (c$, "getDialogInput", 
+Clazz.overrideMethod (c$, "getDialogInput",
 function (parentComponent, phrase, title, msgType, icon, objects, defaultStr) {
 {
 return prompt(phrase, defaultStr);
 }}, "~O,~S,~S,~N,~O,~A,~S");
-Clazz.overrideMethod (c$, "showMessageDialog", 
+Clazz.overrideMethod (c$, "showMessageDialog",
 function (parentComponent, msg, title, msgType) {
 {
 alert(msg);
 }}, "~O,~S,~S,~N");
-Clazz.overrideMethod (c$, "getLocationOnScreen", 
+Clazz.overrideMethod (c$, "getLocationOnScreen",
 function (component) {
 return  Clazz.newIntArray (2, 0);
 }, "~O");
-Clazz.overrideMethod (c$, "getOptionFromDialog", 
+Clazz.overrideMethod (c$, "getOptionFromDialog",
 function (frame, items, jsvp, dialogName, labelName) {
 var i = -1;
 var applet = this.vwr.html5Applet;
@@ -31,7 +31,7 @@ var applet = this.vwr.html5Applet;
 i = applet.getOption(items, dialogName, labelName);
 }return i;
 }, "~O,~A,JSV.api.JSVPanel,~S,~S");
-Clazz.overrideMethod (c$, "showProperties", 
+Clazz.overrideMethod (c$, "showProperties",
 function (frame, spectrum) {
 var dialog =  new J.awtjs.swing.JDialog ();
 dialog.setTitle ("Header Information");
@@ -46,7 +46,7 @@ dialog.pack ();
 dialog.setVisible (true);
 dialog.toFront ();
 }, "~O,JSV.common.Spectrum");
-Clazz.overrideMethod (c$, "showMessage", 
+Clazz.overrideMethod (c$, "showMessage",
 function (frame, text, title) {
 var dialog =  new J.awtjs.swing.JDialog ();
 {
@@ -63,7 +63,7 @@ dialog.pack ();
 dialog.setVisible (true);
 dialog.toFront ();
 }, "~O,~S,~S");
-Clazz.defineMethod (c$, "actionPerformed", 
+Clazz.defineMethod (c$, "actionPerformed",
 function (eventId) {
 var pt = eventId.indexOf ("/JT");
 if (pt >= 0) {

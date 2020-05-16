@@ -8,16 +8,16 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.orbitals =  new JU.Lst ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.adapter.readers.xml.XmlChem3dReader, []);
 });
-Clazz.overrideMethod (c$, "processXml", 
+Clazz.overrideMethod (c$, "processXml",
 function (parent, saxReader) {
 this.processXml2 (parent, saxReader);
 this.finalizeMOData (this.moData);
 }, "J.adapter.readers.xml.XmlReader,~O");
-Clazz.overrideMethod (c$, "processStartElement", 
+Clazz.overrideMethod (c$, "processStartElement",
 function (localName, nodeName) {
 var tokens;
 if ("model".equals (localName)) {
@@ -92,7 +92,7 @@ this.orbitals.addLast (mo);
 JU.Logger.info ("Chem3D molecular orbital data displayable using ISOSURFACE MO " + this.orbitals.size ());
 return;
 }}, "~S,~S");
-Clazz.overrideMethod (c$, "processEndElement", 
+Clazz.overrideMethod (c$, "processEndElement",
 function (localName) {
 if ("atom".equals (localName)) {
 if (this.atom.elementSymbol != null && !Float.isNaN (this.atom.z)) {

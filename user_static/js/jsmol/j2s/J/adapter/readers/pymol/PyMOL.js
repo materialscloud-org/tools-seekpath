@@ -1,7 +1,7 @@
 Clazz.declarePackage ("J.adapter.readers.pymol");
 Clazz.load (["java.util.Hashtable"], "J.adapter.readers.pymol.PyMOL", ["JU.Logger"], function () {
 c$ = Clazz.declareType (J.adapter.readers.pymol, "PyMOL");
-c$.getRGB = Clazz.defineMethod (c$, "getRGB", 
+c$.getRGB = Clazz.defineMethod (c$, "getRGB",
 function (color) {
 if (J.adapter.readers.pymol.PyMOL.moreColors != null) {
 var key = Integer.$valueOf (color);
@@ -10,11 +10,11 @@ if (c != null) return c.intValue ();
 }if (color < J.adapter.readers.pymol.PyMOL.colors.length) return (J.adapter.readers.pymol.PyMOL.colors[color]);
 return 0;
 }, "~N");
-c$.addColor = Clazz.defineMethod (c$, "addColor", 
+c$.addColor = Clazz.defineMethod (c$, "addColor",
 function (id, value) {
 J.adapter.readers.pymol.PyMOL.moreColors.put (id, Integer.$valueOf (value));
 }, "Integer,~N");
-c$.getDefaultSetting = Clazz.defineMethod (c$, "getDefaultSetting", 
+c$.getDefaultSetting = Clazz.defineMethod (c$, "getDefaultSetting",
 function (i, pymolVersion) {
 switch (i) {
 case 173:
@@ -122,7 +122,7 @@ JU.Logger.error ("PyMOL " + pymolVersion + " default float setting not found: " 
 return 0;
 }
 }, "~N,~N");
-c$.getDefaultSettingPt = Clazz.defineMethod (c$, "getDefaultSettingPt", 
+c$.getDefaultSettingPt = Clazz.defineMethod (c$, "getDefaultSettingPt",
 function (i, pymolVersion, pt) {
 switch (i) {
 case 471:
@@ -134,7 +134,7 @@ break;
 }
 return pt;
 }, "~N,~N,JU.P3");
-c$.getDefaultSettingS = Clazz.defineMethod (c$, "getDefaultSettingS", 
+c$.getDefaultSettingS = Clazz.defineMethod (c$, "getDefaultSettingS",
 function (i, pymolVersion) {
 switch (i) {
 case 342:
@@ -145,7 +145,7 @@ break;
 }
 return "";
 }, "~N,~N");
-c$.getVArray = Clazz.defineMethod (c$, "getVArray", 
+c$.getVArray = Clazz.defineMethod (c$, "getVArray",
 function (version) {
 var va = null;
 var varray = null;
@@ -166,7 +166,7 @@ for (var i = 0; i < va.length; ) varray[va[i++]] = va[i++];
 
 }return varray;
 }, "~N");
-c$.getVArrayB = Clazz.defineMethod (c$, "getVArrayB", 
+c$.getVArrayB = Clazz.defineMethod (c$, "getVArrayB",
 function (version) {
 var va = null;
 var varray = null;

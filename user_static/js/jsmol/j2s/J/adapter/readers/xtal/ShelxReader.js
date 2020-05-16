@@ -6,11 +6,11 @@ this.isCmdf = false;
 this.tokens = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.xtal, "ShelxReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.setFractionalCoordinates (true);
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 var lineLength;
 while ((lineLength = (this.line = this.line.trim ()).length) > 0 && this.line.charAt (lineLength - 1) == '=') this.line = this.line.substring (0, lineLength - 1) + this.rd ();
@@ -35,7 +35,7 @@ return true;
 if (!this.isCmdf) this.assumeAtomRecord ();
 return true;
 });
-Clazz.defineMethod (c$, "processSupportedRecord", 
+Clazz.defineMethod (c$, "processSupportedRecord",
  function (recordIndex) {
 switch (recordIndex) {
 case 0:
@@ -66,22 +66,22 @@ this.processCmdfAtoms ();
 break;
 }
 }, "~N");
-Clazz.defineMethod (c$, "parseLattRecord", 
+Clazz.defineMethod (c$, "parseLattRecord",
  function () {
 this.asc.getXSymmetry ().setLatticeParameter (this.parseIntStr (this.tokens[1]));
 });
-Clazz.defineMethod (c$, "parseSymmRecord", 
+Clazz.defineMethod (c$, "parseSymmRecord",
  function () {
 this.setSymmetryOperator (this.line.substring (4).trim ());
 });
-Clazz.defineMethod (c$, "cell", 
+Clazz.defineMethod (c$, "cell",
  function () {
 var ioff = this.tokens.length - 6;
 if (ioff == 2) this.asc.setInfo ("wavelength", Float.$valueOf (this.parseFloatStr (this.tokens[1])));
 for (var ipt = 0; ipt < 6; ipt++) this.setUnitCellItem (ipt, this.parseFloatStr (this.tokens[ipt + ioff]));
 
 });
-Clazz.defineMethod (c$, "parseSfacRecord", 
+Clazz.defineMethod (c$, "parseSfacRecord",
  function () {
 var allElementSymbols = true;
 for (var i = this.tokens.length; allElementSymbols && --i >= 1; ) {
@@ -92,7 +92,7 @@ var sfacTokens = JU.PT.getTokens (this.line.substring (4));
 if (allElementSymbols) this.parseSfacElementSymbols (sfacTokens);
  else this.parseSfacCoefficients (sfacTokens);
 });
-Clazz.defineMethod (c$, "parseSfacElementSymbols", 
+Clazz.defineMethod (c$, "parseSfacElementSymbols",
  function (sfacTokens) {
 if (this.sfacElementSymbols == null) {
 this.sfacElementSymbols = sfacTokens;
@@ -103,7 +103,7 @@ this.sfacElementSymbols = JU.AU.arrayCopyS (this.sfacElementSymbols, oldCount + 
 for (var i = tokenCount; --i >= 0; ) this.sfacElementSymbols[oldCount + i] = sfacTokens[i];
 
 }}, "~A");
-Clazz.defineMethod (c$, "parseSfacCoefficients", 
+Clazz.defineMethod (c$, "parseSfacCoefficients",
  function (sfacTokens) {
 var a1 = this.parseFloatStr (sfacTokens[1]);
 var a2 = this.parseFloatStr (sfacTokens[3]);
@@ -121,7 +121,7 @@ this.sfacElementSymbols = JU.AU.arrayCopyS (this.sfacElementSymbols, oldCount + 
 this.sfacElementSymbols[oldCount] = elementSymbol;
 }this.sfacElementSymbols[oldCount] = elementSymbol;
 }, "~A");
-Clazz.defineMethod (c$, "assumeAtomRecord", 
+Clazz.defineMethod (c$, "assumeAtomRecord",
  function () {
 var atomName = this.tokens[0];
 var elementIndex = this.parseIntStr (this.tokens[1]);
@@ -150,14 +150,14 @@ return;
 }
 this.asc.setAnisoBorU (atom, data, 8);
 }});
-Clazz.defineMethod (c$, "processCmdfAtoms", 
+Clazz.defineMethod (c$, "processCmdfAtoms",
  function () {
 while (this.rd () != null && this.line.length > 10) {
 this.tokens = this.getTokens ();
 this.addAtomXYZSymName (this.tokens, 2, this.getSymbol (this.tokens[0]), this.tokens[1]);
 }
 });
-Clazz.defineMethod (c$, "getSymbol", 
+Clazz.defineMethod (c$, "getSymbol",
  function (sym) {
 if (sym == null) return "Xx";
 var len = sym.length;
@@ -166,7 +166,7 @@ var ch1 = sym.charAt (1);
 if (ch1 >= 'a' && ch1 <= 'z') return sym.substring (0, 2);
 return "" + sym.charAt (0);
 }, "~S");
-c$.isValidElementSymbolNoCaseSecondChar = Clazz.defineMethod (c$, "isValidElementSymbolNoCaseSecondChar", 
+c$.isValidElementSymbolNoCaseSecondChar = Clazz.defineMethod (c$, "isValidElementSymbolNoCaseSecondChar",
 function (str) {
 if (str == null) return false;
 var length = str.length;

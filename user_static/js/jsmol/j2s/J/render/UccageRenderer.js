@@ -21,14 +21,14 @@ this.cell1 =  new JU.P3 ();
 this.offset =  new JU.P3 ();
 this.offsetT =  new JU.P3 ();
 });
-Clazz.overrideMethod (c$, "initRenderer", 
+Clazz.overrideMethod (c$, "initRenderer",
 function () {
 for (var i = 8; --i >= 0; ) this.verticesT[i] =  new JU.P3 ();
 
 this.tickEdges = JU.BoxInfo.uccageTickEdges;
 this.draw000 = false;
 });
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 this.imageFontScaling = this.vwr.imageFontScaling;
 this.font3d = this.vwr.gdata.getFont3DScaled ((this.shape).font3d, this.imageFontScaling);
@@ -40,7 +40,7 @@ if (!this.isExport && needTranslucent != this.vwr.gdata.isPass2) return needTran
 this.render1 (mad10);
 return false;
 });
-Clazz.defineMethod (c$, "render1", 
+Clazz.defineMethod (c$, "render1",
  function (mad10) {
 this.g3d.setC (this.colix);
 this.unitcell = this.vwr.getCurrentUnitCell ();
@@ -110,7 +110,7 @@ this.renderCage (mad10, this.verticesT, faces, aPoints, firstLine, allow0, allow
 }
 this.renderInfo ();
 }, "~N");
-Clazz.defineMethod (c$, "renderInfo", 
+Clazz.defineMethod (c$, "renderInfo",
  function () {
 if (this.isExport || !this.vwr.getBoolean (603979828) || this.unitcell.isSimple () || this.vwr.isPreviewOnly || !this.vwr.gdata.setC (this.vwr.cm.colixBackgroundContrast) || this.vwr.gdata.getTextPosition () != 0) return;
 this.vwr.gdata.setFontFid (this.vwr.gdata.getFontFidFS ("Monospaced", 14 * this.imageFontScaling));
@@ -138,7 +138,7 @@ this.drawInfo ("\u03B1=", 3, "\u00B0");
 this.drawInfo ("\u03B2=", 4, "\u00B0");
 }this.drawInfo ("\u03B3=", 5, "\u00B0");
 }});
-Clazz.defineMethod (c$, "drawInfo", 
+Clazz.defineMethod (c$, "drawInfo",
  function (s, type, post) {
 this.ypos += this.lineheight;
 if (post != null) s += JU.DF.formatDecimal (this.unitcell.getUnitCellInfoType (type), 3) + post;

@@ -1,7 +1,7 @@
 Clazz.declarePackage ("JU");
 Clazz.load (null, "JU.Txt", ["JU.P3", "$.PT", "JU.Escape"], function () {
 c$ = Clazz.declareType (JU, "Txt");
-c$.formatText = Clazz.defineMethod (c$, "formatText", 
+c$.formatText = Clazz.defineMethod (c$, "formatText",
 function (vwr, text0) {
 var i;
 if ((i = text0.indexOf ("@{")) < 0 && (i = text0.indexOf ("%{")) < 0) return text0;

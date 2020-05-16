@@ -252,6 +252,6 @@ function enableDoubleTap(element, callback, ignoreOnMove) {
             clearTimeout(element.dbltapTimeout);
             element.shortTap = false;
         }
-    });  
+    });
   }
 }

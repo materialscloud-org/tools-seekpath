@@ -172,7 +172,7 @@ Swing.__getMenuStyle = function(applet) { return '\
 Swing.setMenu = function(menu) {
   // called by javajs.swing.JPopupMenu
   // note that the z-index is only set by the FIRST applet accessing this method
-	Swing.__getMenuStyle && Jmol.$after("head", '<style>'+Swing.__getMenuStyle(menu.applet)+'</style>');  
+	Swing.__getMenuStyle && Jmol.$after("head", '<style>'+Swing.__getMenuStyle(menu.applet)+'</style>');
 	Swing.__getStyle = null; // once only
 	menu.tainted = true;
 	menu.popupMenu = menu;
@@ -246,9 +246,9 @@ Swing.bindMenuActionCommands = function(menu, isBind) {
 		Swing.bindMenuActionCommands(menu.getComponent(i), isBind);
 	Jmol.$documentOff('click', menu.id);
 	if (isBind)
-		Jmol.$documentOn('click', menu.id, function() {	
+		Jmol.$documentOn('click', menu.id, function() {
 			if (menu.itemListener) {
-				menu.selected = (menu.btnType == javajs.swing.JMenuItem.TYPE_CHECKBOX ? Jmol.$prop(menu.id + "-cb", "checked") : true); 
+				menu.selected = (menu.btnType == javajs.swing.JMenuItem.TYPE_CHECKBOX ? Jmol.$prop(menu.id + "-cb", "checked") : true);
 				Swing.hideMenus(menu.applet);
 				menu.itemListener.itemStateChanged({getSource:function(){return menu}});
 			}	else if (menu.actionListener) {
@@ -269,25 +269,25 @@ Clazz_declareInterface (JSV.api, "JSVPopupMenu", javajs.awt.GenericMenuInterface
 Clazz_declarePackage ("JSV.js2d");
 Clazz_load (["JSV.popup.JSVGenericPopup"], "JSV.js2d.JsPopup", ["JSV.popup.JSVPopupResourceBundle", "J.popup.JSSwingPopupHelper"], function () {
 c$ = Clazz_declareType (JSV.js2d, "JsPopup", JSV.popup.JSVGenericPopup);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 Clazz_superConstructor (this, JSV.js2d.JsPopup, []);
 this.helper =  new J.popup.JSSwingPopupHelper (this);
 });
-Clazz_overrideMethod (c$, "jpiInitialize", 
+Clazz_overrideMethod (c$, "jpiInitialize",
 function (viewer, menu) {
 var bundle =  new JSV.popup.JSVPopupResourceBundle ();
 this.initialize (viewer, bundle, menu);
 }, "javajs.awt.PlatformViewer,~S");
-Clazz_overrideMethod (c$, "menuShowPopup", 
+Clazz_overrideMethod (c$, "menuShowPopup",
 function (popup, x, y) {
 this.vwr.menuShowPopup (popup, x, y, this.isTainted);
 }, "javajs.awt.SC,~N,~N");
-Clazz_overrideMethod (c$, "getImageIcon", 
+Clazz_overrideMethod (c$, "getImageIcon",
 function (fileName) {
 return null;
 }, "~S");
-Clazz_overrideMethod (c$, "menuFocusCallback", 
+Clazz_overrideMethod (c$, "menuFocusCallback",
 function (name, actionCommand, b) {
 }, "~S,~S,~B");
 });
@@ -305,31 +305,31 @@ this.pd = null;
 this.thisJsvp = null;
 Clazz_instantialize (this, arguments);
 }, JSV.popup, "JSVGenericPopup", J.popup.GenericSwingPopup, JSV.api.JSVPopupMenu);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 Clazz_superConstructor (this, JSV.popup.JSVGenericPopup, []);
 });
-Clazz_defineMethod (c$, "initialize", 
+Clazz_defineMethod (c$, "initialize",
 function (viewer, bundle, title) {
 this.vwr = viewer;
 this.initSwing (title, bundle, viewer.getApplet (), viewer.isJS, viewer.isSigned, false);
 }, "JSV.common.JSViewer,J.popup.PopupResource,~S");
-Clazz_overrideMethod (c$, "jpiDispose", 
+Clazz_overrideMethod (c$, "jpiDispose",
 function () {
 this.helper.menuClearListeners (this.popupMenu);
 this.popupMenu = this.thisPopup = null;
 });
-Clazz_overrideMethod (c$, "jpiGetMenuAsObject", 
+Clazz_overrideMethod (c$, "jpiGetMenuAsObject",
 function () {
 return this.popupMenu;
 });
-Clazz_overrideMethod (c$, "jpiShow", 
+Clazz_overrideMethod (c$, "jpiShow",
 function (x, y) {
 this.show (x, y, false);
 this.appRestorePopupMenu ();
 this.menuShowPopup (this.popupMenu, this.thisx, this.thisy);
 }, "~N,~N");
-Clazz_overrideMethod (c$, "jpiUpdateComputedMenus", 
+Clazz_overrideMethod (c$, "jpiUpdateComputedMenus",
 function () {
 if (this.updateMode == -1) return;
 this.updateMode = 0;
@@ -339,13 +339,13 @@ this.updateFileTypeDependentMenus ();
 this.updateMode = 1;
 this.updateAboutSubmenu ();
 });
-Clazz_overrideMethod (c$, "appCheckItem", 
+Clazz_overrideMethod (c$, "appCheckItem",
 function (item, newMenu) {
 }, "~S,javajs.awt.SC");
-Clazz_overrideMethod (c$, "appCheckSpecialMenu", 
+Clazz_overrideMethod (c$, "appCheckSpecialMenu",
 function (item, subMenu, word) {
 }, "~S,javajs.awt.SC,~S");
-Clazz_overrideMethod (c$, "appFixLabel", 
+Clazz_overrideMethod (c$, "appFixLabel",
 function (label) {
 if (label.startsWith ("_")) label = label.substring (label.indexOf ("_", 2) + 1);
  else if (label.equals ("VERSION")) label = JSV.common.JSVersion.VERSION;
@@ -355,31 +355,31 @@ label = JU.PT.rep (label, "Menu", "");
 label = JU.PT.rep (label, "_", " ");
 return label;
 }, "~S");
-Clazz_overrideMethod (c$, "appFixScript", 
+Clazz_overrideMethod (c$, "appFixScript",
 function (id, script) {
 return script;
 }, "~S,~S");
-Clazz_overrideMethod (c$, "appGetMenuAsString", 
+Clazz_overrideMethod (c$, "appGetMenuAsString",
 function (title) {
 return ( new JSV.popup.JSVPopupResourceBundle ()).getMenuAsText (title);
 }, "~S");
-Clazz_overrideMethod (c$, "appGetBooleanProperty", 
+Clazz_overrideMethod (c$, "appGetBooleanProperty",
 function (name) {
 return false;
 }, "~S");
-Clazz_overrideMethod (c$, "appIsSpecialCheckBox", 
+Clazz_overrideMethod (c$, "appIsSpecialCheckBox",
 function (item, basename, what, TF) {
 return false;
 }, "javajs.awt.SC,~S,~S,~B");
-Clazz_overrideMethod (c$, "appRestorePopupMenu", 
+Clazz_overrideMethod (c$, "appRestorePopupMenu",
 function () {
 this.thisPopup = this.popupMenu;
 });
-Clazz_overrideMethod (c$, "appRunScript", 
+Clazz_overrideMethod (c$, "appRunScript",
 function (script) {
 this.vwr.runScript (script);
 }, "~S");
-Clazz_overrideMethod (c$, "appUpdateForShow", 
+Clazz_overrideMethod (c$, "appUpdateForShow",
 function () {
 this.thisJsvp = this.vwr.selectedPanel;
 this.setEnables (this.thisJsvp);
@@ -389,21 +389,21 @@ this.updateMode = 2;
 this.updateSpectraMenu ();
 this.updateAboutSubmenu ();
 });
-Clazz_overrideMethod (c$, "appUpdateSpecialCheckBoxValue", 
+Clazz_overrideMethod (c$, "appUpdateSpecialCheckBoxValue",
 function (item, what, TF) {
 }, "javajs.awt.SC,~S,~B");
-Clazz_defineMethod (c$, "getViewerData", 
+Clazz_defineMethod (c$, "getViewerData",
  function () {
 });
-Clazz_defineMethod (c$, "updateFileTypeDependentMenus", 
+Clazz_defineMethod (c$, "updateFileTypeDependentMenus",
  function () {
 });
-Clazz_defineMethod (c$, "updateFileMenu", 
+Clazz_defineMethod (c$, "updateFileMenu",
  function () {
 var menu = this.htMenus.get ("fileMenu");
 if (menu == null) return;
 });
-Clazz_defineMethod (c$, "updateSpectraMenu", 
+Clazz_defineMethod (c$, "updateSpectraMenu",
  function () {
 var menuh = this.htMenus.get ("hnmrMenu");
 var menuc = this.htMenus.get ("cnmrMenu");
@@ -418,7 +418,7 @@ if (menuh != null) this.menuAddSubMenu (menu, menuh);
 if (menuc != null) this.menuAddSubMenu (menu, menuc);
 }this.menuEnable (menu, isOK);
 });
-Clazz_defineMethod (c$, "setSpectraMenu", 
+Clazz_defineMethod (c$, "setSpectraMenu",
  function (menu, peaks) {
 if (menu == null) return false;
 this.menuEnable (menu, false);
@@ -433,26 +433,26 @@ if (atoms != null) this.menuCreateItem (menu, title, "select visible & (@" + JU.
 this.menuEnable (menu, true);
 return true;
 }, "javajs.awt.SC,JU.Lst");
-Clazz_defineMethod (c$, "updateAboutSubmenu", 
+Clazz_defineMethod (c$, "updateAboutSubmenu",
  function () {
 var menu = this.htMenus.get ("aboutComputedMenu");
 if (menu == null) return;
 this.menuRemoveAll (menu, this.aboutComputedMenuBaseCount);
 });
-Clazz_overrideMethod (c$, "getSelected", 
+Clazz_overrideMethod (c$, "getSelected",
 function (key) {
 return false;
 }, "~S");
-Clazz_overrideMethod (c$, "setCompoundMenu", 
+Clazz_overrideMethod (c$, "setCompoundMenu",
 function (panelNodes, allowCompoundMenu) {
 }, "JU.Lst,~B");
-Clazz_overrideMethod (c$, "setEnabled", 
+Clazz_overrideMethod (c$, "setEnabled",
 function (allowMenu, zoomEnabled) {
 this.allowMenu = allowMenu;
 this.zoomEnabled = zoomEnabled;
 this.enableMenus ();
 }, "~B,~B");
-Clazz_defineMethod (c$, "enableMenus", 
+Clazz_defineMethod (c$, "enableMenus",
  function () {
 this.setItemEnabled ("_SIGNED_FileMenu", this.allowMenu);
 this.setItemEnabled ("ViewMenu", this.pd != null && this.allowMenu);
@@ -469,7 +469,7 @@ this.setItemEnabled ("Script", this.allowMenu);
 this.setItemEnabled ("Print...", this.pd != null && this.allowMenu);
 this.setItemEnabled ("ZoomMenu", this.pd != null && this.zoomEnabled);
 });
-Clazz_defineMethod (c$, "setEnables", 
+Clazz_defineMethod (c$, "setEnables",
  function (jsvp) {
 this.pd = (jsvp == null ? null : jsvp.getPanelData ());
 var spec0 = (this.pd == null ? null : this.pd.getSpectrum ());
@@ -487,11 +487,11 @@ this.setItemEnabled ("JDXMenu", this.pd != null && spec0.canSaveAsJDX ());
 this.setItemEnabled ("Export_AsMenu", this.pd != null);
 this.enableMenus ();
 }, "JSV.api.JSVPanel");
-Clazz_defineMethod (c$, "setItemEnabled", 
+Clazz_defineMethod (c$, "setItemEnabled",
  function (key, TF) {
 this.menuEnable (this.htMenus.get (key), TF);
 }, "~S,~B");
-Clazz_overrideMethod (c$, "setSelected", 
+Clazz_overrideMethod (c$, "setSelected",
 function (key, TF) {
 var item = this.htMenus.get (key);
 if (item == null || item.isSelected () == TF) return;
@@ -499,7 +499,7 @@ this.menuEnable (item, false);
 item.setSelected (TF);
 this.menuEnable (item, true);
 }, "~S,~B");
-Clazz_overrideMethod (c$, "menuSetCheckBoxOption", 
+Clazz_overrideMethod (c$, "menuSetCheckBoxOption",
 function (item, name, what) {
 return null;
 }, "javajs.awt.SC,~S,~S");
@@ -513,25 +513,25 @@ Clazz_defineStatics (c$,
 Clazz_declarePackage ("JSV.popup");
 Clazz_load (["J.popup.PopupResource"], "JSV.popup.JSVPopupResourceBundle", null, function () {
 c$ = Clazz_declareType (JSV.popup, "JSVPopupResourceBundle", J.popup.PopupResource);
-Clazz_overrideMethod (c$, "getMenuName", 
+Clazz_overrideMethod (c$, "getMenuName",
 function () {
 return "appMenu";
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 Clazz_superConstructor (this, JSV.popup.JSVPopupResourceBundle, [null, null]);
 });
-Clazz_overrideMethod (c$, "buildStructure", 
+Clazz_overrideMethod (c$, "buildStructure",
 function (menuStructure) {
 this.addItems (JSV.popup.JSVPopupResourceBundle.menuContents);
 this.addItems (JSV.popup.JSVPopupResourceBundle.structureContents);
 if (menuStructure != null) this.setStructure (menuStructure, null);
 }, "~S");
-Clazz_overrideMethod (c$, "getWordContents", 
+Clazz_overrideMethod (c$, "getWordContents",
 function () {
 return  Clazz_newArray (-1, []);
 });
-Clazz_overrideMethod (c$, "getMenuAsText", 
+Clazz_overrideMethod (c$, "getMenuAsText",
 function (title) {
 return this.getStuctureAsText (title, JSV.popup.JSVPopupResourceBundle.menuContents, JSV.popup.JSVPopupResourceBundle.structureContents);
 }, "~S");

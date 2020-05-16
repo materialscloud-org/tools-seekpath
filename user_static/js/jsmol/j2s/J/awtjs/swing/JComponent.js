@@ -6,19 +6,19 @@ this.actionCommand = null;
 this.actionListener = null;
 Clazz.instantialize (this, arguments);
 }, J.awtjs.swing, "JComponent", javajs.awt.Container);
-Clazz.defineMethod (c$, "setAutoscrolls", 
+Clazz.defineMethod (c$, "setAutoscrolls",
 function (b) {
 this.autoScrolls = b;
 }, "~B");
-Clazz.defineMethod (c$, "addActionListener", 
+Clazz.defineMethod (c$, "addActionListener",
 function (listener) {
 this.actionListener = listener;
 }, "~O");
-Clazz.defineMethod (c$, "getActionCommand", 
+Clazz.defineMethod (c$, "getActionCommand",
 function () {
 return this.actionCommand;
 });
-Clazz.defineMethod (c$, "setActionCommand", 
+Clazz.defineMethod (c$, "setActionCommand",
 function (actionCommand) {
 this.actionCommand = actionCommand;
 }, "~S");

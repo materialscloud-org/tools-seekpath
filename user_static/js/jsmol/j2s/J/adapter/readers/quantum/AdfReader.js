@@ -11,7 +11,7 @@ J.adapter.readers.quantum.AdfReader.$AdfReader$SymmetryData$ ();
 }
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.quantum, "AdfReader", J.adapter.readers.quantum.SlaterReader);
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.indexOf ("Irreducible Representations, including subspecies") >= 0) {
 this.readSymmetries ();
@@ -42,7 +42,7 @@ this.readMolecularOrbitals (JU.PT.getTokens (this.symLine)[1]);
 return true;
 }return true;
 });
-Clazz.defineMethod (c$, "readCoordinates", 
+Clazz.defineMethod (c$, "readCoordinates",
  function () {
 var isGeometry = (this.line.indexOf ("G E O M E T R Y") >= 0);
 this.asc.newAtomSet ();
@@ -63,7 +63,7 @@ symbol = symbol.substring (0, symbol.indexOf ("."));
  else this.addAtomXYZSymName (tokens, pt0, symbol, name);
 }
 });
-Clazz.defineMethod (c$, "readFrequencies", 
+Clazz.defineMethod (c$, "readFrequencies",
  function () {
 this.rd ();
 while (this.rd () != null) {
@@ -86,7 +86,7 @@ this.readLines (this.nXX);
 this.fillFrequencyData (iAtom0, ac, ac, ignore, true, 0, 0, null, 0, null);
 }
 });
-Clazz.defineMethod (c$, "readSymmetries", 
+Clazz.defineMethod (c$, "readSymmetries",
  function () {
 this.vSymmetries =  new JU.Lst ();
 this.htSymmetries =  new java.util.Hashtable ();
@@ -102,7 +102,7 @@ this.htSymmetries.put (tokens[i], sd);
 this.vSymmetries.addLast (sd);
 }
 });
-Clazz.defineMethod (c$, "readSlaterBasis", 
+Clazz.defineMethod (c$, "readSlaterBasis",
  function () {
 if (this.vSymmetries == null) return;
 var nBF = 0;
@@ -160,7 +160,7 @@ this.slaterArray[ptBF].index = ptBF;
 }
 }
 });
-Clazz.defineMethod (c$, "readMolecularOrbitals", 
+Clazz.defineMethod (c$, "readMolecularOrbitals",
  function (sym) {
 var sd = this.htSymmetries.get (sym);
 if (sd == null) return;
@@ -211,7 +211,7 @@ this.setSlaters (true, true);
 this.sortOrbitals ();
 this.setMOs ("eV");
 }, "~S");
-Clazz.defineMethod (c$, "addMo", 
+Clazz.defineMethod (c$, "addMo",
  function (sym, moPt, occ, energy) {
 var sd = this.htSymmetries.get (sym);
 if (sd == null) {
@@ -239,7 +239,7 @@ this.mos = null;
 this.basisFunctions = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.quantum.AdfReader, "SymmetryData");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (a, b) {
 JU.Logger.info ("ADF reader creating SymmetryData " + b + " " + a);
 this.index = a;

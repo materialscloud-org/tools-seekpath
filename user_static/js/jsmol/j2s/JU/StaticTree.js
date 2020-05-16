@@ -8,7 +8,7 @@ this.elems = 0;
 this.max_length = 0;
 Clazz.instantialize (this, arguments);
 }, JU, "StaticTree");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function (static_tree, extra_bits, extra_base, elems, max_length) {
 this.static_tree = static_tree;
 this.extra_bits = extra_bits;

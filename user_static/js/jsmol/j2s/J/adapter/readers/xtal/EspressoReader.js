@@ -7,12 +7,12 @@ this.endFlag = false;
 this.aPar = 0;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.xtal, "EspressoReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.setSpaceGroupName ("P1");
 this.doApplySymmetry = true;
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.contains ("lattice parameter (a_0)") || this.line.contains ("lattice parameter (alat)")) {
 this.readAparam ();
@@ -31,11 +31,11 @@ this.readEnergy ();
 this.endFlag = true;
 }return true;
 });
-Clazz.defineMethod (c$, "readAparam", 
+Clazz.defineMethod (c$, "readAparam",
  function () {
 this.aPar = this.parseFloatStr (this.getTokens ()[4]) * 0.5291772;
 });
-Clazz.defineMethod (c$, "readCellParam", 
+Clazz.defineMethod (c$, "readCellParam",
  function (andAPar) {
 var i0 = (andAPar ? 0 : 3);
 if (this.line.contains ("bohr")) this.aPar = 0.5291772;
@@ -48,12 +48,12 @@ this.cellParams[i++] = this.parseFloatStr (tokens[i0 + 1]) * this.aPar;
 this.cellParams[i++] = this.parseFloatStr (tokens[i0 + 2]) * this.aPar;
 }
 }, "~B");
-Clazz.defineMethod (c$, "newAtomSet", 
+Clazz.defineMethod (c$, "newAtomSet",
  function () {
 this.asc.newAtomSet ();
 if (this.totEnergy != null) this.setEnergy ();
 });
-Clazz.defineMethod (c$, "setCellParams", 
+Clazz.defineMethod (c$, "setCellParams",
  function () {
 if (this.cellParams != null) {
 this.addExplicitLatticeVector (0, this.cellParams, 0);
@@ -61,7 +61,7 @@ this.addExplicitLatticeVector (1, this.cellParams, 3);
 this.addExplicitLatticeVector (2, this.cellParams, 6);
 this.setSpaceGroupName ("P1");
 }});
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function () {
 this.newAtomSet ();
 var isAlat = (this.line.contains ("alat") || this.line.contains ("a_0"));
@@ -89,11 +89,11 @@ atom.scale (this.aPar);
 this.applySymmetryAndSetTrajectory ();
 if (this.endFlag) this.discardLinesUntilContains ("Harris-Foulkes estimate");
 });
-Clazz.defineMethod (c$, "readEnergy", 
+Clazz.defineMethod (c$, "readEnergy",
  function () {
 this.totEnergy = Double.$valueOf (Double.parseDouble (JU.PT.getTokens (this.line.substring (this.line.indexOf ("=") + 1))[0]));
 });
-Clazz.defineMethod (c$, "setEnergy", 
+Clazz.defineMethod (c$, "setEnergy",
  function () {
 this.asc.setAtomSetEnergy ("" + this.totEnergy, this.totEnergy.floatValue ());
 this.asc.setInfo ("Energy", this.totEnergy);

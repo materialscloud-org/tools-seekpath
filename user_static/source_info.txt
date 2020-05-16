@@ -1,4 +1,4 @@
-Three JS currently at release r84, downloaded from 
+Three JS currently at release r84, downloaded from
 
 https://raw.githubusercontent.com/mrdoob/three.js/r84/build/three.js
 https://raw.githubusercontent.com/mrdoob/three.js/r84/build/three.min.js

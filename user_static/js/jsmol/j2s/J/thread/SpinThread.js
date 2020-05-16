@@ -18,7 +18,7 @@ this.isDone = false;
 this.m4 = null;
 Clazz.instantialize (this, arguments);
 }, J.thread, "SpinThread", J.thread.JmolThread);
-Clazz.overrideMethod (c$, "setManager", 
+Clazz.overrideMethod (c$, "setManager",
 function (manager, vwr, params) {
 this.transformManager = manager;
 this.setViewer (vwr, "SpinThread");
@@ -34,7 +34,7 @@ this.bsAtoms = options[3];
 this.isGesture = (options[4] != null);
 }return 0;
 }, "~O,JV.Viewer,~O");
-Clazz.overrideMethod (c$, "run1", 
+Clazz.overrideMethod (c$, "run1",
 function (mode) {
 while (true) switch (mode) {
 case -1:
@@ -105,7 +105,7 @@ return;
 }
 
 }, "~N");
-Clazz.defineMethod (c$, "doTransform", 
+Clazz.defineMethod (c$, "doTransform",
  function () {
 if (this.dihedralList != null) {
 var f = 1 / this.myFps / this.endDegrees;

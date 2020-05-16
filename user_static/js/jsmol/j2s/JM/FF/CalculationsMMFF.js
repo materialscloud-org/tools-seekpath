@@ -11,7 +11,7 @@ this.sbCalc = null;
 this.mmff = null;
 Clazz.instantialize (this, arguments);
 }, JM.FF, "CalculationsMMFF", JM.FF.Calculations);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (ff, ffParams, minAtoms, minBonds, minAngles, minTorsions, minPositions, constraints) {
 Clazz.superConstructor (this, JM.FF.CalculationsMMFF, [ff, minAtoms, minBonds, minAngles, minTorsions, minPositions, constraints]);
 this.mmff = ff;
@@ -24,11 +24,11 @@ this.oopCalc =  new JM.FF.MMFFOOPCalc ().set (this);
 this.vdwCalc =  new JM.FF.MMFFVDWCalc ().set (this);
 this.esCalc =  new JM.FF.MMFFESCalc ().set (this);
 }, "JM.FF.ForceField,java.util.Map,~A,~A,~A,~A,~A,JU.Lst");
-Clazz.overrideMethod (c$, "getUnits", 
+Clazz.overrideMethod (c$, "getUnits",
 function () {
 return "kcal";
 });
-Clazz.overrideMethod (c$, "setupCalculations", 
+Clazz.overrideMethod (c$, "setupCalculations",
 function () {
 var calc;
 var distanceCalc =  new JM.FF.MMFFDistanceCalc ().set (this);
@@ -54,11 +54,11 @@ for (var i = 0; i < this.ac; i++) if (JM.FF.CalculationsMMFF.isInvertible (this.
 this.pairSearch (this.calculations[5] =  new JU.Lst (),  new JM.FF.MMFFVDWCalc ().set (this), this.calculations[6] =  new JU.Lst (),  new JM.FF.MMFFESCalc ().set (this));
 return true;
 });
-Clazz.overrideMethod (c$, "isLinear", 
+Clazz.overrideMethod (c$, "isLinear",
 function (i) {
 return JM.MinAtom.isLinear (this.minAtoms[i]);
 }, "~N");
-c$.isInvertible = Clazz.defineMethod (c$, "isInvertible", 
+c$.isInvertible = Clazz.defineMethod (c$, "isInvertible",
  function (a) {
 switch (a.ffType) {
 default:
@@ -88,7 +88,7 @@ case 81:
 return true;
 }
 }, "JM.MinAtom");
-Clazz.overrideMethod (c$, "compute", 
+Clazz.overrideMethod (c$, "compute",
 function (iType, dataIn) {
 switch (iType) {
 case 0:
@@ -108,11 +108,11 @@ return this.esCalc.compute (dataIn);
 }
 return 0.0;
 }, "~N,~A");
-Clazz.overrideMethod (c$, "getParameterObj", 
+Clazz.overrideMethod (c$, "getParameterObj",
 function (a) {
 return (a.key == null || a.ddata != null ? a.ddata : this.ffParams.get (a.key));
 }, "JM.MinObject");
-Clazz.overrideMethod (c$, "getDebugHeader", 
+Clazz.overrideMethod (c$, "getDebugHeader",
 function (iType) {
 switch (iType) {
 case -1:
@@ -123,7 +123,7 @@ default:
 return this.getDebugHeader2 (iType);
 }
 }, "~N");
-Clazz.overrideMethod (c$, "getDebugLine", 
+Clazz.overrideMethod (c$, "getDebugLine",
 function (iType, c) {
 var energy = this.ff.toUserUnits (c.energy);
 switch (iType) {

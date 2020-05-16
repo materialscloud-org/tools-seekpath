@@ -19,17 +19,17 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.center = JU.P3.new3 (0, 0, 0);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function () {
 });
-c$.getEmptyEllipsoid = Clazz.defineMethod (c$, "getEmptyEllipsoid", 
+c$.getEmptyEllipsoid = Clazz.defineMethod (c$, "getEmptyEllipsoid",
 function (id, modelIndex) {
 var e =  new J.shapespecial.Ellipsoid ();
 e.id = id;
 e.modelIndex = modelIndex;
 return e;
 }, "~S,~N");
-c$.getEllipsoidForAtomTensor = Clazz.defineMethod (c$, "getEllipsoidForAtomTensor", 
+c$.getEllipsoidForAtomTensor = Clazz.defineMethod (c$, "getEllipsoidForAtomTensor",
 function (t, center) {
 var e =  new J.shapespecial.Ellipsoid ();
 e.tensor = t;
@@ -38,24 +38,24 @@ e.colix = 0;
 e.center = center;
 return e;
 }, "JU.Tensor,JM.Atom");
-Clazz.defineMethod (c$, "setCenter", 
+Clazz.defineMethod (c$, "setCenter",
 function (center) {
 this.center = center;
 this.validate (false);
 }, "JU.P3");
-Clazz.defineMethod (c$, "getLength", 
+Clazz.defineMethod (c$, "getLength",
 function (i) {
 if (this.lengths == null) this.setLengths ();
 return (this.lengths == null ? NaN : this.lengths[i]);
 }, "~N");
-Clazz.defineMethod (c$, "setLengths", 
+Clazz.defineMethod (c$, "setLengths",
 function () {
 if (this.tensor == null) return;
 if (this.lengths == null) this.lengths =  Clazz.newFloatArray (3, 0);
 for (var i = 0; i < this.lengths.length; i++) this.lengths[i] = this.tensor.getFactoredValue (i) * this.scale;
 
 });
-Clazz.defineMethod (c$, "setScale", 
+Clazz.defineMethod (c$, "setScale",
 function (scale, isPercent) {
 if (scale <= 0) {
 this.isValid = false;
@@ -67,23 +67,23 @@ scale = (this.tensor.forThermalEllipsoid ? J.shapespecial.Ellipsoid.getThermalRa
 }this.scale = scale;
 this.validate (true);
 }, "~N,~B");
-c$.getThermalRadius = Clazz.defineMethod (c$, "getThermalRadius", 
+c$.getThermalRadius = Clazz.defineMethod (c$, "getThermalRadius",
 function (prob) {
 return J.shapespecial.Ellipsoid.crtval[prob < 1 ? 0 : prob > 99 ? 98 : prob - 1];
 }, "~N");
-Clazz.defineMethod (c$, "setTensor", 
+Clazz.defineMethod (c$, "setTensor",
 function (tensor) {
 this.isValid = false;
 this.tensor = tensor;
 this.validate (tensor != null);
 }, "JU.Tensor");
-Clazz.defineMethod (c$, "validate", 
+Clazz.defineMethod (c$, "validate",
  function (andSetLengths) {
 if (this.tensor == null) return;
 if (andSetLengths) this.setLengths ();
 this.isValid = true;
 }, "~B");
-c$.getEquationForQuadricWithCenter = Clazz.defineMethod (c$, "getEquationForQuadricWithCenter", 
+c$.getEquationForQuadricWithCenter = Clazz.defineMethod (c$, "getEquationForQuadricWithCenter",
 function (x, y, z, mToElliptical, vTemp, mTemp, coef, mDeriv) {
 vTemp.set (x, y, z);
 mToElliptical.rotate (vTemp);

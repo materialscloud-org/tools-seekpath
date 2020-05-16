@@ -61,11 +61,11 @@ this.pointA =  new JU.P3 ();
 this.fReturn =  Clazz.newFloatArray (1, 0);
 this.linearOffsets =  Clazz.newIntArray (8, 0);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.calc.MarchingCubes, []);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (surfaceReader, volumeData, params, bsVoxels) {
 Clazz.superConstructor (this, J.jvxl.calc.MarchingCubes, []);
 this.excludePartialCubes = true;
@@ -78,7 +78,7 @@ this.bsExcludedTriangles = (bsExcluded[3] == null ? bsExcluded[3] =  new JU.BS (
 this.mode = (volumeData.getVoxelData () != null || volumeData.mappingPlane != null ? 1 : bsVoxels != null ? 2 : 3);
 this.setParameters (volumeData, params);
 }, "J.jvxl.api.VertexDataServer,J.jvxl.data.VolumeData,J.jvxl.readers.Parameters,JU.BS");
-Clazz.defineMethod (c$, "setParameters", 
+Clazz.defineMethod (c$, "setParameters",
 function (volumeData, params) {
 this.volumeData = volumeData;
 this.colorDensity = params.colorDensity;
@@ -107,21 +107,21 @@ this.yzPlanes = (this.mode == 3 ?  Clazz.newFloatArray (2, this.yzCount, 0) : nu
 this.setLinearOffsets ();
 this.calcVoxelVertexVectors ();
 }, "J.jvxl.data.VolumeData,J.jvxl.readers.Parameters");
-Clazz.defineMethod (c$, "calcVoxelVertexVectors", 
+Clazz.defineMethod (c$, "calcVoxelVertexVectors",
 function () {
 for (var i = 8; --i >= 0; ) this.volumeData.transform (J.jvxl.calc.MarchingCubes.cubeVertexVectors[i], this.voxelVertexVectors[i] =  new JU.V3 ());
 
 for (var i = 12; --i >= 0; ) this.edgeVectors[i].sub2 (this.voxelVertexVectors[JU.TriangleData.edgeVertexes[i + i + 1]], this.voxelVertexVectors[JU.TriangleData.edgeVertexes[i + i]]);
 
 });
-Clazz.defineMethod (c$, "resetIndexPlane", 
+Clazz.defineMethod (c$, "resetIndexPlane",
 function (plane) {
 for (var i = 0; i < this.yzCount; i++) for (var j = 0; j < 3; j++) plane[i][j] = -2147483648;
 
 
 return plane;
 }, "~A");
-Clazz.defineMethod (c$, "getEdgeData", 
+Clazz.defineMethod (c$, "getEdgeData",
 function () {
 if (this.cubeCountX < 0 || this.cubeCountY < 0 || this.cubeCountZ < 0) return "";
 this.mappingPlane = this.volumeData.mappingPlane;
@@ -206,7 +206,7 @@ this.bsExcludedPlanes.set (x);
 }}
 return this.edgeData.toString ();
 });
-Clazz.defineMethod (c$, "getValue", 
+Clazz.defineMethod (c$, "getValue",
  function (x, y, z, pt, i) {
 var v;
 this.offset = JU.TriangleData.cubeVertexOffsets[i];
@@ -233,7 +233,7 @@ if (this.$isInside) this.bsVoxels.set (pti);
 }
 return v;
 }, "~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "getPlane", 
+Clazz.defineMethod (c$, "getPlane",
  function (i, andSwap) {
 if (i < 0 || i > this.cubeCountX) return;
 this.surfaceReader.getPlane (i);
@@ -242,24 +242,24 @@ var plane = this.yzPlanes[0];
 this.yzPlanes[0] = this.yzPlanes[1];
 this.yzPlanes[1] = plane;
 }}, "~N,~B");
-Clazz.defineMethod (c$, "processTriangles", 
+Clazz.defineMethod (c$, "processTriangles",
 function (insideMask) {
 var triangles = JU.TriangleData.triangleTable2[insideMask];
 for (var i = triangles.length; (i -= 4) >= 0; ) this.addTriangle (triangles[i], triangles[i + 1], triangles[i + 2], triangles[i + 3]);
 
 }, "~N");
-Clazz.defineMethod (c$, "addVertex", 
+Clazz.defineMethod (c$, "addVertex",
 function (x, y, z, pti, value) {
 this.volumeData.voxelPtToXYZ (x, y, z, this.pt0);
 if (this.surfaceReader.addVertexCopy (this.pt0, value, -4, true) < 0) this.bsExcludedVertices.set (pti);
 }, "~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "addTriangle", 
+Clazz.defineMethod (c$, "addTriangle",
 function (ia, ib, ic, edgeType) {
 if (!this.bsExcludedTriangles.get (this.nTriangles) && this.surfaceReader.addTriangleCheck (this.edgePointIndexes[ia], this.edgePointIndexes[ib], this.edgePointIndexes[ic], edgeType, 0, this.isCutoffAbsolute, 0) < 0) {
 this.bsExcludedTriangles.set (this.nTriangles);
 }this.nTriangles++;
 }, "~N,~N,~N,~N");
-Clazz.defineMethod (c$, "getValueArray", 
+Clazz.defineMethod (c$, "getValueArray",
 function (x, y, z, pt, tempValues) {
 var ptyz = pt % this.yzCount;
 this.bsValues.set (pt);
@@ -269,11 +269,11 @@ tempValues[ptyz] = value;
 if (J.jvxl.calc.MarchingCubes.isInside (value, this.cutoff, this.isCutoffAbsolute)) this.bsVoxels.set (pt);
 return value;
 }, "~N,~N,~N,~N,~A");
-c$.isInside = Clazz.defineMethod (c$, "isInside", 
+c$.isInside = Clazz.defineMethod (c$, "isInside",
 function (voxelValue, max, isAbsolute) {
 return ((max > 0 && (isAbsolute ? Math.abs (voxelValue) : voxelValue) >= max) || (max <= 0 && voxelValue <= max));
 }, "~N,~N,~B");
-Clazz.defineMethod (c$, "processOneCubical", 
+Clazz.defineMethod (c$, "processOneCubical",
 function (insideMask, x, y, z, pt) {
 var edgeMask = J.jvxl.calc.MarchingCubes.insideMaskTable[insideMask];
 var isNaN = false;
@@ -299,17 +299,17 @@ if (Float.isNaN (this.fReturn[0]) || i < 0) isNaN = this.excludePartialCubes;
 }
 return !isNaN;
 }, "~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "addEdgeData", 
+Clazz.defineMethod (c$, "addEdgeData",
 function (f) {
 var ch = J.jvxl.data.JvxlCoder.jvxlFractionAsCharacter (f);
 this.edgeData.appendC (ch);
 }, "~N");
-Clazz.defineMethod (c$, "calcVertexPoint", 
+Clazz.defineMethod (c$, "calcVertexPoint",
 function (x, y, z, vertex, pt) {
 this.volumeData.voxelPtToXYZ (x, y, z, this.pt0);
 pt.add2 (this.pt0, this.voxelVertexVectors[vertex]);
 }, "~N,~N,~N,~N,JU.P3");
-Clazz.defineMethod (c$, "setLinearOffsets", 
+Clazz.defineMethod (c$, "setLinearOffsets",
 function () {
 this.linearOffsets[0] = 0;
 this.linearOffsets[1] = this.yzCount;
@@ -320,7 +320,7 @@ this.linearOffsets[5] = this.yzCount + this.nZ;
 this.linearOffsets[6] = this.yzCount + this.nZ + 1;
 this.linearOffsets[7] = this.nZ + 1;
 });
-Clazz.defineMethod (c$, "getLinearOffset", 
+Clazz.defineMethod (c$, "getLinearOffset",
 function (x, y, z, offset) {
 return x * this.yzCount + y * this.nZ + z + this.linearOffsets[offset];
 }, "~N,~N,~N,~N");

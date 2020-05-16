@@ -2,17 +2,17 @@
 tools-seekpath
 ##############
 
-In this repository we provide the code to deploy an online service for 
-the visualization of the band paths and primitive cells of the crystal 
+In this repository we provide the code to deploy an online service for
+the visualization of the band paths and primitive cells of the crystal
 structures. A live demo is currently hosted on the `Materials Cloud`_ web portal.
 
 This tool leverages `seekpath`_, a python module to obtain and visualize band
-paths in the Brillouin zone of crystal structures. 
+paths in the Brillouin zone of crystal structures.
 The definition of k-point labels follows crystallographic convention, as defined
 and discussed in the `HPKOT paper`_. Moreover, the Bravais lattice is detected
 properly using the spacegroup symmetry. Also the suggested band path provided
 in the `HPKOT paper`_ is returned.
-Systems without time-reversal and inversion-symmetry are also properly 
+Systems without time-reversal and inversion-symmetry are also properly
 taken into account.
 
 .. contents::
@@ -24,10 +24,10 @@ How to cite
 ===========
 If you use this tool, please cite the following work:
 
-- Y. Hinuma, G. Pizzi, Y. Kumagai, F. Oba, I. Tanaka, *Band structure diagram 
+- Y. Hinuma, G. Pizzi, Y. Kumagai, F. Oba, I. Tanaka, *Band structure diagram
   paths based on crystallography*, Comp. Mat. Sci. 128, 140 (2017)
   (`JOURNAL LINK`_, `arXiv link`_).
-- You should also cite `spglib`_ that is an essential library used in the 
+- You should also cite `spglib`_ that is an essential library used in the
   implementation.
 
 ============

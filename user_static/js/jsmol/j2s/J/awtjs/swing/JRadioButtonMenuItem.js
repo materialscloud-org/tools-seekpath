@@ -4,7 +4,7 @@ c$ = Clazz.decorateAsClass (function () {
 this.isRadio = true;
 Clazz.instantialize (this, arguments);
 }, J.awtjs.swing, "JRadioButtonMenuItem", J.awtjs.swing.JMenuItem);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.awtjs.swing.JRadioButtonMenuItem, ["rad", 3]);
 });

@@ -1,10 +1,10 @@
 Clazz.declarePackage ("J.g3d");
 Clazz.load (["J.g3d.Pixelator"], "J.g3d.PixelatorT", ["J.g3d.Graphics3D"], function () {
 c$ = Clazz.declareType (J.g3d, "PixelatorT", J.g3d.Pixelator);
-Clazz.overrideMethod (c$, "clearPixel", 
+Clazz.overrideMethod (c$, "clearPixel",
 function (offset, z) {
 }, "~N,~N");
-Clazz.overrideMethod (c$, "addPixel", 
+Clazz.overrideMethod (c$, "addPixel",
 function (offset, z, p) {
 var zT = this.g.zbufT[offset];
 if (z < zT) {

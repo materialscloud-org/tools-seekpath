@@ -1,7 +1,7 @@
 Clazz.declarePackage ("JU");
 Clazz.load (["JU.TriangleData"], "JU.Triangulator", ["JU.AU", "$.BS", "$.Lst", "$.P3"], function () {
 c$ = Clazz.declareType (JU, "Triangulator", JU.TriangleData);
-Clazz.defineMethod (c$, "intersectPlane", 
+Clazz.defineMethod (c$, "intersectPlane",
 function (plane, vertices, flags) {
 var v =  new JU.Lst ();
 var edgePoints =  new Array (12);

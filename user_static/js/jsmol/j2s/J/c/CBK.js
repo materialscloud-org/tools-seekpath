@@ -1,7 +1,7 @@
 Clazz.declarePackage ("J.c");
 Clazz.load (["java.lang.Enum"], "J.c.CBK", ["JU.SB"], function () {
 c$ = Clazz.declareType (J.c, "CBK", Enum);
-c$.getCallback = Clazz.defineMethod (c$, "getCallback", 
+c$.getCallback = Clazz.defineMethod (c$, "getCallback",
 function (name) {
 name = name.toUpperCase ();
 name = name.substring (0, Math.max (name.indexOf ("CALLBACK"), 0));
@@ -9,7 +9,7 @@ for (var item, $item = 0, $$item = J.c.CBK.values (); $item < $$item.length && (
 
 return null;
 }, "~S");
-c$.getNameList = Clazz.defineMethod (c$, "getNameList", 
+c$.getNameList = Clazz.defineMethod (c$, "getNameList",
 function () {
 if (J.c.CBK.nameList == null) {
 var names =  new JU.SB ();

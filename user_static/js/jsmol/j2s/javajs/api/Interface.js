@@ -1,6 +1,6 @@
 Clazz.declarePackage ("javajs.api");
 c$ = Clazz.declareType (javajs.api, "Interface");
-c$.getInterface = Clazz.defineMethod (c$, "getInterface", 
+c$.getInterface = Clazz.defineMethod (c$, "getInterface",
 function (name) {
 try {
 var x = Clazz._4Name (name);

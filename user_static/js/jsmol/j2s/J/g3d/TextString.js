@@ -7,7 +7,7 @@ this.argb = 0;
 this.bgargb = 0;
 Clazz.instantialize (this, arguments);
 }, J.g3d, "TextString", JU.P3i, java.util.Comparator);
-Clazz.defineMethod (c$, "setText", 
+Clazz.defineMethod (c$, "setText",
 function (text, font, argb, bgargb, x, y, z) {
 this.text = text;
 this.font = font;
@@ -17,11 +17,11 @@ this.x = x;
 this.y = y;
 this.z = z;
 }, "~S,javajs.awt.Font,~N,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "compare", 
+Clazz.overrideMethod (c$, "compare",
 function (a, b) {
 return (a == null || b == null ? 0 : a.z > b.z ? -1 : a.z < b.z ? 1 : 0);
 }, "J.g3d.TextString,J.g3d.TextString");
-Clazz.defineMethod (c$, "toString", 
+Clazz.defineMethod (c$, "toString",
 function () {
 return Clazz.superCall (this, J.g3d.TextString, "toString", []) + " " + this.text;
 });

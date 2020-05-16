@@ -8,11 +8,11 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.tickInfos =  new Array (4);
 });
-Clazz.overrideMethod (c$, "initShape", 
+Clazz.overrideMethod (c$, "initShape",
 function () {
 this.translucentAllowed = false;
 });
-Clazz.defineMethod (c$, "setPropFLS", 
+Clazz.defineMethod (c$, "setPropFLS",
 function (propertyName, value) {
 if ("tickInfo" === propertyName) {
 var t = value;
@@ -26,7 +26,7 @@ return;
 this.font3d = value;
 return;
 }}, "~S,~O");
-Clazz.overrideMethod (c$, "getShapeState", 
+Clazz.overrideMethod (c$, "getShapeState",
 function () {
 return null;
 });

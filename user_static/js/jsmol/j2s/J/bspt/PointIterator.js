@@ -1,7 +1,7 @@
 Clazz.declarePackage ("J.bspt");
 Clazz.load (null, "J.bspt.PointIterator", ["java.lang.Float", "JU.Lst", "$.P3", "J.bspt.Bspt", "JU.BSUtil", "$.Point3fi"], function () {
 c$ = Clazz.declareType (J.bspt, "PointIterator");
-c$.withinDistPoints = Clazz.defineMethod (c$, "withinDistPoints", 
+c$.withinDistPoints = Clazz.defineMethod (c$, "withinDistPoints",
 function (distance, pt, ap3, ap31, ret) {
 var pts =  new JU.Lst ();
 var bspt =  new J.bspt.Bspt (3, 0);

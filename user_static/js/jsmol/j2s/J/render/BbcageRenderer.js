@@ -1,11 +1,11 @@
 Clazz.declarePackage ("J.render");
 Clazz.load (["J.render.CageRenderer"], "J.render.BbcageRenderer", ["JU.BoxInfo"], function () {
 c$ = Clazz.declareType (J.render, "BbcageRenderer", J.render.CageRenderer);
-Clazz.overrideMethod (c$, "initRenderer", 
+Clazz.overrideMethod (c$, "initRenderer",
 function () {
 this.tickEdges = JU.BoxInfo.bbcageTickEdges;
 });
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 var bbox = this.shape;
 var hiddenLines = (this.vwr.getBoolean (603979856));

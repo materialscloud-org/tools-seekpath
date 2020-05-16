@@ -7,11 +7,11 @@ this.phase = null;
 this.formalCharge = -2147483648;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.xml, "XmlOdysseyReader", J.adapter.readers.xml.XmlReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.adapter.readers.xml.XmlOdysseyReader, []);
 });
-Clazz.overrideMethod (c$, "processStartElement", 
+Clazz.overrideMethod (c$, "processStartElement",
 function (localName, nodeName) {
 if ("structure".equals (localName)) {
 this.asc.newAtomSet ();
@@ -68,7 +68,7 @@ if (this.modelName != null) this.asc.setAtomSetName (this.modelName);
 if (this.formula != null) this.asc.setCurrentModelInfo ("formula", this.formula);
 }if ("title".equals (localName) || "formula".equals (localName) || "phase".equals (localName)) this.setKeepChars (true);
 }, "~S,~S");
-Clazz.defineMethod (c$, "parseBondToken", 
+Clazz.defineMethod (c$, "parseBondToken",
  function (str) {
 if (str.length >= 1) {
 switch (str.charAt (0)) {
@@ -84,7 +84,7 @@ return 515;
 return this.parseIntStr (str);
 }return 1;
 }, "~S");
-Clazz.overrideMethod (c$, "processEndElement", 
+Clazz.overrideMethod (c$, "processEndElement",
 function (localName) {
 if ("atom".equals (localName)) {
 if (this.atom.elementSymbol != null && !Float.isNaN (this.atom.z)) {

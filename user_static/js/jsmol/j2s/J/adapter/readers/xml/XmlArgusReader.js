@@ -9,11 +9,11 @@ this.trans = null;
 this.ptTrans = 0;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.xml, "XmlArgusReader", J.adapter.readers.xml.XmlReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.adapter.readers.xml.XmlArgusReader, []);
 });
-Clazz.overrideMethod (c$, "processStartElement", 
+Clazz.overrideMethod (c$, "processStartElement",
 function (localName, nodeName) {
 for (var i = J.adapter.readers.xml.XmlArgusReader.keepCharsList.length; --i >= 0; ) if (J.adapter.readers.xml.XmlArgusReader.keepCharsList[i].equals (localName)) {
 this.setKeepChars (true);
@@ -37,7 +37,7 @@ this.elementContext = 4;
 this.trans =  Clazz.newFloatArray (16, 0);
 return;
 }}, "~S,~S");
-Clazz.defineMethod (c$, "parseBondToken", 
+Clazz.defineMethod (c$, "parseBondToken",
  function (str) {
 var floatOrder = this.parseFloatStr (str);
 if (Float.isNaN (floatOrder) && str.length >= 1) {
@@ -58,7 +58,7 @@ if (floatOrder == 2) return 2;
 if (floatOrder == 3) return 3;
 return 1;
 }, "~S");
-Clazz.overrideMethod (c$, "processEndElement", 
+Clazz.overrideMethod (c$, "processEndElement",
 function (localName) {
 var n = this.chars.length ();
 if (n > 0 && this.chars.charAt (n - 1) == '\n') this.chars.setLength (n - 1);

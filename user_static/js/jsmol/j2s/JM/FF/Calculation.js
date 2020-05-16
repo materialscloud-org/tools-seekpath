@@ -19,19 +19,19 @@ this.energy = 0;
 this.calcs = null;
 Clazz.instantialize (this, arguments);
 }, JM.FF, "Calculation");
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (calcs) {
 this.calcs = calcs;
 return this;
 }, "JM.FF.Calculations");
-Clazz.defineMethod (c$, "setData", 
+Clazz.defineMethod (c$, "setData",
 function (calc, ia, ib, d) {
 }, "JU.Lst,~N,~N,~N");
-Clazz.defineMethod (c$, "getEnergy", 
+Clazz.defineMethod (c$, "getEnergy",
 function () {
 return this.energy;
 });
-Clazz.defineMethod (c$, "getPointers", 
+Clazz.defineMethod (c$, "getPointers",
 function (dataIn) {
 this.dData = dataIn[1];
 this.iData = dataIn[0];

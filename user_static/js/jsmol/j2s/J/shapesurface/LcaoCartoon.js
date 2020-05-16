@@ -19,13 +19,13 @@ this.slabbingObject = null;
 this.fullCommand = null;
 Clazz.instantialize (this, arguments);
 }, J.shapesurface, "LcaoCartoon", J.shapesurface.Isosurface);
-Clazz.defineMethod (c$, "initShape", 
+Clazz.defineMethod (c$, "initShape",
 function () {
 Clazz.superCall (this, J.shapesurface.LcaoCartoon, "initShape", []);
 this.myType = "lcaoCartoon";
 this.allowMesh = false;
 });
-Clazz.overrideMethod (c$, "setProperty", 
+Clazz.overrideMethod (c$, "setProperty",
 function (propertyName, value, bs) {
 var setInfo = false;
 if ("init" === propertyName) {
@@ -102,7 +102,7 @@ this.getCapSlabInfo (this.fullCommand);
 if (setInfo || "lobe" === propertyName || "sphere" === propertyName) {
 this.setScriptInfo (null);
 }}, "~S,~O,JU.BS");
-Clazz.defineMethod (c$, "setLcaoOn", 
+Clazz.defineMethod (c$, "setLcaoOn",
  function (TF) {
 if (JU.PT.isWild (this.lcaoID)) {
 var list = this.getMeshList (this.lcaoID, false);
@@ -113,13 +113,13 @@ return;
 for (var i = ac; --i >= 0; ) if (this.lcaoID != null || this.thisSet.get (i)) this.setLcaoOn (i, TF);
 
 }, "~B");
-Clazz.defineMethod (c$, "setLcaoOn", 
+Clazz.defineMethod (c$, "setLcaoOn",
  function (iAtom, TF) {
 var id = this.getID (this.lcaoID, iAtom);
 for (var i = this.meshCount; --i >= 0; ) if (this.meshes[i].thisID.indexOf (id) == 0) this.meshes[i].visible = TF;
 
 }, "~N,~B");
-Clazz.defineMethod (c$, "deleteLcaoCartoon", 
+Clazz.defineMethod (c$, "deleteLcaoCartoon",
  function () {
 if (JU.PT.isWild (this.lcaoID)) {
 this.deleteMeshKey (this.lcaoID);
@@ -128,13 +128,13 @@ return;
 for (var i = ac; --i >= 0; ) if (this.lcaoID != null || this.thisSet.get (i)) this.deleteLcaoCartoon (i);
 
 });
-Clazz.defineMethod (c$, "deleteLcaoCartoon", 
+Clazz.defineMethod (c$, "deleteLcaoCartoon",
  function (iAtom) {
 var id = this.getID (this.lcaoID, iAtom);
 for (var i = this.meshCount; --i >= 0; ) if (this.meshes[i].thisID.indexOf (id) == 0) this.deleteMeshI (i);
 
 }, "~N");
-Clazz.defineMethod (c$, "createLcaoCartoon", 
+Clazz.defineMethod (c$, "createLcaoCartoon",
  function () {
 this.isMolecular = (this.isMolecular && (this.thisType.indexOf ("px") >= 0 || this.thisType.indexOf ("py") >= 0 || this.thisType.indexOf ("pz") >= 0));
 var lcaoID0 = this.lcaoID;
@@ -143,7 +143,7 @@ this.createLcaoCartoon (i);
 this.lcaoID = lcaoID0;
 }
 });
-Clazz.defineMethod (c$, "createLcaoCartoon", 
+Clazz.defineMethod (c$, "createLcaoCartoon",
  function (iAtom) {
 var id = this.getID (this.lcaoID, iAtom);
 var isCpk = (this.thisType.equals ("cpk"));
@@ -185,11 +185,11 @@ this.setPropI ("translucency", "translucent", null);
 }} else if (this.lcaoTranslucent) for (var i = this.meshCount; --i >= 0; ) if (this.meshes[i].thisID.indexOf (id) == 0) this.meshes[i].setTranslucent (true, this.translucentLevel);
 
 }, "~N");
-Clazz.defineMethod (c$, "getID", 
+Clazz.defineMethod (c$, "getID",
  function (id, i) {
 return (id != null ? id : (this.isLonePair || this.isRadical ? "lp_" : "lcao_") + (i + 1) + "_") + (this.thisType == null ? "" : JU.PT.rep (this.thisType, "-", (this.thisType.indexOf ("-p") == 0 ? "" : "_")));
 }, "~S,~N");
-Clazz.defineMethod (c$, "getShapeState", 
+Clazz.defineMethod (c$, "getShapeState",
 function () {
 var sb =  new JU.SB ();
 if (this.lcaoScale != null) J.shape.Shape.appendCmd (sb, "lcaoCartoon scale " + this.lcaoScale.floatValue ());
@@ -199,7 +199,7 @@ for (var i = this.meshCount; --i >= 0; ) if (!this.meshes[i].visible) J.shape.Sh
 
 return Clazz.superCall (this, J.shapesurface.LcaoCartoon, "getShapeState", []) + sb.toString ();
 });
-Clazz.defineMethod (c$, "merge", 
+Clazz.defineMethod (c$, "merge",
 function (shape) {
 var lc = shape;
 this.lcaoScale = lc.lcaoScale;

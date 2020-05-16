@@ -4,7 +4,7 @@ c$ = Clazz.decorateAsClass (function () {
 this.isAntialiased = false;
 Clazz.instantialize (this, arguments);
 }, J.render, "HalosRenderer", J.render.ShapeRenderer);
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 var halos = this.shape;
 var showOnce = this.vwr.getShowSelectedOnce ();
@@ -43,7 +43,7 @@ if (this.render1 (atom)) needTranslucent = true;
 }}
 return needTranslucent;
 });
-Clazz.defineMethod (c$, "render1", 
+Clazz.defineMethod (c$, "render1",
 function (atom) {
 var colixFill = (this.mad == -2 ? 0 : JU.C.getColixTranslucent3 (this.colix, true, 0.5));
 var needTranslucent = (this.mad != -2);

@@ -10,17 +10,17 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.aDOMNode =  new Array (1);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (fileManager, vwr, DOMNode, htParams) {
 this.fm = fileManager;
 this.vwr = vwr;
 this.aDOMNode[0] = DOMNode;
 this.htParams = htParams;
 }, "JV.FileManager,JV.Viewer,~O,java.util.Map");
-Clazz.defineMethod (c$, "run", 
+Clazz.defineMethod (c$, "run",
 function () {
 var info = null;
 {

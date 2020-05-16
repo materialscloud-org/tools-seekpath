@@ -27,15 +27,15 @@ this.yval = 0;
 this.firstLastX = null;
 Clazz.instantialize (this, arguments);
 }, JSV.source, "JDXDecompressor");
-Clazz.defineMethod (c$, "getMinY", 
+Clazz.defineMethod (c$, "getMinY",
 function () {
 return this.minY;
 });
-Clazz.defineMethod (c$, "getMaxY", 
+Clazz.defineMethod (c$, "getMaxY",
 function () {
 return this.maxY;
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (t, firstX, xFactor, yFactor, deltaX, nPoints) {
 this.t = t;
 this.firstX = firstX;
@@ -46,7 +46,7 @@ this.nPoints = nPoints;
 this.lineNumber = t.labelLineNo;
 this.debugging = JU.Logger.isActiveLevel (6);
 }, "JSV.source.JDXSourceStreamTokenizer,~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "addPoint", 
+Clazz.defineMethod (c$, "addPoint",
  function (pt) {
 if (this.ipt == this.xyCoords.length) {
 var t =  new Array (this.ipt * 2);
@@ -59,7 +59,7 @@ if (this.debugging) this.logError ("Coord: " + this.ipt + pt);
 this.xyCoords[this.ipt++] = pt;
 this.firstLastX[1] = pt.getXVal ();
 }, "JSV.common.Coordinate");
-Clazz.defineMethod (c$, "decompressData", 
+Clazz.defineMethod (c$, "decompressData",
 function (errorLog, firstLastX) {
 this.errorLog = errorLog;
 this.firstLastX = firstLastX;
@@ -114,12 +114,12 @@ System.arraycopy (this.xyCoords, 0, temp, 0, this.ipt);
 this.xyCoords = temp;
 }return (this.deltaX > 0 ? this.xyCoords : JSV.common.Coordinate.reverse (this.xyCoords));
 }, "JU.SB,~A");
-Clazz.defineMethod (c$, "logError", 
+Clazz.defineMethod (c$, "logError",
  function (s) {
 if (this.debugging) JU.Logger.debug (s);
 this.errorLog.append (s).appendC ('\n');
 }, "~S");
-Clazz.defineMethod (c$, "getYValue", 
+Clazz.defineMethod (c$, "getYValue",
  function () {
 if (this.dupCount > 0) {
 --this.dupCount;
@@ -219,14 +219,14 @@ if (this.difVal != -2147483648) this.difVal = this.getDifDup (this.difVal);
  else this.dupCount = this.getDifDup (this.dupCount) - 1;
 return this.getYValue ();
 });
-Clazz.defineMethod (c$, "getDifDup", 
+Clazz.defineMethod (c$, "getDifDup",
  function (i) {
 var ich0 = this.ich;
 this.next ();
 var s = i + this.line.substring (ich0, this.ich);
 return (ich0 == this.ich ? i : Integer.$valueOf (s).intValue ());
 }, "~N");
-Clazz.defineMethod (c$, "getValue", 
+Clazz.defineMethod (c$, "getValue",
  function () {
 var ich0 = this.ich;
 if (this.ich == this.lineLen) return NaN;
@@ -279,7 +279,7 @@ return this.getValue ();
 this.next ();
 return Double.$valueOf (leader + this.line.substring (ich0, this.ich)).doubleValue ();
 });
-Clazz.defineMethod (c$, "getValueDelim", 
+Clazz.defineMethod (c$, "getValueDelim",
  function () {
 var ich0 = this.ich;
 var ch = '\u0000';
@@ -303,13 +303,13 @@ break;
 }
 return factor * ((Double.$valueOf (this.line.substring (ich0, this.ich))).doubleValue ());
 });
-Clazz.defineMethod (c$, "next", 
+Clazz.defineMethod (c$, "next",
  function () {
 while (this.ich < this.lineLen && "+-%@ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrs? ,\t\n".indexOf (this.line.charAt (this.ich)) < 0) this.ich++;
 
 return (this.ich == this.lineLen ? '\0' : this.line.charAt (this.ich));
 });
-Clazz.defineMethod (c$, "testAlgorithm", 
+Clazz.defineMethod (c$, "testAlgorithm",
  function () {
 });
 Clazz.defineStatics (c$,

@@ -15,7 +15,7 @@ for (var i = 8; --i >= 0; ) this.p3Screens[i] =  new JU.P3 ();
 
 }this.pt =  new JU.P3 ();
 });
-Clazz.defineMethod (c$, "renderCage", 
+Clazz.defineMethod (c$, "renderCage",
 function (mad, vertices, faces, axisPoints, firstLine, allowedEdges0, allowedEdges1, scale) {
 this.g3d.setC (this.colix);
 var fls = this.shape;

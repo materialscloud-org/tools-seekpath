@@ -14,7 +14,7 @@ this.mltb = 0;
 this.val = 0;
 Clazz.instantialize (this, arguments);
 }, JM.FF, "AtomType");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (elemNo, mmType, hType, formalCharge, val, descr, smartsCode) {
 this.elemNo = elemNo;
 this.mmType = mmType;

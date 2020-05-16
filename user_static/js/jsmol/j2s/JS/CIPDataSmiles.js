@@ -8,15 +8,15 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.nodes =  new Array (6);
 });
-Clazz.overrideMethod (c$, "isSmiles", 
+Clazz.overrideMethod (c$, "isSmiles",
 function () {
 return true;
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JS.CIPDataSmiles, []);
 });
-Clazz.defineMethod (c$, "setAtomsForSmiles", 
+Clazz.defineMethod (c$, "setAtomsForSmiles",
 function (vwr, smiles) {
 this.vwr = vwr;
 this.smiles = smiles;
@@ -26,25 +26,25 @@ this.bsMolecule = this.bsAtoms.clone ();
 this.init ();
 return this;
 }, "JV.Viewer,~S");
-Clazz.overrideMethod (c$, "getList", 
+Clazz.overrideMethod (c$, "getList",
 function (smarts) {
 return this.vwr.getSubstructureSetArrayForNodes (smarts, this.atoms, 2);
 }, "~S");
-Clazz.overrideMethod (c$, "match", 
+Clazz.overrideMethod (c$, "match",
 function (smarts) {
 return this.vwr.getSmartsMatchForNodes (smarts, this.atoms);
 }, "~S");
-Clazz.overrideMethod (c$, "getBondOrder", 
+Clazz.overrideMethod (c$, "getBondOrder",
 function (bond) {
 return (bond).getRealCovalentOrder ();
 }, "JU.SimpleEdge");
-Clazz.overrideMethod (c$, "isCis", 
+Clazz.overrideMethod (c$, "isCis",
 function (a, b, c, d) {
 var stereo1 = this.getStereoEdge (b.atom, a.atom);
 var stereo2 = this.getStereoEdge (c.atom, d.atom);
 return (stereo1 == 0 || stereo2 == 0 ? 0 : stereo1 != stereo2 ? 14 : 13);
 }, "JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom");
-Clazz.defineMethod (c$, "getStereoEdge", 
+Clazz.defineMethod (c$, "getStereoEdge",
  function (atom, winner) {
 var edges = atom.getEdges ();
 var order = 0;
@@ -59,7 +59,7 @@ return (edges[i].getOtherNode (atom) === winner) == (edge.getAtom1 () === atom) 
 }
 return 0;
 }, "JU.SimpleNode,JU.SimpleNode");
-Clazz.overrideMethod (c$, "isPositiveTorsion", 
+Clazz.overrideMethod (c$, "isPositiveTorsion",
 function (a, b, c, d) {
 var center = this.findCumulativeCenter (b, c);
 if (center == null) return 0;
@@ -69,7 +69,7 @@ center.stereo.setTopoCoordinates (center, null, null, jn);
 var angle = JU.Measure.computeTorsion (jn[0].getXYZ (), jn[1].getXYZ (), jn[2].getXYZ (), jn[3].getXYZ (), true);
 return ((angle > 0) == ((a.atom.getIndex () == jn[0].getIndex ()) && (d.atom.getIndex () == jn[3].getIndex ()) || (a.atom.getIndex () == jn[1].getIndex ()) && (d.atom.getIndex () == jn[2].getIndex ())) ? 18 : 17);
 }, "JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom");
-Clazz.defineMethod (c$, "findCumulativeCenter", 
+Clazz.defineMethod (c$, "findCumulativeCenter",
  function (a, a2) {
 var center = a.atom;
 var c = null;
@@ -87,7 +87,7 @@ center = c;
 }
 return null;
 }, "JS.CIPChirality.CIPAtom,JS.CIPChirality.CIPAtom");
-Clazz.overrideMethod (c$, "setCoord", 
+Clazz.overrideMethod (c$, "setCoord",
 function (atom, atoms) {
 var a = atom;
 if (a.stereo == null) return false;
@@ -97,7 +97,7 @@ for (var i = edges.length; --i >= 0; ) this.nodes[i] = edges[i].getOtherNode (a)
 a.stereo.setTopoCoordinates (a, null, null, this.nodes);
 return true;
 }, "JU.SimpleNode,~A");
-Clazz.defineMethod (c$, "getSmilesChiralityArray", 
+Clazz.defineMethod (c$, "getSmilesChiralityArray",
 function () {
 var chirality =  new JU.Lst ();
 for (var i = 0; i < this.atoms.length; i++) {

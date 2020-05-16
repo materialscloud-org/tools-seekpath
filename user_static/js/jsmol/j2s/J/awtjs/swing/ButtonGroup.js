@@ -4,11 +4,11 @@ c$ = Clazz.decorateAsClass (function () {
 this.id = null;
 Clazz.instantialize (this, arguments);
 }, J.awtjs.swing, "ButtonGroup");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 this.id = javajs.awt.Component.newID ("bg");
 });
-Clazz.defineMethod (c$, "add", 
+Clazz.defineMethod (c$, "add",
 function (item) {
 (item).htmlName = this.id;
 }, "javajs.awt.SC");

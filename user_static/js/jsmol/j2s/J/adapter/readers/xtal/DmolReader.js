@@ -6,7 +6,7 @@ this.totE = null;
 this.geomOpt = false;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.xtal, "DmolReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.contains ("** GEOMETRY OPTIMIZATION IN DELOCALIZED COORDINATES **")) {
 this.geomOpt = true;
@@ -22,7 +22,7 @@ this.readEnergy ();
 this.readFreq ();
 }return true;
 });
-Clazz.defineMethod (c$, "readCellParam", 
+Clazz.defineMethod (c$, "readCellParam",
  function () {
 this.unitCellData =  Clazz.newFloatArray (9, 0);
 for (var n = 0, i = 0; n < 3; n++) {
@@ -32,7 +32,7 @@ this.unitCellData[i++] = this.parseFloatStr (!this.geomOpt ? tokens[1] : tokens[
 this.unitCellData[i++] = this.parseFloatStr (!this.geomOpt ? tokens[2] : tokens[6]) * 0.5291772;
 }
 });
-Clazz.defineMethod (c$, "newAtomSet", 
+Clazz.defineMethod (c$, "newAtomSet",
  function () {
 this.applySymmetryAndSetTrajectory ();
 this.asc.newAtomSet ();
@@ -45,7 +45,7 @@ this.addExplicitLatticeVector (2, this.unitCellData, 6);
 this.setSpaceGroupName ("P1");
 }this.setFractionalCoordinates (false);
 });
-Clazz.defineMethod (c$, "readCoord", 
+Clazz.defineMethod (c$, "readCoord",
  function () {
 this.newAtomSet ();
 if (this.geomOpt) this.readLines (2);
@@ -61,18 +61,18 @@ atom.set (x, y, z);
 this.setAtomCoord (atom);
 }
 });
-Clazz.defineMethod (c$, "readEnergy", 
+Clazz.defineMethod (c$, "readEnergy",
  function () {
 this.rd ();
 if (this.line.contains ("Ef")) this.totE = Double.$valueOf (Double.parseDouble (JU.PT.getTokens (this.line.substring (this.line.indexOf ("Ef") + 1, this.line.indexOf ("Ha")))[1]));
 });
-Clazz.defineMethod (c$, "setEnergy", 
+Clazz.defineMethod (c$, "setEnergy",
  function () {
 this.asc.setAtomSetEnergy ("" + this.totE, this.totE.floatValue ());
 this.asc.setInfo ("Energy", this.totE);
 this.asc.setAtomSetName ("E = " + this.totE + " Hartree");
 });
-Clazz.defineMethod (c$, "readFreq", 
+Clazz.defineMethod (c$, "readFreq",
  function () {
 var lastAtomCount = 0;
 var ac = this.asc.getLastAtomSetAtomCount ();

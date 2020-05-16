@@ -4,17 +4,17 @@ c$ = Clazz.decorateAsClass (function () {
 this.bsAromatic = null;
 Clazz.instantialize (this, arguments);
 }, JM.FF, "ForceFieldUFF", JM.FF.ForceField);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (minimizer) {
 Clazz.superConstructor (this, JM.FF.ForceFieldUFF, []);
 this.minimizer = minimizer;
 this.name = "UFF";
 }, "JM.Minimizer");
-Clazz.overrideMethod (c$, "clear", 
+Clazz.overrideMethod (c$, "clear",
 function () {
 this.bsAromatic = null;
 });
-Clazz.overrideMethod (c$, "setModel", 
+Clazz.overrideMethod (c$, "setModel",
 function (bsElements, elemnoMax) {
 this.setModelFields ();
 JU.Logger.info ("minimize: setting atom types...");
@@ -24,7 +24,7 @@ this.setAtomTypes (bsElements, elemnoMax);
 this.calc =  new JM.FF.CalculationsUFF (this, JM.FF.ForceFieldUFF.ffParams, this.minAtoms, this.minBonds, this.minAngles, this.minTorsions, this.minPositions, this.minimizer.constraints);
 return this.calc.setupCalculations ();
 }, "JU.BS,~N");
-Clazz.defineMethod (c$, "setAtomTypes", 
+Clazz.defineMethod (c$, "setAtomTypes",
  function (bsElements, elemnoMax) {
 var nTypes = JM.FF.ForceFieldUFF.atomTypes.size ();
 bsElements.clear (0);
@@ -39,7 +39,7 @@ if (bsElements.get (0)) bsElements.clear (0);
 
 }
 }, "JU.BS,~N");
-Clazz.defineMethod (c$, "getSearch", 
+Clazz.defineMethod (c$, "getSearch",
  function (smarts, elemnoMax, bsElements) {
 var search = null;
 var len = smarts.length;
@@ -90,7 +90,7 @@ bs.and (this.bsAromatic);
 }if (JU.Logger.debugging && bs.nextSetBit (0) >= 0) JU.Logger.debug (smarts + " minimize atoms=" + bs);
 return bs;
 }, "~S,~N,JU.BS");
-Clazz.defineMethod (c$, "getFFParameters", 
+Clazz.defineMethod (c$, "getFFParameters",
  function () {
 var ffParam;
 var temp =  new java.util.Hashtable ();
@@ -159,7 +159,7 @@ throw e;
 JU.Logger.info (temp.size () + " atom types read from " + resourceName);
 return temp;
 });
-Clazz.defineMethod (c$, "getAtomTypes", 
+Clazz.defineMethod (c$, "getAtomTypes",
  function () {
 var types =  new JU.Lst ();
 var fileName = "UFF.txt";

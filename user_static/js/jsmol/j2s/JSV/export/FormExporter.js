@@ -11,13 +11,13 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.context =  new JSV["export"].FormContext ();
 });
-Clazz.defineMethod (c$, "initForm", 
+Clazz.defineMethod (c$, "initForm",
 function (viewer, out) {
 this.vwr = viewer;
 this.out = out;
 this.currentTime = viewer.apiPlatform.getDateFormat (null);
 }, "JSV.common.JSViewer,JU.OC");
-Clazz.defineMethod (c$, "writeForm", 
+Clazz.defineMethod (c$, "writeForm",
 function (templateFile) {
 var error =  new Array (1);
 var template = JSV.common.JSVFileManager.getResourceString (this, "resources/" + templateFile, error);

@@ -49,10 +49,10 @@ this.neighborCenters =  new Array (16);
 this.neighborPlusProbeRadii2 =  Clazz.newFloatArray (16, 0);
 this.neighborRadii2 =  Clazz.newFloatArray (16, 0);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.overrideMethod (c$, "set", 
+Clazz.overrideMethod (c$, "set",
 function (vwr, ac, mads) {
 this.vwr = vwr;
 this.ac = ac;
@@ -63,29 +63,29 @@ this.mapT = JU.BS.newN (this.geodesicCount);
 J.geodesic.EnvelopeCalculation.EMPTY_SET = JU.BSUtil.emptySet;
 return this;
 }, "J.atomdata.AtomDataServer,~N,~A");
-Clazz.defineMethod (c$, "getDotsConvexMaps", 
+Clazz.defineMethod (c$, "getDotsConvexMaps",
 function () {
 return this.dotsConvexMaps;
 });
-Clazz.defineMethod (c$, "getDotsConvexMax", 
+Clazz.defineMethod (c$, "getDotsConvexMax",
 function () {
 return this.dotsConvexMax;
 });
-Clazz.defineMethod (c$, "allocDotsConvexMaps", 
+Clazz.defineMethod (c$, "allocDotsConvexMaps",
 function (max) {
 if (this.dotsConvexMax >= max) return;
 this.dotsConvexMax = max;
 this.dotsConvexMaps =  new Array (max);
 }, "~N");
-Clazz.overrideMethod (c$, "getBsSurfaceClone", 
+Clazz.overrideMethod (c$, "getBsSurfaceClone",
 function () {
 return JU.BSUtil.copy (this.bsSurface);
 });
-Clazz.defineMethod (c$, "setMads", 
+Clazz.defineMethod (c$, "setMads",
 function (mads) {
 this.mads = mads;
 }, "~A");
-Clazz.defineMethod (c$, "setFromBits", 
+Clazz.defineMethod (c$, "setFromBits",
 function (index, bs) {
 this.geodesicMap.setBits (0, this.geodesicCount);
 for (var iDot = this.geodesicCount; --iDot >= 0; ) if (!bs.get (iDot)) this.geodesicMap.clear (iDot);
@@ -98,14 +98,14 @@ if (index >= this.dotsConvexMaps.length) return;
 this.dotsConvexMaps[index] = map;
 this.dotsConvexMax = Math.max (this.dotsConvexMax, index);
 }, "~N,JU.BS");
-Clazz.defineMethod (c$, "newSet", 
+Clazz.defineMethod (c$, "newSet",
 function () {
 this.dotsConvexMax = 0;
 this.dotsConvexMaps = null;
 this.radiusP = this.diameterP = 0;
 this.mads = null;
 });
-Clazz.defineMethod (c$, "reCalculate", 
+Clazz.defineMethod (c$, "reCalculate",
 function (bs, m) {
 if (this.atomData.radiusData != null) {
 this.calculate (null, this.maxRadius, bs, this.bsIgnore, this.disregardNeighbors, this.onlySelectedDots, this.isSurface, this.multiModel);
@@ -126,7 +126,7 @@ bsNew.set (JU.Normix.getNormixV (pt, this.bsTemp));
 this.dotsConvexMaps[i] = bsNew;
 }
 }, "JU.BS,JU.M3");
-Clazz.overrideMethod (c$, "calculate", 
+Clazz.overrideMethod (c$, "calculate",
 function (rd, maxRadius, bsSelected, bsIgnore, disregardNeighbors, onlySelectedDots, isSurface, multiModel) {
 if (rd == null) {
 rd = this.atomData.radiusData;
@@ -162,11 +162,11 @@ iter.release ();
 this.currentPoints = null;
 this.setDotsConvexMax ();
 }, "J.atomdata.RadiusData,~N,JU.BS,JU.BS,~B,~B,~B,~B");
-Clazz.defineMethod (c$, "getRadius", 
+Clazz.defineMethod (c$, "getRadius",
 function (atomIndex) {
 return this.atomData.atomRadius[atomIndex];
 }, "~N");
-Clazz.overrideMethod (c$, "getPoints", 
+Clazz.overrideMethod (c$, "getPoints",
 function () {
 if (this.dotsConvexMaps == null) {
 this.calculate ( new J.atomdata.RadiusData (null, 3.0, J.atomdata.RadiusData.EnumType.ABSOLUTE, null), 3.4028235E38, this.bsMySelected, null, false, false, false, false);
@@ -190,7 +190,7 @@ points[nPoints++] = pt;
 this.currentPoints = points;
 return points;
 });
-Clazz.defineMethod (c$, "setDotsConvexMax", 
+Clazz.defineMethod (c$, "setDotsConvexMax",
  function () {
 if (this.dotsConvexMaps == null) this.dotsConvexMax = 0;
  else {
@@ -199,11 +199,11 @@ for (i = this.ac; --i >= 0 && this.dotsConvexMaps[i] == null; ) {
 }
 this.dotsConvexMax = i + 1;
 }});
-Clazz.defineMethod (c$, "getAppropriateRadius", 
+Clazz.defineMethod (c$, "getAppropriateRadius",
 function (atomIndex) {
 return (this.mads != null ? (atomIndex >= this.mads.length ? 0 : this.mads[atomIndex] / 1000) : this.atomData.atomRadius[atomIndex]);
 }, "~N");
-Clazz.defineMethod (c$, "setAtomI", 
+Clazz.defineMethod (c$, "setAtomI",
  function (indexI) {
 this.indexI = indexI;
 this.centerI = this.atomData.xyz[indexI];
@@ -211,7 +211,7 @@ this.radiusI = this.atomData.atomRadius[indexI];
 this.radiiIP2 = this.radiusI + this.radiusP;
 this.radiiIP2 *= this.radiiIP2;
 }, "~N");
-Clazz.defineMethod (c$, "calcConvexMap", 
+Clazz.defineMethod (c$, "calcConvexMap",
  function (isSurface) {
 this.calcConvexBits ();
 var map;
@@ -224,7 +224,7 @@ this.addIncompleteFaces (this.geodesicMap);
 }map = JU.BSUtil.copy (this.geodesicMap);
 }this.dotsConvexMaps[this.indexI] = map;
 }, "~B");
-Clazz.defineMethod (c$, "addIncompleteFaces", 
+Clazz.defineMethod (c$, "addIncompleteFaces",
  function (points) {
 this.mapT.clearAll ();
 var faces = JU.Geodesic.getFaceVertexes (3);
@@ -252,7 +252,7 @@ for (var i = 0; i <= maxPt; i++) {
 if (this.mapT.get (i)) points.set (i);
 }
 }, "JU.BS");
-Clazz.defineMethod (c$, "calcConvexBits", 
+Clazz.defineMethod (c$, "calcConvexBits",
  function () {
 this.geodesicMap.setBits (0, this.geodesicCount);
 var combinedRadii = this.radiusI + this.radiusP;
@@ -311,7 +311,7 @@ this.mapT.set (vect);
 }
 }
 });
-Clazz.defineMethod (c$, "checkNewDotsArray", 
+Clazz.defineMethod (c$, "checkNewDotsArray",
  function () {
 if (this.dotsConvexMaps == null) {
 this.dotsConvexMaps =  new Array (this.ac);
@@ -321,7 +321,7 @@ for (var i = 0; i < this.ac && i < this.dotsConvexMaps.length; i++) a[i] = this.
 
 this.dotsConvexMaps = a;
 }});
-Clazz.defineMethod (c$, "getNeighbors", 
+Clazz.defineMethod (c$, "getNeighbors",
  function (iter) {
 this.neighborCount = 0;
 if (this.disregardNeighbors) return null;
@@ -344,7 +344,7 @@ this.neighborRadii2[this.neighborCount] = neighborRadius * neighborRadius;
 }
 return iter;
 }, "J.api.AtomIndexIterator");
-Clazz.defineMethod (c$, "deleteAtoms", 
+Clazz.defineMethod (c$, "deleteAtoms",
 function (firstAtomDeleted, nAtomsDeleted) {
 this.dotsConvexMaps = JU.AU.deleteElements (this.dotsConvexMaps, firstAtomDeleted, nAtomsDeleted);
 this.dotsConvexMax = this.dotsConvexMaps.length;

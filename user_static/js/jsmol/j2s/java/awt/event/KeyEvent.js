@@ -6,7 +6,7 @@ this.keyChar = '\0';
 this.keyLocation = 0;
 Clazz.instantialize (this, arguments);
 }, java.awt.event, "KeyEvent", java.awt.event.InputEvent);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (source, id, when, modifiers, keyCode, keyChar, keyLocation) {
 Clazz.superConstructor (this, java.awt.event.KeyEvent, [source, id, when, modifiers]);
 if (id == 400) {
@@ -26,27 +26,27 @@ this.setNewModifiers ();
 } else if ((this.getModifiers () == 0) && (this.getModifiersEx () != 0)) {
 this.setOldModifiers ();
 }}, "~O,~N,~N,~N,~N,~S,~N");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (source, id, when, modifiers, keyCode, keyChar) {
 this.construct (source, id, when, modifiers, keyCode, keyChar, 0);
 }, "java.awt.Component,~N,~N,~N,~N,~S");
-Clazz.defineMethod (c$, "getKeyCode", 
+Clazz.defineMethod (c$, "getKeyCode",
 function () {
 return this.keyCode;
 });
-Clazz.defineMethod (c$, "setKeyCode", 
+Clazz.defineMethod (c$, "setKeyCode",
 function (keyCode) {
 this.keyCode = keyCode;
 }, "~N");
-Clazz.defineMethod (c$, "getKeyChar", 
+Clazz.defineMethod (c$, "getKeyChar",
 function () {
 return this.keyChar;
 });
-Clazz.defineMethod (c$, "setKeyChar", 
+Clazz.defineMethod (c$, "setKeyChar",
 function (keyChar) {
 this.keyChar = keyChar;
 }, "~S");
-Clazz.defineMethod (c$, "setModifiers", 
+Clazz.defineMethod (c$, "setModifiers",
 function (modifiers) {
 this.modifiers = modifiers;
 if ((this.getModifiers () != 0) && (this.getModifiersEx () == 0)) {
@@ -54,19 +54,19 @@ this.setNewModifiers ();
 } else if ((this.getModifiers () == 0) && (this.getModifiersEx () != 0)) {
 this.setOldModifiers ();
 }}, "~N");
-Clazz.defineMethod (c$, "getKeyLocation", 
+Clazz.defineMethod (c$, "getKeyLocation",
 function () {
 return this.keyLocation;
 });
-c$.getKeyText = Clazz.defineMethod (c$, "getKeyText", 
+c$.getKeyText = Clazz.defineMethod (c$, "getKeyText",
 function (keyCode) {
 return "[" + keyCode + "]";
 }, "~N");
-c$.getKeyModifiersText = Clazz.defineMethod (c$, "getKeyModifiersText", 
+c$.getKeyModifiersText = Clazz.defineMethod (c$, "getKeyModifiersText",
 function (modifiers) {
 return "[" + modifiers + "]";
 }, "~N");
-Clazz.defineMethod (c$, "isActionKey", 
+Clazz.defineMethod (c$, "isActionKey",
 function () {
 switch (this.keyCode) {
 case 36:
@@ -148,11 +148,11 @@ return true;
 }
 return false;
 });
-Clazz.defineMethod (c$, "paramString", 
+Clazz.defineMethod (c$, "paramString",
 function () {
 return "" + this;
 });
-Clazz.defineMethod (c$, "setNewModifiers", 
+Clazz.defineMethod (c$, "setNewModifiers",
  function () {
 if ((this.modifiers & 1) != 0) {
 this.modifiers |= 64;
@@ -167,7 +167,7 @@ this.modifiers |= 8192;
 }if ((this.modifiers & 16) != 0) {
 this.modifiers |= 1024;
 }});
-Clazz.defineMethod (c$, "setOldModifiers", 
+Clazz.defineMethod (c$, "setOldModifiers",
  function () {
 if ((this.modifiers & 64) != 0) {
 this.modifiers |= 1;

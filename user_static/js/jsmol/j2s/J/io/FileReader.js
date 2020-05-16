@@ -13,7 +13,7 @@ this.isAppend = false;
 this.bytesOrStream = null;
 Clazz.instantialize (this, arguments);
 }, J.io, "FileReader");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (vwr, fileName, fullPathName, nameAsGiven, type, reader, htParams, isAppend) {
 this.vwr = vwr;
 this.fileNameIn = (fileName == null ? fullPathName : fileName);
@@ -30,7 +30,7 @@ reader =  new java.io.BufferedReader (reader);
 this.htParams = htParams;
 this.isAppend = isAppend;
 }, "JV.Viewer,~S,~S,~S,~S,~O,java.util.Map,~B");
-Clazz.defineMethod (c$, "run", 
+Clazz.defineMethod (c$, "run",
 function () {
 if (!this.isAppend && this.vwr.displayLoadErrors) this.vwr.zap (false, true, false);
 var errorMessage = null;
@@ -81,11 +81,11 @@ throw e;
 if (!this.isAppend && !this.vwr.displayLoadErrors) this.vwr.zap (false, true, false);
 this.vwr.fm.setFileInfo ( Clazz.newArray (-1, [this.fullPathNameIn, this.fileNameIn, this.nameAsGivenIn]));
 });
-c$.getChangeableReader = Clazz.defineMethod (c$, "getChangeableReader", 
+c$.getChangeableReader = Clazz.defineMethod (c$, "getChangeableReader",
 function (vwr, nameAsGivenIn, fullPathNameIn) {
 return JU.Rdr.getBR (vwr.getLigandModel (nameAsGivenIn, fullPathNameIn, "_file", null));
 }, "JV.Viewer,~S,~S");
-Clazz.defineMethod (c$, "getAtomSetCollection", 
+Clazz.defineMethod (c$, "getAtomSetCollection",
 function () {
 return this.atomSetCollection;
 });

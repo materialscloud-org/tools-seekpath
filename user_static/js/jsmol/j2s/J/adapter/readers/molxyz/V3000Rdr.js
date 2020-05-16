@@ -6,22 +6,22 @@ this.line = null;
 this.userData = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.molxyz, "V3000Rdr");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (mr) {
 this.mr = mr;
 return this;
 }, "J.adapter.smarter.AtomSetCollectionReader");
-Clazz.defineMethod (c$, "readAtomsAndBonds", 
+Clazz.defineMethod (c$, "readAtomsAndBonds",
 function (tokens) {
 var ac = this.mr.parseIntStr (tokens[3]);
 this.readAtoms (ac);
 this.readBonds (this.mr.parseIntStr (tokens[4]));
 this.readUserData (ac);
 }, "~A");
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function (ac) {
 this.mr.discardLinesUntilContains ("BEGIN ATOM");
 for (var i = 0; i < ac; ++i) {
@@ -46,7 +46,7 @@ this.mr.addMolAtom (iAtom, isotope, elementSymbol, charge, x, y, z);
 }
 this.mr.discardLinesUntilContains ("END ATOM");
 }, "~N");
-Clazz.defineMethod (c$, "readBonds", 
+Clazz.defineMethod (c$, "readBonds",
  function (bondCount) {
 this.mr.discardLinesUntilContains ("BEGIN BOND");
 if (bondCount == 0) this.mr.asc.setNoAutoBond ();
@@ -73,7 +73,7 @@ stereo = this.mr.parseIntStr (cfg);
 }
 this.mr.discardLinesUntilContains ("END BOND");
 }, "~N");
-Clazz.defineMethod (c$, "readUserData", 
+Clazz.defineMethod (c$, "readUserData",
  function (ac) {
 this.userData = null;
 var pc = null;
@@ -122,7 +122,7 @@ for (var i = 0; i < a.length; i++) f[i] = (a[i] == null ? 0 : this.mr.parseFloat
 this.mr.asc.setAtomProperties (key, f, -1, false);
 }
 }, "~N");
-Clazz.defineMethod (c$, "getField", 
+Clazz.defineMethod (c$, "getField",
  function (key) {
 var pt = this.line.indexOf (key + "=");
 if (pt < 0) return null;
@@ -143,11 +143,11 @@ break;
 }
 return this.line.substring (pt + 1, (this.line + term).indexOf (term, pt + 1));
 }, "~S");
-Clazz.defineMethod (c$, "rd", 
+Clazz.defineMethod (c$, "rd",
  function () {
 return (this.line = this.mr.rd ());
 });
-Clazz.defineMethod (c$, "checkLineContinuation", 
+Clazz.defineMethod (c$, "checkLineContinuation",
  function () {
 while (this.line.endsWith ("-")) {
 var s = this.line;

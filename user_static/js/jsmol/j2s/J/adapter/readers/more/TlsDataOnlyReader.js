@@ -6,12 +6,12 @@ this.sbTlsErrors = null;
 this.tlsGroupID = 0;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.more, "TlsDataOnlyReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.readTlsData ();
 this.continuing = false;
 });
-Clazz.defineMethod (c$, "readTlsData", 
+Clazz.defineMethod (c$, "readTlsData",
  function () {
 this.vTlsModels =  new JU.Lst ();
 var tlsGroups;
@@ -74,7 +74,7 @@ groups.put ("groups", tlsGroups);
 this.vTlsModels.addLast (groups);
 this.htParams.put ("vTlsModels", this.vTlsModels);
 });
-Clazz.defineMethod (c$, "tlsAddError", 
+Clazz.defineMethod (c$, "tlsAddError",
  function (error) {
 if (this.sbTlsErrors == null) this.sbTlsErrors =  new JU.SB ();
 this.sbTlsErrors.append (this.fileName).appendC ('\t').append ("TLS group ").appendI (this.tlsGroupID).appendC ('\t').append (error).appendC ('\n');

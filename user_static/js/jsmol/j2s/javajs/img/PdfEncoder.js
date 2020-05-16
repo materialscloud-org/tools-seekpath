@@ -6,16 +6,16 @@ this.pdf = null;
 this.comment = null;
 Clazz.instantialize (this, arguments);
 }, javajs.img, "PdfEncoder", javajs.img.ImageEncoder);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, javajs.img.PdfEncoder, []);
 });
-Clazz.overrideMethod (c$, "setParams", 
+Clazz.overrideMethod (c$, "setParams",
 function (params) {
 this.isLandscape = (this.quality > 1);
 this.comment = "Jmol " + params.get ("comment");
 }, "java.util.Map");
-Clazz.overrideMethod (c$, "generate", 
+Clazz.overrideMethod (c$, "generate",
 function () {
 this.pdf =  new javajs["export"].PDFCreator ();
 var pageWidth = 576;
@@ -30,7 +30,7 @@ ht.put ("CreationDate", this.date);
 this.pdf.addInfo (ht);
 this.pdf.closeDocument ();
 });
-Clazz.defineMethod (c$, "addMyImage", 
+Clazz.defineMethod (c$, "addMyImage",
  function (pageWidth, pageHeight) {
 this.pdf.addImageResource ("img1", this.width, this.height, this.pixels, true);
 var w = (this.isLandscape ? pageHeight : pageWidth);

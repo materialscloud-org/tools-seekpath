@@ -4,32 +4,32 @@ c$ = Clazz.decorateAsClass (function () {
 this.vertexMap = null;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.readers, "EfvetReader", J.jvxl.readers.PolygonFileReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.EfvetReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2PFR (sg, br);
 this.jvxlFileHeaderBuffer.append ("efvet file format\nvertices and triangles only\n");
 J.jvxl.data.JvxlCoder.jvxlCreateHeaderWithoutTitleOrAtoms (this.volumeData, this.jvxlFileHeaderBuffer);
 this.hasColorData = true;
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "getSurfaceData", 
+Clazz.overrideMethod (c$, "getSurfaceData",
 function () {
 this.getHeader ();
 this.getVertices ();
 this.getTriangles ();
 JU.Logger.info ("efvet file contains " + this.nVertices + " vertices and " + this.nTriangles + " triangles");
 });
-Clazz.defineMethod (c$, "getHeader", 
+Clazz.defineMethod (c$, "getHeader",
  function () {
 this.skipTo ("<efvet", null);
 while (this.rd ().length > 0 && this.line.indexOf (">") < 0) this.jvxlFileHeaderBuffer.append ("# " + this.line + "\n");
 
 JU.Logger.info (this.jvxlFileHeaderBuffer.toString ());
 });
-Clazz.defineMethod (c$, "getVertices", 
+Clazz.defineMethod (c$, "getVertices",
  function () {
 var pt =  new JU.P3 ();
 var value = 0;
@@ -61,7 +61,7 @@ this.jvxlData.vertexColors[v] = JU.CU.colorTriadToFFRGB (values[6], values[7], v
 this.jvxlData.nVertexColors++;
 }}
 });
-Clazz.defineMethod (c$, "getTriangles", 
+Clazz.defineMethod (c$, "getTriangles",
  function () {
 this.skipTo ("<triangle_array", "count");
 this.nTriangles = this.parseInt ();
@@ -73,7 +73,7 @@ var c = this.getInt ();
 if (a >= 0 && b >= 0 && c >= 0) this.addTriangleCheck (a, b, c, 7, 0, false, 0);
 }
 });
-Clazz.defineMethod (c$, "getInt", 
+Clazz.defineMethod (c$, "getInt",
  function () {
 return this.vertexMap[this.parseInt ()];
 });

@@ -10,7 +10,7 @@ this.signFactor = 1;
 this.reference = null;
 Clazz.instantialize (this, arguments);
 }, JM, "TickInfo");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (ticks) {
 this.ticks = ticks;
 }, "JU.P3");

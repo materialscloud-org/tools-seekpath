@@ -17,7 +17,7 @@ this.isBold = false;
 this.isItalic = false;
 Clazz.instantialize (this, arguments);
 }, javajs.awt, "Font");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function (manager, fid, idFontFace, idFontStyle, fontSize, fontSizeNominal, graphics) {
 this.manager = manager;
 this.fid = fid;
@@ -34,11 +34,11 @@ this.fontMetrics = manager.getFontMetrics (this, graphics);
 this.descent = manager.getFontDescent (this.fontMetrics);
 this.ascent = manager.getFontAscent (this.fontMetrics);
 }, "javajs.awt.FontManager,~N,~N,~N,~N,~N,~O");
-c$.getFont3D = Clazz.defineMethod (c$, "getFont3D", 
+c$.getFont3D = Clazz.defineMethod (c$, "getFont3D",
 function (fontID) {
 return javajs.awt.Font.font3ds[fontID & 0xFF];
 }, "~N");
-c$.createFont3D = Clazz.defineMethod (c$, "createFont3D", 
+c$.createFont3D = Clazz.defineMethod (c$, "createFont3D",
 function (fontface, fontstyle, fontsize, fontsizeNominal, manager, graphicsForMetrics) {
 if (fontsize > 0xFF) fontsize = 0xFF;
 var fontsizeX16 = (Clazz.floatToInt (fontsize)) << 4;
@@ -53,37 +53,37 @@ javajs.awt.Font.font3ds[fontIndexNext] = font3d;
 javajs.awt.Font.fontkeys[fontIndexNext] = fontkey;
 return font3d;
 }, "~N,~N,~N,~N,javajs.awt.FontManager,~O");
-c$.getFontFaceID = Clazz.defineMethod (c$, "getFontFaceID", 
+c$.getFontFaceID = Clazz.defineMethod (c$, "getFontFaceID",
 function (fontface) {
 return ("Monospaced".equalsIgnoreCase (fontface) ? 2 : "Serif".equalsIgnoreCase (fontface) ? 1 : 0);
 }, "~S");
-c$.getFontStyleID = Clazz.defineMethod (c$, "getFontStyleID", 
+c$.getFontStyleID = Clazz.defineMethod (c$, "getFontStyleID",
 function (fontstyle) {
 for (var i = 4; --i >= 0; ) if (javajs.awt.Font.fontStyles[i].equalsIgnoreCase (fontstyle)) return i;
 
 return -1;
 }, "~S");
-Clazz.defineMethod (c$, "getAscent", 
+Clazz.defineMethod (c$, "getAscent",
 function () {
 return this.ascent;
 });
-Clazz.defineMethod (c$, "getDescent", 
+Clazz.defineMethod (c$, "getDescent",
 function () {
 return this.descent;
 });
-Clazz.defineMethod (c$, "getHeight", 
+Clazz.defineMethod (c$, "getHeight",
 function () {
 return this.getAscent () + this.getDescent ();
 });
-Clazz.defineMethod (c$, "getFontMetrics", 
+Clazz.defineMethod (c$, "getFontMetrics",
 function () {
 return this.fontMetrics;
 });
-Clazz.defineMethod (c$, "stringWidth", 
+Clazz.defineMethod (c$, "stringWidth",
 function (text) {
 return this.manager.fontStringWidth (this, text);
 }, "~S");
-Clazz.defineMethod (c$, "getInfo", 
+Clazz.defineMethod (c$, "getInfo",
 function () {
 return this.fontSizeNominal + " " + this.fontFace + " " + this.fontStyle;
 });

@@ -5,12 +5,12 @@ this.index = -1;
 this.order = 0;
 Clazz.instantialize (this, arguments);
 }, JU, "Edge", null, JU.SimpleEdge);
-c$.getArgbHbondType = Clazz.defineMethod (c$, "getArgbHbondType", 
+c$.getArgbHbondType = Clazz.defineMethod (c$, "getArgbHbondType",
 function (order) {
 var argbIndex = ((order & 30720) >> 11);
 return JU.Edge.argbsHbondType[argbIndex];
 }, "~N");
-c$.getBondOrderNumberFromOrder = Clazz.defineMethod (c$, "getBondOrderNumberFromOrder", 
+c$.getBondOrderNumberFromOrder = Clazz.defineMethod (c$, "getBondOrderNumberFromOrder",
 function (order) {
 order &= -131073;
 if (order == 131071 || order == 65535) return "0";
@@ -18,7 +18,7 @@ if (JU.Edge.isOrderH (order) || JU.Edge.isAtropism (order) || (order & 256) != 0
 if ((order & 224) != 0) return (order >> 5) + "." + (order & 0x1F);
 return JU.Edge.EnumBondOrder.getNumberFromCode (order);
 }, "~N");
-c$.getCmlBondOrder = Clazz.defineMethod (c$, "getCmlBondOrder", 
+c$.getCmlBondOrder = Clazz.defineMethod (c$, "getCmlBondOrder",
 function (order) {
 var sname = JU.Edge.getBondOrderNameFromOrder (order);
 switch (sname.charAt (0)) {
@@ -36,7 +36,7 @@ return "partial12";
 }
 return null;
 }, "~N");
-c$.getBondOrderNameFromOrder = Clazz.defineMethod (c$, "getBondOrderNameFromOrder", 
+c$.getBondOrderNameFromOrder = Clazz.defineMethod (c$, "getBondOrderNameFromOrder",
 function (order) {
 order &= -131073;
 switch (order) {
@@ -58,40 +58,40 @@ return "atropisomer_" + (Clazz.doubleToInt (code / 4)) + (code % 4);
 }if ((order & 256) != 0) return JU.Edge.EnumBondOrder.SINGLE.$$name;
 return JU.Edge.EnumBondOrder.getNameFromCode (order);
 }, "~N");
-c$.getAtropismOrder = Clazz.defineMethod (c$, "getAtropismOrder", 
+c$.getAtropismOrder = Clazz.defineMethod (c$, "getAtropismOrder",
 function (nn, mm) {
 return JU.Edge.getAtropismOrder12 (((nn + 1) << 2) + mm + 1);
 }, "~N,~N");
-c$.getAtropismOrder12 = Clazz.defineMethod (c$, "getAtropismOrder12", 
+c$.getAtropismOrder12 = Clazz.defineMethod (c$, "getAtropismOrder12",
 function (nnmm) {
 return ((nnmm << 11) | 65537);
 }, "~N");
-c$.getAtropismCode = Clazz.defineMethod (c$, "getAtropismCode", 
+c$.getAtropismCode = Clazz.defineMethod (c$, "getAtropismCode",
  function (order) {
 return (order >> (11)) & 0xF;
 }, "~N");
-c$.getAtropismNode = Clazz.defineMethod (c$, "getAtropismNode", 
+c$.getAtropismNode = Clazz.defineMethod (c$, "getAtropismNode",
 function (order, a1, isFirst) {
 var i1 = (order >> (11 + (isFirst ? 2 : 0))) & 3;
 return a1.getEdges ()[i1 - 1].getOtherNode (a1);
 }, "~N,JU.Node,~B");
-c$.isAtropism = Clazz.defineMethod (c$, "isAtropism", 
+c$.isAtropism = Clazz.defineMethod (c$, "isAtropism",
 function (order) {
 return (order & 65537) == 65537;
 }, "~N");
-c$.isOrderH = Clazz.defineMethod (c$, "isOrderH", 
+c$.isOrderH = Clazz.defineMethod (c$, "isOrderH",
 function (order) {
 return (order & 30720) != 0 && (order & 65537) == 0;
 }, "~N");
-c$.getPartialBondDotted = Clazz.defineMethod (c$, "getPartialBondDotted", 
+c$.getPartialBondDotted = Clazz.defineMethod (c$, "getPartialBondDotted",
 function (order) {
 return (order & 0x1F);
 }, "~N");
-c$.getPartialBondOrder = Clazz.defineMethod (c$, "getPartialBondOrder", 
+c$.getPartialBondOrder = Clazz.defineMethod (c$, "getPartialBondOrder",
 function (order) {
 return ((order & -131073) >> 5);
 }, "~N");
-c$.getCovalentBondOrder = Clazz.defineMethod (c$, "getCovalentBondOrder", 
+c$.getCovalentBondOrder = Clazz.defineMethod (c$, "getCovalentBondOrder",
 function (order) {
 if ((order & 1023) == 0) return 0;
 order &= -131073;
@@ -100,7 +100,7 @@ if ((order & 256) != 0) order &= -257;
 if ((order & 0xF8) != 0) order = 1;
 return order & 7;
 }, "~N");
-c$.getBondOrderFromFloat = Clazz.defineMethod (c$, "getBondOrderFromFloat", 
+c$.getBondOrderFromFloat = Clazz.defineMethod (c$, "getBondOrderFromFloat",
 function (fOrder) {
 switch (Clazz.floatToInt (fOrder * 10)) {
 case 10:
@@ -125,7 +125,7 @@ return 4;
 }
 return 131071;
 }, "~N");
-c$.getBondOrderFromString = Clazz.defineMethod (c$, "getBondOrderFromString", 
+c$.getBondOrderFromString = Clazz.defineMethod (c$, "getBondOrderFromString",
 function (name) {
 var order = JU.Edge.EnumBondOrder.getCodeFromName (name);
 try {
@@ -138,10 +138,10 @@ throw e;
 }
 return order;
 }, "~S");
-Clazz.defineMethod (c$, "setCIPChirality", 
+Clazz.defineMethod (c$, "setCIPChirality",
 function (c) {
 }, "~N");
-Clazz.defineMethod (c$, "getCIPChirality", 
+Clazz.defineMethod (c$, "getCIPChirality",
 function (doCalculate) {
 return "";
 }, "~B");
@@ -152,25 +152,25 @@ this.number = null;
 this.$$name = null;
 Clazz.instantialize (this, arguments);
 }, JU.Edge, "EnumBondOrder", Enum);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function (a, b, c) {
 this.code = a;
 this.number = b;
 this.$$name = c;
 }, "~N,~S,~S");
-c$.getCodeFromName = Clazz.defineMethod (c$, "getCodeFromName", 
+c$.getCodeFromName = Clazz.defineMethod (c$, "getCodeFromName",
 function (a) {
 for (var item, $item = 0, $$item = JU.Edge.EnumBondOrder.values (); $item < $$item.length && ((item = $$item[$item]) || true); $item++) if (item.$$name.equalsIgnoreCase (a)) return item.code;
 
 return 131071;
 }, "~S");
-c$.getNameFromCode = Clazz.defineMethod (c$, "getNameFromCode", 
+c$.getNameFromCode = Clazz.defineMethod (c$, "getNameFromCode",
 function (a) {
 for (var item, $item = 0, $$item = JU.Edge.EnumBondOrder.values (); $item < $$item.length && ((item = $$item[$item]) || true); $item++) if (item.code == a) return item.$$name;
 
 return "?";
 }, "~N");
-c$.getNumberFromCode = Clazz.defineMethod (c$, "getNumberFromCode", 
+c$.getNumberFromCode = Clazz.defineMethod (c$, "getNumberFromCode",
 function (a) {
 for (var item, $item = 0, $$item = JU.Edge.EnumBondOrder.values (); $item < $$item.length && ((item = $$item[$item]) || true); $item++) if (item.code == a) return item.number;
 

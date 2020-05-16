@@ -58,20 +58,20 @@ this.pt0 =  new JU.P3i ();
 this.pt1 =  new JU.P3i ();
 this.ptV =  new JU.P3 ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.AtomDataReader, []);
 });
-Clazz.defineMethod (c$, "initADR", 
+Clazz.defineMethod (c$, "initADR",
 function (sg) {
 this.initVDR (sg);
 this.precalculateVoxelData = true;
 }, "J.jvxl.readers.SurfaceGenerator");
-Clazz.overrideMethod (c$, "setup", 
+Clazz.overrideMethod (c$, "setup",
 function (isMapData) {
 this.setup2 ();
 }, "~B");
-Clazz.defineMethod (c$, "setup2", 
+Clazz.defineMethod (c$, "setup2",
 function () {
 this.contactPair = this.params.contactPair;
 this.doAddHydrogens = (this.sg.atomDataServer != null && this.params.addHydrogens);
@@ -87,14 +87,14 @@ this.setBBox (this.ptV, 0);
 }this.havePlane = (this.params.thePlane != null);
 if (this.havePlane) this.volumeData.setPlaneParameters (this.params.thePlane);
 });
-Clazz.defineMethod (c$, "markPlaneVoxels", 
+Clazz.defineMethod (c$, "markPlaneVoxels",
 function (p, r) {
 for (var i = 0, pt = this.thisX * this.yzCount, pt1 = pt + this.yzCount; pt < pt1; pt++, i++) {
 this.volumeData.getPoint (pt, this.ptV);
 this.thisPlane[i] = this.ptV.distance (p) - r;
 }
 }, "JU.P3,~N");
-Clazz.defineMethod (c$, "setVolumeForPlane", 
+Clazz.defineMethod (c$, "setVolumeForPlane",
 function () {
 if (this.useOriginStepsPoints) {
 this.xyzMin = JU.P3.newP (this.params.origin);
@@ -110,7 +110,7 @@ this.xyzMin = JU.P3.newP (this.params.boundingBox[0]);
 this.xyzMax = JU.P3.newP (this.params.boundingBox[1]);
 }this.setRanges (this.params.plane_ptsPerAngstrom, this.params.plane_gridMax, 0);
 });
-Clazz.defineMethod (c$, "getAtoms", 
+Clazz.defineMethod (c$, "getAtoms",
 function (bsSelected, doAddHydrogens, getRadii, getMolecules, getAllModels, addNearbyAtoms, getAtomMinMax, marginAtoms, modelInvRotation) {
 if (addNearbyAtoms) getRadii = true;
 if (getRadii) {
@@ -220,7 +220,7 @@ this.atomRadius[this.myAtomCount++] = this.atomData.atomRadius[i];
 }if (getRadii) this.setRadii ();
 this.haveOneProperty = (!Float.isNaN (this.theProperty));
 }, "JU.BS,~B,~B,~B,~B,~B,~B,~N,JU.M4");
-Clazz.defineMethod (c$, "setRadii", 
+Clazz.defineMethod (c$, "setRadii",
 function () {
 if (this.rs != null) return;
 this.maxRS = 0;
@@ -232,23 +232,23 @@ if (r > this.maxRS) this.maxRS = r;
 this.rs2[i] = this.rs[i] * this.rs[i];
 }
 });
-Clazz.defineMethod (c$, "addAtomProp", 
+Clazz.defineMethod (c$, "addAtomProp",
  function (i, f) {
 this.atomProp[i] = f;
 if (!Float.isNaN (this.theProperty)) if (f != this.theProperty) this.theProperty = (this.theProperty == 3.4028235E38 ? f : NaN);
 }, "~N,~N");
-Clazz.defineMethod (c$, "getWorkingRadius", 
+Clazz.defineMethod (c$, "getWorkingRadius",
  function (i, marginAtoms) {
 var r = (i < 0 ? this.atomData.hAtomRadius : this.atomData.atomRadius[i]);
 return (Float.isNaN (marginAtoms) ? Math.max (r, 0.1) : r + marginAtoms);
 }, "~N,~N");
-Clazz.defineMethod (c$, "setHeader", 
+Clazz.defineMethod (c$, "setHeader",
 function (calcType, line2) {
 this.jvxlFileHeaderBuffer =  new JU.SB ();
 if (this.atomData.programInfo != null) this.jvxlFileHeaderBuffer.append ("#created by ").append (this.atomData.programInfo).append (" on ").append ("" +  new java.util.Date ()).append ("\n");
 this.jvxlFileHeaderBuffer.append (calcType).append ("\n").append (line2).append ("\n");
 }, "~S,~S");
-Clazz.defineMethod (c$, "setRanges", 
+Clazz.defineMethod (c$, "setRanges",
 function (ptsPerAngstrom, maxGrid, minPtsPerAng) {
 if (this.xyzMin == null) return;
 this.ptsPerAngstrom = ptsPerAngstrom;
@@ -257,18 +257,18 @@ this.minPtsPerAng = minPtsPerAng;
 this.setVolumeData ();
 J.jvxl.data.JvxlCoder.jvxlCreateHeader (this.volumeData, this.jvxlFileHeaderBuffer);
 }, "~N,~N,~N");
-Clazz.overrideMethod (c$, "setVolumeData", 
+Clazz.overrideMethod (c$, "setVolumeData",
 function () {
 this.setVolumeDataADR ();
 });
-Clazz.defineMethod (c$, "setVolumeDataADR", 
+Clazz.defineMethod (c$, "setVolumeDataADR",
 function () {
 if (!this.setVolumeDataParams ()) {
 this.setVoxelRange (0, this.xyzMin.x, this.xyzMax.x, this.ptsPerAngstrom, this.maxGrid, this.minPtsPerAng);
 this.setVoxelRange (1, this.xyzMin.y, this.xyzMax.y, this.ptsPerAngstrom, this.maxGrid, this.minPtsPerAng);
 this.setVoxelRange (2, this.xyzMin.z, this.xyzMax.z, this.ptsPerAngstrom, this.maxGrid, this.minPtsPerAng);
 }});
-Clazz.defineMethod (c$, "setVertexSource", 
+Clazz.defineMethod (c$, "setVertexSource",
 function () {
 if (this.meshDataServer != null) this.meshDataServer.fillMeshData (this.meshData, 1, null);
 if (this.params.vertexSource != null) {
@@ -276,27 +276,27 @@ this.params.vertexSource = JU.AU.arrayCopyI (this.params.vertexSource, this.mesh
 for (var i = 0; i < this.meshData.vc; i++) this.params.vertexSource[i] = Math.abs (this.params.vertexSource[i]) - 1;
 
 }});
-Clazz.defineMethod (c$, "resetPlane", 
+Clazz.defineMethod (c$, "resetPlane",
 function (value) {
 for (var i = 0; i < this.yzCount; i++) this.thisPlane[i] = value;
 
 }, "~N");
-Clazz.defineMethod (c$, "resetVoxelData", 
+Clazz.defineMethod (c$, "resetVoxelData",
 function (value) {
 for (var x = 0; x < this.nPointsX; ++x) for (var y = 0; y < this.nPointsY; ++y) for (var z = 0; z < this.nPointsZ; ++z) this.voxelData[x][y][z] = value;
 
 
 
 }, "~N");
-Clazz.defineMethod (c$, "getVoxel", 
+Clazz.defineMethod (c$, "getVoxel",
  function (i, j, k, ipt) {
 return (this.isProgressive ? this.thisPlane[ipt % this.yzCount] : this.voxelData[i][j][k]);
 }, "~N,~N,~N,~N");
-Clazz.defineMethod (c$, "unsetVoxelData", 
+Clazz.defineMethod (c$, "unsetVoxelData",
 function () {
 this.unsetVoxelData2 ();
 });
-Clazz.defineMethod (c$, "unsetVoxelData2", 
+Clazz.defineMethod (c$, "unsetVoxelData2",
 function () {
 if (this.isProgressive) for (var i = 0; i < this.yzCount; i++) {
 if (this.thisPlane[i] == 3.4028235E38) this.thisPlane[i] = NaN;
@@ -306,7 +306,7 @@ if (this.thisPlane[i] == 3.4028235E38) this.thisPlane[i] = NaN;
 
 
 });
-Clazz.defineMethod (c$, "setGridLimitsForAtom", 
+Clazz.defineMethod (c$, "setGridLimitsForAtom",
 function (ptA, rA, pt0, pt1) {
 rA += this.margin;
 this.volumeData.xyzToVoxelPt (ptA.x, ptA.y, ptA.z, pt0);
@@ -322,7 +322,7 @@ pt1.x = Math.min (pt1.x + 1, this.nPointsX);
 pt1.y = Math.min (pt1.y + 1, this.nPointsY);
 pt1.z = Math.min (pt1.z + 1, this.nPointsZ);
 }, "JU.P3,~N,JU.P3i,JU.P3i");
-Clazz.defineMethod (c$, "getAtomMinMax", 
+Clazz.defineMethod (c$, "getAtomMinMax",
 function (bs, bsAtomMinMax) {
 for (var i = 0; i < this.nPointsX; i++) bsAtomMinMax[i] =  new JU.BS ();
 
@@ -333,7 +333,7 @@ for (var i = this.pt0.x; i < this.pt1.x; i++) bsAtomMinMax[i].set (iAtom);
 
 }
 }, "JU.BS,~A");
-Clazz.defineMethod (c$, "markSphereVoxels", 
+Clazz.defineMethod (c$, "markSphereVoxels",
 function (r0, distance) {
 var isWithin = (distance != 3.4028235E38 && this.point != null);
 var v0 = this.volumetricVectors[0];
@@ -370,7 +370,7 @@ if (value < 0 && isSurface) this.bsSurfaceVoxels.set (ipt);
 }
 }
 }, "~N,~N");
-Clazz.defineMethod (c$, "setVoxel", 
+Clazz.defineMethod (c$, "setVoxel",
 function (i, j, k, ipt, value) {
 if (this.isProgressive) this.thisPlane[ipt % this.yzCount] = value;
  else this.voxelData[i][j][k] = value;

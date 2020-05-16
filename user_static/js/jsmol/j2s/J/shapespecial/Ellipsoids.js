@@ -12,15 +12,15 @@ Clazz.prepareFields (c$, function () {
 this.simpleEllipsoids =  new java.util.Hashtable ();
 this.atomEllipsoids =  new java.util.Hashtable ();
 });
-Clazz.defineMethod (c$, "isActive", 
+Clazz.defineMethod (c$, "isActive",
 function () {
 return !this.atomEllipsoids.isEmpty () || !this.simpleEllipsoids.isEmpty ();
 });
-Clazz.overrideMethod (c$, "getIndexFromName", 
+Clazz.overrideMethod (c$, "getIndexFromName",
 function (thisID) {
 return (this.checkID (thisID) ? 1 : -1);
 }, "~S");
-Clazz.overrideMethod (c$, "setSize", 
+Clazz.overrideMethod (c$, "setSize",
 function (size, bsSelected) {
 if (this.atoms == null || size == 0 && this.ms.atomTensors == null) return;
 var isAll = (bsSelected == null);
@@ -37,13 +37,13 @@ if (e != null) {
 e.setScale (size, true);
 }}}
 }, "~N,JU.BS");
-Clazz.overrideMethod (c$, "getPropertyData", 
+Clazz.overrideMethod (c$, "getPropertyData",
 function (property, data) {
 if (property === "checkID") {
 return (this.checkID (data[0]));
 }return this.getPropShape (property, data);
 }, "~S,~A");
-Clazz.defineMethod (c$, "checkID", 
+Clazz.defineMethod (c$, "checkID",
  function (thisID) {
 this.ellipsoidSet =  new JU.Lst ();
 if (thisID == null) return false;
@@ -57,7 +57,7 @@ if (JU.PT.isMatch (key, thisID, true, true)) this.ellipsoidSet.addLast (e.getVal
 if (e != null) this.ellipsoidSet.addLast (e);
 return (this.ellipsoidSet.size () > 0);
 }, "~S");
-Clazz.defineMethod (c$, "initEllipsoids", 
+Clazz.defineMethod (c$, "initEllipsoids",
  function (value) {
 var haveID = (value != null);
 this.checkID (value);
@@ -65,11 +65,11 @@ if (haveID) this.typeSelected = null;
 this.selectedAtoms = null;
 return haveID;
 }, "~O");
-Clazz.overrideMethod (c$, "initShape", 
+Clazz.overrideMethod (c$, "initShape",
 function () {
 this.setProperty ("thisID", null, null);
 });
-Clazz.overrideMethod (c$, "setProperty", 
+Clazz.overrideMethod (c$, "setProperty",
 function (propertyName, value, bs) {
 if (propertyName === "thisID") {
 if (this.initEllipsoids (value) && this.ellipsoidSet.size () == 0) {
@@ -147,7 +147,7 @@ for (var e, $e = this.atomEllipsoids.values ().iterator (); $e.hasNext () && ((e
 return;
 }this.setPropS (propertyName, value, bs);
 }, "~S,~O,JU.BS");
-Clazz.defineMethod (c$, "setProp", 
+Clazz.defineMethod (c$, "setProp",
  function (e, mode, value) {
 switch (mode) {
 case 0:
@@ -183,7 +183,7 @@ return;
 }
 return;
 }, "J.shapespecial.Ellipsoid,~N,~O");
-Clazz.overrideMethod (c$, "getShapeState", 
+Clazz.overrideMethod (c$, "getShapeState",
 function () {
 if (!this.isActive ()) return "";
 var sb =  new JU.SB ();
@@ -192,7 +192,7 @@ if (!this.simpleEllipsoids.isEmpty ()) this.getStateID (sb);
 if (!this.atomEllipsoids.isEmpty ()) this.getStateAtoms (sb);
 return sb.toString ();
 });
-Clazz.defineMethod (c$, "getStateID", 
+Clazz.defineMethod (c$, "getStateID",
  function (sb) {
 var v1 =  new JU.V3 ();
 for (var ellipsoid, $ellipsoid = this.simpleEllipsoids.values ().iterator (); $ellipsoid.hasNext () && ((ellipsoid = $ellipsoid.next ()) || true);) {
@@ -210,7 +210,7 @@ if (!ellipsoid.isOn) sb.append (" off");
 sb.append (";\n");
 }
 }, "JU.SB");
-Clazz.defineMethod (c$, "getStateAtoms", 
+Clazz.defineMethod (c$, "getStateAtoms",
  function (sb) {
 var bsDone =  new JU.BS ();
 var temp =  new java.util.Hashtable ();
@@ -230,13 +230,13 @@ if (e2.colix != 0) JU.BSUtil.setMapBitSet (temp2, i, i, J.shape.Shape.getColorCo
 }
 sb.append (this.vwr.getCommands (temp, temp2, "select"));
 }, "JU.SB");
-Clazz.overrideMethod (c$, "setModelVisibilityFlags", 
+Clazz.overrideMethod (c$, "setModelVisibilityFlags",
 function (bsModels) {
 if (!this.isActive ()) return;
 this.setVis (this.simpleEllipsoids, bsModels, this.atoms);
 this.setVis (this.atomEllipsoids, bsModels, this.atoms);
 }, "JU.BS");
-Clazz.defineMethod (c$, "setVis", 
+Clazz.defineMethod (c$, "setVis",
  function (ellipsoids, bs, atoms) {
 for (var e, $e = ellipsoids.values ().iterator (); $e.hasNext () && ((e = $e.next ()) || true);) {
 var t = e.tensor;
@@ -251,7 +251,7 @@ isOK = (!isModTensor && !isUnmodTensor || isModTensor == isModAtom);
 }e.visible = isOK && (e.modelIndex < 0 || bs.get (e.modelIndex));
 }
 }, "java.util.Map,JU.BS,~A");
-Clazz.overrideMethod (c$, "setAtomClickability", 
+Clazz.overrideMethod (c$, "setAtomClickability",
 function () {
 if (this.atomEllipsoids.isEmpty ()) return;
 for (var e, $e = this.atomEllipsoids.values ().iterator (); $e.hasNext () && ((e = $e.next ()) || true);) {

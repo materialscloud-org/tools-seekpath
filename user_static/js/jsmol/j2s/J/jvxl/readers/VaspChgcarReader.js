@@ -6,11 +6,11 @@ this.pt = 0;
 this.nPerLine = 0;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.readers, "VaspChgcarReader", J.jvxl.readers.PeriodicVolumeFileReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.VaspChgcarReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2VFR (sg, br);
 this.isAngstroms = true;
@@ -18,7 +18,7 @@ this.isPeriodic = true;
 this.isProgressive = false;
 this.nSurfaces = 1;
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "readParameters", 
+Clazz.overrideMethod (c$, "readParameters",
 function () {
 this.jvxlFileHeaderBuffer =  new JU.SB ();
 this.jvxlFileHeaderBuffer.append ("Vasp CHGCAR format\n\n\n");
@@ -43,14 +43,14 @@ if (this.params.thePlane == null && (this.params.cutoffAutomatic || !Float.isNaN
 this.params.cutoff = 0.5;
 JU.Logger.info ("Cutoff set to " + this.params.cutoff);
 }});
-Clazz.overrideMethod (c$, "nextVoxel", 
+Clazz.overrideMethod (c$, "nextVoxel",
 function () {
 if (this.pt++ % this.nPerLine == 0 && this.nData > 0) {
 this.rd ();
 this.next[0] = 0;
 }return this.parseFloat () / this.volume;
 });
-Clazz.overrideMethod (c$, "getPeriodicVoxels", 
+Clazz.overrideMethod (c$, "getPeriodicVoxels",
 function () {
 var ni = this.voxelCounts[0] - 1;
 var nj = this.voxelCounts[1] - 1;

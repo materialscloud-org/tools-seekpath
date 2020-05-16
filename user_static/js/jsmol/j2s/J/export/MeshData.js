@@ -1,7 +1,7 @@
 Clazz.declarePackage ("J.export");
 Clazz.load (null, "J.export.MeshData", ["JU.AU", "$.P3", "$.V3", "JU.MeshSurface"], function () {
 c$ = Clazz.declareType (J["export"], "MeshData");
-c$.getCircleData = Clazz.defineMethod (c$, "getCircleData", 
+c$.getCircleData = Clazz.defineMethod (c$, "getCircleData",
 function () {
 var ndeg = 10;
 var n = Clazz.doubleToInt (360 / ndeg);
@@ -22,7 +22,7 @@ vertexes[n] = JU.P3.new3 (0, 0, 0);
 normals[n] = JU.P3.new3 (0, 0, 1);
 return JU.MeshSurface.newMesh (false, vertexes, 0, faces, normals, 0);
 });
-c$.getTriangleData = Clazz.defineMethod (c$, "getTriangleData", 
+c$.getTriangleData = Clazz.defineMethod (c$, "getTriangleData",
 function (pt1, pt2, pt3) {
 var vertexes =  Clazz.newArray (-1, [pt1, pt2, pt3]);
 var v1 = JU.V3.newVsub (pt3, pt1);
@@ -33,7 +33,7 @@ var normals =  Clazz.newArray (-1, [v2, v2, v2]);
 var faces =  Clazz.newArray (-1, [ Clazz.newIntArray (-1, [0, 1, 2])]);
 return JU.MeshSurface.newMesh (false, vertexes, 0, faces, normals, 0);
 }, "JU.T3,JU.T3,JU.T3");
-c$.getConeData = Clazz.defineMethod (c$, "getConeData", 
+c$.getConeData = Clazz.defineMethod (c$, "getConeData",
 function () {
 var ndeg = 10;
 var n = Clazz.doubleToInt (360 / ndeg);
@@ -50,7 +50,7 @@ vertices[i] = JU.P3.new3 (x, y, 0);
 vertices[n] = JU.P3.new3 (0, 0, 1);
 return JU.MeshSurface.newMesh (false, vertices, 0, faces, vertices, 0);
 });
-c$.getCylinderData = Clazz.defineMethod (c$, "getCylinderData", 
+c$.getCylinderData = Clazz.defineMethod (c$, "getCylinderData",
 function (inSide) {
 var ndeg = 10;
 var vertexCount = Clazz.doubleToInt (360 / ndeg) * 2;

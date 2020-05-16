@@ -7,14 +7,14 @@ this.processLock = null;
 this.shapeManager = null;
 Clazz.instantialize (this, arguments);
 }, JS, "ScriptProcessRunnable", null, Runnable);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (parallelProcessor, process, lock, shapeManager) {
 this.parallelProcessor = parallelProcessor;
 this.process = process;
 this.processLock = lock;
 this.shapeManager = shapeManager;
 }, "JS.ScriptParallelProcessor,JS.ScriptProcess,~O,JV.ShapeManager");
-Clazz.overrideMethod (c$, "run", 
+Clazz.overrideMethod (c$, "run",
 function () {
 try {
 if (this.parallelProcessor.error == null) {

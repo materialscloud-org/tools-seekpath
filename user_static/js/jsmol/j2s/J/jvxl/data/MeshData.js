@@ -12,16 +12,16 @@ J.jvxl.data.MeshData.$MeshData$SortSet$ ();
 }
 Clazz.instantialize (this, arguments);
 }, J.jvxl.data, "MeshData", JU.MeshSurface);
-Clazz.defineMethod (c$, "addVertexCopy", 
+Clazz.defineMethod (c$, "addVertexCopy",
 function (vertex, value, assocVertex, asCopy) {
 if (assocVertex < 0) this.vertexIncrement = -assocVertex;
 return this.addVCVal (vertex, value, asCopy);
 }, "JU.T3,~N,~N,~B");
-Clazz.defineMethod (c$, "getSurfaceSet", 
+Clazz.defineMethod (c$, "getSurfaceSet",
 function () {
 return (this.surfaceSet == null ? this.getSurfaceSetForLevel (0) : this.surfaceSet);
 });
-Clazz.defineMethod (c$, "getSurfaceSetForLevel", 
+Clazz.defineMethod (c$, "getSurfaceSetForLevel",
  function (level) {
 if (level == 0) {
 this.surfaceSet =  new Array (100);
@@ -71,7 +71,7 @@ for (var i = 0; i < this.nSets; i++) this.surfaceSet[i] = sets[i].bs;
 this.setVertexSets (false);
 }return this.surfaceSet;
 }, "~N");
-Clazz.defineMethod (c$, "setVertexSets", 
+Clazz.defineMethod (c$, "setVertexSets",
 function (onlyIfNull) {
 if (this.surfaceSet == null) return;
 var nNull = 0;
@@ -92,13 +92,13 @@ for (var i = 0; i < this.nSets; i++) for (var j = this.surfaceSet[i].nextSetBit 
 
 
 }, "~B");
-Clazz.defineMethod (c$, "findSet", 
+Clazz.defineMethod (c$, "findSet",
  function (vertex) {
 for (var i = 0; i < this.nSets; i++) if (this.surfaceSet[i] != null && this.surfaceSet[i].get (vertex)) return i;
 
 return -1;
 }, "~N");
-Clazz.defineMethod (c$, "createSet", 
+Clazz.defineMethod (c$, "createSet",
  function (v1, v2, v3) {
 var i;
 for (i = 0; i < this.nSets; i++) if (this.surfaceSet[i] == null) break;
@@ -110,18 +110,18 @@ this.surfaceSet[i].set (v2);
 this.surfaceSet[i].set (v3);
 if (i == this.nSets) this.nSets++;
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "mergeSets", 
+Clazz.defineMethod (c$, "mergeSets",
  function (a, b) {
 this.surfaceSet[a].or (this.surfaceSet[b]);
 this.surfaceSet[b] = null;
 }, "~N,~N");
-Clazz.defineMethod (c$, "invalidateSurfaceSet", 
+Clazz.defineMethod (c$, "invalidateSurfaceSet",
 function (i) {
 for (var j = this.surfaceSet[i].nextSetBit (0); j >= 0; j = this.surfaceSet[i].nextSetBit (j + 1)) this.vvs[j] = NaN;
 
 this.surfaceSet[i] = null;
 }, "~N");
-c$.checkCutoff = Clazz.defineMethod (c$, "checkCutoff", 
+c$.checkCutoff = Clazz.defineMethod (c$, "checkCutoff",
 function (iA, iB, iC, vertexValues) {
 if (iA < 0 || iB < 0 || iC < 0) return false;
 var val1 = vertexValues[iA];
@@ -129,7 +129,7 @@ var val2 = vertexValues[iB];
 var val3 = vertexValues[iC];
 return (val1 >= 0 && val2 >= 0 && val3 >= 0 || val1 <= 0 && val2 <= 0 && val3 <= 0);
 }, "~N,~N,~N,~A");
-c$.calculateVolumeOrArea = Clazz.defineMethod (c$, "calculateVolumeOrArea", 
+c$.calculateVolumeOrArea = Clazz.defineMethod (c$, "calculateVolumeOrArea",
 function (m, thisSet, isArea, getSets) {
 if (getSets || m.nSets <= 0) m.getSurfaceSet ();
 var justOne = (thisSet >= -1);
@@ -160,13 +160,13 @@ for (var i = 0; i < n; i++) v[i] /= factor;
 if (justOne) return Float.$valueOf (v[0]);
 return v;
 }, "J.jvxl.data.MeshData,~N,~B,~B");
-Clazz.defineMethod (c$, "updateInvalidatedVertices", 
+Clazz.defineMethod (c$, "updateInvalidatedVertices",
 function (bs) {
 bs.clearAll ();
 for (var i = 0; i < this.vc; i += this.vertexIncrement) if (Float.isNaN (this.vvs[i])) bs.set (i);
 
 }, "JU.BS");
-Clazz.defineMethod (c$, "invalidateVertices", 
+Clazz.defineMethod (c$, "invalidateVertices",
 function (bsInvalid) {
 for (var i = bsInvalid.nextSetBit (0); i >= 0; i = bsInvalid.nextSetBit (i + 1)) this.vvs[i] = NaN;
 
@@ -179,7 +179,7 @@ this.bs = null;
 this.n = 0;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.data.MeshData, "SSet");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (a) {
 this.bs = a;
 this.n = a.cardinality ();
@@ -192,7 +192,7 @@ c$ = Clazz.decorateAsClass (function () {
 Clazz.prepareCallback (this, arguments);
 Clazz.instantialize (this, arguments);
 }, J.jvxl.data.MeshData, "SortSet", null, java.util.Comparator);
-Clazz.overrideMethod (c$, "compare", 
+Clazz.overrideMethod (c$, "compare",
 function (a, b) {
 return (a.n > b.n ? -1 : a.n < b.n ? 1 : 0);
 }, "J.jvxl.data.MeshData.SSet,J.jvxl.data.MeshData.SSet");

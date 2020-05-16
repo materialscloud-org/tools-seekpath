@@ -10,22 +10,22 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.textures =  new J["export"].UseTable (" ");
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J["export"]._TachyonExporter, []);
 this.commentChar = "# ";
 });
-Clazz.overrideMethod (c$, "initializeOutput", 
+Clazz.overrideMethod (c$, "initializeOutput",
 function (vwr, privateKey, gdata, params) {
 this.getLightingInfo ();
 return this.initOutput (vwr, privateKey, gdata, params);
 }, "JV.Viewer,~N,JU.GData,java.util.Map");
-Clazz.defineMethod (c$, "getLightingInfo", 
+Clazz.defineMethod (c$, "getLightingInfo",
  function () {
 this.lighting = " AMBIENT " + J["export"].___Exporter.round (this.gdata.getAmbientPercent () / 100) + " DIFFUSE " + J["export"].___Exporter.round (this.gdata.getDiffusePercent () / 100) + " SPECULAR " + J["export"].___Exporter.round (this.gdata.getSpecularPercent () / 100);
 this.phong = " Phong Plastic 0.5 Phong_size " + this.gdata.getSpecularExponent ();
 });
-Clazz.overrideMethod (c$, "outputHeader", 
+Clazz.overrideMethod (c$, "outputHeader",
 function () {
 this.initVars ();
 this.output ("# ******************************************************\n");
@@ -62,37 +62,37 @@ this.output ("\n");
 this.output ("Background " + this.rgbFractionalFromColix (this.backgroundColix) + "\n");
 this.output ("\n");
 });
-Clazz.overrideMethod (c$, "outputFooter", 
+Clazz.overrideMethod (c$, "outputFooter",
 function () {
 this.output ("End_Scene\n");
 });
-Clazz.defineMethod (c$, "output", 
+Clazz.defineMethod (c$, "output",
 function (pt) {
 this.output (this.triad (pt));
 }, "JU.T3");
-Clazz.defineMethod (c$, "triad", 
+Clazz.defineMethod (c$, "triad",
  function (x, y, z) {
 return Clazz.floatToInt (x) + " " + Clazz.floatToInt (-y) + " " + Clazz.floatToInt (z);
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "triad", 
+Clazz.defineMethod (c$, "triad",
  function (pt) {
 if (Float.isNaN (pt.x)) return "0 0 0";
 return this.triad (pt.x, pt.y, pt.z);
 }, "JU.T3");
-Clazz.defineMethod (c$, "outputTextureCode", 
+Clazz.defineMethod (c$, "outputTextureCode",
  function () {
 this.output (this.textureCode);
 this.output ("\n");
 });
-Clazz.defineMethod (c$, "outputTexture", 
+Clazz.defineMethod (c$, "outputTexture",
  function (colix, useTexDef) {
 this.outputTexture2 (this.rgbFractionalFromColix (colix), J["export"].___Exporter.opacityFractionalFromColix (colix), useTexDef);
 }, "~N,~B");
-Clazz.defineMethod (c$, "outputTexture", 
+Clazz.defineMethod (c$, "outputTexture",
  function (argb, useTexDef) {
 this.outputTexture2 (this.rgbFractionalFromArgb (argb), J["export"].___Exporter.opacityFractionalFromArgb (argb), useTexDef);
 }, "~N,~B");
-Clazz.defineMethod (c$, "outputTexture2", 
+Clazz.defineMethod (c$, "outputTexture2",
  function (rgb, opacity, useTexDef) {
 this.textureCode = (useTexDef ? this.textures.getDef ("t" + rgb + opacity) : null);
 if (useTexDef && this.textureCode.startsWith (" ")) return;
@@ -109,12 +109,12 @@ return;
 this.output (sb.toString ());
 this.textureCode = " " + this.textureCode;
 }, "~S,~S,~B");
-Clazz.overrideMethod (c$, "outputCircle", 
+Clazz.overrideMethod (c$, "outputCircle",
 function (x, y, z, radius, colix, doFill) {
 this.tempV1.set (0, 0, -1);
 this.outputRing (x, y, z, this.tempV1, radius, colix, doFill);
 }, "~N,~N,~N,~N,~N,~B");
-Clazz.defineMethod (c$, "outputRing", 
+Clazz.defineMethod (c$, "outputRing",
  function (x, y, z, tempV1, radius, colix, doFill) {
 this.outputTexture (colix, true);
 this.output ("Ring Center ");
@@ -124,7 +124,7 @@ this.output (" Inner " + J["export"].___Exporter.round ((doFill ? 0 : radius * 0
 this.output (" Outer " + J["export"].___Exporter.round (radius));
 this.outputTextureCode ();
 }, "~N,~N,~N,JU.V3,~N,~N,~B");
-Clazz.overrideMethod (c$, "outputCone", 
+Clazz.overrideMethod (c$, "outputCone",
 function (screenBase, screenTip, radius, colix, isBarb) {
 this.tm.unTransformPoint (screenBase, this.tempP1);
 this.tm.unTransformPoint (screenTip, this.tempP2);
@@ -132,7 +132,7 @@ radius = this.vwr.tm.unscaleToScreen (screenBase.z, radius);
 var matRotateScale = this.getRotationMatrix (this.tempP1, this.tempP2, radius);
 this.export3D.drawSurface (J["export"].___Exporter.getConeMesh (this.tempP1, matRotateScale, colix), colix);
 }, "JU.P3,JU.P3,~N,~N,~B");
-Clazz.overrideMethod (c$, "outputCylinder", 
+Clazz.overrideMethod (c$, "outputCylinder",
 function (screenA, screenB, radius, colix, withCaps) {
 this.outputTexture (colix, true);
 this.output ("FCylinder Base ");
@@ -147,20 +147,20 @@ this.outputRing (Clazz.floatToInt (screenA.x), Clazz.floatToInt (screenA.y), Cla
 this.tempV1.scale (-1);
 this.outputRing (Clazz.floatToInt (screenB.x), Clazz.floatToInt (screenB.y), Clazz.floatToInt (screenB.z), this.tempV1, radius, colix, true);
 }}, "JU.P3,JU.P3,~N,~N,~B");
-Clazz.overrideMethod (c$, "fillConicalCylinder", 
+Clazz.overrideMethod (c$, "fillConicalCylinder",
 function (screenA, screenB, madBond, colix, endcaps) {
 var diameter = Clazz.floatToInt (this.vwr.tm.scaleToScreen (Clazz.floatToInt ((screenA.z + screenB.z) / 2), madBond));
 this.fillCylinderScreenMad (colix, endcaps, diameter, screenA, screenB);
 }, "JU.P3,JU.P3,~N,~N,~N");
-Clazz.overrideMethod (c$, "outputCylinderConical", 
+Clazz.overrideMethod (c$, "outputCylinderConical",
 function (screenA, screenB, radius1, radius2, colix) {
 }, "JU.P3,JU.P3,~N,~N,~N");
-Clazz.overrideMethod (c$, "outputEllipsoid", 
+Clazz.overrideMethod (c$, "outputEllipsoid",
 function (center, radius, coef, colix) {
 this.tm.transformPt3f (center, this.tempP1);
 this.outputSphere (this.tempP1.x, this.tempP1.y, this.tempP1.z, radius, colix);
 }, "JU.P3,~N,~A,~N");
-Clazz.overrideMethod (c$, "outputSurface", 
+Clazz.overrideMethod (c$, "outputSurface",
 function (vertices, normals, colixes, indices, polygonColixes, nVertices, nPolygons, nTriangles, bsPolygons, faceVertexMax, colix, colorList, htColixes, offset) {
 if (polygonColixes != null) {
 var isAll = (bsPolygons == null);
@@ -199,7 +199,7 @@ if (faceVertexMax == 4 && indices[i].length == 4) this.output (indices[i][0] + "
 }
 this.output ("\nEnd_VertexArray\n");
 }, "~A,~A,~A,~A,~A,~N,~N,~N,JU.BS,~N,~N,JU.Lst,java.util.Map,JU.P3");
-Clazz.overrideMethod (c$, "outputSphere", 
+Clazz.overrideMethod (c$, "outputSphere",
 function (x, y, z, radius, colix) {
 this.outputTexture (colix, true);
 this.output ("Sphere Center ");
@@ -207,7 +207,7 @@ this.output (this.triad (x, y, z));
 this.output (" Rad " + J["export"].___Exporter.round (radius));
 this.outputTextureCode ();
 }, "~N,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "outputTextPixel", 
+Clazz.overrideMethod (c$, "outputTextPixel",
 function (x, y, z, argb) {
 this.outputTexture (argb, true);
 this.output ("Sphere Center ");
@@ -215,7 +215,7 @@ this.output (this.triad (x, y, z));
 this.output (" Rad 1");
 this.outputTextureCode ();
 }, "~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "outputTriangle", 
+Clazz.overrideMethod (c$, "outputTriangle",
 function (ptA, ptB, ptC, colix) {
 this.outputTexture (colix, true);
 this.output ("TRI");

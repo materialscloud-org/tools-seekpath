@@ -1,11 +1,11 @@
 Clazz.declarePackage ("JU");
 Clazz.load (null, "JU.Parser", ["java.lang.Float", "JU.PT"], function () {
 c$ = Clazz.declareType (JU, "Parser");
-c$.parseStringInfestedFloatArray = Clazz.defineMethod (c$, "parseStringInfestedFloatArray", 
+c$.parseStringInfestedFloatArray = Clazz.defineMethod (c$, "parseStringInfestedFloatArray",
 function (str, bs, data) {
 return JU.Parser.parseFloatArrayBsData (JU.PT.getTokens (str), bs, data);
 }, "~S,JU.BS,~A");
-c$.parseFloatArrayBsData = Clazz.defineMethod (c$, "parseFloatArrayBsData", 
+c$.parseFloatArrayBsData = Clazz.defineMethod (c$, "parseFloatArrayBsData",
 function (tokens, bs, data) {
 var len = data.length;
 var nTokens = tokens.length;
@@ -21,7 +21,7 @@ if (n == nTokens) break;
 }
 return max + 1;
 }, "~A,JU.BS,~A");
-c$.parseFloatArrayFromMatchAndField = Clazz.defineMethod (c$, "parseFloatArrayFromMatchAndField", 
+c$.parseFloatArrayFromMatchAndField = Clazz.defineMethod (c$, "parseFloatArrayFromMatchAndField",
 function (str, bs, fieldMatch, fieldMatchColumnCount, matchData, field, fieldColumnCount, data, firstLine) {
 var f;
 var i = -1;
@@ -56,7 +56,7 @@ iData = i;
 }
 return data;
 }, "~S,JU.BS,~N,~N,~A,~N,~N,~A,~N");
-c$.fixDataString = Clazz.defineMethod (c$, "fixDataString", 
+c$.fixDataString = Clazz.defineMethod (c$, "fixDataString",
 function (str) {
 str = str.$replace (';', str.indexOf ('\n') < 0 ? '\n' : ' ');
 str = JU.PT.trim (str, "\n \t");
@@ -64,7 +64,7 @@ str = JU.PT.rep (str, "\n ", "\n");
 str = JU.PT.rep (str, "\n\n", "\n");
 return str;
 }, "~S");
-c$.markLines = Clazz.defineMethod (c$, "markLines", 
+c$.markLines = Clazz.defineMethod (c$, "markLines",
 function (data, eol) {
 var nLines = 0;
 for (var i = data.length; --i >= 0; ) if (data.charAt (i) == eol) nLines++;

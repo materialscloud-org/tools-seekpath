@@ -9,7 +9,7 @@ this.offsetY = 0;
 this.spec = null;
 Clazz.instantialize (this, arguments);
 }, JSV.common, "Annotation", JSV.common.Coordinate);
-Clazz.defineMethod (c$, "setA", 
+Clazz.defineMethod (c$, "setA",
 function (x, y, spec, text, isPixels, is2D, offsetX, offsetY) {
 this.set (x, y);
 this.spec = spec;
@@ -20,24 +20,24 @@ this.offsetX = offsetX;
 this.offsetY = offsetY;
 return this;
 }, "~N,~N,JSV.common.Spectrum,~S,~B,~B,~N,~N");
-Clazz.defineMethod (c$, "setSpec", 
+Clazz.defineMethod (c$, "setSpec",
 function (spec) {
 this.spec = spec;
 return this;
 }, "JSV.common.Spectrum");
-Clazz.defineMethod (c$, "addSpecShift", 
+Clazz.defineMethod (c$, "addSpecShift",
 function (dx) {
 this.setXVal (this.getXVal () + dx);
 }, "~N");
-Clazz.defineMethod (c$, "isPixels", 
+Clazz.defineMethod (c$, "isPixels",
 function () {
 return this.$isPixels;
 });
-Clazz.overrideMethod (c$, "toString", 
+Clazz.overrideMethod (c$, "toString",
 function () {
 return "[" + this.getXVal () + ", " + this.getYVal () + "," + this.text + "]";
 });
-c$.getColoredAnnotation = Clazz.defineMethod (c$, "getColoredAnnotation", 
+c$.getColoredAnnotation = Clazz.defineMethod (c$, "getColoredAnnotation",
 function (g2d, spec, args, lastAnnotation) {
 var arg;
 var xPt = 0;

@@ -1,10 +1,10 @@
 Clazz.declarePackage ("JU");
 Clazz.load (["JU.Int2IntHash"], "JU.C", ["java.lang.Byte", "$.Float", "JU.AU", "$.CU", "$.PT", "$.SB", "J.c.PAL", "JU.Escape", "$.Logger"], function () {
 c$ = Clazz.declareType (JU, "C");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-c$.getColix = Clazz.defineMethod (c$, "getColix", 
+c$.getColix = Clazz.defineMethod (c$, "getColix",
 function (argb) {
 if (argb == 0) return 0;
 var translucentFlag = 0;
@@ -15,7 +15,7 @@ argb |= 0xFF000000;
 if ((c & 3) == 3) translucentFlag = 0;
 return ((c > 0 ? c : JU.C.allocateColix (argb, false)) | translucentFlag);
 }, "~N");
-c$.allocateColix = Clazz.defineMethod (c$, "allocateColix", 
+c$.allocateColix = Clazz.defineMethod (c$, "allocateColix",
 function (argb, forceLast) {
 var n;
 if (forceLast) {
@@ -34,12 +34,12 @@ if (JU.C.argbsGreyscale != null) JU.C.argbsGreyscale[n] = JU.CU.toFFGGGfromRGB (
 JU.C.colixHash.put (argb, n);
 return (n < 2047 ? JU.C.colixMax++ : JU.C.colixMax);
 }, "~N,~B");
-c$.setLastGrey = Clazz.defineMethod (c$, "setLastGrey", 
+c$.setLastGrey = Clazz.defineMethod (c$, "setLastGrey",
 function (argb) {
 JU.C.calcArgbsGreyscale ();
 JU.C.argbsGreyscale[2047] = JU.CU.toFFGGGfromRGB (argb);
 }, "~N");
-c$.calcArgbsGreyscale = Clazz.defineMethod (c$, "calcArgbsGreyscale", 
+c$.calcArgbsGreyscale = Clazz.defineMethod (c$, "calcArgbsGreyscale",
 function () {
 if (JU.C.argbsGreyscale != null) return;
 var a =  Clazz.newIntArray (JU.C.argbs.length, 0);
@@ -47,12 +47,12 @@ for (var i = JU.C.argbs.length; --i >= 4; ) a[i] = JU.CU.toFFGGGfromRGB (JU.C.ar
 
 JU.C.argbsGreyscale = a;
 });
-c$.getArgbGreyscale = Clazz.defineMethod (c$, "getArgbGreyscale", 
+c$.getArgbGreyscale = Clazz.defineMethod (c$, "getArgbGreyscale",
 function (colix) {
 if (JU.C.argbsGreyscale == null) JU.C.calcArgbsGreyscale ();
 return JU.C.argbsGreyscale[colix & -30721];
 }, "~N");
-c$.getColixO = Clazz.defineMethod (c$, "getColixO", 
+c$.getColixO = Clazz.defineMethod (c$, "getColixO",
 function (obj) {
 if (obj == null) return 0;
 if (Clazz.instanceOf (obj, J.c.PAL)) return ((obj) === J.c.PAL.NONE ? 0 : 2);
@@ -63,7 +63,7 @@ if (JU.Logger.debugging) {
 JU.Logger.debug ("?? getColix(" + obj + ")");
 }return 22;
 }, "~O");
-c$.getTranslucentFlag = Clazz.defineMethod (c$, "getTranslucentFlag", 
+c$.getTranslucentFlag = Clazz.defineMethod (c$, "getTranslucentFlag",
  function (translucentLevel) {
 if (translucentLevel == 0) return 0;
 if (translucentLevel < 0) return 30720;
@@ -71,15 +71,15 @@ if (Float.isNaN (translucentLevel) || translucentLevel >= 255 || translucentLeve
 var iLevel = Clazz.doubleToInt (Math.floor (translucentLevel < 1 ? translucentLevel * 256 : translucentLevel >= 15 ? translucentLevel : translucentLevel <= 9 ? (Clazz.doubleToInt (Math.floor (translucentLevel - 1))) << 5 : 256));
 return (((iLevel >> 5) & 0xF) << 11);
 }, "~N");
-c$.isColixLastAvailable = Clazz.defineMethod (c$, "isColixLastAvailable", 
+c$.isColixLastAvailable = Clazz.defineMethod (c$, "isColixLastAvailable",
 function (colix) {
 return (colix > 0 && (colix & 2047) == 2047);
 }, "~N");
-c$.getArgb = Clazz.defineMethod (c$, "getArgb", 
+c$.getArgb = Clazz.defineMethod (c$, "getArgb",
 function (colix) {
 return JU.C.argbs[colix & -30721];
 }, "~N");
-c$.isColixColorInherited = Clazz.defineMethod (c$, "isColixColorInherited", 
+c$.isColixColorInherited = Clazz.defineMethod (c$, "isColixColorInherited",
 function (colix) {
 switch (colix) {
 case 0:
@@ -89,7 +89,7 @@ default:
 return (colix & -30721) == 1;
 }
 }, "~N");
-c$.getColixInherited = Clazz.defineMethod (c$, "getColixInherited", 
+c$.getColixInherited = Clazz.defineMethod (c$, "getColixInherited",
 function (myColix, parentColix) {
 switch (myColix) {
 case 0:
@@ -100,39 +100,39 @@ default:
 return ((myColix & -30721) == 1 ? (parentColix & -30721 | myColix & 30720) : myColix);
 }
 }, "~N,~N");
-c$.renderPass2 = Clazz.defineMethod (c$, "renderPass2", 
+c$.renderPass2 = Clazz.defineMethod (c$, "renderPass2",
 function (colix) {
 var c = colix & 30720;
 return (c != 0 && c != 30720);
 }, "~N");
-c$.isColixTranslucent = Clazz.defineMethod (c$, "isColixTranslucent", 
+c$.isColixTranslucent = Clazz.defineMethod (c$, "isColixTranslucent",
 function (colix) {
 return ((colix & 30720) != 0);
 }, "~N");
-c$.getChangeableColixIndex = Clazz.defineMethod (c$, "getChangeableColixIndex", 
+c$.getChangeableColixIndex = Clazz.defineMethod (c$, "getChangeableColixIndex",
 function (colix) {
 return (colix >= 0 ? -1 : (colix & 2047));
 }, "~N");
-c$.getColixTranslucent3 = Clazz.defineMethod (c$, "getColixTranslucent3", 
+c$.getColixTranslucent3 = Clazz.defineMethod (c$, "getColixTranslucent3",
 function (colix, isTranslucent, translucentLevel) {
 colix &= -30721;
 if (colix == 0) colix = 1;
 return (isTranslucent ? (colix | JU.C.getTranslucentFlag (translucentLevel)) : colix);
 }, "~N,~B,~N");
-c$.copyColixTranslucency = Clazz.defineMethod (c$, "copyColixTranslucency", 
+c$.copyColixTranslucency = Clazz.defineMethod (c$, "copyColixTranslucency",
 function (colixFrom, colixTo) {
 return JU.C.getColixTranslucent3 (colixTo, JU.C.isColixTranslucent (colixFrom), JU.C.getColixTranslucencyLevel (colixFrom));
 }, "~N,~N");
-c$.getColixTranslucencyFractional = Clazz.defineMethod (c$, "getColixTranslucencyFractional", 
+c$.getColixTranslucencyFractional = Clazz.defineMethod (c$, "getColixTranslucencyFractional",
 function (colix) {
 var translevel = JU.C.getColixTranslucencyLevel (colix);
 return (translevel == -1 ? 0.5 : translevel == 0 ? 0 : translevel == 255 ? 1 : translevel / 256);
 }, "~N");
-c$.getColixTranslucencyLabel = Clazz.defineMethod (c$, "getColixTranslucencyLabel", 
+c$.getColixTranslucencyLabel = Clazz.defineMethod (c$, "getColixTranslucencyLabel",
 function (colix) {
 return "translucent " + ((colix & 30720) == 30720 ? -1 : JU.C.getColixTranslucencyFractional (colix));
 }, "~N");
-c$.getColixTranslucencyLevel = Clazz.defineMethod (c$, "getColixTranslucencyLevel", 
+c$.getColixTranslucencyLevel = Clazz.defineMethod (c$, "getColixTranslucencyLevel",
 function (colix) {
 var logAlpha = (colix >> 11) & 0xF;
 switch (logAlpha) {
@@ -152,7 +152,7 @@ default:
 return 255;
 }
 }, "~N");
-c$.getColixS = Clazz.defineMethod (c$, "getColixS", 
+c$.getColixS = Clazz.defineMethod (c$, "getColixS",
 function (colorName) {
 var argb = JU.CU.getArgbFromString (colorName);
 if (argb != 0) return JU.C.getColix (argb);
@@ -160,7 +160,7 @@ if ("none".equalsIgnoreCase (colorName)) return 0;
 if ("opaque".equalsIgnoreCase (colorName)) return 1;
 return 2;
 }, "~S");
-c$.getColixArray = Clazz.defineMethod (c$, "getColixArray", 
+c$.getColixArray = Clazz.defineMethod (c$, "getColixArray",
 function (colorNames) {
 if (colorNames == null || colorNames.length == 0) return null;
 var colors = JU.PT.getTokens (colorNames);
@@ -171,11 +171,11 @@ if (colixes[j] == 0) return null;
 }
 return colixes;
 }, "~S");
-c$.getHexCode = Clazz.defineMethod (c$, "getHexCode", 
+c$.getHexCode = Clazz.defineMethod (c$, "getHexCode",
 function (colix) {
 return JU.Escape.escapeColor (JU.C.getArgb (colix));
 }, "~N");
-c$.getHexCodes = Clazz.defineMethod (c$, "getHexCodes", 
+c$.getHexCodes = Clazz.defineMethod (c$, "getHexCodes",
 function (colixes) {
 if (colixes == null) return null;
 var s =  new JU.SB ();
@@ -183,12 +183,12 @@ for (var i = 0; i < colixes.length; i++) s.append (i == 0 ? "" : " ").append (JU
 
 return s.toString ();
 }, "~A");
-c$.getColixTranslucent = Clazz.defineMethod (c$, "getColixTranslucent", 
+c$.getColixTranslucent = Clazz.defineMethod (c$, "getColixTranslucent",
 function (argb) {
 var a = (argb >> 24) & 0xFF;
 return (a == 0xFF ? JU.C.getColix (argb) : JU.C.getColixTranslucent3 (JU.C.getColix (argb), true, a / 255));
 }, "~N");
-c$.getBgContrast = Clazz.defineMethod (c$, "getBgContrast", 
+c$.getBgContrast = Clazz.defineMethod (c$, "getBgContrast",
 function (argb) {
 return ((JU.CU.toFFGGGfromRGB (argb) & 0xFF) < 128 ? 8 : 4);
 }, "~N");

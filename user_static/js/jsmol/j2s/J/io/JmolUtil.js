@@ -1,10 +1,10 @@
 Clazz.declarePackage ("J.io");
 Clazz.load (null, "J.io.JmolUtil", ["java.io.BufferedInputStream", "$.BufferedReader", "java.net.URL", "java.util.Hashtable", "JU.AU", "$.Lst", "$.OC", "$.PT", "$.Rdr", "J.adapter.smarter.AtomSetCollection", "J.api.Interface", "JU.Logger", "JV.FileManager"], function () {
 c$ = Clazz.declareType (J.io, "JmolUtil");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "getImage", 
+Clazz.defineMethod (c$, "getImage",
 function (vwr, fullPathNameOrBytes, echoName, forceSync) {
 var image = null;
 var info = null;
@@ -40,7 +40,7 @@ createImage = true;
 {
 return image;
 }}, "JV.Viewer,~O,~S,~B");
-Clazz.defineMethod (c$, "getAtomSetCollectionOrBufferedReaderFromZip", 
+Clazz.defineMethod (c$, "getAtomSetCollectionOrBufferedReaderFromZip",
 function (vwr, is, fileName, zipDirectory, htParams, subFilePtr, asBufferedReader) {
 var adapter = vwr.getModelAdapter ();
 var doCombine = (subFilePtr == 1);
@@ -183,7 +183,7 @@ throw e$$;
 }
 }
 }, "JV.Viewer,java.io.InputStream,~S,~A,java.util.Map,~N,~B");
-Clazz.defineMethod (c$, "getCachedPngjBytes", 
+Clazz.defineMethod (c$, "getCachedPngjBytes",
 function (fm, pathName) {
 if (pathName.startsWith ("file:///")) pathName = "file:" + pathName.substring (7);
 JU.Logger.info ("JmolUtil checking PNGJ cache for " + pathName);
@@ -202,7 +202,7 @@ return fm.pngjCache.get (shortName);
 JU.Logger.info ("FileManager using memory cache " + shortName);
 return cache.get (shortName);
 }, "JV.FileManager,~S");
-Clazz.defineMethod (c$, "clearAndCachePngjFile", 
+Clazz.defineMethod (c$, "clearAndCachePngjFile",
  function (fm, data) {
 fm.pngjCache =  new java.util.Hashtable ();
 if (data == null || data[0] == null) return false;
@@ -227,7 +227,7 @@ bytes = cache.remove (shortName + "|state.spt");
 if (bytes != null) cache.put (this.shortSceneFilename (data[0] + "|state.spt"), bytes);
 }return true;
 }, "JV.FileManager,~A");
-Clazz.defineMethod (c$, "shortSceneFilename", 
+Clazz.defineMethod (c$, "shortSceneFilename",
  function (pathName) {
 var pt = pathName.indexOf ("_scene_") + 7;
 if (pt < 7) return pathName;
@@ -239,12 +239,12 @@ s = pathName.substring (pt, pt1);
 }var pt2 = pathName.lastIndexOf ("|");
 return pathName.substring (0, pt) + s + (pt2 > 0 ? pathName.substring (pt2) : "");
 }, "~S");
-Clazz.defineMethod (c$, "getSpartanSubfiles", 
+Clazz.defineMethod (c$, "getSpartanSubfiles",
  function (zipDirectory) {
 var name = (zipDirectory.length < 2 ? null : zipDirectory[1]);
 return (name == null || zipDirectory.length != 2 || !name.endsWith (".spardir/") ? null :  Clazz.newArray (-1, ["", JU.PT.trim (name, "/")]));
 }, "~A");
-Clazz.defineMethod (c$, "isSpartanZip", 
+Clazz.defineMethod (c$, "isSpartanZip",
  function (zipDirectory) {
 for (var i = 1; i < zipDirectory.length; i++) if (zipDirectory[i].endsWith (".spardir/") || zipDirectory[i].indexOf ("_spartandir") >= 0) return true;
 

@@ -18,29 +18,29 @@ this.queueThreads =  new Array (2);
 this.scriptQueueRunning =  Clazz.newBooleanArray (2, false);
 this.scriptQueue =  new JU.Lst ();
 });
-Clazz.overrideMethod (c$, "getScriptQueue", 
+Clazz.overrideMethod (c$, "getScriptQueue",
 function () {
 return this.scriptQueue;
 });
-Clazz.overrideMethod (c$, "isScriptQueued", 
+Clazz.overrideMethod (c$, "isScriptQueued",
 function () {
 return this.$isScriptQueued;
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.overrideMethod (c$, "setViewer", 
+Clazz.overrideMethod (c$, "setViewer",
 function (vwr) {
 this.vwr = vwr;
 this.eval = this.newScriptEvaluator ();
 this.eval.setCompiler ();
 return this.eval;
 }, "JV.Viewer");
-Clazz.defineMethod (c$, "newScriptEvaluator", 
+Clazz.defineMethod (c$, "newScriptEvaluator",
  function () {
 return (J.api.Interface.getInterface ("JS.ScriptEval", this.vwr, "setOptions")).setViewer (this.vwr);
 });
-Clazz.overrideMethod (c$, "clear", 
+Clazz.overrideMethod (c$, "clear",
 function (isAll) {
 if (!isAll) {
 this.evalTemp = null;
@@ -48,11 +48,11 @@ return;
 }this.startCommandWatcher (false);
 this.interruptQueueThreads ();
 }, "~B");
-Clazz.overrideMethod (c$, "addScript", 
+Clazz.overrideMethod (c$, "addScript",
 function (strScript, isQuiet) {
 return this.addScr ("String", strScript, "", isQuiet);
 }, "~S,~B");
-Clazz.defineMethod (c$, "addScr", 
+Clazz.defineMethod (c$, "addScr",
  function (returnType, strScript, statusList, isQuiet) {
 {
 this.useCommandWatcherThread = false;
@@ -76,11 +76,11 @@ this.scriptQueue.addLast (scriptItem);
 this.startScriptQueue (false);
 return "pending";
 }, "~S,~S,~S,~B");
-Clazz.overrideMethod (c$, "clearQueue", 
+Clazz.overrideMethod (c$, "clearQueue",
 function () {
 this.scriptQueue.clear ();
 });
-Clazz.overrideMethod (c$, "waitForQueue", 
+Clazz.overrideMethod (c$, "waitForQueue",
 function () {
 if (this.vwr.isSingleThreaded) return;
 var n = 0;
@@ -97,11 +97,11 @@ throw e;
 }
 }
 });
-Clazz.overrideMethod (c$, "isQueueProcessing", 
+Clazz.overrideMethod (c$, "isQueueProcessing",
 function () {
 return this.queueThreads[0] != null || this.queueThreads[1] != null;
 });
-Clazz.defineMethod (c$, "flushQueue", 
+Clazz.defineMethod (c$, "flushQueue",
  function (command) {
 for (var i = this.scriptQueue.size (); --i >= 0; ) {
 var strScript = (this.scriptQueue.get (i).get (0));
@@ -110,7 +110,7 @@ this.scriptQueue.removeItemAt (i);
 if (JU.Logger.debugging) JU.Logger.debug (this.scriptQueue.size () + " scripts; removed: " + strScript);
 }}
 }, "~S");
-Clazz.defineMethod (c$, "startScriptQueue", 
+Clazz.defineMethod (c$, "startScriptQueue",
  function (startedByCommandWatcher) {
 var pt = (startedByCommandWatcher ? 1 : 0);
 if (this.scriptQueueRunning[pt]) return;
@@ -118,7 +118,7 @@ this.scriptQueueRunning[pt] = true;
 this.queueThreads[pt] =  new JS.ScriptQueueThread (this, this.vwr, startedByCommandWatcher, pt);
 this.queueThreads[pt].start ();
 }, "~B");
-Clazz.overrideMethod (c$, "getScriptItem", 
+Clazz.overrideMethod (c$, "getScriptItem",
 function (watching, isByCommandWatcher) {
 if (this.vwr.isSingleThreaded && this.vwr.queueOnHold) return null;
 var scriptItem = this.scriptQueue.get (0);
@@ -126,7 +126,7 @@ var flag = ((scriptItem.get (4)).intValue ());
 var isOK = (watching ? flag < 0 : isByCommandWatcher ? flag == 0 : flag == 1);
 return (isOK ? scriptItem : null);
 }, "~B,~B");
-Clazz.overrideMethod (c$, "startCommandWatcher", 
+Clazz.overrideMethod (c$, "startCommandWatcher",
 function (isStart) {
 this.useCommandWatcherThread = isStart;
 if (isStart) {
@@ -140,19 +140,19 @@ this.clearCommandWatcherThread ();
 }if (JU.Logger.debugging) {
 JU.Logger.debug ("command watcher " + (isStart ? "started" : "stopped") + this.commandWatcherThread);
 }}, "~B");
-Clazz.defineMethod (c$, "interruptQueueThreads", 
+Clazz.defineMethod (c$, "interruptQueueThreads",
 function () {
 for (var i = 0; i < this.queueThreads.length; i++) {
 if (this.queueThreads[i] != null) this.queueThreads[i].interrupt ();
 }
 });
-Clazz.defineMethod (c$, "clearCommandWatcherThread", 
+Clazz.defineMethod (c$, "clearCommandWatcherThread",
 function () {
 if (this.commandWatcherThread == null) return;
 this.commandWatcherThread.interrupt ();
 this.commandWatcherThread = null;
 });
-Clazz.overrideMethod (c$, "queueThreadFinished", 
+Clazz.overrideMethod (c$, "queueThreadFinished",
 function (pt) {
 this.queueThreads[pt].interrupt ();
 this.scriptQueueRunning[pt] = false;
@@ -160,7 +160,7 @@ this.queueThreads[pt] = null;
 this.vwr.setSyncDriver (4);
 this.vwr.queueOnHold = false;
 }, "~N");
-Clazz.defineMethod (c$, "runScriptNow", 
+Clazz.defineMethod (c$, "runScriptNow",
 function () {
 if (this.scriptQueue.size () > 0) {
 var scriptItem = this.getScriptItem (true, true);
@@ -168,14 +168,14 @@ if (scriptItem != null) {
 scriptItem.set (4, Integer.$valueOf (0));
 this.startScriptQueue (true);
 }}});
-Clazz.overrideMethod (c$, "evalFile", 
+Clazz.overrideMethod (c$, "evalFile",
 function (strFilename) {
 var ptWait = strFilename.indexOf (" -noqueue");
 if (ptWait >= 0) {
 return this.evalStringWaitStatusQueued ("String", "script " + JU.PT.esc (strFilename.substring (0, ptWait)), "", false, false);
 }return this.addScript ("script " + JU.PT.esc (strFilename), false);
 }, "~S");
-Clazz.overrideMethod (c$, "evalStringWaitStatusQueued", 
+Clazz.overrideMethod (c$, "evalStringWaitStatusQueued",
 function (returnType, strScript, statusList, isQuiet, isQueued) {
 if (strScript == null) return null;
 var str = this.checkScriptExecution (strScript, false);
@@ -214,7 +214,7 @@ var info = this.vwr.getProperty (returnType, "jmolStatus", statusList);
 this.vwr.getStatusChanged (oldStatusList);
 return info;
 }, "~S,~S,~S,~B,~B");
-Clazz.defineMethod (c$, "checkScriptExecution", 
+Clazz.defineMethod (c$, "checkScriptExecution",
  function (strScript, isInsert) {
 var str = strScript;
 if (str.indexOf ("\1##") >= 0) str = str.substring (0, str.indexOf ("\1##"));
@@ -223,7 +223,7 @@ if (this.checkStepping (str)) return "script processing stepped";
 if (this.checkHalt (str, isInsert)) return "script execution halted";
 return null;
 }, "~S,~B");
-Clazz.defineMethod (c$, "checkResume", 
+Clazz.defineMethod (c$, "checkResume",
  function (str) {
 if (str.equalsIgnoreCase ("resume")) {
 this.vwr.setScriptStatus ("", "execution resumed", 0, null);
@@ -231,7 +231,7 @@ this.eval.resumePausedExecution ();
 return true;
 }return false;
 }, "~S");
-Clazz.defineMethod (c$, "checkStepping", 
+Clazz.defineMethod (c$, "checkStepping",
  function (str) {
 if (str.equalsIgnoreCase ("step")) {
 this.eval.stepPausedExecution ();
@@ -241,7 +241,7 @@ this.vwr.scriptStatus (this.eval.getNextStatement ());
 return true;
 }return false;
 }, "~S");
-Clazz.overrideMethod (c$, "evalStringQuietSync", 
+Clazz.overrideMethod (c$, "evalStringQuietSync",
 function (strScript, isQuiet, allowSyncScript) {
 if (allowSyncScript && this.vwr.sm.syncingScripts && strScript.indexOf ("#NOSYNC;") < 0) this.vwr.syncScript (strScript + " #NOSYNC;", null, 0);
 if (this.eval.isPaused () && strScript.charAt (0) != '!') strScript = '!' + JU.PT.trim (strScript, "\n\r\t ");
@@ -257,7 +257,7 @@ return "!" + strScript;
 if (isQuiet) strScript += "\u0001## EDITOR_IGNORE ##";
 return this.addScript (strScript, isQuiet && !this.vwr.getBoolean (603979880));
 }, "~S,~B,~B");
-Clazz.overrideMethod (c$, "checkHalt", 
+Clazz.overrideMethod (c$, "checkHalt",
 function (str, isInsert) {
 if (str.equalsIgnoreCase ("pause")) {
 this.vwr.pauseScriptExecution ();
@@ -287,20 +287,20 @@ this.vwr.tm.stopMotion ();
 this.vwr.isSyntaxCheck = false;
 return exitScript;
 }, "~S,~B");
-Clazz.overrideMethod (c$, "getAtomBitSetEval", 
+Clazz.overrideMethod (c$, "getAtomBitSetEval",
 function (eval, atomExpression) {
 if (eval == null) {
 eval = this.evalTemp;
 if (eval == null) eval = this.evalTemp = this.newScriptEvaluator ();
 }return this.vwr.slm.excludeAtoms (eval.getAtomBitSet (atomExpression), false);
 }, "J.api.JmolScriptEvaluator,~O");
-Clazz.overrideMethod (c$, "scriptCheckRet", 
+Clazz.overrideMethod (c$, "scriptCheckRet",
 function (strScript, returnContext) {
 if (strScript.indexOf (")") == 0 || strScript.indexOf ("!") == 0) strScript = strScript.substring (1);
 var sc = this.newScriptEvaluator ().checkScriptSilent (strScript);
 return (returnContext || sc.errorMessage == null ? sc : sc.errorMessage);
 }, "~S,~B");
-Clazz.overrideMethod (c$, "openFileAsync", 
+Clazz.overrideMethod (c$, "openFileAsync",
 function (fileName, flags) {
 var noScript = ((flags & 2) == 2);
 var isAppend = ((flags & 4) == 4);
@@ -346,7 +346,7 @@ cmd = JU.PT.rep (cmd, "load SYNC", "load append");
 if (cmd != null) this.vwr.evalString (cmd + (noAutoPlay ? "#!NOAUTOPLAY" : ""));
 }
 }, "~S,~N");
-Clazz.defineMethod (c$, "getDragDropFileTypeName", 
+Clazz.defineMethod (c$, "getDragDropFileTypeName",
  function (fileName) {
 var pt = fileName.indexOf ("::");
 if (pt >= 0) return fileName.substring (0, pt);
@@ -362,12 +362,12 @@ if (JU.AU.isAS (br)) {
 return (br)[0];
 }return null;
 }, "~S");
-Clazz.defineMethod (c$, "getZipDirectoryAsString", 
+Clazz.defineMethod (c$, "getZipDirectoryAsString",
  function (fileName) {
 var t = this.vwr.fm.getBufferedInputStreamOrErrorMessageFromName (fileName, fileName, false, false, null, false, true);
 return this.vwr.getJzt ().getZipDirectoryAsStringAndClose (t);
 }, "~S");
-c$.setStateScriptVersion = Clazz.defineMethod (c$, "setStateScriptVersion", 
+c$.setStateScriptVersion = Clazz.defineMethod (c$, "setStateScriptVersion",
 function (vwr, version) {
 if (version != null) {
 JS.ScriptManager.prevCovalentVersion = JU.Elements.bondingVersion;
@@ -395,7 +395,7 @@ vwr.setBooleanProperty ("legacyautobonding", false);
 vwr.g.legacyHAddition = false;
 vwr.stateScriptVersionInt = 2147483647;
 }, "JV.Viewer,~S");
-Clazz.overrideMethod (c$, "addHydrogensInline", 
+Clazz.overrideMethod (c$, "addHydrogensInline",
 function (bsAtoms, vConnections, pts) {
 var modelIndex = this.vwr.ms.at[bsAtoms.nextSetBit (0)].mi;
 if (modelIndex != this.vwr.ms.mc - 1) return  new JU.BS ();

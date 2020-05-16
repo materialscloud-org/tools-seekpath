@@ -1,7 +1,7 @@
 Clazz.declarePackage ("JU");
 Clazz.load (["java.util.Hashtable"], "JU.CU", ["JU.P3", "$.PT"], function () {
 c$ = Clazz.declareType (JU, "CU");
-c$.toRGBHexString = Clazz.defineMethod (c$, "toRGBHexString", 
+c$.toRGBHexString = Clazz.defineMethod (c$, "toRGBHexString",
 function (c) {
 var rgb = c.getRGB ();
 if (rgb == 0) return "000000";
@@ -13,14 +13,14 @@ var b = "00" + Integer.toHexString (rgb & 0xFF);
 b = b.substring (b.length - 2);
 return r + g + b;
 }, "javajs.api.GenericColor");
-c$.toCSSString = Clazz.defineMethod (c$, "toCSSString", 
+c$.toCSSString = Clazz.defineMethod (c$, "toCSSString",
 function (c) {
 var opacity = c.getOpacity255 ();
 if (opacity == 255) return "#" + JU.CU.toRGBHexString (c);
 var rgb = c.getRGB ();
 return "rgba(" + ((rgb >> 16) & 0xFF) + "," + ((rgb >> 8) & 0xff) + "," + (rgb & 0xff) + "," + opacity / 255 + ")";
 }, "javajs.api.GenericColor");
-c$.getArgbFromString = Clazz.defineMethod (c$, "getArgbFromString", 
+c$.getArgbFromString = Clazz.defineMethod (c$, "getArgbFromString",
 function (strColor) {
 var len = 0;
 if (strColor == null || (len = strColor.length) == 0) return 0;
@@ -60,7 +60,7 @@ throw e;
 }var boxedArgb = JU.CU.mapJavaScriptColors.get (strColor);
 return (boxedArgb == null ? 0 : boxedArgb.intValue ());
 }, "~S");
-c$.colorTriadToFFRGB = Clazz.defineMethod (c$, "colorTriadToFFRGB", 
+c$.colorTriadToFFRGB = Clazz.defineMethod (c$, "colorTriadToFFRGB",
 function (x, y, z) {
 if (x <= 1 && y <= 1 && z <= 1) {
 if (x > 0) x = x * 256 - 1;
@@ -68,36 +68,36 @@ if (y > 0) y = y * 256 - 1;
 if (z > 0) z = z * 256 - 1;
 }return JU.CU.rgb (Clazz.floatToInt (x), Clazz.floatToInt (y), Clazz.floatToInt (z));
 }, "~N,~N,~N");
-c$.rgb = Clazz.defineMethod (c$, "rgb", 
+c$.rgb = Clazz.defineMethod (c$, "rgb",
 function (red, grn, blu) {
 return 0xFF000000 | (red << 16) | (grn << 8) | blu;
 }, "~N,~N,~N");
-c$.colorPtFromString = Clazz.defineMethod (c$, "colorPtFromString", 
+c$.colorPtFromString = Clazz.defineMethod (c$, "colorPtFromString",
 function (colorName) {
 return JU.CU.colorPtFromInt (JU.CU.getArgbFromString (colorName), null);
 }, "~S");
-c$.colorPtFromInt = Clazz.defineMethod (c$, "colorPtFromInt", 
+c$.colorPtFromInt = Clazz.defineMethod (c$, "colorPtFromInt",
 function (color, pt) {
 if (pt == null) pt =  new JU.P3 ();
 pt.set ((color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF);
 return pt;
 }, "~N,JU.P3");
-c$.colorPtToFFRGB = Clazz.defineMethod (c$, "colorPtToFFRGB", 
+c$.colorPtToFFRGB = Clazz.defineMethod (c$, "colorPtToFFRGB",
 function (pt) {
 return JU.CU.colorTriadToFFRGB (pt.x, pt.y, pt.z);
 }, "JU.T3");
-c$.toRGB3f = Clazz.defineMethod (c$, "toRGB3f", 
+c$.toRGB3f = Clazz.defineMethod (c$, "toRGB3f",
 function (c, f) {
 f[0] = ((c >> 16) & 0xFF) / 255;
 f[1] = ((c >> 8) & 0xFF) / 255;
 f[2] = (c & 0xFF) / 255;
 }, "~N,~A");
-c$.toFFGGGfromRGB = Clazz.defineMethod (c$, "toFFGGGfromRGB", 
+c$.toFFGGGfromRGB = Clazz.defineMethod (c$, "toFFGGGfromRGB",
 function (rgb) {
 var grey = (Clazz.doubleToInt (((2989 * ((rgb >> 16) & 0xFF)) + (5870 * ((rgb >> 8) & 0xFF)) + (1140 * (rgb & 0xFF)) + 5000) / 10000)) & 0xFFFFFF;
 return JU.CU.rgb (grey, grey, grey);
 }, "~N");
-c$.rgbToHSL = Clazz.defineMethod (c$, "rgbToHSL", 
+c$.rgbToHSL = Clazz.defineMethod (c$, "rgbToHSL",
 function (rgb, doRound) {
 var r = rgb.x / 255;
 var g = rgb.y / 255;
@@ -110,7 +110,7 @@ var h = (60 * ((q == 0 ? 0 : max == r ? ((g - b) / q + 6) : max == g ? (b - r) /
 var s = q / (q == 0 ? 1 : p <= 1 ? p : 2 - p);
 return (doRound ? JU.P3.new3 (Math.round (h * 10) / 10, Math.round (s * 1000) / 10, Math.round (p * 500) / 10) : JU.P3.new3 (h, s * 100, p * 50));
 }, "JU.P3,~B");
-c$.hslToRGB = Clazz.defineMethod (c$, "hslToRGB", 
+c$.hslToRGB = Clazz.defineMethod (c$, "hslToRGB",
 function (hsl) {
 var h = Math.max (0, Math.min (360, hsl.x)) / 60;
 var s = Math.max (0, Math.min (100, hsl.y)) / 100;
@@ -122,7 +122,7 @@ var g = JU.CU.toRGB (p, q, h);
 var b = JU.CU.toRGB (p, q, h - 2);
 return JU.P3.new3 (Math.round (r * 255), Math.round (g * 255), Math.round (b * 255));
 }, "JU.P3");
-c$.toRGB = Clazz.defineMethod (c$, "toRGB", 
+c$.toRGB = Clazz.defineMethod (c$, "toRGB",
  function (p, q, h) {
 return ((h = (h + (h < 0 ? 6 : h > 6 ? -6 : 0))) < 1 ? p + q * h : h < 3 ? p + q : h < 4 ? p + q * (4 - h) : p);
 }, "~N,~N,~N");

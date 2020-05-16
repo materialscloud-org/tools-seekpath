@@ -28,22 +28,22 @@ this.justOneModel = true;
 this.htMin = null;
 Clazz.instantialize (this, arguments);
 }, JM, "MeasurementData", null, J.api.JmolMeasurementClient);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "init", 
+Clazz.defineMethod (c$, "init",
 function (id, vwr, points) {
 this.vwr = vwr;
 this.points = points;
 this.thisID = id;
 return this;
 }, "~S,JV.Viewer,JU.Lst");
-Clazz.defineMethod (c$, "setModelSet", 
+Clazz.defineMethod (c$, "setModelSet",
 function (m) {
 this.ms = m;
 return this;
 }, "JM.ModelSet");
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (tokAction, htMin, radiusData, strFormat, units, tickInfo, mustBeConnected, mustNotBeConnected, intramolecular, isAll, mad, colix, text) {
 this.ms = this.vwr.ms;
 this.tokAction = tokAction;
@@ -63,7 +63,7 @@ this.colix = colix;
 this.text = text;
 return this;
 }, "~N,java.util.Map,J.atomdata.RadiusData,~S,~S,JM.TickInfo,~B,~B,Boolean,~B,~N,~N,JM.Text");
-Clazz.defineMethod (c$, "processNextMeasure", 
+Clazz.defineMethod (c$, "processNextMeasure",
 function (m) {
 var value = m.getMeasurement (null);
 if (this.htMin != null && !m.isMin (this.htMin) || this.radiusData != null && !m.isInRange (this.radiusData, value)) return;
@@ -76,7 +76,7 @@ return;
 }if (this.measurementStrings != null) this.measurementStrings.addLast (m.getStringUsing (this.vwr, this.strFormat, this.units));
  else this.measurements.addLast (Float.$valueOf (m.getMeasurement (null)));
 }, "JM.Measurement");
-Clazz.defineMethod (c$, "getMeasurements", 
+Clazz.defineMethod (c$, "getMeasurements",
 function (asArray, asMinArray) {
 if (asMinArray) {
 this.minArray =  Clazz.newFloatArray ((this.points.get (0)).cardinality (), 0);
@@ -92,7 +92,7 @@ return this.measurements;
 this.define (null, this.ms);
 return this.measurementStrings;
 }, "~B,~B");
-Clazz.defineMethod (c$, "define", 
+Clazz.defineMethod (c$, "define",
 function (client, modelSet) {
 this.client = (client == null ? this : client);
 this.atoms = modelSet.at;
@@ -120,7 +120,7 @@ indices[i + 1] = -2 - i;
 }}
 this.nextMeasure (0, ptLastAtom, m, modelIndex);
 }, "J.api.JmolMeasurementClient,JM.ModelSet");
-Clazz.defineMethod (c$, "nextMeasure", 
+Clazz.defineMethod (c$, "nextMeasure",
  function (thispt, ptLastAtom, m, thisModel) {
 if (thispt > ptLastAtom) {
 if (m.isValid () && (!this.mustBeConnected || m.isConnected (this.atoms, thispt)) && (!this.mustNotBeConnected || !m.isConnected (this.atoms, thispt)) && (this.intramolecular == null || m.isIntramolecular (this.atoms, thispt) == this.intramolecular.booleanValue ())) this.client.processNextMeasure (m);

@@ -8,41 +8,41 @@ this.connected = false;
 this.requests = null;
 Clazz.instantialize (this, arguments);
 }, java.net, "URLConnection");
-Clazz.defineMethod (c$, "setDoInput", 
+Clazz.defineMethod (c$, "setDoInput",
 function (doinput) {
 if (this.connected) throw  new IllegalStateException ("Already connected");
 this.doInput = doinput;
 }, "~B");
-Clazz.defineMethod (c$, "getDoInput", 
+Clazz.defineMethod (c$, "getDoInput",
 function () {
 return this.doInput;
 });
-Clazz.defineMethod (c$, "setDoOutput", 
+Clazz.defineMethod (c$, "setDoOutput",
 function (dooutput) {
 if (this.connected) throw  new IllegalStateException ("Already connected");
 this.doOutput = dooutput;
 }, "~B");
-Clazz.defineMethod (c$, "getDoOutput", 
+Clazz.defineMethod (c$, "getDoOutput",
 function () {
 return this.doOutput;
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (url) {
 this.url = url;
 }, "java.net.URL");
-Clazz.defineMethod (c$, "getURL", 
+Clazz.defineMethod (c$, "getURL",
 function () {
 return this.url;
 });
-Clazz.defineMethod (c$, "getInputStream", 
+Clazz.defineMethod (c$, "getInputStream",
 function () {
 throw  new java.net.UnknownServiceException ("protocol doesn't support input");
 });
-Clazz.defineMethod (c$, "getOutputStream", 
+Clazz.defineMethod (c$, "getOutputStream",
 function () {
 throw  new java.net.UnknownServiceException ("protocol doesn't support output");
 });
-Clazz.defineMethod (c$, "setRequestProperty", 
+Clazz.defineMethod (c$, "setRequestProperty",
 function (key, value) {
 if (this.connected) throw  new IllegalStateException ("Already connected");
 if (key == null) throw  new NullPointerException ("key is null");

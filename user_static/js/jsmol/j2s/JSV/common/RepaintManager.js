@@ -4,11 +4,11 @@ this.repaintPending = false;
 this.vwr = null;
 Clazz.instantialize (this, arguments);
 }, JSV.common, "RepaintManager");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (viewer) {
 this.vwr = viewer;
 }, "JSV.common.JSViewer");
-Clazz.defineMethod (c$, "refresh", 
+Clazz.defineMethod (c$, "refresh",
 function () {
 if (this.repaintPending) {
 return false;
@@ -20,7 +20,7 @@ Jmol._repaint(applet, false);
 this.repaintDone();
 }return true;
 });
-Clazz.defineMethod (c$, "repaintDone", 
+Clazz.defineMethod (c$, "repaintDone",
 function () {
 this.repaintPending = false;
 this.notify ();

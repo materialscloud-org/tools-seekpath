@@ -8,7 +8,7 @@ this.lastName = null;
 this.edgeData = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.xtal, "CgdReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.setFractionalCoordinates (true);
 this.asc.setNoAutoBond ();
@@ -16,7 +16,7 @@ this.asc.vibScale = 1;
 this.forceSymmetry (!this.checkFilterKey ("NOPACK"));
 this.noBondSym = this.checkFilterKey ("NOBONDSYM");
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 this.line = this.line.trim ();
 if (this.line.length == 0 || this.line.startsWith ("#")) return true;
@@ -53,7 +53,7 @@ break;
 }
 }return true;
 });
-Clazz.defineMethod (c$, "group", 
+Clazz.defineMethod (c$, "group",
  function (name) {
 var name0 = null;
 if (name.charAt (0) == '"') name = name.substring (1, name.length - 1);
@@ -64,7 +64,7 @@ name = ";P2=P121;P21=P1211;C2=C121;A2=A121;I2=I121;Pm=P1m1;Pc=P1c1;Pn=P1n1;Pa=P1
 }JU.Logger.info ("CgdReader using GROUP " + name + (name0 == null ? "" : " alias of " + name0));
 return name;
 }, "~S");
-Clazz.defineMethod (c$, "atom", 
+Clazz.defineMethod (c$, "atom",
  function () {
 var name = this.getName (this.tokens[1]);
 var edgeCount = this.parseIntStr (this.tokens[2]);
@@ -77,16 +77,16 @@ this.asc.addVibrationVector (a.index, 1, 3, 7);
 if (this.htEdges == null) this.htEdges =  new java.util.Hashtable ();
 this.htEdges.put (a,  new Array (edgeCount));
 });
-Clazz.defineMethod (c$, "getName", 
+Clazz.defineMethod (c$, "getName",
  function (name) {
 return (name.charAt (0) == '"' ? name.substring (1, name.length - 1) : Character.isDigit (name.charAt (0)) ? "C" + name : name);
 }, "~S");
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 this.finalizeReaderASCR ();
 if (this.doApplySymmetry) this.finalizeNet ();
 });
-Clazz.defineMethod (c$, "finalizeEdges", 
+Clazz.defineMethod (c$, "finalizeEdges",
  function () {
 var p;
 var name;
@@ -121,11 +121,11 @@ break;
 }
 }
 });
-Clazz.defineMethod (c$, "getCoord", 
+Clazz.defineMethod (c$, "getCoord",
  function (i) {
 return JU.P3.new3 (JU.PT.parseFloatFraction (this.tokens[i++]), JU.PT.parseFloatFraction (this.tokens[i++]), JU.PT.parseFloatFraction (this.tokens[i++]));
 }, "~N");
-Clazz.defineMethod (c$, "finalizeNet", 
+Clazz.defineMethod (c$, "finalizeNet",
  function () {
 this.finalizeEdges ();
 var m =  new JU.M3 ();
@@ -153,7 +153,7 @@ if (b != null) this.asc.addBond ( new J.adapter.smarter.Bond (a.index, b.index, 
 a.vib = null;
 }
 });
-Clazz.defineMethod (c$, "findAtom", 
+Clazz.defineMethod (c$, "findAtom",
  function (pt) {
 for (var i = this.asc.ac; --i >= 0; ) if (this.asc.atoms[i].distanceSquared (pt) < 0.00001) return this.asc.atoms[i];
 

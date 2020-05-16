@@ -1,6 +1,6 @@
 #AtSym ElemNo mmType HType formalCharge*12 val Desc Smiles
 
-#BH 5/17/2016 -- for OpenSMARTS convention requiring $(...) in [...] 
+#BH 5/17/2016 -- for OpenSMARTS convention requiring $(...) in [...]
 
 
 

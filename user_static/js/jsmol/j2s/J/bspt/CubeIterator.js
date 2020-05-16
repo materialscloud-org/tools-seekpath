@@ -16,16 +16,16 @@ this.dz = 0;
 this.tHemisphere = false;
 Clazz.instantialize (this, arguments);
 }, J.bspt, "CubeIterator");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (bspt) {
 this.set (bspt);
 }, "J.bspt.Bspt");
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (bspt) {
 this.bspt = bspt;
 this.stack =  new Array (bspt.treeDepth);
 }, "J.bspt.Bspt");
-Clazz.defineMethod (c$, "initialize", 
+Clazz.defineMethod (c$, "initialize",
 function (center, radius, hemisphereOnly) {
 this.radius = radius;
 this.tHemisphere = false;
@@ -39,11 +39,11 @@ this.sp = 1;
 this.findLeftLeaf ();
 this.tHemisphere = hemisphereOnly;
 }, "JU.T3,~N,~B");
-Clazz.defineMethod (c$, "release", 
+Clazz.defineMethod (c$, "release",
 function () {
 this.set (this.bspt);
 });
-Clazz.defineMethod (c$, "hasMoreElements", 
+Clazz.defineMethod (c$, "hasMoreElements",
 function () {
 while (this.leaf != null) {
 for (; this.leafIndex < this.leaf.count; ++this.leafIndex) if (this.isWithinRadius (this.leaf.tuples[this.leafIndex])) return true;
@@ -52,15 +52,15 @@ this.findLeftLeaf ();
 }
 return false;
 });
-Clazz.defineMethod (c$, "nextElement", 
+Clazz.defineMethod (c$, "nextElement",
 function () {
 return this.leaf.tuples[this.leafIndex++];
 });
-Clazz.defineMethod (c$, "foundDistance2", 
+Clazz.defineMethod (c$, "foundDistance2",
 function () {
 return this.dx * this.dx + this.dy * this.dy + this.dz * this.dz;
 });
-Clazz.defineMethod (c$, "findLeftLeaf", 
+Clazz.defineMethod (c$, "findLeftLeaf",
  function () {
 this.leaf = null;
 if (this.sp == 0) return;
@@ -95,7 +95,7 @@ ele = this.stack[--this.sp];
 this.leaf = ele;
 this.leafIndex = 0;
 });
-Clazz.defineMethod (c$, "isWithinRadius", 
+Clazz.defineMethod (c$, "isWithinRadius",
  function (t) {
 this.dx = t.x - this.cx;
 return ((!this.tHemisphere || this.dx >= 0) && (this.dx = Math.abs (this.dx)) <= this.radius && (this.dy = Math.abs (t.y - this.cy)) <= this.radius && (this.dz = Math.abs (t.z - this.cz)) <= this.radius);

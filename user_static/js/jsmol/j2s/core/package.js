@@ -15,7 +15,7 @@ if (!window["java.registered"])
 		for (var i = 0; i < Jmol._coreFiles.length; i++)
 		  ClazzLoader.loadZJar(Jmol._coreFiles[i], ClazzLoader.runtimeKeyClass);
 	//}
-		
+
   if (Jmol._debugCode)
     return;
 
@@ -25,7 +25,7 @@ if (!window["java.registered"])
 // note - we don't need to list ALL the classes -- only the ones that are entry points.
 // several more classe are in each of these files -- see build_03_tojs.xml
 
-	ClazzLoader.jarClasspath (base + "coretext.z.js",	[ 
+	ClazzLoader.jarClasspath (base + "coretext.z.js",	[
 	"JM.Text",
 	"J.shape.TextShape",
 	"$.Labels",
@@ -36,47 +36,47 @@ if (!window["java.registered"])
 	"$.LabelsRenderer",
 	"$.MeasuresRenderer",
 	"$.EchoRenderer",
-	"$.HoverRenderer"	
+	"$.HoverRenderer"
 	]);
 
-	ClazzLoader.jarClasspath (base + "corescript.z.js",	[  
-    "J.api.JmolScriptManager", 
+	ClazzLoader.jarClasspath (base + "corescript.z.js",	[
+    "J.api.JmolScriptManager",
     "$.JmolScriptEvaluator",
     "$.JmolScriptFunction",
-    "JS.ScriptError", 
-    "$.ScriptParam", 
-    "$.ScriptExpr", 
-    "$.ScriptEval", 
-    "$.ScriptTokenParser", 
-    "$.ScriptCompiler", 
-    "$.CommandWatcherThread", 
-    "$.ScriptQueueThread", 
-    "$.ScriptDelayThread", 
+    "JS.ScriptError",
+    "$.ScriptParam",
+    "$.ScriptExpr",
+    "$.ScriptEval",
+    "$.ScriptTokenParser",
+    "$.ScriptCompiler",
+    "$.CommandWatcherThread",
+    "$.ScriptQueueThread",
+    "$.ScriptDelayThread",
     "$.ScriptManager",
     "$.FileLoadThread",
-    "$.JmolCmdExtension", 
+    "$.JmolCmdExtension",
     "$.JmolMathExtension",
     "$.JmolSmilesExtension"
 	]);
-	
-	ClazzLoader.jarClasspath (base + "corescriptcmd.z.js",	[  
+
+	ClazzLoader.jarClasspath (base + "corescriptcmd.z.js",	[
 	"JS.CmdExt"
 	]);
-	                                                 	
-	ClazzLoader.jarClasspath (base + "corescriptmath.z.js",	[  
+
+	ClazzLoader.jarClasspath (base + "corescriptmath.z.js",	[
 	"JS.MathExt"
 	]);
-	                                                 	
-	ClazzLoader.jarClasspath (base + "corestate.z.js",	[  
-    "J.api.JmolStateCreator", 
-    "JU.StateCreator" 
+
+	ClazzLoader.jarClasspath (base + "corestate.z.js",	[
+    "J.api.JmolStateCreator",
+    "JU.StateCreator"
 	]);
-	
-	ClazzLoader.jarClasspath (base + "coreprop.z.js",	[  
-    "J.api.JmolPropertyManager", 
-    "JU.PropertyManager" 
-	]);  
-  
+
+	ClazzLoader.jarClasspath (base + "coreprop.z.js",	[
+    "J.api.JmolPropertyManager",
+    "JU.PropertyManager"
+	]);
+
 	ClazzLoader.jarClasspath (base + "coreconsole.z.js",	[
 		"J.api.JmolAppConsoleInterface",
 		"J.console.GenericTextArea",
@@ -85,7 +85,7 @@ if (!window["java.registered"])
 	]);
 
 	ClazzLoader.jarClasspath (base + "coremenu.z.js",	[
-		"J.awtjs2d.JmolJSPopup",	
+		"J.awtjs2d.JmolJSPopup",
 		"J.popup.MainPopupResourceBundle",
 		"$.JmolGenericPopup"
 	]);
@@ -204,7 +204,7 @@ if (!window["java.registered"])
           	"JSV.js2d.JsPopup",
           	"JSV.popup.JSVGenericPopup",
           	"JSV.popup.JSVPopupResourceBundle"
-          	
+
   ]);
 
 	ClazzLoader.jarClasspath (base + "corejsvexport.z.js",	[
@@ -228,7 +228,7 @@ if (!window["java.registered"])
 	]);
 
 	ClazzLoader.jarClasspath (base + "coreswing.z.js",	[
-				"javajs.api.SC", 
+				"javajs.api.SC",
         "javajs.awt.BorderLayout",
         "$.Component",
         "$.Container",

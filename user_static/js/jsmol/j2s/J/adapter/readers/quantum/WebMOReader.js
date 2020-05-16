@@ -1,7 +1,7 @@
 Clazz.declarePackage ("J.adapter.readers.quantum");
 Clazz.load (["J.adapter.readers.quantum.MopacSlaterReader"], "J.adapter.readers.quantum.WebMOReader", ["java.lang.Boolean", "$.Exception", "$.Float", "java.util.Hashtable", "JU.AU", "$.Lst", "$.PT", "J.adapter.readers.quantum.BasisFunctionReader", "J.adapter.smarter.Bond", "JU.Logger"], function () {
 c$ = Clazz.declareType (J.adapter.readers.quantum, "WebMOReader", J.adapter.readers.quantum.MopacSlaterReader);
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.equals ("[HEADER]")) {
 this.readHeader ();
@@ -28,13 +28,13 @@ this.readMolecularOrbital ();
 return false;
 }return true;
 });
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 this.finalizeReaderASCR ();
 if (this.nOrbitals > 0) this.setMOs ("eV");
 if (this.debugging) JU.Logger.debug (this.orbitals.size () + " molecular orbitals read");
 });
-Clazz.defineMethod (c$, "readHeader", 
+Clazz.defineMethod (c$, "readHeader",
 function () {
 this.moData.put ("isNormalized", Boolean.TRUE);
 while (this.rd () != null && this.line.length > 0) {
@@ -47,7 +47,7 @@ for (var i = 1; i < tokens.length; i++) str += (i == 1 ? "" : " ") + tokens[i].t
 this.moData.put (tokens[0], str);
 }
 });
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
 function () {
 while (this.getLine ()) {
 var tokens = this.getTokens ();
@@ -57,7 +57,7 @@ var atNo = this.parseIntStr (sym);
 this.setAtomCoordScaled (null, tokens, 1, 0.5291772).elementSymbol = (atNo == -2147483648 ? sym : J.adapter.smarter.AtomSetCollectionReader.getElementSymbol (atNo));
 }
 });
-Clazz.defineMethod (c$, "readBonds", 
+Clazz.defineMethod (c$, "readBonds",
 function () {
 while (this.getLine ()) {
 var tokens = this.getTokens ();
@@ -68,7 +68,7 @@ var order = this.parseIntStr (tokens[2]);
 this.asc.addBond ( new J.adapter.smarter.Bond (atomIndex1 - 1, atomIndex2 - 1, order));
 }
 });
-Clazz.defineMethod (c$, "readAtomicOrbitalOrder", 
+Clazz.defineMethod (c$, "readAtomicOrbitalOrder",
 function () {
 while (this.getLine ()) {
 var tokens = this.getTokens ();
@@ -98,11 +98,11 @@ JU.Logger.error ("atomic orbital order is unrecognized -- skipping reading of MO
 this.orbitals = null;
 }}
 });
-Clazz.defineMethod (c$, "getLine", 
+Clazz.defineMethod (c$, "getLine",
  function () {
 return (this.rd () != null && (this.line.length == 0 || this.line.charAt (0) != '['));
 });
-Clazz.defineMethod (c$, "readGaussianBasis", 
+Clazz.defineMethod (c$, "readGaussianBasis",
 function () {
 var sdata =  new JU.Lst ();
 var gdata =  new JU.Lst ();
@@ -143,7 +143,7 @@ JU.Logger.debug (sdata.size () + " slater shells read");
 JU.Logger.debug (garray.length + " gaussian primitives read");
 }this.asc.setCurrentModelInfo ("moData", this.moData);
 });
-Clazz.defineMethod (c$, "readSlaterBasis", 
+Clazz.defineMethod (c$, "readSlaterBasis",
 function () {
 while (this.getLine ()) {
 var tokens = this.getTokens ();
@@ -152,7 +152,7 @@ this.addSlater (this.parseIntStr (tokens[0]), this.parseIntStr (tokens[1]), this
 }
 this.setSlaters (false, false);
 });
-Clazz.defineMethod (c$, "readMolecularOrbital", 
+Clazz.defineMethod (c$, "readMolecularOrbital",
 function () {
 if (this.orbitals == null) {
 JU.Logger.error ("MOLECULAR ORBITALS SKIPPED");

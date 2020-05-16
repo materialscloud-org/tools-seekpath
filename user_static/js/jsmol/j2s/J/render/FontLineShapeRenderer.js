@@ -44,7 +44,7 @@ this.vectorT3 =  new JU.V3 ();
 this.pt0 =  new JU.P3 ();
 this.pt1 =  new JU.P3 ();
 });
-Clazz.defineMethod (c$, "getDiameter", 
+Clazz.defineMethod (c$, "getDiameter",
 function (z, mad10OrPixels) {
 var diameter;
 var isMad10 = (mad10OrPixels > 20);
@@ -61,7 +61,7 @@ diameter = mad10OrPixels;
 }}
 return diameter;
 }, "~N,~N");
-Clazz.defineMethod (c$, "renderLine", 
+Clazz.defineMethod (c$, "renderLine",
 function (p0, p1, diameter, drawTicks) {
 if (diameter < 0) this.g3d.drawDashedLineBits (8, 4, p0, p1);
  else this.g3d.fillCylinderBits (this.endcap, diameter, p0, p1);
@@ -71,7 +71,7 @@ this.tickAs.setT (p0);
 this.tickBs.setT (p1);
 this.drawTicks (diameter, true);
 }, "JU.P3,JU.P3,~N,~B");
-Clazz.defineMethod (c$, "checkTickTemps", 
+Clazz.defineMethod (c$, "checkTickTemps",
 function () {
 if (this.tickA == null) {
 this.tickA =  new JU.P3 ();
@@ -79,14 +79,14 @@ this.tickB =  new JU.P3 ();
 this.tickAs =  new JU.P3 ();
 this.tickBs =  new JU.P3 ();
 }});
-Clazz.defineMethod (c$, "drawTicks", 
+Clazz.defineMethod (c$, "drawTicks",
 function (diameter, withLabels) {
 if (Float.isNaN (this.tickInfo.first)) this.tickInfo.first = 0;
 this.drawTicks2 (this.tickInfo.ticks.x, 8, diameter, (!withLabels ? null : this.tickInfo.tickLabelFormats == null ?  Clazz.newArray (-1, ["%0.2f"]) : this.tickInfo.tickLabelFormats));
 this.drawTicks2 (this.tickInfo.ticks.y, 4, diameter, null);
 this.drawTicks2 (this.tickInfo.ticks.z, 2, diameter, null);
 }, "~N,~B");
-Clazz.defineMethod (c$, "drawTicks2", 
+Clazz.defineMethod (c$, "drawTicks2",
  function (dx, length, diameter, formats) {
 if (dx == 0) return;
 if (this.g3d.isAntialiased ()) length *= 2;
@@ -148,11 +148,11 @@ z += dz;
 i++;
 }
 }, "~N,~N,~N,~A");
-Clazz.defineMethod (c$, "drawLine", 
+Clazz.defineMethod (c$, "drawLine",
 function (x1, y1, z1, x2, y2, z2, diameter) {
 return this.drawLine2 (x1, y1, z1, x2, y2, z2, diameter);
 }, "~N,~N,~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "drawLine2", 
+Clazz.defineMethod (c$, "drawLine2",
 function (x1, y1, z1, x2, y2, z2, diameter) {
 this.pt0.set (x1, y1, z1);
 this.pt1.set (x2, y2, z2);
@@ -165,7 +165,7 @@ return 1;
 }this.g3d.fillCylinderBits (2, diameter, this.pt0, this.pt1);
 }return Clazz.doubleToInt ((diameter + 1) / 2);
 }, "~N,~N,~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "drawString", 
+Clazz.defineMethod (c$, "drawString",
 function (x, y, z, radius, rightJustify, centerX, centerY, yRef, sVal) {
 if (sVal == null) return;
 var width = this.font3d.stringWidth (sVal);
@@ -182,7 +182,7 @@ var zT = z - radius - 2;
 if (zT < 1) zT = 1;
 this.g3d.drawString (sVal, this.font3d, xT, yT, zT, zT, 0);
 }, "~N,~N,~N,~N,~B,~B,~B,~N,~S");
-Clazz.defineMethod (c$, "drawDashed", 
+Clazz.defineMethod (c$, "drawDashed",
 function (xA, yA, zA, xB, yB, zB, array) {
 if (array == null || this.width < 0) return;
 var f = array[0];
@@ -226,7 +226,7 @@ var zE = Clazz.doubleToInt (Math.floor (zA + dz * i / f));
 this.fillCylinder (colixS, colixE, 2, this.width, xS, yS, zS, xE, yE, zE);
 }
 }, "~N,~N,~N,~N,~N,~N,~A");
-Clazz.defineMethod (c$, "fillCylinder", 
+Clazz.defineMethod (c$, "fillCylinder",
 function (colixA, colixB, endcaps, diameter, xA, yA, zA, xB, yB, zB) {
 if (this.asLineOnly) this.g3d.drawLine (colixA, colixB, xA, yA, zA, xB, yB, zB);
  else this.g3d.fillCylinderXYZ (colixA, colixB, endcaps, (!this.isExport || this.mad == 1 ? diameter : this.mad), xA, yA, zA, xB, yB, zB);

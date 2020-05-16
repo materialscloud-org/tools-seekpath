@@ -1,11 +1,11 @@
 Clazz.declarePackage ("J.shape");
 Clazz.load (["J.shape.TextShape"], "J.shape.Echo", ["java.util.Hashtable", "JU.Lst", "$.PT", "JM.Text", "JU.C"], function () {
 c$ = Clazz.declareType (J.shape, "Echo", J.shape.TextShape);
-Clazz.overrideMethod (c$, "initShape", 
+Clazz.overrideMethod (c$, "initShape",
 function () {
 this.setProperty ("target", "top", null);
 });
-Clazz.overrideMethod (c$, "setProperty", 
+Clazz.overrideMethod (c$, "setProperty",
 function (propertyName, value, bs) {
 if ("scalereference" === propertyName) {
 if (this.currentObject != null) {
@@ -115,7 +115,7 @@ if (this.currentBgTranslucentLevel != 0) text.setTranslucent (this.currentBgTran
 return;
 }}this.setPropTS (propertyName, value, null);
 }, "~S,~O,JU.BS");
-Clazz.overrideMethod (c$, "getPropertyData", 
+Clazz.overrideMethod (c$, "getPropertyData",
 function (property, data) {
 if ("currentTarget" === property) {
 return (this.currentObject != null && (data[0] = this.currentObject.target) != null);
@@ -131,7 +131,7 @@ return true;
 return false;
 }return this.getPropShape (property, data);
 }, "~S,~A");
-Clazz.overrideMethod (c$, "getShapeDetail", 
+Clazz.overrideMethod (c$, "getShapeDetail",
 function () {
 var lst =  new java.util.Hashtable ();
 for (var e, $e = this.objects.entrySet ().iterator (); $e.hasNext () && ((e = $e.next ()) || true);) {

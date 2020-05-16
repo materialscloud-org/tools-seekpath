@@ -1,27 +1,27 @@
 Clazz.declarePackage ("JU");
 Clazz.load (null, "JU.XmlUtil", ["JU.PT"], function () {
 c$ = Clazz.declareType (JU, "XmlUtil");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-c$.openDocument = Clazz.defineMethod (c$, "openDocument", 
+c$.openDocument = Clazz.defineMethod (c$, "openDocument",
 function (data) {
 data.append ("<?xml version=\"1.0\"?>\n");
 }, "JU.SB");
-c$.openTag = Clazz.defineMethod (c$, "openTag", 
+c$.openTag = Clazz.defineMethod (c$, "openTag",
 function (sb, name) {
 sb.append ("<").append (name).append (">\n");
 }, "JU.SB,~S");
-c$.openTagAttr = Clazz.defineMethod (c$, "openTagAttr", 
+c$.openTagAttr = Clazz.defineMethod (c$, "openTagAttr",
 function (sb, name, attributes) {
 JU.XmlUtil.appendTagAll (sb, name, attributes, null, false, false);
 sb.append ("\n");
 }, "JU.SB,~S,~A");
-c$.closeTag = Clazz.defineMethod (c$, "closeTag", 
+c$.closeTag = Clazz.defineMethod (c$, "closeTag",
 function (sb, name) {
 sb.append ("</").append (name).append (">\n");
 }, "JU.SB,~S");
-c$.appendTagAll = Clazz.defineMethod (c$, "appendTagAll", 
+c$.appendTagAll = Clazz.defineMethod (c$, "appendTagAll",
 function (sb, name, attributes, data, isCdata, doClose) {
 var closer = ">";
 if (name.endsWith ("/")) {
@@ -43,25 +43,25 @@ if (isCdata) data = JU.XmlUtil.wrapCdata (data);
 sb.appendO (data);
 }if (doClose) JU.XmlUtil.closeTag (sb, name);
 }, "JU.SB,~S,~A,~O,~B,~B");
-c$.wrapCdata = Clazz.defineMethod (c$, "wrapCdata", 
+c$.wrapCdata = Clazz.defineMethod (c$, "wrapCdata",
 function (data) {
 var s = "" + data;
 return (s.indexOf ("&") < 0 && s.indexOf ("<") < 0 ? (s.startsWith ("\n") ? "" : "\n") + s : "<![CDATA[" + JU.PT.rep (s, "]]>", "]]]]><![CDATA[>") + "]]>");
 }, "~O");
-c$.appendTagObj = Clazz.defineMethod (c$, "appendTagObj", 
+c$.appendTagObj = Clazz.defineMethod (c$, "appendTagObj",
 function (sb, name, attributes, data) {
 JU.XmlUtil.appendTagAll (sb, name, attributes, data, false, true);
 }, "JU.SB,~S,~A,~O");
-c$.appendTag = Clazz.defineMethod (c$, "appendTag", 
+c$.appendTag = Clazz.defineMethod (c$, "appendTag",
 function (sb, name, data) {
 if (Clazz.instanceOf (data, Array)) JU.XmlUtil.appendTagAll (sb, name, data, null, false, true);
  else JU.XmlUtil.appendTagAll (sb, name, null, data, false, true);
 }, "JU.SB,~S,~O");
-c$.appendCdata = Clazz.defineMethod (c$, "appendCdata", 
+c$.appendCdata = Clazz.defineMethod (c$, "appendCdata",
 function (sb, name, attributes, data) {
 JU.XmlUtil.appendTagAll (sb, name, attributes, data, true, true);
 }, "JU.SB,~S,~A,~S");
-c$.appendAttrib = Clazz.defineMethod (c$, "appendAttrib", 
+c$.appendAttrib = Clazz.defineMethod (c$, "appendAttrib",
 function (sb, name, value) {
 if (value == null) return;
 sb.append (" ").appendO (name).append ("=\"").appendO (value).append ("\"");

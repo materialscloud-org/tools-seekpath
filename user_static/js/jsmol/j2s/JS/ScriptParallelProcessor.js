@@ -12,15 +12,15 @@ Clazz.prepareFields (c$, function () {
 this.lock =  new Clazz._O ();
 this.processes =  new JU.Lst ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JS.ScriptParallelProcessor, []);
 });
-Clazz.overrideMethod (c$, "getExecutor", 
+Clazz.overrideMethod (c$, "getExecutor",
 function () {
 return java.util.concurrent.Executors.newCachedThreadPool ();
 });
-Clazz.overrideMethod (c$, "runAllProcesses", 
+Clazz.overrideMethod (c$, "runAllProcesses",
 function (vwr) {
 if (this.processes.size () == 0) return;
 this.vwr = vwr;
@@ -53,7 +53,7 @@ if (this.error != null) throw this.error;
 }this.mergeResults (vShapeManagers);
 vwr.setParallel (false);
 }, "JV.Viewer");
-Clazz.defineMethod (c$, "mergeResults", 
+Clazz.defineMethod (c$, "mergeResults",
 function (vShapeManagers) {
 try {
 for (var i = 0; i < vShapeManagers.size (); i++) this.mergeShapes (vShapeManagers.get (i));
@@ -69,7 +69,7 @@ this.counter = -1;
 vShapeManagers = null;
 }
 }, "JU.Lst");
-Clazz.defineMethod (c$, "mergeShapes", 
+Clazz.defineMethod (c$, "mergeShapes",
  function (shapeManager) {
 var newShapes = shapeManager.shapes;
 if (newShapes == null) return;
@@ -79,17 +79,17 @@ if (this.vwr.shm.shapes[i] == null) this.vwr.shm.loadShape (i);
 (this.vwr.shm.shapes[i]).merge (newShapes[i]);
 }
 }, "JV.ShapeManager");
-Clazz.defineMethod (c$, "clearShapeManager", 
+Clazz.defineMethod (c$, "clearShapeManager",
 function (er) {
 {
 this.error = er;
 this.notifyAll ();
 }}, "Error");
-Clazz.overrideMethod (c$, "addProcess", 
+Clazz.overrideMethod (c$, "addProcess",
 function (name, context) {
 this.processes.addLast ( new JS.ScriptProcess (name, context));
 }, "~S,JS.ScriptContext");
-Clazz.defineMethod (c$, "runProcess", 
+Clazz.defineMethod (c$, "runProcess",
  function (process, shapeManager) {
 var r =  new JS.ScriptProcessRunnable (this, process, this.lock, shapeManager);
 var exec = (shapeManager == null ? null : this.getMyExecutor ());
@@ -98,11 +98,11 @@ exec.execute (r);
 } else {
 r.run ();
 }}, "JS.ScriptProcess,JV.ShapeManager");
-Clazz.defineMethod (c$, "eval", 
+Clazz.defineMethod (c$, "eval",
 function (context, shapeManager) {
 this.vwr.evalParallel (context, shapeManager);
 }, "JS.ScriptContext,JV.ShapeManager");
-Clazz.defineMethod (c$, "getMyExecutor", 
+Clazz.defineMethod (c$, "getMyExecutor",
  function () {
 if (this.vwr.executor != null || JV.Viewer.nProcessors < 2) return this.vwr.executor;
 try {

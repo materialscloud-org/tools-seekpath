@@ -210,7 +210,7 @@ String.prototype.equals = function (anObject) {
 };
 
 String.prototype.equalsIgnoreCase = function (anotherString) {
-	return (anotherString == null) ? false : (this == anotherString 
+	return (anotherString == null) ? false : (this == anotherString
 			|| this.toLowerCase () == anotherString.toLowerCase ());
 };
 
@@ -387,7 +387,7 @@ String.prototype.concat = function (s) {
 
 String.prototype.$lastIndexOf = String.prototype.lastIndexOf;
 String.prototype.lastIndexOf = function (s, last) {
-	if (last != null && last + this.length <= 0) {	
+	if (last != null && last + this.length <= 0) {
 		return -1;
 	}
 	if (last != null) {
@@ -464,7 +464,7 @@ String.instantialize = function () {
 				return Encoding.readUTF8 (arr.join (''));
 			}
 			return x.join ('');
-		} else if (x.__CLASS_NAME__ == "StringBuffer" 
+		} else if (x.__CLASS_NAME__ == "StringBuffer"
 				|| x.__CLASS_NAME__ == "java.lang.StringBuffer") {
 			var value = x.shareValue();
 			var length = x.length ();

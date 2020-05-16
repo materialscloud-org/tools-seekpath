@@ -1,7 +1,7 @@
 Clazz.declarePackage ("J.adapter.readers.simple");
 Clazz.load (["J.adapter.smarter.AtomSetCollectionReader"], "J.adapter.readers.simple.GhemicalMMReader", ["java.lang.Exception", "JU.PT"], function () {
 c$ = Clazz.declareType (J.adapter.readers.simple, "GhemicalMMReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.startsWith ("!Header")) {
 this.processHeader ();
@@ -23,13 +23,13 @@ this.processCharges ();
 return true;
 }return true;
 });
-Clazz.defineMethod (c$, "processHeader", 
+Clazz.defineMethod (c$, "processHeader",
 function () {
 });
-Clazz.defineMethod (c$, "processInfo", 
+Clazz.defineMethod (c$, "processInfo",
 function () {
 });
-Clazz.defineMethod (c$, "processAtoms", 
+Clazz.defineMethod (c$, "processAtoms",
 function () {
 var ac = this.parseIntAt (this.line, 6);
 for (var i = 0; i < ac; ++i) {
@@ -42,7 +42,7 @@ var atom = this.asc.addNewAtom ();
 atom.elementNumber = elementNumber;
 }
 });
-Clazz.defineMethod (c$, "processBonds", 
+Clazz.defineMethod (c$, "processBonds",
 function () {
 var bondCount = this.parseIntAt (this.line, 6);
 for (var i = 0; i < bondCount; ++i) {
@@ -68,14 +68,14 @@ order = 1;
 this.asc.addNewBondWithOrder (atomIndex1, atomIndex2, order);
 }
 });
-Clazz.defineMethod (c$, "processCoord", 
+Clazz.defineMethod (c$, "processCoord",
 function () {
 var atoms = this.asc.atoms;
 var ac = this.asc.ac;
 for (var i = 0; i < ac; ++i) this.setAtomCoordScaled (atoms[i], JU.PT.getTokens (this.rd ()), 1, 10);
 
 });
-Clazz.defineMethod (c$, "processCharges", 
+Clazz.defineMethod (c$, "processCharges",
 function () {
 var atoms = this.asc.atoms;
 var ac = this.asc.ac;

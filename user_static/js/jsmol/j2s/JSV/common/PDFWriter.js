@@ -11,11 +11,11 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.rgb =  Clazz.newFloatArray (3, 0);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 this.pdf =  new javajs["export"].PDFCreator ();
 });
-Clazz.overrideMethod (c$, "createPdfDocument", 
+Clazz.overrideMethod (c$, "createPdfDocument",
 function (panel, pl, os) {
 var isLandscape = pl.layout.equals ("landscape");
 this.date = pl.date;
@@ -39,67 +39,67 @@ throw e;
 }
 }
 }, "JSV.api.JSVPanel,JSV.common.PrintLayout,java.io.OutputStream");
-Clazz.overrideMethod (c$, "canDoLineTo", 
+Clazz.overrideMethod (c$, "canDoLineTo",
 function () {
 return true;
 });
-Clazz.overrideMethod (c$, "doStroke", 
+Clazz.overrideMethod (c$, "doStroke",
 function (g, isBegin) {
 this.inPath = isBegin;
 if (!this.inPath) this.pdf.stroke ();
 }, "~O,~B");
-Clazz.overrideMethod (c$, "drawCircle", 
+Clazz.overrideMethod (c$, "drawCircle",
 function (g, x, y, diameter) {
 this.pdf.doCircle (x, y, Clazz.doubleToInt (diameter / 2.0), false);
 }, "~O,~N,~N,~N");
-Clazz.overrideMethod (c$, "drawLine", 
+Clazz.overrideMethod (c$, "drawLine",
 function (g, x0, y0, x1, y1) {
 this.pdf.moveto (x0, y0);
 this.pdf.lineto (x1, y1);
 if (!this.inPath) this.pdf.stroke ();
 }, "~O,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "drawPolygon", 
+Clazz.overrideMethod (c$, "drawPolygon",
 function (g, axPoints, ayPoints, nPoints) {
 this.pdf.doPolygon (axPoints, ayPoints, nPoints, false);
 }, "~O,~A,~A,~N");
-Clazz.overrideMethod (c$, "drawRect", 
+Clazz.overrideMethod (c$, "drawRect",
 function (g, x, y, width, height) {
 this.pdf.doRect (x, y, width, height, false);
 }, "~O,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "drawString", 
+Clazz.overrideMethod (c$, "drawString",
 function (g, s, x, y) {
 this.pdf.drawStringRotated (s, x, y, 0);
 }, "~O,~S,~N,~N");
-Clazz.overrideMethod (c$, "drawStringRotated", 
+Clazz.overrideMethod (c$, "drawStringRotated",
 function (g, s, x, y, angle) {
 this.pdf.drawStringRotated (s, x, y, Clazz.doubleToInt (angle));
 }, "~O,~S,~N,~N,~N");
-Clazz.overrideMethod (c$, "fillBackground", 
+Clazz.overrideMethod (c$, "fillBackground",
 function (g, bgcolor) {
 }, "~O,javajs.api.GenericColor");
-Clazz.overrideMethod (c$, "fillCircle", 
+Clazz.overrideMethod (c$, "fillCircle",
 function (g, x, y, diameter) {
 this.pdf.doCircle (x, y, Clazz.doubleToInt (diameter / 2.0), true);
 }, "~O,~N,~N,~N");
-Clazz.overrideMethod (c$, "fillPolygon", 
+Clazz.overrideMethod (c$, "fillPolygon",
 function (g, ayPoints, axPoints, nPoints) {
 this.pdf.doPolygon (axPoints, ayPoints, nPoints, true);
 }, "~O,~A,~A,~N");
-Clazz.overrideMethod (c$, "fillRect", 
+Clazz.overrideMethod (c$, "fillRect",
 function (g, x, y, width, height) {
 this.pdf.doRect (x, y, width, height, true);
 }, "~O,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "lineTo", 
+Clazz.overrideMethod (c$, "lineTo",
 function (g, x, y) {
 this.pdf.lineto (x, y);
 }, "~O,~N,~N");
-Clazz.overrideMethod (c$, "setGraphicsColor", 
+Clazz.overrideMethod (c$, "setGraphicsColor",
 function (g, c) {
 JU.CU.toRGB3f (c.getRGB (), this.rgb);
 this.pdf.setColor (this.rgb, true);
 this.pdf.setColor (this.rgb, false);
 }, "~O,javajs.api.GenericColor");
-Clazz.overrideMethod (c$, "setFont", 
+Clazz.overrideMethod (c$, "setFont",
 function (g, font) {
 var fname = "/Helvetica";
 switch (font.idFontStyle) {
@@ -116,35 +116,35 @@ break;
 this.pdf.setFont (fname, font.fontSizeNominal);
 return font;
 }, "~O,javajs.awt.Font");
-Clazz.overrideMethod (c$, "setStrokeBold", 
+Clazz.overrideMethod (c$, "setStrokeBold",
 function (g, tf) {
 this.pdf.setLineWidth (tf ? 2 : 1);
 }, "~O,~B");
-Clazz.overrideMethod (c$, "translateScale", 
+Clazz.overrideMethod (c$, "translateScale",
 function (g, x, y, scale) {
 this.pdf.translateScale (x, y, scale);
 }, "~O,~N,~N,~N");
-Clazz.overrideMethod (c$, "newGrayScaleImage", 
+Clazz.overrideMethod (c$, "newGrayScaleImage",
 function (g, image, width, height, buffer) {
 this.pdf.addImageResource (image, width, height, buffer, false);
 return image;
 }, "~O,~O,~N,~N,~A");
-Clazz.overrideMethod (c$, "drawGrayScaleImage", 
+Clazz.overrideMethod (c$, "drawGrayScaleImage",
 function (g, image, destX0, destY0, destX1, destY1, srcX0, srcY0, srcX1, srcY1) {
 this.pdf.drawImage (image, destX0, destY0, destX1, destY1, srcX0, srcY0, srcX1, srcY1);
 }, "~O,~O,~N,~N,~N,~N,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "setWindowParameters", 
+Clazz.overrideMethod (c$, "setWindowParameters",
 function (width, height) {
 }, "~N,~N");
-Clazz.defineMethod (c$, "getColor1", 
+Clazz.defineMethod (c$, "getColor1",
 function (argb) {
 return this.g2d.getColor1 (argb);
 }, "~N");
-Clazz.defineMethod (c$, "getColor3", 
+Clazz.defineMethod (c$, "getColor3",
 function (red, green, blue) {
 return this.g2d.getColor3 (red, green, blue);
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "getColor4", 
+Clazz.defineMethod (c$, "getColor4",
 function (r, g, b, a) {
 return this.g2d.getColor4 (r, g, b, a);
 }, "~N,~N,~N,~N");

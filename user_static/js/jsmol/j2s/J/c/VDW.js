@@ -6,23 +6,23 @@ this.type = null;
 this.type2 = null;
 Clazz.instantialize (this, arguments);
 }, J.c, "VDW", Enum);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function (pt, type, type2) {
 this.pt = pt;
 this.type = type;
 this.type2 = type2;
 }, "~N,~S,~S");
-Clazz.defineMethod (c$, "getVdwLabel", 
+Clazz.defineMethod (c$, "getVdwLabel",
 function () {
 return (this.type == null ? this.type2 : this.type);
 });
-c$.getVdwType = Clazz.defineMethod (c$, "getVdwType", 
+c$.getVdwType = Clazz.defineMethod (c$, "getVdwType",
 function (label) {
 if (label != null) for (var item, $item = 0, $$item = J.c.VDW.values (); $item < $$item.length && ((item = $$item[$item]) || true); $item++) if (label.equalsIgnoreCase (item.type)) return item;
 
 return null;
 }, "~S");
-c$.getVdwType2 = Clazz.defineMethod (c$, "getVdwType2", 
+c$.getVdwType2 = Clazz.defineMethod (c$, "getVdwType2",
 function (label) {
 if (label != null) for (var item, $item = 0, $$item = J.c.VDW.values (); $item < $$item.length && ((item = $$item[$item]) || true); $item++) if (label.equalsIgnoreCase (item.type2)) return item;
 

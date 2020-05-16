@@ -6,7 +6,7 @@ this.haveHeader = false;
 this.mopacVersion = 0;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.simple, "MopacReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 while (this.mopacVersion == 0) {
 this.discardLinesUntilContains ("MOPAC");
@@ -19,7 +19,7 @@ if (this.line.indexOf ("2009") >= 0) this.mopacVersion = 2009;
 }
 JU.Logger.info ("MOPAC version " + this.mopacVersion);
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (!this.haveHeader) {
 if (this.line.trim ().equals ("CARTESIAN COORDINATES")) {
@@ -46,10 +46,10 @@ this.readFrequencies ();
 return true;
 }return true;
 });
-Clazz.defineMethod (c$, "processTotalEnergy", 
+Clazz.defineMethod (c$, "processTotalEnergy",
 function () {
 });
-Clazz.defineMethod (c$, "processAtomicCharges", 
+Clazz.defineMethod (c$, "processAtomicCharges",
 function () {
 this.readLines (2);
 this.asc.newAtomSet ();
@@ -66,7 +66,7 @@ atom.partialCharge = this.parseFloat ();
 }
 this.chargesFound = true;
 });
-Clazz.defineMethod (c$, "processCoordinates", 
+Clazz.defineMethod (c$, "processCoordinates",
 function () {
 if (!this.chargesFound) {
 this.asc.newAtomSet ();
@@ -91,7 +91,7 @@ atom.elementSymbol = elementSymbol;
 this.rd ();
 }
 });
-Clazz.defineMethod (c$, "readFrequencies", 
+Clazz.defineMethod (c$, "readFrequencies",
  function () {
 var bsOK =  new JU.BS ();
 var n0 = this.asc.iSet + 1;

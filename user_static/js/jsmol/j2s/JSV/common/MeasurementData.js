@@ -10,41 +10,41 @@ this.isON = true;
 this.key = null;
 Clazz.instantialize (this, arguments);
 }, JSV.common, "MeasurementData", JU.Lst, JSV.api.AnnotationData);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (type, spec) {
 Clazz.superConstructor (this, JSV.common.MeasurementData, []);
 this.type = type;
 this.spec = spec;
 this.myParams =  new JSV.common.Parameters ().setName ("MeasurementData");
 }, "JSV.common.Annotation.AType,JSV.common.Spectrum");
-Clazz.defineMethod (c$, "getMeasurements", 
+Clazz.defineMethod (c$, "getMeasurements",
 function () {
 return this;
 });
-Clazz.overrideMethod (c$, "getAType", 
+Clazz.overrideMethod (c$, "getAType",
 function () {
 return this.type;
 });
-Clazz.overrideMethod (c$, "getState", 
+Clazz.overrideMethod (c$, "getState",
 function () {
 return this.isON;
 });
-Clazz.overrideMethod (c$, "setState", 
+Clazz.overrideMethod (c$, "setState",
 function (b) {
 this.isON = b;
 }, "~B");
-Clazz.defineMethod (c$, "setMeasurements", 
+Clazz.defineMethod (c$, "setMeasurements",
 function (measurements) {
 }, "JU.Lst");
-Clazz.overrideMethod (c$, "getParameters", 
+Clazz.overrideMethod (c$, "getParameters",
 function () {
 return this.myParams;
 });
-Clazz.defineMethod (c$, "getDataHeader", 
+Clazz.defineMethod (c$, "getDataHeader",
 function () {
 return JSV.common.MeasurementData.HEADER;
 });
-Clazz.defineMethod (c$, "getMeasurementListArray", 
+Clazz.defineMethod (c$, "getMeasurementListArray",
 function (units) {
 this.units = units;
 var ddata = this.getMeasurementListArrayReal (units);
@@ -55,7 +55,7 @@ for (var i = this.size (); --i >= 0; ) data[i] =  Clazz.newArray (-1, ["" + (i +
 
 return data;
 }, "~S");
-Clazz.defineMethod (c$, "getMeasurementListArrayReal", 
+Clazz.defineMethod (c$, "getMeasurementListArrayReal",
 function (units) {
 var toHz = this.spec.isNMR () && units.equalsIgnoreCase ("HZ");
 var data = JU.AU.newDouble2 (this.size ());
@@ -66,7 +66,7 @@ data[pt++] =  Clazz.newDoubleArray (-1, [this.get (i).getXVal (), this.get (i).g
 }
 return data;
 }, "~S");
-c$.checkParameters = Clazz.defineMethod (c$, "checkParameters", 
+c$.checkParameters = Clazz.defineMethod (c$, "checkParameters",
 function (md, p) {
 if (md.size () == 0) return false;
 var myParams = md.getParameters ();
@@ -81,15 +81,15 @@ case JSV.common.Annotation.AType.NONE:
 }
 return false;
 }, "JSV.common.MeasurementData,JSV.common.ColorParameters");
-Clazz.overrideMethod (c$, "getSpectrum", 
+Clazz.overrideMethod (c$, "getSpectrum",
 function () {
 return this.spec;
 });
-Clazz.overrideMethod (c$, "getData", 
+Clazz.overrideMethod (c$, "getData",
 function () {
 return this;
 });
-Clazz.defineMethod (c$, "clear", 
+Clazz.defineMethod (c$, "clear",
 function (x1, x2) {
 for (var i = this.size (); --i >= 0; ) {
 var $in = this.get (i);
@@ -97,7 +97,7 @@ if ($in.text.length == 0 || $in.overlaps (x1, x2)) {
 this.removeItemAt (i);
 }}
 }, "~N,~N");
-Clazz.defineMethod (c$, "find", 
+Clazz.defineMethod (c$, "find",
 function (x) {
 for (var i = this.size (); --i >= 0; ) {
 var $in = this.get (i);
@@ -106,7 +106,7 @@ return i;
 }}
 return -1;
 }, "~N");
-Clazz.overrideMethod (c$, "setSpecShift", 
+Clazz.overrideMethod (c$, "setSpecShift",
 function (dx) {
 for (var i = this.size (); --i >= 0; ) {
 var m = this.get (i);
@@ -116,19 +116,19 @@ m.setValue (x);
 m.text = JU.DF.formatDecimalDbl (x, this.precision);
 }
 }, "~N");
-Clazz.overrideMethod (c$, "getGraphSetKey", 
+Clazz.overrideMethod (c$, "getGraphSetKey",
 function () {
 return this.key;
 });
-Clazz.overrideMethod (c$, "setGraphSetKey", 
+Clazz.overrideMethod (c$, "setGraphSetKey",
 function (key) {
 this.key = key;
 }, "~S");
-Clazz.overrideMethod (c$, "isVisible", 
+Clazz.overrideMethod (c$, "isVisible",
 function () {
 return true;
 });
-Clazz.defineMethod (c$, "getInfo", 
+Clazz.defineMethod (c$, "getInfo",
 function (info) {
 info.put ("header", this.getDataHeader ());
 info.put ("table", this.getMeasurementListArrayReal ("ppm"));

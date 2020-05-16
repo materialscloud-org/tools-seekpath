@@ -5,26 +5,26 @@ this.info = null;
 this.selectedIndex = 0;
 Clazz.instantialize (this, arguments);
 }, J.awtjs.swing, "JComboBox", J.awtjs.swing.AbstractButton);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (info) {
 Clazz.superConstructor (this, J.awtjs.swing.JComboBox, ["cmbJCB"]);
 this.info = info;
 }, "~A");
-Clazz.defineMethod (c$, "setSelectedIndex", 
+Clazz.defineMethod (c$, "setSelectedIndex",
 function (i) {
 this.selectedIndex = i;
 {
 SwingController.setSelectedIndex(this);
 }}, "~N");
-Clazz.defineMethod (c$, "getSelectedIndex", 
+Clazz.defineMethod (c$, "getSelectedIndex",
 function () {
 return this.selectedIndex;
 });
-Clazz.defineMethod (c$, "getSelectedItem", 
+Clazz.defineMethod (c$, "getSelectedItem",
 function () {
 return (this.selectedIndex < 0 ? null : this.info[this.selectedIndex]);
 });
-Clazz.overrideMethod (c$, "toHTML", 
+Clazz.overrideMethod (c$, "toHTML",
 function () {
 var sb =  new JU.SB ();
 sb.append ("\n<select id='" + this.id + "' class='JComboBox' onchange='SwingController.click(this)'>\n");

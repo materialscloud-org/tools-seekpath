@@ -6,7 +6,7 @@ this.startedByCommandThread = false;
 this.pt = 0;
 Clazz.instantialize (this, arguments);
 }, JS, "ScriptQueueThread", J.thread.JmolThread);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (scriptManager, vwr, startedByCommandThread, pt) {
 this.setViewer (vwr, "QueueThread" + pt);
 this.scriptManager = scriptManager;
@@ -14,7 +14,7 @@ this.vwr = vwr;
 this.startedByCommandThread = startedByCommandThread;
 this.pt = pt;
 }, "JS.ScriptManager,JV.Viewer,~B,~N");
-Clazz.overrideMethod (c$, "run1", 
+Clazz.overrideMethod (c$, "run1",
 function (mode) {
 while (true) switch (mode) {
 case -1:
@@ -32,7 +32,7 @@ return;
 }
 
 }, "~N");
-Clazz.defineMethod (c$, "runNextScript", 
+Clazz.defineMethod (c$, "runNextScript",
  function () {
 var queue = this.scriptManager.getScriptQueue ();
 if (queue.size () == 0) return false;

@@ -9,11 +9,11 @@ this.orbitalData = null;
 this.orbitalInfo = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.quantum, "MopacGraphfReader", J.adapter.readers.quantum.MopacSlaterReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.alphaBeta = "alpha";
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 this.readAtoms ();
 if (this.doReadMolecularOrbitals) {
@@ -23,7 +23,7 @@ if (this.readKeywords ()) this.readMolecularOrbitals (true);
 }this.continuing = false;
 return false;
 });
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function () {
 this.asc.newAtomSet ();
 this.ac = this.parseIntStr (this.line);
@@ -37,7 +37,7 @@ if (this.line.length > 41) atom.partialCharge = this.parseFloatStr (this.line.su
 atom.elementSymbol = J.adapter.smarter.AtomSetCollectionReader.getElementSymbol (this.atomicNumbers[i]);
 }
 });
-Clazz.defineMethod (c$, "readSlaterBasis", 
+Clazz.defineMethod (c$, "readSlaterBasis",
  function () {
 this.nCoefficients = 0;
 var values =  Clazz.newFloatArray (3, 0);
@@ -61,7 +61,7 @@ this.createSphericalSlaterByType (iAtom, atomicNumber, "Dxy", zeta, 1);
 this.nCoefficients = this.slaters.size ();
 this.setSlaters (true, false);
 });
-Clazz.defineMethod (c$, "readMolecularOrbitals", 
+Clazz.defineMethod (c$, "readMolecularOrbitals",
  function (isBeta) {
 if (isBeta) this.alphaBeta = "beta";
 var list = null;
@@ -121,7 +121,7 @@ if (this.filterMO ()) this.setMO (mo);
 }
 this.setMOs ("eV");
 }, "~B");
-Clazz.defineMethod (c$, "readKeywords", 
+Clazz.defineMethod (c$, "readKeywords",
  function () {
 if (this.rd () == null || this.line.indexOf (" Keywords:") < 0) return false;
 this.moData.put ("calculationType", this.calculationType = this.line.substring (11).trim ());

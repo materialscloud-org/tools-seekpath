@@ -17,7 +17,7 @@ Clazz.prepareFields (c$, function () {
 this.propertyItemCounts =  new java.util.Hashtable ();
 this.fieldTypes =  Clazz.newIntArray (100, 0);
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.equals ("local_transform")) {
 this.processLocalTransform ();
@@ -46,17 +46,17 @@ this.processBasisObject ("gto");
 return false;
 }}return true;
 });
-Clazz.defineMethod (c$, "processLocalTransform", 
+Clazz.defineMethod (c$, "processLocalTransform",
  function () {
 var tokens = JU.PT.getTokens (this.rd () + " " + this.rd () + " " + this.rd () + " " + this.rd ());
 this.setTransform (this.parseFloatStr (tokens[0]), this.parseFloatStr (tokens[1]), this.parseFloatStr (tokens[2]), this.parseFloatStr (tokens[4]), this.parseFloatStr (tokens[5]), this.parseFloatStr (tokens[6]), this.parseFloatStr (tokens[8]), this.parseFloatStr (tokens[9]), this.parseFloatStr (tokens[10]));
 });
-Clazz.defineMethod (c$, "getPropertyCount", 
+Clazz.defineMethod (c$, "getPropertyCount",
  function (what) {
 var count = this.propertyItemCounts.get (what);
 return (what.equals ("ID") ? 1 : count == null ? 0 : count.intValue ());
 }, "~S");
-Clazz.defineMethod (c$, "parseLineParameters", 
+Clazz.defineMethod (c$, "parseLineParameters",
  function (fields, fieldMap) {
 for (var i = 0; i < this.fieldCount; i++) this.fieldTypes[i] = 0;
 
@@ -81,7 +81,7 @@ fpt += this.getPropertyCount (field);
 }
 return this.fieldCount;
 }, "~A,~A");
-Clazz.defineMethod (c$, "fillCsfArray", 
+Clazz.defineMethod (c$, "fillCsfArray",
  function (property, tokens, i0, f, isInteger) {
 var n = this.getPropertyCount (property);
 var ioffset = i0;
@@ -95,7 +95,7 @@ ipt = i0;
  else (f)[i] = this.parseFloatStr (tokens[ipt]);
 }
 }, "~S,~A,~N,~O,~B");
-Clazz.defineMethod (c$, "processConnectorObject", 
+Clazz.defineMethod (c$, "processConnectorObject",
  function () {
 this.connectors =  new java.util.Hashtable ();
 this.rd ();
@@ -141,13 +141,13 @@ connect[0] = thisAtomID;
 this.connectors.put (thisBondID, connect);
 }}}
 });
-Clazz.defineMethod (c$, "setBond", 
+Clazz.defineMethod (c$, "setBond",
  function (bond, connect) {
 bond.atomIndex1 = this.asc.getAtomIndex (connect[0]);
 bond.atomIndex2 = this.asc.getAtomIndex (connect[1]);
 this.asc.addBond (bond);
 }, "J.adapter.smarter.Bond,~A");
-Clazz.defineMethod (c$, "processAtomObject", 
+Clazz.defineMethod (c$, "processAtomObject",
  function () {
 this.rd ();
 this.parseLineParameters (J.adapter.readers.quantum.CsfReader.atomFields, J.adapter.readers.quantum.CsfReader.atomFieldMap);
@@ -191,7 +191,7 @@ this.nAtoms++;
 this.asc.addAtomWithMappedSerialNumber (atom);
 }}
 });
-Clazz.defineMethod (c$, "processBondObject", 
+Clazz.defineMethod (c$, "processBondObject",
  function () {
 this.rd ();
 this.parseLineParameters (J.adapter.readers.quantum.CsfReader.bondFields, J.adapter.readers.quantum.CsfReader.bondFieldMap);
@@ -223,7 +223,7 @@ this.setBond (bond, this.connectors.get (thisBondID));
 }
 }
 });
-Clazz.defineMethod (c$, "processVibrationObject", 
+Clazz.defineMethod (c$, "processVibrationObject",
  function () {
 var vibData =  Clazz.newFloatArray (this.nVibrations, this.nAtoms * 3, 0);
 var energies =  new Array (this.nVibrations);
@@ -258,7 +258,7 @@ for (var iAtom = 0; iAtom < this.nAtoms; iAtom++) this.asc.addVibrationVector (b
 
 }
 });
-Clazz.defineMethod (c$, "processMolecularOrbitalObject", 
+Clazz.defineMethod (c$, "processMolecularOrbitalObject",
  function () {
 if (this.nSlaters == 0 && this.nGaussians == 0 || !this.doReadMolecularOrbitals) {
 this.rd ();
@@ -319,7 +319,7 @@ this.setMO (mo);
 }
 this.setMOs ("eV");
 });
-Clazz.defineMethod (c$, "processBasisObject", 
+Clazz.defineMethod (c$, "processBasisObject",
  function (sto_gto) {
 var atomNos = JU.PT.getTokens (this.strAtomicNumbers);
 this.atomicNumbers =  Clazz.newIntArray (atomNos.length, 0);

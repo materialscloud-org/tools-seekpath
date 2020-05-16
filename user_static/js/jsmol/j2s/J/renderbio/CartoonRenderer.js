@@ -4,7 +4,7 @@ c$ = Clazz.decorateAsClass (function () {
 this.nucleicRenderer = null;
 Clazz.instantialize (this, arguments);
 }, J.renderbio, "CartoonRenderer", J.renderbio.RocketsRenderer);
-Clazz.overrideMethod (c$, "renderBioShape", 
+Clazz.overrideMethod (c$, "renderBioShape",
 function (bioShape) {
 if (!this.setupRR (bioShape, false)) return;
 if (this.isNucleic || this.isPhosphorusOnly) {
@@ -24,7 +24,7 @@ this.vwr.freeTempPoints (this.cordMidPoints);
 this.vwr.freeTempPoints (this.ribbonTopScreens);
 this.vwr.freeTempPoints (this.ribbonBottomScreens);
 }, "J.shapebio.BioShape");
-Clazz.defineMethod (c$, "renderProtein", 
+Clazz.defineMethod (c$, "renderProtein",
  function () {
 var lastWasSheet = false;
 var lastWasHelix = false;

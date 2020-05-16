@@ -46,11 +46,11 @@ this.theTok = 0;
 this.pointers = null;
 Clazz.instantialize (this, arguments);
 }, JS, "ScriptContext");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 this.id = ++JS.ScriptContext.contextCount;
 });
-Clazz.defineMethod (c$, "setMustResume", 
+Clazz.defineMethod (c$, "setMustResume",
 function () {
 var sc = this;
 while (sc != null) {
@@ -59,7 +59,7 @@ sc.pc = sc.pc0;
 sc = sc.parentContext;
 }
 });
-Clazz.defineMethod (c$, "getVariable", 
+Clazz.defineMethod (c$, "getVariable",
 function ($var) {
 var context = this;
 while (context != null && !context.isFunction) {
@@ -68,7 +68,7 @@ context = context.parentContext;
 }
 return null;
 }, "~S");
-Clazz.defineMethod (c$, "getFullMap", 
+Clazz.defineMethod (c$, "getFullMap",
 function () {
 var ht =  new java.util.Hashtable ();
 var context = this;
@@ -82,7 +82,7 @@ context = context.parentContext;
 }
 return ht;
 });
-Clazz.defineMethod (c$, "saveTokens", 
+Clazz.defineMethod (c$, "saveTokens",
 function (aa) {
 this.aatoken = aa;
 if (aa == null) {
@@ -92,17 +92,17 @@ return;
 for (var i = this.pointers.length; --i >= 0; ) this.pointers[i] = (aa[i] == null ? -1 : aa[i][0].intValue);
 
 }, "~A");
-Clazz.defineMethod (c$, "restoreTokens", 
+Clazz.defineMethod (c$, "restoreTokens",
 function () {
 if (this.pointers != null) for (var i = this.pointers.length; --i >= 0; ) if (this.aatoken[i] != null) this.aatoken[i][0].intValue = this.pointers[i];
 
 return this.aatoken;
 });
-Clazz.defineMethod (c$, "getTokenCount", 
+Clazz.defineMethod (c$, "getTokenCount",
 function () {
 return (this.aatoken == null ? -1 : this.aatoken.length);
 });
-Clazz.defineMethod (c$, "getToken", 
+Clazz.defineMethod (c$, "getToken",
 function (i) {
 return this.aatoken[i];
 }, "~N");

@@ -10,12 +10,12 @@ Clazz.prepareFields (c$, function () {
 this.originScreen =  new JU.P3 ();
 this.colixes =  Clazz.newShortArray (3, 0);
 });
-Clazz.overrideMethod (c$, "initRenderer", 
+Clazz.overrideMethod (c$, "initRenderer",
 function () {
 this.endcap = 2;
 this.draw000 = false;
 });
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 var axes = this.shape;
 var mad10 = this.vwr.getObjectMad10 (1);
@@ -122,7 +122,7 @@ this.renderLabel (label0, xCenter, yCenter, ptTemp.z, xCenter, yCenter);
 }}if (isXY) this.g3d.setSlab (slab);
 return false;
 });
-Clazz.defineMethod (c$, "renderLabel", 
+Clazz.defineMethod (c$, "renderLabel",
  function (str, x, y, z, xCenter, yCenter) {
 var strAscent = this.font3d.getAscent ();
 var strWidth = this.font3d.stringWidth (str);

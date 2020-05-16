@@ -22,19 +22,19 @@ JU.BoxInfo.unitBboxPoints[i] = JU.P3.new3 (-1, -1, -1);
 JU.BoxInfo.unitBboxPoints[i].scaleAdd2 (2, JU.BoxInfo.unitCubePoints[i], JU.BoxInfo.unitBboxPoints[i]);
 }
 }});
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 for (var i = 8; --i >= 0; ) this.bbVertices[i] =  new JU.Point3fi ();
 
 this.reset ();
 });
-Clazz.defineMethod (c$, "reset", 
+Clazz.defineMethod (c$, "reset",
 function () {
 this.isScaleSet = false;
 this.bbCorner0.set (3.4028235E38, 3.4028235E38, 3.4028235E38);
 this.bbCorner1.set (-3.4028235E38, -3.4028235E38, -3.4028235E38);
 });
-c$.scaleBox = Clazz.defineMethod (c$, "scaleBox", 
+c$.scaleBox = Clazz.defineMethod (c$, "scaleBox",
 function (pts, scale) {
 if (scale == 0 || scale == 1) return;
 var center =  new JU.P3 ();
@@ -48,7 +48,7 @@ v.scale (scale);
 pts[i].add2 (center, v);
 }
 }, "~A,~N");
-c$.getVerticesFromOABC = Clazz.defineMethod (c$, "getVerticesFromOABC", 
+c$.getVerticesFromOABC = Clazz.defineMethod (c$, "getVerticesFromOABC",
 function (oabc) {
 var vertices =  new Array (8);
 for (var i = 0; i <= 7; i++) {
@@ -59,7 +59,7 @@ if ((i & 1) == 1) vertices[i].add (oabc[3]);
 }
 return vertices;
 }, "~A");
-c$.getCanonicalCopy = Clazz.defineMethod (c$, "getCanonicalCopy", 
+c$.getCanonicalCopy = Clazz.defineMethod (c$, "getCanonicalCopy",
 function (boxPoints, scale) {
 var pts =  new Array (8);
 for (var i = 0; i < 8; i++) pts[JU.BoxInfo.toCanonical[i]] = JU.P3.newP (boxPoints[i]);
@@ -67,7 +67,7 @@ for (var i = 0; i < 8; i++) pts[JU.BoxInfo.toCanonical[i]] = JU.P3.newP (boxPoin
 JU.BoxInfo.scaleBox (pts, scale);
 return pts;
 }, "~A,~N");
-c$.toOABC = Clazz.defineMethod (c$, "toOABC", 
+c$.toOABC = Clazz.defineMethod (c$, "toOABC",
 function (bbVertices, offset) {
 var center = JU.P3.newP (bbVertices[0]);
 var a = JU.P3.newP (bbVertices[4]);
@@ -79,27 +79,27 @@ c.sub (center);
 if (offset != null) center.add (offset);
 return  Clazz.newArray (-1, [center, a, b, c]);
 }, "~A,JU.T3");
-Clazz.defineMethod (c$, "getBoundBoxCenter", 
+Clazz.defineMethod (c$, "getBoundBoxCenter",
 function () {
 if (!this.isScaleSet) this.setBbcage (1);
 return this.bbCenter;
 });
-Clazz.defineMethod (c$, "getBoundBoxCornerVector", 
+Clazz.defineMethod (c$, "getBoundBoxCornerVector",
 function () {
 if (!this.isScaleSet) this.setBbcage (1);
 return this.bbVector;
 });
-Clazz.defineMethod (c$, "getBoundBoxPoints", 
+Clazz.defineMethod (c$, "getBoundBoxPoints",
 function (isAll) {
 if (!this.isScaleSet) this.setBbcage (1);
 return (isAll ?  Clazz.newArray (-1, [this.bbCenter, JU.P3.newP (this.bbVector), this.bbCorner0, this.bbCorner1]) :  Clazz.newArray (-1, [this.bbCorner0, this.bbCorner1]));
 }, "~B");
-Clazz.defineMethod (c$, "getBoundBoxVertices", 
+Clazz.defineMethod (c$, "getBoundBoxVertices",
 function () {
 if (!this.isScaleSet) this.setBbcage (1);
 return this.bbVertices;
 });
-Clazz.defineMethod (c$, "setBoundBoxFromOABC", 
+Clazz.defineMethod (c$, "setBoundBoxFromOABC",
 function (points) {
 var origin = JU.P3.newP (points[0]);
 var pt111 =  new JU.P3 ();
@@ -107,7 +107,7 @@ for (var i = 0; i < 4; i++) pt111.add (points[i]);
 
 this.setBoundBox (origin, pt111, true, 1);
 }, "~A");
-Clazz.defineMethod (c$, "setBoundBox", 
+Clazz.defineMethod (c$, "setBoundBox",
 function (pt1, pt2, byCorner, scale) {
 if (pt1 != null) {
 if (scale == 0) return;
@@ -121,16 +121,16 @@ this.bbCorner0.set (pt1.x - pt2.x, pt1.y - pt2.y, pt1.z - pt2.z);
 this.bbCorner1.set (pt1.x + pt2.x, pt1.y + pt2.y, pt1.z + pt2.z);
 }}this.setBbcage (scale);
 }, "JU.T3,JU.T3,~B,~N");
-Clazz.defineMethod (c$, "setMargin", 
+Clazz.defineMethod (c$, "setMargin",
 function (m) {
 this.margin = m;
 }, "~N");
-Clazz.defineMethod (c$, "addBoundBoxPoint", 
+Clazz.defineMethod (c$, "addBoundBoxPoint",
 function (pt) {
 this.isScaleSet = false;
 JU.BoxInfo.addPoint (pt, this.bbCorner0, this.bbCorner1, this.margin);
 }, "JU.T3");
-c$.addPoint = Clazz.defineMethod (c$, "addPoint", 
+c$.addPoint = Clazz.defineMethod (c$, "addPoint",
 function (pt, xyzMin, xyzMax, margin) {
 if (pt.x - margin < xyzMin.x) xyzMin.x = pt.x - margin;
 if (pt.x + margin > xyzMax.x) xyzMax.x = pt.x + margin;
@@ -139,7 +139,7 @@ if (pt.y + margin > xyzMax.y) xyzMax.y = pt.y + margin;
 if (pt.z - margin < xyzMin.z) xyzMin.z = pt.z - margin;
 if (pt.z + margin > xyzMax.z) xyzMax.z = pt.z + margin;
 }, "JU.T3,JU.T3,JU.T3,~N");
-c$.addPointXYZ = Clazz.defineMethod (c$, "addPointXYZ", 
+c$.addPointXYZ = Clazz.defineMethod (c$, "addPointXYZ",
 function (x, y, z, xyzMin, xyzMax, margin) {
 if (x - margin < xyzMin.x) xyzMin.x = x - margin;
 if (x + margin > xyzMax.x) xyzMax.x = x + margin;
@@ -148,7 +148,7 @@ if (y + margin > xyzMax.y) xyzMax.y = y + margin;
 if (z - margin < xyzMin.z) xyzMin.z = z - margin;
 if (z + margin > xyzMax.z) xyzMax.z = z + margin;
 }, "~N,~N,~N,JU.P3,JU.P3,~N");
-Clazz.defineMethod (c$, "setBbcage", 
+Clazz.defineMethod (c$, "setBbcage",
 function (scale) {
 this.isScaleSet = true;
 this.bbCenter.add2 (this.bbCorner0, this.bbCorner1);
@@ -171,12 +171,12 @@ pt.add (this.bbCenter);
 this.bbCorner0.setT (this.bbVertices[0]);
 this.bbCorner1.setT (this.bbVertices[7]);
 }, "~N");
-Clazz.defineMethod (c$, "isWithin", 
+Clazz.defineMethod (c$, "isWithin",
 function (pt) {
 if (!this.isScaleSet) this.setBbcage (1);
 return (pt.x >= this.bbCorner0.x && pt.x <= this.bbCorner1.x && pt.y >= this.bbCorner0.y && pt.y <= this.bbCorner1.y && pt.z >= this.bbCorner0.z && pt.z <= this.bbCorner1.z);
 }, "JU.P3");
-Clazz.defineMethod (c$, "getMaxDim", 
+Clazz.defineMethod (c$, "getMaxDim",
 function () {
 return this.bbVector.length () * 2;
 });

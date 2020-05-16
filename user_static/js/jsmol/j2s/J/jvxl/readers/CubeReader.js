@@ -1,15 +1,15 @@
 Clazz.declarePackage ("J.jvxl.readers");
 Clazz.load (["J.jvxl.readers.VolumeFileReader"], "J.jvxl.readers.CubeReader", ["JU.PT", "$.SB", "JU.Logger"], function () {
 c$ = Clazz.declareType (J.jvxl.readers, "CubeReader", J.jvxl.readers.VolumeFileReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.CubeReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2VFR (sg, br);
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "readParameters", 
+Clazz.overrideMethod (c$, "readParameters",
 function () {
 this.jvxlFileHeaderBuffer =  new JU.SB ();
 this.jvxlFileHeaderBuffer.append (this.rd ()).appendC ('\n');

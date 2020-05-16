@@ -20,10 +20,10 @@ this.vertexCount = 0;
 this.imap = null;
 Clazz.instantialize (this, arguments);
 }, J.shapesurface, "PMeshWriter");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "write", 
+Clazz.defineMethod (c$, "write",
 function (isosurfaceMesh, isBinary) {
 this.imesh = isosurfaceMesh;
 this.isBinary = isBinary;
@@ -56,7 +56,7 @@ if (isBinary) this.oc.writeInt (0);
 this.oc.closeChannel ();
 return (isBinary ? this.oc.toByteArray () : this.oc.toString ());
 }, "J.shapesurface.IsosurfaceMesh,~B");
-Clazz.defineMethod (c$, "outputPoints", 
+Clazz.defineMethod (c$, "outputPoints",
  function (bsPoints) {
 var color = JU.C.getArgb (this.cx);
 for (var i = bsPoints.nextSetBit (0); i >= 0; i = bsPoints.nextSetBit (i + 1)) {
@@ -66,7 +66,7 @@ color = JU.C.getArgb (this.cx);
 }this.outputPoint (this.imap[i], color);
 }
 }, "JU.BS");
-Clazz.defineMethod (c$, "outputTriangles", 
+Clazz.defineMethod (c$, "outputTriangles",
  function (fill, bsPoly, bsDone) {
 var color = JU.C.getArgb (this.cx);
 for (var i = bsPoly.nextSetBit (0); i >= 0; i = bsPoly.nextSetBit (i + 1)) {
@@ -96,7 +96,7 @@ color = JU.C.getArgb (this.imesh.fillTriangles ? 4 : this.contourColixes[polygon
 }this.outputTriangle (iA, iB, iC, color, check);
 }}
 }, "~B,JU.BS,JU.BS");
-Clazz.defineMethod (c$, "checkPoints", 
+Clazz.defineMethod (c$, "checkPoints",
  function (bsVert) {
 var slabPoints = ((this.imesh.pc == 0) && this.selectedPolyOnly);
 var incr = this.imesh.vertexIncrement;
@@ -105,7 +105,7 @@ if (this.vertexValues != null && Float.isNaN (this.vertexValues[i]) || this.imes
 bsVert.set (i);
 }
 }, "JU.BS");
-Clazz.defineMethod (c$, "checkTriangles", 
+Clazz.defineMethod (c$, "checkTriangles",
  function (fill, bsPoly, bsVert) {
 this.setup (fill);
 for (var i = this.imesh.pc; --i >= 0; ) {
@@ -123,7 +123,7 @@ bsVert.set (iB);
 bsVert.set (iC);
 }
 }, "~B,JU.BS,JU.BS");
-Clazz.defineMethod (c$, "setup", 
+Clazz.defineMethod (c$, "setup",
  function (fill) {
 this.vertexCount = this.imesh.vc;
 this.vertexValues = this.imesh.vvs;
@@ -139,7 +139,7 @@ this.haveBsDisplay = (this.imesh.bsDisplay != null);
 this.selectedPolyOnly = (this.imesh.bsSlabDisplay != null);
 this.bsPolygons = (this.selectedPolyOnly ? this.imesh.bsSlabDisplay : null);
 }, "~B");
-Clazz.defineMethod (c$, "writePmeshHeader", 
+Clazz.defineMethod (c$, "writePmeshHeader",
  function (nV) {
 this.oc = this.imesh.vwr.getOutputChannel (null, null);
 if (this.isBinary) {
@@ -155,19 +155,19 @@ for (var i = 0; i < 16; i++) this.oc.writeInt (0);
 } else {
 this.oc.append ("#JmolPmesh\n");
 }}, "~N");
-Clazz.defineMethod (c$, "outputInt", 
+Clazz.defineMethod (c$, "outputInt",
  function (i) {
 if (this.isBinary) this.oc.writeInt (i);
  else this.oc.append ("" + i + "\n");
 }, "~N");
-Clazz.defineMethod (c$, "outputPoint", 
+Clazz.defineMethod (c$, "outputPoint",
  function (iA, color) {
 this.outputInt (-1);
 this.outputInt (iA);
 this.outputInt (color);
 return 1;
 }, "~N,~N");
-Clazz.defineMethod (c$, "outputXYZ", 
+Clazz.defineMethod (c$, "outputXYZ",
  function (pt) {
 if (this.isBinary) {
 this.oc.writeFloat (pt.x);
@@ -176,14 +176,14 @@ this.oc.writeFloat (pt.z);
 } else {
 this.oc.append (pt.x + " " + pt.y + " " + pt.z + "\n");
 }}, "JU.T3");
-Clazz.defineMethod (c$, "outputEdge", 
+Clazz.defineMethod (c$, "outputEdge",
  function (iA, iB, color) {
 this.outputInt (-2);
 this.outputInt (iA);
 this.outputInt (iB);
 this.outputInt (color);
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "outputTriangle", 
+Clazz.defineMethod (c$, "outputTriangle",
  function (iA, iB, iC, color, check) {
 if (check == 999) {
 this.outputInt (-3);

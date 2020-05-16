@@ -14,13 +14,13 @@ this.radiusPt = -2147483648;
 this.elementPt = -2147483648;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.xtal, "VaspPoscarReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.isPrimitive = true;
 this.readStructure (null);
 this.continuing = false;
 });
-Clazz.defineMethod (c$, "readStructure", 
+Clazz.defineMethod (c$, "readStructure",
 function (titleMsg) {
 this.title = this.rd ().trim ();
 var pt = this.title.indexOf ("--params");
@@ -32,12 +32,12 @@ this.readMolecularFormula ();
 this.readCoordinates ();
 this.asc.setAtomSetName (this.title + (titleMsg == null ? "" : "[" + titleMsg + "]"));
 }, "~S");
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 if (!this.haveAtomLabels && !this.atomsLabeledInline) this.appendLoadNote ("VASP POSCAR reader using pseudo atoms Al B C Db...");
 this.finalizeReaderASCR ();
 });
-Clazz.defineMethod (c$, "readUnitCellVectors", 
+Clazz.defineMethod (c$, "readUnitCellVectors",
 function () {
 this.setSpaceGroupName ("P1");
 this.setFractionalCoordinates (true);
@@ -56,7 +56,7 @@ this.addExplicitLatticeVector (0, unitCellData, 0);
 this.addExplicitLatticeVector (1, unitCellData, 3);
 this.addExplicitLatticeVector (2, unitCellData, 6);
 });
-Clazz.defineMethod (c$, "readMolecularFormula", 
+Clazz.defineMethod (c$, "readMolecularFormula",
 function () {
 if (this.elementLabel == null) this.elementLabel = JU.PT.getTokens (this.discardLinesUntilNonBlank ());
 var elementCounts;
@@ -88,7 +88,7 @@ if (!this.quiet) this.appendLoadNote (this.ac + " atoms identified for" + s);
 this.asc.newAtomSet ();
 this.asc.setAtomSetName (s);
 });
-Clazz.defineMethod (c$, "readCoordinates", 
+Clazz.defineMethod (c$, "readCoordinates",
 function () {
 var isSelective = this.discardLinesUntilNonBlank ().toLowerCase ().contains ("selective");
 if (isSelective) this.rd ();
@@ -113,7 +113,7 @@ if (!Float.isNaN (radius)) atom.radius = radius * this.scaleFac;
 if (this.asc.bsAtoms != null) this.asc.bsAtoms.set (atom.index);
 }
 });
-Clazz.defineMethod (c$, "getElement", 
+Clazz.defineMethod (c$, "getElement",
 function (token) {
 var s = null;
 switch (token.length) {
@@ -126,7 +126,7 @@ case 0:
 return null;
 }
 }, "~S");
-Clazz.defineMethod (c$, "rdline", 
+Clazz.defineMethod (c$, "rdline",
 function () {
 this.rd ();
 if (this.line != null && this.line.startsWith ("[")) this.line = this.line.substring (this.line.indexOf ("]") + 1).trim ();

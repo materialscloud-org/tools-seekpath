@@ -1,7 +1,7 @@
 Clazz.declarePackage ("JS");
 Clazz.load (null, "JS.SmilesAromatic", ["java.util.Hashtable", "JU.BS", "$.Lst", "$.Measure", "$.V3", "JS.SmilesRing", "$.SmilesRingSet", "JU.BSUtil", "$.Logger"], function () {
 c$ = Clazz.declareType (JS, "SmilesAromatic");
-c$.setAromatic = Clazz.defineMethod (c$, "setAromatic", 
+c$.setAromatic = Clazz.defineMethod (c$, "setAromatic",
 function (n, jmolAtoms, bsSelected, vR, bsAromatic, strictness, isOpenSMILES, justCheckBonding, checkExplicit, v, vOK, lstSP2, eCounts, doTestAromatic) {
 var doCheck = (isOpenSMILES || strictness > 0);
 if (!doTestAromatic) {
@@ -40,7 +40,7 @@ if (!isOK) continue;
 }vOK.addLast (bs);
 }
 }, "~N,~A,JU.BS,JU.Lst,JU.BS,~N,~B,~B,~B,JS.VTemp,JU.Lst,JU.Lst,~A,~B");
-c$.checkAromaticDefined = Clazz.defineMethod (c$, "checkAromaticDefined", 
+c$.checkAromaticDefined = Clazz.defineMethod (c$, "checkAromaticDefined",
 function (jmolAtoms, bsSelected, bsAromatic) {
 for (var i = bsSelected.nextSetBit (0); i >= 0; i = bsSelected.nextSetBit (i + 1)) {
 var bonds = jmolAtoms[i].getEdges ();
@@ -55,7 +55,7 @@ bsAromatic.set (bonds[j].getAtomIndex2 ());
 }
 }
 }, "~A,JU.BS,JU.BS");
-c$.isSp2Ring = Clazz.defineMethod (c$, "isSp2Ring", 
+c$.isSp2Ring = Clazz.defineMethod (c$, "isSp2Ring",
  function (n, atoms, bsSelected, bs, cutoff, checkExplicit, allowSOxide) {
 if (checkExplicit) {
 for (var i = bs.nextSetBit (0); i >= 0; i = bs.nextSetBit (i + 1)) if (atoms[i].getCovalentBondCount () > 3) return false;
@@ -104,7 +104,7 @@ if ((j = iSub) < 0) break;
 }
 return JS.SmilesAromatic.checkStandardDeviation (vNorms, vMean, nNorms, cutoff);
 }, "~N,~A,JU.BS,JU.BS,~N,~B,~B");
-c$.addNormal = Clazz.defineMethod (c$, "addNormal", 
+c$.addNormal = Clazz.defineMethod (c$, "addNormal",
  function (vTemp, vMean, maxDev) {
 var similarity = vMean.dot (vTemp);
 if (similarity != 0 && Math.abs (similarity) < maxDev) return false;
@@ -113,7 +113,7 @@ vMean.add (vTemp);
 vMean.normalize ();
 return true;
 }, "JU.V3,JU.V3,~N");
-c$.checkStandardDeviation = Clazz.defineMethod (c$, "checkStandardDeviation", 
+c$.checkStandardDeviation = Clazz.defineMethod (c$, "checkStandardDeviation",
  function (vNorms, vMean, n, cutoff) {
 var sum = 0;
 var sum2 = 0;
@@ -125,7 +125,7 @@ sum2 += (v) * v;
 sum = Math.sqrt ((sum2 - sum * sum / n) / (n - 1));
 return (sum < cutoff);
 }, "~A,JU.V3,~N,~N");
-c$.checkHueckelAromatic = Clazz.defineMethod (c$, "checkHueckelAromatic", 
+c$.checkHueckelAromatic = Clazz.defineMethod (c$, "checkHueckelAromatic",
  function (nAtoms, jmolAtoms, bsAromatic, bsRing, strictness, eCounts) {
 var npi = 0;
 var n1 = 0;
@@ -166,7 +166,7 @@ continue;
 }}
 return ((npi - 2) % 4 == 0 && (strictness < 2 || nAtoms == 5 || n1 == 6) ? 1 : 0);
 }, "~N,~A,JU.BS,JU.BS,~N,~A");
-c$.finalizeAromatic = Clazz.defineMethod (c$, "finalizeAromatic", 
+c$.finalizeAromatic = Clazz.defineMethod (c$, "finalizeAromatic",
 function (jmolAtoms, bsAromatic, lstAromatic, lstSP2, eCounts, isOpenNotStrict, isStrict) {
 if (isStrict) JS.SmilesAromatic.removeBridgingRings (lstAromatic, lstSP2);
 JS.SmilesAromatic.checkFusedRings (lstSP2, eCounts, lstAromatic);
@@ -204,7 +204,7 @@ bsAromatic.clear (i);
 i = -1;
 }}
 }}, "~A,JU.BS,JU.Lst,JU.Lst,~A,~B,~B");
-c$.removeBridgingRings = Clazz.defineMethod (c$, "removeBridgingRings", 
+c$.removeBridgingRings = Clazz.defineMethod (c$, "removeBridgingRings",
  function (lstAromatic, lstSP2) {
 var bs =  new JU.BS ();
 var bsBad =  new JU.BS ();
@@ -217,7 +217,7 @@ for (var i = lstAromatic.size (); --i >= 0; ) if (bsBad.get (i)) lstAromatic.rem
 for (var i = lstSP2.size (); --i >= 0; ) if (bsBad2.get (i)) lstSP2.removeItemAt (i);
 
 }, "JU.Lst,JU.Lst");
-c$.checkBridges = Clazz.defineMethod (c$, "checkBridges", 
+c$.checkBridges = Clazz.defineMethod (c$, "checkBridges",
  function (lst, bsBad, lst2, bsBad2, bs) {
 var isSameList = (lst === lst2);
 for (var i = lst.size (); --i >= 0; ) {
@@ -235,7 +235,7 @@ bsBad2.set (j);
 }}
 }
 }, "JU.Lst,JU.BS,JU.Lst,JU.BS,JU.BS");
-c$.checkFusedRings = Clazz.defineMethod (c$, "checkFusedRings", 
+c$.checkFusedRings = Clazz.defineMethod (c$, "checkFusedRings",
  function (rings, eCounts, lstAromatic) {
 var htEdgeMap =  new java.util.Hashtable ();
 for (var i = rings.size (); --i >= 0; ) {

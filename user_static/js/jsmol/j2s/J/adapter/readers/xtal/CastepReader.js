@@ -30,7 +30,7 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.abc =  new Array (3);
 });
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 if (this.filter != null) {
 this.chargeType = this.getFilter ("CHARGE=");
@@ -43,7 +43,7 @@ if (!this.isAllQ && this.filter.indexOf ("{") >= 0) this.setDesiredQpt (this.fil
 this.filter = JU.PT.rep (this.filter, "-PT", "");
 }this.continuing = this.readFileData ();
 });
-Clazz.defineMethod (c$, "setDesiredQpt", 
+Clazz.defineMethod (c$, "setDesiredQpt",
  function (s) {
 this.desiredQpt =  new JU.V3 ();
 this.desiredQ = "";
@@ -94,7 +94,7 @@ break;
 }
 JU.Logger.info ("Looking for q-pt=" + this.desiredQpt);
 }, "~S");
-Clazz.defineMethod (c$, "readFileData", 
+Clazz.defineMethod (c$, "readFileData",
  function () {
 while (this.tokenizeCastepCell () > 0) if (this.tokens.length >= 2 && this.tokens[0].equalsIgnoreCase ("%BLOCK")) {
 JU.Logger.info (this.line);
@@ -120,7 +120,7 @@ this.asc.allowMultiple = false;
 }return true;
 }return false;
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.isOutput) {
 if (this.line.contains ("Real Lattice(A)")) {
@@ -153,7 +153,7 @@ this.readPhononFrequencies ();
 return true;
 }return true;
 });
-Clazz.defineMethod (c$, "readOutputUnitCell", 
+Clazz.defineMethod (c$, "readOutputUnitCell",
  function () {
 this.applySymmetryAndSetTrajectory ();
 this.asc.newAtomSetClear (false);
@@ -161,7 +161,7 @@ this.setFractionalCoordinates (true);
 this.abc = this.read3Vectors (false);
 this.setLatticeVectors ();
 });
-Clazz.defineMethod (c$, "readOutputAtoms", 
+Clazz.defineMethod (c$, "readOutputAtoms",
  function () {
 this.readLines (2);
 while (this.rd ().indexOf ("xxx") < 0) {
@@ -173,7 +173,7 @@ this.asc.addAtomWithMappedName (atom);
 this.setAtomCoordTokens (atom, this.tokens, 3);
 }
 });
-Clazz.defineMethod (c$, "readEnergy", 
+Clazz.defineMethod (c$, "readEnergy",
  function (pt, prefix) {
 if (this.isTrajectory) this.applySymmetryAndSetTrajectory ();
 this.tokens = this.getTokens ();
@@ -190,7 +190,7 @@ throw e;
 }
 }
 }, "~N,~S");
-Clazz.defineMethod (c$, "readPhononTrajectories", 
+Clazz.defineMethod (c$, "readPhononTrajectories",
  function () {
 if (!this.isTS) this.isTrajectory = (this.desiredVibrationNumber <= 0);
 if (this.isTrajectory) this.asc.setTrajectory ();
@@ -215,7 +215,7 @@ this.applySymmetryAndSetTrajectory ();
 }this.discardLinesUntilContains ("<-- E");
 }
 });
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 if (this.isPhonon || this.isOutput || this.isTS) {
 this.isTrajectory = false;
@@ -227,7 +227,7 @@ for (var i = 0; i < nAtoms; i++) this.setAtomCoord (this.asc.atoms[i]);
 
 }this.finalizeReaderASCR ();
 });
-Clazz.defineMethod (c$, "setLatticeVectors", 
+Clazz.defineMethod (c$, "setLatticeVectors",
  function () {
 if (this.abc[0] == null) {
 this.setUnitCell (this.a, this.b, this.c, this.alpha, this.beta, this.gamma);
@@ -240,7 +240,7 @@ lv[2] = this.abc[i].z;
 this.addExplicitLatticeVector (i, lv, 0);
 }
 });
-Clazz.defineMethod (c$, "readLatticeAbc", 
+Clazz.defineMethod (c$, "readLatticeAbc",
  function () {
 if (this.tokenizeCastepCell () == 0) return;
 var factor = this.readLengthUnit (this.tokens[0]);
@@ -259,7 +259,7 @@ this.gamma = this.parseFloatStr (this.tokens[2]);
 } else {
 JU.Logger.warn ("error reading alpha,beta,gamma in %BLOCK LATTICE_ABC in CASTEP .cell file");
 }});
-Clazz.defineMethod (c$, "readLatticeCart", 
+Clazz.defineMethod (c$, "readLatticeCart",
  function () {
 if (this.tokenizeCastepCell () == 0) return;
 var factor = this.readLengthUnit (this.tokens[0]);
@@ -284,18 +284,18 @@ this.alpha = (this.abc[1].angle (this.abc[2]) * 57.29578);
 this.beta = (this.abc[2].angle (this.abc[0]) * 57.29578);
 this.gamma = (this.abc[0].angle (this.abc[1]) * 57.29578);
 });
-Clazz.defineMethod (c$, "readPositionsFrac", 
+Clazz.defineMethod (c$, "readPositionsFrac",
  function () {
 if (this.tokenizeCastepCell () == 0) return;
 this.readAtomData (1.0);
 });
-Clazz.defineMethod (c$, "readPositionsAbs", 
+Clazz.defineMethod (c$, "readPositionsAbs",
  function () {
 if (this.tokenizeCastepCell () == 0) return;
 var factor = this.readLengthUnit (this.tokens[0]);
 this.readAtomData (factor);
 });
-Clazz.defineMethod (c$, "readLengthUnit", 
+Clazz.defineMethod (c$, "readLengthUnit",
  function (units) {
 var factor = 1.0;
 for (var i = 0; i < J.adapter.readers.xtal.CastepReader.lengthUnitIds.length; i++) if (units.equalsIgnoreCase (J.adapter.readers.xtal.CastepReader.lengthUnitIds[i])) {
@@ -305,7 +305,7 @@ break;
 }
 return factor;
 }, "~S");
-Clazz.defineMethod (c$, "readAtomData", 
+Clazz.defineMethod (c$, "readAtomData",
  function (factor) {
 do {
 if (this.tokens.length >= 4) {
@@ -322,7 +322,7 @@ atom.scale (factor);
 JU.Logger.warn ("cannot read line with CASTEP atom data: " + this.line);
 }} while (this.tokenizeCastepCell () > 0 && !this.tokens[0].equalsIgnoreCase ("%ENDBLOCK"));
 }, "~N");
-Clazz.defineMethod (c$, "tokenizeCastepCell", 
+Clazz.defineMethod (c$, "tokenizeCastepCell",
  function () {
 while (this.rd () != null) {
 if ((this.line = this.line.trim ()).length == 0 || this.line.startsWith ("#") || this.line.startsWith ("!")) continue;
@@ -346,7 +346,7 @@ return -1;
 }
 return (this.line == null ? 0 : (this.tokens = this.getTokens ()).length);
 });
-Clazz.defineMethod (c$, "readOutputBornChargeTensors", 
+Clazz.defineMethod (c$, "readOutputBornChargeTensors",
  function () {
 if (this.rd ().indexOf ("--------") < 0) return;
 var atoms = this.asc.atoms;
@@ -354,12 +354,12 @@ this.appendLoadNote ("Ellipsoids: Born Charge Tensors");
 while (this.rd ().indexOf ('=') < 0) this.getTensor (atoms[this.readOutputAtomIndex ()], this.line.substring (12));
 
 });
-Clazz.defineMethod (c$, "readOutputAtomIndex", 
+Clazz.defineMethod (c$, "readOutputAtomIndex",
  function () {
 this.tokens = this.getTokens ();
 return this.asc.getAtomIndex (this.tokens[0] + this.tokens[1]);
 });
-Clazz.defineMethod (c$, "getTensor", 
+Clazz.defineMethod (c$, "getTensor",
  function (atom, line0) {
 var data =  Clazz.newFloatArray (9, 0);
 var a =  Clazz.newDoubleArray (3, 3, 0);
@@ -372,7 +372,7 @@ atom.addTensor (( new JU.Tensor ()).setFromAsymmetricTensor (a, "charge", atom.a
 if (!this.haveCharges) this.appendLoadNote ("Ellipsoids set \"charge\": Born Effective Charges");
 this.haveCharges = true;
 }, "J.adapter.smarter.Atom,~S");
-Clazz.defineMethod (c$, "readOutputCharges", 
+Clazz.defineMethod (c$, "readOutputCharges",
  function () {
 if (this.line.toUpperCase ().indexOf (this.chargeType) < 0) return;
 JU.Logger.info ("reading charges: " + this.line);
@@ -391,13 +391,13 @@ if (haveSpin) spins[index] = this.parseFloatStr (this.tokens[this.tokens.length 
 }
 if (haveSpin) this.asc.setAtomProperties ("spin", spins, -1, false);
 });
-Clazz.defineMethod (c$, "readPhononUnitCell", 
+Clazz.defineMethod (c$, "readPhononUnitCell",
  function () {
 this.abc = this.read3Vectors (this.line.indexOf ("bohr") >= 0);
 this.setSpaceGroupName ("P1");
 this.setLatticeVectors ();
 });
-Clazz.defineMethod (c$, "readPhononFractionalCoord", 
+Clazz.defineMethod (c$, "readPhononFractionalCoord",
  function () {
 this.setFractionalCoordinates (true);
 while (this.rd () != null && this.line.indexOf ("END") < 0) {
@@ -410,7 +410,7 @@ var atoms = this.asc.atoms;
 for (var i = 0; i < this.ac; i++) this.atomPts[i] = JU.P3.newP (atoms[i]);
 
 });
-Clazz.defineMethod (c$, "readPhononFrequencies", 
+Clazz.defineMethod (c$, "readPhononFrequencies",
  function () {
 this.tokens = this.getTokens ();
 var v =  new JU.V3 ();
@@ -494,15 +494,15 @@ this.asc.setAtomSetFrequency (this.vibrationNumber, null, null, "" + freq, null)
 this.asc.setAtomSetName (JU.DF.formatDecimal (freq, 2) + " cm-1 " + qname);
 }
 });
-Clazz.defineMethod (c$, "getFractionalCoord", 
+Clazz.defineMethod (c$, "getFractionalCoord",
  function (qvec) {
 return (this.symmetry != null && J.adapter.readers.xtal.CastepReader.isInt (qvec.x * 12) && J.adapter.readers.xtal.CastepReader.isInt (qvec.y * 12) && J.adapter.readers.xtal.CastepReader.isInt (qvec.z * 12) ? this.symmetry.fcoord (qvec) : null);
 }, "JU.V3");
-c$.isInt = Clazz.defineMethod (c$, "isInt", 
+c$.isInt = Clazz.defineMethod (c$, "isInt",
  function (f) {
 return (Math.abs (f - Math.round (f)) < 0.001);
 }, "~N");
-Clazz.defineMethod (c$, "setPhononVector", 
+Clazz.defineMethod (c$, "setPhononVector",
  function (data, atom, rTrans, qvec, v) {
 if (qvec == null) {
 v.set (data[2], data[4], data[6]);

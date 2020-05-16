@@ -11,17 +11,17 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.cmeshes =  new Array (4);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.shapecgo.CGO, []);
 this.myType = "CGO";
 this.htObjects =  new java.util.Hashtable ();
 });
-Clazz.defineMethod (c$, "initCGO", 
+Clazz.defineMethod (c$, "initCGO",
  function () {
 this.indicatedModelIndex = -2147483648;
 });
-Clazz.overrideMethod (c$, "allocMesh", 
+Clazz.overrideMethod (c$, "allocMesh",
 function (thisID, m) {
 var index = this.meshCount++;
 this.meshes = this.cmeshes = JU.AU.ensureLength (this.cmeshes, this.meshCount * 2);
@@ -32,7 +32,7 @@ this.currentMesh.useColix = this.useColix;
 this.currentMesh.modelIndex = this.indicatedModelIndex;
 if (thisID != null && thisID !== "+PREVIOUS_MESH+" && this.htObjects != null) this.htObjects.put (thisID.toUpperCase (), this.currentMesh);
 }, "~S,J.shape.Mesh");
-Clazz.overrideMethod (c$, "setProperty", 
+Clazz.overrideMethod (c$, "setProperty",
 function (propertyName, value, bs) {
 if ("init" === propertyName) {
 this.initCGO ();
@@ -69,7 +69,7 @@ this.deleteModels (((value)[2])[0]);
 return;
 }this.setPropertySuper (propertyName, value, bs);
 }, "~S,~O,JU.BS");
-Clazz.defineMethod (c$, "deleteModels", 
+Clazz.defineMethod (c$, "deleteModels",
 function (modelIndex) {
 for (var i = this.meshCount; --i >= 0; ) {
 var m = this.meshes[i];
@@ -83,42 +83,42 @@ this.meshes[i].modelIndex--;
 }}
 this.resetObjects ();
 }, "~N");
-Clazz.overrideMethod (c$, "getProperty", 
+Clazz.overrideMethod (c$, "getProperty",
 function (property, index) {
 if (property === "command") return this.getCommand (this.cgoMesh);
 return this.getPropMC (property, index);
 }, "~S,~N");
-Clazz.overrideMethod (c$, "getPropertyData", 
+Clazz.overrideMethod (c$, "getPropertyData",
 function (property, data) {
 if (property === "data") return J.shapecgo.CGOMesh.getData (data);
 return this.getPropDataMC (property, data);
 }, "~S,~A");
-Clazz.defineMethod (c$, "deleteMeshElement", 
+Clazz.defineMethod (c$, "deleteMeshElement",
  function (i) {
 if (this.meshes[i] === this.currentMesh) this.currentMesh = this.cgoMesh = null;
 this.meshes = this.cmeshes = JU.AU.deleteElements (this.meshes, i, 1);
 }, "~N");
-Clazz.defineMethod (c$, "setPropertySuper", 
+Clazz.defineMethod (c$, "setPropertySuper",
  function (propertyName, value, bs) {
 this.currentMesh = this.cgoMesh;
 this.setPropMC (propertyName, value, bs);
 this.cgoMesh = this.currentMesh;
 }, "~S,~O,JU.BS");
-Clazz.overrideMethod (c$, "clean", 
+Clazz.overrideMethod (c$, "clean",
 function () {
 for (var i = this.meshCount; --i >= 0; ) if (this.meshes[i] == null || this.cmeshes[i].cmds == null || this.cmeshes[i].cmds.size () == 0) this.deleteMeshI (i);
 
 });
-Clazz.defineMethod (c$, "setCGO", 
+Clazz.defineMethod (c$, "setCGO",
  function (data) {
 if (this.cgoMesh == null) this.allocMesh (null, null);
 this.cgoMesh.clear ("cgo");
 return this.cgoMesh.set (data);
 }, "JU.Lst");
-Clazz.defineMethod (c$, "scale", 
+Clazz.defineMethod (c$, "scale",
  function (mesh, newScale) {
 }, "J.shape.Mesh,~N");
-Clazz.overrideMethod (c$, "getShapeDetail", 
+Clazz.overrideMethod (c$, "getShapeDetail",
 function () {
 var V =  new JU.Lst ();
 for (var i = 0; i < this.meshCount; i++) {
@@ -131,7 +131,7 @@ V.addLast (info);
 }
 return V;
 });
-Clazz.overrideMethod (c$, "getShapeState", 
+Clazz.overrideMethod (c$, "getShapeState",
 function () {
 var sb =  new JU.SB ();
 var modelCount = this.vwr.ms.mc;
@@ -146,7 +146,7 @@ if (!mesh.visible) sb.append (" " + this.myType + " ID " + JU.PT.esc (mesh.thisI
 }
 return sb.toString ();
 });
-Clazz.defineMethod (c$, "getCommand", 
+Clazz.defineMethod (c$, "getCommand",
  function (mesh) {
 if (mesh != null) return this.getCommand2 (mesh, mesh.modelIndex);
 var sb =  new JU.SB ();
@@ -158,7 +158,7 @@ sb.append (this.getCommand2 (m, m.modelIndex));
 }
 return sb.toString ();
 }, "J.shape.Mesh");
-Clazz.defineMethod (c$, "getCommand2", 
+Clazz.defineMethod (c$, "getCommand2",
  function (mesh, modelCount) {
 var cmesh = mesh;
 var str =  new JU.SB ();
@@ -174,7 +174,7 @@ J.shape.Shape.appendCmd (str, cmesh.getState ("cgo"));
 if (cmesh.useColix) J.shape.Shape.appendCmd (str, J.shape.Shape.getColorCommandUnk ("cgo", cmesh.colix, this.translucentAllowed));
 return str.toString ();
 }, "J.shape.Mesh,~N");
-Clazz.overrideMethod (c$, "setModelVisibilityFlags", 
+Clazz.overrideMethod (c$, "setModelVisibilityFlags",
 function (bsModels) {
 for (var i = 0; i < this.meshCount; i++) {
 var m = this.cmeshes[i];

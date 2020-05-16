@@ -16,15 +16,15 @@ this.myBsB =  new JU.BS ();
 this.bsAtomMinMax =  new Array (2);
 this.values =  Clazz.newFloatArray (2, 0);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.IsoIntersectReader, []);
 });
-Clazz.overrideMethod (c$, "init", 
+Clazz.overrideMethod (c$, "init",
 function (sg) {
 this.initADR (sg);
 }, "J.jvxl.readers.SurfaceGenerator");
-Clazz.overrideMethod (c$, "readVolumeParameters", 
+Clazz.overrideMethod (c$, "readVolumeParameters",
 function (isMapData) {
 this.setup (isMapData);
 if (isMapData) return false;
@@ -39,7 +39,7 @@ this.getAtomMinMax (this.myBsA, this.bsAtomMinMax[0] =  new Array (this.nPointsX
 this.getAtomMinMax (this.myBsB, this.bsAtomMinMax[1] =  new Array (this.nPointsX));
 return true;
 }, "~B");
-Clazz.overrideMethod (c$, "setup", 
+Clazz.overrideMethod (c$, "setup",
 function (isMapData) {
 this.setup2 ();
 this.params.fullyLit = true;
@@ -69,7 +69,7 @@ this.margin = 5;
 this.setVolumeData ();
 }this.isProgressive = this.isXLowToHigh = true;
 }, "~B");
-Clazz.overrideMethod (c$, "getPlane", 
+Clazz.overrideMethod (c$, "getPlane",
 function (x) {
 if (this.yzCount == 0) {
 this.initPlanes ();
@@ -92,7 +92,7 @@ if (!this.setVoxels ()) this.resetPlane (0);
 if (this.contactPair == null) this.unsetVoxelData ();
 return this.thisPlane;
 }, "~N");
-Clazz.defineMethod (c$, "setVoxels", 
+Clazz.defineMethod (c$, "setVoxels",
  function () {
 for (var i = 0; i < this.yzCount; i++) {
 var va = this.thisPlane[i];
@@ -103,7 +103,7 @@ this.thisPlane[i] = v;
 }
 return true;
 });
-Clazz.defineMethod (c$, "getValueAB", 
+Clazz.defineMethod (c$, "getValueAB",
  function (va, vb) {
 if (va == 3.4028235E38 || vb == 3.4028235E38 || Float.isNaN (va) || Float.isNaN (vb)) return 3.4028235E38;
 switch (this.funcType) {
@@ -120,11 +120,11 @@ this.values[1] = vb;
 return this.sg.atomDataServer.evalFunctionFloat (this.func[0], this.func[1], this.values);
 }
 }, "~N,~N");
-Clazz.overrideMethod (c$, "getValueAtPoint", 
+Clazz.overrideMethod (c$, "getValueAtPoint",
 function (pt, getSource) {
 return this.getValueAB (this.getValueAtPoint2 (pt, this.myBsA), this.getValueAtPoint2 (pt, this.myBsB));
 }, "JU.T3,~B");
-Clazz.defineMethod (c$, "getValueAtPoint2", 
+Clazz.defineMethod (c$, "getValueAtPoint2",
  function (pt, bs) {
 var value = 3.4028235E38;
 for (var iAtom = bs.nextSetBit (0); iAtom >= 0; iAtom = bs.nextSetBit (iAtom + 1)) {

@@ -8,7 +8,7 @@ this.intThread = 0;
 this.isFirst = false;
 Clazz.instantialize (this, arguments);
 }, J.thread, "AnimationThread", J.thread.JmolThread);
-Clazz.overrideMethod (c$, "setManager", 
+Clazz.overrideMethod (c$, "setManager",
 function (manager, vwr, params) {
 var options = params;
 this.framePointer1 = options[0];
@@ -19,7 +19,7 @@ this.setViewer (vwr, "AnimationThread");
 vwr.startHoverWatcher (false);
 return 0;
 }, "~O,JV.Viewer,~O");
-Clazz.defineMethod (c$, "interrupt", 
+Clazz.defineMethod (c$, "interrupt",
 function () {
 if (this.stopped) return;
 this.stopped = true;
@@ -34,7 +34,7 @@ throw e;
 }
 Clazz.superCall (this, J.thread.AnimationThread, "interrupt", []);
 });
-Clazz.overrideMethod (c$, "run1", 
+Clazz.overrideMethod (c$, "run1",
 function (mode) {
 while (true) {
 switch (mode) {

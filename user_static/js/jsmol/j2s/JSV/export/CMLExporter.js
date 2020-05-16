@@ -1,7 +1,7 @@
 Clazz.declarePackage ("JSV.export");
 Clazz.load (["JSV.export.XMLExporter"], "JSV.export.CMLExporter", null, function () {
 c$ = Clazz.declareType (JSV["export"], "CMLExporter", JSV["export"].XMLExporter);
-Clazz.overrideMethod (c$, "exportTheSpectrum", 
+Clazz.overrideMethod (c$, "exportTheSpectrum",
 function (viewer, mode, out, spec, startIndex, endIndex, pd, asBase64) {
 if (!this.setup (viewer, spec, out, startIndex, endIndex)) return null;
 if (this.model == null || this.model.equals ("")) this.model = "unknown";

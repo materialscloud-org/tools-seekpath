@@ -12,20 +12,20 @@ Byte.toString = Byte.prototype.toString = function () {
 	}
 	return "" + this.valueOf ();
 };
-Clazz.makeConstructor (Byte, 
+Clazz.makeConstructor (Byte,
 function () {
 this.valueOf = function () {
 	return 0;
 };
 });
-Clazz.makeConstructor (Byte, 
+Clazz.makeConstructor (Byte,
 function (value) {
 var v = Math.round (value) & 0xffffffff;
 this.valueOf = function () {
 	return v;
 };
 }, "Number");
-Clazz.makeConstructor (Byte, 
+Clazz.makeConstructor (Byte,
 function (s) {
 var value = Byte.parseByte (s, 10);
 this.valueOf = function () {
@@ -38,7 +38,7 @@ Byte.MAX_VALUE = Byte.prototype.MAX_VALUE = 127;
 Byte.SIZE = Byte.prototype.SIZE = 8;
 Byte.TYPE = Byte.prototype.TYPE = Byte;
 
-Clazz.defineMethod (Byte, "parseByte", 
+Clazz.defineMethod (Byte, "parseByte",
 function (s, radix) {
 if (s == null) {
 throw  new NumberFormatException ("null");
@@ -54,30 +54,30 @@ throw  new NumberFormatException ("Not a Number : " + s);
 return integer;
 }, "String, Number");
 Byte.parseByte = Byte.prototype.parseByte;
-Clazz.defineMethod (Byte, "parseByte", 
+Clazz.defineMethod (Byte, "parseByte",
 function (s) {
 return Byte.parseByte (s, 10);
 }, "String");
 
 Byte.parseByte = Byte.prototype.parseByte;
 
-Clazz.defineMethod (Byte, "$valueOf", 
+Clazz.defineMethod (Byte, "$valueOf",
 function (s) {
 return new Byte(Byte.parseByte (s, 10));
 }, "String");
 
-Clazz.defineMethod (Byte, "$valueOf", 
+Clazz.defineMethod (Byte, "$valueOf",
 function (s) {
 return new Byte(s);
 }, "Number");
 
-Clazz.defineMethod (Byte, "$valueOf", 
+Clazz.defineMethod (Byte, "$valueOf",
 function (s, r) {
 return new Byte(Byte.parseByte (s, r));
 }, "String, Number");
 
 Byte.$valueOf = Byte.prototype.$valueOf;
-Clazz.overrideMethod(Byte, "equals", 
+Clazz.overrideMethod(Byte, "equals",
 function (s) {
 if(s == null || !Clazz.instanceOf(s, Byte) ){
 	return false;
@@ -93,7 +93,7 @@ Byte.toOctalString = Byte.prototype.toOctalString = function (i) {
 Byte.toBinaryString = Byte.prototype.toBinaryString = function (i) {
 	return i.toString (2);
 };
-Byte.decode = Clazz.defineMethod (Byte, "decode", 
+Byte.decode = Clazz.defineMethod (Byte, "decode",
 function (nm) {
 var radix = 10;
 var index = 0;

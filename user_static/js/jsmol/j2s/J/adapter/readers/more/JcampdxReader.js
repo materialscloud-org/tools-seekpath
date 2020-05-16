@@ -16,7 +16,7 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.peakData =  new JU.Lst ();
 });
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.vwr.setBooleanProperty ("_JSpecView".toLowerCase (), true);
 if (this.isTrajectory) {
@@ -29,7 +29,7 @@ this.reverseModels = false;
 this.desiredModelNumber = -2147483648;
 if (!this.checkFilterKey ("NOSYNC")) this.addJmolScript ("sync on");
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 var i = this.line.indexOf ("=");
 if (i < 0 || !this.line.startsWith ("##")) return true;
@@ -76,12 +76,12 @@ break;
 }
 return true;
 });
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 if (this.mpr != null) this.processPeakData ();
 this.finalizeReaderMR ();
 });
-Clazz.overrideMethod (c$, "processModelData", 
+Clazz.overrideMethod (c$, "processModelData",
 function (data, id, type, base, last, modelScale, vibScale, isFirst) {
 var model0 = this.asc.iSet;
 var model = null;
@@ -122,7 +122,7 @@ break;
 }
 this.updateModelIDs (id, model0, isFirst);
 }, "~S,~S,~S,~S,~S,~N,~N,~B");
-Clazz.defineMethod (c$, "setBonding", 
+Clazz.defineMethod (c$, "setBonding",
  function (a, ibase) {
 var n0 = this.asc.getAtomSetAtomCount (ibase);
 var n = a.ac;
@@ -145,7 +145,7 @@ return;
 
 }
 }, "J.adapter.smarter.AtomSetCollection,~N");
-Clazz.defineMethod (c$, "updateModelIDs", 
+Clazz.defineMethod (c$, "updateModelIDs",
  function (id, model0, isFirst) {
 var n = this.asc.atomSetCount;
 if (isFirst && n == model0 + 2) {
@@ -154,11 +154,11 @@ return;
 }for (var pt = 0, i = model0; ++i < n; ) this.asc.setModelInfoForSet ("modelID", id + "." + (++pt), i);
 
 }, "~S,~N,~B");
-Clazz.overrideMethod (c$, "addPeakData", 
+Clazz.overrideMethod (c$, "addPeakData",
 function (info) {
 this.peakData.addLast (info);
 }, "~S");
-Clazz.defineMethod (c$, "processPeakData", 
+Clazz.defineMethod (c$, "processPeakData",
  function () {
 if (this.acdAssignments != null) {
 try {
@@ -213,7 +213,7 @@ if (n > 0) this.appendLoadNote (this.asc.getAtomSetAuxiliaryInfoValue (0, "name"
 
 this.asc.centralize ();
 });
-Clazz.defineMethod (c$, "findModelById", 
+Clazz.defineMethod (c$, "findModelById",
  function (modelID) {
 for (var i = this.asc.atomSetCount; --i >= 0; ) {
 var id = this.asc.getAtomSetAuxiliaryInfoValue (i, "modelID");
@@ -221,7 +221,7 @@ if (modelID.equals (id)) return i;
 }
 return -1;
 }, "~S");
-Clazz.defineMethod (c$, "addType", 
+Clazz.defineMethod (c$, "addType",
  function (imodel, type) {
 var types = this.addTypeStr (this.asc.getAtomSetAuxiliaryInfoValue (imodel, "spectrumTypes"), type);
 if (types == null) return;
@@ -229,27 +229,27 @@ this.asc.setModelInfoForSet ("spectrumTypes", types, imodel);
 var s = this.addTypeStr (this.allTypes, type);
 if (s != null) this.allTypes = s;
 }, "~N,~S");
-Clazz.defineMethod (c$, "addTypeStr", 
+Clazz.defineMethod (c$, "addTypeStr",
  function (types, type) {
 if (types != null && types.contains (type)) return null;
 if (types == null) types = "";
  else types += ",";
 return types + type;
 }, "~S,~S");
-Clazz.defineMethod (c$, "processPeakSelectAtom", 
+Clazz.defineMethod (c$, "processPeakSelectAtom",
  function (i, key, data) {
 var peaks = this.asc.getAtomSetAuxiliaryInfoValue (i, key);
 if (peaks == null) this.asc.setModelInfoForSet (key, peaks =  new JU.Lst (), i);
 peaks.addLast (data);
 }, "~N,~S,~S");
-Clazz.defineMethod (c$, "processPeakSelectModel", 
+Clazz.defineMethod (c$, "processPeakSelectModel",
  function (i, title) {
 if (this.asc.getAtomSetAuxiliaryInfoValue (i, "jdxModelSelect") != null) return false;
 this.asc.setModelInfoForSet ("name", title, i);
 this.asc.setModelInfoForSet ("jdxModelSelect", this.line, i);
 return true;
 }, "~N,~S");
-Clazz.overrideMethod (c$, "setSpectrumPeaks", 
+Clazz.overrideMethod (c$, "setSpectrumPeaks",
 function (nH, piUnitsX, piUnitsY) {
 }, "~N,~S,~S");
 });

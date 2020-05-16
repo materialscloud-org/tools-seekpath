@@ -3,34 +3,34 @@ c$ = Clazz.decorateAsClass (function () {
 this.globalCrc = 0;
 Clazz.instantialize (this, arguments);
 }, org.apache.tools.bzip2, "CRC");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 this.initialiseCRC ();
 });
-Clazz.defineMethod (c$, "initialiseCRC", 
+Clazz.defineMethod (c$, "initialiseCRC",
 function () {
 this.globalCrc = 0xffffffff;
 });
-Clazz.defineMethod (c$, "getFinalCRC", 
+Clazz.defineMethod (c$, "getFinalCRC",
 function () {
 return ~this.globalCrc;
 });
-Clazz.defineMethod (c$, "getGlobalCRC", 
+Clazz.defineMethod (c$, "getGlobalCRC",
 function () {
 return this.globalCrc;
 });
-Clazz.defineMethod (c$, "setGlobalCRC", 
+Clazz.defineMethod (c$, "setGlobalCRC",
 function (newCrc) {
 this.globalCrc = newCrc;
 }, "~N");
-Clazz.defineMethod (c$, "updateCRC", 
+Clazz.defineMethod (c$, "updateCRC",
 function (inCh) {
 var temp = (this.globalCrc >> 24) ^ inCh;
 if (temp < 0) {
 temp = 256 + temp;
 }this.globalCrc = (this.globalCrc << 8) ^ org.apache.tools.bzip2.CRC.crc32Table[temp];
 }, "~N");
-Clazz.defineMethod (c$, "updateCRC", 
+Clazz.defineMethod (c$, "updateCRC",
 function (inCh, repeat) {
 var globalCrcShadow = this.globalCrc;
 while (repeat-- > 0) {

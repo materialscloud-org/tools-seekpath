@@ -1,23 +1,23 @@
 Clazz.declarePackage ("JV.binding");
 Clazz.load (["JV.binding.Binding"], "JV.binding.JmolBinding", null, function () {
 c$ = Clazz.declareType (JV.binding, "JmolBinding", JV.binding.Binding);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JV.binding.JmolBinding, []);
 this.set ("toggle");
 });
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (name) {
 this.name = name;
 this.setGeneralBindings ();
 this.setSelectBindings ();
 }, "~S");
-Clazz.defineMethod (c$, "setSelectBindings", 
+Clazz.defineMethod (c$, "setSelectBindings",
 function () {
 this.bindAction (33296, 30);
 this.bindAction (33040, 36);
 });
-Clazz.defineMethod (c$, "setGeneralBindings", 
+Clazz.defineMethod (c$, "setGeneralBindings",
  function () {
 this.bindAction (8474, 45);
 this.bindAction (8454, 45);

@@ -7,14 +7,14 @@ this.textAlign = 0;
 this.c = null;
 Clazz.instantialize (this, arguments);
 }, J.awtjs.swing, "Cell");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (btn, c) {
 this.component = btn;
 this.colspan = c.gridwidth;
 this.rowspan = c.gridheight;
 this.c = c;
 }, "J.awtjs.swing.JComponent,J.awtjs.swing.GridBagConstraints");
-Clazz.defineMethod (c$, "toHTML", 
+Clazz.defineMethod (c$, "toHTML",
 function (id) {
 var style = this.c.getStyle (false);
 return "<td id='" + id + "' " + (this.colspan < 2 ? "" : "colspan='" + this.colspan + "' ") + style + "><span " + this.c.getStyle (true) + ">" + this.component.toHTML () + "</span></td>";

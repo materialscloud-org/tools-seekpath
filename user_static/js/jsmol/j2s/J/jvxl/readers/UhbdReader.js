@@ -6,18 +6,18 @@ this.voxelCount = 0;
 this.pt = 0;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.readers, "UhbdReader", J.jvxl.readers.VolumeFileReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.UhbdReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2VFR (sg, br);
 if (this.params.thePlane == null) this.params.insideOut = !this.params.insideOut;
 this.isAngstroms = true;
 this.nSurfaces = 1;
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "readParameters", 
+Clazz.overrideMethod (c$, "readParameters",
 function () {
 this.rd ();
 this.jvxlFileHeaderBuffer = JU.SB.newS (this.line);
@@ -37,7 +37,7 @@ this.planeCount = this.voxelCounts[0] * this.voxelCounts[1];
 this.rd ();
 this.rd ();
 });
-Clazz.overrideMethod (c$, "nextVoxel", 
+Clazz.overrideMethod (c$, "nextVoxel",
 function () {
 if (this.voxelCount % this.planeCount == 0) {
 this.rd ();

@@ -1,10 +1,10 @@
 Clazz.declarePackage ("javajs.img");
 Clazz.load (["javajs.img.ImageEncoder"], "javajs.img.PpmEncoder", null, function () {
 c$ = Clazz.declareType (javajs.img, "PpmEncoder", javajs.img.ImageEncoder);
-Clazz.overrideMethod (c$, "setParams", 
+Clazz.overrideMethod (c$, "setParams",
 function (params) {
 }, "java.util.Map");
-Clazz.overrideMethod (c$, "generate", 
+Clazz.overrideMethod (c$, "generate",
 function () {
 this.putString ("P6\n");
 this.putString (this.width + " " + this.height + "\n");

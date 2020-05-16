@@ -4,10 +4,10 @@ c$ = Clazz.decorateAsClass (function () {
 this.g3d = null;
 Clazz.instantialize (this, arguments);
 }, J.g3d, "CircleRenderer", null, J.g3d.G3DRenderer);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.overrideMethod (c$, "set", 
+Clazz.overrideMethod (c$, "set",
 function (g3d, gdata) {
 try {
 this.g3d = g3d;
@@ -19,7 +19,7 @@ throw e;
 }
 return this;
 }, "J.api.JmolRendererInterface,JU.GData");
-Clazz.defineMethod (c$, "plotCircleCenteredClipped", 
+Clazz.defineMethod (c$, "plotCircleCenteredClipped",
 function (xCenter, yCenter, zCenter, diameter) {
 var g = this.g3d;
 var c = g.argbCurrent;
@@ -51,7 +51,7 @@ radiusError += xChange;
 xChange += 2;
 }}
 }, "~N,~N,~N,~N");
-Clazz.defineMethod (c$, "plotCircleCenteredUnclipped", 
+Clazz.defineMethod (c$, "plotCircleCenteredUnclipped",
 function (xCenter, yCenter, zCenter, diameter) {
 var r = Clazz.doubleToInt (diameter / 2);
 var sizeCorrection = 1 - (diameter & 1);
@@ -83,7 +83,7 @@ radiusError += xChange;
 xChange += 2;
 }}
 }, "~N,~N,~N,~N");
-Clazz.defineMethod (c$, "plotFilledCircleCenteredClipped", 
+Clazz.defineMethod (c$, "plotFilledCircleCenteredClipped",
 function (xCenter, yCenter, zCenter, diameter) {
 var r = Clazz.doubleToInt (diameter / 2);
 var sizeCorrection = 1 - (diameter & 1);
@@ -112,7 +112,7 @@ radiusError += xChange;
 xChange += 2;
 }}
 }, "~N,~N,~N,~N");
-Clazz.defineMethod (c$, "plotPixelsClipped", 
+Clazz.defineMethod (c$, "plotPixelsClipped",
  function (argb, count, x, y, z, width, height, zbuf, p) {
 if (y < 0 || y >= height || x >= width) return;
 if (x < 0) {
@@ -127,7 +127,7 @@ if (z < zbuf[offsetPbuf]) p.addPixel (offsetPbuf, z, argb);
 offsetPbuf++;
 }
 }, "~N,~N,~N,~N,~N,~N,~N,~A,J.g3d.Pixelator");
-Clazz.defineMethod (c$, "plotFilledCircleCenteredUnclipped", 
+Clazz.defineMethod (c$, "plotFilledCircleCenteredUnclipped",
 function (xCenter, yCenter, zCenter, diameter) {
 var r = Clazz.doubleToInt (diameter / 2);
 var x = r;

@@ -4,7 +4,7 @@ c$ = Clazz.decorateAsClass (function () {
 this.atomIndex = 0;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.simple, "HyperChemReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.length == 0 || this.line.charAt (0) == ';') return true;
 if (this.line.startsWith ("mol ")) {
@@ -20,7 +20,7 @@ this.applySymmetryAndSetTrajectory ();
 return true;
 }return true;
 });
-Clazz.defineMethod (c$, "processMol", 
+Clazz.defineMethod (c$, "processMol",
  function () {
 this.asc.newAtomSet ();
 var molName = this.getMolName ();
@@ -28,13 +28,13 @@ this.asc.setAtomSetName (molName);
 this.atomIndex = 0;
 this.baseAtomIndex = this.asc.ac;
 });
-Clazz.defineMethod (c$, "getMolName", 
+Clazz.defineMethod (c$, "getMolName",
  function () {
 this.parseTokenStr (this.line);
 this.parseToken ();
 return this.parseToken ();
 });
-Clazz.defineMethod (c$, "processAtom", 
+Clazz.defineMethod (c$, "processAtom",
  function () {
 var fileAtomNumber = this.parseIntAt (this.line, 5);
 if (fileAtomNumber - 1 != this.atomIndex) {

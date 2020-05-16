@@ -5,7 +5,7 @@ this.symmetries = null;
 this.occupancies = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.quantum, "GamessUKReader", J.adapter.readers.quantum.GamessReader);
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.indexOf ("BASIS OPTIONS") >= 0) {
 this.readBasisInfo ();
@@ -35,7 +35,7 @@ this.setOrbitalSymmetryAndOccupancy ();
 return false;
 }return this.checkNboLine ();
 });
-Clazz.overrideMethod (c$, "readAtomsInBohrCoordinates", 
+Clazz.overrideMethod (c$, "readAtomsInBohrCoordinates",
 function () {
 this.discardLinesUntilContains ("*****");
 this.discardLinesUntilContains ("atom");
@@ -50,11 +50,11 @@ atom.elementSymbol = J.adapter.smarter.AtomSetCollectionReader.getElementSymbol 
 this.atomNames.addLast (atom.atomName = tokens[1]);
 }
 });
-Clazz.overrideMethod (c$, "fixShellTag", 
+Clazz.overrideMethod (c$, "fixShellTag",
 function (tag) {
 return tag.substring (1).toUpperCase ();
 }, "~S");
-Clazz.defineMethod (c$, "readOrbitalSymmetryAndOccupancy", 
+Clazz.defineMethod (c$, "readOrbitalSymmetryAndOccupancy",
  function () {
 this.readLines (4);
 this.symmetries =  new JU.Lst ();
@@ -65,7 +65,7 @@ this.symmetries.addLast (tokens[0] + " " + tokens[1]);
 this.occupancies.addLast (Float.$valueOf (this.parseFloatStr (tokens[5])));
 }
 });
-Clazz.defineMethod (c$, "setOrbitalSymmetryAndOccupancy", 
+Clazz.defineMethod (c$, "setOrbitalSymmetryAndOccupancy",
  function () {
 if (this.symmetries.size () < this.orbitals.size ()) return;
 for (var i = this.orbitals.size (); --i >= 0; ) {

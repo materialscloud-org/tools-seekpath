@@ -49,7 +49,7 @@ J.thread.MoveToThread.$MoveToThread$Slider$ ();
 }
 Clazz.instantialize (this, arguments);
 }, J.thread, "MoveToThread", J.thread.JmolThread);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 this.aaStepCenter =  new JU.V3 ();
 this.aaStepNavCenter =  new JU.V3 ();
@@ -60,7 +60,7 @@ this.matrixStartInv =  new JU.M3 ();
 this.matrixStep =  new JU.M3 ();
 this.matrixEnd =  new JU.M3 ();
 });
-Clazz.overrideMethod (c$, "setManager", 
+Clazz.overrideMethod (c$, "setManager",
 function (manager, vwr, params) {
 var options = params;
 this.isMove = (Clazz.instanceOf (options[0], JU.V3));
@@ -68,17 +68,17 @@ this.setViewer (vwr, (this.isMove ? "moveThread" : "MoveToThread"));
 this.transformManager = manager;
 return (this.isMove ? this.setManagerMove (options) : this.setManagerMoveTo (options));
 }, "~O,JV.Viewer,~O");
-Clazz.overrideMethod (c$, "run1", 
+Clazz.overrideMethod (c$, "run1",
 function (mode) {
 if (this.isMove) this.run1Move (mode);
  else this.run1MoveTo (mode);
 }, "~N");
-Clazz.defineMethod (c$, "interrupt", 
+Clazz.defineMethod (c$, "interrupt",
 function () {
 this.doEndMove = false;
 Clazz.superCall (this, J.thread.MoveToThread, "interrupt", []);
 });
-Clazz.defineMethod (c$, "setManagerMove", 
+Clazz.defineMethod (c$, "setManagerMove",
  function (options) {
 this.dRot = options[0];
 this.dTrans = options[1];
@@ -101,7 +101,7 @@ this.zoomPercent0 = this.transformManager.zmPct;
 this.iStep = 0;
 return this.totalSteps;
 }, "~A");
-Clazz.defineMethod (c$, "setManagerMoveTo", 
+Clazz.defineMethod (c$, "setManagerMoveTo",
  function (options) {
 this.center = options[0];
 this.matrixEnd.setM3 (options[1]);
@@ -137,11 +137,11 @@ this.aaStepNavCenter.scale (1 / this.totalSteps);
 }this.iStep = 0;
 return this.totalSteps;
 }, "~A");
-Clazz.defineMethod (c$, "newSlider", 
+Clazz.defineMethod (c$, "newSlider",
  function (start, value) {
 return (Float.isNaN (value) || value == 3.4028235E38 ? null : Clazz.innerTypeInstance (J.thread.MoveToThread.Slider, this, null, start, value));
 }, "~N,~N");
-Clazz.defineMethod (c$, "run1Move", 
+Clazz.defineMethod (c$, "run1Move",
  function (mode) {
 while (true) switch (mode) {
 case -1:
@@ -182,7 +182,7 @@ return;
 }
 
 }, "~N");
-Clazz.defineMethod (c$, "run1MoveTo", 
+Clazz.defineMethod (c$, "run1MoveTo",
  function (mode) {
 while (true) switch (mode) {
 case -1:
@@ -222,7 +222,7 @@ return;
 }
 
 }, "~N");
-Clazz.defineMethod (c$, "doStepTransform", 
+Clazz.defineMethod (c$, "doStepTransform",
  function () {
 if (!Float.isNaN (this.matrixEnd.m00)) {
 this.transformManager.getRotation (this.matrixStart);
@@ -242,16 +242,16 @@ pt.add (this.aaStepNavCenter);
 this.transformManager.setNavigatePt (pt);
 }this.setValues (this.matrixStep, null, null);
 });
-Clazz.defineMethod (c$, "doFinalTransform", 
+Clazz.defineMethod (c$, "doFinalTransform",
  function () {
 this.fStep = -1;
 this.setValues (this.matrixEnd, this.center, this.navCenter);
 });
-Clazz.defineMethod (c$, "setValues", 
+Clazz.defineMethod (c$, "setValues",
  function (m, center, navCenter) {
 this.transformManager.setAll (center, m, navCenter, this.getVal (this.zoom), this.getVal (this.xTrans), this.getVal (this.yTrans), this.getVal (this.rotationRadius), this.getVal (this.pixelScale), this.getVal (this.navDepth), this.getVal (this.xNav), this.getVal (this.yNav), this.getVal (this.cameraDepth), this.getVal (this.cameraX), this.getVal (this.cameraY));
 }, "JU.M3,JU.P3,JU.P3");
-Clazz.defineMethod (c$, "getVal", 
+Clazz.defineMethod (c$, "getVal",
  function (s) {
 return (s == null ? NaN : s.getVal (this.fStep));
 }, "J.thread.MoveToThread.Slider");
@@ -264,13 +264,13 @@ this.delta = 0;
 this.value = 0;
 Clazz.instantialize (this, arguments);
 }, J.thread.MoveToThread, "Slider");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (a, b) {
 this.start = a;
 this.value = b;
 this.delta = b - a;
 }, "~N,~N");
-Clazz.defineMethod (c$, "getVal", 
+Clazz.defineMethod (c$, "getVal",
 function (a) {
 return (a < 0 ? this.value : this.start + a * this.delta);
 }, "~N");

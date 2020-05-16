@@ -5,7 +5,7 @@ this.menuStructure = null;
 this.apiPlatform = null;
 Clazz.instantialize (this, arguments);
 }, J.api, "JmolViewer");
-c$.allocateViewer = Clazz.defineMethod (c$, "allocateViewer", 
+c$.allocateViewer = Clazz.defineMethod (c$, "allocateViewer",
 function (display, modelAdapter, fullName, documentBase, codeBase, commandOptions, statusListener, implementedPlatform) {
 var info =  new java.util.Hashtable ();
 if (display != null) info.put ("display", display);
@@ -18,39 +18,39 @@ if (documentBase != null) info.put ("documentbase", documentBase);
 if (codeBase != null) info.put ("codebase", codeBase);
 return  new JV.Viewer (info);
 }, "~O,J.api.JmolAdapter,~S,java.net.URL,java.net.URL,~S,J.api.JmolStatusListener,javajs.awt.GenericPlatform");
-c$.allocateViewer = Clazz.defineMethod (c$, "allocateViewer", 
+c$.allocateViewer = Clazz.defineMethod (c$, "allocateViewer",
 function (container, jmolAdapter) {
 return J.api.JmolViewer.allocateViewer (container, jmolAdapter, null, null, null, null, null, null);
 }, "~O,J.api.JmolAdapter");
-c$.allocateViewer = Clazz.defineMethod (c$, "allocateViewer", 
+c$.allocateViewer = Clazz.defineMethod (c$, "allocateViewer",
 function (display, modelAdapter, fullName, documentBase, codeBase, commandOptions, statusListener) {
 return J.api.JmolViewer.allocateViewer (display, modelAdapter, fullName, documentBase, codeBase, commandOptions, statusListener, null);
 }, "~O,J.api.JmolAdapter,~S,java.net.URL,java.net.URL,~S,J.api.JmolStatusListener");
-Clazz.defineMethod (c$, "setConsole", 
+Clazz.defineMethod (c$, "setConsole",
 function (console) {
 this.getProperty ("DATA_API", "getAppConsole", console);
 }, "J.api.JmolAppConsoleInterface");
-c$.getJmolVersion = Clazz.defineMethod (c$, "getJmolVersion", 
+c$.getJmolVersion = Clazz.defineMethod (c$, "getJmolVersion",
 function () {
 return JV.Viewer.getJmolVersion ();
 });
-Clazz.defineMethod (c$, "openReader", 
+Clazz.defineMethod (c$, "openReader",
 function (fullPathName, reader) {
 return this.openReader (fullPathName == null ? "String" : fullPathName, null, reader);
 }, "~S,~O");
-Clazz.defineMethod (c$, "openFileAsync", 
+Clazz.defineMethod (c$, "openFileAsync",
 function (fileName) {
 this.openFileAsyncSpecial (fileName, 0);
 }, "~S");
-Clazz.defineMethod (c$, "renderScreenImage", 
+Clazz.defineMethod (c$, "renderScreenImage",
 function (g, currentSize, rectClip) {
 this.apiPlatform.renderScreenImage (g, currentSize);
 }, "~O,~O,~O");
-Clazz.defineMethod (c$, "runScriptCautiously", 
+Clazz.defineMethod (c$, "runScriptCautiously",
 function (script) {
 return null;
 }, "~S");
-Clazz.defineMethod (c$, "dispose", 
+Clazz.defineMethod (c$, "dispose",
 function () {
 });
 });

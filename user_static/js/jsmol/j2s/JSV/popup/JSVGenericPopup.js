@@ -12,31 +12,31 @@ this.pd = null;
 this.thisJsvp = null;
 Clazz.instantialize (this, arguments);
 }, JSV.popup, "JSVGenericPopup", J.popup.GenericSwingPopup, JSV.api.JSVPopupMenu);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JSV.popup.JSVGenericPopup, []);
 });
-Clazz.defineMethod (c$, "initialize", 
+Clazz.defineMethod (c$, "initialize",
 function (viewer, bundle, title) {
 this.vwr = viewer;
 this.initSwing (title, bundle, viewer.getApplet (), viewer.isJS, viewer.isSigned, false);
 }, "JSV.common.JSViewer,J.popup.PopupResource,~S");
-Clazz.overrideMethod (c$, "jpiDispose", 
+Clazz.overrideMethod (c$, "jpiDispose",
 function () {
 this.helper.menuClearListeners (this.popupMenu);
 this.popupMenu = this.thisPopup = null;
 });
-Clazz.overrideMethod (c$, "jpiGetMenuAsObject", 
+Clazz.overrideMethod (c$, "jpiGetMenuAsObject",
 function () {
 return this.popupMenu;
 });
-Clazz.overrideMethod (c$, "jpiShow", 
+Clazz.overrideMethod (c$, "jpiShow",
 function (x, y) {
 this.show (x, y, false);
 this.appRestorePopupMenu ();
 this.menuShowPopup (this.popupMenu, this.thisx, this.thisy);
 }, "~N,~N");
-Clazz.overrideMethod (c$, "jpiUpdateComputedMenus", 
+Clazz.overrideMethod (c$, "jpiUpdateComputedMenus",
 function () {
 if (this.updateMode == -1) return;
 this.updateMode = 0;
@@ -46,13 +46,13 @@ this.updateFileTypeDependentMenus ();
 this.updateMode = 1;
 this.updateAboutSubmenu ();
 });
-Clazz.overrideMethod (c$, "appCheckItem", 
+Clazz.overrideMethod (c$, "appCheckItem",
 function (item, newMenu) {
 }, "~S,javajs.awt.SC");
-Clazz.overrideMethod (c$, "appCheckSpecialMenu", 
+Clazz.overrideMethod (c$, "appCheckSpecialMenu",
 function (item, subMenu, word) {
 }, "~S,javajs.awt.SC,~S");
-Clazz.overrideMethod (c$, "appFixLabel", 
+Clazz.overrideMethod (c$, "appFixLabel",
 function (label) {
 if (label.startsWith ("_")) label = label.substring (label.indexOf ("_", 2) + 1);
  else if (label.equals ("VERSION")) label = JSV.common.JSVersion.VERSION;
@@ -62,31 +62,31 @@ label = JU.PT.rep (label, "Menu", "");
 label = JU.PT.rep (label, "_", " ");
 return label;
 }, "~S");
-Clazz.overrideMethod (c$, "appFixScript", 
+Clazz.overrideMethod (c$, "appFixScript",
 function (id, script) {
 return script;
 }, "~S,~S");
-Clazz.overrideMethod (c$, "appGetMenuAsString", 
+Clazz.overrideMethod (c$, "appGetMenuAsString",
 function (title) {
 return ( new JSV.popup.JSVPopupResourceBundle ()).getMenuAsText (title);
 }, "~S");
-Clazz.overrideMethod (c$, "appGetBooleanProperty", 
+Clazz.overrideMethod (c$, "appGetBooleanProperty",
 function (name) {
 return false;
 }, "~S");
-Clazz.overrideMethod (c$, "appIsSpecialCheckBox", 
+Clazz.overrideMethod (c$, "appIsSpecialCheckBox",
 function (item, basename, what, TF) {
 return false;
 }, "javajs.awt.SC,~S,~S,~B");
-Clazz.overrideMethod (c$, "appRestorePopupMenu", 
+Clazz.overrideMethod (c$, "appRestorePopupMenu",
 function () {
 this.thisPopup = this.popupMenu;
 });
-Clazz.overrideMethod (c$, "appRunScript", 
+Clazz.overrideMethod (c$, "appRunScript",
 function (script) {
 this.vwr.runScript (script);
 }, "~S");
-Clazz.overrideMethod (c$, "appUpdateForShow", 
+Clazz.overrideMethod (c$, "appUpdateForShow",
 function () {
 this.thisJsvp = this.vwr.selectedPanel;
 this.setEnables (this.thisJsvp);
@@ -96,21 +96,21 @@ this.updateMode = 2;
 this.updateSpectraMenu ();
 this.updateAboutSubmenu ();
 });
-Clazz.overrideMethod (c$, "appUpdateSpecialCheckBoxValue", 
+Clazz.overrideMethod (c$, "appUpdateSpecialCheckBoxValue",
 function (item, what, TF) {
 }, "javajs.awt.SC,~S,~B");
-Clazz.defineMethod (c$, "getViewerData", 
+Clazz.defineMethod (c$, "getViewerData",
  function () {
 });
-Clazz.defineMethod (c$, "updateFileTypeDependentMenus", 
+Clazz.defineMethod (c$, "updateFileTypeDependentMenus",
  function () {
 });
-Clazz.defineMethod (c$, "updateFileMenu", 
+Clazz.defineMethod (c$, "updateFileMenu",
  function () {
 var menu = this.htMenus.get ("fileMenu");
 if (menu == null) return;
 });
-Clazz.defineMethod (c$, "updateSpectraMenu", 
+Clazz.defineMethod (c$, "updateSpectraMenu",
  function () {
 var menuh = this.htMenus.get ("hnmrMenu");
 var menuc = this.htMenus.get ("cnmrMenu");
@@ -125,7 +125,7 @@ if (menuh != null) this.menuAddSubMenu (menu, menuh);
 if (menuc != null) this.menuAddSubMenu (menu, menuc);
 }this.menuEnable (menu, isOK);
 });
-Clazz.defineMethod (c$, "setSpectraMenu", 
+Clazz.defineMethod (c$, "setSpectraMenu",
  function (menu, peaks) {
 if (menu == null) return false;
 this.menuEnable (menu, false);
@@ -140,26 +140,26 @@ if (atoms != null) this.menuCreateItem (menu, title, "select visible & (@" + JU.
 this.menuEnable (menu, true);
 return true;
 }, "javajs.awt.SC,JU.Lst");
-Clazz.defineMethod (c$, "updateAboutSubmenu", 
+Clazz.defineMethod (c$, "updateAboutSubmenu",
  function () {
 var menu = this.htMenus.get ("aboutComputedMenu");
 if (menu == null) return;
 this.menuRemoveAll (menu, this.aboutComputedMenuBaseCount);
 });
-Clazz.overrideMethod (c$, "getSelected", 
+Clazz.overrideMethod (c$, "getSelected",
 function (key) {
 return false;
 }, "~S");
-Clazz.overrideMethod (c$, "setCompoundMenu", 
+Clazz.overrideMethod (c$, "setCompoundMenu",
 function (panelNodes, allowCompoundMenu) {
 }, "JU.Lst,~B");
-Clazz.overrideMethod (c$, "setEnabled", 
+Clazz.overrideMethod (c$, "setEnabled",
 function (allowMenu, zoomEnabled) {
 this.allowMenu = allowMenu;
 this.zoomEnabled = zoomEnabled;
 this.enableMenus ();
 }, "~B,~B");
-Clazz.defineMethod (c$, "enableMenus", 
+Clazz.defineMethod (c$, "enableMenus",
  function () {
 this.setItemEnabled ("_SIGNED_FileMenu", this.allowMenu);
 this.setItemEnabled ("ViewMenu", this.pd != null && this.allowMenu);
@@ -176,7 +176,7 @@ this.setItemEnabled ("Script", this.allowMenu);
 this.setItemEnabled ("Print...", this.pd != null && this.allowMenu);
 this.setItemEnabled ("ZoomMenu", this.pd != null && this.zoomEnabled);
 });
-Clazz.defineMethod (c$, "setEnables", 
+Clazz.defineMethod (c$, "setEnables",
  function (jsvp) {
 this.pd = (jsvp == null ? null : jsvp.getPanelData ());
 var spec0 = (this.pd == null ? null : this.pd.getSpectrum ());
@@ -194,11 +194,11 @@ this.setItemEnabled ("JDXMenu", this.pd != null && spec0.canSaveAsJDX ());
 this.setItemEnabled ("Export_AsMenu", this.pd != null);
 this.enableMenus ();
 }, "JSV.api.JSVPanel");
-Clazz.defineMethod (c$, "setItemEnabled", 
+Clazz.defineMethod (c$, "setItemEnabled",
  function (key, TF) {
 this.menuEnable (this.htMenus.get (key), TF);
 }, "~S,~B");
-Clazz.overrideMethod (c$, "setSelected", 
+Clazz.overrideMethod (c$, "setSelected",
 function (key, TF) {
 var item = this.htMenus.get (key);
 if (item == null || item.isSelected () == TF) return;
@@ -206,7 +206,7 @@ this.menuEnable (item, false);
 item.setSelected (TF);
 this.menuEnable (item, true);
 }, "~S,~B");
-Clazz.overrideMethod (c$, "menuSetCheckBoxOption", 
+Clazz.overrideMethod (c$, "menuSetCheckBoxOption",
 function (item, name, what) {
 return null;
 }, "javajs.awt.SC,~S,~S");

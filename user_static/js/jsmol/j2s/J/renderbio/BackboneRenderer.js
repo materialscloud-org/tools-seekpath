@@ -4,7 +4,7 @@ c$ = Clazz.decorateAsClass (function () {
 this.isDataFrame = false;
 Clazz.instantialize (this, arguments);
 }, J.renderbio, "BackboneRenderer", J.renderbio.BioShapeRenderer);
-Clazz.overrideMethod (c$, "renderBioShape", 
+Clazz.overrideMethod (c$, "renderBioShape",
 function (bioShape) {
 var checkPass2 = (!this.isExport && !this.vwr.gdata.isPass2);
 this.isDataFrame = this.vwr.ms.isJmolDataFrameForModel (bioShape.modelIndex);

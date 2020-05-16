@@ -6,7 +6,7 @@ this.ac = 0;
 this.bondCount = 0;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.simple, "AlchemyReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.asc.newAtomSet ();
 this.rd ();
@@ -20,7 +20,7 @@ this.readAtoms ();
 this.readBonds ();
 this.continuing = false;
 });
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function () {
 var pt = (this.isM3D ? 3 : 2);
 for (var i = this.ac; --i >= 0; ) {
@@ -41,7 +41,7 @@ atom.partialCharge = (tokens.length >= 6 ? this.parseFloatStr (tokens[pt + 3]) :
 this.asc.addAtomWithMappedSerialNumber (atom);
 }
 });
-Clazz.defineMethod (c$, "readBonds", 
+Clazz.defineMethod (c$, "readBonds",
  function () {
 for (var i = this.bondCount; --i >= 0; ) {
 var tokens = JU.PT.getTokens (this.rd ());

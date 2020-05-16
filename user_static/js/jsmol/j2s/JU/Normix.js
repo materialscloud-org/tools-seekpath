@@ -1,20 +1,20 @@
 Clazz.declarePackage ("JU");
 Clazz.load (["JU.Geodesic"], "JU.Normix", ["JU.BS"], function () {
 c$ = Clazz.declareType (JU, "Normix");
-c$.getNormixCount = Clazz.defineMethod (c$, "getNormixCount", 
+c$.getNormixCount = Clazz.defineMethod (c$, "getNormixCount",
 function () {
 return (JU.Normix.normixCount > 1 ? JU.Normix.normixCount : (JU.Normix.normixCount = JU.Geodesic.getVertexCount (3)));
 });
-c$.newVertexBitSet = Clazz.defineMethod (c$, "newVertexBitSet", 
+c$.newVertexBitSet = Clazz.defineMethod (c$, "newVertexBitSet",
 function () {
 return JU.BS.newN (JU.Normix.getNormixCount ());
 });
-c$.getVertexVectors = Clazz.defineMethod (c$, "getVertexVectors", 
+c$.getVertexVectors = Clazz.defineMethod (c$, "getVertexVectors",
 function () {
 if (JU.Normix.vertexVectors == null) JU.Normix.vertexVectors = JU.Geodesic.getVertexVectors ();
 return JU.Normix.vertexVectors;
 });
-c$.setInverseNormixes = Clazz.defineMethod (c$, "setInverseNormixes", 
+c$.setInverseNormixes = Clazz.defineMethod (c$, "setInverseNormixes",
 function () {
 if (JU.Normix.inverseNormixes != null) return;
 JU.Normix.getNormixCount ();
@@ -26,25 +26,25 @@ var v = JU.Normix.vertexVectors[n];
 JU.Normix.inverseNormixes[n] = JU.Normix.getNormix (-v.x, -v.y, -v.z, 3, bsTemp);
 }
 });
-c$.getInverseNormix = Clazz.defineMethod (c$, "getInverseNormix", 
+c$.getInverseNormix = Clazz.defineMethod (c$, "getInverseNormix",
 function (normix) {
 return JU.Normix.inverseNormixes[normix];
 }, "~N");
-c$.getNeighborVertexArrays = Clazz.defineMethod (c$, "getNeighborVertexArrays", 
+c$.getNeighborVertexArrays = Clazz.defineMethod (c$, "getNeighborVertexArrays",
  function () {
 if (JU.Normix.neighborVertexesArrays == null) {
 JU.Normix.neighborVertexesArrays = JU.Geodesic.getNeighborVertexesArrays ();
 }return JU.Normix.neighborVertexesArrays;
 });
-c$.getNormixV = Clazz.defineMethod (c$, "getNormixV", 
+c$.getNormixV = Clazz.defineMethod (c$, "getNormixV",
 function (v, bsTemp) {
 return JU.Normix.getNormix (v.x, v.y, v.z, 3, bsTemp);
 }, "JU.V3,JU.BS");
-c$.get2SidedNormix = Clazz.defineMethod (c$, "get2SidedNormix", 
+c$.get2SidedNormix = Clazz.defineMethod (c$, "get2SidedNormix",
 function (v, bsTemp) {
 return ~JU.Normix.getNormixV (v, bsTemp);
 }, "JU.V3,JU.BS");
-c$.getNormix = Clazz.defineMethod (c$, "getNormix", 
+c$.getNormix = Clazz.defineMethod (c$, "getNormix",
  function (x, y, z, geodesicLevel, bsConsidered) {
 var champion;
 var t;

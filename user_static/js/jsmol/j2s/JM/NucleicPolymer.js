@@ -4,17 +4,17 @@ c$ = Clazz.decorateAsClass (function () {
 this.isDssrSet = false;
 Clazz.instantialize (this, arguments);
 }, JM, "NucleicPolymer", JM.PhosphorusPolymer);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (monomers) {
 Clazz.superConstructor (this, JM.NucleicPolymer, [monomers]);
 this.type = 2;
 this.hasWingPoints = true;
 }, "~A");
-Clazz.defineMethod (c$, "getNucleicPhosphorusAtom", 
+Clazz.defineMethod (c$, "getNucleicPhosphorusAtom",
 function (monomerIndex) {
 return this.monomers[monomerIndex].getLeadAtom ();
 }, "~N");
-Clazz.overrideMethod (c$, "calcEtaThetaAngles", 
+Clazz.overrideMethod (c$, "calcEtaThetaAngles",
 function () {
 var eta = NaN;
 for (var i = 0; i < this.monomerCount - 2; ++i) {
@@ -36,7 +36,7 @@ m1.setGroupParameter (1111490576, theta);
 }
 return true;
 });
-Clazz.overrideMethod (c$, "calcRasmolHydrogenBonds", 
+Clazz.overrideMethod (c$, "calcRasmolHydrogenBonds",
 function (polymer, bsA, bsB, vAtoms, nMaxPerResidue, min, checkDistances, dsspIgnoreHydrogens) {
 var other = polymer;
 var vNorm =  new JU.V3 ();
@@ -78,7 +78,7 @@ if (n >= nMaxPerResidue) continue;
 n += JM.NucleicPolymer.addHydrogenBond (vAtoms, myNucleotide.getN6 (), bestNucleotide.getO4 ());
 }}}
 }, "JM.BioPolymer,JU.BS,JU.BS,JU.Lst,~N,~A,~B,~B");
-c$.addHydrogenBond = Clazz.defineMethod (c$, "addHydrogenBond", 
+c$.addHydrogenBond = Clazz.defineMethod (c$, "addHydrogenBond",
 function (vAtoms, atom1, atom2) {
 if (atom1 == null || atom2 == null) return 0;
 vAtoms.addLast ( new JM.HBond (atom1, atom2, 18432, 1, 0, 0));

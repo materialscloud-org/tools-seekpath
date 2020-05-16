@@ -36,22 +36,22 @@ this.tokens =  new Array (16);
 this.atomArray =  new Array (100);
 this.bondArray =  new Array (100);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.adapter.readers.xml.XmlCmlReader, []);
 });
-Clazz.overrideMethod (c$, "processXml", 
+Clazz.overrideMethod (c$, "processXml",
 function (parent, saxReader) {
 this.optimize2d = parent.checkFilterKey ("2D");
 this.processXml2 (parent, saxReader);
 if (this.optimize2d) this.set2D ();
 }, "J.adapter.readers.xml.XmlReader,~O");
-Clazz.overrideMethod (c$, "processStartElement", 
+Clazz.overrideMethod (c$, "processStartElement",
 function (name, nodeName) {
 if (!this.processing) return;
 this.processStart2 (name);
 }, "~S,~S");
-Clazz.defineMethod (c$, "processStart2", 
+Clazz.defineMethod (c$, "processStart2",
 function (name) {
 name = name.toLowerCase ();
 var val;
@@ -257,16 +257,16 @@ case 15:
 break;
 }
 }, "~S");
-Clazz.defineMethod (c$, "getAtomIndex", 
+Clazz.defineMethod (c$, "getAtomIndex",
  function (label) {
 return this.asc.getAtomIndex (this.isSerial ? label.substring (1) : label);
 }, "~S");
-Clazz.overrideMethod (c$, "processEndElement", 
+Clazz.overrideMethod (c$, "processEndElement",
 function (name) {
 if (!this.processing) return;
 this.processEnd2 (name);
 }, "~S");
-Clazz.defineMethod (c$, "processEnd2", 
+Clazz.defineMethod (c$, "processEnd2",
 function (name) {
 name = name.toLowerCase ();
 switch (this.state) {
@@ -410,13 +410,13 @@ this.state = 6;
 break;
 }
 }, "~S");
-Clazz.defineMethod (c$, "addBond", 
+Clazz.defineMethod (c$, "addBond",
  function (bond) {
 var a1 = this.asc.atoms[bond.atomIndex1];
 var a2 = this.asc.atoms[bond.atomIndex2];
 if (this.joinList != null && !this.checkBondToR (a1.atomName, a2.atomName)) this.asc.addBond (bond);
 }, "J.adapter.smarter.Bond");
-Clazz.defineMethod (c$, "checkBondToR", 
+Clazz.defineMethod (c$, "checkBondToR",
  function (a1name, a2name) {
 var a1 = this.asc.getAtomFromName (a1name);
 var a2 = this.asc.getAtomFromName (a2name);
@@ -429,7 +429,7 @@ this.mapRtoA.put (a2, a1.atomName);
 return true;
 }return false;
 }, "~S,~S");
-Clazz.defineMethod (c$, "setAtomNames", 
+Clazz.defineMethod (c$, "setAtomNames",
  function () {
 if (this.atomIdNames == null) return;
 var s;
@@ -439,7 +439,7 @@ for (var i = this.atomIndex0; i < this.asc.ac; i++) if ((s = this.atomIdNames.ge
 this.atomIdNames = null;
 this.atomIndex0 = this.asc.ac;
 });
-Clazz.defineMethod (c$, "addNewBond", 
+Clazz.defineMethod (c$, "addNewBond",
  function (a1, a2, order) {
 if (a1 == null || a2 == null) return;
 this.parent.applySymmetryToBonds = true;
@@ -449,25 +449,25 @@ if (this.joinList == null || !this.checkBondToR (a1, a2)) {
 this.asc.addNewBondFromNames (a1, a2, order);
 this.bond = this.asc.bonds[this.asc.bondCount - 1];
 }}, "~S,~S,~N");
-Clazz.defineMethod (c$, "fixSerialName", 
+Clazz.defineMethod (c$, "fixSerialName",
  function (a) {
 return (this.isSerial ? a.substring (1) : a);
 }, "~S");
-Clazz.defineMethod (c$, "getDictRefValue", 
+Clazz.defineMethod (c$, "getDictRefValue",
  function () {
 this.scalarDictRef = this.atts.get ("dictref");
 if (this.scalarDictRef != null) {
 var iColon = this.scalarDictRef.indexOf (":");
 this.scalarDictValue = this.scalarDictRef.substring (iColon + 1);
 }});
-Clazz.defineMethod (c$, "checkUnitCellItem", 
+Clazz.defineMethod (c$, "checkUnitCellItem",
  function (tags, value) {
 for (var i = tags.length; --i >= 0; ) if (value.equals (tags[i])) {
 this.parent.setUnitCellItem (i, this.parseFloatStr (this.chars.toString ()));
 return;
 }
 }, "~A,~S");
-Clazz.defineMethod (c$, "addAtom", 
+Clazz.defineMethod (c$, "addAtom",
  function (atom) {
 if ((atom.elementSymbol == null && atom.elementNumber < 0) || Float.isNaN (atom.z)) return;
 this.parent.setAtomCoord (atom);
@@ -475,7 +475,7 @@ if (this.htModelAtomMap != null) this.htModelAtomMap.put (this.moleculeID + atom
 if (this.isSerial) this.asc.addAtomWithMappedSerialNumber (atom);
  else this.asc.addAtomWithMappedName (atom);
 }, "J.adapter.smarter.Atom");
-Clazz.defineMethod (c$, "parseBondToken", 
+Clazz.defineMethod (c$, "parseBondToken",
  function (str) {
 var floatOrder = this.parseFloatStr (str);
 if (Float.isNaN (floatOrder) && str.length >= 1) {
@@ -498,7 +498,7 @@ if (floatOrder == 2) return 2;
 if (floatOrder == 3) return 3;
 return 1;
 }, "~S");
-Clazz.defineMethod (c$, "breakOutTokens", 
+Clazz.defineMethod (c$, "breakOutTokens",
  function (str) {
 var st =  new java.util.StringTokenizer (str);
 this.tokenCount = st.countTokens ();
@@ -515,12 +515,12 @@ throw nsee;
 }
 }
 }, "~S");
-Clazz.defineMethod (c$, "breakOutAtomTokens", 
+Clazz.defineMethod (c$, "breakOutAtomTokens",
 function (str) {
 this.breakOutTokens (str);
 this.checkAtomArrayLength (this.tokenCount);
 }, "~S");
-Clazz.defineMethod (c$, "checkAtomArrayLength", 
+Clazz.defineMethod (c$, "checkAtomArrayLength",
 function (newAtomCount) {
 if (this.aaLen == 0) {
 if (newAtomCount > this.atomArray.length) this.atomArray =  new Array (newAtomCount);
@@ -530,12 +530,12 @@ this.aaLen = newAtomCount;
 } else if (newAtomCount != this.aaLen) {
 throw  new IndexOutOfBoundsException ("bad atom attribute length");
 }}, "~N");
-Clazz.defineMethod (c$, "breakOutBondTokens", 
+Clazz.defineMethod (c$, "breakOutBondTokens",
 function (str) {
 this.breakOutTokens (str);
 this.checkBondArrayLength (this.tokenCount);
 }, "~S");
-Clazz.defineMethod (c$, "checkBondArrayLength", 
+Clazz.defineMethod (c$, "checkBondArrayLength",
 function (newBondCount) {
 if (this.bondCount == 0) {
 if (newBondCount > this.bondArray.length) this.bondArray =  new Array (newBondCount);
@@ -545,7 +545,7 @@ this.bondCount = newBondCount;
 } else if (newBondCount != this.bondCount) {
 throw  new IndexOutOfBoundsException ("bad bond attribute length");
 }}, "~N");
-Clazz.defineMethod (c$, "createNewAtomSet", 
+Clazz.defineMethod (c$, "createNewAtomSet",
  function () {
 this.asc.newAtomSet ();
 var val;
@@ -554,14 +554,14 @@ var collectionName = ((val = this.atts.get ("title")) != null || (val = this.att
 if (collectionName != null) {
 this.asc.setAtomSetName (collectionName);
 }});
-Clazz.defineMethod (c$, "applySymmetryAndSetTrajectory", 
+Clazz.defineMethod (c$, "applySymmetryAndSetTrajectory",
 function () {
 if (this.moduleNestingLevel > 0 || !this.haveMolecule || this.localSpaceGroupName == null) return;
 this.parent.setSpaceGroupName (this.localSpaceGroupName);
 this.parent.iHaveSymmetryOperators = this.iHaveSymmetryOperators;
 this.parent.applySymmetryAndSetTrajectory ();
 });
-Clazz.overrideMethod (c$, "endDocument", 
+Clazz.overrideMethod (c$, "endDocument",
 function () {
 if (this.deleteAtoms != null) {
 var bs = (this.asc.bsAtoms == null ? this.asc.bsAtoms = JU.BSUtil.newBitSet2 (0, this.asc.ac) : this.asc.bsAtoms);

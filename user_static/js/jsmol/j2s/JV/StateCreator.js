@@ -13,15 +13,15 @@ this.temp =  new java.util.Hashtable ();
 this.temp2 =  new java.util.Hashtable ();
 this.temp3 =  new java.util.Hashtable ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JV.StateCreator, []);
 });
-Clazz.overrideMethod (c$, "setViewer", 
+Clazz.overrideMethod (c$, "setViewer",
 function (vwr) {
 this.vwr = vwr;
 }, "JV.Viewer");
-Clazz.overrideMethod (c$, "getStateScript", 
+Clazz.overrideMethod (c$, "getStateScript",
 function (type, width, height) {
 var isAll = (type == null || type.equalsIgnoreCase ("all"));
 var s =  new JU.SB ();
@@ -54,7 +54,7 @@ sfunc.append ("}\n\n_setState;\n");
 }if (isAll) s.appendSB (sfunc);
 return s.toString ();
 }, "~S,~N,~N");
-Clazz.defineMethod (c$, "getDataState", 
+Clazz.defineMethod (c$, "getDataState",
  function (sfunc) {
 var commands =  new JU.SB ();
 var haveData = false;
@@ -77,7 +77,7 @@ cmd = "function _setDataState() {\n";
 commands.append ("}\n\n");
 }return cmd + commands.toString ();
 }, "JU.SB");
-Clazz.defineMethod (c$, "getDefinedState", 
+Clazz.defineMethod (c$, "getDefinedState",
  function (sfunc, isAll) {
 var ms = this.vwr.ms;
 var len = ms.stateScripts.size ();
@@ -99,7 +99,7 @@ cmd = "function _setDefinedState() {\n\n";
 }if (sfunc != null) commands.append ("\n}\n\n");
 return cmd + commands.toString ();
 }, "JU.SB,~B");
-Clazz.overrideMethod (c$, "getModelState", 
+Clazz.overrideMethod (c$, "getModelState",
 function (sfunc, isAll, withProteinStructure) {
 var commands =  new JU.SB ();
 if (isAll && sfunc != null) {
@@ -186,7 +186,7 @@ commands.append (this.getCommands (temp, null, "select"));
 }if (sfunc != null) commands.append ("\n}\n\n");
 return commands.toString ();
 }, "JU.SB,~B,~B");
-Clazz.defineMethod (c$, "getWindowState", 
+Clazz.defineMethod (c$, "getWindowState",
  function (sfunc, width, height) {
 var global = this.vwr.g;
 var str =  new JU.SB ();
@@ -205,7 +205,7 @@ this.app (str, "background IMAGE " + (global.backgroundImageFileName.startsWith 
 if (sfunc != null) str.append ("}\n\n");
 return str.toString ();
 }, "JU.SB,~N,~N");
-Clazz.overrideMethod (c$, "getLightingState", 
+Clazz.overrideMethod (c$, "getLightingState",
 function (isAll) {
 var str =  new JU.SB ();
 var g = this.vwr.gdata;
@@ -223,7 +223,7 @@ this.app (str, "set zShadePower " + this.vwr.g.zShadePower);
 if (isAll) this.getZshadeState (str, this.vwr.tm, true);
 return str.toString ();
 }, "~B");
-Clazz.defineMethod (c$, "getFileState", 
+Clazz.defineMethod (c$, "getFileState",
  function (sfunc) {
 var commands =  new JU.SB ();
 if (sfunc != null) {
@@ -234,7 +234,7 @@ this.appendLoadStates (commands);
 if (sfunc != null) commands.append ("\n}\n\n");
 return commands.toString ();
 }, "JU.SB");
-Clazz.defineMethod (c$, "appendLoadStates", 
+Clazz.defineMethod (c$, "appendLoadStates",
  function (cmds) {
 var ligandModelSet = this.vwr.ligandModelSet;
 if (ligandModelSet != null) {
@@ -272,19 +272,19 @@ if ((j = s.indexOf ("load \"@")) >= 0 && j < i) i = j;
 if (i >= 0) s = s.substring (0, i) + "zap;" + s.substring (i);
 }cmds.append (s);
 }, "JU.SB");
-Clazz.overrideMethod (c$, "getInlineData", 
+Clazz.overrideMethod (c$, "getInlineData",
 function (loadScript, strModel, isAppend, loadFilter) {
 var tag = (isAppend ? "append" : "model") + " inline";
 loadScript.append ("load /*data*/ data \"").append (tag).append ("\"\n").append (strModel).append ("end \"").append (tag).append (loadFilter == null || loadFilter.length == 0 ? "" : " filter" + JU.PT.esc (loadFilter)).append ("\";");
 }, "JU.SB,~S,~B,~S");
-Clazz.defineMethod (c$, "getColorState", 
+Clazz.defineMethod (c$, "getColorState",
  function (cm, sfunc) {
 var s =  new JU.SB ();
 var n = this.getCEState (cm.ce, s);
 if (n > 0 && sfunc != null) sfunc.append ("\n  _setColorState\n");
 return (n > 0 && sfunc != null ? "function _setColorState() {\n" + s.append ("}\n\n").toString () : s.toString ());
 }, "JV.ColorManager,JU.SB");
-Clazz.defineMethod (c$, "getCEState", 
+Clazz.defineMethod (c$, "getCEState",
  function (p, s) {
 var n = 0;
 for (var entry, $entry = p.schemes.entrySet ().iterator (); $entry.hasNext () && ((entry = $entry.next ()) || true);) {
@@ -293,7 +293,7 @@ if ( new Boolean (name.length > 0 & n++ >= 0).valueOf ()) s.append ("color \"" +
 }
 return n;
 }, "JU.ColorEncoder,JU.SB");
-Clazz.defineMethod (c$, "getAnimState", 
+Clazz.defineMethod (c$, "getAnimState",
  function (am, sfunc) {
 var modelCount = this.vwr.ms.mc;
 if (modelCount < 2) return "";
@@ -330,7 +330,7 @@ if (am.animationOn && am.animationPaused) this.app (commands, "animation PAUSE")
 if (sfunc != null) commands.append ("}\n\n");
 return commands.toString ();
 }, "JV.AnimationManager,JU.SB");
-Clazz.defineMethod (c$, "getParameterState", 
+Clazz.defineMethod (c$, "getParameterState",
  function (global, sfunc) {
 var list =  new Array (global.htBooleanParameterFlags.size () + global.htNonbooleanParameterValues.size ());
 var commands =  new JU.SB ();
@@ -376,7 +376,7 @@ commands.append ("struture TURN set " + JU.Escape.eAF (slist.get (J.c.STR.TURN))
 }if (sfunc != null) commands.append ("\n}\n\n");
 return commands.toString ();
 }, "JV.GlobalSettings,JU.SB");
-Clazz.defineMethod (c$, "getDefaultLabelState", 
+Clazz.defineMethod (c$, "getDefaultLabelState",
  function (l) {
 var s =  new JU.SB ().append ("\n# label defaults;\n");
 this.app (s, "select none");
@@ -392,7 +392,7 @@ if ((l.defaultZPos & 32) != 0) this.app (s, "set labelFront");
 this.app (s, J.shape.Shape.getFontCommand ("label", javajs.awt.Font.getFont3D (l.defaultFontId)));
 return s.toString ();
 }, "J.shape.Labels");
-Clazz.defineMethod (c$, "getSelectionState", 
+Clazz.defineMethod (c$, "getSelectionState",
  function (sm, sfunc) {
 var commands =  new JU.SB ();
 if (sfunc != null) {
@@ -415,7 +415,7 @@ if (this.vwr.getSelectionHalosEnabled ()) this.app (commands, "SelectionHalos ON
 if (sfunc != null) commands.append ("}\n\n");
 return commands.toString ();
 }, "JV.SelectionManager,JU.SB");
-Clazz.defineMethod (c$, "getViewState", 
+Clazz.defineMethod (c$, "getViewState",
  function (tm, sfunc) {
 var commands =  new JU.SB ();
 var moveToText = tm.getMoveToText (0, false);
@@ -449,7 +449,7 @@ commands.append (tm.getNavigationState ());
 if (sfunc != null) commands.append ("}\n\n");
 return commands.toString ();
 }, "JV.TransformManager,JU.SB");
-Clazz.defineMethod (c$, "getZshadeState", 
+Clazz.defineMethod (c$, "getZshadeState",
  function (s, tm, isAll) {
 if (isAll) {
 this.app (s, "set zDepth " + tm.zDepthPercentSetting);
@@ -465,7 +465,7 @@ throw e;
 }
 }
 }, "JU.SB,JV.TransformManager,~B");
-Clazz.overrideMethod (c$, "getSpinState", 
+Clazz.overrideMethod (c$, "getSpinState",
 function (isAll) {
 var tm = this.vwr.tm;
 var s = "  set spinX " + Clazz.floatToInt (tm.spinX) + "; set spinY " + Clazz.floatToInt (tm.spinY) + "; set spinZ " + Clazz.floatToInt (tm.spinZ) + "; set spinFps " + Clazz.floatToInt (tm.spinFps) + ";";
@@ -483,14 +483,14 @@ s += prefix + " spin axisangle " + JU.Escape.eP (tm.rotationAxis) + " " + tm.rot
 s += " spin on";
 }return s + ";";
 }, "~B");
-Clazz.overrideMethod (c$, "getCommands", 
+Clazz.overrideMethod (c$, "getCommands",
 function (htDefine, htMore, selectCmd) {
 var s =  new JU.SB ();
 var setPrev = this.getCommands2 (htDefine, s, null, selectCmd);
 if (htMore != null) this.getCommands2 (htMore, s, setPrev, "select");
 return s.toString ();
 }, "java.util.Map,java.util.Map,~S");
-Clazz.defineMethod (c$, "getCommands2", 
+Clazz.defineMethod (c$, "getCommands2",
  function (ht, s, setPrev, selectCmd) {
 if (ht == null) return "";
 for (var entry, $entry = ht.entrySet ().iterator (); $entry.hasNext () && ((entry = $entry.next ()) || true);) {
@@ -504,16 +504,16 @@ if (key.indexOf ("-") != 0) this.app (s, key);
 }
 return setPrev;
 }, "java.util.Map,JU.SB,~S,~S");
-Clazz.defineMethod (c$, "app", 
+Clazz.defineMethod (c$, "app",
  function (s, cmd) {
 if (cmd.length != 0) s.append ("  ").append (cmd).append (";\n");
 }, "JU.SB,~S");
-Clazz.defineMethod (c$, "addBs", 
+Clazz.defineMethod (c$, "addBs",
  function (sb, key, bs) {
 if (bs == null || bs.length () == 0) return;
 this.app (sb, key + JU.Escape.eBS (bs));
 }, "JU.SB,~S,JU.BS");
-Clazz.defineMethod (c$, "getFontState", 
+Clazz.defineMethod (c$, "getFontState",
  function (myType, font3d) {
 var objId = JV.StateManager.getObjectIdFromName (myType.equalsIgnoreCase ("axes") ? "axis" : myType);
 if (objId < 0) return "";
@@ -525,14 +525,14 @@ var fcmd = J.shape.Shape.getFontCommand (myType, font3d);
 if (fcmd.length > 0) fcmd = "  " + fcmd + ";\n";
 return (s + fcmd);
 }, "~S,javajs.awt.Font");
-Clazz.defineMethod (c$, "appendTickInfo", 
+Clazz.defineMethod (c$, "appendTickInfo",
  function (myType, sb, t) {
 sb.append ("  ");
 sb.append (myType);
 JV.StateCreator.addTickInfo (sb, t, false);
 sb.append (";\n");
 }, "~S,JU.SB,JM.TickInfo");
-c$.addTickInfo = Clazz.defineMethod (c$, "addTickInfo", 
+c$.addTickInfo = Clazz.defineMethod (c$, "addTickInfo",
  function (sb, tickInfo, addFirst) {
 sb.append (" ticks ").append (tickInfo.type).append (" ").append (JU.Escape.eP (tickInfo.ticks));
 var isUnitCell = (tickInfo.scale != null && Float.isNaN (tickInfo.scale.x));
@@ -542,7 +542,7 @@ if (!isUnitCell && tickInfo.scale != null) sb.append (" scale ").append (JU.Esca
 if (addFirst && !Float.isNaN (tickInfo.first) && tickInfo.first != 0) sb.append (" first ").appendF (tickInfo.first);
 if (tickInfo.reference != null) sb.append (" point ").append (JU.Escape.eP (tickInfo.reference));
 }, "JU.SB,JM.TickInfo,~B");
-Clazz.defineMethod (c$, "getMeasurementState", 
+Clazz.defineMethod (c$, "getMeasurementState",
  function (shape) {
 var mList = shape.measurements;
 var measurementCount = shape.measurementCount;
@@ -595,7 +595,7 @@ commands.append (s);
 this.app (commands, "select measures ({null})");
 }return commands.toString ();
 }, "J.shape.Measures");
-Clazz.defineMethod (c$, "getShapeStatePriv", 
+Clazz.defineMethod (c$, "getShapeStatePriv",
  function (commands, isAll, iShape) {
 var shapes = this.vwr.shm.shapes;
 if (shapes == null) return;
@@ -614,7 +614,7 @@ if (cmd != null && cmd.length > 1) commands.append (cmd);
 }}
 commands.append ("  select *;\n");
 }, "JU.SB,~B,~N");
-Clazz.defineMethod (c$, "getBondState", 
+Clazz.defineMethod (c$, "getBondState",
  function (shape) {
 var bsOrderSet = shape.bsOrderSet;
 var reportAll = shape.reportAll;
@@ -643,12 +643,12 @@ var s = this.getCommands (this.temp, null, "select BONDS") + "\n" + (haveTainted
 this.clearTemp ();
 return s;
 }, "J.shape.Sticks");
-Clazz.defineMethod (c$, "clearTemp", 
+Clazz.defineMethod (c$, "clearTemp",
  function () {
 this.temp.clear ();
 this.temp2.clear ();
 });
-Clazz.defineMethod (c$, "getShapeState", 
+Clazz.defineMethod (c$, "getShapeState",
  function (shape) {
 var s;
 switch (shape.shapeID) {
@@ -764,7 +764,7 @@ break;
 }
 return s;
 }, "J.shape.Shape");
-Clazz.defineMethod (c$, "getFontLineShapeState", 
+Clazz.defineMethod (c$, "getFontLineShapeState",
  function (shape) {
 var s = this.getFontState (shape.myType, shape.font3d);
 if (shape.tickInfos == null) return s;
@@ -776,7 +776,7 @@ for (var i = 0; i < 4; i++) if (shape.tickInfos[i] != null) this.appendTickInfo 
 if (isOff) sb.append ("  " + shape.myType + " off;\n");
 return sb.toString ();
 }, "J.shape.FontLineShape");
-Clazz.defineMethod (c$, "getAxesState", 
+Clazz.defineMethod (c$, "getAxesState",
  function (axes) {
 var sb =  new JU.SB ();
 sb.append (this.getFontLineShapeState (axes));
@@ -794,7 +794,7 @@ sb.append (";\n");
 sb.append ("  axes type " + JU.PT.esc (axes.axisType));
 }return sb.toString ();
 }, "J.shape.Axes");
-Clazz.overrideMethod (c$, "getAtomShapeState", 
+Clazz.overrideMethod (c$, "getAtomShapeState",
 function (shape) {
 if (!shape.isActive) return "";
 this.clearTemp ();
@@ -809,7 +809,7 @@ var s = this.getCommands (this.temp, this.temp2, "select");
 this.clearTemp ();
 return s;
 }, "J.shape.AtomShape");
-Clazz.defineMethod (c$, "getTextState", 
+Clazz.defineMethod (c$, "getTextState",
  function (t) {
 var s =  new JU.SB ();
 var text = t.text;
@@ -854,7 +854,7 @@ s.append (JU.C.getHexCode (t.bgcolix));
 }s.append (";\n");
 return s.toString ();
 }, "JM.Text");
-Clazz.overrideMethod (c$, "getAllSettings", 
+Clazz.overrideMethod (c$, "getAllSettings",
 function (prefix) {
 var g = this.vwr.g;
 var commands =  new JU.SB ();
@@ -882,7 +882,7 @@ for (var i = 0; i < n; i++) if (list[i] != null) this.app (commands, list[i]);
 commands.append ("\n");
 return commands.toString ();
 }, "~S");
-c$.chop = Clazz.defineMethod (c$, "chop", 
+c$.chop = Clazz.defineMethod (c$, "chop",
  function (s) {
 var len = s.length;
 if (len < 512) return s;
@@ -897,7 +897,7 @@ sb.append ((pt == 0 ? "" : sep)).append (s.substring (pt, i));
 sb.append (sep).append (s.substring (pt, len));
 return sb.toString ();
 }, "~S");
-Clazz.overrideMethod (c$, "getFunctionCalls", 
+Clazz.overrideMethod (c$, "getFunctionCalls",
 function (f) {
 if (f == null) f = "";
 var s =  new JU.SB ();
@@ -912,7 +912,7 @@ if (isStatic || f.length == 0) this.addFunctions (s, JV.Viewer.staticFunctions, 
 if (!isStatic || f.length == 0) this.addFunctions (s, this.vwr.localFunctions, f, isGeneric, namesOnly);
 return s.toString ();
 }, "~S");
-Clazz.defineMethod (c$, "addFunctions", 
+Clazz.defineMethod (c$, "addFunctions",
  function (s, ht, selectedFunction, isGeneric, namesOnly) {
 var names =  new Array (ht.size ());
 var n = 0;
@@ -925,11 +925,11 @@ s.append (namesOnly ? f.getSignature () : f.toString ());
 s.appendC ('\n');
 }
 }, "JU.SB,java.util.Map,~S,~B,~B");
-c$.isTainted = Clazz.defineMethod (c$, "isTainted", 
+c$.isTainted = Clazz.defineMethod (c$, "isTainted",
  function (tainted, atomIndex, type) {
 return (tainted != null && tainted[type] != null && tainted[type].get (atomIndex));
 }, "~A,~N,~N");
-Clazz.overrideMethod (c$, "getAtomicPropertyState", 
+Clazz.overrideMethod (c$, "getAtomicPropertyState",
 function (taintWhat, bsSelected) {
 if (!this.vwr.g.preserveState) return "";
 var bs;
@@ -938,7 +938,7 @@ for (var type = 0; type < 17; type++) if (taintWhat < 0 || type == taintWhat) if
 
 return commands.toString ();
 }, "~N,JU.BS");
-Clazz.overrideMethod (c$, "getAtomicPropertyStateBuffer", 
+Clazz.overrideMethod (c$, "getAtomicPropertyStateBuffer",
 function (commands, type, bs, label, fData) {
 if (!this.vwr.g.preserveState) return;
 var s =  new JU.SB ();
@@ -1016,7 +1016,7 @@ commands.append ("\n  DATA \"" + dataLabel + "\"\n").appendI (n).append (" ;\nJm
 commands.appendSB (s);
 commands.append ("  end \"" + dataLabel + "\";\n");
 }, "JU.SB,~N,JU.BS,~S,~A");
-Clazz.overrideMethod (c$, "undoMoveAction", 
+Clazz.overrideMethod (c$, "undoMoveAction",
 function (action, n) {
 switch (action) {
 case 4165:
@@ -1038,7 +1038,7 @@ for (var i = 0; i < n; i++) this.undoMoveActionClear (0, action, true);
 break;
 }
 }, "~N,~N");
-Clazz.overrideMethod (c$, "undoMoveActionClear", 
+Clazz.overrideMethod (c$, "undoMoveActionClear",
 function (taintedAtom, type, clearRedo) {
 if (!this.vwr.g.preserveState) return;
 var modelIndex = (taintedAtom >= 0 ? this.vwr.ms.at[taintedAtom].mi : this.vwr.ms.mc - 1);
@@ -1102,7 +1102,7 @@ this.vwr.actionStates.removeItemAt (99);
 }}
 this.undoWorking = !clearRedo;
 }, "~N,~N,~B");
-Clazz.overrideMethod (c$, "syncScript", 
+Clazz.overrideMethod (c$, "syncScript",
 function (script, applet, port) {
 var sm = this.vwr.sm;
 if ("GET_GRAPHICS".equalsIgnoreCase (script)) {
@@ -1159,7 +1159,7 @@ return;
 }this.mouseScript (script);
 if (disableSend) this.vwr.setSyncDriver (4);
 }, "~S,~S,~N");
-Clazz.overrideMethod (c$, "mouseScript", 
+Clazz.overrideMethod (c$, "mouseScript",
 function (script) {
 var tokens = JU.PT.getTokens (script);
 var key = tokens[1];

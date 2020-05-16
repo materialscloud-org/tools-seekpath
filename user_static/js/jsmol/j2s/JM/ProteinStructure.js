@@ -19,7 +19,7 @@ this.segments = null;
 this.resMap = null;
 Clazz.instantialize (this, arguments);
 }, JM, "ProteinStructure", null, JM.Structure);
-Clazz.defineMethod (c$, "setupPS", 
+Clazz.defineMethod (c$, "setupPS",
 function (apolymer, type, monomerIndex, monomerCount) {
 this.strucNo = ++JM.ProteinStructure.globalStrucNo;
 this.apolymer = apolymer;
@@ -29,7 +29,7 @@ this.monomerIndexFirst = monomerIndex;
 this.addMonomer (monomerIndex + monomerCount - 1);
 if (JU.Logger.debugging) JU.Logger.info ("Creating ProteinStructure " + this.strucNo + " " + type.getBioStructureTypeName (false) + " from " + this.monomerIndexFirst + " through " + this.monomerIndexLast + " in polymer " + apolymer);
 }, "JM.AlphaPolymer,J.c.STR,~N,~N");
-Clazz.defineMethod (c$, "addMonomer", 
+Clazz.defineMethod (c$, "addMonomer",
 function (index) {
 this.resMap = null;
 this.resetAxes ();
@@ -37,7 +37,7 @@ this.monomerIndexFirst = Math.min (this.monomerIndexFirst, index);
 this.monomerIndexLast = Math.max (this.monomerIndexLast, index);
 this.nRes = this.monomerIndexLast - this.monomerIndexFirst + 1;
 }, "~N");
-Clazz.defineMethod (c$, "removeMonomer", 
+Clazz.defineMethod (c$, "removeMonomer",
 function (index) {
 this.resMap = null;
 this.resetAxes ();
@@ -60,14 +60,14 @@ for (var i = 0, pt = index; i < n; i++, pt++) {
 mLast = monomers[pt].setProteinStructureType (type, mLast);
 }
 }}, "~N");
-Clazz.defineMethod (c$, "calcAxis", 
+Clazz.defineMethod (c$, "calcAxis",
 function () {
 });
-Clazz.defineMethod (c$, "isWithin", 
+Clazz.defineMethod (c$, "isWithin",
 function (monomerIndex) {
 return (monomerIndex > this.monomerIndexFirst && monomerIndex < this.monomerIndexLast);
 }, "~N");
-Clazz.defineMethod (c$, "getIndex", 
+Clazz.defineMethod (c$, "getIndex",
 function (monomer) {
 if (this.resMap == null) {
 this.resMap =  new java.util.Hashtable ();
@@ -76,17 +76,17 @@ for (var i = this.nRes; --i >= 0; ) this.resMap.put (this.apolymer.monomers[this
 }var ii = this.resMap.get (monomer);
 return (ii == null ? -1 : ii.intValue ());
 }, "JM.Monomer");
-Clazz.defineMethod (c$, "getSegments", 
+Clazz.defineMethod (c$, "getSegments",
 function () {
 if (this.segments == null) this.calcSegments ();
 return this.segments;
 });
-Clazz.defineMethod (c$, "getStructureMidPoint", 
+Clazz.defineMethod (c$, "getStructureMidPoint",
 function (index) {
 if (this.segments == null) this.calcSegments ();
 return this.segments[index];
 }, "~N");
-Clazz.defineMethod (c$, "calcSegments", 
+Clazz.defineMethod (c$, "calcSegments",
  function () {
 if (this.segments != null) return;
 this.calcAxis ();
@@ -100,34 +100,34 @@ var point = this.segments[i] =  new JU.P3 ();
 point.add2 (this.segments[i - 1], axis);
 }
 });
-Clazz.defineMethod (c$, "getAxisStartPoint", 
+Clazz.defineMethod (c$, "getAxisStartPoint",
 function () {
 this.calcAxis ();
 return this.axisA;
 });
-Clazz.defineMethod (c$, "getAxisEndPoint", 
+Clazz.defineMethod (c$, "getAxisEndPoint",
 function () {
 this.calcAxis ();
 return this.axisB;
 });
-Clazz.defineMethod (c$, "resetAxes", 
+Clazz.defineMethod (c$, "resetAxes",
 function () {
 this.axisA = null;
 this.segments = null;
 });
-Clazz.overrideMethod (c$, "setAtomBits", 
+Clazz.overrideMethod (c$, "setAtomBits",
 function (bs) {
 var ms = this.apolymer.monomers;
 for (var i = this.monomerIndexFirst; i <= this.monomerIndexLast; i++) ms[i].setAtomBits (bs);
 
 }, "JU.BS");
-Clazz.overrideMethod (c$, "setAtomBitsAndClear", 
+Clazz.overrideMethod (c$, "setAtomBitsAndClear",
 function (bs, bsOut) {
 var ms = this.apolymer.monomers;
 for (var i = this.monomerIndexFirst; i <= this.monomerIndexLast; i++) ms[i].setAtomBitsAndClear (bs, bsOut);
 
 }, "JU.BS,JU.BS");
-Clazz.defineMethod (c$, "findMonomer", 
+Clazz.defineMethod (c$, "findMonomer",
 function (bsAtoms, isFirst) {
 var ms = this.apolymer.monomers;
 if (isFirst) {

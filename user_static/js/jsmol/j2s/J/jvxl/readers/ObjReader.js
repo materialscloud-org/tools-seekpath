@@ -1,17 +1,17 @@
 Clazz.declarePackage ("J.jvxl.readers");
 Clazz.load (["J.jvxl.readers.PmeshReader"], "J.jvxl.readers.ObjReader", ["java.util.Hashtable", "JU.BS", "$.CU", "$.P3", "$.PT"], function () {
 c$ = Clazz.declareType (J.jvxl.readers, "ObjReader", J.jvxl.readers.PmeshReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.ObjReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2PR (sg, br);
 this.type = "obj";
 this.setHeader ();
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "readVertices", 
+Clazz.overrideMethod (c$, "readVertices",
 function () {
 this.pmeshError = "pmesh ERROR: invalid vertex/face list";
 var pt =  new JU.P3 ();
@@ -92,7 +92,7 @@ break;
 this.pmeshError = null;
 return true;
 });
-Clazz.overrideMethod (c$, "readPolygons", 
+Clazz.overrideMethod (c$, "readPolygons",
 function () {
 return true;
 });

@@ -37,7 +37,7 @@ this.ptTemp =  new JU.P3 ();
 this.triangles =  new Array (1000);
 this.htPts =  new java.util.Hashtable ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (surfaceReader, volumeData, thePlane, contoursDiscrete, nContours, thisContour, contourFromZero) {
 this.surfaceReader = surfaceReader;
 this.volumeData = volumeData;
@@ -53,33 +53,33 @@ nContours = contoursDiscrete.length;
 this.nContourSegments = nContours;
 this.contourFromZero = false;
 }}, "J.jvxl.api.VertexDataServer,J.jvxl.data.VolumeData,JU.P4,~A,~N,~N,~B");
-Clazz.defineMethod (c$, "setMinMax", 
+Clazz.defineMethod (c$, "setMinMax",
 function (valueMin, valueMax) {
 this.valueMin = valueMin;
 this.valueMax = valueMax;
 }, "~N,~N");
-Clazz.defineMethod (c$, "addContourVertex", 
+Clazz.defineMethod (c$, "addContourVertex",
 function (vertexXYZ, value) {
 if (this.contourVertexCount == this.contourVertexes.length) this.contourVertexes = JU.AU.doubleLength (this.contourVertexes);
 var vPt = this.surfaceReader.addVertexCopy (vertexXYZ, value, -2, true);
 this.contourVertexes[this.contourVertexCount++] = Clazz.innerTypeInstance (J.jvxl.calc.MarchingSquares.ContourVertex, this, null, vertexXYZ);
 return vPt;
 }, "JU.P3,~N");
-Clazz.defineMethod (c$, "setContourData", 
+Clazz.defineMethod (c$, "setContourData",
 function (i, value) {
 this.contourVertexes[i].setValue (value);
 }, "~N,~N");
-Clazz.defineMethod (c$, "calcContourPoint", 
+Clazz.defineMethod (c$, "calcContourPoint",
 function (cutoff, valueA, valueB, pt) {
 return this.volumeData.calculateFractionalPoint (cutoff, this.pointA, this.pointB, valueA, valueB, pt);
 }, "~N,~N,~N,JU.P3");
-Clazz.defineMethod (c$, "addTriangle", 
+Clazz.defineMethod (c$, "addTriangle",
 function (iA, iB, iC, check, iContour) {
 if (this.triangleCount == this.triangles.length) this.triangles = JU.AU.doubleLength (this.triangles);
 this.triangles[this.triangleCount++] = Clazz.innerTypeInstance (J.jvxl.calc.MarchingSquares.Triangle, this, null, iA, iB, iC, check, iContour);
 return 0;
 }, "~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "generateContourData", 
+Clazz.defineMethod (c$, "generateContourData",
 function (haveData, zeroOffset) {
 JU.Logger.info ("generateContours: " + this.nContourSegments + " segments");
 this.getVertexValues (haveData);
@@ -87,7 +87,7 @@ this.createContours (this.valueMin, this.valueMax, zeroOffset);
 this.addAllTriangles ();
 return this.contourVertexCount;
 }, "~B,~N");
-Clazz.defineMethod (c$, "getVertexValues", 
+Clazz.defineMethod (c$, "getVertexValues",
  function (haveData) {
 this.contourPlaneMinimumValue = 3.4028235E38;
 this.contourPlaneMaximumValue = -3.4028235E38;
@@ -103,7 +103,7 @@ c.setValue (value);
 if (value > this.contourPlaneMaximumValue) this.contourPlaneMaximumValue = value;
 }
 }, "~B");
-Clazz.defineMethod (c$, "createContours", 
+Clazz.defineMethod (c$, "createContours",
  function (min, max, zeroOffset) {
 var diff = max - min;
 this.contourValuesUsed =  Clazz.newFloatArray (this.nContourSegments, 0);
@@ -130,7 +130,7 @@ minCutoff = this.contoursDiscrete[0];
 this.valueMax = (this.contourValuesUsed.length == 0 ? this.valueMin : this.contourValuesUsed[this.contourValuesUsed.length - 1]);
 return true;
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "intercept", 
+Clazz.defineMethod (c$, "intercept",
  function (t, i, value) {
 var iA = t.pts[i];
 var iB = t.pts[(i + 1) % 3];
@@ -154,7 +154,7 @@ this.contourVertexes[iPt].setValue (value);
 }}}this.htPts.put (key, Integer.$valueOf (iPt));
 return iPt;
 }, "J.jvxl.calc.MarchingSquares.Triangle,~N,~N");
-Clazz.defineMethod (c$, "checkContour", 
+Clazz.defineMethod (c$, "checkContour",
  function (t, i, value) {
 if (this.thisContour > 0 && i + 1 != this.thisContour) return;
 var ipt0 = this.intercept (t, 0, value);
@@ -189,11 +189,11 @@ return;
 }
 t.isValid = false;
 }, "J.jvxl.calc.MarchingSquares.Triangle,~N,~N");
-Clazz.defineMethod (c$, "getMinMax", 
+Clazz.defineMethod (c$, "getMinMax",
 function () {
 return  Clazz.newFloatArray (-1, [this.valueMin, this.valueMax]);
 });
-Clazz.defineMethod (c$, "addAllTriangles", 
+Clazz.defineMethod (c$, "addAllTriangles",
  function () {
 for (var i = 0; i < this.triangleCount; i++) if (this.triangles[i].isValid) {
 var t = this.triangles[i];
@@ -207,16 +207,16 @@ Clazz.prepareCallback (this, arguments);
 this.value = 0;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.calc.MarchingSquares, "ContourVertex", JU.P3);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (a) {
 Clazz.superConstructor (this, J.jvxl.calc.MarchingSquares.ContourVertex, []);
 this.setT (a);
 }, "JU.P3");
-Clazz.defineMethod (c$, "setValue", 
+Clazz.defineMethod (c$, "setValue",
 function (a) {
 this.value = a;
 }, "~N");
-Clazz.overrideMethod (c$, "toString", 
+Clazz.overrideMethod (c$, "toString",
 function () {
 return this.value + " " + this.x + " " + this.y + " " + this.z;
 });
@@ -232,7 +232,7 @@ this.isValid = true;
 this.contourIndex = 0;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.calc.MarchingSquares, "Triangle");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (a, b, c, d, e) {
 this.pts =  Clazz.newIntArray (-1, [a, b, c]);
 this.check = d;

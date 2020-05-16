@@ -4,15 +4,15 @@ c$ = Clazz.decorateAsClass (function () {
 this.vwr = null;
 Clazz.instantialize (this, arguments);
 }, JSV.js2d, "JsFileHelper", null, JSV.api.JSVFileHelper);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.overrideMethod (c$, "set", 
+Clazz.overrideMethod (c$, "set",
 function (viewer) {
 this.vwr = viewer;
 return this;
 }, "JSV.common.JSViewer");
-Clazz.overrideMethod (c$, "getFile", 
+Clazz.overrideMethod (c$, "getFile",
 function (fileName, panelOrFrame, isSave) {
 var f = null;
 fileName = JU.PT.rep (fileName, "=", "_");
@@ -20,21 +20,21 @@ fileName = JU.PT.rep (fileName, "=", "_");
 f = prompt("Enter a file name:", fileName);
 }return (f == null ? null :  new JSV.js2d.JsFile (f));
 }, "~S,~O,~B");
-Clazz.overrideMethod (c$, "setDirLastExported", 
+Clazz.overrideMethod (c$, "setDirLastExported",
 function (name) {
 return name;
 }, "~S");
-Clazz.overrideMethod (c$, "setFileChooser", 
+Clazz.overrideMethod (c$, "setFileChooser",
 function (pdf) {
 }, "JSV.common.ExportType");
-Clazz.overrideMethod (c$, "showFileOpenDialog", 
+Clazz.overrideMethod (c$, "showFileOpenDialog",
 function (panelOrFrame, userData) {
 var applet = this.vwr.html5Applet;
 {
 Jmol._loadFileAsynchronously(this, applet, "?", userData);
 }return null;
 }, "~O,~A");
-Clazz.defineMethod (c$, "setData", 
+Clazz.defineMethod (c$, "setData",
 function (fileName, data, userInfo) {
 if (fileName == null) return;
 if (data == null) {
@@ -48,7 +48,7 @@ script = userInfo[1];
 }this.vwr.si.siOpenDataOrFile ( String.instantialize (data), "cache://" + fileName, null, null, -1, -1, isAppend, null, null);
 if (script != null) this.vwr.runScript (script);
 }, "~S,~O,~A");
-Clazz.overrideMethod (c$, "getUrlFromDialog", 
+Clazz.overrideMethod (c$, "getUrlFromDialog",
 function (info, msg) {
 {
 return prompt(info, msg);

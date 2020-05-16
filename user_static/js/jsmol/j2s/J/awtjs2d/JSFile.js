@@ -5,11 +5,11 @@ this.name = null;
 this.fullName = null;
 Clazz.instantialize (this, arguments);
 }, J.awtjs2d, "JSFile", null, javajs.api.GenericFileInterface);
-c$.newFile = Clazz.defineMethod (c$, "newFile", 
+c$.newFile = Clazz.defineMethod (c$, "newFile",
 function (name) {
 return  new J.awtjs2d.JSFile (name);
 }, "~S");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (name) {
 this.name = name.$replace ('\\', '/');
 this.fullName = name;
@@ -17,28 +17,28 @@ if (!this.fullName.startsWith ("/") && JU.OC.urlTypeIndex (name) < 0) this.fullN
 this.fullName = JU.PT.rep (this.fullName, "/./", "/");
 name = name.substring (name.lastIndexOf ("/") + 1);
 }, "~S");
-Clazz.overrideMethod (c$, "getParentAsFile", 
+Clazz.overrideMethod (c$, "getParentAsFile",
 function () {
 var pt = this.fullName.lastIndexOf ("/");
 return (pt < 0 ? null :  new J.awtjs2d.JSFile (this.fullName.substring (0, pt)));
 });
-Clazz.overrideMethod (c$, "getFullPath", 
+Clazz.overrideMethod (c$, "getFullPath",
 function () {
 return this.fullName;
 });
-Clazz.overrideMethod (c$, "getName", 
+Clazz.overrideMethod (c$, "getName",
 function () {
 return this.name;
 });
-Clazz.overrideMethod (c$, "isDirectory", 
+Clazz.overrideMethod (c$, "isDirectory",
 function () {
 return this.fullName.endsWith ("/");
 });
-Clazz.overrideMethod (c$, "length", 
+Clazz.overrideMethod (c$, "length",
 function () {
 return 0;
 });
-c$.getURLContents = Clazz.defineMethod (c$, "getURLContents", 
+c$.getURLContents = Clazz.defineMethod (c$, "getURLContents",
 function (url, outputBytes, post) {
 try {
 var conn = url.openConnection ();

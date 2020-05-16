@@ -17,27 +17,27 @@ Clazz.prepareFields (c$, function () {
 this.list =  new java.util.Hashtable ();
 this.bsAtoms =  new JU.BS ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (name) {
 this.name = name;
 }, "~S");
-Clazz.defineMethod (c$, "addList", 
+Clazz.defineMethod (c$, "addList",
 function (child) {
 var group = this.list.get (child.name);
 if (group != null) return;
 this.list.put (child.name, child);
 child.parent = this;
 }, "J.adapter.readers.pymol.PyMOLGroup");
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function () {
 if (this.parent != null) return;
 });
-Clazz.defineMethod (c$, "addGroupAtoms", 
+Clazz.defineMethod (c$, "addGroupAtoms",
 function (bs) {
 this.bsAtoms.or (bs);
 if (this.parent != null) this.parent.addGroupAtoms (this.bsAtoms);
 }, "JU.BS");
-Clazz.overrideMethod (c$, "toString", 
+Clazz.overrideMethod (c$, "toString",
 function () {
 return this.name;
 });

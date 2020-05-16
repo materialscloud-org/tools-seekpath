@@ -8,18 +8,18 @@ this.defaultQuality = 100;
 this.applicationTag = null;
 Clazz.instantialize (this, arguments);
 }, javajs.img, "JpgEncoder", javajs.img.ImageEncoder);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, javajs.img.JpgEncoder, []);
 });
-Clazz.overrideMethod (c$, "setParams", 
+Clazz.overrideMethod (c$, "setParams",
 function (params) {
 if (this.quality <= 0) this.quality = (params.containsKey ("qualityJPG") ? (params.get ("qualityJPG")).intValue () : this.defaultQuality);
 this.jpegObj =  new javajs.img.JpegObj ();
 this.jpegObj.comment = params.get ("comment");
 this.applicationTag = params.get ("jpgAppTag");
 }, "java.util.Map");
-Clazz.overrideMethod (c$, "generate", 
+Clazz.overrideMethod (c$, "generate",
 function () {
 this.jpegObj.imageWidth = this.width;
 this.jpegObj.imageHeight = this.height;
@@ -34,7 +34,7 @@ if (longState != null) {
 var b = longState.getBytes ();
 this.out.write (b, 0, b.length);
 }});
-Clazz.defineMethod (c$, "writeCompressedData", 
+Clazz.defineMethod (c$, "writeCompressedData",
  function (jpegObj, dct, huf) {
 var i;
 var j;
@@ -92,7 +92,7 @@ lastDCvalue[comp] = dctArray3[0];
 }
 huf.flushBuffer (this.out);
 }, "javajs.img.JpegObj,javajs.img.DCT,javajs.img.Huffman");
-Clazz.defineMethod (c$, "writeHeaders", 
+Clazz.defineMethod (c$, "writeHeaders",
  function (jpegObj, dct) {
 var i;
 var j;
@@ -157,7 +157,7 @@ sos[index++] = ((jpegObj.ah << 4) + jpegObj.al);
 this.writeArray (sos);
 return comment;
 }, "javajs.img.JpegObj,javajs.img.DCT");
-Clazz.defineMethod (c$, "writeString", 
+Clazz.defineMethod (c$, "writeString",
  function (s, id) {
 var len = s.length;
 var i0 = 0;
@@ -175,7 +175,7 @@ if (suffix.length > 0) this.writeArray (suffix.getBytes ());
 i0 += nBytes;
 }
 }, "~S,~N");
-Clazz.defineMethod (c$, "writeTag", 
+Clazz.defineMethod (c$, "writeTag",
  function (length, id) {
 length += 2;
 var com =  Clazz.newByteArray (4, 0);
@@ -185,7 +185,7 @@ com[2] = ((length >> 8) & 0xFF);
 com[3] = (length & 0xFF);
 this.writeArray (com);
 }, "~N,~N");
-Clazz.defineMethod (c$, "WriteDHTHeader", 
+Clazz.defineMethod (c$, "WriteDHTHeader",
 function (bits, val) {
 var dht;
 var bytes = 0;
@@ -203,11 +203,11 @@ dht[2] = (((index - 2) >> 8) & 0xFF);
 dht[3] = ((index - 2) & 0xFF);
 this.writeArray (dht);
 }, "~A,~A");
-Clazz.defineMethod (c$, "writeMarker", 
+Clazz.defineMethod (c$, "writeMarker",
 function (data) {
 this.out.write (data, 0, 2);
 }, "~A");
-Clazz.defineMethod (c$, "writeArray", 
+Clazz.defineMethod (c$, "writeArray",
 function (data) {
 this.out.write (data, 0, data.length);
 }, "~A");
@@ -234,11 +234,11 @@ this.DivisorsLuminance =  Clazz.newDoubleArray (64, 0);
 this.quantum_chrominance =  Clazz.newIntArray (64, 0);
 this.DivisorsChrominance =  Clazz.newDoubleArray (64, 0);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (quality) {
 this.initMatrix (quality);
 }, "~N");
-Clazz.defineMethod (c$, "initMatrix", 
+Clazz.defineMethod (c$, "initMatrix",
  function (quality) {
 quality = (quality < 1 ? 1 : quality > 100 ? 100 : quality);
 quality = (quality < 50 ? Clazz.doubleToInt (5000 / quality) : 200 - quality * 2);
@@ -328,7 +328,7 @@ this.quantum[1] = this.quantum_chrominance;
 this.divisors[0] = this.DivisorsLuminance;
 this.divisors[1] = this.DivisorsChrominance;
 }, "~N");
-c$.AANscale = Clazz.defineMethod (c$, "AANscale", 
+c$.AANscale = Clazz.defineMethod (c$, "AANscale",
  function (divisors, values, quality) {
 for (var j = 0; j < 64; j++) {
 var temp = Clazz.doubleToInt ((values[j] * quality + 50) / 100);
@@ -338,7 +338,7 @@ for (var i = 0, index = 0; i < 8; i++) for (var j = 0; j < 8; j++, index++) divi
 
 
 }, "~A,~A,~N");
-c$.forwardDCT = Clazz.defineMethod (c$, "forwardDCT", 
+c$.forwardDCT = Clazz.defineMethod (c$, "forwardDCT",
 function (input) {
 var output =  Clazz.newDoubleArray (8, 8, 0);
 var tmp0;
@@ -429,7 +429,7 @@ output[7][i] = z11 - z4;
 }
 return output;
 }, "~A");
-c$.quantizeBlock = Clazz.defineMethod (c$, "quantizeBlock", 
+c$.quantizeBlock = Clazz.defineMethod (c$, "quantizeBlock",
 function (inputData, divisorsCode) {
 var outputData =  Clazz.newIntArray (64, 0);
 for (var i = 0, index = 0; i < 8; i++) for (var j = 0; j < 8; j++, index++) outputData[index] = (Math.round (inputData[i][j] * divisorsCode[index]));
@@ -456,13 +456,13 @@ this.numOfDCTables = 0;
 this.numOfACTables = 0;
 Clazz.instantialize (this, arguments);
 }, javajs.img, "Huffman");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (width, height) {
 this.initHuf ();
 this.imageWidth = width;
 this.imageHeight = height;
 }, "~N,~N");
-Clazz.defineMethod (c$, "HuffmanBlockEncoder", 
+Clazz.defineMethod (c$, "HuffmanBlockEncoder",
 function (out, zigzag, prec, dcCode, acCode) {
 var temp;
 var temp2;
@@ -511,7 +511,7 @@ r = 0;
 if (r > 0) {
 this.bufferIt (out, matrixAC[0][0], matrixAC[0][1]);
 }}, "JU.OC,~A,~N,~N,~N");
-Clazz.defineMethod (c$, "bufferIt", 
+Clazz.defineMethod (c$, "bufferIt",
 function (out, code, size) {
 var putBuffer = code;
 var putBits = this.bufferPutBits;
@@ -530,7 +530,7 @@ putBits -= 8;
 this.bufferPutBuffer = putBuffer;
 this.bufferPutBits = putBits;
 }, "JU.OC,~N,~N");
-Clazz.defineMethod (c$, "flushBuffer", 
+Clazz.defineMethod (c$, "flushBuffer",
 function (out) {
 var putBuffer = this.bufferPutBuffer;
 var putBits = this.bufferPutBits;
@@ -546,7 +546,7 @@ if (putBits > 0) {
 var c = ((putBuffer >> 16) & 0xFF);
 out.writeByteAsInt (c);
 }}, "JU.OC");
-Clazz.defineMethod (c$, "initHuf", 
+Clazz.defineMethod (c$, "initHuf",
  function () {
 this.dc_matrix0 =  Clazz.newIntArray (12, 2, 0);
 this.dc_matrix1 =  Clazz.newIntArray (12, 2, 0);
@@ -706,7 +706,7 @@ this.actableNumber =  Clazz.newIntArray (-1, [0, 1, 1]);
 this.lastColumnIsDummy =  Clazz.newBooleanArray (-1, [false, false, false]);
 this.lastRowIsDummy =  Clazz.newBooleanArray (-1, [false, false, false]);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 this.components = JU.AU.newFloat3 (this.numberOfComponents, -1);
 this.compWidth =  Clazz.newIntArray (this.numberOfComponents, 0);
@@ -714,7 +714,7 @@ this.compHeight =  Clazz.newIntArray (this.numberOfComponents, 0);
 this.blockWidth =  Clazz.newIntArray (this.numberOfComponents, 0);
 this.blockHeight =  Clazz.newIntArray (this.numberOfComponents, 0);
 });
-Clazz.defineMethod (c$, "getYCCArray", 
+Clazz.defineMethod (c$, "getYCCArray",
 function (pixels) {
 this.maxHsampFactor = 1;
 this.maxVsampFactor = 1;

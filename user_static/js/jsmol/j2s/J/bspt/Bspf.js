@@ -8,22 +8,22 @@ this.bsptsValid = null;
 this.cubeIterators = null;
 Clazz.instantialize (this, arguments);
 }, J.bspt, "Bspf");
-Clazz.defineMethod (c$, "validateModel", 
+Clazz.defineMethod (c$, "validateModel",
 function (i, isValid) {
 this.bsptsValid[i] = isValid;
 }, "~N,~B");
-Clazz.defineMethod (c$, "isInitializedIndex", 
+Clazz.defineMethod (c$, "isInitializedIndex",
 function (bsptIndex) {
 return this.bspts.length > bsptIndex && this.bspts[bsptIndex] != null && this.bsptsValid[bsptIndex];
 }, "~N");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (dimMax) {
 this.dimMax = dimMax;
 this.bspts =  new Array (1);
 this.bsptsValid =  Clazz.newBooleanArray (1, false);
 this.cubeIterators =  new Array (0);
 }, "~N");
-Clazz.defineMethod (c$, "addTuple", 
+Clazz.defineMethod (c$, "addTuple",
 function (bsptIndex, tuple) {
 if (bsptIndex >= this.bspts.length) {
 this.bspts = JU.AU.arrayCopyObject (this.bspts, bsptIndex + 1);
@@ -33,12 +33,12 @@ if (bspt == null) {
 bspt = this.bspts[bsptIndex] =  new J.bspt.Bspt (this.dimMax, bsptIndex);
 }bspt.addTuple (tuple);
 }, "~N,JU.P3");
-Clazz.defineMethod (c$, "stats", 
+Clazz.defineMethod (c$, "stats",
 function () {
 for (var i = 0; i < this.bspts.length; ++i) if (this.bspts[i] != null) this.bspts[i].stats ();
 
 });
-Clazz.defineMethod (c$, "getCubeIterator", 
+Clazz.defineMethod (c$, "getCubeIterator",
 function (bsptIndex) {
 if (bsptIndex < 0) return this.getNewCubeIterator (-1 - bsptIndex);
 if (bsptIndex >= this.cubeIterators.length) this.cubeIterators = JU.AU.arrayCopyObject (this.cubeIterators, bsptIndex + 1);
@@ -46,11 +46,11 @@ if (this.cubeIterators[bsptIndex] == null && this.bspts[bsptIndex] != null) this
 this.cubeIterators[bsptIndex].set (this.bspts[bsptIndex]);
 return this.cubeIterators[bsptIndex];
 }, "~N");
-Clazz.defineMethod (c$, "getNewCubeIterator", 
+Clazz.defineMethod (c$, "getNewCubeIterator",
 function (bsptIndex) {
 return this.bspts[bsptIndex].allocateCubeIterator ();
 }, "~N");
-Clazz.defineMethod (c$, "initialize", 
+Clazz.defineMethod (c$, "initialize",
 function (modelIndex, atoms, modelAtomBitSet) {
 if (this.bspts[modelIndex] != null) this.bspts[modelIndex].reset ();
 for (var i = modelAtomBitSet.nextSetBit (0); i >= 0; i = modelAtomBitSet.nextSetBit (i + 1)) this.addTuple (modelIndex, atoms[i]);

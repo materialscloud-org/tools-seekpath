@@ -1,4 +1,4 @@
-To enlarge the BZ window, you can put this in HTML (or copy-paste the code in 
+To enlarge the BZ window, you can put this in HTML (or copy-paste the code in
 a terminal).
 
 It's a dirty trick, but it does the job.

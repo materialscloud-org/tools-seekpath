@@ -4,17 +4,17 @@ c$ = Clazz.decorateAsClass (function () {
 this.scriptManager = null;
 Clazz.instantialize (this, arguments);
 }, JS, "CommandWatcherThread", J.thread.JmolThread);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JS.CommandWatcherThread, []);
 });
-Clazz.overrideMethod (c$, "setManager", 
+Clazz.overrideMethod (c$, "setManager",
 function (manager, vwr, params) {
 this.scriptManager = manager;
 this.setViewer (vwr, "CommmandWatcherThread");
 return 0;
 }, "~O,JV.Viewer,~O");
-Clazz.overrideMethod (c$, "run", 
+Clazz.overrideMethod (c$, "run",
 function () {
 Thread.currentThread ().setPriority (1);
 while (!this.stopped) {
@@ -43,7 +43,7 @@ throw e$$;
 }
 }
 });
-Clazz.overrideMethod (c$, "run1", 
+Clazz.overrideMethod (c$, "run1",
 function (mode) {
 }, "~N");
 Clazz.defineStatics (c$,

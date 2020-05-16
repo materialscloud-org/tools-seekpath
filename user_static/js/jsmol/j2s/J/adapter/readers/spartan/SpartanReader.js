@@ -1,7 +1,7 @@
 Clazz.declarePackage ("J.adapter.readers.spartan");
 Clazz.load (["J.adapter.readers.quantum.BasisFunctionReader"], "J.adapter.readers.spartan.SpartanReader", ["java.lang.Float", "java.util.Hashtable", "J.adapter.readers.spartan.SpartanArchive"], function () {
 c$ = Clazz.declareType (J.adapter.readers.spartan, "SpartanReader", J.adapter.readers.quantum.BasisFunctionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 var cartesianHeader = "Cartesian Coordinates (Ang";
 if (this.isSpartanArchive (cartesianHeader)) {
@@ -15,7 +15,7 @@ this.discardLinesUntilContains ("Vibrational Frequencies");
 if (this.line != null) this.readFrequencies ();
 }this.continuing = false;
 });
-Clazz.defineMethod (c$, "isSpartanArchive", 
+Clazz.defineMethod (c$, "isSpartanArchive",
  function (strNotArchive) {
 var lastLine = "";
 while (this.rd () != null) {
@@ -27,7 +27,7 @@ lastLine = this.line;
 }
 return false;
 }, "~S");
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function () {
 this.discardLinesUntilBlank ();
 while (this.rd () != null && (this.parseIntRange (this.line, 0, 3)) > 0) {
@@ -37,7 +37,7 @@ atom.atomName = this.parseTokenRange (this.line, 7, 13);
 this.setAtomCoordXYZ (atom, this.parseFloatRange (this.line, 17, 30), this.parseFloatRange (this.line, 31, 44), this.parseFloatRange (this.line, 45, 58));
 }
 });
-Clazz.defineMethod (c$, "readFrequencies", 
+Clazz.defineMethod (c$, "readFrequencies",
  function () {
 var ac = this.asc.getAtomSetAtomCount (0);
 while (true) {

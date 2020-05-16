@@ -6,82 +6,82 @@ this.value = null;
 this.intValue = 2147483647;
 Clazz.instantialize (this, arguments);
 }, JS, "T");
-c$.t = Clazz.defineMethod (c$, "t", 
+c$.t = Clazz.defineMethod (c$, "t",
 function (tok) {
 var token =  new JS.T ();
 token.tok = tok;
 return token;
 }, "~N");
-c$.tv = Clazz.defineMethod (c$, "tv", 
+c$.tv = Clazz.defineMethod (c$, "tv",
 function (tok, intValue, value) {
 var token = JS.T.t (tok);
 token.intValue = intValue;
 token.value = value;
 return token;
 }, "~N,~N,~O");
-c$.o = Clazz.defineMethod (c$, "o", 
+c$.o = Clazz.defineMethod (c$, "o",
 function (tok, value) {
 var token = JS.T.t (tok);
 token.value = value;
 return token;
 }, "~N,~O");
-c$.n = Clazz.defineMethod (c$, "n", 
+c$.n = Clazz.defineMethod (c$, "n",
 function (tok, intValue) {
 var token = JS.T.t (tok);
 token.intValue = intValue;
 return token;
 }, "~N,~N");
-c$.i = Clazz.defineMethod (c$, "i", 
+c$.i = Clazz.defineMethod (c$, "i",
 function (intValue) {
 var token = JS.T.t (2);
 token.intValue = intValue;
 return token;
 }, "~N");
-c$.tokAttr = Clazz.defineMethod (c$, "tokAttr", 
+c$.tokAttr = Clazz.defineMethod (c$, "tokAttr",
 function (a, b) {
 return (a & b) == (b & b);
 }, "~N,~N");
-c$.tokAttrOr = Clazz.defineMethod (c$, "tokAttrOr", 
+c$.tokAttrOr = Clazz.defineMethod (c$, "tokAttrOr",
 function (a, b1, b2) {
 return (a & b1) == (b1 & b1) || (a & b2) == (b2 & b2);
 }, "~N,~N,~N");
-c$.getPrecedence = Clazz.defineMethod (c$, "getPrecedence", 
+c$.getPrecedence = Clazz.defineMethod (c$, "getPrecedence",
 function (tokOperator) {
 return ((tokOperator >> 4) & 0xF);
 }, "~N");
-c$.getMaxMathParams = Clazz.defineMethod (c$, "getMaxMathParams", 
+c$.getMaxMathParams = Clazz.defineMethod (c$, "getMaxMathParams",
 function (tokCommand) {
 return ((tokCommand >> 9) & 0x3);
 }, "~N");
-c$.addToken = Clazz.defineMethod (c$, "addToken", 
+c$.addToken = Clazz.defineMethod (c$, "addToken",
 function (ident, token) {
 JS.T.tokenMap.put (ident, token);
 }, "~S,JS.T");
-c$.getTokenFromName = Clazz.defineMethod (c$, "getTokenFromName", 
+c$.getTokenFromName = Clazz.defineMethod (c$, "getTokenFromName",
 function (name) {
 return JS.T.tokenMap.get (name);
 }, "~S");
-c$.getTokFromName = Clazz.defineMethod (c$, "getTokFromName", 
+c$.getTokFromName = Clazz.defineMethod (c$, "getTokFromName",
 function (name) {
 var token = JS.T.getTokenFromName (name.toLowerCase ());
 return (token == null ? 0 : token.tok);
 }, "~S");
-c$.nameOf = Clazz.defineMethod (c$, "nameOf", 
+c$.nameOf = Clazz.defineMethod (c$, "nameOf",
 function (tok) {
 for (var token, $token = JS.T.tokenMap.values ().iterator (); $token.hasNext () && ((token = $token.next ()) || true);) {
 if (token.tok == tok) return "" + token.value;
 }
 return "0x" + Integer.toHexString (tok);
 }, "~N");
-Clazz.overrideMethod (c$, "toString", 
+Clazz.overrideMethod (c$, "toString",
 function () {
 return this.toString2 ();
 });
-Clazz.defineMethod (c$, "toString2", 
+Clazz.defineMethod (c$, "toString2",
 function () {
 return "Token[" + JS.T.astrType[this.tok < 16 ? this.tok : 16] + "(" + (this.tok % (512)) + "/0x" + Integer.toHexString (this.tok) + ")" + ((this.intValue == 2147483647) ? "" : " intValue=" + this.intValue + "(0x" + Integer.toHexString (this.intValue) + ")") + ((this.value == null) ? "" : Clazz.instanceOf (this.value, String) ? " value=\"" + this.value + "\"" : " value=" + this.value) + "]";
 });
-c$.getCommandSet = Clazz.defineMethod (c$, "getCommandSet", 
+c$.getCommandSet = Clazz.defineMethod (c$, "getCommandSet",
 function (strBegin) {
 var cmds = "";
 var htSet =  new java.util.Hashtable ();
@@ -99,7 +99,7 @@ if (name.charAt (name.length - 1) != 's' || !htSet.containsKey (name.substring (
 }
 return cmds;
 }, "~S");
-c$.getAtomPropertiesLike = Clazz.defineMethod (c$, "getAtomPropertiesLike", 
+c$.getAtomPropertiesLike = Clazz.defineMethod (c$, "getAtomPropertiesLike",
 function (type) {
 type = type.toLowerCase ();
 var v =  new JU.Lst ();
@@ -114,7 +114,7 @@ v.addLast (token);
 }}
 return (v.size () == 0 ? null : v);
 }, "~S");
-c$.getTokensLike = Clazz.defineMethod (c$, "getTokensLike", 
+c$.getTokensLike = Clazz.defineMethod (c$, "getTokensLike",
 function (type) {
 var attr = (type.equals ("setparam") ? 536870912 : type.equals ("misc") ? 1073741824 : type.equals ("mathfunc") ? 134217728 : 4096);
 var notattr = (attr == 536870912 ? 1610612736 : 0);
@@ -128,12 +128,12 @@ var a = v.toArray ( new Array (v.size ()));
 java.util.Arrays.sort (a);
 return a;
 }, "~S");
-c$.getSettableTokFromString = Clazz.defineMethod (c$, "getSettableTokFromString", 
+c$.getSettableTokFromString = Clazz.defineMethod (c$, "getSettableTokFromString",
 function (s) {
 var tok = JS.T.getTokFromName (s);
 return (tok != 0 && JS.T.tokAttr (tok, 2048) && !JS.T.tokAttr (tok, 1140850688) ? tok : 0);
 }, "~S");
-c$.completeCommand = Clazz.defineMethod (c$, "completeCommand", 
+c$.completeCommand = Clazz.defineMethod (c$, "completeCommand",
 function (map, isSet, asCommand, str, n) {
 if (map == null) map = JS.T.tokenMap;
  else asCommand = false;
@@ -146,19 +146,19 @@ if (asCommand ? JS.T.tokAttr (tok, 4096) : isSet ? JS.T.tokAttr (tok, 536870912)
 }
 return JU.AU.sortedItem (v, n);
 }, "java.util.Map,~B,~B,~S,~N");
-c$.getParamType = Clazz.defineMethod (c$, "getParamType", 
+c$.getParamType = Clazz.defineMethod (c$, "getParamType",
 function (tok) {
 if (!JS.T.tokAttr (tok, 536870912)) return 0;
 return tok & 662700032;
 }, "~N");
-c$.getTokensType = Clazz.defineMethod (c$, "getTokensType", 
+c$.getTokensType = Clazz.defineMethod (c$, "getTokensType",
 function (map, attr) {
 for (var e, $e = JS.T.tokenMap.entrySet ().iterator (); $e.hasNext () && ((e = $e.next ()) || true);) {
 var t = e.getValue ();
 if (JS.T.tokAttr (t.tok, attr)) map.put (e.getKey (), e.getValue ());
 }
 }, "java.util.Map,~N");
-c$.isIDcmd = Clazz.defineMethod (c$, "isIDcmd", 
+c$.isIDcmd = Clazz.defineMethod (c$, "isIDcmd",
 function (cmdtok) {
 switch (cmdtok) {
 case 135180:
@@ -171,7 +171,7 @@ default:
 return false;
 }
 }, "~N");
-Clazz.defineMethod (c$, "equals", 
+Clazz.defineMethod (c$, "equals",
 function (o) {
 if (!(Clazz.instanceOf (o, JS.T))) return false;
 var t = o;

@@ -54,10 +54,10 @@ this.loadScript =  new JU.SB ();
 this.bsAtoms =  new JU.BS ();
 this.bsAtomsDeleted =  new JU.BS ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (modelSet, modelIndex, trajectoryBaseIndex, jmolData, properties, auxiliaryInfo) {
 this.ms = modelSet;
 this.dataSourceFrame = this.modelIndex = modelIndex;
@@ -80,11 +80,11 @@ auxiliaryInfo.put ("title", jmolData);
 this.jmolFrameType = (jmolData.indexOf ("ramachandran") >= 0 ? "ramachandran" : jmolData.indexOf ("quaternion") >= 0 ? "quaternion" : "data");
 }return this;
 }, "JM.ModelSet,~N,~N,~S,java.util.Properties,java.util.Map");
-Clazz.defineMethod (c$, "getTrueAtomCount", 
+Clazz.defineMethod (c$, "getTrueAtomCount",
 function () {
 return this.bsAtoms.cardinality () - this.bsAtomsDeleted.cardinality ();
 });
-Clazz.defineMethod (c$, "isContainedIn", 
+Clazz.defineMethod (c$, "isContainedIn",
 function (bs) {
 if (this.bsCheck == null) this.bsCheck =  new JU.BS ();
 this.bsCheck.or (bs);
@@ -92,11 +92,11 @@ this.bsCheck.and (this.bsAtoms);
 this.bsCheck.andNot (this.bsAtomsDeleted);
 return (this.bsCheck.cardinality () == this.getTrueAtomCount ());
 }, "JU.BS");
-Clazz.defineMethod (c$, "resetBoundCount", 
+Clazz.defineMethod (c$, "resetBoundCount",
 function () {
 this.bondCount = -1;
 });
-Clazz.defineMethod (c$, "getBondCount", 
+Clazz.defineMethod (c$, "getBondCount",
 function () {
 if (this.bondCount >= 0) return this.bondCount;
 var bonds = this.ms.bo;
@@ -105,18 +105,18 @@ for (var i = this.ms.bondCount; --i >= 0; ) if (bonds[i].atom1.mi == this.modelI
 
 return this.bondCount;
 });
-Clazz.defineMethod (c$, "getChainCount", 
+Clazz.defineMethod (c$, "getChainCount",
 function (countWater) {
 if (this.chainCount > 1 && !countWater) for (var i = 0; i < this.chainCount; i++) if (this.chains[i].chainID == 0) return this.chainCount - 1;
 
 return this.chainCount;
 }, "~B");
-Clazz.defineMethod (c$, "calcSelectedGroupsCount", 
+Clazz.defineMethod (c$, "calcSelectedGroupsCount",
 function (bsSelected) {
 for (var i = this.chainCount; --i >= 0; ) this.chains[i].calcSelectedGroupsCount (bsSelected);
 
 }, "JU.BS");
-Clazz.defineMethod (c$, "getGroupCount", 
+Clazz.defineMethod (c$, "getGroupCount",
 function () {
 if (this.groupCount < 0) {
 this.groupCount = 0;
@@ -124,11 +124,11 @@ for (var i = this.chainCount; --i >= 0; ) this.groupCount += this.chains[i].grou
 
 }return this.groupCount;
 });
-Clazz.defineMethod (c$, "getChainAt", 
+Clazz.defineMethod (c$, "getChainAt",
 function (i) {
 return (i < this.chainCount ? this.chains[i] : null);
 }, "~N");
-Clazz.defineMethod (c$, "getChain", 
+Clazz.defineMethod (c$, "getChain",
 function (chainID) {
 for (var i = this.chainCount; --i >= 0; ) {
 var chain = this.chains[i];
@@ -136,16 +136,16 @@ if (chain.chainID == chainID) return chain;
 }
 return null;
 }, "~N");
-Clazz.defineMethod (c$, "resetDSSR", 
+Clazz.defineMethod (c$, "resetDSSR",
 function (totally) {
 this.dssrCache = null;
 if (totally) this.auxiliaryInfo.remove ("dssr");
 }, "~B");
-Clazz.defineMethod (c$, "fixIndices", 
+Clazz.defineMethod (c$, "fixIndices",
 function (modelIndex, nAtomsDeleted, bsDeleted) {
 this.fixIndicesM (modelIndex, nAtomsDeleted, bsDeleted);
 }, "~N,~N,JU.BS");
-Clazz.defineMethod (c$, "fixIndicesM", 
+Clazz.defineMethod (c$, "fixIndicesM",
 function (modelIndex, nAtomsDeleted, bsDeleted) {
 if (this.dataSourceFrame > modelIndex) this.dataSourceFrame--;
 if (this.trajectoryBaseIndex > modelIndex) this.trajectoryBaseIndex--;
@@ -155,12 +155,12 @@ for (var i = 0; i < this.chainCount; i++) this.chains[i].fixIndices (nAtomsDelet
 JU.BSUtil.deleteBits (this.bsAtoms, bsDeleted);
 JU.BSUtil.deleteBits (this.bsAtomsDeleted, bsDeleted);
 }, "~N,~N,JU.BS");
-Clazz.defineMethod (c$, "freeze", 
+Clazz.defineMethod (c$, "freeze",
 function () {
 this.freezeM ();
 return false;
 });
-Clazz.defineMethod (c$, "freezeM", 
+Clazz.defineMethod (c$, "freezeM",
 function () {
 for (var i = 0; i < this.chainCount; i++) if (this.chains[i].groupCount == 0) {
 for (var j = i + 1; j < this.chainCount; j++) this.chains[j - 1] = this.chains[j];

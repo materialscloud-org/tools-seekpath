@@ -1,11 +1,11 @@
 Clazz.declarePackage ("JSV.export");
 Clazz.load (["JSV.export.FormExporter"], "JSV.export.SVGExporter", ["java.lang.Boolean", "$.Double", "java.util.Hashtable", "JU.CU", "$.DF", "$.Lst", "JSV.common.ColorParameters", "$.ExportType", "$.ScaleData", "$.ScriptToken", "JU.Logger"], function () {
 c$ = Clazz.declareType (JSV["export"], "SVGExporter", JSV["export"].FormExporter);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JSV["export"].SVGExporter, []);
 });
-Clazz.overrideMethod (c$, "exportTheSpectrum", 
+Clazz.overrideMethod (c$, "exportTheSpectrum",
 function (viewer, mode, out, spec, startIndex, endIndex, pd, asBase64) {
 this.initForm (viewer, out);
 var plotAreaColor;

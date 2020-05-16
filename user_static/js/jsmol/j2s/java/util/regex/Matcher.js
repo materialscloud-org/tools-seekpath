@@ -226,7 +226,7 @@ return this.group(0);
 
 Clazz.defineMethod(c$,"findAt",
 ($fz=function(startIndex){
-// BH  what is this? 
+// BH  what is this?
 return-1;
 },$fz.isPrivate=true,$fz),"~N");
 

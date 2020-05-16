@@ -9,14 +9,14 @@ this.typeArray = null;
 this.cellLattice = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.xtal, "AbinitReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.setSpaceGroupName ("P1");
 this.doApplySymmetry = true;
 this.setFractionalCoordinates (false);
 this.inputOnly = this.checkFilterKey ("INPUT");
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.contains ("natom")) {
 this.readNoatom ();
@@ -35,21 +35,21 @@ if (this.inputOnly) this.continuing = false;
 this.readAtoms ();
 }return true;
 });
-Clazz.defineMethod (c$, "readNoatom", 
+Clazz.defineMethod (c$, "readNoatom",
  function () {
 var tokens = this.getTokens ();
 if (tokens.length <= 2) this.nAtom = this.parseIntStr (tokens[1]);
 });
-Clazz.defineMethod (c$, "readNotypes", 
+Clazz.defineMethod (c$, "readNotypes",
  function () {
 var tokens = this.getTokens ();
 if (tokens.length <= 2) this.nType = this.parseIntStr (tokens[1]);
 });
-Clazz.defineMethod (c$, "readTypesequence", 
+Clazz.defineMethod (c$, "readTypesequence",
  function () {
 this.fillFloatArray (this.line.substring (12), 0, this.typeArray =  Clazz.newFloatArray (this.nAtom, 0));
 });
-Clazz.defineMethod (c$, "readAtomSpecies", 
+Clazz.defineMethod (c$, "readAtomSpecies",
  function () {
 this.znucl =  Clazz.newFloatArray (this.nType, 0);
 for (var i = 0; i < this.nType; i++) {
@@ -58,10 +58,10 @@ var tokens = this.getTokens ();
 this.znucl[i] = this.parseFloatStr (tokens[tokens[0] === "-" ? 1 : 0]);
 }
 });
-Clazz.defineMethod (c$, "readSpaceGroup", 
+Clazz.defineMethod (c$, "readSpaceGroup",
  function () {
 });
-Clazz.defineMethod (c$, "readIntiallattice", 
+Clazz.defineMethod (c$, "readIntiallattice",
  function () {
 var f = 0;
 this.cellLattice =  Clazz.newFloatArray (9, 0);
@@ -74,7 +74,7 @@ f = this.parseFloat ();
 }
 this.applySymmetry ();
 });
-Clazz.defineMethod (c$, "applySymmetry", 
+Clazz.defineMethod (c$, "applySymmetry",
  function () {
 if (this.cellLattice == null) return;
 this.setSpaceGroupName ("P1");
@@ -86,7 +86,7 @@ if (!this.iHaveFractionalCoordinates) for (var i = this.asc.ac; --i >= i0; ) thi
 
 this.applySymmetryAndSetTrajectory ();
 });
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function () {
 this.asc.newAtomSet ();
 this.iHaveFractionalCoordinates = false;

@@ -5,7 +5,7 @@ this.cchBuf = 0;
 this.ichCurrent = 0;
 Clazz.instantialize (this, arguments);
 }, JU, "LimitedLineReader");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (bufferedReader, readLimit) {
 bufferedReader.mark (readLimit + 1);
 this.buf =  Clazz.newCharArray (readLimit, '\0');
@@ -13,11 +13,11 @@ this.cchBuf = Math.max (bufferedReader.read (this.buf, 0, readLimit), 0);
 this.ichCurrent = 0;
 bufferedReader.reset ();
 }, "java.io.BufferedReader,~N");
-Clazz.defineMethod (c$, "getHeader", 
+Clazz.defineMethod (c$, "getHeader",
 function (n) {
 return (n == 0 ?  String.instantialize (this.buf) :  String.instantialize (this.buf, 0, Math.min (this.cchBuf, n)));
 }, "~N");
-Clazz.defineMethod (c$, "readLineWithNewline", 
+Clazz.defineMethod (c$, "readLineWithNewline",
 function () {
 while (this.ichCurrent < this.cchBuf) {
 var ichBeginningOfLine = this.ichCurrent;

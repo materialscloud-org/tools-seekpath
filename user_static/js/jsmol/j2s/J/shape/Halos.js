@@ -6,11 +6,11 @@ this.bsHighlight = null;
 this.colixHighlight = 10;
 Clazz.instantialize (this, arguments);
 }, J.shape, "Halos", J.shape.AtomShape);
-Clazz.defineMethod (c$, "initState", 
+Clazz.defineMethod (c$, "initState",
 function () {
 this.translucentAllowed = false;
 });
-Clazz.overrideMethod (c$, "setProperty", 
+Clazz.overrideMethod (c$, "setProperty",
 function (propertyName, value, bs) {
 if ("translucency" === propertyName) return;
 if ("argbSelection" === propertyName) {
@@ -26,7 +26,7 @@ return;
 JU.BSUtil.deleteBits (this.bsHighlight, bs);
 }this.setPropAS (propertyName, value, bs);
 }, "~S,~O,JU.BS");
-Clazz.overrideMethod (c$, "setModelVisibilityFlags", 
+Clazz.overrideMethod (c$, "setModelVisibilityFlags",
 function (bs) {
 var bsSelected = (this.vwr.getSelectionHalosEnabled () ? this.vwr.bsA () : null);
 for (var i = this.ac; --i >= 0; ) this.atoms[i].setShapeVisibility (this.vf, bsSelected != null && bsSelected.get (i) || this.mads != null && this.mads[i] != 0);

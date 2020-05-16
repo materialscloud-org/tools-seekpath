@@ -4,7 +4,7 @@ c$ = Clazz.decorateAsClass (function () {
 this.atomicNumbers = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.quantum, "MopacSlaterReader", J.adapter.readers.quantum.SlaterReader);
-Clazz.defineMethod (c$, "createSphericalSlaterByType", 
+Clazz.defineMethod (c$, "createSphericalSlaterByType",
 function (iAtom, atomicNumber, type, zeta, coef) {
 var pt = "S Px Py Pz  Dx2-y2Dxz Dz2 Dyz Dxy".indexOf (type);
 switch (pt) {
@@ -20,7 +20,7 @@ return;
 pt = (pt >> 2) * 3 - 9;
 this.addSlater (iAtom + 1, J.adapter.readers.quantum.MopacSlaterReader.sphericalDValues[pt++], J.adapter.readers.quantum.MopacSlaterReader.sphericalDValues[pt++], J.adapter.readers.quantum.MopacSlaterReader.sphericalDValues[pt++], J.adapter.readers.quantum.MopacSlaterReader.getNPQd (atomicNumber) - 3, zeta, coef);
 }, "~N,~N,~S,~N,~N");
-Clazz.defineMethod (c$, "scaleSlater", 
+Clazz.defineMethod (c$, "scaleSlater",
 function (ex, ey, ez, er, zeta) {
 if (ex >= 0 && ey >= 0) {
 return Clazz.superCall (this, J.adapter.readers.quantum.MopacSlaterReader, "scaleSlater", [ex, ey, ez, er, zeta]);
@@ -29,11 +29,11 @@ if (el == 3) {
 return 0;
 }return J.adapter.readers.quantum.SlaterReader.getSlaterConstDSpherical (el + er + 1, Math.abs (zeta), ex, ey);
 }, "~N,~N,~N,~N,~N");
-c$.getNPQ = Clazz.defineMethod (c$, "getNPQ", 
+c$.getNPQ = Clazz.defineMethod (c$, "getNPQ",
  function (atomicNumber) {
 return (atomicNumber < J.adapter.readers.quantum.MopacSlaterReader.principalQuantumNumber.length ? J.adapter.readers.quantum.MopacSlaterReader.principalQuantumNumber[atomicNumber] : 0);
 }, "~N");
-c$.getNPQs = Clazz.defineMethod (c$, "getNPQs", 
+c$.getNPQs = Clazz.defineMethod (c$, "getNPQs",
  function (atomicNumber) {
 var n = J.adapter.readers.quantum.MopacSlaterReader.getNPQ (atomicNumber);
 switch (atomicNumber) {
@@ -47,7 +47,7 @@ default:
 return n;
 }
 }, "~N");
-c$.getNPQp = Clazz.defineMethod (c$, "getNPQp", 
+c$.getNPQp = Clazz.defineMethod (c$, "getNPQp",
  function (atomicNumber) {
 var n = J.adapter.readers.quantum.MopacSlaterReader.getNPQ (atomicNumber);
 switch (atomicNumber) {
@@ -57,7 +57,7 @@ default:
 return n;
 }
 }, "~N");
-c$.getNPQd = Clazz.defineMethod (c$, "getNPQd", 
+c$.getNPQd = Clazz.defineMethod (c$, "getNPQd",
  function (atomicNumber) {
 return (atomicNumber < J.adapter.readers.quantum.MopacSlaterReader.npqd.length ? J.adapter.readers.quantum.MopacSlaterReader.npqd[atomicNumber] : 0);
 }, "~N");

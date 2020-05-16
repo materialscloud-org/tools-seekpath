@@ -7,25 +7,25 @@ this.index = 0;
 this.eleRoot = null;
 Clazz.instantialize (this, arguments);
 }, J.bspt, "Bspt");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (dimMax, index) {
 this.dimMax = dimMax;
 this.index = index;
 this.reset ();
 }, "~N,~N");
-Clazz.defineMethod (c$, "reset", 
+Clazz.defineMethod (c$, "reset",
 function () {
 this.eleRoot =  new J.bspt.Leaf (this, null, 0);
 this.treeDepth = 1;
 });
-Clazz.defineMethod (c$, "addTuple", 
+Clazz.defineMethod (c$, "addTuple",
 function (tuple) {
 this.eleRoot = this.eleRoot.addTuple (0, tuple);
 }, "JU.T3");
-Clazz.defineMethod (c$, "stats", 
+Clazz.defineMethod (c$, "stats",
 function () {
 });
-Clazz.defineMethod (c$, "allocateCubeIterator", 
+Clazz.defineMethod (c$, "allocateCubeIterator",
 function () {
 return  new J.bspt.CubeIterator (this);
 });

@@ -13,7 +13,7 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.cartesianOffset =  new JU.P3 ();
 });
-c$.fromOABC = Clazz.defineMethod (c$, "fromOABC", 
+c$.fromOABC = Clazz.defineMethod (c$, "fromOABC",
 function (oabc, setRelative) {
 var c =  new JS.UnitCell ();
 if (oabc.length == 3) oabc =  Clazz.newArray (-1, [ new JU.P3 (), oabc[0], oabc[1], oabc[2]]);
@@ -24,7 +24,7 @@ c.initUnitcellVertices ();
 c.setCartesianOffset (oabc[0]);
 return c;
 }, "~A,~B");
-c$.fromParams = Clazz.defineMethod (c$, "fromParams", 
+c$.fromParams = Clazz.defineMethod (c$, "fromParams",
 function (params, setRelative) {
 var c =  new JS.UnitCell ();
 c.init (params);
@@ -32,7 +32,7 @@ c.initUnitcellVertices ();
 c.allFractionalRelative = setRelative;
 return c;
 }, "~A,~B");
-Clazz.defineMethod (c$, "initOrientation", 
+Clazz.defineMethod (c$, "initOrientation",
 function (mat) {
 if (mat == null) return;
 var m =  new JU.M4 ();
@@ -41,7 +41,7 @@ this.matrixFractionalToCartesian.mul2 (m, this.matrixFractionalToCartesian);
 this.matrixCartesianToFractional.setM4 (this.matrixFractionalToCartesian).invert ();
 this.initUnitcellVertices ();
 }, "JU.M3");
-Clazz.defineMethod (c$, "toUnitCell", 
+Clazz.defineMethod (c$, "toUnitCell",
 function (pt, offset) {
 if (this.matrixCartesianToFractional == null) return;
 if (offset == null) {
@@ -54,7 +54,7 @@ this.unitize (pt);
 pt.add (offset);
 this.matrixFtoCNoOffset.rotTrans (pt);
 }}, "JU.T3,JU.T3");
-Clazz.defineMethod (c$, "unitize", 
+Clazz.defineMethod (c$, "unitize",
 function (pt) {
 switch (this.dimension) {
 case 3:
@@ -65,12 +65,12 @@ case 1:
 pt.x = JS.UnitCell.toFractionalX (pt.x);
 }
 }, "JU.T3");
-Clazz.defineMethod (c$, "reset", 
+Clazz.defineMethod (c$, "reset",
 function () {
 this.unitCellMultiplier = null;
 this.setOffset (JU.P3.new3 (0, 0, 0));
 });
-Clazz.defineMethod (c$, "setOffset", 
+Clazz.defineMethod (c$, "setOffset",
 function (pt) {
 if (pt == null) return;
 var pt4 = (Clazz.instanceOf (pt, JU.T4) ? pt : null);
@@ -96,7 +96,7 @@ if (this.allFractionalRelative) {
 this.matrixCtoFNoOffset.setM4 (this.matrixCartesianToFractional);
 this.matrixFtoCNoOffset.setM4 (this.matrixFractionalToCartesian);
 }}, "JU.T3");
-Clazz.defineMethod (c$, "setCartesianOffset", 
+Clazz.defineMethod (c$, "setCartesianOffset",
  function (origin) {
 this.cartesianOffset.setT (origin);
 this.matrixFractionalToCartesian.m03 = this.cartesianOffset.x;
@@ -117,7 +117,7 @@ this.matrixCtoFNoOffset.setM4 (this.matrixCartesianToFractional);
 this.matrixFtoCNoOffset.setM4 (this.matrixFractionalToCartesian);
 }if (!wasOffset && this.fractionalOffset.lengthSquared () == 0) this.fractionalOffset = null;
 }, "JU.T3");
-Clazz.defineMethod (c$, "getInfo", 
+Clazz.defineMethod (c$, "getInfo",
 function () {
 var info =  new java.util.Hashtable ();
 info.put ("params", this.unitCellParams);
@@ -127,23 +127,23 @@ info.put ("matFtoC", this.matrixFractionalToCartesian);
 info.put ("matCtoF", this.matrixCartesianToFractional);
 return info;
 });
-Clazz.defineMethod (c$, "dumpInfo", 
+Clazz.defineMethod (c$, "dumpInfo",
 function (isFull) {
 return "a=" + this.a + ", b=" + this.b + ", c=" + this.c + ", alpha=" + this.alpha + ", beta=" + this.beta + ", gamma=" + this.gamma + "\n" + JU.Escape.eAP (this.getUnitCellVectors ()) + "\nvolume=" + this.volume + (isFull ? "\nfractional to cartesian: " + this.matrixFractionalToCartesian + "\ncartesian to fractional: " + this.matrixCartesianToFractional : "");
 }, "~B");
-Clazz.defineMethod (c$, "getVertices", 
+Clazz.defineMethod (c$, "getVertices",
 function () {
 return this.vertices;
 });
-Clazz.defineMethod (c$, "getCartesianOffset", 
+Clazz.defineMethod (c$, "getCartesianOffset",
 function () {
 return this.cartesianOffset;
 });
-Clazz.defineMethod (c$, "getFractionalOffset", 
+Clazz.defineMethod (c$, "getFractionalOffset",
 function () {
 return this.fractionalOffset;
 });
-Clazz.defineMethod (c$, "getTensor", 
+Clazz.defineMethod (c$, "getTensor",
 function (vwr, parBorU) {
 var t = (J.api.Interface.getUtil ("Tensor", vwr, "file"));
 if (parBorU[0] == 0 && parBorU[1] == 0 && parBorU[2] == 0) {
@@ -180,7 +180,7 @@ Bcart[4] = 2 * this.c * this.c * this.cB_ * this.cosBeta * B33 + this.b * this.c
 Bcart[5] = 2 * this.c * this.c * this.cA_ * this.cB_ * B33 + this.b * this.c * this.cB_ * this.sinGamma * B23;
 }return t.setFromThermalEquation (Bcart, JU.Escape.eAF (parBorU));
 }, "JV.Viewer,~A");
-Clazz.defineMethod (c$, "getCanonicalCopy", 
+Clazz.defineMethod (c$, "getCanonicalCopy",
 function (scale, withOffset) {
 var pts =  new Array (8);
 var cell0 = null;
@@ -201,13 +201,13 @@ if (!withOffset) pt.sub (this.cartesianOffset);
 }
 return JU.BoxInfo.getCanonicalCopy (pts, scale);
 }, "~N,~B");
-c$.toFractionalX = Clazz.defineMethod (c$, "toFractionalX", 
+c$.toFractionalX = Clazz.defineMethod (c$, "toFractionalX",
  function (x) {
 x = (x - Math.floor (x));
 if (x > 0.9999 || x < 0.0001) x = 0;
 return x;
 }, "~N");
-Clazz.defineMethod (c$, "initUnitcellVertices", 
+Clazz.defineMethod (c$, "initUnitcellVertices",
  function () {
 if (this.matrixFractionalToCartesian == null) return;
 this.matrixCtoFNoOffset = JU.M4.newM4 (this.matrixCartesianToFractional);
@@ -216,7 +216,7 @@ this.vertices =  new Array (8);
 for (var i = 8; --i >= 0; ) this.vertices[i] = this.matrixFractionalToCartesian.rotTrans2 (JU.BoxInfo.unitCubePoints[i],  new JU.P3 ());
 
 });
-Clazz.defineMethod (c$, "checkDistance", 
+Clazz.defineMethod (c$, "checkDistance",
 function (f1, f2, distance, dx, iRange, jRange, kRange, ptOffset) {
 var p1 = JU.P3.newP (f1);
 this.toCartesian (p1, true);
@@ -232,38 +232,38 @@ return true;
 
 return false;
 }, "JU.P3,JU.P3,~N,~N,~N,~N,~N,JU.P3");
-Clazz.defineMethod (c$, "getUnitCellMultiplier", 
+Clazz.defineMethod (c$, "getUnitCellMultiplier",
 function () {
 return this.unitCellMultiplier;
 });
-Clazz.defineMethod (c$, "getUnitCellVectors", 
+Clazz.defineMethod (c$, "getUnitCellVectors",
 function () {
 var m = this.matrixFractionalToCartesian;
 return  Clazz.newArray (-1, [JU.P3.newP (this.cartesianOffset), JU.P3.new3 (this.fix (m.m00), this.fix (m.m10), this.fix (m.m20)), JU.P3.new3 (this.fix (m.m01), this.fix (m.m11), this.fix (m.m21)), JU.P3.new3 (this.fix (m.m02), this.fix (m.m12), this.fix (m.m22))]);
 });
-Clazz.defineMethod (c$, "fix", 
+Clazz.defineMethod (c$, "fix",
  function (x) {
 return (Math.abs (x) < 0.001 ? 0 : x);
 }, "~N");
-Clazz.defineMethod (c$, "isSameAs", 
+Clazz.defineMethod (c$, "isSameAs",
 function (uc) {
 if (uc.unitCellParams.length != this.unitCellParams.length) return false;
 for (var i = this.unitCellParams.length; --i >= 0; ) if (this.unitCellParams[i] != uc.unitCellParams[i] && !(Float.isNaN (this.unitCellParams[i]) && Float.isNaN (uc.unitCellParams[i]))) return false;
 
 return (this.fractionalOffset == null ? !uc.hasOffset () : uc.fractionalOffset == null ? !this.hasOffset () : this.fractionalOffset.distanceSquared (uc.fractionalOffset) == 0);
 }, "JS.UnitCell");
-Clazz.defineMethod (c$, "hasOffset", 
+Clazz.defineMethod (c$, "hasOffset",
 function () {
 return (this.fractionalOffset != null && this.fractionalOffset.lengthSquared () != 0);
 });
-Clazz.defineMethod (c$, "getState", 
+Clazz.defineMethod (c$, "getState",
 function () {
 var s = "";
 if (this.fractionalOffset != null && this.fractionalOffset.lengthSquared () != 0) s += "  unitcell offset " + JU.Escape.eP (this.fractionalOffset) + ";\n";
 if (this.unitCellMultiplier != null) s += "  unitcell range " + JU.SimpleUnitCell.escapeMultiplier (this.unitCellMultiplier) + ";\n";
 return s;
 });
-Clazz.defineMethod (c$, "getQuaternionRotation", 
+Clazz.defineMethod (c$, "getQuaternionRotation",
 function (abc) {
 var a = JU.V3.newVsub (this.vertices[4], this.vertices[0]);
 var b = JU.V3.newVsub (this.vertices[2], this.vertices[0]);
@@ -328,7 +328,7 @@ x.cross (v1, v2);
 v.cross (x, v1);
 return JU.Quat.getQuaternionFrame (null, v, x).inv ();
 }, "~S");
-Clazz.defineMethod (c$, "getV0abc", 
+Clazz.defineMethod (c$, "getV0abc",
 function (def) {
 if (Clazz.instanceOf (def, Array)) return def;
 var m;
@@ -399,7 +399,7 @@ this.toCartesian (pts[i], true);
 }
 return pts;
 }, "~O");
-Clazz.defineMethod (c$, "toFromPrimitive", 
+Clazz.defineMethod (c$, "toFromPrimitive",
 function (toPrimitive, type, uc) {
 var offset = uc.length - 3;
 var mf;
@@ -441,7 +441,7 @@ this.toCartesian (p, false);
 }
 return true;
 }, "~B,~S,~A");
-Clazz.defineMethod (c$, "getConventionalUnitCell", 
+Clazz.defineMethod (c$, "getConventionalUnitCell",
 function (latticeType) {
 var oabc = this.getUnitCellVectors ();
 if (!latticeType.equals ("P")) this.toFromPrimitive (false, latticeType.charAt (0), oabc);

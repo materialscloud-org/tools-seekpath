@@ -9,7 +9,7 @@ this.thisCol = 0;
 this.tableCellAlignLeft = false;
 Clazz.instantialize (this, arguments);
 }, JSV.js2d, "DialogTableModel", null, J.awtjs.swing.AbstractTableModel);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (columnNames, data, asString, tableCellAlignLeft) {
 this.columnNames = columnNames;
 this.data = data;
@@ -17,33 +17,33 @@ this.asString = asString;
 this.widths = (data.length == 0 ?  Clazz.newIntArray (0, 0) :  Clazz.newIntArray (data[0].length, 0));
 this.tableCellAlignLeft = tableCellAlignLeft;
 }, "~A,~A,~B,~B");
-Clazz.defineMethod (c$, "getColumnCount", 
+Clazz.defineMethod (c$, "getColumnCount",
 function () {
 return this.columnNames.length;
 });
-Clazz.defineMethod (c$, "getRowCount", 
+Clazz.defineMethod (c$, "getRowCount",
 function () {
 return this.data.length;
 });
-Clazz.defineMethod (c$, "getColumnName", 
+Clazz.defineMethod (c$, "getColumnName",
 function (col) {
 return this.columnNames[col];
 }, "~N");
-Clazz.defineMethod (c$, "getValueAt", 
+Clazz.defineMethod (c$, "getValueAt",
 function (row, col) {
 var o = this.data[row][col];
 return (this.asString ? " " + o + " " : o);
 }, "~N,~N");
-Clazz.overrideMethod (c$, "getColumn", 
+Clazz.overrideMethod (c$, "getColumn",
 function (i) {
 this.thisCol = i;
 return this;
 }, "~N");
-Clazz.overrideMethod (c$, "setPreferredWidth", 
+Clazz.overrideMethod (c$, "setPreferredWidth",
 function (n) {
 this.widths[this.thisCol] = n;
 }, "~N");
-Clazz.overrideMethod (c$, "toHTML", 
+Clazz.overrideMethod (c$, "toHTML",
 function (sb, id, selectedRows) {
 if (this.data == null || this.data[0] == null || this.data[0].length == 0) return;
 var nrows = this.data.length;
@@ -58,12 +58,12 @@ if (i == -1) this.getCellHtml (sb, id + "_h" + j, i, j, this.columnNames[j], fal
 sb.append ("</tr>");
 }
 }, "JU.SB,~S,JU.BS");
-Clazz.defineMethod (c$, "getCellHtml", 
+Clazz.defineMethod (c$, "getCellHtml",
  function (sb, id, iRow, iCol, o, isSelected) {
 var style = this.getCellStyle (id, iRow, iCol, o, isSelected);
 sb.append ("<td id='" + id + "'" + style + " onclick=SwingController.click(this)>" + o + "</td>");
 }, "JU.SB,~S,~N,~N,~O,~B");
-Clazz.defineMethod (c$, "getCellStyle", 
+Clazz.defineMethod (c$, "getCellStyle",
  function (id, iRow, iCol, o, isSelected) {
 var style = "padding:1px 1px 1px 1px";
 if (iRow < 0) {

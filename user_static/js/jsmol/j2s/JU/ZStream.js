@@ -16,22 +16,22 @@ this.data_type = 0;
 this.checksum = null;
 Clazz.instantialize (this, arguments);
 }, JU, "ZStream");
-Clazz.defineMethod (c$, "setAdler32", 
+Clazz.defineMethod (c$, "setAdler32",
 function () {
 this.checksum =  new JU.Adler32 ();
 });
-Clazz.defineMethod (c$, "inflate", 
+Clazz.defineMethod (c$, "inflate",
 function (f) {
 if (this.istate == null) return -2;
 return this.istate.inflate (f);
 }, "~N");
-Clazz.defineMethod (c$, "deflate", 
+Clazz.defineMethod (c$, "deflate",
 function (flush) {
 if (this.dstate == null) {
 return -2;
 }return this.dstate.deflate (flush);
 }, "~N");
-Clazz.defineMethod (c$, "flush_pending", 
+Clazz.defineMethod (c$, "flush_pending",
 function () {
 var len = this.dstate.pending;
 if (len > this.avail_out) len = this.avail_out;
@@ -45,7 +45,7 @@ this.dstate.pending -= len;
 if (this.dstate.pending == 0) {
 this.dstate.pending_out = 0;
 }});
-Clazz.defineMethod (c$, "read_buf", 
+Clazz.defineMethod (c$, "read_buf",
 function (buf, start, size) {
 var len = this.avail_in;
 if (len > size) len = size;
@@ -58,23 +58,23 @@ this.next_in_index += len;
 this.total_in += len;
 return len;
 }, "~A,~N,~N");
-Clazz.defineMethod (c$, "getAdler", 
+Clazz.defineMethod (c$, "getAdler",
 function () {
 return this.checksum.getValue ();
 });
-Clazz.defineMethod (c$, "free", 
+Clazz.defineMethod (c$, "free",
 function () {
 this.next_in = null;
 this.next_out = null;
 this.msg = null;
 });
-Clazz.defineMethod (c$, "setOutput", 
+Clazz.defineMethod (c$, "setOutput",
 function (buf, off, len) {
 this.next_out = buf;
 this.next_out_index = off;
 this.avail_out = len;
 }, "~A,~N,~N");
-Clazz.defineMethod (c$, "setInput", 
+Clazz.defineMethod (c$, "setInput",
 function (buf, off, len, append) {
 if (len <= 0 && append && this.next_in != null) return;
 if (this.avail_in > 0 && append) {
@@ -89,19 +89,19 @@ this.next_in = buf;
 this.next_in_index = off;
 this.avail_in = len;
 }}, "~A,~N,~N,~B");
-Clazz.defineMethod (c$, "getAvailIn", 
+Clazz.defineMethod (c$, "getAvailIn",
 function () {
 return this.avail_in;
 });
-Clazz.defineMethod (c$, "getTotalOut", 
+Clazz.defineMethod (c$, "getTotalOut",
 function () {
 return this.total_out;
 });
-Clazz.defineMethod (c$, "getTotalIn", 
+Clazz.defineMethod (c$, "getTotalIn",
 function () {
 return this.total_in;
 });
-c$.getBytes = Clazz.defineMethod (c$, "getBytes", 
+c$.getBytes = Clazz.defineMethod (c$, "getBytes",
 function (s) {
 {
 var x = [];

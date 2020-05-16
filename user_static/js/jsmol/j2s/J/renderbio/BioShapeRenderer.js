@@ -59,14 +59,14 @@ this.screenArrowTopPrev =  new JU.P3 ();
 this.screenArrowBot =  new JU.P3 ();
 this.screenArrowBotPrev =  new JU.P3 ();
 });
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 if (this.shape == null) return false;
 this.setGlobals ();
 this.renderShapes ();
 return this.needTranslucent;
 });
-Clazz.defineMethod (c$, "setGlobals", 
+Clazz.defineMethod (c$, "setGlobals",
  function () {
 this.invalidateMesh = false;
 this.needTranslucent = false;
@@ -107,7 +107,7 @@ this.sheetSmoothing = fval;
 this.invalidateMesh = true;
 this.invalidateSheets = true;
 }});
-Clazz.defineMethod (c$, "renderShapes", 
+Clazz.defineMethod (c$, "renderShapes",
  function () {
 var mps = this.shape;
 for (var c = mps.bioShapes.length; --c >= 0; ) {
@@ -121,18 +121,18 @@ if (this.meshRenderer != null) this.meshRenderer.renderMeshes ();
 this.freeTempArrays ();
 }}
 });
-Clazz.defineMethod (c$, "setBioColix", 
+Clazz.defineMethod (c$, "setBioColix",
 function (colix) {
 if (this.g3d.setC (colix)) return true;
 this.needTranslucent = true;
 return false;
 }, "~N");
-Clazz.defineMethod (c$, "freeTempArrays", 
+Clazz.defineMethod (c$, "freeTempArrays",
  function () {
 if (this.haveControlPointScreens) this.vwr.freeTempPoints (this.controlPointScreens);
 this.vwr.freeTempEnum (this.structureTypes);
 });
-Clazz.defineMethod (c$, "initializePolymer", 
+Clazz.defineMethod (c$, "initializePolymer",
  function (bioShape) {
 var bsDeleted = this.vwr.slm.bsDeleted;
 if (this.vwr.ms.isJmolDataFrameForModel (bioShape.modelIndex)) {
@@ -167,14 +167,14 @@ this.colixesBack = bioShape.colixesBack;
 this.setStructureTypes ();
 return true;
 }, "J.shapebio.BioShape");
-Clazz.defineMethod (c$, "setStructureTypes", 
+Clazz.defineMethod (c$, "setStructureTypes",
  function () {
 var types = this.structureTypes = this.vwr.allocTempEnum (this.monomerCount + 1);
 for (var i = this.monomerCount; --i >= 0; ) if ((types[i] = this.monomers[i].getProteinStructureType ()) === J.c.STR.TURN) types[i] = J.c.STR.NONE;
 
 types[this.monomerCount] = types[this.monomerCount - 1];
 });
-Clazz.defineMethod (c$, "calcScreenControlPoints", 
+Clazz.defineMethod (c$, "calcScreenControlPoints",
 function () {
 var count = this.monomerCount + 1;
 var scr = this.controlPointScreens = this.vwr.allocTempPoints (count);
@@ -183,7 +183,7 @@ for (var i = count; --i >= 0; ) this.tm.transformPtScrT3 (points[i], scr[i]);
 
 this.haveControlPointScreens = true;
 });
-Clazz.defineMethod (c$, "calcScreens", 
+Clazz.defineMethod (c$, "calcScreens",
 function (offsetFraction, mads) {
 var count = this.controlPoints.length;
 var screens = this.vwr.allocTempPoints (count);
@@ -196,20 +196,20 @@ for (var i = count; --i >= 0; ) this.calc1Screen (this.controlPoints[i], this.wi
 
 }return screens;
 }, "~N,~A");
-Clazz.defineMethod (c$, "calc1Screen", 
+Clazz.defineMethod (c$, "calc1Screen",
  function (center, vector, mad, offset_1000, screen) {
 this.pointT.scaleAdd2 (mad * offset_1000, vector, center);
 this.tm.transformPtScrT3 (this.pointT, screen);
 }, "JU.P3,JU.V3,~N,~N,JU.P3");
-Clazz.defineMethod (c$, "getLeadColix", 
+Clazz.defineMethod (c$, "getLeadColix",
 function (i) {
 return JU.C.getColixInherited (this.colixes[i], this.monomers[i].getLeadAtom ().colixAtom);
 }, "~N");
-Clazz.defineMethod (c$, "getLeadColixBack", 
+Clazz.defineMethod (c$, "getLeadColixBack",
 function (i) {
 return (this.colixesBack == null || this.colixesBack.length <= i ? 0 : this.colixesBack[i]);
 }, "~N");
-Clazz.defineMethod (c$, "setNeighbors", 
+Clazz.defineMethod (c$, "setNeighbors",
 function (i) {
 if (this.isCyclic) {
 i += this.monomerCount;
@@ -223,12 +223,12 @@ this.iNext = Math.min (i + 1, this.monomerCount);
 this.iNext2 = Math.min (i + 2, this.monomerCount);
 this.iNext3 = Math.min (i + 3, this.monomerCount);
 }}, "~N");
-Clazz.defineMethod (c$, "setColix", 
+Clazz.defineMethod (c$, "setColix",
 function (colix) {
 this.colix = colix;
 return this.g3d.setC (colix);
 }, "~N");
-Clazz.defineMethod (c$, "setMads", 
+Clazz.defineMethod (c$, "setMads",
  function (i, thisTypeOnly) {
 this.madMid = this.madBeg = this.madEnd = this.mads[i];
 if (this.isTraceAlpha) {
@@ -250,14 +250,14 @@ var doCap0 = (i == this.iPrev || !this.bsVisible.get (this.iPrev) || thisTypeOnl
 var doCap1 = (this.iNext == this.iNext2 || !this.bsVisible.get (this.iNext) || thisTypeOnly && this.structureTypes[i] !== this.structureTypes[this.iNext]);
 return (this.aspectRatio > 0 && this.meshRenderer != null && this.meshRenderer.check (doCap0, doCap1));
 }, "~N,~B");
-Clazz.defineMethod (c$, "renderHermiteCylinder", 
+Clazz.defineMethod (c$, "renderHermiteCylinder",
 function (screens, i) {
 this.colix = this.getLeadColix (i);
 if (!this.setBioColix (this.colix)) return;
 this.setNeighbors (i);
 this.g3d.drawHermite4 (this.isNucleic ? 4 : 7, screens[this.iPrev], screens[i], screens[this.iNext], screens[this.iNext2]);
 }, "~A,~N");
-Clazz.defineMethod (c$, "renderHermiteConic", 
+Clazz.defineMethod (c$, "renderHermiteConic",
 function (i, thisTypeOnly, tension) {
 this.setNeighbors (i);
 this.colix = this.getLeadColix (i);
@@ -269,7 +269,7 @@ return;
  else {
 this.g3d.fillHermite (this.isNucleic ? 4 : 7, this.diameterBeg, this.diameterMid, this.diameterEnd, this.controlPointScreens[this.iPrev], this.controlPointScreens[i], this.controlPointScreens[this.iNext], this.controlPointScreens[this.iNext2]);
 }}, "~N,~B,~N");
-Clazz.defineMethod (c$, "renderHermiteRibbon", 
+Clazz.defineMethod (c$, "renderHermiteRibbon",
 function (doFill, i, thisTypeOnly) {
 this.setNeighbors (i);
 var c0 = this.colix = this.getLeadColix (i);
@@ -288,7 +288,7 @@ if (isReversed && this.colixBack != 0) {
 this.setColix (c0);
 cb = this.colixBack;
 }}, "~B,~N,~B");
-Clazz.defineMethod (c$, "renderHermiteArrowHead", 
+Clazz.defineMethod (c$, "renderHermiteArrowHead",
 function (i) {
 this.colix = this.getLeadColix (i);
 if (!this.setBioColix (this.colix)) return;
@@ -308,7 +308,7 @@ this.g3d.setC (this.colix);
 if (this.ribbonBorder && this.aspectRatio == 0) {
 this.g3d.fillCylinderBits (3, 3, this.screenArrowTop, this.screenArrowBot);
 }}, "~N");
-Clazz.defineMethod (c$, "drawSegmentAB", 
+Clazz.defineMethod (c$, "drawSegmentAB",
 function (atomA, atomB, colixA, colixB, max) {
 var xA = atomA.sX;
 var yA = atomA.sY;

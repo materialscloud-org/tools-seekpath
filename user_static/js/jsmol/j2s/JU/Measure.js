@@ -1,20 +1,20 @@
 Clazz.declarePackage ("JU");
 Clazz.load (["JU.V3"], "JU.Measure", ["java.lang.Float", "javajs.api.Interface", "JU.Lst", "$.P3", "$.P4", "$.Quat"], function () {
 c$ = Clazz.declareType (JU, "Measure");
-c$.computeAngle = Clazz.defineMethod (c$, "computeAngle", 
+c$.computeAngle = Clazz.defineMethod (c$, "computeAngle",
 function (pointA, pointB, pointC, vectorBA, vectorBC, asDegrees) {
 vectorBA.sub2 (pointA, pointB);
 vectorBC.sub2 (pointC, pointB);
 var angle = vectorBA.angle (vectorBC);
 return (asDegrees ? angle / 0.017453292 : angle);
 }, "JU.T3,JU.T3,JU.T3,JU.V3,JU.V3,~B");
-c$.computeAngleABC = Clazz.defineMethod (c$, "computeAngleABC", 
+c$.computeAngleABC = Clazz.defineMethod (c$, "computeAngleABC",
 function (pointA, pointB, pointC, asDegrees) {
 var vectorBA =  new JU.V3 ();
 var vectorBC =  new JU.V3 ();
 return JU.Measure.computeAngle (pointA, pointB, pointC, vectorBA, vectorBC, asDegrees);
 }, "JU.T3,JU.T3,JU.T3,~B");
-c$.computeTorsion = Clazz.defineMethod (c$, "computeTorsion", 
+c$.computeTorsion = Clazz.defineMethod (c$, "computeTorsion",
 function (p1, p2, p3, p4, asDegrees) {
 var ijx = p1.x - p2.x;
 var ijy = p1.y - p2.y;
@@ -48,7 +48,7 @@ var absDot = Math.abs (dot);
 torsion = (dot / absDot > 0) ? torsion : -torsion;
 return (asDegrees ? torsion / 0.017453292 : torsion);
 }, "JU.T3,JU.T3,JU.T3,JU.T3,~B");
-c$.computeHelicalAxis = Clazz.defineMethod (c$, "computeHelicalAxis", 
+c$.computeHelicalAxis = Clazz.defineMethod (c$, "computeHelicalAxis",
 function (a, b, dq) {
 var vab =  new JU.V3 ();
 vab.sub2 (b, a);
@@ -79,42 +79,42 @@ var residuesPerTurn = Math.abs (theta == 0 ? 0 : 360 / theta);
 var pitch = Math.abs (v_dot_n == 1.4E-45 ? 0 : n.length () * (theta == 0 ? 1 : 360 / theta));
 return  Clazz.newArray (-1, [pt_a_prime, n, r, JU.P3.new3 (theta, pitch, residuesPerTurn), pt_b_prime]);
 }, "JU.P3,JU.P3,JU.Quat");
-c$.getPlaneThroughPoints = Clazz.defineMethod (c$, "getPlaneThroughPoints", 
+c$.getPlaneThroughPoints = Clazz.defineMethod (c$, "getPlaneThroughPoints",
 function (pointA, pointB, pointC, vNorm, vAB, plane) {
 var w = JU.Measure.getNormalThroughPoints (pointA, pointB, pointC, vNorm, vAB);
 plane.set4 (vNorm.x, vNorm.y, vNorm.z, w);
 return plane;
 }, "JU.T3,JU.T3,JU.T3,JU.V3,JU.V3,JU.P4");
-c$.getPlaneThroughPoint = Clazz.defineMethod (c$, "getPlaneThroughPoint", 
+c$.getPlaneThroughPoint = Clazz.defineMethod (c$, "getPlaneThroughPoint",
 function (pt, normal, plane) {
 plane.set4 (normal.x, normal.y, normal.z, -normal.dot (pt));
 }, "JU.T3,JU.V3,JU.P4");
-c$.distanceToPlane = Clazz.defineMethod (c$, "distanceToPlane", 
+c$.distanceToPlane = Clazz.defineMethod (c$, "distanceToPlane",
 function (plane, pt) {
 return (plane == null ? NaN : (plane.dot (pt) + plane.w) / Math.sqrt (plane.dot (plane)));
 }, "JU.P4,JU.T3");
-c$.directedDistanceToPlane = Clazz.defineMethod (c$, "directedDistanceToPlane", 
+c$.directedDistanceToPlane = Clazz.defineMethod (c$, "directedDistanceToPlane",
 function (pt, plane, ptref) {
 var f = plane.dot (pt) + plane.w;
 var f1 = plane.dot (ptref) + plane.w;
 return Math.signum (f1) * f / Math.sqrt (plane.dot (plane));
 }, "JU.P3,JU.P4,JU.P3");
-c$.distanceToPlaneD = Clazz.defineMethod (c$, "distanceToPlaneD", 
+c$.distanceToPlaneD = Clazz.defineMethod (c$, "distanceToPlaneD",
 function (plane, d, pt) {
 return (plane == null ? NaN : (plane.dot (pt) + plane.w) / d);
 }, "JU.P4,~N,JU.P3");
-c$.distanceToPlaneV = Clazz.defineMethod (c$, "distanceToPlaneV", 
+c$.distanceToPlaneV = Clazz.defineMethod (c$, "distanceToPlaneV",
 function (norm, w, pt) {
 return (norm == null ? NaN : (norm.dot (pt) + w) / Math.sqrt (norm.dot (norm)));
 }, "JU.V3,~N,JU.P3");
-c$.calcNormalizedNormal = Clazz.defineMethod (c$, "calcNormalizedNormal", 
+c$.calcNormalizedNormal = Clazz.defineMethod (c$, "calcNormalizedNormal",
 function (pointA, pointB, pointC, vNormNorm, vAB) {
 vAB.sub2 (pointB, pointA);
 vNormNorm.sub2 (pointC, pointA);
 vNormNorm.cross (vAB, vNormNorm);
 vNormNorm.normalize ();
 }, "JU.T3,JU.T3,JU.T3,JU.T3,JU.T3");
-c$.getDirectedNormalThroughPoints = Clazz.defineMethod (c$, "getDirectedNormalThroughPoints", 
+c$.getDirectedNormalThroughPoints = Clazz.defineMethod (c$, "getDirectedNormalThroughPoints",
 function (pointA, pointB, pointC, ptRef, vNorm, vAB) {
 var nd = JU.Measure.getNormalThroughPoints (pointA, pointB, pointC, vNorm, vAB);
 if (ptRef != null) {
@@ -127,13 +127,13 @@ vNorm.scale (-1);
 nd = -nd;
 }}return nd;
 }, "JU.T3,JU.T3,JU.T3,JU.T3,JU.V3,JU.V3");
-c$.getNormalThroughPoints = Clazz.defineMethod (c$, "getNormalThroughPoints", 
+c$.getNormalThroughPoints = Clazz.defineMethod (c$, "getNormalThroughPoints",
 function (pointA, pointB, pointC, vNorm, vTemp) {
 JU.Measure.calcNormalizedNormal (pointA, pointB, pointC, vNorm, vTemp);
 vTemp.setT (pointA);
 return -vTemp.dot (vNorm);
 }, "JU.T3,JU.T3,JU.T3,JU.T3,JU.T3");
-c$.getPlaneProjection = Clazz.defineMethod (c$, "getPlaneProjection", 
+c$.getPlaneProjection = Clazz.defineMethod (c$, "getPlaneProjection",
 function (pt, plane, ptProj, vNorm) {
 var dist = JU.Measure.distanceToPlane (plane, pt);
 vNorm.set (plane.x, plane.y, plane.z);
@@ -141,35 +141,35 @@ vNorm.normalize ();
 vNorm.scale (-dist);
 ptProj.add2 (pt, vNorm);
 }, "JU.P3,JU.P4,JU.P3,JU.V3");
-c$.getNormalFromCenter = Clazz.defineMethod (c$, "getNormalFromCenter", 
+c$.getNormalFromCenter = Clazz.defineMethod (c$, "getNormalFromCenter",
 function (ptCenter, ptA, ptB, ptC, isOutward, normal, vTemp) {
 var d = JU.Measure.getNormalThroughPoints (ptA, ptB, ptC, normal, vTemp);
 var isReversed = (JU.Measure.distanceToPlaneV (normal, d, ptCenter) > 0);
 if (isReversed == isOutward) normal.scale (-1.0);
 return !isReversed;
 }, "JU.P3,JU.P3,JU.P3,JU.P3,~B,JU.V3,JU.V3");
-c$.getNormalToLine = Clazz.defineMethod (c$, "getNormalToLine", 
+c$.getNormalToLine = Clazz.defineMethod (c$, "getNormalToLine",
 function (pointA, pointB, vNormNorm) {
 vNormNorm.sub2 (pointA, pointB);
 vNormNorm.cross (vNormNorm, JU.Measure.axisY);
 vNormNorm.normalize ();
 if (Float.isNaN (vNormNorm.x)) vNormNorm.set (1, 0, 0);
 }, "JU.P3,JU.P3,JU.V3");
-c$.getBisectingPlane = Clazz.defineMethod (c$, "getBisectingPlane", 
+c$.getBisectingPlane = Clazz.defineMethod (c$, "getBisectingPlane",
 function (pointA, vAB, ptTemp, vTemp, plane) {
 ptTemp.scaleAdd2 (0.5, vAB, pointA);
 vTemp.setT (vAB);
 vTemp.normalize ();
 JU.Measure.getPlaneThroughPoint (ptTemp, vTemp, plane);
 }, "JU.P3,JU.V3,JU.T3,JU.V3,JU.P4");
-c$.projectOntoAxis = Clazz.defineMethod (c$, "projectOntoAxis", 
+c$.projectOntoAxis = Clazz.defineMethod (c$, "projectOntoAxis",
 function (point, axisA, axisUnitVector, vectorProjection) {
 vectorProjection.sub2 (point, axisA);
 var projectedLength = vectorProjection.dot (axisUnitVector);
 point.scaleAdd2 (projectedLength, axisUnitVector, axisA);
 vectorProjection.sub2 (point, axisA);
 }, "JU.P3,JU.P3,JU.V3,JU.V3");
-c$.calcBestAxisThroughPoints = Clazz.defineMethod (c$, "calcBestAxisThroughPoints", 
+c$.calcBestAxisThroughPoints = Clazz.defineMethod (c$, "calcBestAxisThroughPoints",
 function (points, axisA, axisUnitVector, vectorProjection, nTriesMax) {
 var nPoints = points.length;
 axisA.setT (points[0]);
@@ -183,7 +183,7 @@ var tempA = JU.P3.newP (points[0]);
 JU.Measure.projectOntoAxis (tempA, axisA, axisUnitVector, vectorProjection);
 axisA.setT (tempA);
 }, "~A,JU.P3,JU.V3,JU.V3,~N");
-c$.findAxis = Clazz.defineMethod (c$, "findAxis", 
+c$.findAxis = Clazz.defineMethod (c$, "findAxis",
 function (points, nPoints, axisA, axisUnitVector, vectorProjection) {
 var sumXiYi =  new JU.V3 ();
 var vTemp =  new JU.V3 ();
@@ -208,18 +208,18 @@ axisUnitVector.normalize ();
 vTemp.sub2 (axisUnitVector, a);
 return vTemp.length ();
 }, "~A,~N,JU.P3,JU.V3,JU.V3");
-c$.calcAveragePoint = Clazz.defineMethod (c$, "calcAveragePoint", 
+c$.calcAveragePoint = Clazz.defineMethod (c$, "calcAveragePoint",
 function (pointA, pointB, pointC) {
 pointC.set ((pointA.x + pointB.x) / 2, (pointA.y + pointB.y) / 2, (pointA.z + pointB.z) / 2);
 }, "JU.P3,JU.P3,JU.P3");
-c$.calcAveragePointN = Clazz.defineMethod (c$, "calcAveragePointN", 
+c$.calcAveragePointN = Clazz.defineMethod (c$, "calcAveragePointN",
 function (points, nPoints, averagePoint) {
 averagePoint.setT (points[0]);
 for (var i = 1; i < nPoints; i++) averagePoint.add (points[i]);
 
 averagePoint.scale (1 / nPoints);
 }, "~A,~N,JU.P3");
-c$.transformPoints = Clazz.defineMethod (c$, "transformPoints", 
+c$.transformPoints = Clazz.defineMethod (c$, "transformPoints",
 function (vPts, m4, center) {
 var v =  new JU.Lst ();
 for (var i = 0; i < vPts.size (); i++) {
@@ -231,7 +231,7 @@ v.addLast (pt);
 }
 return v;
 }, "JU.Lst,JU.M4,JU.P3");
-c$.isInTetrahedron = Clazz.defineMethod (c$, "isInTetrahedron", 
+c$.isInTetrahedron = Clazz.defineMethod (c$, "isInTetrahedron",
 function (pt, ptA, ptB, ptC, ptD, plane, vTemp, vTemp2, fullyEnclosed) {
 var b = (JU.Measure.distanceToPlane (JU.Measure.getPlaneThroughPoints (ptC, ptD, ptA, vTemp, vTemp2, plane), pt) >= 0);
 if (b != (JU.Measure.distanceToPlane (JU.Measure.getPlaneThroughPoints (ptA, ptD, ptB, vTemp, vTemp2, plane), pt) >= 0)) return false;
@@ -241,7 +241,7 @@ if (fullyEnclosed) return (b == (d >= 0));
 var d1 = JU.Measure.distanceToPlane (plane, ptD);
 return d1 * d <= 0 || Math.abs (d1) > Math.abs (d);
 }, "JU.P3,JU.P3,JU.P3,JU.P3,JU.P3,JU.P4,JU.V3,JU.V3,~B");
-c$.getIntersectionPP = Clazz.defineMethod (c$, "getIntersectionPP", 
+c$.getIntersectionPP = Clazz.defineMethod (c$, "getIntersectionPP",
 function (plane1, plane2) {
 var a1 = plane1.x;
 var b1 = plane1.y;
@@ -292,7 +292,7 @@ nxn.normalize ();
 list.addLast (nxn);
 return list;
 }, "JU.P4,JU.P4");
-c$.getIntersection = Clazz.defineMethod (c$, "getIntersection", 
+c$.getIntersection = Clazz.defineMethod (c$, "getIntersection",
 function (pt1, v, plane, ptRet, tempNorm, vTemp) {
 JU.Measure.getPlaneProjection (pt1, plane, ptRet, tempNorm);
 tempNorm.set (plane.x, plane.y, plane.z);
@@ -304,7 +304,7 @@ vTemp.sub2 (ptRet, pt1);
 ptRet.scaleAdd2 (vTemp.dot (tempNorm) / l_dot_n, v, pt1);
 return ptRet;
 }, "JU.P3,JU.V3,JU.P4,JU.P3,JU.V3,JU.V3");
-c$.calculateQuaternionRotation = Clazz.defineMethod (c$, "calculateQuaternionRotation", 
+c$.calculateQuaternionRotation = Clazz.defineMethod (c$, "calculateQuaternionRotation",
 function (centerAndPoints, retStddev) {
 retStddev[1] = NaN;
 var q =  new JU.Quat ();
@@ -355,7 +355,7 @@ q = JU.Quat.newP4 (JU.P4.new4 (v[1], v[2], v[3], v[0]));
 retStddev[1] = JU.Measure.getRmsd (centerAndPoints, q);
 return q;
 }, "~A,~A");
-c$.getTransformMatrix4 = Clazz.defineMethod (c$, "getTransformMatrix4", 
+c$.getTransformMatrix4 = Clazz.defineMethod (c$, "getTransformMatrix4",
 function (ptsA, ptsB, m, centerA) {
 var cptsA = JU.Measure.getCenterAndPoints (ptsA);
 var cptsB = JU.Measure.getCenterAndPoints (ptsB);
@@ -368,7 +368,7 @@ var t = JU.V3.newVsub (cptsB[0], cptsA[0]);
 m.setMV (r, t);
 return retStddev[1];
 }, "JU.Lst,JU.Lst,JU.M4,JU.P3");
-c$.getCenterAndPoints = Clazz.defineMethod (c$, "getCenterAndPoints", 
+c$.getCenterAndPoints = Clazz.defineMethod (c$, "getCenterAndPoints",
 function (vPts) {
 var n = vPts.size ();
 var pts =  new Array (n + 1);
@@ -380,7 +380,7 @@ pts[0].add (pts[i + 1] = vPts.get (i));
 pts[0].scale (1 / n);
 }return pts;
 }, "JU.Lst");
-c$.getRmsd = Clazz.defineMethod (c$, "getRmsd", 
+c$.getRmsd = Clazz.defineMethod (c$, "getRmsd",
 function (centerAndPoints, q) {
 var sum2 = 0;
 var ptsA = centerAndPoints[0];

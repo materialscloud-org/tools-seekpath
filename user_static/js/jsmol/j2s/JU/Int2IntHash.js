@@ -4,11 +4,11 @@ this.entryCount = 0;
 this.entries = null;
 Clazz.instantialize (this, arguments);
 }, JU, "Int2IntHash");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (initialCapacity) {
 this.entries =  new Array (initialCapacity);
 }, "~N");
-Clazz.defineMethod (c$, "get", 
+Clazz.defineMethod (c$, "get",
 function (key) {
 var entries = this.entries;
 var hash = (key & 0x7FFFFFFF) % entries.length;
@@ -16,7 +16,7 @@ for (var e = entries[hash]; e != null; e = e.next) if (e.key == key) return e.va
 
 return -2147483648;
 }, "~N");
-Clazz.defineMethod (c$, "put", 
+Clazz.defineMethod (c$, "put",
 function (key, value) {
 var entries = this.entries;
 var n = entries.length;
@@ -49,7 +49,7 @@ this.value = 0;
 this.next = null;
 Clazz.instantialize (this, arguments);
 }, JU, "Int2IntHashEntry");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (key, value, next) {
 this.key = key;
 this.value = value;

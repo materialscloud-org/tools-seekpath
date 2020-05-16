@@ -20,10 +20,10 @@ Clazz.prepareFields (c$, function () {
 this.elementCounts =  Clazz.newIntArray (JU.Elements.elementNumberMax, 0);
 this.altElementCounts =  Clazz.newIntArray (JU.Elements.altElementMax, 0);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-c$.getMolecules = Clazz.defineMethod (c$, "getMolecules", 
+c$.getMolecules = Clazz.defineMethod (c$, "getMolecules",
 function (atoms, bsModelAtoms, biobranches, bsExclude) {
 var bsToTest = null;
 var bsBranch =  new JU.BS ();
@@ -47,28 +47,28 @@ molecules = JU.JmolMolecule.addMolecule (molecules, moleculeCount++, atoms, i, b
 }}
 return JU.JmolMolecule.allocateArray (molecules, moleculeCount);
 }, "~A,~A,JU.Lst,JU.BS");
-c$.getBranchBitSet = Clazz.defineMethod (c$, "getBranchBitSet", 
+c$.getBranchBitSet = Clazz.defineMethod (c$, "getBranchBitSet",
 function (atoms, atomIndex, bsToTest, biobranches, atomIndexNot, allowCyclic, allowBioResidue) {
 var bs = JU.BS.newN (atoms.length);
 if (atomIndex < 0) return bs;
 if (atomIndexNot >= 0) bsToTest.clear (atomIndexNot);
 return (JU.JmolMolecule.getCovalentlyConnectedBitSet (atoms, atoms[atomIndex], bsToTest, allowCyclic, allowBioResidue, biobranches, bs) ? bs :  new JU.BS ());
 }, "~A,~N,JU.BS,JU.Lst,~N,~B,~B");
-c$.addMolecule = Clazz.defineMethod (c$, "addMolecule", 
+c$.addMolecule = Clazz.defineMethod (c$, "addMolecule",
 function (molecules, iMolecule, atoms, iAtom, bsBranch, modelIndex, indexInModel, bsExclude) {
 bsExclude.or (bsBranch);
 if (iMolecule == molecules.length) molecules = JU.JmolMolecule.allocateArray (molecules, iMolecule * 2 + 1);
 molecules[iMolecule] = JU.JmolMolecule.initialize (atoms, iMolecule, iAtom, bsBranch, modelIndex, indexInModel);
 return molecules;
 }, "~A,~N,~A,~N,JU.BS,~N,~N,JU.BS");
-c$.getMolecularFormulaAtoms = Clazz.defineMethod (c$, "getMolecularFormulaAtoms", 
+c$.getMolecularFormulaAtoms = Clazz.defineMethod (c$, "getMolecularFormulaAtoms",
 function (atoms, bsSelected, wts, isEmpirical) {
 var m =  new JU.JmolMolecule ();
 m.nodes = atoms;
 m.atomList = bsSelected;
 return m.getMolecularFormula (false, wts, isEmpirical);
 }, "~A,JU.BS,~A,~B");
-Clazz.defineMethod (c$, "getMolecularFormula", 
+Clazz.defineMethod (c$, "getMolecularFormula",
 function (includeMissingHydrogens, wts, isEmpirical) {
 if (this.mf != null) return this.mf;
 if (this.atomList == null) {
@@ -140,7 +140,7 @@ sep = " ";
 }}
 return mf;
 }, "~B,~A,~B");
-c$.initialize = Clazz.defineMethod (c$, "initialize", 
+c$.initialize = Clazz.defineMethod (c$, "initialize",
  function (nodes, moleculeIndex, firstAtomIndex, atomList, modelIndex, indexInModel) {
 var jm =  new JU.JmolMolecule ();
 jm.nodes = nodes;
@@ -152,7 +152,7 @@ jm.modelIndex = modelIndex;
 jm.indexInModel = indexInModel;
 return jm;
 }, "~A,~N,~N,JU.BS,~N,~N");
-c$.getCovalentlyConnectedBitSet = Clazz.defineMethod (c$, "getCovalentlyConnectedBitSet", 
+c$.getCovalentlyConnectedBitSet = Clazz.defineMethod (c$, "getCovalentlyConnectedBitSet",
  function (atoms, atom, bsToTest, allowCyclic, allowBioResidue, biobranches, bsResult) {
 var atomIndex = atom.getIndex ();
 if (!bsToTest.get (atomIndex)) return allowCyclic;
@@ -181,11 +181,11 @@ if (bond != null && bond.isCovalent () && !JU.JmolMolecule.getCovalentlyConnecte
 }
 return true;
 }, "~A,JU.Node,JU.BS,~B,~B,JU.Lst,JU.BS");
-c$.allocateArray = Clazz.defineMethod (c$, "allocateArray", 
+c$.allocateArray = Clazz.defineMethod (c$, "allocateArray",
  function (molecules, len) {
 return (len == molecules.length ? molecules : JU.AU.arrayCopyObject (molecules, len));
 }, "~A,~N");
-c$.getBitSetForMF = Clazz.defineMethod (c$, "getBitSetForMF", 
+c$.getBitSetForMF = Clazz.defineMethod (c$, "getBitSetForMF",
 function (at, bsAtoms, mf) {
 var map =  new java.util.Hashtable ();
 var ch;

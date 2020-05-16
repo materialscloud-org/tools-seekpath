@@ -7,28 +7,28 @@ this.numSet = 0;
 this.lastIndex = -1;
 Clazz.instantialize (this, arguments);
 }, JM, "MeasurementPending", JM.Measurement);
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (modelSet) {
 return this.setM (modelSet, null, NaN, 0, null, 0);
 }, "JM.ModelSet");
-Clazz.defineMethod (c$, "checkPoint", 
+Clazz.defineMethod (c$, "checkPoint",
  function (ptClicked) {
 for (var i = 1; i <= this.numSet; i++) if (this.countPlusIndices[i] == -1 - i && this.pts[i - 1].distance (ptClicked) < 0.01) return false;
 
 return true;
 }, "JU.Point3fi");
-Clazz.defineMethod (c$, "getIndexOf", 
+Clazz.defineMethod (c$, "getIndexOf",
 function (atomIndex) {
 for (var i = 1; i <= this.numSet; i++) if (this.countPlusIndices[i] == atomIndex) return i;
 
 return 0;
 }, "~N");
-Clazz.overrideMethod (c$, "setCount", 
+Clazz.overrideMethod (c$, "setCount",
 function (count) {
 this.setCountM (count);
 this.numSet = count;
 }, "~N");
-Clazz.defineMethod (c$, "addPoint", 
+Clazz.defineMethod (c$, "addPoint",
 function (atomIndex, ptClicked, doSet) {
 this.haveModified = (atomIndex != this.lastIndex);
 this.lastIndex = atomIndex;

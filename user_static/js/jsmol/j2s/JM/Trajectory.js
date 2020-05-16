@@ -7,17 +7,17 @@ this.steps = null;
 this.isFractional = true;
 Clazz.instantialize (this, arguments);
 }, JM, "Trajectory");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (vwr, ms, steps) {
 this.vwr = vwr;
 this.ms = ms;
 this.steps = steps;
 return this;
 }, "JV.Viewer,JM.ModelSet,JU.Lst");
-Clazz.defineMethod (c$, "setUnitCell", 
+Clazz.defineMethod (c$, "setUnitCell",
 function (imodel) {
 var c = this.ms.getUnitCell (imodel);
 if (c != null && c.getCoordinatesAreFractional () && c.isSupercell ()) {
@@ -25,7 +25,7 @@ var list = this.ms.trajectory.steps.get (imodel);
 for (var i = list.length; --i >= 0; ) if (list[i] != null) c.toSupercell (list[i]);
 
 }}, "~N");
-Clazz.defineMethod (c$, "setModel", 
+Clazz.defineMethod (c$, "setModel",
 function (modelIndex) {
 var am = this.ms.am;
 var baseModelIndex = am[modelIndex].trajectoryBaseIndex;
@@ -35,7 +35,7 @@ this.setAtomPositions (baseModelIndex, modelIndex, this.steps.get (modelIndex), 
 var currentModelIndex = this.vwr.am.cmi;
 if (currentModelIndex >= 0 && currentModelIndex != modelIndex && am[currentModelIndex].fileIndex == am[modelIndex].fileIndex) this.vwr.setCurrentModelIndexClear (modelIndex, false);
 }, "~N");
-Clazz.defineMethod (c$, "setAtomPositions", 
+Clazz.defineMethod (c$, "setAtomPositions",
  function (baseModelIndex, modelIndex, t1, t2, f, vibs, isFractional) {
 var bs =  new JU.BS ();
 var vib =  new JU.V3 ();
@@ -72,7 +72,7 @@ this.ms.recalculateLeadMidpointsAndWingVectors (baseModelIndex);
 this.ms.sm.notifyAtomPositionsChanged (baseModelIndex, bs, null);
 if (am[baseModelIndex].hasRasmolHBonds) (am[baseModelIndex]).resetRasmolBonds (bs, 2);
 }, "~N,~N,~A,~A,~N,~A,~B");
-Clazz.defineMethod (c$, "getModelsSelected", 
+Clazz.defineMethod (c$, "getModelsSelected",
 function () {
 var bsModels =  new JU.BS ();
 for (var i = this.ms.mc; --i >= 0; ) {
@@ -83,7 +83,7 @@ i = this.ms.am[i].trajectoryBaseIndex;
 }}
 return bsModels;
 });
-Clazz.defineMethod (c$, "morph", 
+Clazz.defineMethod (c$, "morph",
 function (m1, m2, f) {
 if (f == 0) {
 this.ms.setTrajectory (m1);
@@ -97,7 +97,7 @@ this.setAtomPositions (baseModelIndex, m1, this.steps.get (m1), this.steps.get (
 var m = this.vwr.am.cmi;
 if (m >= 0 && m != m1 && this.ms.am[m].fileIndex == this.ms.am[m1].fileIndex) this.vwr.setCurrentModelIndexClear (m1, false);
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "fixAtom", 
+Clazz.defineMethod (c$, "fixAtom",
 function (a) {
 var m = a.mi;
 var isFrac = (this.ms.unitCells != null && this.ms.unitCells[m].getCoordinatesAreFractional ());
@@ -105,11 +105,11 @@ var pt = this.steps.get (m)[a.i - this.ms.am[m].firstAtomIndex];
 pt.set (a.x, a.y, a.z);
 if (isFrac) this.ms.unitCells[m].toFractional (pt, true);
 }, "JM.Atom");
-Clazz.defineMethod (c$, "getFractional", 
+Clazz.defineMethod (c$, "getFractional",
 function (a, ptTemp) {
 a.setFractionalCoordPt (ptTemp, this.steps.get (a.mi)[a.i - this.ms.am[a.mi].firstAtomIndex], true);
 }, "JM.Atom,JU.P3");
-Clazz.defineMethod (c$, "getState", 
+Clazz.defineMethod (c$, "getState",
 function () {
 var s = "";
 for (var i = this.ms.mc; --i >= 0; ) {
@@ -120,7 +120,7 @@ i = this.ms.am[i].trajectoryBaseIndex;
 }}
 return (s.length > 0 ? s = "set trajectory {" + s.substring (4) + "}" : "");
 });
-Clazz.defineMethod (c$, "hasMeasure", 
+Clazz.defineMethod (c$, "hasMeasure",
 function (measure) {
 if (measure != null) {
 var atomIndex;
@@ -128,19 +128,19 @@ for (var i = 1, count = measure[0]; i <= count; i++) if ((atomIndex = measure[i]
 
 }return false;
 }, "~A");
-Clazz.defineMethod (c$, "selectDisplayed", 
+Clazz.defineMethod (c$, "selectDisplayed",
 function (bs) {
 for (var i = this.ms.mc; --i >= 0; ) {
 if (this.ms.am[i].isTrajectory && this.ms.at[this.ms.am[i].firstAtomIndex].mi != i) bs.clear (i);
 }
 }, "JU.BS");
-Clazz.defineMethod (c$, "getModelBS", 
+Clazz.defineMethod (c$, "getModelBS",
 function (modelIndex, bs) {
 var iBase = this.ms.am[modelIndex].trajectoryBaseIndex;
 for (var i = this.ms.mc; --i >= iBase; ) if (this.ms.am[i].trajectoryBaseIndex == iBase) bs.set (i);
 
 }, "~N,JU.BS");
-Clazz.defineMethod (c$, "setBaseModels", 
+Clazz.defineMethod (c$, "setBaseModels",
 function (bsModels) {
 for (var i = this.ms.mc; --i >= 0; ) if (bsModels.get (i) && this.ms.am[i].isTrajectory) bsModels.set (this.ms.am[i].trajectoryBaseIndex);
 

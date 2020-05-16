@@ -68,11 +68,11 @@ Jmol.___JmolDate="$Date: 2018-06-15 14:15:06 +0200 (Fri, 15 Jun 2018) $"
 Jmol.___fullJmolProperties="src/org/jmol/viewer/Jmol.properties"
 Jmol.___JmolVersion="14.29.17"
 // JSmolJavaExt.js
- 
 
-// This library will be wrapped by an additional anonymous function using ANT in 
-// build_03_tojs.xml. This task will also modify variable names. References 
-// to Clazz._ will not be changed, but other Clazz_xxx will be changed to 
+
+// This library will be wrapped by an additional anonymous function using ANT in
+// build_03_tojs.xml. This task will also modify variable names. References
+// to Clazz._ will not be changed, but other Clazz_xxx will be changed to
 // (local scope) Clazz_xxx, allowing them to be further compressed using
 // Google Closure Compiler in that same ANT task.
 
@@ -86,19 +86,19 @@ Jmol.___JmolVersion="14.29.17"
 // BH 9/19/2015 11:05:45 PM Float.isInfinite(), Float.isNaN(), Double.isInfinite(), Double.isNaN() all not implemented
 // BH 5/31/2015 5:53:04 PM Number.compareTo added
 // BH 5/21/2015 5:46:30 PM Number("0xFFFFFFFF") is not -1
-// BH 4/23/2015 9:08:59 AM xx.getComponentType() is nonfunctional. Array.newInstance now defines a wrapper for .getClass().getComponentType() that works  
+// BH 4/23/2015 9:08:59 AM xx.getComponentType() is nonfunctional. Array.newInstance now defines a wrapper for .getClass().getComponentType() that works
 // BH 4/12/2015 1:37:44 PM adding Math.rint = Math.round
 // BH 1/16/2015 10:09:38 AM Chrome failure jqGrig due to new String("x").toString() not being a simple string
 // BH 8/14/2014 6:49:22 PM Character class efficiencies
 // BH 7/24/2014 9:02:18 AM most browsers do not support String.codePointAt()
-// BH 7/11/2014 4:17:22 PM fix for Boolean.valueOf("false") not being false 
+// BH 7/11/2014 4:17:22 PM fix for Boolean.valueOf("false") not being false
 // BH 5/27/2014 6:29:59 AM ensure floats and doubles have decimal point in toString
-// BH 4/1/2014 12:23:41 PM Encoding moved to Clazz._Encoding; 
+// BH 4/1/2014 12:23:41 PM Encoding moved to Clazz._Encoding;
 // BH 4/1/2014 7:51:46 AM removing java.lang.B00lean
 // BH 3/7/2014 9:17:10 AM removing Array.toString; moving that code here from j2sJmol.js
 // BH 1/30/2014 9:04:25 AM adding Throwable.getStackTrace() as a STRING
 // BH 12/4/2013 9:20:44 PM fix for reassigning Date.prototype.toString()
-// BH 12/3/2013 11:43:10 AM bizarre Safari bug in reassigning Boolean (OK, I admit, we shouldn't have done that...) 
+// BH 12/3/2013 11:43:10 AM bizarre Safari bug in reassigning Boolean (OK, I admit, we shouldn't have done that...)
 // BH 12/1/2013 6:50:16 AM evit Number.prototype.toString assignment removed!
 // BH 11/30/2013 1:46:31 PM fixing Byte, Short, Long, Integer, Float, Double to reflect proper bounds and error conditions
 // BH 11/29/2013 8:58:49 PM removing Boolean.toString(boolean)
@@ -106,10 +106,10 @@ Jmol.___JmolVersion="14.29.17"
 // BH 10/19/2013 1:29:27 PM fixed String.$replace()
 // BH 10/18/2013 6:09:23 PM fixed (Double|Float).valueOf(NaN).valueOf(), which should return NaN, not throw an error
 // BH 10/12/2013 11:18:44 AM fixed bug in Double(String) and Float(String) that was returning typeof "string"
-// BH 10/10/2013 2:40:20 PM  added Math.log10   
+// BH 10/10/2013 2:40:20 PM  added Math.log10
 // BH 7/23/2013 7:24:01 AM fixing Number.shortValue() and Number.byteValue() for negative values
 // BH 6/16/2013 1:31:30 PM adding /| in String.replace -- thank you David Koes
-// BH 3/13/2013 12:49:23 PM setting Boolean.valueOf() "@" 
+// BH 3/13/2013 12:49:23 PM setting Boolean.valueOf() "@"
 // BH 3/2/2013 10:46:45 PM removed Double.valueOf(String)
 // BH 11/6/2012 8:26:33 PM added instanceof Int32Array in String.instantialize
 // BH 10/13/2012 11:38:07 PM corrected Integer.parseInt to allow only +-0123456789; created Integer.parseIntRadix
@@ -127,7 +127,7 @@ Jmol.___JmolVersion="14.29.17"
 
   var sJU = "java.util";
 
-  //var sJU = "JU";  
+  //var sJU = "JU";
 	//Clazz._Loader.registerPackages (sJU, ["regex", "zip"]);
 	//var javautil = JU;
 
@@ -390,7 +390,7 @@ function(){
 return this.valueOf();
 });
 
-// Note that Long is problematic in JavaScript 
+// Note that Long is problematic in JavaScript
 
 java.lang.Long=Long=function(){
 Clazz_instantialize(this,arguments);
@@ -648,12 +648,12 @@ Clazz._a32 = null;
 Float.floatToIntBits = function(f) {
 var a = Clazz._a32 || (Clazz._a32 = new Float32Array(1));
 a[0] = f;
-return new Int32Array(a.buffer)[0]; 
+return new Int32Array(a.buffer)[0];
 }
 
 Clazz_overrideConstructor(Float, function(v){
  v == null && (v = 0);
- if (typeof v != "number") 
+ if (typeof v != "number")
 	v = Number(v);
  this.valueOf=function(){return v;}
 });
@@ -722,7 +722,7 @@ return Clazz._floatToString(this.valueOf());
 
 Clazz_overrideConstructor(Double, function(v){
  v == null && (v = 0);
- if (typeof v != "number") 
+ if (typeof v != "number")
 	v = Double.parseDouble(v);
  this.valueOf=function(){return v;};
 }); // BH
@@ -1087,7 +1087,7 @@ sp.$replace=function(c1,c2){
 	if (c1 == c2 || this.indexOf (c1) < 0) return "" + this;
 	if (c1.length == 1) {
 		if ("\\$.*+|?^{}()[]".indexOf(c1) >= 0) 	c1 = "\\" + c1;
-	} else {    
+	} else {
 		c1=c1.replace(/([\\\$\.\*\+\|\?\^\{\}\(\)\[\]])/g,function($0,$1){return"\\"+$1;});
 	}
 	return this.replace(new RegExp(c1,"gm"),c2);
@@ -1512,7 +1512,7 @@ case 1:
 		return valueCopy.join('')
 	}
 	return""+x;
-case 2:	
+case 2:
 	var x=arguments[0];
 	var hibyte=arguments[1];
 	if(typeof hibyte=="string"){
@@ -2043,13 +2043,13 @@ TypeError.prototype.getMessage || (TypeError.prototype.getMessage = function(){ 
 
 Clazz_Error = Error;
 
-Clazz_declareTypeError = function (prefix, name, clazzParent, interfacez, 
+Clazz_declareTypeError = function (prefix, name, clazzParent, interfacez,
 		parentClazzInstance, _declareType) {
 	var f = function () {
 		Clazz_instantialize (this, arguments);
     return Clazz_Error();
 	};
-	return Clazz_decorateAsClass (f, prefix, name, clazzParent, interfacez, 
+	return Clazz_decorateAsClass (f, prefix, name, clazzParent, interfacez,
 			parentClazzInstance);
 };
 
@@ -2792,7 +2792,7 @@ return this.name;
 });
 Clazz_defineMethod(c$,"getParameterTypes",
 function(){
-return this.parameterTypes; 
+return this.parameterTypes;
 });
 Clazz_defineMethod(c$,"getReturnType",
 function(){
@@ -3238,7 +3238,7 @@ this.shared=false;
 Clazz_defineStatics(c$,
 "INITIAL_CAPACITY",16);
 });
-// BH removed inner class 
+// BH removed inner class
 Clazz_load(null,"java.lang.Enum",["java.lang.CloneNotSupportedException","$.IllegalArgumentException","$.NullPointerException"],function(){
 c$=Clazz_decorateAsClass(function(){
 this.$name=null;
@@ -3790,27 +3790,27 @@ this.markpos = -1;
 this.marklimit = 0;
 Clazz_instantialize (this, arguments);
 }, java.io, "BufferedInputStream", java.io.FilterInputStream);
-Clazz_defineMethod (c$, "getInIfOpen", 
+Clazz_defineMethod (c$, "getInIfOpen",
  function () {
 var input = this.$in;
 if (input == null) throw  new java.io.IOException ("Stream closed");
 return input;
 });
-Clazz_defineMethod (c$, "getBufIfOpen", 
+Clazz_defineMethod (c$, "getBufIfOpen",
  function () {
 var buffer = this.buf;
 if (buffer == null) throw  new java.io.IOException ("Stream closed");
 return buffer;
 });
-Clazz_overrideMethod (c$, "resetStream", 
+Clazz_overrideMethod (c$, "resetStream",
 function () {
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function ($in) {
 Clazz_superConstructor (this, java.io.BufferedInputStream, [$in]);
 this.buf =  Clazz_newByteArray (8192, 0);
 }, "java.io.InputStream");
-Clazz_defineMethod (c$, "fill", 
+Clazz_defineMethod (c$, "fill",
  function () {
 var buffer = this.getBufIfOpen ();
 if (this.markpos < 0) this.pos = 0;
@@ -3832,14 +3832,14 @@ buffer = this.buf = nbuf;
 var n = this.getInIfOpen ().read (buffer, this.pos, buffer.length - this.pos);
 if (n > 0) this.count = n + this.pos;
 });
-Clazz_overrideMethod (c$, "readByteAsInt", 
+Clazz_overrideMethod (c$, "readByteAsInt",
 function () {
 if (this.pos >= this.count) {
 this.fill ();
 if (this.pos >= this.count) return -1;
 }return this.getBufIfOpen ()[this.pos++] & 0xff;
 });
-Clazz_defineMethod (c$, "read1", 
+Clazz_defineMethod (c$, "read1",
  function (b, off, len) {
 var avail = this.count - this.pos;
 if (avail <= 0) {
@@ -3853,7 +3853,7 @@ System.arraycopy (this.getBufIfOpen (), this.pos, b, off, cnt);
 this.pos += cnt;
 return cnt;
 }, "~A,~N,~N");
-Clazz_defineMethod (c$, "read", 
+Clazz_defineMethod (c$, "read",
 function (b, off, len) {
 this.getBufIfOpen ();
 if ((off | len | (off + len) | (b.length - (off + len))) < 0) {
@@ -3870,7 +3870,7 @@ var input = this.$in;
 if (input != null && input.available () <= 0) return n;
 }
 }, "~A,~N,~N");
-Clazz_overrideMethod (c$, "skip", 
+Clazz_overrideMethod (c$, "skip",
 function (n) {
 this.getBufIfOpen ();
 if (n <= 0) {
@@ -3885,28 +3885,28 @@ if (avail <= 0) return 0;
 this.pos += skipped;
 return skipped;
 }, "~N");
-Clazz_overrideMethod (c$, "available", 
+Clazz_overrideMethod (c$, "available",
 function () {
 var n = this.count - this.pos;
 var avail = this.getInIfOpen ().available ();
 return n > (2147483647 - avail) ? 2147483647 : n + avail;
 });
-Clazz_overrideMethod (c$, "mark", 
+Clazz_overrideMethod (c$, "mark",
 function (readlimit) {
 this.marklimit = readlimit;
 this.markpos = this.pos;
 }, "~N");
-Clazz_overrideMethod (c$, "reset", 
+Clazz_overrideMethod (c$, "reset",
 function () {
 this.getBufIfOpen ();
 if (this.markpos < 0) throw  new java.io.IOException ("Resetting to invalid mark");
 this.pos = this.markpos;
 });
-Clazz_overrideMethod (c$, "markSupported", 
+Clazz_overrideMethod (c$, "markSupported",
 function () {
 return true;
 });
-Clazz_overrideMethod (c$, "close", 
+Clazz_overrideMethod (c$, "close",
 function () {
 var input = this.$in;
 this.$in = null;
@@ -3928,23 +3928,23 @@ this.skipLF = false;
 this.markedSkipLF = false;
 Clazz_instantialize (this, arguments);
 }, java.io, "BufferedReader", java.io.Reader);
-Clazz_defineMethod (c$, "setSize", 
+Clazz_defineMethod (c$, "setSize",
  function (sz) {
 if (sz <= 0) throw  new IllegalArgumentException ("Buffer size <= 0");
 this.cb =  Clazz_newCharArray (sz, '\0');
 this.nextChar = this.nChars = 0;
 }, "~N");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function ($in) {
 Clazz_superConstructor (this, java.io.BufferedReader, [$in]);
 this.$in = $in;
 this.setSize (8192);
 }, "java.io.Reader");
-Clazz_defineMethod (c$, "ensureOpen", 
+Clazz_defineMethod (c$, "ensureOpen",
  function () {
 if (this.$in == null) throw  new java.io.IOException ("Stream closed");
 });
-Clazz_defineMethod (c$, "fill", 
+Clazz_defineMethod (c$, "fill",
  function () {
 var dst;
 if (this.markedChar <= -1) {
@@ -3975,7 +3975,7 @@ if (n > 0) {
 this.nChars = dst + n;
 this.nextChar = dst;
 }});
-Clazz_defineMethod (c$, "read1", 
+Clazz_defineMethod (c$, "read1",
  function (cbuf, off, len) {
 if (this.nextChar >= this.nChars) {
 if (len >= this.cb.length && this.markedChar <= -1 && !this.skipLF) {
@@ -3993,7 +3993,7 @@ System.arraycopy (this.cb, this.nextChar, cbuf, off, n);
 this.nextChar += n;
 return n;
 }, "~A,~N,~N");
-Clazz_defineMethod (c$, "read", 
+Clazz_defineMethod (c$, "read",
 function (cbuf, off, len) {
 {
 this.ensureOpen ();
@@ -4010,7 +4010,7 @@ n += n1;
 }
 return n;
 }}, "~A,~N,~N");
-Clazz_defineMethod (c$, "readLine1", 
+Clazz_defineMethod (c$, "readLine1",
  function (ignoreLF) {
 var s = null;
 var startChar;
@@ -4051,11 +4051,11 @@ this.skipLF = true;
 s.appendCB (this.cb, startChar, i - startChar);
 }
 }}, "~B");
-Clazz_defineMethod (c$, "readLine", 
+Clazz_defineMethod (c$, "readLine",
 function () {
 return this.readLine1 (false);
 });
-Clazz_overrideMethod (c$, "skip", 
+Clazz_overrideMethod (c$, "skip",
 function (n) {
 if (n < 0) {
 throw  new IllegalArgumentException ("skip value is negative");
@@ -4079,7 +4079,7 @@ this.nextChar = this.nChars;
 }
 return n - r;
 }}, "~N");
-Clazz_defineMethod (c$, "ready", 
+Clazz_defineMethod (c$, "ready",
 function () {
 {
 this.ensureOpen ();
@@ -4091,11 +4091,11 @@ if (this.cb[this.nextChar] == '\n') this.nextChar++;
 this.skipLF = false;
 }}return (this.nextChar < this.nChars) || this.$in.ready ();
 }});
-Clazz_overrideMethod (c$, "markSupported", 
+Clazz_overrideMethod (c$, "markSupported",
 function () {
 return true;
 });
-Clazz_overrideMethod (c$, "mark", 
+Clazz_overrideMethod (c$, "mark",
 function (readAheadLimit) {
 if (readAheadLimit < 0) {
 throw  new IllegalArgumentException ("Read-ahead limit < 0");
@@ -4105,7 +4105,7 @@ this.readAheadLimit = readAheadLimit;
 this.markedChar = this.nextChar;
 this.markedSkipLF = this.skipLF;
 }}, "~N");
-Clazz_overrideMethod (c$, "reset", 
+Clazz_overrideMethod (c$, "reset",
 function () {
 {
 this.ensureOpen ();
@@ -4113,7 +4113,7 @@ if (this.markedChar < 0) throw  new java.io.IOException ((this.markedChar == -2)
 this.nextChar = this.markedChar;
 this.skipLF = this.markedSkipLF;
 }});
-Clazz_defineMethod (c$, "close", 
+Clazz_defineMethod (c$, "close",
 function () {
 {
 if (this.$in == null) return;
@@ -4260,18 +4260,18 @@ this.$mark = 0;
 this.count = 0;
 Clazz_instantialize (this, arguments);
 }, java.io, "ByteArrayInputStream", java.io.InputStream);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (buf) {
 Clazz_superConstructor (this, java.io.ByteArrayInputStream, []);
 this.buf = buf;
 this.pos = 0;
 this.count = buf.length;
 }, "~A");
-Clazz_overrideMethod (c$, "readByteAsInt", 
+Clazz_overrideMethod (c$, "readByteAsInt",
 function () {
 return (this.pos < this.count) ? (this.buf[this.pos++] & 0xff) : -1;
 });
-Clazz_defineMethod (c$, "read", 
+Clazz_defineMethod (c$, "read",
 function (b, off, len) {
 if (b == null) {
 throw  new NullPointerException ();
@@ -4288,7 +4288,7 @@ return 0;
 this.pos += len;
 return len;
 }, "~A,~N,~N");
-Clazz_overrideMethod (c$, "skip", 
+Clazz_overrideMethod (c$, "skip",
 function (n) {
 var k = this.count - this.pos;
 if (n < k) {
@@ -4296,26 +4296,26 @@ k = n < 0 ? 0 : n;
 }this.pos += k;
 return k;
 }, "~N");
-Clazz_overrideMethod (c$, "available", 
+Clazz_overrideMethod (c$, "available",
 function () {
 return this.count - this.pos;
 });
-Clazz_overrideMethod (c$, "markSupported", 
+Clazz_overrideMethod (c$, "markSupported",
 function () {
 return true;
 });
-Clazz_overrideMethod (c$, "mark", 
+Clazz_overrideMethod (c$, "mark",
 function (readAheadLimit) {
 this.$mark = this.pos;
 }, "~N");
-Clazz_overrideMethod (c$, "resetStream", 
+Clazz_overrideMethod (c$, "resetStream",
 function () {
 });
-Clazz_overrideMethod (c$, "reset", 
+Clazz_overrideMethod (c$, "reset",
 function () {
 this.pos = this.$mark;
 });
-Clazz_overrideMethod (c$, "close", 
+Clazz_overrideMethod (c$, "close",
 function () {
 });
 });
@@ -4325,22 +4325,22 @@ this.buf = null;
 this.count = 0;
 Clazz_instantialize (this, arguments);
 }, java.io, "ByteArrayOutputStream", java.io.OutputStream);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 this.construct (32);
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (size) {
 Clazz_superConstructor (this, java.io.ByteArrayOutputStream, []);
 if (size < 0) {
 throw  new IllegalArgumentException ("Negative initial size: " + size);
 }this.buf =  Clazz_newByteArray (size, 0);
 }, "~N");
-Clazz_defineMethod (c$, "ensureCapacity", 
+Clazz_defineMethod (c$, "ensureCapacity",
  function (minCapacity) {
 if (minCapacity - this.buf.length > 0) this.grow (minCapacity);
 }, "~N");
-Clazz_defineMethod (c$, "grow", 
+Clazz_defineMethod (c$, "grow",
  function (minCapacity) {
 var oldCapacity = this.buf.length;
 var newCapacity = oldCapacity << 1;
@@ -4350,19 +4350,19 @@ if (minCapacity < 0) throw  new OutOfMemoryError ();
 newCapacity = minCapacity;
 }this.buf = java.io.ByteArrayOutputStream.arrayCopyByte (this.buf, newCapacity);
 }, "~N");
-c$.arrayCopyByte = Clazz_defineMethod (c$, "arrayCopyByte", 
+c$.arrayCopyByte = Clazz_defineMethod (c$, "arrayCopyByte",
  function (array, newLength) {
 var t =  Clazz_newByteArray (newLength, 0);
 System.arraycopy (array, 0, t, 0, array.length < newLength ? array.length : newLength);
 return t;
 }, "~A,~N");
-Clazz_overrideMethod (c$, "writeByteAsInt", 
+Clazz_overrideMethod (c$, "writeByteAsInt",
 function (b) {
 this.ensureCapacity (this.count + 1);
 this.buf[this.count] = b;
 this.count += 1;
 }, "~N");
-Clazz_defineMethod (c$, "write", 
+Clazz_defineMethod (c$, "write",
 function (b, off, len) {
 if ((off < 0) || (off > b.length) || (len < 0) || ((off + len) - b.length > 0)) {
 throw  new IndexOutOfBoundsException ();
@@ -4370,27 +4370,27 @@ throw  new IndexOutOfBoundsException ();
 System.arraycopy (b, off, this.buf, this.count, len);
 this.count += len;
 }, "~A,~N,~N");
-Clazz_defineMethod (c$, "writeTo", 
+Clazz_defineMethod (c$, "writeTo",
 function (out) {
 out.write (this.buf, 0, this.count);
 }, "java.io.OutputStream");
-Clazz_defineMethod (c$, "reset", 
+Clazz_defineMethod (c$, "reset",
 function () {
 this.count = 0;
 });
-Clazz_defineMethod (c$, "toByteArray", 
+Clazz_defineMethod (c$, "toByteArray",
 function () {
 return (this.count == this.buf.length ? this.buf : java.io.ByteArrayOutputStream.arrayCopyByte (this.buf, this.count));
 });
-Clazz_defineMethod (c$, "size", 
+Clazz_defineMethod (c$, "size",
 function () {
 return this.count;
 });
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return  String.instantialize (this.buf, 0, this.count);
 });
-Clazz_overrideMethod (c$, "close", 
+Clazz_overrideMethod (c$, "close",
 function () {
 });
 });
@@ -4399,47 +4399,47 @@ c$ = Clazz_decorateAsClass (function () {
 this.$in = null;
 Clazz_instantialize (this, arguments);
 }, java.io, "FilterInputStream", java.io.InputStream);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function ($in) {
 Clazz_superConstructor (this, java.io.FilterInputStream, []);
 this.$in = $in;
 }, "java.io.InputStream");
-Clazz_defineMethod (c$, "readByteAsInt", 
+Clazz_defineMethod (c$, "readByteAsInt",
 function () {
 return this.$in.readByteAsInt ();
 });
-Clazz_defineMethod (c$, "read", 
+Clazz_defineMethod (c$, "read",
 function (b, off, len) {
 return this.$in.read (b, off, len);
 }, "~A,~N,~N");
-Clazz_defineMethod (c$, "skip", 
+Clazz_defineMethod (c$, "skip",
 function (n) {
 return this.$in.skip (n);
 }, "~N");
-Clazz_defineMethod (c$, "available", 
+Clazz_defineMethod (c$, "available",
 function () {
 return this.$in.available ();
 });
-Clazz_defineMethod (c$, "close", 
+Clazz_defineMethod (c$, "close",
 function () {
 this.$in.close ();
 });
-Clazz_defineMethod (c$, "mark", 
+Clazz_defineMethod (c$, "mark",
 function (readlimit) {
 this.$in.mark (readlimit);
 }, "~N");
-Clazz_defineMethod (c$, "reset", 
+Clazz_defineMethod (c$, "reset",
 function () {
 this.$in.reset ();
 });
-Clazz_defineMethod (c$, "markSupported", 
+Clazz_defineMethod (c$, "markSupported",
 function () {
 return this.$in.markSupported ();
 });
 });
 Clazz_load (null, "java.io.InputStream", ["java.io.IOException", "java.lang.IndexOutOfBoundsException", "$.NullPointerException"], function () {
 c$ = Clazz_declareType (java.io, "InputStream");
-Clazz_defineMethod (c$, "read", 
+Clazz_defineMethod (c$, "read",
 function (b, off, len) {
 if (b == null) {
 throw  new NullPointerException ();
@@ -4467,7 +4467,7 @@ throw ee;
 }
 return i;
 }, "~A,~N,~N");
-Clazz_defineMethod (c$, "skip", 
+Clazz_defineMethod (c$, "skip",
 function (n) {
 var remaining = n;
 var nr;
@@ -4483,25 +4483,25 @@ break;
 }
 return n - remaining;
 }, "~N");
-Clazz_defineMethod (c$, "available", 
+Clazz_defineMethod (c$, "available",
 function () {
 return 0;
 });
-Clazz_defineMethod (c$, "close", 
+Clazz_defineMethod (c$, "close",
 function () {
 });
-Clazz_defineMethod (c$, "mark", 
+Clazz_defineMethod (c$, "mark",
 function (readlimit) {
 }, "~N");
-Clazz_defineMethod (c$, "reset", 
+Clazz_defineMethod (c$, "reset",
 function () {
 throw  new java.io.IOException ("mark/reset not supported");
 });
-Clazz_defineMethod (c$, "markSupported", 
+Clazz_defineMethod (c$, "markSupported",
 function () {
 return false;
 });
-Clazz_defineMethod (c$, "resetStream", 
+Clazz_defineMethod (c$, "resetStream",
 function () {
 });
 Clazz_defineStatics (c$,
@@ -4518,18 +4518,18 @@ this.bytearr = null;
 this.pos = 0;
 Clazz_instantialize (this, arguments);
 }, java.io, "InputStreamReader", java.io.Reader);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function ($in, charsetName) {
 Clazz_superConstructor (this, java.io.InputStreamReader, [$in]);
 this.$in = $in;
 this.charsetName = charsetName;
 if (!(this.isUTF8 = "UTF-8".equals (charsetName)) && !"ISO-8859-1".equals (charsetName)) throw  new NullPointerException ("charsetName");
 }, "java.io.InputStream,~S");
-Clazz_defineMethod (c$, "getEncoding", 
+Clazz_defineMethod (c$, "getEncoding",
 function () {
 return this.charsetName;
 });
-Clazz_overrideMethod (c$, "read", 
+Clazz_overrideMethod (c$, "read",
 function (cbuf, offset, length) {
 if (this.bytearr == null || this.bytearr.length < length) this.bytearr =  Clazz_newByteArray (length, 0);
 var c;
@@ -4577,11 +4577,11 @@ this.bytearr[i] = this.bytearr[byteCount++];
 }
 return charCount - offset;
 }, "~A,~N,~N");
-Clazz_overrideMethod (c$, "ready", 
+Clazz_overrideMethod (c$, "ready",
 function () {
 return this.isOpen;
 });
-Clazz_overrideMethod (c$, "close", 
+Clazz_overrideMethod (c$, "close",
 function () {
 this.$in.close ();
 this.isOpen = false;
@@ -4589,7 +4589,7 @@ this.isOpen = false;
 });
 Clazz_load (["java.io.Closeable", "$.Flushable"], "java.io.OutputStream", ["java.lang.IndexOutOfBoundsException", "$.NullPointerException"], function () {
 c$ = Clazz_declareType (java.io, "OutputStream", null, [java.io.Closeable, java.io.Flushable]);
-Clazz_defineMethod (c$, "write", 
+Clazz_defineMethod (c$, "write",
 function (b, off, len) {
 if (b == null) {
 throw  new NullPointerException ();
@@ -4601,10 +4601,10 @@ return;
 this.writeByteAsInt (b[off + i]);
 }
 }, "~A,~N,~N");
-Clazz_overrideMethod (c$, "flush", 
+Clazz_overrideMethod (c$, "flush",
 function () {
 });
-Clazz_overrideMethod (c$, "close", 
+Clazz_overrideMethod (c$, "close",
 function () {
 });
 });
@@ -4614,13 +4614,13 @@ this.lock = null;
 this.skipBuffer = null;
 Clazz_instantialize (this, arguments);
 }, java.io, "Reader", null, java.io.Closeable);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (lock) {
 if (lock == null) {
 throw  new NullPointerException ();
 }this.lock = lock;
 }, "~O");
-Clazz_defineMethod (c$, "skip", 
+Clazz_defineMethod (c$, "skip",
 function (n) {
 if (n < 0) throw  new IllegalArgumentException ("skip value is negative");
 var nn = Math.min (n, 8192);
@@ -4634,19 +4634,19 @@ r -= nc;
 }
 return n - r;
 }}, "~N");
-Clazz_defineMethod (c$, "ready", 
+Clazz_defineMethod (c$, "ready",
 function () {
 return false;
 });
-Clazz_defineMethod (c$, "markSupported", 
+Clazz_defineMethod (c$, "markSupported",
 function () {
 return false;
 });
-Clazz_defineMethod (c$, "mark", 
+Clazz_defineMethod (c$, "mark",
 function (readAheadLimit) {
 throw  new java.io.IOException ("mark() not supported");
 }, "~N");
-Clazz_defineMethod (c$, "reset", 
+Clazz_defineMethod (c$, "reset",
 function () {
 throw  new java.io.IOException ("reset() not supported");
 });
@@ -4661,17 +4661,17 @@ this.next = 0;
 this.$mark = 0;
 Clazz_instantialize (this, arguments);
 }, java.io, "StringReader", java.io.Reader);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (s) {
 Clazz_superConstructor (this, java.io.StringReader, [s]);
 this.str = s;
 this.length = s.length;
 }, "~S");
-Clazz_defineMethod (c$, "ensureOpen", 
+Clazz_defineMethod (c$, "ensureOpen",
  function () {
 if (this.str == null) throw  new java.io.IOException ("Stream closed");
 });
-Clazz_overrideMethod (c$, "read", 
+Clazz_overrideMethod (c$, "read",
 function (cbuf, off, len) {
 {
 this.ensureOpen ();
@@ -4685,7 +4685,7 @@ this.str.getChars (this.next, this.next + n, cbuf, off);
 this.next += n;
 return n;
 }}, "~A,~N,~N");
-Clazz_overrideMethod (c$, "skip", 
+Clazz_overrideMethod (c$, "skip",
 function (ns) {
 {
 this.ensureOpen ();
@@ -4695,17 +4695,17 @@ n = Math.max (-this.next, n);
 this.next += n;
 return n;
 }}, "~N");
-Clazz_overrideMethod (c$, "ready", 
+Clazz_overrideMethod (c$, "ready",
 function () {
 {
 this.ensureOpen ();
 return true;
 }});
-Clazz_overrideMethod (c$, "markSupported", 
+Clazz_overrideMethod (c$, "markSupported",
 function () {
 return true;
 });
-Clazz_overrideMethod (c$, "mark", 
+Clazz_overrideMethod (c$, "mark",
 function (readAheadLimit) {
 if (readAheadLimit < 0) {
 throw  new IllegalArgumentException ("Read-ahead limit < 0");
@@ -4713,13 +4713,13 @@ throw  new IllegalArgumentException ("Read-ahead limit < 0");
 this.ensureOpen ();
 this.$mark = this.next;
 }}, "~N");
-Clazz_overrideMethod (c$, "reset", 
+Clazz_overrideMethod (c$, "reset",
 function () {
 {
 this.ensureOpen ();
 this.next = this.$mark;
 }});
-Clazz_overrideMethod (c$, "close", 
+Clazz_overrideMethod (c$, "close",
 function () {
 this.str = null;
 });
@@ -4795,7 +4795,7 @@ Clazz_defineStatics(c$,
 Clazz_declarePackage ("java.net");
 Clazz_load (["java.io.IOException"], "java.net.MalformedURLException", null, function () {
 c$ = Clazz_declareType (java.net, "MalformedURLException", java.io.IOException);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 Clazz_superConstructor (this, java.net.MalformedURLException, []);
 });
@@ -4803,7 +4803,7 @@ Clazz_superConstructor (this, java.net.MalformedURLException, []);
 Clazz_declarePackage ("java.net");
 Clazz_load (["java.io.IOException"], "java.net.UnknownServiceException", null, function () {
 c$ = Clazz_declareType (java.net, "UnknownServiceException", java.io.IOException);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 Clazz_superConstructor (this, java.net.UnknownServiceException, []);
 });
@@ -4824,7 +4824,7 @@ this.handler = null;
 this.$hashCode = -1;
 Clazz_instantialize (this, arguments);
 }, java.net, "URL");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (context, spec, handler) {
 {
 switch (arguments.length) {
@@ -4916,7 +4916,7 @@ throw e$$;
 }
 }
 }, "java.net.URL,~S,java.net.URLStreamHandler");
-Clazz_defineMethod (c$, "isValidProtocol", 
+Clazz_defineMethod (c$, "isValidProtocol",
  function (protocol) {
 var len = protocol.length;
 if (len < 1) return false;
@@ -4929,7 +4929,7 @@ return false;
 }}
 return true;
 }, "~S");
-Clazz_defineMethod (c$, "set5", 
+Clazz_defineMethod (c$, "set5",
 function (protocol, host, port, file, ref) {
 {
 this.protocol = protocol;
@@ -4945,7 +4945,7 @@ this.query = file.substring (q + 1);
 this.path = file.substring (0, q);
 } else this.path = file;
 }}, "~S,~S,~N,~S,~S");
-Clazz_defineMethod (c$, "set", 
+Clazz_defineMethod (c$, "set",
 function (protocol, host, port, authority, userInfo, path, query, ref) {
 {
 this.protocol = protocol;
@@ -4959,83 +4959,83 @@ this.$hashCode = -1;
 this.query = query;
 this.authority = authority;
 }}, "~S,~S,~N,~S,~S,~S,~S,~S");
-Clazz_defineMethod (c$, "getQuery", 
+Clazz_defineMethod (c$, "getQuery",
 function () {
 return this.query;
 });
-Clazz_defineMethod (c$, "getPath", 
+Clazz_defineMethod (c$, "getPath",
 function () {
 return this.path;
 });
-Clazz_defineMethod (c$, "getUserInfo", 
+Clazz_defineMethod (c$, "getUserInfo",
 function () {
 return this.userInfo;
 });
-Clazz_defineMethod (c$, "getAuthority", 
+Clazz_defineMethod (c$, "getAuthority",
 function () {
 return this.authority;
 });
-Clazz_defineMethod (c$, "getPort", 
+Clazz_defineMethod (c$, "getPort",
 function () {
 return this.port;
 });
-Clazz_defineMethod (c$, "getDefaultPort", 
+Clazz_defineMethod (c$, "getDefaultPort",
 function () {
 return this.handler.getDefaultPort ();
 });
-Clazz_defineMethod (c$, "getProtocol", 
+Clazz_defineMethod (c$, "getProtocol",
 function () {
 return this.protocol;
 });
-Clazz_defineMethod (c$, "getHost", 
+Clazz_defineMethod (c$, "getHost",
 function () {
 return this.host;
 });
-Clazz_defineMethod (c$, "getFile", 
+Clazz_defineMethod (c$, "getFile",
 function () {
 return this.file;
 });
-Clazz_defineMethod (c$, "getRef", 
+Clazz_defineMethod (c$, "getRef",
 function () {
 return this.ref;
 });
-Clazz_overrideMethod (c$, "equals", 
+Clazz_overrideMethod (c$, "equals",
 function (obj) {
 if (!(Clazz_instanceOf (obj, java.net.URL))) return false;
 var u2 = obj;
 return this.handler.equals2 (this, u2);
 }, "~O");
-Clazz_overrideMethod (c$, "hashCode", 
+Clazz_overrideMethod (c$, "hashCode",
 function () {
 if (this.$hashCode != -1) return this.$hashCode;
 this.$hashCode = this.handler.hashCode (this);
 return this.$hashCode;
 });
-Clazz_defineMethod (c$, "sameFile", 
+Clazz_defineMethod (c$, "sameFile",
 function (other) {
 return this.handler.sameFile (this, other);
 }, "java.net.URL");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return this.toExternalForm ();
 });
-Clazz_defineMethod (c$, "toExternalForm", 
+Clazz_defineMethod (c$, "toExternalForm",
 function () {
 return this.handler.toExternalForm (this);
 });
-Clazz_defineMethod (c$, "openConnection", 
+Clazz_defineMethod (c$, "openConnection",
 function () {
 return this.handler.openConnection (this);
 });
-Clazz_defineMethod (c$, "openStream", 
+Clazz_defineMethod (c$, "openStream",
 function () {
 return this.openConnection ().getInputStream ();
 });
-Clazz_defineMethod (c$, "getContent", 
+Clazz_defineMethod (c$, "getContent",
 function () {
 return this.openConnection ().getInputStream ();
 });
-c$.setURLStreamHandlerFactory = Clazz_defineMethod (c$, "setURLStreamHandlerFactory", 
+c$.setURLStreamHandlerFactory = Clazz_defineMethod (c$, "setURLStreamHandlerFactory",
 function (fac) {
 {
 if (java.net.URL.factory != null) {
@@ -5046,7 +5046,7 @@ security.checkSetFactory ();
 }java.net.URL.handlers.clear ();
 java.net.URL.factory = fac;
 }}, "java.net.URLStreamHandlerFactory");
-c$.getURLStreamHandler = Clazz_defineMethod (c$, "getURLStreamHandler", 
+c$.getURLStreamHandler = Clazz_defineMethod (c$, "getURLStreamHandler",
 function (protocol) {
 var handler = java.net.URL.handlers.get (protocol);
 if (handler == null) {
@@ -5069,41 +5069,41 @@ this.connected = false;
 this.requests = null;
 Clazz_instantialize (this, arguments);
 }, java.net, "URLConnection");
-Clazz_defineMethod (c$, "setDoInput", 
+Clazz_defineMethod (c$, "setDoInput",
 function (doinput) {
 if (this.connected) throw  new IllegalStateException ("Already connected");
 this.doInput = doinput;
 }, "~B");
-Clazz_defineMethod (c$, "getDoInput", 
+Clazz_defineMethod (c$, "getDoInput",
 function () {
 return this.doInput;
 });
-Clazz_defineMethod (c$, "setDoOutput", 
+Clazz_defineMethod (c$, "setDoOutput",
 function (dooutput) {
 if (this.connected) throw  new IllegalStateException ("Already connected");
 this.doOutput = dooutput;
 }, "~B");
-Clazz_defineMethod (c$, "getDoOutput", 
+Clazz_defineMethod (c$, "getDoOutput",
 function () {
 return this.doOutput;
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (url) {
 this.url = url;
 }, "java.net.URL");
-Clazz_defineMethod (c$, "getURL", 
+Clazz_defineMethod (c$, "getURL",
 function () {
 return this.url;
 });
-Clazz_defineMethod (c$, "getInputStream", 
+Clazz_defineMethod (c$, "getInputStream",
 function () {
 throw  new java.net.UnknownServiceException ("protocol doesn't support input");
 });
-Clazz_defineMethod (c$, "getOutputStream", 
+Clazz_defineMethod (c$, "getOutputStream",
 function () {
 throw  new java.net.UnknownServiceException ("protocol doesn't support output");
 });
-Clazz_defineMethod (c$, "setRequestProperty", 
+Clazz_defineMethod (c$, "setRequestProperty",
 function (key, value) {
 if (this.connected) throw  new IllegalStateException ("Already connected");
 if (key == null) throw  new NullPointerException ("key is null");
@@ -5130,11 +5130,11 @@ Clazz_defineStatics(c$,
 Clazz_declarePackage ("java.net");
 Clazz_load (null, "java.net.URLStreamHandler", ["java.lang.IllegalArgumentException", "$.SecurityException", "$.UnsupportedOperationException"], function () {
 c$ = Clazz_declareType (java.net, "URLStreamHandler");
-Clazz_defineMethod (c$, "openConnectionProxy", 
+Clazz_defineMethod (c$, "openConnectionProxy",
 function (u, p) {
 throw  new UnsupportedOperationException ("Method not implemented.");
 }, "java.net.URL,java.net.Proxy");
-Clazz_defineMethod (c$, "parseURL", 
+Clazz_defineMethod (c$, "parseURL",
 function (u, spec, start, limit) {
 var protocol = u.getProtocol ();
 var authority = u.getAuthority ();
@@ -5224,17 +5224,17 @@ if (path.startsWith ("./") && path.length > 2) path = path.substring (2);
 if (path.endsWith ("/.")) path = path.substring (0, path.length - 1);
 }this.setURL (u, protocol, host, port, authority, userInfo, path, query, ref);
 }, "java.net.URL,~S,~N,~N");
-Clazz_defineMethod (c$, "getDefaultPort", 
+Clazz_defineMethod (c$, "getDefaultPort",
 function () {
 return -1;
 });
-Clazz_defineMethod (c$, "equals2", 
+Clazz_defineMethod (c$, "equals2",
 function (u1, u2) {
 var ref1 = u1.getRef ();
 var ref2 = u2.getRef ();
 return (ref1 === ref2 || (ref1 != null && ref1.equals (ref2))) && this.sameFile (u1, u2);
 }, "java.net.URL,java.net.URL");
-Clazz_defineMethod (c$, "hashCode", 
+Clazz_defineMethod (c$, "hashCode",
 function (u) {
 var h = 0;
 var protocol = u.getProtocol ();
@@ -5248,7 +5248,7 @@ var ref = u.getRef ();
 if (ref != null) h += ref.hashCode ();
 return h;
 }, "java.net.URL");
-Clazz_defineMethod (c$, "sameFile", 
+Clazz_defineMethod (c$, "sameFile",
 function (u1, u2) {
 if (!((u1.getProtocol () === u2.getProtocol ()) || (u1.getProtocol () != null && u1.getProtocol ().equalsIgnoreCase (u2.getProtocol ())))) return false;
 if (!(u1.getFile () === u2.getFile () || (u1.getFile () != null && u1.getFile ().equals (u2.getFile ())))) return false;
@@ -5260,22 +5260,22 @@ if (port1 != port2) return false;
 if (!this.hostsEqual (u1, u2)) return false;
 return true;
 }, "java.net.URL,java.net.URL");
-Clazz_defineMethod (c$, "hostsEqual", 
+Clazz_defineMethod (c$, "hostsEqual",
 function (u1, u2) {
 if (u1.getHost () != null && u2.getHost () != null) return u1.getHost ().equalsIgnoreCase (u2.getHost ());
 return u1.getHost () == null && u2.getHost () == null;
 }, "java.net.URL,java.net.URL");
-Clazz_defineMethod (c$, "toExternalForm", 
+Clazz_defineMethod (c$, "toExternalForm",
 function (u) {
 return "";
 }, "java.net.URL");
-Clazz_defineMethod (c$, "setURL", 
+Clazz_defineMethod (c$, "setURL",
 function (u, protocol, host, port, authority, userInfo, path, query, ref) {
 if (this !== u.handler) {
 throw  new SecurityException ("handler for url different from this handler");
 }u.set (u.getProtocol (), host, port, authority, userInfo, path, query, ref);
 }, "java.net.URL,~S,~S,~N,~S,~S,~S,~S,~S");
-Clazz_defineMethod (c$, "setURLDeprecated", 
+Clazz_defineMethod (c$, "setURLDeprecated",
 function (u, protocol, host, port, file, ref) {
 var authority = null;
 var userInfo = null;
@@ -6690,7 +6690,7 @@ return true;
 },"~O");
 
 /* BH disallow addAll(int,List)
- * 
+ *
 Clazz_defineMethod(c$,"addAll",
 function(location,collection){
 var size=this.size();
@@ -6917,7 +6917,7 @@ return i-this.firstIndex;
 Clazz_overrideMethod(c$,"remove",
 function(location){
 return (typeof location == "number" ? this._removeItemAt(location) : this._removeObject(location));
-},"~N"); 
+},"~N");
 
 Clazz_overrideMethod(c$,"_removeItemAt",
 function(location){
@@ -6943,7 +6943,7 @@ this.array[--this.lastIndex]=null;
 throw new IndexOutOfBoundsException();
 }this.modCount++;
 return result;
-},"~N"); 
+},"~N");
 
 Clazz_defineMethod(c$, "_removeObject", function(o) {
 	var i = this.indexOf(o);
@@ -7067,7 +7067,7 @@ function(a,c,d,e){
       a[i]=aux[i-fromIndex];
     }
     return;
-  case 4:  
+  case 4:
     var fromIndex = c;
     var toIndex = d;
     c = e;
@@ -7159,7 +7159,7 @@ if (arguments.length == 2) {
 		val = fromIndex;
 		fromIndex = 0;
 		toIndex = a.length;
-	}	
+	}
 	java.util.Arrays.rangeCheck(a.length,fromIndex,toIndex);
 	for(var i=fromIndex;i<toIndex;i++)a[i]=val;
 });
@@ -9748,7 +9748,7 @@ this.firstSlot=0;
 this.lastSlot=-1;
 this.modCount=0;
 Clazz_instantialize(this,arguments);
-},java.util,"Hashtable",java.util.Dictionary,[java.util.Map,Cloneable,java.io.Serializable]);	
+},java.util,"Hashtable",java.util.Dictionary,[java.util.Map,Cloneable,java.io.Serializable]);
 c$.newEntry=Clazz_defineMethod(c$,"newEntry",
 ($fz=function(key,value,hash){
 return new java.util.HashtableEntry(key,value);
@@ -9849,7 +9849,7 @@ return true;
 },"~O");
 Clazz_overrideMethod(c$,"get",
 function(key){
-	if(!key.hashCode) { 
+	if(!key.hashCode) {
 	  key.hashCode = function(){return 1};
   	if (!key.equals)
   		key.equals = function(a) {return this == a};
@@ -9898,7 +9898,7 @@ function(){
 if(this.elementCount==0){
 return java.util.Hashtable.EMPTY_ENUMERATION;
 }
-return new java.util.HashtableEnumerator(true, this); 
+return new java.util.HashtableEnumerator(true, this);
 });
 Clazz_overrideMethod(c$,"keySet",
 function(){
@@ -10405,38 +10405,38 @@ c$ = Clazz_decorateAsClass (function () {
 this.argb = 0;
 Clazz_instantialize (this, arguments);
 }, javajs.awt, "Color", null, javajs.api.GenericColor);
-Clazz_overrideMethod (c$, "getRGB", 
+Clazz_overrideMethod (c$, "getRGB",
 function () {
 return this.argb & 0x00FFFFFF;
 });
-Clazz_overrideMethod (c$, "getOpacity255", 
+Clazz_overrideMethod (c$, "getOpacity255",
 function () {
 return ((this.argb >> 24) & 0xFF);
 });
-Clazz_overrideMethod (c$, "setOpacity255", 
+Clazz_overrideMethod (c$, "setOpacity255",
 function (a) {
 this.argb = this.argb & 0xFFFFFF | ((a & 0xFF) << 24);
 }, "~N");
-c$.get1 = Clazz_defineMethod (c$, "get1", 
+c$.get1 = Clazz_defineMethod (c$, "get1",
 function (rgb) {
 var c =  new javajs.awt.Color ();
 c.argb = rgb | 0xFF000000;
 return c;
 }, "~N");
-c$.get3 = Clazz_defineMethod (c$, "get3", 
+c$.get3 = Clazz_defineMethod (c$, "get3",
 function (r, g, b) {
 return  new javajs.awt.Color ().set4 (r, g, b, 0xFF);
 }, "~N,~N,~N");
-c$.get4 = Clazz_defineMethod (c$, "get4", 
+c$.get4 = Clazz_defineMethod (c$, "get4",
 function (r, g, b, a) {
 return  new javajs.awt.Color ().set4 (r, g, b, a);
 }, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "set4", 
+Clazz_defineMethod (c$, "set4",
  function (r, g, b, a) {
 this.argb = ((a << 24) | (r << 16) | (g << 8) | b) & 0xFFFFFFFF;
 return this;
 }, "~N,~N,~N,~N");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 var s = ("00000000" + Integer.toHexString (this.argb));
 return "[0x" + s.substring (s.length - 8, s.length) + "]";
@@ -10448,11 +10448,11 @@ this.width = 0;
 this.height = 0;
 Clazz_instantialize (this, arguments);
 }, javajs.awt, "Dimension");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (w, h) {
 this.set (w, h);
 }, "~N,~N");
-Clazz_defineMethod (c$, "set", 
+Clazz_defineMethod (c$, "set",
 function (w, h) {
 this.width = w;
 this.height = h;
@@ -10463,7 +10463,7 @@ c$ = Clazz_decorateAsClass (function () {
 this.source = null;
 Clazz_instantialize (this, arguments);
 }, javajs.awt.event, "Event");
-Clazz_defineMethod (c$, "getSource", 
+Clazz_defineMethod (c$, "getSource",
 function () {
 return this.source;
 });
@@ -10516,54 +10516,54 @@ this.z = 0;
 this.angle = 0;
 Clazz_instantialize (this, arguments);
 }, JU, "A4", null, [javajs.api.JSONEncodable, java.io.Serializable]);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 this.z = 1.0;
 });
-c$.new4 = Clazz_defineMethod (c$, "new4", 
+c$.new4 = Clazz_defineMethod (c$, "new4",
 function (x, y, z, angle) {
 var a =  new JU.A4 ();
 a.set4 (x, y, z, angle);
 return a;
 }, "~N,~N,~N,~N");
-c$.newAA = Clazz_defineMethod (c$, "newAA", 
+c$.newAA = Clazz_defineMethod (c$, "newAA",
 function (a1) {
 var a =  new JU.A4 ();
 a.set4 (a1.x, a1.y, a1.z, a1.angle);
 return a;
 }, "JU.A4");
-c$.newVA = Clazz_defineMethod (c$, "newVA", 
+c$.newVA = Clazz_defineMethod (c$, "newVA",
 function (axis, angle) {
 var a =  new JU.A4 ();
 a.setVA (axis, angle);
 return a;
 }, "JU.V3,~N");
-Clazz_defineMethod (c$, "setVA", 
+Clazz_defineMethod (c$, "setVA",
 function (axis, angle) {
 this.x = axis.x;
 this.y = axis.y;
 this.z = axis.z;
 this.angle = angle;
 }, "JU.V3,~N");
-Clazz_defineMethod (c$, "set4", 
+Clazz_defineMethod (c$, "set4",
 function (x, y, z, angle) {
 this.x = x;
 this.y = y;
 this.z = z;
 this.angle = angle;
 }, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "setAA", 
+Clazz_defineMethod (c$, "setAA",
 function (a) {
 this.x = a.x;
 this.y = a.y;
 this.z = a.z;
 this.angle = a.angle;
 }, "JU.A4");
-Clazz_defineMethod (c$, "setM", 
+Clazz_defineMethod (c$, "setM",
 function (m1) {
 this.setFromMat (m1.m00, m1.m01, m1.m02, m1.m10, m1.m11, m1.m12, m1.m20, m1.m21, m1.m22);
 }, "JU.M3");
-Clazz_defineMethod (c$, "setFromMat", 
+Clazz_defineMethod (c$, "setFromMat",
  function (m00, m01, m02, m10, m11, m12, m20, m21, m22) {
 var cos = (m00 + m11 + m22 - 1.0) * 0.5;
 this.x = (m21 - m12);
@@ -10577,21 +10577,21 @@ this.angle = 0;
 } else {
 this.angle = Math.atan2 (sin, cos);
 }}, "~N,~N,~N,~N,~N,~N,~N,~N,~N");
-Clazz_overrideMethod (c$, "hashCode", 
+Clazz_overrideMethod (c$, "hashCode",
 function () {
 return JU.T3.floatToIntBits (this.x) ^ JU.T3.floatToIntBits (this.y) ^ JU.T3.floatToIntBits (this.z) ^ JU.T3.floatToIntBits (this.angle);
 });
-Clazz_overrideMethod (c$, "equals", 
+Clazz_overrideMethod (c$, "equals",
 function (o) {
 if (!(Clazz_instanceOf (o, JU.A4))) return false;
 var a1 = o;
 return this.x == a1.x && this.y == a1.y && this.z == a1.z && this.angle == a1.angle;
 }, "~O");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return "(" + this.x + ", " + this.y + ", " + this.z + ", " + this.angle + ")";
 });
-Clazz_overrideMethod (c$, "toJSON", 
+Clazz_overrideMethod (c$, "toJSON",
 function () {
 return "[" + this.x + "," + this.y + "," + this.z + "," + (this.angle * 180.0 / 3.141592653589793) + "]";
 });
@@ -10603,25 +10603,25 @@ this.bytesOut = null;
 this.postOut = "";
 Clazz_instantialize (this, arguments);
 }, JU, "AjaxURLConnection", java.net.URLConnection);
-Clazz_defineMethod (c$, "doAjax", 
+Clazz_defineMethod (c$, "doAjax",
  function () {
 var jmol = null;
 {
 jmol = Jmol;
 }return jmol._doAjax (this.url, this.postOut, this.bytesOut);
 });
-Clazz_overrideMethod (c$, "connect", 
+Clazz_overrideMethod (c$, "connect",
 function () {
 });
-Clazz_defineMethod (c$, "outputBytes", 
+Clazz_defineMethod (c$, "outputBytes",
 function (bytes) {
 this.bytesOut = bytes;
 }, "~A");
-Clazz_defineMethod (c$, "outputString", 
+Clazz_defineMethod (c$, "outputString",
 function (post) {
 this.postOut = post;
 }, "~S");
-Clazz_overrideMethod (c$, "getInputStream", 
+Clazz_overrideMethod (c$, "getInputStream",
 function () {
 var is = null;
 var o = this.doAjax ();
@@ -10630,7 +10630,7 @@ if (JU.AU.isAB (o)) is = JU.Rdr.getBIS (o);
  else if (Clazz_instanceOf (o, String)) is = JU.Rdr.getBIS ((o).getBytes ());
 return is;
 });
-Clazz_defineMethod (c$, "getContents", 
+Clazz_defineMethod (c$, "getContents",
 function () {
 return this.doAjax ();
 });
@@ -10641,16 +10641,16 @@ c$ = Clazz_decorateAsClass (function () {
 this.protocol = null;
 Clazz_instantialize (this, arguments);
 }, JU, "AjaxURLStreamHandler", java.net.URLStreamHandler);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (protocol) {
 Clazz_superConstructor (this, JU.AjaxURLStreamHandler, []);
 this.protocol = protocol;
 }, "~S");
-Clazz_overrideMethod (c$, "openConnection", 
+Clazz_overrideMethod (c$, "openConnection",
 function (url) {
 return  new JU.AjaxURLConnection (url);
 }, "java.net.URL");
-Clazz_overrideMethod (c$, "toExternalForm", 
+Clazz_overrideMethod (c$, "toExternalForm",
 function (u) {
 var result =  new JU.SB ();
 result.append (u.getProtocol ());
@@ -10678,7 +10678,7 @@ Clazz_instantialize (this, arguments);
 Clazz_prepareFields (c$, function () {
 this.htFactories =  new java.util.Hashtable ();
 });
-Clazz_overrideMethod (c$, "createURLStreamHandler", 
+Clazz_overrideMethod (c$, "createURLStreamHandler",
 function (protocol) {
 var fac = this.htFactories.get (protocol);
 if (fac == null) this.htFactories.put (protocol, fac =  new JU.AjaxURLStreamHandler (protocol));
@@ -10688,59 +10688,59 @@ return (fac.protocol == null ? null : fac);
 Clazz_declarePackage ("JU");
 Clazz_load (null, "JU.AU", ["java.lang.reflect.Array", "java.util.Arrays", "JU.Lst"], function () {
 c$ = Clazz_declareType (JU, "AU");
-c$.ensureLength = Clazz_defineMethod (c$, "ensureLength", 
+c$.ensureLength = Clazz_defineMethod (c$, "ensureLength",
 function (array, minimumLength) {
 return (array != null && JU.AU.getLength (array) >= minimumLength ? array : JU.AU.arrayCopyObject (array, minimumLength));
 }, "~O,~N");
-c$.ensureLengthS = Clazz_defineMethod (c$, "ensureLengthS", 
+c$.ensureLengthS = Clazz_defineMethod (c$, "ensureLengthS",
 function (array, minimumLength) {
 return (array != null && array.length >= minimumLength ? array : JU.AU.arrayCopyS (array, minimumLength));
 }, "~A,~N");
-c$.ensureLengthA = Clazz_defineMethod (c$, "ensureLengthA", 
+c$.ensureLengthA = Clazz_defineMethod (c$, "ensureLengthA",
 function (array, minimumLength) {
 return (array != null && array.length >= minimumLength ? array : JU.AU.arrayCopyF (array, minimumLength));
 }, "~A,~N");
-c$.ensureLengthI = Clazz_defineMethod (c$, "ensureLengthI", 
+c$.ensureLengthI = Clazz_defineMethod (c$, "ensureLengthI",
 function (array, minimumLength) {
 return (array != null && array.length >= minimumLength ? array : JU.AU.arrayCopyI (array, minimumLength));
 }, "~A,~N");
-c$.ensureLengthShort = Clazz_defineMethod (c$, "ensureLengthShort", 
+c$.ensureLengthShort = Clazz_defineMethod (c$, "ensureLengthShort",
 function (array, minimumLength) {
 return (array != null && array.length >= minimumLength ? array : JU.AU.arrayCopyShort (array, minimumLength));
 }, "~A,~N");
-c$.ensureLengthByte = Clazz_defineMethod (c$, "ensureLengthByte", 
+c$.ensureLengthByte = Clazz_defineMethod (c$, "ensureLengthByte",
 function (array, minimumLength) {
 return (array != null && array.length >= minimumLength ? array : JU.AU.arrayCopyByte (array, minimumLength));
 }, "~A,~N");
-c$.doubleLength = Clazz_defineMethod (c$, "doubleLength", 
+c$.doubleLength = Clazz_defineMethod (c$, "doubleLength",
 function (array) {
 return JU.AU.arrayCopyObject (array, (array == null ? 16 : 2 * JU.AU.getLength (array)));
 }, "~O");
-c$.doubleLengthS = Clazz_defineMethod (c$, "doubleLengthS", 
+c$.doubleLengthS = Clazz_defineMethod (c$, "doubleLengthS",
 function (array) {
 return JU.AU.arrayCopyS (array, (array == null ? 16 : 2 * array.length));
 }, "~A");
-c$.doubleLengthF = Clazz_defineMethod (c$, "doubleLengthF", 
+c$.doubleLengthF = Clazz_defineMethod (c$, "doubleLengthF",
 function (array) {
 return JU.AU.arrayCopyF (array, (array == null ? 16 : 2 * array.length));
 }, "~A");
-c$.doubleLengthI = Clazz_defineMethod (c$, "doubleLengthI", 
+c$.doubleLengthI = Clazz_defineMethod (c$, "doubleLengthI",
 function (array) {
 return JU.AU.arrayCopyI (array, (array == null ? 16 : 2 * array.length));
 }, "~A");
-c$.doubleLengthShort = Clazz_defineMethod (c$, "doubleLengthShort", 
+c$.doubleLengthShort = Clazz_defineMethod (c$, "doubleLengthShort",
 function (array) {
 return JU.AU.arrayCopyShort (array, (array == null ? 16 : 2 * array.length));
 }, "~A");
-c$.doubleLengthByte = Clazz_defineMethod (c$, "doubleLengthByte", 
+c$.doubleLengthByte = Clazz_defineMethod (c$, "doubleLengthByte",
 function (array) {
 return JU.AU.arrayCopyByte (array, (array == null ? 16 : 2 * array.length));
 }, "~A");
-c$.doubleLengthBool = Clazz_defineMethod (c$, "doubleLengthBool", 
+c$.doubleLengthBool = Clazz_defineMethod (c$, "doubleLengthBool",
 function (array) {
 return JU.AU.arrayCopyBool (array, (array == null ? 16 : 2 * array.length));
 }, "~A");
-c$.deleteElements = Clazz_defineMethod (c$, "deleteElements", 
+c$.deleteElements = Clazz_defineMethod (c$, "deleteElements",
 function (array, firstElement, nElements) {
 if (nElements == 0 || array == null) return array;
 var oldLength = JU.AU.getLength (array);
@@ -10752,7 +10752,7 @@ if (firstElement > 0) System.arraycopy (array, 0, t, 0, firstElement);
 if (n > 0) System.arraycopy (array, firstElement + nElements, t, firstElement, n);
 return t;
 }, "~O,~N,~N");
-c$.arrayCopyObject = Clazz_defineMethod (c$, "arrayCopyObject", 
+c$.arrayCopyObject = Clazz_defineMethod (c$, "arrayCopyObject",
 function (array, newLength) {
 var oldLength = (array == null ? -1 : JU.AU.getLength (array));
 if (newLength < 0) newLength = oldLength;
@@ -10763,7 +10763,7 @@ if (newLength < oldLength) return Clazz_newArray(-1, array, 0, newLength);
 if (oldLength > 0) System.arraycopy (array, 0, t, 0, oldLength < newLength ? oldLength : newLength);
 return t;
 }, "~O,~N");
-c$.newInstanceO = Clazz_defineMethod (c$, "newInstanceO", 
+c$.newInstanceO = Clazz_defineMethod (c$, "newInstanceO",
  function (array, n) {
 if (JU.AU.isAI (array)) return  Clazz_newIntArray (n, 0);
 {
@@ -10771,12 +10771,12 @@ if (!array.getClass || !array.getClass().getComponentType)
 return new Array(n);
 }return java.lang.reflect.Array.newInstance (array.getClass ().getComponentType (), n);
 }, "~O,~N");
-c$.getLength = Clazz_defineMethod (c$, "getLength", 
+c$.getLength = Clazz_defineMethod (c$, "getLength",
 function (array) {
 {
 return array.length
 }}, "~O");
-c$.arrayCopyS = Clazz_defineMethod (c$, "arrayCopyS", 
+c$.arrayCopyS = Clazz_defineMethod (c$, "arrayCopyS",
 function (array, newLength) {
 var oldLength = (array == null ? -1 : array.length);
 if (newLength < 0) newLength = oldLength;
@@ -10787,7 +10787,7 @@ if (array != null) {
 System.arraycopy (array, 0, t, 0, oldLength < newLength ? oldLength : newLength);
 }return t;
 }, "~A,~N");
-c$.arrayCopyII = Clazz_defineMethod (c$, "arrayCopyII", 
+c$.arrayCopyII = Clazz_defineMethod (c$, "arrayCopyII",
 function (array, newLength) {
 var t = JU.AU.newInt2 (newLength);
 if (array != null) {
@@ -10795,7 +10795,7 @@ var oldLength = array.length;
 System.arraycopy (array, 0, t, 0, oldLength < newLength ? oldLength : newLength);
 }return t;
 }, "~A,~N");
-c$.arrayCopyPt = Clazz_defineMethod (c$, "arrayCopyPt", 
+c$.arrayCopyPt = Clazz_defineMethod (c$, "arrayCopyPt",
 function (array, newLength) {
 if (newLength < 0) newLength = array.length;
 var t =  new Array (newLength);
@@ -10804,7 +10804,7 @@ var oldLength = array.length;
 System.arraycopy (array, 0, t, 0, oldLength < newLength ? oldLength : newLength);
 }return t;
 }, "~A,~N");
-c$.arrayCopyF = Clazz_defineMethod (c$, "arrayCopyF", 
+c$.arrayCopyF = Clazz_defineMethod (c$, "arrayCopyF",
 function (array, newLength) {
 var oldLength = (array == null ? -1 : array.length);
 if (newLength < 0) newLength = oldLength;
@@ -10815,7 +10815,7 @@ if (array != null) {
 System.arraycopy (array, 0, t, 0, oldLength < newLength ? oldLength : newLength);
 }return t;
 }, "~A,~N");
-c$.arrayCopyI = Clazz_defineMethod (c$, "arrayCopyI", 
+c$.arrayCopyI = Clazz_defineMethod (c$, "arrayCopyI",
 function (array, newLength) {
 var oldLength = (array == null ? -1 : array.length);
 if (newLength < 0) newLength = oldLength;
@@ -10826,7 +10826,7 @@ if (array != null) {
 System.arraycopy (array, 0, t, 0, oldLength < newLength ? oldLength : newLength);
 }return t;
 }, "~A,~N");
-c$.arrayCopyRangeI = Clazz_defineMethod (c$, "arrayCopyRangeI", 
+c$.arrayCopyRangeI = Clazz_defineMethod (c$, "arrayCopyRangeI",
 function (array, i0, n) {
 if (array == null) return null;
 var oldLength = array.length;
@@ -10835,13 +10835,13 @@ if (n == -2) n = Clazz_doubleToInt (oldLength / 2);
 {
 return Clazz_newArray(-1, array, i0, n);
 }}, "~A,~N,~N");
-c$.arrayCopyRangeRevI = Clazz_defineMethod (c$, "arrayCopyRangeRevI", 
+c$.arrayCopyRangeRevI = Clazz_defineMethod (c$, "arrayCopyRangeRevI",
 function (array, i0, n) {
 if (array == null) return null;
 {
 return Clazz_newArray(-1, array, i0, n).reverse();
 }}, "~A,~N,~N");
-c$.arrayCopyShort = Clazz_defineMethod (c$, "arrayCopyShort", 
+c$.arrayCopyShort = Clazz_defineMethod (c$, "arrayCopyShort",
 function (array, newLength) {
 var oldLength = (array == null ? -1 : array.length);
 if (newLength < 0) newLength = oldLength;
@@ -10852,7 +10852,7 @@ if (array != null) {
 System.arraycopy (array, 0, t, 0, oldLength < newLength ? oldLength : newLength);
 }return t;
 }, "~A,~N");
-c$.arrayCopyByte = Clazz_defineMethod (c$, "arrayCopyByte", 
+c$.arrayCopyByte = Clazz_defineMethod (c$, "arrayCopyByte",
 function (array, newLength) {
 var oldLength = (array == null ? -1 : array.length);
 if (newLength < 0) newLength = oldLength;
@@ -10863,7 +10863,7 @@ if (array != null) {
 System.arraycopy (array, 0, t, 0, oldLength < newLength ? oldLength : newLength);
 }return t;
 }, "~A,~N");
-c$.arrayCopyBool = Clazz_defineMethod (c$, "arrayCopyBool", 
+c$.arrayCopyBool = Clazz_defineMethod (c$, "arrayCopyBool",
 function (array, newLength) {
 var oldLength = (array == null ? -1 : array.length);
 if (newLength < 0) newLength = oldLength;
@@ -10874,13 +10874,13 @@ if (array != null) {
 System.arraycopy (array, 0, t, 0, oldLength < newLength ? oldLength : newLength);
 }return t;
 }, "~A,~N");
-c$.swapInt = Clazz_defineMethod (c$, "swapInt", 
+c$.swapInt = Clazz_defineMethod (c$, "swapInt",
 function (array, indexA, indexB) {
 var t = array[indexA];
 array[indexA] = array[indexB];
 array[indexB] = t;
 }, "~A,~N,~N");
-c$.dumpArray = Clazz_defineMethod (c$, "dumpArray", 
+c$.dumpArray = Clazz_defineMethod (c$, "dumpArray",
 function (msg, A, x1, x2, y1, y2) {
 var s = "dumpArray: " + msg + "\n";
 for (var x = x1; x <= x2; x++) s += "\t*" + x + "*";
@@ -10892,14 +10892,14 @@ for (var x = x1; x <= x2; x++) s += "\t" + (x < A.length && y < A[x].length ? A[
 }
 return s;
 }, "~S,~A,~N,~N,~N,~N");
-c$.dumpIntArray = Clazz_defineMethod (c$, "dumpIntArray", 
+c$.dumpIntArray = Clazz_defineMethod (c$, "dumpIntArray",
 function (A, n) {
 var str = "";
 for (var i = 0; i < n; i++) str += " " + A[i];
 
 return str;
 }, "~A,~N");
-c$.sortedItem = Clazz_defineMethod (c$, "sortedItem", 
+c$.sortedItem = Clazz_defineMethod (c$, "sortedItem",
 function (v, n) {
 if (v.size () == 0) return null;
 if (v.size () == 1) return v.get (0);
@@ -10907,61 +10907,61 @@ var keys = v.toArray ( new Array (v.size ()));
 java.util.Arrays.sort (keys);
 return keys[n % keys.length];
 }, "JU.Lst,~N");
-c$.createArrayOfArrayList = Clazz_defineMethod (c$, "createArrayOfArrayList", 
+c$.createArrayOfArrayList = Clazz_defineMethod (c$, "createArrayOfArrayList",
 function (size) {
 return  new Array (size);
 }, "~N");
-c$.createArrayOfHashtable = Clazz_defineMethod (c$, "createArrayOfHashtable", 
+c$.createArrayOfHashtable = Clazz_defineMethod (c$, "createArrayOfHashtable",
 function (size) {
 return  new Array (size);
 }, "~N");
-c$.swap = Clazz_defineMethod (c$, "swap", 
+c$.swap = Clazz_defineMethod (c$, "swap",
 function (o, i, j) {
 var oi = o[i];
 o[i] = o[j];
 o[j] = oi;
 }, "~A,~N,~N");
-c$.newFloat2 = Clazz_defineMethod (c$, "newFloat2", 
+c$.newFloat2 = Clazz_defineMethod (c$, "newFloat2",
 function (n) {
 {
 return Clazz_newArray(n, null);
 }}, "~N");
-c$.newInt2 = Clazz_defineMethod (c$, "newInt2", 
+c$.newInt2 = Clazz_defineMethod (c$, "newInt2",
 function (n) {
 {
 return Clazz_newArray(n, null);
 }}, "~N");
-c$.newInt3 = Clazz_defineMethod (c$, "newInt3", 
+c$.newInt3 = Clazz_defineMethod (c$, "newInt3",
 function (nx, ny) {
 {
 return Clazz_newArray(nx, null);
 }}, "~N,~N");
-c$.newFloat3 = Clazz_defineMethod (c$, "newFloat3", 
+c$.newFloat3 = Clazz_defineMethod (c$, "newFloat3",
 function (nx, ny) {
 {
 return Clazz_newArray(nx, null);
 }}, "~N,~N");
-c$.newInt4 = Clazz_defineMethod (c$, "newInt4", 
+c$.newInt4 = Clazz_defineMethod (c$, "newInt4",
 function (n) {
 {
 return Clazz_newArray(n, null);
 }}, "~N");
-c$.newShort2 = Clazz_defineMethod (c$, "newShort2", 
+c$.newShort2 = Clazz_defineMethod (c$, "newShort2",
 function (n) {
 {
 return Clazz_newArray(n, null);
 }}, "~N");
-c$.newByte2 = Clazz_defineMethod (c$, "newByte2", 
+c$.newByte2 = Clazz_defineMethod (c$, "newByte2",
 function (n) {
 {
 return Clazz_newArray(n, null);
 }}, "~N");
-c$.newDouble2 = Clazz_defineMethod (c$, "newDouble2", 
+c$.newDouble2 = Clazz_defineMethod (c$, "newDouble2",
 function (n) {
 {
 return Clazz_newArray(n, null);
 }}, "~N");
-c$.removeMapKeys = Clazz_defineMethod (c$, "removeMapKeys", 
+c$.removeMapKeys = Clazz_defineMethod (c$, "removeMapKeys",
 function (map, root) {
 var list =  new JU.Lst ();
 for (var key, $key = map.keySet ().iterator (); $key.hasNext () && ((key = $key.next ()) || true);) if (key.startsWith (root)) list.addLast (key);
@@ -10970,67 +10970,67 @@ for (var i = list.size (); --i >= 0; ) map.remove (list.get (i));
 
 return list.size ();
 }, "java.util.Map,~S");
-c$.isAS = Clazz_defineMethod (c$, "isAS", 
+c$.isAS = Clazz_defineMethod (c$, "isAS",
 function (x) {
 {
 return Clazz_isAS(x);
 }}, "~O");
-c$.isASS = Clazz_defineMethod (c$, "isASS", 
+c$.isASS = Clazz_defineMethod (c$, "isASS",
 function (x) {
 {
 return Clazz_isASS(x);
 }}, "~O");
-c$.isAP = Clazz_defineMethod (c$, "isAP", 
+c$.isAP = Clazz_defineMethod (c$, "isAP",
 function (x) {
 {
 return Clazz_isAP(x);
 }}, "~O");
-c$.isAF = Clazz_defineMethod (c$, "isAF", 
+c$.isAF = Clazz_defineMethod (c$, "isAF",
 function (x) {
 {
 return Clazz_isAF(x);
 }}, "~O");
-c$.isAFloat = Clazz_defineMethod (c$, "isAFloat", 
+c$.isAFloat = Clazz_defineMethod (c$, "isAFloat",
 function (x) {
 {
 return Clazz_isAFloat(x);
 }}, "~O");
-c$.isAD = Clazz_defineMethod (c$, "isAD", 
+c$.isAD = Clazz_defineMethod (c$, "isAD",
 function (x) {
 {
 return Clazz_isAF(x);
 }}, "~O");
-c$.isADD = Clazz_defineMethod (c$, "isADD", 
+c$.isADD = Clazz_defineMethod (c$, "isADD",
 function (x) {
 {
 return Clazz_isAFF(x);
 }}, "~O");
-c$.isAB = Clazz_defineMethod (c$, "isAB", 
+c$.isAB = Clazz_defineMethod (c$, "isAB",
 function (x) {
 {
 return Clazz_isAB(x);
 }}, "~O");
-c$.isAI = Clazz_defineMethod (c$, "isAI", 
+c$.isAI = Clazz_defineMethod (c$, "isAI",
 function (x) {
 {
 return Clazz_isAI(x);
 }}, "~O");
-c$.isAII = Clazz_defineMethod (c$, "isAII", 
+c$.isAII = Clazz_defineMethod (c$, "isAII",
 function (x) {
 {
 return Clazz_isAII(x);
 }}, "~O");
-c$.isAFF = Clazz_defineMethod (c$, "isAFF", 
+c$.isAFF = Clazz_defineMethod (c$, "isAFF",
 function (x) {
 {
 return Clazz_isAFF(x);
 }}, "~O");
-c$.isAFFF = Clazz_defineMethod (c$, "isAFFF", 
+c$.isAFFF = Clazz_defineMethod (c$, "isAFFF",
 function (x) {
 {
 return Clazz_isAFFF(x);
 }}, "~O");
-c$.ensureSignedBytes = Clazz_defineMethod (c$, "ensureSignedBytes", 
+c$.ensureSignedBytes = Clazz_defineMethod (c$, "ensureSignedBytes",
 function (b) {
 if (b != null) {
 {
@@ -11042,11 +11042,11 @@ for (var i = b.length; --i >= 0;) { var j = b[i] & 0xFF; if
 Clazz_declarePackage ("JU");
 Clazz_load (null, "JU.Base64", ["JU.SB"], function () {
 c$ = Clazz_declareType (JU, "Base64");
-c$.getBytes64 = Clazz_defineMethod (c$, "getBytes64", 
+c$.getBytes64 = Clazz_defineMethod (c$, "getBytes64",
 function (bytes) {
 return JU.Base64.getBase64 (bytes).toBytes (0, -1);
 }, "~A");
-c$.getBase64 = Clazz_defineMethod (c$, "getBase64", 
+c$.getBase64 = Clazz_defineMethod (c$, "getBase64",
 function (bytes) {
 var nBytes = bytes.length;
 var sout =  new JU.SB ();
@@ -11062,7 +11062,7 @@ sout.appendC (nPad >= 1 ? '=' : JU.Base64.base64.charAt (outbytes & 0x3F));
 }
 return sout;
 }, "~A");
-c$.decodeBase64 = Clazz_defineMethod (c$, "decodeBase64", 
+c$.decodeBase64 = Clazz_defineMethod (c$, "decodeBase64",
 function (strBase64) {
 var nBytes = 0;
 var ch;
@@ -11101,65 +11101,65 @@ this.wordsInUse = 0;
 this.sizeIsSticky = false;
 Clazz_instantialize (this, arguments);
 }, JU, "BS", null, [Cloneable, javajs.api.JSONEncodable]);
-c$.wordIndex = Clazz_defineMethod (c$, "wordIndex", 
+c$.wordIndex = Clazz_defineMethod (c$, "wordIndex",
  function (bitIndex) {
 return bitIndex >> 5;
 }, "~N");
-Clazz_defineMethod (c$, "recalculateWordsInUse", 
+Clazz_defineMethod (c$, "recalculateWordsInUse",
  function () {
 var i;
 for (i = this.wordsInUse - 1; i >= 0; i--) if (this.words[i] != 0) break;
 
 this.wordsInUse = i + 1;
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 this.initWords (32);
 this.sizeIsSticky = false;
 });
-c$.newN = Clazz_defineMethod (c$, "newN", 
+c$.newN = Clazz_defineMethod (c$, "newN",
 function (nbits) {
 var bs =  new JU.BS ();
 bs.init (nbits);
 return bs;
 }, "~N");
-Clazz_defineMethod (c$, "init", 
+Clazz_defineMethod (c$, "init",
  function (nbits) {
 if (nbits < 0) throw  new NegativeArraySizeException ("nbits < 0: " + nbits);
 this.initWords (nbits);
 this.sizeIsSticky = true;
 }, "~N");
-Clazz_defineMethod (c$, "initWords", 
+Clazz_defineMethod (c$, "initWords",
  function (nbits) {
 this.words =  Clazz_newIntArray (JU.BS.wordIndex (nbits - 1) + 1, 0);
 }, "~N");
-Clazz_defineMethod (c$, "ensureCapacity", 
+Clazz_defineMethod (c$, "ensureCapacity",
  function (wordsRequired) {
 if (this.words.length < wordsRequired) {
 var request = Math.max (2 * this.words.length, wordsRequired);
 this.setLength (request);
 this.sizeIsSticky = false;
 }}, "~N");
-Clazz_defineMethod (c$, "expandTo", 
+Clazz_defineMethod (c$, "expandTo",
  function (wordIndex) {
 var wordsRequired = wordIndex + 1;
 if (this.wordsInUse < wordsRequired) {
 this.ensureCapacity (wordsRequired);
 this.wordsInUse = wordsRequired;
 }}, "~N");
-Clazz_defineMethod (c$, "set", 
+Clazz_defineMethod (c$, "set",
 function (bitIndex) {
 if (bitIndex < 0) throw  new IndexOutOfBoundsException ("bitIndex < 0: " + bitIndex);
 var wordIndex = JU.BS.wordIndex (bitIndex);
 this.expandTo (wordIndex);
 this.words[wordIndex] |= (1 << bitIndex);
 }, "~N");
-Clazz_defineMethod (c$, "setBitTo", 
+Clazz_defineMethod (c$, "setBitTo",
 function (bitIndex, value) {
 if (value) this.set (bitIndex);
  else this.clear (bitIndex);
 }, "~N,~B");
-Clazz_defineMethod (c$, "setBits", 
+Clazz_defineMethod (c$, "setBits",
 function (fromIndex, toIndex) {
 if (fromIndex == toIndex) return;
 var startWordIndex = JU.BS.wordIndex (fromIndex);
@@ -11175,7 +11175,7 @@ for (var i = startWordIndex + 1; i < endWordIndex; i++) this.words[i] = -1;
 
 this.words[endWordIndex] |= lastWordMask;
 }}, "~N,~N");
-Clazz_defineMethod (c$, "clear", 
+Clazz_defineMethod (c$, "clear",
 function (bitIndex) {
 if (bitIndex < 0) throw  new IndexOutOfBoundsException ("bitIndex < 0: " + bitIndex);
 var wordIndex = JU.BS.wordIndex (bitIndex);
@@ -11183,7 +11183,7 @@ if (wordIndex >= this.wordsInUse) return;
 this.words[wordIndex] &= ~(1 << bitIndex);
 this.recalculateWordsInUse ();
 }, "~N");
-Clazz_defineMethod (c$, "clearBits", 
+Clazz_defineMethod (c$, "clearBits",
 function (fromIndex, toIndex) {
 if (fromIndex == toIndex) return;
 var startWordIndex = JU.BS.wordIndex (fromIndex);
@@ -11203,18 +11203,18 @@ for (var i = startWordIndex + 1; i < endWordIndex; i++) this.words[i] = 0;
 this.words[endWordIndex] &= ~lastWordMask;
 }this.recalculateWordsInUse ();
 }, "~N,~N");
-Clazz_defineMethod (c$, "clearAll", 
+Clazz_defineMethod (c$, "clearAll",
 function () {
 while (this.wordsInUse > 0) this.words[--this.wordsInUse] = 0;
 
 });
-Clazz_defineMethod (c$, "get", 
+Clazz_defineMethod (c$, "get",
 function (bitIndex) {
 if (bitIndex < 0) throw  new IndexOutOfBoundsException ("bitIndex < 0: " + bitIndex);
 var wordIndex = JU.BS.wordIndex (bitIndex);
 return (wordIndex < this.wordsInUse) && ((this.words[wordIndex] & (1 << bitIndex)) != 0);
 }, "~N");
-Clazz_defineMethod (c$, "nextSetBit", 
+Clazz_defineMethod (c$, "nextSetBit",
 function (fromIndex) {
 if (fromIndex < 0) throw  new IndexOutOfBoundsException ("fromIndex < 0: " + fromIndex);
 var u = JU.BS.wordIndex (fromIndex);
@@ -11226,7 +11226,7 @@ if (++u == this.wordsInUse) return -1;
 word = this.words[u];
 }
 }, "~N");
-Clazz_defineMethod (c$, "nextClearBit", 
+Clazz_defineMethod (c$, "nextClearBit",
 function (fromIndex) {
 if (fromIndex < 0) throw  new IndexOutOfBoundsException ("fromIndex < 0: " + fromIndex);
 var u = JU.BS.wordIndex (fromIndex);
@@ -11238,29 +11238,29 @@ if (++u == this.wordsInUse) return this.wordsInUse * 32;
 word = ~this.words[u];
 }
 }, "~N");
-Clazz_defineMethod (c$, "length", 
+Clazz_defineMethod (c$, "length",
 function () {
 if (this.wordsInUse == 0) return 0;
 return 32 * (this.wordsInUse - 1) + (32 - Integer.numberOfLeadingZeros (this.words[this.wordsInUse - 1]));
 });
-Clazz_defineMethod (c$, "isEmpty", 
+Clazz_defineMethod (c$, "isEmpty",
 function () {
 return this.wordsInUse == 0;
 });
-Clazz_defineMethod (c$, "intersects", 
+Clazz_defineMethod (c$, "intersects",
 function (set) {
 for (var i = Math.min (this.wordsInUse, set.wordsInUse) - 1; i >= 0; i--) if ((this.words[i] & set.words[i]) != 0) return true;
 
 return false;
 }, "JU.BS");
-Clazz_defineMethod (c$, "cardinality", 
+Clazz_defineMethod (c$, "cardinality",
 function () {
 var sum = 0;
 for (var i = 0; i < this.wordsInUse; i++) sum += Integer.bitCount (this.words[i]);
 
 return sum;
 });
-Clazz_defineMethod (c$, "and", 
+Clazz_defineMethod (c$, "and",
 function (set) {
 if (this === set) return;
 while (this.wordsInUse > set.wordsInUse) this.words[--this.wordsInUse] = 0;
@@ -11269,7 +11269,7 @@ for (var i = 0; i < this.wordsInUse; i++) this.words[i] &= set.words[i];
 
 this.recalculateWordsInUse ();
 }, "JU.BS");
-Clazz_defineMethod (c$, "or", 
+Clazz_defineMethod (c$, "or",
 function (set) {
 if (this === set) return;
 var wordsInCommon = Math.min (this.wordsInUse, set.wordsInUse);
@@ -11280,7 +11280,7 @@ this.wordsInUse = set.wordsInUse;
 
 if (wordsInCommon < set.wordsInUse) System.arraycopy (set.words, wordsInCommon, this.words, wordsInCommon, this.wordsInUse - wordsInCommon);
 }, "JU.BS");
-Clazz_defineMethod (c$, "xor", 
+Clazz_defineMethod (c$, "xor",
 function (set) {
 var wordsInCommon = Math.min (this.wordsInUse, set.wordsInUse);
 if (this.wordsInUse < set.wordsInUse) {
@@ -11291,24 +11291,24 @@ this.wordsInUse = set.wordsInUse;
 if (wordsInCommon < set.wordsInUse) System.arraycopy (set.words, wordsInCommon, this.words, wordsInCommon, set.wordsInUse - wordsInCommon);
 this.recalculateWordsInUse ();
 }, "JU.BS");
-Clazz_defineMethod (c$, "andNot", 
+Clazz_defineMethod (c$, "andNot",
 function (set) {
 for (var i = Math.min (this.wordsInUse, set.wordsInUse) - 1; i >= 0; i--) this.words[i] &= ~set.words[i];
 
 this.recalculateWordsInUse ();
 }, "JU.BS");
-Clazz_overrideMethod (c$, "hashCode", 
+Clazz_overrideMethod (c$, "hashCode",
 function () {
 var h = 1234;
 for (var i = this.wordsInUse; --i >= 0; ) h ^= this.words[i] * (i + 1);
 
 return ((h >> 32) ^ h);
 });
-Clazz_defineMethod (c$, "size", 
+Clazz_defineMethod (c$, "size",
 function () {
 return this.words.length * 32;
 });
-Clazz_overrideMethod (c$, "equals", 
+Clazz_overrideMethod (c$, "equals",
 function (obj) {
 if (!(Clazz_instanceOf (obj, JU.BS))) return false;
 if (this === obj) return true;
@@ -11318,12 +11318,12 @@ for (var i = 0; i < this.wordsInUse; i++) if (this.words[i] != set.words[i]) ret
 
 return true;
 }, "~O");
-Clazz_overrideMethod (c$, "clone", 
+Clazz_overrideMethod (c$, "clone",
 function () {
 if (!this.sizeIsSticky && this.wordsInUse != this.words.length) this.setLength (this.wordsInUse);
 return JU.BS.copy (this);
 });
-Clazz_defineMethod (c$, "setLength", 
+Clazz_defineMethod (c$, "setLength",
  function (n) {
 {
 if (n == this.words.length) return;
@@ -11335,11 +11335,11 @@ return;
 System.arraycopy (this.words, 0, a, 0, this.wordsInUse);
 this.words = a;
 }, "~N");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return JU.BS.escape (this, '(', ')');
 });
-c$.copy = Clazz_defineMethod (c$, "copy", 
+c$.copy = Clazz_defineMethod (c$, "copy",
 function (bitsetToCopy) {
 var bs;
 {
@@ -11352,14 +11352,14 @@ bs.words = JU.BS.emptyBitmap;
 bs.words = Clazz_newArray(-1, bitsetToCopy.words, 0, bs.wordsInUse = wordCount);
 }}return bs;
 }, "JU.BS");
-Clazz_defineMethod (c$, "cardinalityN", 
+Clazz_defineMethod (c$, "cardinalityN",
 function (max) {
 var n = this.cardinality ();
 for (var i = this.length (); --i >= max; ) if (this.get (i)) n--;
 
 return n;
 }, "~N");
-Clazz_overrideMethod (c$, "toJSON", 
+Clazz_overrideMethod (c$, "toJSON",
 function () {
 var numBits = (this.wordsInUse > 128 ? this.cardinality () : this.wordsInUse * 32);
 var b = JU.SB.newN (6 * numBits + 2);
@@ -11376,7 +11376,7 @@ b.append (", ").appendI (i);
 }b.appendC (']');
 return b.toString ();
 });
-c$.escape = Clazz_defineMethod (c$, "escape", 
+c$.escape = Clazz_defineMethod (c$, "escape",
 function (bs, chOpen, chClose) {
 if (bs == null) return chOpen + "{}" + chClose;
 var s =  new JU.SB ();
@@ -11400,7 +11400,7 @@ iFirst = i;
 s.append ("}").appendC (chClose);
 return s.toString ();
 }, "JU.BS,~S,~S");
-c$.unescape = Clazz_defineMethod (c$, "unescape", 
+c$.unescape = Clazz_defineMethod (c$, "unescape",
 function (str) {
 var ch;
 var len;
@@ -11459,7 +11459,7 @@ Clazz_defineStatics (c$,
 Clazz_declarePackage ("JU");
 Clazz_load (["java.util.Hashtable"], "JU.CU", ["JU.P3", "$.PT"], function () {
 c$ = Clazz_declareType (JU, "CU");
-c$.toRGBHexString = Clazz_defineMethod (c$, "toRGBHexString", 
+c$.toRGBHexString = Clazz_defineMethod (c$, "toRGBHexString",
 function (c) {
 var rgb = c.getRGB ();
 if (rgb == 0) return "000000";
@@ -11471,14 +11471,14 @@ var b = "00" + Integer.toHexString (rgb & 0xFF);
 b = b.substring (b.length - 2);
 return r + g + b;
 }, "javajs.api.GenericColor");
-c$.toCSSString = Clazz_defineMethod (c$, "toCSSString", 
+c$.toCSSString = Clazz_defineMethod (c$, "toCSSString",
 function (c) {
 var opacity = c.getOpacity255 ();
 if (opacity == 255) return "#" + JU.CU.toRGBHexString (c);
 var rgb = c.getRGB ();
 return "rgba(" + ((rgb >> 16) & 0xFF) + "," + ((rgb >> 8) & 0xff) + "," + (rgb & 0xff) + "," + opacity / 255 + ")";
 }, "javajs.api.GenericColor");
-c$.getArgbFromString = Clazz_defineMethod (c$, "getArgbFromString", 
+c$.getArgbFromString = Clazz_defineMethod (c$, "getArgbFromString",
 function (strColor) {
 var len = 0;
 if (strColor == null || (len = strColor.length) == 0) return 0;
@@ -11518,7 +11518,7 @@ throw e;
 }var boxedArgb = JU.CU.mapJavaScriptColors.get (strColor);
 return (boxedArgb == null ? 0 : boxedArgb.intValue ());
 }, "~S");
-c$.colorTriadToFFRGB = Clazz_defineMethod (c$, "colorTriadToFFRGB", 
+c$.colorTriadToFFRGB = Clazz_defineMethod (c$, "colorTriadToFFRGB",
 function (x, y, z) {
 if (x <= 1 && y <= 1 && z <= 1) {
 if (x > 0) x = x * 256 - 1;
@@ -11526,36 +11526,36 @@ if (y > 0) y = y * 256 - 1;
 if (z > 0) z = z * 256 - 1;
 }return JU.CU.rgb (Clazz_floatToInt (x), Clazz_floatToInt (y), Clazz_floatToInt (z));
 }, "~N,~N,~N");
-c$.rgb = Clazz_defineMethod (c$, "rgb", 
+c$.rgb = Clazz_defineMethod (c$, "rgb",
 function (red, grn, blu) {
 return 0xFF000000 | (red << 16) | (grn << 8) | blu;
 }, "~N,~N,~N");
-c$.colorPtFromString = Clazz_defineMethod (c$, "colorPtFromString", 
+c$.colorPtFromString = Clazz_defineMethod (c$, "colorPtFromString",
 function (colorName) {
 return JU.CU.colorPtFromInt (JU.CU.getArgbFromString (colorName), null);
 }, "~S");
-c$.colorPtFromInt = Clazz_defineMethod (c$, "colorPtFromInt", 
+c$.colorPtFromInt = Clazz_defineMethod (c$, "colorPtFromInt",
 function (color, pt) {
 if (pt == null) pt =  new JU.P3 ();
 pt.set ((color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF);
 return pt;
 }, "~N,JU.P3");
-c$.colorPtToFFRGB = Clazz_defineMethod (c$, "colorPtToFFRGB", 
+c$.colorPtToFFRGB = Clazz_defineMethod (c$, "colorPtToFFRGB",
 function (pt) {
 return JU.CU.colorTriadToFFRGB (pt.x, pt.y, pt.z);
 }, "JU.T3");
-c$.toRGB3f = Clazz_defineMethod (c$, "toRGB3f", 
+c$.toRGB3f = Clazz_defineMethod (c$, "toRGB3f",
 function (c, f) {
 f[0] = ((c >> 16) & 0xFF) / 255;
 f[1] = ((c >> 8) & 0xFF) / 255;
 f[2] = (c & 0xFF) / 255;
 }, "~N,~A");
-c$.toFFGGGfromRGB = Clazz_defineMethod (c$, "toFFGGGfromRGB", 
+c$.toFFGGGfromRGB = Clazz_defineMethod (c$, "toFFGGGfromRGB",
 function (rgb) {
 var grey = (Clazz_doubleToInt (((2989 * ((rgb >> 16) & 0xFF)) + (5870 * ((rgb >> 8) & 0xFF)) + (1140 * (rgb & 0xFF)) + 5000) / 10000)) & 0xFFFFFF;
 return JU.CU.rgb (grey, grey, grey);
 }, "~N");
-c$.rgbToHSL = Clazz_defineMethod (c$, "rgbToHSL", 
+c$.rgbToHSL = Clazz_defineMethod (c$, "rgbToHSL",
 function (rgb, doRound) {
 var r = rgb.x / 255;
 var g = rgb.y / 255;
@@ -11568,7 +11568,7 @@ var h = (60 * ((q == 0 ? 0 : max == r ? ((g - b) / q + 6) : max == g ? (b - r) /
 var s = q / (q == 0 ? 1 : p <= 1 ? p : 2 - p);
 return (doRound ? JU.P3.new3 (Math.round (h * 10) / 10, Math.round (s * 1000) / 10, Math.round (p * 500) / 10) : JU.P3.new3 (h, s * 100, p * 50));
 }, "JU.P3,~B");
-c$.hslToRGB = Clazz_defineMethod (c$, "hslToRGB", 
+c$.hslToRGB = Clazz_defineMethod (c$, "hslToRGB",
 function (hsl) {
 var h = Math.max (0, Math.min (360, hsl.x)) / 60;
 var s = Math.max (0, Math.min (100, hsl.y)) / 100;
@@ -11580,7 +11580,7 @@ var g = JU.CU.toRGB (p, q, h);
 var b = JU.CU.toRGB (p, q, h - 2);
 return JU.P3.new3 (Math.round (r * 255), Math.round (g * 255), Math.round (b * 255));
 }, "JU.P3");
-c$.toRGB = Clazz_defineMethod (c$, "toRGB", 
+c$.toRGB = Clazz_defineMethod (c$, "toRGB",
  function (p, q, h) {
 return ((h = (h + (h < 0 ? 6 : h > 6 ? -6 : 0))) < 1 ? p + q * h : h < 3 ? p + q : h < 4 ? p + q * (4 - h) : p);
 }, "~N,~N,~N");
@@ -11594,7 +11594,7 @@ for (var i = JU.CU.colorNames.length; --i >= 0; ) JU.CU.mapJavaScriptColors.put 
 }});
 Clazz_declarePackage ("JU");
 c$ = Clazz_declareType (JU, "DebugJS");
-c$._ = Clazz_defineMethod (c$, "_", 
+c$._ = Clazz_defineMethod (c$, "_",
 function (msg) {
 {
 if (Clazz._debugging) {
@@ -11604,16 +11604,16 @@ debugger;
 Clazz_declarePackage ("JU");
 Clazz_load (["java.lang.Boolean"], "JU.DF", ["java.lang.Double", "$.Float", "JU.PT", "$.SB"], function () {
 c$ = Clazz_declareType (JU, "DF");
-c$.setUseNumberLocalization = Clazz_defineMethod (c$, "setUseNumberLocalization", 
+c$.setUseNumberLocalization = Clazz_defineMethod (c$, "setUseNumberLocalization",
 function (TF) {
 JU.DF.useNumberLocalization[0] = (TF ? Boolean.TRUE : Boolean.FALSE);
 }, "~B");
-c$.formatDecimalDbl = Clazz_defineMethod (c$, "formatDecimalDbl", 
+c$.formatDecimalDbl = Clazz_defineMethod (c$, "formatDecimalDbl",
 function (value, decimalDigits) {
 if (decimalDigits == 2147483647 || value == -Infinity || value == Infinity || Double.isNaN (value)) return "" + value;
 return JU.DF.formatDecimal (value, decimalDigits);
 }, "~N,~N");
-c$.formatDecimal = Clazz_defineMethod (c$, "formatDecimal", 
+c$.formatDecimal = Clazz_defineMethod (c$, "formatDecimal",
 function (value, decimalDigits) {
 if (decimalDigits == 2147483647 || value == -Infinity || value == Infinity || Float.isNaN (value)) return "" + value;
 var n;
@@ -11673,7 +11673,7 @@ if (pt < len) sb.appendC (s1.charAt (pt));
 s1 = (isNeg ? "-" : "") + sb;
 return (Boolean.TRUE.equals (JU.DF.useNumberLocalization[0]) ? s1 : s1.$replace (',', '.'));
 }, "~N,~N");
-c$.formatDecimalTrimmed = Clazz_defineMethod (c$, "formatDecimalTrimmed", 
+c$.formatDecimalTrimmed = Clazz_defineMethod (c$, "formatDecimalTrimmed",
 function (x, precision) {
 var str = JU.DF.formatDecimalDbl (x, precision);
 var m = str.length - 1;
@@ -11701,17 +11701,17 @@ Clazz_defineEnumConstant (c$, "UTF_32LE", 5, []);
 Clazz_declarePackage ("JU");
 Clazz_load (["java.util.ArrayList"], "JU.Lst", null, function () {
 c$ = Clazz_declareType (JU, "Lst", java.util.ArrayList);
-Clazz_defineMethod (c$, "addLast", 
+Clazz_defineMethod (c$, "addLast",
 function (v) {
 {
 return this.add1(v);
 }}, "~O");
-Clazz_defineMethod (c$, "removeItemAt", 
+Clazz_defineMethod (c$, "removeItemAt",
 function (location) {
 {
 return this._removeItemAt(location);
 }}, "~N");
-Clazz_defineMethod (c$, "removeObj", 
+Clazz_defineMethod (c$, "removeObj",
 function (v) {
 {
 return this._removeObject(v);
@@ -11731,7 +11731,7 @@ this.m21 = 0;
 this.m22 = 0;
 Clazz_instantialize (this, arguments);
 }, JU, "M34");
-Clazz_defineMethod (c$, "setAA33", 
+Clazz_defineMethod (c$, "setAA33",
 function (a) {
 var x = a.x;
 var y = a.y;
@@ -11761,15 +11761,15 @@ tmp2 = x * s;
 this.m12 = (tmp1 - tmp2);
 this.m21 = (tmp1 + tmp2);
 }, "JU.A4");
-Clazz_defineMethod (c$, "rotate", 
+Clazz_defineMethod (c$, "rotate",
 function (t) {
 this.rotate2 (t, t);
 }, "JU.T3");
-Clazz_defineMethod (c$, "rotate2", 
+Clazz_defineMethod (c$, "rotate2",
 function (t, result) {
 result.set (this.m00 * t.x + this.m01 * t.y + this.m02 * t.z, this.m10 * t.x + this.m11 * t.y + this.m12 * t.z, this.m20 * t.x + this.m21 * t.y + this.m22 * t.z);
 }, "JU.T3,JU.T3");
-Clazz_defineMethod (c$, "setM33", 
+Clazz_defineMethod (c$, "setM33",
 function (m1) {
 this.m00 = m1.m00;
 this.m01 = m1.m01;
@@ -11781,11 +11781,11 @@ this.m20 = m1.m20;
 this.m21 = m1.m21;
 this.m22 = m1.m22;
 }, "JU.M34");
-Clazz_defineMethod (c$, "clear33", 
+Clazz_defineMethod (c$, "clear33",
 function () {
 this.m00 = this.m01 = this.m02 = this.m10 = this.m11 = this.m12 = this.m20 = this.m21 = this.m22 = 0.0;
 });
-Clazz_defineMethod (c$, "set33", 
+Clazz_defineMethod (c$, "set33",
 function (row, col, v) {
 switch (row) {
 case 0:
@@ -11830,7 +11830,7 @@ break;
 }
 this.err ();
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "get33", 
+Clazz_defineMethod (c$, "get33",
 function (row, col) {
 switch (row) {
 case 0:
@@ -11867,7 +11867,7 @@ break;
 this.err ();
 return 0;
 }, "~N,~N");
-Clazz_defineMethod (c$, "setRow33", 
+Clazz_defineMethod (c$, "setRow33",
 function (row, v) {
 switch (row) {
 case 0:
@@ -11889,7 +11889,7 @@ default:
 this.err ();
 }
 }, "~N,~A");
-Clazz_defineMethod (c$, "getRow33", 
+Clazz_defineMethod (c$, "getRow33",
 function (row, v) {
 switch (row) {
 case 0:
@@ -11910,7 +11910,7 @@ return;
 }
 this.err ();
 }, "~N,~A");
-Clazz_defineMethod (c$, "setColumn33", 
+Clazz_defineMethod (c$, "setColumn33",
 function (column, v) {
 switch (column) {
 case 0:
@@ -11932,7 +11932,7 @@ default:
 this.err ();
 }
 }, "~N,~A");
-Clazz_defineMethod (c$, "getColumn33", 
+Clazz_defineMethod (c$, "getColumn33",
 function (column, v) {
 switch (column) {
 case 0:
@@ -11954,7 +11954,7 @@ default:
 this.err ();
 }
 }, "~N,~A");
-Clazz_defineMethod (c$, "add33", 
+Clazz_defineMethod (c$, "add33",
 function (m1) {
 this.m00 += m1.m00;
 this.m01 += m1.m01;
@@ -11966,7 +11966,7 @@ this.m20 += m1.m20;
 this.m21 += m1.m21;
 this.m22 += m1.m22;
 }, "JU.M34");
-Clazz_defineMethod (c$, "sub33", 
+Clazz_defineMethod (c$, "sub33",
 function (m1) {
 this.m00 -= m1.m00;
 this.m01 -= m1.m01;
@@ -11978,7 +11978,7 @@ this.m20 -= m1.m20;
 this.m21 -= m1.m21;
 this.m22 -= m1.m22;
 }, "JU.M34");
-Clazz_defineMethod (c$, "mul33", 
+Clazz_defineMethod (c$, "mul33",
 function (x) {
 this.m00 *= x;
 this.m01 *= x;
@@ -11990,7 +11990,7 @@ this.m20 *= x;
 this.m21 *= x;
 this.m22 *= x;
 }, "~N");
-Clazz_defineMethod (c$, "transpose33", 
+Clazz_defineMethod (c$, "transpose33",
 function () {
 var tmp = this.m01;
 this.m01 = this.m10;
@@ -12002,7 +12002,7 @@ tmp = this.m12;
 this.m12 = this.m21;
 this.m21 = tmp;
 });
-Clazz_defineMethod (c$, "setXRot", 
+Clazz_defineMethod (c$, "setXRot",
 function (angle) {
 var c = Math.cos (angle);
 var s = Math.sin (angle);
@@ -12016,7 +12016,7 @@ this.m20 = 0.0;
 this.m21 = s;
 this.m22 = c;
 }, "~N");
-Clazz_defineMethod (c$, "setYRot", 
+Clazz_defineMethod (c$, "setYRot",
 function (angle) {
 var c = Math.cos (angle);
 var s = Math.sin (angle);
@@ -12030,7 +12030,7 @@ this.m20 = -s;
 this.m21 = 0.0;
 this.m22 = c;
 }, "~N");
-Clazz_defineMethod (c$, "setZRot", 
+Clazz_defineMethod (c$, "setZRot",
 function (angle) {
 var c = Math.cos (angle);
 var s = Math.sin (angle);
@@ -12044,11 +12044,11 @@ this.m20 = 0.0;
 this.m21 = 0.0;
 this.m22 = 1.0;
 }, "~N");
-Clazz_defineMethod (c$, "determinant3", 
+Clazz_defineMethod (c$, "determinant3",
 function () {
 return this.m00 * (this.m11 * this.m22 - this.m21 * this.m12) - this.m01 * (this.m10 * this.m22 - this.m20 * this.m12) + this.m02 * (this.m10 * this.m21 - this.m20 * this.m11);
 });
-Clazz_defineMethod (c$, "err", 
+Clazz_defineMethod (c$, "err",
 function () {
 throw  new ArrayIndexOutOfBoundsException ("matrix column/row out of bounds");
 });
@@ -12056,13 +12056,13 @@ throw  new ArrayIndexOutOfBoundsException ("matrix column/row out of bounds");
 Clazz_declarePackage ("JU");
 Clazz_load (["JU.M34"], "JU.M3", ["JU.T3"], function () {
 c$ = Clazz_declareType (JU, "M3", JU.M34, java.io.Serializable);
-c$.newA9 = Clazz_defineMethod (c$, "newA9", 
+c$.newA9 = Clazz_defineMethod (c$, "newA9",
 function (v) {
 var m =  new JU.M3 ();
 m.setA (v);
 return m;
 }, "~A");
-c$.newM3 = Clazz_defineMethod (c$, "newM3", 
+c$.newM3 = Clazz_defineMethod (c$, "newM3",
 function (m1) {
 var m =  new JU.M3 ();
 if (m1 == null) {
@@ -12079,16 +12079,16 @@ m.m21 = m1.m21;
 m.m22 = m1.m22;
 return m;
 }, "JU.M3");
-Clazz_defineMethod (c$, "setScale", 
+Clazz_defineMethod (c$, "setScale",
 function (scale) {
 this.clear33 ();
 this.m00 = this.m11 = this.m22 = scale;
 }, "~N");
-Clazz_defineMethod (c$, "setM3", 
+Clazz_defineMethod (c$, "setM3",
 function (m1) {
 this.setM33 (m1);
 }, "JU.M34");
-Clazz_defineMethod (c$, "setA", 
+Clazz_defineMethod (c$, "setA",
 function (m) {
 this.m00 = m[0];
 this.m01 = m[1];
@@ -12100,15 +12100,15 @@ this.m20 = m[6];
 this.m21 = m[7];
 this.m22 = m[8];
 }, "~A");
-Clazz_defineMethod (c$, "setElement", 
+Clazz_defineMethod (c$, "setElement",
 function (row, col, v) {
 this.set33 (row, col, v);
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "getElement", 
+Clazz_defineMethod (c$, "getElement",
 function (row, col) {
 return this.get33 (row, col);
 }, "~N,~N");
-Clazz_defineMethod (c$, "setRow", 
+Clazz_defineMethod (c$, "setRow",
 function (row, x, y, z) {
 switch (row) {
 case 0:
@@ -12130,7 +12130,7 @@ default:
 this.err ();
 }
 }, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "setRowV", 
+Clazz_defineMethod (c$, "setRowV",
 function (row, v) {
 switch (row) {
 case 0:
@@ -12152,15 +12152,15 @@ default:
 this.err ();
 }
 }, "~N,JU.T3");
-Clazz_defineMethod (c$, "setRowA", 
+Clazz_defineMethod (c$, "setRowA",
 function (row, v) {
 this.setRow33 (row, v);
 }, "~N,~A");
-Clazz_overrideMethod (c$, "getRow", 
+Clazz_overrideMethod (c$, "getRow",
 function (row, v) {
 this.getRow33 (row, v);
 }, "~N,~A");
-Clazz_defineMethod (c$, "setColumn3", 
+Clazz_defineMethod (c$, "setColumn3",
 function (column, x, y, z) {
 switch (column) {
 case 0:
@@ -12182,7 +12182,7 @@ default:
 this.err ();
 }
 }, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "setColumnV", 
+Clazz_defineMethod (c$, "setColumnV",
 function (column, v) {
 switch (column) {
 case 0:
@@ -12204,7 +12204,7 @@ default:
 this.err ();
 }
 }, "~N,JU.T3");
-Clazz_defineMethod (c$, "getColumnV", 
+Clazz_defineMethod (c$, "getColumnV",
 function (column, v) {
 switch (column) {
 case 0:
@@ -12226,37 +12226,37 @@ default:
 this.err ();
 }
 }, "~N,JU.T3");
-Clazz_defineMethod (c$, "setColumnA", 
+Clazz_defineMethod (c$, "setColumnA",
 function (column, v) {
 this.setColumn33 (column, v);
 }, "~N,~A");
-Clazz_defineMethod (c$, "getColumn", 
+Clazz_defineMethod (c$, "getColumn",
 function (column, v) {
 this.getColumn33 (column, v);
 }, "~N,~A");
-Clazz_defineMethod (c$, "add", 
+Clazz_defineMethod (c$, "add",
 function (m1) {
 this.add33 (m1);
 }, "JU.M3");
-Clazz_defineMethod (c$, "sub", 
+Clazz_defineMethod (c$, "sub",
 function (m1) {
 this.sub33 (m1);
 }, "JU.M3");
-Clazz_defineMethod (c$, "transpose", 
+Clazz_defineMethod (c$, "transpose",
 function () {
 this.transpose33 ();
 });
-Clazz_defineMethod (c$, "transposeM", 
+Clazz_defineMethod (c$, "transposeM",
 function (m1) {
 this.setM33 (m1);
 this.transpose33 ();
 }, "JU.M3");
-Clazz_defineMethod (c$, "invertM", 
+Clazz_defineMethod (c$, "invertM",
 function (m1) {
 this.setM33 (m1);
 this.invert ();
 }, "JU.M3");
-Clazz_defineMethod (c$, "invert", 
+Clazz_defineMethod (c$, "invert",
 function () {
 var s = this.determinant3 ();
 if (s == 0.0) return;
@@ -12264,48 +12264,48 @@ s = 1 / s;
 this.set9 (this.m11 * this.m22 - this.m12 * this.m21, this.m02 * this.m21 - this.m01 * this.m22, this.m01 * this.m12 - this.m02 * this.m11, this.m12 * this.m20 - this.m10 * this.m22, this.m00 * this.m22 - this.m02 * this.m20, this.m02 * this.m10 - this.m00 * this.m12, this.m10 * this.m21 - this.m11 * this.m20, this.m01 * this.m20 - this.m00 * this.m21, this.m00 * this.m11 - this.m01 * this.m10);
 this.scale (s);
 });
-Clazz_defineMethod (c$, "setAsXRotation", 
+Clazz_defineMethod (c$, "setAsXRotation",
 function (angle) {
 this.setXRot (angle);
 return this;
 }, "~N");
-Clazz_defineMethod (c$, "setAsYRotation", 
+Clazz_defineMethod (c$, "setAsYRotation",
 function (angle) {
 this.setYRot (angle);
 return this;
 }, "~N");
-Clazz_defineMethod (c$, "setAsZRotation", 
+Clazz_defineMethod (c$, "setAsZRotation",
 function (angle) {
 this.setZRot (angle);
 return this;
 }, "~N");
-Clazz_defineMethod (c$, "scale", 
+Clazz_defineMethod (c$, "scale",
 function (scalar) {
 this.mul33 (scalar);
 }, "~N");
-Clazz_defineMethod (c$, "mul", 
+Clazz_defineMethod (c$, "mul",
 function (m1) {
 this.mul2 (this, m1);
 }, "JU.M3");
-Clazz_defineMethod (c$, "mul2", 
+Clazz_defineMethod (c$, "mul2",
 function (m1, m2) {
 this.set9 (m1.m00 * m2.m00 + m1.m01 * m2.m10 + m1.m02 * m2.m20, m1.m00 * m2.m01 + m1.m01 * m2.m11 + m1.m02 * m2.m21, m1.m00 * m2.m02 + m1.m01 * m2.m12 + m1.m02 * m2.m22, m1.m10 * m2.m00 + m1.m11 * m2.m10 + m1.m12 * m2.m20, m1.m10 * m2.m01 + m1.m11 * m2.m11 + m1.m12 * m2.m21, m1.m10 * m2.m02 + m1.m11 * m2.m12 + m1.m12 * m2.m22, m1.m20 * m2.m00 + m1.m21 * m2.m10 + m1.m22 * m2.m20, m1.m20 * m2.m01 + m1.m21 * m2.m11 + m1.m22 * m2.m21, m1.m20 * m2.m02 + m1.m21 * m2.m12 + m1.m22 * m2.m22);
 }, "JU.M3,JU.M3");
-Clazz_overrideMethod (c$, "equals", 
+Clazz_overrideMethod (c$, "equals",
 function (o) {
 if (!(Clazz_instanceOf (o, JU.M3))) return false;
 var m = o;
 return this.m00 == m.m00 && this.m01 == m.m01 && this.m02 == m.m02 && this.m10 == m.m10 && this.m11 == m.m11 && this.m12 == m.m12 && this.m20 == m.m20 && this.m21 == m.m21 && this.m22 == m.m22;
 }, "~O");
-Clazz_overrideMethod (c$, "hashCode", 
+Clazz_overrideMethod (c$, "hashCode",
 function () {
 return JU.T3.floatToIntBits (this.m00) ^ JU.T3.floatToIntBits (this.m01) ^ JU.T3.floatToIntBits (this.m02) ^ JU.T3.floatToIntBits (this.m10) ^ JU.T3.floatToIntBits (this.m11) ^ JU.T3.floatToIntBits (this.m12) ^ JU.T3.floatToIntBits (this.m20) ^ JU.T3.floatToIntBits (this.m21) ^ JU.T3.floatToIntBits (this.m22);
 });
-Clazz_defineMethod (c$, "setZero", 
+Clazz_defineMethod (c$, "setZero",
 function () {
 this.clear33 ();
 });
-Clazz_defineMethod (c$, "set9", 
+Clazz_defineMethod (c$, "set9",
  function (m00, m01, m02, m10, m11, m12, m20, m21, m22) {
 this.m00 = m00;
 this.m01 = m01;
@@ -12317,16 +12317,16 @@ this.m20 = m20;
 this.m21 = m21;
 this.m22 = m22;
 }, "~N,~N,~N,~N,~N,~N,~N,~N,~N");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return "[\n  [" + this.m00 + "\t" + this.m01 + "\t" + this.m02 + "]" + "\n  [" + this.m10 + "\t" + this.m11 + "\t" + this.m12 + "]" + "\n  [" + this.m20 + "\t" + this.m21 + "\t" + this.m22 + "] ]";
 });
-Clazz_defineMethod (c$, "setAA", 
+Clazz_defineMethod (c$, "setAA",
 function (a) {
 this.setAA33 (a);
 return this;
 }, "JU.A4");
-Clazz_defineMethod (c$, "setAsBallRotation", 
+Clazz_defineMethod (c$, "setAsBallRotation",
 function (responseFactor, dx, dy) {
 var r = Math.sqrt (dx * dx + dy * dy);
 var th = r * responseFactor;
@@ -12346,7 +12346,7 @@ this.m21 = -(this.m12 = s * ny);
 this.m22 = c;
 return true;
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "isRotation", 
+Clazz_defineMethod (c$, "isRotation",
 function () {
 return (Math.abs (this.determinant3 () - 1) < 0.001);
 });
@@ -12363,7 +12363,7 @@ this.m32 = 0;
 this.m33 = 0;
 Clazz_instantialize (this, arguments);
 }, JU, "M4", JU.M34);
-c$.newA16 = Clazz_defineMethod (c$, "newA16", 
+c$.newA16 = Clazz_defineMethod (c$, "newA16",
 function (v) {
 var m =  new JU.M4 ();
 m.m00 = v[0];
@@ -12384,7 +12384,7 @@ m.m32 = v[14];
 m.m33 = v[15];
 return m;
 }, "~A");
-c$.newM4 = Clazz_defineMethod (c$, "newM4", 
+c$.newM4 = Clazz_defineMethod (c$, "newM4",
 function (m1) {
 var m =  new JU.M4 ();
 if (m1 == null) {
@@ -12400,23 +12400,23 @@ m.m32 = m1.m32;
 m.m33 = m1.m33;
 return m;
 }, "JU.M4");
-c$.newMV = Clazz_defineMethod (c$, "newMV", 
+c$.newMV = Clazz_defineMethod (c$, "newMV",
 function (m1, t) {
 var m =  new JU.M4 ();
 m.setMV (m1, t);
 return m;
 }, "JU.M3,JU.T3");
-Clazz_defineMethod (c$, "setZero", 
+Clazz_defineMethod (c$, "setZero",
 function () {
 this.clear33 ();
 this.m03 = this.m13 = this.m23 = this.m30 = this.m31 = this.m32 = this.m33 = 0.0;
 });
-Clazz_defineMethod (c$, "setIdentity", 
+Clazz_defineMethod (c$, "setIdentity",
 function () {
 this.setZero ();
 this.m00 = this.m11 = this.m22 = this.m33 = 1.0;
 });
-Clazz_defineMethod (c$, "setM4", 
+Clazz_defineMethod (c$, "setM4",
 function (m1) {
 this.setM33 (m1);
 this.m03 = m1.m03;
@@ -12428,24 +12428,24 @@ this.m32 = m1.m32;
 this.m33 = m1.m33;
 return this;
 }, "JU.M4");
-Clazz_defineMethod (c$, "setMV", 
+Clazz_defineMethod (c$, "setMV",
 function (m1, t) {
 this.setM33 (m1);
 this.setTranslation (t);
 this.m33 = 1;
 }, "JU.M3,JU.T3");
-Clazz_defineMethod (c$, "setToM3", 
+Clazz_defineMethod (c$, "setToM3",
 function (m1) {
 this.setM33 (m1);
 this.m03 = this.m13 = this.m23 = this.m30 = this.m31 = this.m32 = 0.0;
 this.m33 = 1.0;
 }, "JU.M34");
-Clazz_defineMethod (c$, "setToAA", 
+Clazz_defineMethod (c$, "setToAA",
 function (a) {
 this.setIdentity ();
 this.setAA33 (a);
 }, "JU.A4");
-Clazz_defineMethod (c$, "setA", 
+Clazz_defineMethod (c$, "setA",
 function (m) {
 this.m00 = m[0];
 this.m01 = m[1];
@@ -12464,13 +12464,13 @@ this.m31 = m[13];
 this.m32 = m[14];
 this.m33 = m[15];
 }, "~A");
-Clazz_defineMethod (c$, "setTranslation", 
+Clazz_defineMethod (c$, "setTranslation",
 function (trans) {
 this.m03 = trans.x;
 this.m13 = trans.y;
 this.m23 = trans.z;
 }, "JU.T3");
-Clazz_defineMethod (c$, "setElement", 
+Clazz_defineMethod (c$, "setElement",
 function (row, col, v) {
 if (row < 3 && col < 3) {
 this.set33 (row, col, v);
@@ -12502,7 +12502,7 @@ this.m33 = v;
 return;
 }
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "getElement", 
+Clazz_defineMethod (c$, "getElement",
 function (row, col) {
 if (row < 3 && col < 3) return this.get33 (row, col);
 if (row > 3 || col > 3) {
@@ -12528,13 +12528,13 @@ return this.m33;
 }
 }
 }, "~N,~N");
-Clazz_defineMethod (c$, "getTranslation", 
+Clazz_defineMethod (c$, "getTranslation",
 function (trans) {
 trans.x = this.m03;
 trans.y = this.m13;
 trans.z = this.m23;
 }, "JU.T3");
-Clazz_defineMethod (c$, "getRotationScale", 
+Clazz_defineMethod (c$, "getRotationScale",
 function (m1) {
 m1.m00 = this.m00;
 m1.m01 = this.m01;
@@ -12546,7 +12546,7 @@ m1.m20 = this.m20;
 m1.m21 = this.m21;
 m1.m22 = this.m22;
 }, "JU.M3");
-Clazz_defineMethod (c$, "setRotationScale", 
+Clazz_defineMethod (c$, "setRotationScale",
 function (m1) {
 this.m00 = m1.m00;
 this.m01 = m1.m01;
@@ -12558,7 +12558,7 @@ this.m20 = m1.m20;
 this.m21 = m1.m21;
 this.m22 = m1.m22;
 }, "JU.M3");
-Clazz_defineMethod (c$, "setRowA", 
+Clazz_defineMethod (c$, "setRowA",
 function (row, v) {
 if (row < 3) this.setRow33 (row, v);
 switch (row) {
@@ -12580,7 +12580,7 @@ return;
 }
 this.err ();
 }, "~N,~A");
-Clazz_overrideMethod (c$, "getRow", 
+Clazz_overrideMethod (c$, "getRow",
 function (row, v) {
 if (row < 3) this.getRow33 (row, v);
 switch (row) {
@@ -12602,7 +12602,7 @@ return;
 }
 this.err ();
 }, "~N,~A");
-Clazz_defineMethod (c$, "setColumn4", 
+Clazz_defineMethod (c$, "setColumn4",
 function (column, x, y, z, w) {
 if (column == 0) {
 this.m00 = x;
@@ -12627,7 +12627,7 @@ this.m33 = w;
 } else {
 this.err ();
 }}, "~N,~N,~N,~N,~N");
-Clazz_defineMethod (c$, "setColumnA", 
+Clazz_defineMethod (c$, "setColumnA",
 function (column, v) {
 if (column < 3) this.setColumn33 (column, v);
 switch (column) {
@@ -12650,7 +12650,7 @@ default:
 this.err ();
 }
 }, "~N,~A");
-Clazz_defineMethod (c$, "getColumn", 
+Clazz_defineMethod (c$, "getColumn",
 function (column, v) {
 if (column < 3) this.getColumn33 (column, v);
 switch (column) {
@@ -12673,7 +12673,7 @@ default:
 this.err ();
 }
 }, "~N,~A");
-Clazz_defineMethod (c$, "sub", 
+Clazz_defineMethod (c$, "sub",
 function (m1) {
 this.sub33 (m1);
 this.m03 -= m1.m03;
@@ -12684,7 +12684,7 @@ this.m31 -= m1.m31;
 this.m32 -= m1.m32;
 this.m33 -= m1.m33;
 }, "JU.M4");
-Clazz_defineMethod (c$, "transpose", 
+Clazz_defineMethod (c$, "transpose",
 function () {
 this.transpose33 ();
 var tmp = this.m03;
@@ -12697,7 +12697,7 @@ tmp = this.m23;
 this.m23 = this.m32;
 this.m32 = tmp;
 });
-Clazz_defineMethod (c$, "invert", 
+Clazz_defineMethod (c$, "invert",
 function () {
 var s = this.determinant4 ();
 if (s == 0.0) return this;
@@ -12706,7 +12706,7 @@ this.set (this.m11 * (this.m22 * this.m33 - this.m23 * this.m32) + this.m12 * (t
 this.scale (s);
 return this;
 });
-Clazz_defineMethod (c$, "set", 
+Clazz_defineMethod (c$, "set",
  function (m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33) {
 this.m00 = m00;
 this.m01 = m01;
@@ -12725,11 +12725,11 @@ this.m31 = m31;
 this.m32 = m32;
 this.m33 = m33;
 }, "~N,~N,~N,~N,~N,~N,~N,~N,~N,~N,~N,~N,~N,~N,~N,~N");
-Clazz_defineMethod (c$, "determinant4", 
+Clazz_defineMethod (c$, "determinant4",
 function () {
 return (this.m00 * this.m11 - this.m01 * this.m10) * (this.m22 * this.m33 - this.m23 * this.m32) - (this.m00 * this.m12 - this.m02 * this.m10) * (this.m21 * this.m33 - this.m23 * this.m31) + (this.m00 * this.m13 - this.m03 * this.m10) * (this.m21 * this.m32 - this.m22 * this.m31) + (this.m01 * this.m12 - this.m02 * this.m11) * (this.m20 * this.m33 - this.m23 * this.m30) - (this.m01 * this.m13 - this.m03 * this.m11) * (this.m20 * this.m32 - this.m22 * this.m30) + (this.m02 * this.m13 - this.m03 * this.m12) * (this.m20 * this.m31 - this.m21 * this.m30);
 });
-Clazz_defineMethod (c$, "scale", 
+Clazz_defineMethod (c$, "scale",
 function (scalar) {
 this.mul33 (scalar);
 this.m03 *= scalar;
@@ -12740,32 +12740,32 @@ this.m31 *= scalar;
 this.m32 *= scalar;
 this.m33 *= scalar;
 }, "~N");
-Clazz_defineMethod (c$, "mul", 
+Clazz_defineMethod (c$, "mul",
 function (m1) {
 this.mul2 (this, m1);
 }, "JU.M4");
-Clazz_defineMethod (c$, "mul2", 
+Clazz_defineMethod (c$, "mul2",
 function (m1, m2) {
 this.set (m1.m00 * m2.m00 + m1.m01 * m2.m10 + m1.m02 * m2.m20 + m1.m03 * m2.m30, m1.m00 * m2.m01 + m1.m01 * m2.m11 + m1.m02 * m2.m21 + m1.m03 * m2.m31, m1.m00 * m2.m02 + m1.m01 * m2.m12 + m1.m02 * m2.m22 + m1.m03 * m2.m32, m1.m00 * m2.m03 + m1.m01 * m2.m13 + m1.m02 * m2.m23 + m1.m03 * m2.m33, m1.m10 * m2.m00 + m1.m11 * m2.m10 + m1.m12 * m2.m20 + m1.m13 * m2.m30, m1.m10 * m2.m01 + m1.m11 * m2.m11 + m1.m12 * m2.m21 + m1.m13 * m2.m31, m1.m10 * m2.m02 + m1.m11 * m2.m12 + m1.m12 * m2.m22 + m1.m13 * m2.m32, m1.m10 * m2.m03 + m1.m11 * m2.m13 + m1.m12 * m2.m23 + m1.m13 * m2.m33, m1.m20 * m2.m00 + m1.m21 * m2.m10 + m1.m22 * m2.m20 + m1.m23 * m2.m30, m1.m20 * m2.m01 + m1.m21 * m2.m11 + m1.m22 * m2.m21 + m1.m23 * m2.m31, m1.m20 * m2.m02 + m1.m21 * m2.m12 + m1.m22 * m2.m22 + m1.m23 * m2.m32, m1.m20 * m2.m03 + m1.m21 * m2.m13 + m1.m22 * m2.m23 + m1.m23 * m2.m33, m1.m30 * m2.m00 + m1.m31 * m2.m10 + m1.m32 * m2.m20 + m1.m33 * m2.m30, m1.m30 * m2.m01 + m1.m31 * m2.m11 + m1.m32 * m2.m21 + m1.m33 * m2.m31, m1.m30 * m2.m02 + m1.m31 * m2.m12 + m1.m32 * m2.m22 + m1.m33 * m2.m32, m1.m30 * m2.m03 + m1.m31 * m2.m13 + m1.m32 * m2.m23 + m1.m33 * m2.m33);
 }, "JU.M4,JU.M4");
-Clazz_defineMethod (c$, "transform", 
+Clazz_defineMethod (c$, "transform",
 function (vec) {
 this.transform2 (vec, vec);
 }, "JU.T4");
-Clazz_defineMethod (c$, "transform2", 
+Clazz_defineMethod (c$, "transform2",
 function (vec, vecOut) {
 vecOut.set4 (this.m00 * vec.x + this.m01 * vec.y + this.m02 * vec.z + this.m03 * vec.w, this.m10 * vec.x + this.m11 * vec.y + this.m12 * vec.z + this.m13 * vec.w, this.m20 * vec.x + this.m21 * vec.y + this.m22 * vec.z + this.m23 * vec.w, this.m30 * vec.x + this.m31 * vec.y + this.m32 * vec.z + this.m33 * vec.w);
 }, "JU.T4,JU.T4");
-Clazz_defineMethod (c$, "rotTrans", 
+Clazz_defineMethod (c$, "rotTrans",
 function (point) {
 this.rotTrans2 (point, point);
 }, "JU.T3");
-Clazz_defineMethod (c$, "rotTrans2", 
+Clazz_defineMethod (c$, "rotTrans2",
 function (point, pointOut) {
 pointOut.set (this.m00 * point.x + this.m01 * point.y + this.m02 * point.z + this.m03, this.m10 * point.x + this.m11 * point.y + this.m12 * point.z + this.m13, this.m20 * point.x + this.m21 * point.y + this.m22 * point.z + this.m23);
 return pointOut;
 }, "JU.T3,JU.T3");
-Clazz_defineMethod (c$, "setAsXYRotation", 
+Clazz_defineMethod (c$, "setAsXYRotation",
 function (angle) {
 this.setIdentity ();
 var c = Math.cos (angle);
@@ -12776,7 +12776,7 @@ this.m32 = s;
 this.m33 = c;
 return this;
 }, "~N");
-Clazz_defineMethod (c$, "setAsYZRotation", 
+Clazz_defineMethod (c$, "setAsYZRotation",
 function (angle) {
 this.setIdentity ();
 var c = Math.cos (angle);
@@ -12787,7 +12787,7 @@ this.m30 = s;
 this.m33 = c;
 return this;
 }, "~N");
-Clazz_defineMethod (c$, "setAsXZRotation", 
+Clazz_defineMethod (c$, "setAsXZRotation",
 function (angle) {
 this.setIdentity ();
 var c = Math.cos (angle);
@@ -12798,21 +12798,21 @@ this.m31 = s;
 this.m33 = c;
 return this;
 }, "~N");
-Clazz_overrideMethod (c$, "equals", 
+Clazz_overrideMethod (c$, "equals",
 function (o) {
 if (!(Clazz_instanceOf (o, JU.M4))) return false;
 var m = o;
 return (this.m00 == m.m00 && this.m01 == m.m01 && this.m02 == m.m02 && this.m03 == m.m03 && this.m10 == m.m10 && this.m11 == m.m11 && this.m12 == m.m12 && this.m13 == m.m13 && this.m20 == m.m20 && this.m21 == m.m21 && this.m22 == m.m22 && this.m23 == m.m23 && this.m30 == m.m30 && this.m31 == m.m31 && this.m32 == m.m32 && this.m33 == m.m33);
 }, "~O");
-Clazz_overrideMethod (c$, "hashCode", 
+Clazz_overrideMethod (c$, "hashCode",
 function () {
 return JU.T3.floatToIntBits (this.m00) ^ JU.T3.floatToIntBits (this.m01) ^ JU.T3.floatToIntBits (this.m02) ^ JU.T3.floatToIntBits (this.m03) ^ JU.T3.floatToIntBits (this.m10) ^ JU.T3.floatToIntBits (this.m11) ^ JU.T3.floatToIntBits (this.m12) ^ JU.T3.floatToIntBits (this.m13) ^ JU.T3.floatToIntBits (this.m20) ^ JU.T3.floatToIntBits (this.m21) ^ JU.T3.floatToIntBits (this.m22) ^ JU.T3.floatToIntBits (this.m23) ^ JU.T3.floatToIntBits (this.m30) ^ JU.T3.floatToIntBits (this.m31) ^ JU.T3.floatToIntBits (this.m32) ^ JU.T3.floatToIntBits (this.m33);
 });
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return "[\n  [" + this.m00 + "\t" + this.m01 + "\t" + this.m02 + "\t" + this.m03 + "]" + "\n  [" + this.m10 + "\t" + this.m11 + "\t" + this.m12 + "\t" + this.m13 + "]" + "\n  [" + this.m20 + "\t" + this.m21 + "\t" + this.m22 + "\t" + this.m23 + "]" + "\n  [" + this.m30 + "\t" + this.m31 + "\t" + this.m32 + "\t" + this.m33 + "] ]";
 });
-Clazz_defineMethod (c$, "round", 
+Clazz_defineMethod (c$, "round",
 function (f) {
 this.m00 = this.rnd (this.m00, f);
 this.m01 = this.rnd (this.m01, f);
@@ -12832,7 +12832,7 @@ this.m32 = this.rnd (this.m32, f);
 this.m33 = this.rnd (this.m33, f);
 return this;
 }, "~N");
-Clazz_defineMethod (c$, "rnd", 
+Clazz_defineMethod (c$, "rnd",
  function (n, f) {
 return (Math.abs (n) < f ? 0 : n);
 }, "~N,~N");
@@ -12856,15 +12856,15 @@ this.bytes = null;
 this.bigEndian = true;
 Clazz_instantialize (this, arguments);
 }, JU, "OC", java.io.OutputStream, javajs.api.GenericOutputChannel);
-Clazz_overrideMethod (c$, "isBigEndian", 
+Clazz_overrideMethod (c$, "isBigEndian",
 function () {
 return this.bigEndian;
 });
-Clazz_defineMethod (c$, "setBigEndian", 
+Clazz_defineMethod (c$, "setBigEndian",
 function (TF) {
 this.bigEndian = TF;
 }, "~B");
-Clazz_defineMethod (c$, "setParams", 
+Clazz_defineMethod (c$, "setParams",
 function (bytePoster, fileName, asWriter, os) {
 this.bytePoster = bytePoster;
 this.fileName = fileName;
@@ -12878,32 +12878,32 @@ this.isLocalFile = (fileName != null && !JU.OC.isRemote (fileName));
 if (asWriter && !this.$isBase64 && os != null) this.bw =  new java.io.BufferedWriter ( new java.io.OutputStreamWriter (os));
 return this;
 }, "javajs.api.BytePoster,~S,~B,java.io.OutputStream");
-Clazz_defineMethod (c$, "setBytes", 
+Clazz_defineMethod (c$, "setBytes",
 function (b) {
 this.bytes = b;
 return this;
 }, "~A");
-Clazz_defineMethod (c$, "getFileName", 
+Clazz_defineMethod (c$, "getFileName",
 function () {
 return this.fileName;
 });
-Clazz_defineMethod (c$, "getName", 
+Clazz_defineMethod (c$, "getName",
 function () {
 return (this.fileName == null ? null : this.fileName.substring (this.fileName.lastIndexOf ("/") + 1));
 });
-Clazz_defineMethod (c$, "getByteCount", 
+Clazz_defineMethod (c$, "getByteCount",
 function () {
 return this.byteCount;
 });
-Clazz_defineMethod (c$, "setType", 
+Clazz_defineMethod (c$, "setType",
 function (type) {
 this.type = type;
 }, "~S");
-Clazz_defineMethod (c$, "getType", 
+Clazz_defineMethod (c$, "getType",
 function () {
 return this.type;
 });
-Clazz_defineMethod (c$, "append", 
+Clazz_defineMethod (c$, "append",
 function (s) {
 try {
 if (this.bw != null) {
@@ -12925,12 +12925,12 @@ throw e;
 this.byteCount += s.length;
 return this;
 }, "~S");
-Clazz_overrideMethod (c$, "reset", 
+Clazz_overrideMethod (c$, "reset",
 function () {
 this.sb = null;
 this.initOS ();
 });
-Clazz_defineMethod (c$, "initOS", 
+Clazz_defineMethod (c$, "initOS",
  function () {
 if (this.sb != null) {
 var s = this.sb.toString ();
@@ -12953,14 +12953,14 @@ throw e;
 }
 this.byteCount = 0;
 });
-Clazz_overrideMethod (c$, "writeByteAsInt", 
+Clazz_overrideMethod (c$, "writeByteAsInt",
 function (b) {
 if (this.os == null) this.initOS ();
 {
 this.os.writeByteAsInt(b);
 }this.byteCount++;
 }, "~N");
-Clazz_overrideMethod (c$, "write", 
+Clazz_overrideMethod (c$, "write",
 function (buf, i, len) {
 if (this.os == null) this.initOS ();
 if (len < 0) len = buf.length - i;
@@ -12974,7 +12974,7 @@ throw e;
 }
 this.byteCount += len;
 }, "~A,~N,~N");
-Clazz_overrideMethod (c$, "writeShort", 
+Clazz_overrideMethod (c$, "writeShort",
 function (i) {
 if (this.isBigEndian ()) {
 this.writeByteAsInt (i >> 8);
@@ -12983,7 +12983,7 @@ this.writeByteAsInt (i);
 this.writeByteAsInt (i);
 this.writeByteAsInt (i >> 8);
 }}, "~N");
-Clazz_overrideMethod (c$, "writeLong", 
+Clazz_overrideMethod (c$, "writeLong",
 function (b) {
 if (this.isBigEndian ()) {
 this.writeInt (((b >> 32) & 0xFFFFFFFF));
@@ -12998,12 +12998,12 @@ this.writeByteAsInt ((b >> 16));
 this.writeByteAsInt ((b >> 8));
 this.writeByteAsInt (b);
 }}, "~N");
-Clazz_defineMethod (c$, "cancel", 
+Clazz_defineMethod (c$, "cancel",
 function () {
 this.isCanceled = true;
 this.closeChannel ();
 });
-Clazz_overrideMethod (c$, "closeChannel", 
+Clazz_overrideMethod (c$, "closeChannel",
 function () {
 if (this.closed) return null;
 try {
@@ -13048,23 +13048,23 @@ if (_function == null) jmol._doAjax (this.fileName, null, data);
  else jmol._apply (this.fileName, data);
 }return null;
 });
-Clazz_defineMethod (c$, "isBase64", 
+Clazz_defineMethod (c$, "isBase64",
 function () {
 return this.$isBase64;
 });
-Clazz_defineMethod (c$, "getBase64", 
+Clazz_defineMethod (c$, "getBase64",
 function () {
 return JU.Base64.getBase64 (this.toByteArray ()).toString ();
 });
-Clazz_defineMethod (c$, "toByteArray", 
+Clazz_defineMethod (c$, "toByteArray",
 function () {
 return (this.bytes != null ? this.bytes : Clazz_instanceOf (this.os, java.io.ByteArrayOutputStream) ? (this.os).toByteArray () : null);
 });
-Clazz_defineMethod (c$, "close", 
+Clazz_defineMethod (c$, "close",
 function () {
 this.closeChannel ();
 });
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 if (this.bw != null) try {
 this.bw.flush ();
@@ -13077,24 +13077,24 @@ throw e;
 if (this.sb != null) return this.closeChannel ();
 return this.byteCount + " bytes";
 });
-Clazz_defineMethod (c$, "postByteArray", 
+Clazz_defineMethod (c$, "postByteArray",
  function () {
 var bytes = (this.sb == null ? this.toByteArray () : this.sb.toString ().getBytes ());
 return this.bytePoster.postByteArray (this.fileName, bytes);
 });
-c$.isRemote = Clazz_defineMethod (c$, "isRemote", 
+c$.isRemote = Clazz_defineMethod (c$, "isRemote",
 function (fileName) {
 if (fileName == null) return false;
 var itype = JU.OC.urlTypeIndex (fileName);
 return (itype >= 0 && itype != 5);
 }, "~S");
-c$.isLocal = Clazz_defineMethod (c$, "isLocal", 
+c$.isLocal = Clazz_defineMethod (c$, "isLocal",
 function (fileName) {
 if (fileName == null) return false;
 var itype = JU.OC.urlTypeIndex (fileName);
 return (itype < 0 || itype == 5);
 }, "~S");
-c$.urlTypeIndex = Clazz_defineMethod (c$, "urlTypeIndex", 
+c$.urlTypeIndex = Clazz_defineMethod (c$, "urlTypeIndex",
 function (name) {
 if (name == null) return -2;
 for (var i = 0; i < JU.OC.urlPrefixes.length; ++i) {
@@ -13103,7 +13103,7 @@ return i;
 }}
 return -1;
 }, "~S");
-Clazz_overrideMethod (c$, "writeInt", 
+Clazz_overrideMethod (c$, "writeInt",
 function (i) {
 if (this.bigEndian) {
 this.writeByteAsInt (i >> 24);
@@ -13116,7 +13116,7 @@ this.writeByteAsInt (i >> 8);
 this.writeByteAsInt (i >> 16);
 this.writeByteAsInt (i >> 24);
 }}, "~N");
-Clazz_defineMethod (c$, "writeFloat", 
+Clazz_defineMethod (c$, "writeFloat",
 function (x) {
 this.writeInt (x == 0 ? 0 : Float.floatToIntBits (x));
 }, "~N");
@@ -13127,7 +13127,7 @@ Clazz_defineStatics (c$,
 Clazz_declarePackage ("JU");
 Clazz_load (["JU.T3"], "JU.P3", null, function () {
 c$ = Clazz_declareType (JU, "P3", JU.T3);
-c$.newP = Clazz_defineMethod (c$, "newP", 
+c$.newP = Clazz_defineMethod (c$, "newP",
 function (t) {
 var p =  new JU.P3 ();
 p.x = t.x;
@@ -13135,11 +13135,11 @@ p.y = t.y;
 p.z = t.z;
 return p;
 }, "JU.T3");
-c$.getUnlikely = Clazz_defineMethod (c$, "getUnlikely", 
+c$.getUnlikely = Clazz_defineMethod (c$, "getUnlikely",
 function () {
 return (JU.P3.unlikely == null ? JU.P3.unlikely = JU.P3.new3 (3.141592653589793, 2.718281828459045, (8.539734222673566)) : JU.P3.unlikely);
 });
-c$.new3 = Clazz_defineMethod (c$, "new3", 
+c$.new3 = Clazz_defineMethod (c$, "new3",
 function (x, y, z) {
 var p =  new JU.P3 ();
 p.x = x;
@@ -13153,7 +13153,7 @@ Clazz_defineStatics (c$,
 Clazz_declarePackage ("JU");
 Clazz_load (["JU.T3i"], "JU.P3i", null, function () {
 c$ = Clazz_declareType (JU, "P3i", JU.T3i);
-c$.new3 = Clazz_defineMethod (c$, "new3", 
+c$.new3 = Clazz_defineMethod (c$, "new3",
 function (x, y, z) {
 var pt =  new JU.P3i ();
 pt.x = x;
@@ -13165,19 +13165,19 @@ return pt;
 Clazz_declarePackage ("JU");
 Clazz_load (["JU.T4"], "JU.P4", null, function () {
 c$ = Clazz_declareType (JU, "P4", JU.T4);
-c$.new4 = Clazz_defineMethod (c$, "new4", 
+c$.new4 = Clazz_defineMethod (c$, "new4",
 function (x, y, z, w) {
 var pt =  new JU.P4 ();
 pt.set4 (x, y, z, w);
 return pt;
 }, "~N,~N,~N,~N");
-c$.newPt = Clazz_defineMethod (c$, "newPt", 
+c$.newPt = Clazz_defineMethod (c$, "newPt",
 function (value) {
 var pt =  new JU.P4 ();
 pt.set4 (value.x, value.y, value.z, value.w);
 return pt;
 }, "JU.P4");
-Clazz_defineMethod (c$, "distance4", 
+Clazz_defineMethod (c$, "distance4",
 function (p1) {
 var dx = this.x - p1.x;
 var dy = this.y - p1.y;
@@ -13189,17 +13189,17 @@ return Math.sqrt (dx * dx + dy * dy + dz * dz + dw * dw);
 Clazz_declarePackage ("JU");
 Clazz_load (null, "JU.PT", ["java.lang.Boolean", "$.Double", "$.Float", "$.Number", "java.util.Map", "javajs.api.JSONEncodable", "JU.AU", "$.DF", "$.Lst", "$.M34", "$.M4", "$.SB"], function () {
 c$ = Clazz_declareType (JU, "PT");
-c$.parseInt = Clazz_defineMethod (c$, "parseInt", 
+c$.parseInt = Clazz_defineMethod (c$, "parseInt",
 function (str) {
 return JU.PT.parseIntNext (str,  Clazz_newIntArray (-1, [0]));
 }, "~S");
-c$.parseIntNext = Clazz_defineMethod (c$, "parseIntNext", 
+c$.parseIntNext = Clazz_defineMethod (c$, "parseIntNext",
 function (str, next) {
 var cch = str.length;
 if (next[0] < 0 || next[0] >= cch) return -2147483648;
 return JU.PT.parseIntChecked (str, cch, next);
 }, "~S,~A");
-c$.parseIntChecked = Clazz_defineMethod (c$, "parseIntChecked", 
+c$.parseIntChecked = Clazz_defineMethod (c$, "parseIntChecked",
 function (str, ichMax, next) {
 var digitSeen = false;
 var value = 0;
@@ -13222,12 +13222,12 @@ if (!digitSeen) value = -2147483648;
 next[0] = ich;
 return value;
 }, "~S,~N,~A");
-c$.isWhiteSpace = Clazz_defineMethod (c$, "isWhiteSpace", 
+c$.isWhiteSpace = Clazz_defineMethod (c$, "isWhiteSpace",
 function (str, ich) {
 var ch;
 return (ich >= 0 && ((ch = str.charAt (ich)) == ' ' || ch == '\t' || ch == '\n'));
 }, "~S,~N");
-c$.parseFloatChecked = Clazz_defineMethod (c$, "parseFloatChecked", 
+c$.parseFloatChecked = Clazz_defineMethod (c$, "parseFloatChecked",
 function (str, ichMax, next, isStrict) {
 var digitSeen = false;
 var ich = next[0];
@@ -13294,18 +13294,18 @@ next[0] = ich;
 if (value == Infinity) value = 3.4028235E38;
 return (!isStrict || (!isExponent || isDecimal) && JU.PT.checkTrailingText (str, next[0], ichMax) ? value : NaN);
 }, "~S,~N,~A,~B");
-c$.checkTrailingText = Clazz_defineMethod (c$, "checkTrailingText", 
+c$.checkTrailingText = Clazz_defineMethod (c$, "checkTrailingText",
 function (str, ich, ichMax) {
 var ch;
 while (ich < ichMax && (JU.PT.isWhitespace (ch = str.charAt (ich)) || ch == ';')) ++ich;
 
 return (ich == ichMax);
 }, "~S,~N,~N");
-c$.parseFloatArray = Clazz_defineMethod (c$, "parseFloatArray", 
+c$.parseFloatArray = Clazz_defineMethod (c$, "parseFloatArray",
 function (str) {
 return JU.PT.parseFloatArrayNext (str,  Clazz_newIntArray (1, 0), null, null, null);
 }, "~S");
-c$.parseFloatArrayInfested = Clazz_defineMethod (c$, "parseFloatArrayInfested", 
+c$.parseFloatArrayInfested = Clazz_defineMethod (c$, "parseFloatArrayInfested",
 function (tokens, data) {
 var len = data.length;
 var nTokens = tokens.length;
@@ -13320,7 +13320,7 @@ if (n == nTokens) break;
 }
 return max + 1;
 }, "~A,~A");
-c$.parseFloatArrayNext = Clazz_defineMethod (c$, "parseFloatArrayNext", 
+c$.parseFloatArrayNext = Clazz_defineMethod (c$, "parseFloatArrayNext",
 function (str, next, f, strStart, strEnd) {
 var n = 0;
 var pt = next[0];
@@ -13341,57 +13341,57 @@ for (var i = n; i < f.length; i++) f[i] = NaN;
 
 return f;
 }, "~S,~A,~A,~S,~S");
-c$.parseFloatRange = Clazz_defineMethod (c$, "parseFloatRange", 
+c$.parseFloatRange = Clazz_defineMethod (c$, "parseFloatRange",
 function (str, ichMax, next) {
 var cch = str.length;
 if (ichMax > cch) ichMax = cch;
 if (next[0] < 0 || next[0] >= ichMax) return NaN;
 return JU.PT.parseFloatChecked (str, ichMax, next, false);
 }, "~S,~N,~A");
-c$.parseFloatNext = Clazz_defineMethod (c$, "parseFloatNext", 
+c$.parseFloatNext = Clazz_defineMethod (c$, "parseFloatNext",
 function (str, next) {
 var cch = (str == null ? -1 : str.length);
 return (next[0] < 0 || next[0] >= cch ? NaN : JU.PT.parseFloatChecked (str, cch, next, false));
 }, "~S,~A");
-c$.parseFloatStrict = Clazz_defineMethod (c$, "parseFloatStrict", 
+c$.parseFloatStrict = Clazz_defineMethod (c$, "parseFloatStrict",
 function (str) {
 var cch = str.length;
 if (cch == 0) return NaN;
 return JU.PT.parseFloatChecked (str, cch,  Clazz_newIntArray (-1, [0]), true);
 }, "~S");
-c$.parseFloat = Clazz_defineMethod (c$, "parseFloat", 
+c$.parseFloat = Clazz_defineMethod (c$, "parseFloat",
 function (str) {
 return JU.PT.parseFloatNext (str,  Clazz_newIntArray (-1, [0]));
 }, "~S");
-c$.parseIntRadix = Clazz_defineMethod (c$, "parseIntRadix", 
+c$.parseIntRadix = Clazz_defineMethod (c$, "parseIntRadix",
 function (s, i) {
 {
 return Integer.parseIntRadix(s, i);
 }}, "~S,~N");
-c$.getTokens = Clazz_defineMethod (c$, "getTokens", 
+c$.getTokens = Clazz_defineMethod (c$, "getTokens",
 function (line) {
 return JU.PT.getTokensAt (line, 0);
 }, "~S");
-c$.parseToken = Clazz_defineMethod (c$, "parseToken", 
+c$.parseToken = Clazz_defineMethod (c$, "parseToken",
 function (str) {
 return JU.PT.parseTokenNext (str,  Clazz_newIntArray (-1, [0]));
 }, "~S");
-c$.parseTrimmed = Clazz_defineMethod (c$, "parseTrimmed", 
+c$.parseTrimmed = Clazz_defineMethod (c$, "parseTrimmed",
 function (str) {
 return JU.PT.parseTrimmedRange (str, 0, str.length);
 }, "~S");
-c$.parseTrimmedAt = Clazz_defineMethod (c$, "parseTrimmedAt", 
+c$.parseTrimmedAt = Clazz_defineMethod (c$, "parseTrimmedAt",
 function (str, ichStart) {
 return JU.PT.parseTrimmedRange (str, ichStart, str.length);
 }, "~S,~N");
-c$.parseTrimmedRange = Clazz_defineMethod (c$, "parseTrimmedRange", 
+c$.parseTrimmedRange = Clazz_defineMethod (c$, "parseTrimmedRange",
 function (str, ichStart, ichMax) {
 var cch = str.length;
 if (ichMax < cch) cch = ichMax;
 if (cch < ichStart) return "";
 return JU.PT.parseTrimmedChecked (str, ichStart, cch);
 }, "~S,~N,~N");
-c$.getTokensAt = Clazz_defineMethod (c$, "getTokensAt", 
+c$.getTokensAt = Clazz_defineMethod (c$, "getTokensAt",
 function (line, ich) {
 if (line == null) return null;
 var cchLine = line.length;
@@ -13404,14 +13404,14 @@ for (var i = 0; i < tokenCount; ++i) tokens[i] = JU.PT.parseTokenChecked (line, 
 
 return tokens;
 }, "~S,~N");
-c$.countChar = Clazz_defineMethod (c$, "countChar", 
+c$.countChar = Clazz_defineMethod (c$, "countChar",
 function (line, c) {
 var n = 0;
 for (var i = line.lastIndexOf (c) + 1; --i >= 0; ) if (line.charAt (i) == c) n++;
 
 return n;
 }, "~S,~S");
-c$.countTokens = Clazz_defineMethod (c$, "countTokens", 
+c$.countTokens = Clazz_defineMethod (c$, "countTokens",
 function (line, ich) {
 var tokenCount = 0;
 if (line != null) {
@@ -13427,18 +13427,18 @@ do {
 }
 }return tokenCount;
 }, "~S,~N");
-c$.parseTokenNext = Clazz_defineMethod (c$, "parseTokenNext", 
+c$.parseTokenNext = Clazz_defineMethod (c$, "parseTokenNext",
 function (str, next) {
 var cch = str.length;
 return (next[0] < 0 || next[0] >= cch ? null : JU.PT.parseTokenChecked (str, cch, next));
 }, "~S,~A");
-c$.parseTokenRange = Clazz_defineMethod (c$, "parseTokenRange", 
+c$.parseTokenRange = Clazz_defineMethod (c$, "parseTokenRange",
 function (str, ichMax, next) {
 var cch = str.length;
 if (ichMax > cch) ichMax = cch;
 return (next[0] < 0 || next[0] >= ichMax ? null : JU.PT.parseTokenChecked (str, ichMax, next));
 }, "~S,~N,~A");
-c$.parseTokenChecked = Clazz_defineMethod (c$, "parseTokenChecked", 
+c$.parseTokenChecked = Clazz_defineMethod (c$, "parseTokenChecked",
 function (str, ichMax, next) {
 var ich = next[0];
 while (ich < ichMax && JU.PT.isWhiteSpace (str, ich)) ++ich;
@@ -13449,7 +13449,7 @@ while (ich < ichMax && !JU.PT.isWhiteSpace (str, ich)) ++ich;
 next[0] = ich;
 return (ichNonWhite == ich ? null : str.substring (ichNonWhite, ich));
 }, "~S,~N,~A");
-c$.parseTrimmedChecked = Clazz_defineMethod (c$, "parseTrimmedChecked", 
+c$.parseTrimmedChecked = Clazz_defineMethod (c$, "parseTrimmedChecked",
 function (str, ich, ichMax) {
 while (ich < ichMax && JU.PT.isWhiteSpace (str, ich)) ++ich;
 
@@ -13458,7 +13458,7 @@ while (ichLast >= ich && JU.PT.isWhiteSpace (str, ichLast)) --ichLast;
 
 return (ichLast < ich ? "" : str.substring (ich, ichLast + 1));
 }, "~S,~N,~N");
-c$.dVal = Clazz_defineMethod (c$, "dVal", 
+c$.dVal = Clazz_defineMethod (c$, "dVal",
 function (s) {
 {
 if(s==null)
@@ -13468,27 +13468,27 @@ if(isNaN(d))
 throw new NumberFormatException("Not a Number : "+s);
 return d
 }}, "~S");
-c$.fVal = Clazz_defineMethod (c$, "fVal", 
+c$.fVal = Clazz_defineMethod (c$, "fVal",
 function (s) {
 {
 return this.dVal(s);
 }}, "~S");
-c$.parseIntRange = Clazz_defineMethod (c$, "parseIntRange", 
+c$.parseIntRange = Clazz_defineMethod (c$, "parseIntRange",
 function (str, ichMax, next) {
 var cch = str.length;
 if (ichMax > cch) ichMax = cch;
 return (next[0] < 0 || next[0] >= ichMax ? -2147483648 : JU.PT.parseIntChecked (str, ichMax, next));
 }, "~S,~N,~A");
-c$.parseFloatArrayData = Clazz_defineMethod (c$, "parseFloatArrayData", 
+c$.parseFloatArrayData = Clazz_defineMethod (c$, "parseFloatArrayData",
 function (tokens, data) {
 JU.PT.parseFloatArrayDataN (tokens, data, data.length);
 }, "~A,~A");
-c$.parseFloatArrayDataN = Clazz_defineMethod (c$, "parseFloatArrayDataN", 
+c$.parseFloatArrayDataN = Clazz_defineMethod (c$, "parseFloatArrayDataN",
 function (tokens, data, nData) {
 for (var i = nData; --i >= 0; ) data[i] = (i >= tokens.length ? NaN : JU.PT.parseFloat (tokens[i]));
 
 }, "~A,~A,~N");
-c$.split = Clazz_defineMethod (c$, "split", 
+c$.split = Clazz_defineMethod (c$, "split",
 function (text, run) {
 if (text.length == 0) return  new Array (0);
 var n = 1;
@@ -13514,12 +13514,12 @@ if (text.indexOf (run, len) != len) len += runLen;
 lines[pt] = text.substring (i, len);
 return lines;
 }, "~S,~S");
-c$.getQuotedStringAt = Clazz_defineMethod (c$, "getQuotedStringAt", 
+c$.getQuotedStringAt = Clazz_defineMethod (c$, "getQuotedStringAt",
 function (line, ipt0) {
 var next =  Clazz_newIntArray (-1, [ipt0]);
 return JU.PT.getQuotedStringNext (line, next);
 }, "~S,~N");
-c$.getQuotedStringNext = Clazz_defineMethod (c$, "getQuotedStringNext", 
+c$.getQuotedStringNext = Clazz_defineMethod (c$, "getQuotedStringNext",
 function (line, next) {
 var i = next[0];
 if (i < 0 || (i = line.indexOf ("\"", i)) < 0) return "";
@@ -13530,7 +13530,7 @@ while (++i < len && line.charAt (i) != '"') if (line.charAt (i) == '\\') i++;
 next[0] = i + 1;
 return line.substring (pt, i);
 }, "~S,~A");
-c$.getQuotedOrUnquotedAttribute = Clazz_defineMethod (c$, "getQuotedOrUnquotedAttribute", 
+c$.getQuotedOrUnquotedAttribute = Clazz_defineMethod (c$, "getQuotedOrUnquotedAttribute",
 function (line, key) {
 if (line == null || key == null) return null;
 var pt = line.toLowerCase ().indexOf (key.toLowerCase () + "=");
@@ -13548,7 +13548,7 @@ line += " ";
 var pt1 = line.indexOf (c, pt);
 return (pt1 < 0 ? null : line.substring (pt, pt1));
 }, "~S,~S");
-c$.getCSVString = Clazz_defineMethod (c$, "getCSVString", 
+c$.getCSVString = Clazz_defineMethod (c$, "getCSVString",
 function (line, next) {
 var i = next[1];
 if (i < 0 || (i = line.indexOf ("\"", i)) < 0) return null;
@@ -13568,22 +13568,22 @@ return null;
 var s = line.substring (pt + 1, i);
 return (haveEscape ? JU.PT.rep (JU.PT.rep (s, "\"\"", "\0"), "\0", "\"") : s);
 }, "~S,~A");
-c$.isOneOf = Clazz_defineMethod (c$, "isOneOf", 
+c$.isOneOf = Clazz_defineMethod (c$, "isOneOf",
 function (key, semiList) {
 if (semiList.length == 0) return false;
 if (semiList.charAt (0) != ';') semiList = ";" + semiList + ";";
 return key.indexOf (";") < 0 && semiList.indexOf (';' + key + ';') >= 0;
 }, "~S,~S");
-c$.getQuotedAttribute = Clazz_defineMethod (c$, "getQuotedAttribute", 
+c$.getQuotedAttribute = Clazz_defineMethod (c$, "getQuotedAttribute",
 function (info, name) {
 var i = info.indexOf (name + "=");
 return (i < 0 ? null : JU.PT.getQuotedStringAt (info, i));
 }, "~S,~S");
-c$.approx = Clazz_defineMethod (c$, "approx", 
+c$.approx = Clazz_defineMethod (c$, "approx",
 function (f, n) {
 return Math.round (f * n) / n;
 }, "~N,~N");
-c$.rep = Clazz_defineMethod (c$, "rep", 
+c$.rep = Clazz_defineMethod (c$, "rep",
 function (str, strFrom, strTo) {
 if (str == null || strFrom.length == 0 || str.indexOf (strFrom) < 0) return str;
 var isOnce = (strTo.indexOf (strFrom) >= 0);
@@ -13592,15 +13592,15 @@ str = str.$replace (strFrom, strTo);
 } while (!isOnce && str.indexOf (strFrom) >= 0);
 return str;
 }, "~S,~S,~S");
-c$.formatF = Clazz_defineMethod (c$, "formatF", 
+c$.formatF = Clazz_defineMethod (c$, "formatF",
 function (value, width, precision, alignLeft, zeroPad) {
 return JU.PT.formatS (JU.DF.formatDecimal (value, precision), width, 0, alignLeft, zeroPad);
 }, "~N,~N,~N,~B,~B");
-c$.formatD = Clazz_defineMethod (c$, "formatD", 
+c$.formatD = Clazz_defineMethod (c$, "formatD",
 function (value, width, precision, alignLeft, zeroPad, allowOverflow) {
 return JU.PT.formatS (JU.DF.formatDecimal (value, -1 - precision), width, 0, alignLeft, zeroPad);
 }, "~N,~N,~N,~B,~B,~B");
-c$.formatS = Clazz_defineMethod (c$, "formatS", 
+c$.formatS = Clazz_defineMethod (c$, "formatS",
 function (value, width, precision, alignLeft, zeroPad) {
 if (value == null) return "";
 var len = value.length;
@@ -13619,14 +13619,14 @@ for (var i = padLength; --i > 0; ) sb.appendC (padChar);
 if (!alignLeft) sb.append (isNeg ? padChar + value.substring (1) : value);
 return sb.toString ();
 }, "~S,~N,~N,~B,~B");
-c$.replaceWithCharacter = Clazz_defineMethod (c$, "replaceWithCharacter", 
+c$.replaceWithCharacter = Clazz_defineMethod (c$, "replaceWithCharacter",
 function (str, strFrom, chTo) {
 if (str == null) return null;
 for (var i = strFrom.length; --i >= 0; ) str = str.$replace (strFrom.charAt (i), chTo);
 
 return str;
 }, "~S,~S,~S");
-c$.replaceAllCharacters = Clazz_defineMethod (c$, "replaceAllCharacters", 
+c$.replaceAllCharacters = Clazz_defineMethod (c$, "replaceAllCharacters",
 function (str, strFrom, strTo) {
 for (var i = strFrom.length; --i >= 0; ) {
 var chFrom = strFrom.substring (i, i + 1);
@@ -13634,7 +13634,7 @@ str = JU.PT.rep (str, chFrom, strTo);
 }
 return str;
 }, "~S,~S,~S");
-c$.trim = Clazz_defineMethod (c$, "trim", 
+c$.trim = Clazz_defineMethod (c$, "trim",
 function (str, chars) {
 if (str == null || str.length == 0) return str;
 if (chars.length == 0) return str.trim ();
@@ -13647,20 +13647,20 @@ while (m > k && chars.indexOf (str.charAt (m)) >= 0) m--;
 
 return str.substring (k, m + 1);
 }, "~S,~S");
-c$.trimQuotes = Clazz_defineMethod (c$, "trimQuotes", 
+c$.trimQuotes = Clazz_defineMethod (c$, "trimQuotes",
 function (value) {
 return (value != null && value.length > 1 && value.startsWith ("\"") && value.endsWith ("\"") ? value.substring (1, value.length - 1) : value);
 }, "~S");
-c$.isNonStringPrimitive = Clazz_defineMethod (c$, "isNonStringPrimitive", 
+c$.isNonStringPrimitive = Clazz_defineMethod (c$, "isNonStringPrimitive",
 function (info) {
 return Clazz_instanceOf (info, Number) || Clazz_instanceOf (info, Boolean);
 }, "~O");
-c$.arrayGet = Clazz_defineMethod (c$, "arrayGet", 
+c$.arrayGet = Clazz_defineMethod (c$, "arrayGet",
  function (info, i) {
 {
 return info[i];
 }}, "~O,~N");
-c$.toJSON = Clazz_defineMethod (c$, "toJSON", 
+c$.toJSON = Clazz_defineMethod (c$, "toJSON",
 function (infoType, info) {
 if (info == null) return JU.PT.packageJSON (infoType, null);
 if (JU.PT.isNonStringPrimitive (info)) return JU.PT.packageJSON (infoType, info.toString ());
@@ -13722,12 +13722,12 @@ break;
 }
 return JU.PT.packageJSON (infoType, (s == null ? sb.toString () : s));
 }, "~S,~O");
-c$.nonArrayString = Clazz_defineMethod (c$, "nonArrayString", 
+c$.nonArrayString = Clazz_defineMethod (c$, "nonArrayString",
 function (x) {
 {
 return (x.constructor == Array || x.BYTES_PER_ELEMENT ? null : x.toString());
 }}, "~O");
-c$.byteArrayToJSON = Clazz_defineMethod (c$, "byteArrayToJSON", 
+c$.byteArrayToJSON = Clazz_defineMethod (c$, "byteArrayToJSON",
 function (data) {
 var sb =  new JU.SB ();
 sb.append ("[");
@@ -13739,11 +13739,11 @@ sb.appendI (data[i] & 0xFF);
 sb.append ("]");
 return sb.toString ();
 }, "~A");
-c$.packageJSON = Clazz_defineMethod (c$, "packageJSON", 
+c$.packageJSON = Clazz_defineMethod (c$, "packageJSON",
 function (infoType, info) {
 return (infoType == null ? info : "\"" + infoType + "\": " + info);
 }, "~S,~S");
-c$.escapeUrl = Clazz_defineMethod (c$, "escapeUrl", 
+c$.escapeUrl = Clazz_defineMethod (c$, "escapeUrl",
 function (url) {
 url = JU.PT.rep (url, "\n", "");
 url = JU.PT.rep (url, "%", "%25");
@@ -13754,7 +13754,7 @@ url = JU.PT.rep (url, "]", "%5D");
 url = JU.PT.rep (url, " ", "%20");
 return url;
 }, "~S");
-c$.esc = Clazz_defineMethod (c$, "esc", 
+c$.esc = Clazz_defineMethod (c$, "esc",
 function (str) {
 if (str == null || str.length == 0) return "\"\"";
 var haveEscape = false;
@@ -13778,7 +13778,7 @@ str = sb.toString ();
 }
 return "\"" + JU.PT.escUnicode (str) + "\"";
 }, "~S");
-c$.escUnicode = Clazz_defineMethod (c$, "escUnicode", 
+c$.escUnicode = Clazz_defineMethod (c$, "escUnicode",
 function (str) {
 for (var i = str.length; --i >= 0; ) if (str.charCodeAt (i) > 0x7F) {
 var s = "0000" + Integer.toHexString (str.charCodeAt (i));
@@ -13786,7 +13786,7 @@ str = str.substring (0, i) + "\\u" + s.substring (s.length - 4) + str.substring 
 }
 return str;
 }, "~S");
-c$.escF = Clazz_defineMethod (c$, "escF", 
+c$.escF = Clazz_defineMethod (c$, "escF",
 function (f) {
 var sf = "" + f;
 {
@@ -13794,7 +13794,7 @@ if (sf.indexOf(".") < 0 && sf.indexOf("e") < 0)
 sf += ".0";
 }return sf;
 }, "~N");
-c$.join = Clazz_defineMethod (c$, "join", 
+c$.join = Clazz_defineMethod (c$, "join",
 function (s, c, i0) {
 if (s.length < i0) return null;
 var sb =  new JU.SB ();
@@ -13803,7 +13803,7 @@ for (var i = i0; i < s.length; i++) sb.appendC (c).append (s[i]);
 
 return sb.toString ();
 }, "~A,~S,~N");
-c$.isLike = Clazz_defineMethod (c$, "isLike", 
+c$.isLike = Clazz_defineMethod (c$, "isLike",
 function (a, b) {
 var areEqual = a.equals (b);
 if (areEqual) return true;
@@ -13811,7 +13811,7 @@ var isStart = b.startsWith ("*");
 var isEnd = b.endsWith ("*");
 return (!isStart && !isEnd) ? areEqual : isStart && isEnd ? b.length == 1 || a.contains (b.substring (1, b.length - 1)) : isStart ? a.endsWith (b.substring (1)) : a.startsWith (b.substring (0, b.length - 1));
 }, "~S,~S");
-c$.getMapValueNoCase = Clazz_defineMethod (c$, "getMapValueNoCase", 
+c$.getMapValueNoCase = Clazz_defineMethod (c$, "getMapValueNoCase",
 function (h, key) {
 if ("this".equals (key)) return h;
 var val = h.get (key);
@@ -13819,11 +13819,11 @@ if (val == null) for (var e, $e = h.entrySet ().iterator (); $e.hasNext () && ((
 
 return val;
 }, "java.util.Map,~S");
-c$.clean = Clazz_defineMethod (c$, "clean", 
+c$.clean = Clazz_defineMethod (c$, "clean",
 function (s) {
 return JU.PT.rep (JU.PT.replaceAllCharacters (s, " \t\n\r", " "), "  ", " ").trim ();
 }, "~S");
-c$.fdup = Clazz_defineMethod (c$, "fdup", 
+c$.fdup = Clazz_defineMethod (c$, "fdup",
 function (f, pt, n) {
 var ch;
 var count = 0;
@@ -13847,7 +13847,7 @@ for (var i = 0; i < n; i++) sb.append (s);
 sb.append (f.substring (pt + 1));
 return sb.toString ();
 }, "~S,~N,~N");
-c$.formatString = Clazz_defineMethod (c$, "formatString", 
+c$.formatString = Clazz_defineMethod (c$, "formatString",
  function (strFormat, key, strT, floatT, doubleT, doOne) {
 if (strFormat == null) return null;
 if ("".equals (strFormat)) return "";
@@ -13911,19 +13911,19 @@ throw ioobe;
 strLabel += strFormat.substring (ich);
 return strLabel;
 }, "~S,~S,~S,~N,~N,~B");
-c$.formatStringS = Clazz_defineMethod (c$, "formatStringS", 
+c$.formatStringS = Clazz_defineMethod (c$, "formatStringS",
 function (strFormat, key, strT) {
 return JU.PT.formatString (strFormat, key, strT, NaN, NaN, false);
 }, "~S,~S,~S");
-c$.formatStringF = Clazz_defineMethod (c$, "formatStringF", 
+c$.formatStringF = Clazz_defineMethod (c$, "formatStringF",
 function (strFormat, key, floatT) {
 return JU.PT.formatString (strFormat, key, null, floatT, NaN, false);
 }, "~S,~S,~N");
-c$.formatStringI = Clazz_defineMethod (c$, "formatStringI", 
+c$.formatStringI = Clazz_defineMethod (c$, "formatStringI",
 function (strFormat, key, intT) {
 return JU.PT.formatString (strFormat, key, "" + intT, NaN, NaN, false);
 }, "~S,~S,~N");
-c$.sprintf = Clazz_defineMethod (c$, "sprintf", 
+c$.sprintf = Clazz_defineMethod (c$, "sprintf",
 function (strFormat, list, values) {
 if (values == null) return strFormat;
 var n = list.length;
@@ -13990,7 +13990,7 @@ throw e;
 System.out.println ("TextFormat.sprintf error " + list + " " + strFormat);
 return JU.PT.rep (strFormat, "%", "?");
 }, "~S,~S,~A");
-c$.formatCheck = Clazz_defineMethod (c$, "formatCheck", 
+c$.formatCheck = Clazz_defineMethod (c$, "formatCheck",
 function (strFormat) {
 if (strFormat == null || strFormat.indexOf ('p') < 0 && strFormat.indexOf ('q') < 0) return strFormat;
 strFormat = JU.PT.rep (strFormat, "%%", "\1");
@@ -14009,28 +14009,28 @@ if ((pt = f.indexOf ('q')) >= 0) f = JU.PT.fdup (f, pt, 4);
 }
 return sb.toString ().$replace ('\1', '%');
 }, "~S");
-c$.leftJustify = Clazz_defineMethod (c$, "leftJustify", 
+c$.leftJustify = Clazz_defineMethod (c$, "leftJustify",
 function (s, s1, s2) {
 s.append (s2);
 var n = s1.length - s2.length;
 if (n > 0) s.append (s1.substring (0, n));
 }, "JU.SB,~S,~S");
-c$.rightJustify = Clazz_defineMethod (c$, "rightJustify", 
+c$.rightJustify = Clazz_defineMethod (c$, "rightJustify",
 function (s, s1, s2) {
 var n = s1.length - s2.length;
 if (n > 0) s.append (s1.substring (0, n));
 s.append (s2);
 }, "JU.SB,~S,~S");
-c$.safeTruncate = Clazz_defineMethod (c$, "safeTruncate", 
+c$.safeTruncate = Clazz_defineMethod (c$, "safeTruncate",
 function (f, n) {
 if (f > -0.001 && f < 0.001) f = 0;
 return (f + "         ").substring (0, n);
 }, "~N,~N");
-c$.isWild = Clazz_defineMethod (c$, "isWild", 
+c$.isWild = Clazz_defineMethod (c$, "isWild",
 function (s) {
 return s != null && (s.indexOf ("*") >= 0 || s.indexOf ("?") >= 0);
 }, "~S");
-c$.isMatch = Clazz_defineMethod (c$, "isMatch", 
+c$.isMatch = Clazz_defineMethod (c$, "isMatch",
 function (search, match, checkStar, allowInitialStar) {
 if (search.equals (match)) return true;
 var mLen = match.length;
@@ -14073,7 +14073,7 @@ if (chm != chs && (chm != '\1' || chs != '?')) return false;
 }
 return true;
 }, "~S,~S,~B,~B");
-c$.replaceQuotedStrings = Clazz_defineMethod (c$, "replaceQuotedStrings", 
+c$.replaceQuotedStrings = Clazz_defineMethod (c$, "replaceQuotedStrings",
 function (s, list, newList) {
 var n = list.size ();
 for (var i = 0; i < n; i++) {
@@ -14083,7 +14083,7 @@ if (!newName.equals (name)) s = JU.PT.rep (s, "\"" + name + "\"", "\"" + newName
 }
 return s;
 }, "~S,JU.Lst,JU.Lst");
-c$.replaceStrings = Clazz_defineMethod (c$, "replaceStrings", 
+c$.replaceStrings = Clazz_defineMethod (c$, "replaceStrings",
 function (s, list, newList) {
 var n = list.size ();
 for (var i = 0; i < n; i++) {
@@ -14093,47 +14093,47 @@ if (!newName.equals (name)) s = JU.PT.rep (s, name, newName);
 }
 return s;
 }, "~S,JU.Lst,JU.Lst");
-c$.isDigit = Clazz_defineMethod (c$, "isDigit", 
+c$.isDigit = Clazz_defineMethod (c$, "isDigit",
 function (ch) {
 var c = (ch).charCodeAt (0);
 return (48 <= c && c <= 57);
 }, "~S");
-c$.isUpperCase = Clazz_defineMethod (c$, "isUpperCase", 
+c$.isUpperCase = Clazz_defineMethod (c$, "isUpperCase",
 function (ch) {
 var c = (ch).charCodeAt (0);
 return (65 <= c && c <= 90);
 }, "~S");
-c$.isLowerCase = Clazz_defineMethod (c$, "isLowerCase", 
+c$.isLowerCase = Clazz_defineMethod (c$, "isLowerCase",
 function (ch) {
 var c = (ch).charCodeAt (0);
 return (97 <= c && c <= 122);
 }, "~S");
-c$.isLetter = Clazz_defineMethod (c$, "isLetter", 
+c$.isLetter = Clazz_defineMethod (c$, "isLetter",
 function (ch) {
 var c = (ch).charCodeAt (0);
 return (65 <= c && c <= 90 || 97 <= c && c <= 122);
 }, "~S");
-c$.isLetterOrDigit = Clazz_defineMethod (c$, "isLetterOrDigit", 
+c$.isLetterOrDigit = Clazz_defineMethod (c$, "isLetterOrDigit",
 function (ch) {
 var c = (ch).charCodeAt (0);
 return (65 <= c && c <= 90 || 97 <= c && c <= 122 || 48 <= c && c <= 57);
 }, "~S");
-c$.isWhitespace = Clazz_defineMethod (c$, "isWhitespace", 
+c$.isWhitespace = Clazz_defineMethod (c$, "isWhitespace",
 function (ch) {
 var c = (ch).charCodeAt (0);
 return (c >= 0x1c && c <= 0x20 || c >= 0x9 && c <= 0xd);
 }, "~S");
-c$.fixPtFloats = Clazz_defineMethod (c$, "fixPtFloats", 
+c$.fixPtFloats = Clazz_defineMethod (c$, "fixPtFloats",
 function (pt, f) {
 pt.x = Math.round (pt.x * f) / f;
 pt.y = Math.round (pt.y * f) / f;
 pt.z = Math.round (pt.z * f) / f;
 }, "JU.T3,~N");
-c$.fixDouble = Clazz_defineMethod (c$, "fixDouble", 
+c$.fixDouble = Clazz_defineMethod (c$, "fixDouble",
 function (d, f) {
 return Math.round (d * f) / f;
 }, "~N,~N");
-c$.parseFloatFraction = Clazz_defineMethod (c$, "parseFloatFraction", 
+c$.parseFloatFraction = Clazz_defineMethod (c$, "parseFloatFraction",
 function (s) {
 var pt = s.indexOf ("/");
 return (pt < 0 ? JU.PT.parseFloat (s) : JU.PT.parseFloat (s.substring (0, pt)) / JU.PT.parseFloat (s.substring (pt + 1)));
@@ -14152,48 +14152,48 @@ this.sb = null;
 this.s = null;
 Clazz_instantialize (this, arguments);
 }, JU, "SB");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 {
 this.s = "";
 }});
-c$.newN = Clazz_defineMethod (c$, "newN", 
+c$.newN = Clazz_defineMethod (c$, "newN",
 function (n) {
 {
 return new JU.SB();
 }}, "~N");
-c$.newS = Clazz_defineMethod (c$, "newS", 
+c$.newS = Clazz_defineMethod (c$, "newS",
 function (s) {
 {
 var sb = new JU.SB();
 sb.s = s;
 return sb;
 }}, "~S");
-Clazz_defineMethod (c$, "append", 
+Clazz_defineMethod (c$, "append",
 function (s) {
 {
 this.s += s
 }return this;
 }, "~S");
-Clazz_defineMethod (c$, "appendC", 
+Clazz_defineMethod (c$, "appendC",
 function (c) {
 {
 this.s += c;
 }return this;
 }, "~S");
-Clazz_defineMethod (c$, "appendI", 
+Clazz_defineMethod (c$, "appendI",
 function (i) {
 {
 this.s += i
 }return this;
 }, "~N");
-Clazz_defineMethod (c$, "appendB", 
+Clazz_defineMethod (c$, "appendB",
 function (b) {
 {
 this.s += b
 }return this;
 }, "~B");
-Clazz_defineMethod (c$, "appendF", 
+Clazz_defineMethod (c$, "appendF",
 function (f) {
 {
 var sf = "" + f;
@@ -14202,7 +14202,7 @@ sf += ".0" ;
 this.s += sf;
 }return this;
 }, "~N");
-Clazz_defineMethod (c$, "appendD", 
+Clazz_defineMethod (c$, "appendD",
 function (d) {
 {
 var sf = "" + d;
@@ -14211,75 +14211,75 @@ sf += ".0" ;
 this.s += sf;
 }return this;
 }, "~N");
-Clazz_defineMethod (c$, "appendSB", 
+Clazz_defineMethod (c$, "appendSB",
 function (buf) {
 {
 this.s += buf.s;
 }return this;
 }, "JU.SB");
-Clazz_defineMethod (c$, "appendO", 
+Clazz_defineMethod (c$, "appendO",
 function (data) {
 if (data != null) {
 {
 this.s += data.toString();
 }}return this;
 }, "~O");
-Clazz_defineMethod (c$, "appendCB", 
+Clazz_defineMethod (c$, "appendCB",
 function (cb, off, len) {
 {
 this.s += cb.slice(off,off+len).join("");
 }}, "~A,~N,~N");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 {
 return this.s;
 }});
-Clazz_defineMethod (c$, "length", 
+Clazz_defineMethod (c$, "length",
 function () {
 {
 return this.s.length;
 }});
-Clazz_defineMethod (c$, "indexOf", 
+Clazz_defineMethod (c$, "indexOf",
 function (s) {
 {
 return this.s.indexOf(s);
 }}, "~S");
-Clazz_defineMethod (c$, "charAt", 
+Clazz_defineMethod (c$, "charAt",
 function (i) {
 {
 return this.s.charAt(i);
 }}, "~N");
-Clazz_defineMethod (c$, "charCodeAt", 
+Clazz_defineMethod (c$, "charCodeAt",
 function (i) {
 {
 return this.s.charCodeAt(i);
 }}, "~N");
-Clazz_defineMethod (c$, "setLength", 
+Clazz_defineMethod (c$, "setLength",
 function (n) {
 {
 this.s = this.s.substring(0, n);
 }}, "~N");
-Clazz_defineMethod (c$, "lastIndexOf", 
+Clazz_defineMethod (c$, "lastIndexOf",
 function (s) {
 {
 return this.s.lastIndexOf(s);
 }}, "~S");
-Clazz_defineMethod (c$, "indexOf2", 
+Clazz_defineMethod (c$, "indexOf2",
 function (s, i) {
 {
 return this.s.indexOf(s, i);
 }}, "~S,~N");
-Clazz_defineMethod (c$, "substring", 
+Clazz_defineMethod (c$, "substring",
 function (i) {
 {
 return this.s.substring(i);
 }}, "~N");
-Clazz_defineMethod (c$, "substring2", 
+Clazz_defineMethod (c$, "substring2",
 function (i, j) {
 {
 return this.s.substring(i, j);
 }}, "~N,~N");
-Clazz_defineMethod (c$, "toBytes", 
+Clazz_defineMethod (c$, "toBytes",
 function (off, len) {
 if (len == 0) return  Clazz_newByteArray (0, 0);
 var cs;
@@ -14287,12 +14287,12 @@ var cs;
 cs = "UTF-8";
 }return (len > 0 ? this.substring2 (off, off + len) : off == 0 ? this.toString () : this.substring2 (off, this.length () - off)).getBytes (cs);
 }, "~N,~N");
-Clazz_defineMethod (c$, "replace", 
+Clazz_defineMethod (c$, "replace",
 function (start, end, str) {
 {
 this.s = this.s.substring(0, start) + str + this.s.substring(end);
 }}, "~N,~N,~S");
-Clazz_defineMethod (c$, "insert", 
+Clazz_defineMethod (c$, "insert",
 function (offset, str) {
 this.replace (offset, offset, str);
 }, "~N,~S");
@@ -14304,113 +14304,113 @@ this.y = 0;
 this.z = 0;
 Clazz_instantialize (this, arguments);
 }, JU, "T3", null, [javajs.api.JSONEncodable, java.io.Serializable]);
-Clazz_defineMethod (c$, "set", 
+Clazz_defineMethod (c$, "set",
 function (x, y, z) {
 this.x = x;
 this.y = y;
 this.z = z;
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "setA", 
+Clazz_defineMethod (c$, "setA",
 function (t) {
 this.x = t[0];
 this.y = t[1];
 this.z = t[2];
 }, "~A");
-Clazz_defineMethod (c$, "setT", 
+Clazz_defineMethod (c$, "setT",
 function (t1) {
 this.x = t1.x;
 this.y = t1.y;
 this.z = t1.z;
 }, "JU.T3");
-Clazz_defineMethod (c$, "add2", 
+Clazz_defineMethod (c$, "add2",
 function (t1, t2) {
 this.x = t1.x + t2.x;
 this.y = t1.y + t2.y;
 this.z = t1.z + t2.z;
 }, "JU.T3,JU.T3");
-Clazz_defineMethod (c$, "add", 
+Clazz_defineMethod (c$, "add",
 function (t1) {
 this.x += t1.x;
 this.y += t1.y;
 this.z += t1.z;
 }, "JU.T3");
-Clazz_defineMethod (c$, "distanceSquared", 
+Clazz_defineMethod (c$, "distanceSquared",
 function (p1) {
 var dx = this.x - p1.x;
 var dy = this.y - p1.y;
 var dz = this.z - p1.z;
 return (dx * dx + dy * dy + dz * dz);
 }, "JU.T3");
-Clazz_defineMethod (c$, "distance", 
+Clazz_defineMethod (c$, "distance",
 function (p1) {
 return Math.sqrt (this.distanceSquared (p1));
 }, "JU.T3");
-Clazz_defineMethod (c$, "sub2", 
+Clazz_defineMethod (c$, "sub2",
 function (t1, t2) {
 this.x = t1.x - t2.x;
 this.y = t1.y - t2.y;
 this.z = t1.z - t2.z;
 }, "JU.T3,JU.T3");
-Clazz_defineMethod (c$, "sub", 
+Clazz_defineMethod (c$, "sub",
 function (t1) {
 this.x -= t1.x;
 this.y -= t1.y;
 this.z -= t1.z;
 }, "JU.T3");
-Clazz_defineMethod (c$, "scale", 
+Clazz_defineMethod (c$, "scale",
 function (s) {
 this.x *= s;
 this.y *= s;
 this.z *= s;
 }, "~N");
-Clazz_defineMethod (c$, "add3", 
+Clazz_defineMethod (c$, "add3",
 function (a, b, c) {
 this.x += a;
 this.y += b;
 this.z += c;
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "scaleT", 
+Clazz_defineMethod (c$, "scaleT",
 function (p) {
 this.x *= p.x;
 this.y *= p.y;
 this.z *= p.z;
 }, "JU.T3");
-Clazz_defineMethod (c$, "scaleAdd2", 
+Clazz_defineMethod (c$, "scaleAdd2",
 function (s, t1, t2) {
 this.x = s * t1.x + t2.x;
 this.y = s * t1.y + t2.y;
 this.z = s * t1.z + t2.z;
 }, "~N,JU.T3,JU.T3");
-Clazz_defineMethod (c$, "ave", 
+Clazz_defineMethod (c$, "ave",
 function (a, b) {
 this.x = (a.x + b.x) / 2;
 this.y = (a.y + b.y) / 2;
 this.z = (a.z + b.z) / 2;
 }, "JU.T3,JU.T3");
-Clazz_defineMethod (c$, "dot", 
+Clazz_defineMethod (c$, "dot",
 function (v) {
 return this.x * v.x + this.y * v.y + this.z * v.z;
 }, "JU.T3");
-Clazz_defineMethod (c$, "lengthSquared", 
+Clazz_defineMethod (c$, "lengthSquared",
 function () {
 return this.x * this.x + this.y * this.y + this.z * this.z;
 });
-Clazz_defineMethod (c$, "length", 
+Clazz_defineMethod (c$, "length",
 function () {
 return Math.sqrt (this.lengthSquared ());
 });
-Clazz_defineMethod (c$, "normalize", 
+Clazz_defineMethod (c$, "normalize",
 function () {
 var d = this.length ();
 this.x /= d;
 this.y /= d;
 this.z /= d;
 });
-Clazz_defineMethod (c$, "cross", 
+Clazz_defineMethod (c$, "cross",
 function (v1, v2) {
 this.set (v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z, v1.x * v2.y - v1.y * v2.x);
 }, "JU.T3,JU.T3");
-Clazz_overrideMethod (c$, "hashCode", 
+Clazz_overrideMethod (c$, "hashCode",
 function () {
 var bits = 1;
 bits = 31 * bits + JU.T3.floatToIntBits (this.x);
@@ -14418,21 +14418,21 @@ bits = 31 * bits + JU.T3.floatToIntBits (this.y);
 bits = 31 * bits + JU.T3.floatToIntBits (this.z);
 return (bits ^ (bits >> 32));
 });
-c$.floatToIntBits = Clazz_defineMethod (c$, "floatToIntBits", 
+c$.floatToIntBits = Clazz_defineMethod (c$, "floatToIntBits",
 function (x) {
 return (x == 0 ? 0 : Float.floatToIntBits (x));
 }, "~N");
-Clazz_overrideMethod (c$, "equals", 
+Clazz_overrideMethod (c$, "equals",
 function (t1) {
 if (!(Clazz_instanceOf (t1, JU.T3))) return false;
 var t2 = t1;
 return (this.x == t2.x && this.y == t2.y && this.z == t2.z);
 }, "~O");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return "{" + this.x + ", " + this.y + ", " + this.z + "}";
 });
-Clazz_overrideMethod (c$, "toJSON", 
+Clazz_overrideMethod (c$, "toJSON",
 function () {
 return "[" + this.x + "," + this.y + "," + this.z + "]";
 });
@@ -14444,44 +14444,44 @@ this.y = 0;
 this.z = 0;
 Clazz_instantialize (this, arguments);
 }, JU, "T3i", null, java.io.Serializable);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 });
-Clazz_defineMethod (c$, "set", 
+Clazz_defineMethod (c$, "set",
 function (x, y, z) {
 this.x = x;
 this.y = y;
 this.z = z;
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "setT", 
+Clazz_defineMethod (c$, "setT",
 function (t1) {
 this.x = t1.x;
 this.y = t1.y;
 this.z = t1.z;
 }, "JU.T3i");
-Clazz_defineMethod (c$, "add", 
+Clazz_defineMethod (c$, "add",
 function (t) {
 this.x += t.x;
 this.y += t.y;
 this.z += t.z;
 }, "JU.T3i");
-Clazz_defineMethod (c$, "scaleAdd", 
+Clazz_defineMethod (c$, "scaleAdd",
 function (s, t1, t2) {
 this.x = s * t1.x + t2.x;
 this.y = s * t1.y + t2.y;
 this.z = s * t1.z + t2.z;
 }, "~N,JU.T3i,JU.T3i");
-Clazz_overrideMethod (c$, "hashCode", 
+Clazz_overrideMethod (c$, "hashCode",
 function () {
 return this.x ^ this.y ^ this.z;
 });
-Clazz_overrideMethod (c$, "equals", 
+Clazz_overrideMethod (c$, "equals",
 function (o) {
 if (!(Clazz_instanceOf (o, JU.T3i))) return false;
 var t = o;
 return (this.x == t.x && this.y == t.y && this.z == t.z);
 }, "~O");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return "(" + this.x + ", " + this.y + ", " + this.z + ")";
 });
@@ -14491,33 +14491,33 @@ c$ = Clazz_decorateAsClass (function () {
 this.w = 0;
 Clazz_instantialize (this, arguments);
 }, JU, "T4", JU.T3);
-Clazz_defineMethod (c$, "set4", 
+Clazz_defineMethod (c$, "set4",
 function (x, y, z, w) {
 this.x = x;
 this.y = y;
 this.z = z;
 this.w = w;
 }, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "scale4", 
+Clazz_defineMethod (c$, "scale4",
 function (s) {
 this.scale (s);
 this.w *= s;
 }, "~N");
-Clazz_overrideMethod (c$, "hashCode", 
+Clazz_overrideMethod (c$, "hashCode",
 function () {
 return JU.T3.floatToIntBits (this.x) ^ JU.T3.floatToIntBits (this.y) ^ JU.T3.floatToIntBits (this.z) ^ JU.T3.floatToIntBits (this.w);
 });
-Clazz_overrideMethod (c$, "equals", 
+Clazz_overrideMethod (c$, "equals",
 function (o) {
 if (!(Clazz_instanceOf (o, JU.T4))) return false;
 var t = o;
 return (this.x == t.x && this.y == t.y && this.z == t.z && this.w == t.w);
 }, "~O");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return "(" + this.x + ", " + this.y + ", " + this.z + ", " + this.w + ")";
 });
-Clazz_overrideMethod (c$, "toJSON", 
+Clazz_overrideMethod (c$, "toJSON",
 function () {
 return "[" + this.x + ", " + this.y + ", " + this.z + ", " + this.w + "]";
 });
@@ -14525,18 +14525,18 @@ return "[" + this.x + ", " + this.y + ", " + this.z + ", " + this.w + "]";
 Clazz_declarePackage ("JU");
 Clazz_load (["JU.T3"], "JU.V3", null, function () {
 c$ = Clazz_declareType (JU, "V3", JU.T3);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 });
-c$.newV = Clazz_defineMethod (c$, "newV", 
+c$.newV = Clazz_defineMethod (c$, "newV",
 function (t) {
 return JU.V3.new3 (t.x, t.y, t.z);
 }, "JU.T3");
-c$.newVsub = Clazz_defineMethod (c$, "newVsub", 
+c$.newVsub = Clazz_defineMethod (c$, "newVsub",
 function (t1, t2) {
 return JU.V3.new3 (t1.x - t2.x, t1.y - t2.y, t1.z - t2.z);
 }, "JU.T3,JU.T3");
-c$.new3 = Clazz_defineMethod (c$, "new3", 
+c$.new3 = Clazz_defineMethod (c$, "new3",
 function (x, y, z) {
 var v =  new JU.V3 ();
 v.x = x;
@@ -14544,7 +14544,7 @@ v.y = y;
 v.z = z;
 return v;
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "angle", 
+Clazz_defineMethod (c$, "angle",
 function (v1) {
 var xx = this.y * v1.z - this.z * v1.y;
 var yy = this.z * v1.x - this.x * v1.z;
@@ -14556,7 +14556,7 @@ return Math.abs (Math.atan2 (cross, this.dot (v1)));
 Clazz_declarePackage ("JU");
 Clazz_load (["JU.LoggerInterface"], "JU.DefaultLogger", ["JU.Logger"], function () {
 c$ = Clazz_declareType (JU, "DefaultLogger", null, JU.LoggerInterface);
-Clazz_defineMethod (c$, "log", 
+Clazz_defineMethod (c$, "log",
 function (out, level, txt, e) {
 if (out === System.err) System.out.flush ();
 if ((out != null) && ((txt != null) || (e != null))) {
@@ -14570,35 +14570,35 @@ out.println (elements[i].getClassName () + " - " + elements[i].getLineNumber () 
 }
 }}}if (out === System.err) System.err.flush ();
 }, "java.io.PrintStream,~N,~S,Throwable");
-Clazz_overrideMethod (c$, "debug", 
+Clazz_overrideMethod (c$, "debug",
 function (txt) {
 this.log (System.out, 5, txt, null);
 }, "~S");
-Clazz_overrideMethod (c$, "info", 
+Clazz_overrideMethod (c$, "info",
 function (txt) {
 this.log (System.out, 4, txt, null);
 }, "~S");
-Clazz_overrideMethod (c$, "warn", 
+Clazz_overrideMethod (c$, "warn",
 function (txt) {
 this.log (System.out, 3, txt, null);
 }, "~S");
-Clazz_overrideMethod (c$, "warnEx", 
+Clazz_overrideMethod (c$, "warnEx",
 function (txt, e) {
 this.log (System.out, 3, txt, e);
 }, "~S,Throwable");
-Clazz_overrideMethod (c$, "error", 
+Clazz_overrideMethod (c$, "error",
 function (txt) {
 this.log (System.err, 2, txt, null);
 }, "~S");
-Clazz_overrideMethod (c$, "errorEx", 
+Clazz_overrideMethod (c$, "errorEx",
 function (txt, e) {
 this.log (System.err, 2, txt, e);
 }, "~S,Throwable");
-Clazz_overrideMethod (c$, "fatal", 
+Clazz_overrideMethod (c$, "fatal",
 function (txt) {
 this.log (System.err, 1, txt, null);
 }, "~S");
-Clazz_overrideMethod (c$, "fatalEx", 
+Clazz_overrideMethod (c$, "fatalEx",
 function (txt, e) {
 this.log (System.err, 1, txt, e);
 }, "~S,Throwable");
@@ -14606,7 +14606,7 @@ this.log (System.err, 1, txt, e);
 Clazz_declarePackage ("JU");
 Clazz_load (["java.util.Hashtable", "JU.DefaultLogger"], "JU.Logger", ["java.lang.Long"], function () {
 c$ = Clazz_declareType (JU, "Logger");
-c$.getProperty = Clazz_defineMethod (c$, "getProperty", 
+c$.getProperty = Clazz_defineMethod (c$, "getProperty",
  function (level, defaultValue) {
 try {
 var property = System.getProperty ("jmol.logger." + level, null);
@@ -14620,17 +14620,17 @@ throw e;
 }
 return defaultValue;
 }, "~S,~B");
-c$.setLogger = Clazz_defineMethod (c$, "setLogger", 
+c$.setLogger = Clazz_defineMethod (c$, "setLogger",
 function (logger) {
 JU.Logger._logger = logger;
 JU.Logger.debugging = JU.Logger.isActiveLevel (5) || JU.Logger.isActiveLevel (6);
 JU.Logger.debuggingHigh = (JU.Logger.debugging && JU.Logger._activeLevels[6]);
 }, "JU.LoggerInterface");
-c$.isActiveLevel = Clazz_defineMethod (c$, "isActiveLevel", 
+c$.isActiveLevel = Clazz_defineMethod (c$, "isActiveLevel",
 function (level) {
 return JU.Logger._logger != null && level >= 0 && level < 7 && JU.Logger._activeLevels[level];
 }, "~N");
-c$.setActiveLevel = Clazz_defineMethod (c$, "setActiveLevel", 
+c$.setActiveLevel = Clazz_defineMethod (c$, "setActiveLevel",
 function (level, active) {
 if (level < 0) level = 0;
 if (level >= 7) level = 6;
@@ -14638,12 +14638,12 @@ JU.Logger._activeLevels[level] = active;
 JU.Logger.debugging = JU.Logger.isActiveLevel (5) || JU.Logger.isActiveLevel (6);
 JU.Logger.debuggingHigh = (JU.Logger.debugging && JU.Logger._activeLevels[6]);
 }, "~N,~B");
-c$.setLogLevel = Clazz_defineMethod (c$, "setLogLevel", 
+c$.setLogLevel = Clazz_defineMethod (c$, "setLogLevel",
 function (level) {
 for (var i = 7; --i >= 0; ) JU.Logger.setActiveLevel (i, i <= level);
 
 }, "~N");
-c$.getLevel = Clazz_defineMethod (c$, "getLevel", 
+c$.getLevel = Clazz_defineMethod (c$, "getLevel",
 function (level) {
 switch (level) {
 case 6:
@@ -14661,15 +14661,15 @@ return "FATAL";
 }
 return "????";
 }, "~N");
-c$.logLevel = Clazz_defineMethod (c$, "logLevel", 
+c$.logLevel = Clazz_defineMethod (c$, "logLevel",
 function () {
 return JU.Logger._logLevel;
 });
-c$.doLogLevel = Clazz_defineMethod (c$, "doLogLevel", 
+c$.doLogLevel = Clazz_defineMethod (c$, "doLogLevel",
 function (log) {
 JU.Logger._logLevel = log;
 }, "~B");
-c$.debug = Clazz_defineMethod (c$, "debug", 
+c$.debug = Clazz_defineMethod (c$, "debug",
 function (txt) {
 if (!JU.Logger.debugging) return;
 try {
@@ -14677,7 +14677,7 @@ JU.Logger._logger.debug (txt);
 } catch (t) {
 }
 }, "~S");
-c$.info = Clazz_defineMethod (c$, "info", 
+c$.info = Clazz_defineMethod (c$, "info",
 function (txt) {
 try {
 if (JU.Logger.isActiveLevel (4)) {
@@ -14685,7 +14685,7 @@ JU.Logger._logger.info (txt);
 }} catch (t) {
 }
 }, "~S");
-c$.warn = Clazz_defineMethod (c$, "warn", 
+c$.warn = Clazz_defineMethod (c$, "warn",
 function (txt) {
 try {
 if (JU.Logger.isActiveLevel (3)) {
@@ -14693,7 +14693,7 @@ JU.Logger._logger.warn (txt);
 }} catch (t) {
 }
 }, "~S");
-c$.warnEx = Clazz_defineMethod (c$, "warnEx", 
+c$.warnEx = Clazz_defineMethod (c$, "warnEx",
 function (txt, e) {
 try {
 if (JU.Logger.isActiveLevel (3)) {
@@ -14701,7 +14701,7 @@ JU.Logger._logger.warnEx (txt, e);
 }} catch (t) {
 }
 }, "~S,Throwable");
-c$.error = Clazz_defineMethod (c$, "error", 
+c$.error = Clazz_defineMethod (c$, "error",
 function (txt) {
 try {
 if (JU.Logger.isActiveLevel (2)) {
@@ -14709,7 +14709,7 @@ JU.Logger._logger.error (txt);
 }} catch (t) {
 }
 }, "~S");
-c$.errorEx = Clazz_defineMethod (c$, "errorEx", 
+c$.errorEx = Clazz_defineMethod (c$, "errorEx",
 function (txt, e) {
 try {
 if (JU.Logger.isActiveLevel (2)) {
@@ -14717,13 +14717,13 @@ JU.Logger._logger.errorEx (txt, e);
 }} catch (t) {
 }
 }, "~S,Throwable");
-c$.getLogLevel = Clazz_defineMethod (c$, "getLogLevel", 
+c$.getLogLevel = Clazz_defineMethod (c$, "getLogLevel",
 function () {
 for (var i = 7; --i >= 0; ) if (JU.Logger.isActiveLevel (i)) return i;
 
 return 0;
 });
-c$.fatal = Clazz_defineMethod (c$, "fatal", 
+c$.fatal = Clazz_defineMethod (c$, "fatal",
 function (txt) {
 try {
 if (JU.Logger.isActiveLevel (1)) {
@@ -14731,7 +14731,7 @@ JU.Logger._logger.fatal (txt);
 }} catch (t) {
 }
 }, "~S");
-c$.fatalEx = Clazz_defineMethod (c$, "fatalEx", 
+c$.fatalEx = Clazz_defineMethod (c$, "fatalEx",
 function (txt, e) {
 try {
 if (JU.Logger.isActiveLevel (1)) {
@@ -14739,28 +14739,28 @@ JU.Logger._logger.fatalEx (txt, e);
 }} catch (t) {
 }
 }, "~S,Throwable");
-c$.startTimer = Clazz_defineMethod (c$, "startTimer", 
+c$.startTimer = Clazz_defineMethod (c$, "startTimer",
 function (msg) {
 if (msg != null) JU.Logger.htTiming.put (msg, Long.$valueOf (System.currentTimeMillis ()));
 }, "~S");
-c$.getTimerMsg = Clazz_defineMethod (c$, "getTimerMsg", 
+c$.getTimerMsg = Clazz_defineMethod (c$, "getTimerMsg",
 function (msg, time) {
 if (time == 0) time = JU.Logger.getTimeFrom (msg);
 return "Time for " + msg + ": " + (time) + " ms";
 }, "~S,~N");
-c$.getTimeFrom = Clazz_defineMethod (c$, "getTimeFrom", 
+c$.getTimeFrom = Clazz_defineMethod (c$, "getTimeFrom",
  function (msg) {
 var t;
 return (msg == null || (t = JU.Logger.htTiming.get (msg)) == null ? -1 : System.currentTimeMillis () - t.longValue ());
 }, "~S");
-c$.checkTimer = Clazz_defineMethod (c$, "checkTimer", 
+c$.checkTimer = Clazz_defineMethod (c$, "checkTimer",
 function (msg, andReset) {
 var time = JU.Logger.getTimeFrom (msg);
 if (time >= 0 && !msg.startsWith ("(")) JU.Logger.info (JU.Logger.getTimerMsg (msg, time));
 if (andReset) JU.Logger.startTimer (msg);
 return time;
 }, "~S,~B");
-c$.checkMemory = Clazz_defineMethod (c$, "checkMemory", 
+c$.checkMemory = Clazz_defineMethod (c$, "checkMemory",
 function () {
 var bTotal = 0;
 var bFree = 0;
@@ -14815,10 +14815,10 @@ this.peakIndex = null;
 this.peakFilePath = null;
 Clazz_instantialize (this, arguments);
 }, J.jsv, "JDXMOLParser", null, J.api.JmolJDXMOLParser);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 });
-Clazz_overrideMethod (c$, "set", 
+Clazz_overrideMethod (c$, "set",
 function (loader, filePath, htParams) {
 this.loader = loader;
 this.peakFilePath = filePath;
@@ -14833,12 +14833,12 @@ htParams.put ("peakIndex", this.peakIndex);
 }if (!htParams.containsKey ("subFileName")) this.peakFilePath = JU.PT.split (filePath, "|")[0];
 }}return this;
 }, "J.api.JmolJDXMOLReader,~S,java.util.Map");
-Clazz_overrideMethod (c$, "getAttribute", 
+Clazz_overrideMethod (c$, "getAttribute",
 function (line, tag) {
 var attr = JU.PT.getQuotedAttribute (line, tag);
 return (attr == null ? "" : attr);
 }, "~S,~S");
-Clazz_overrideMethod (c$, "getRecord", 
+Clazz_overrideMethod (c$, "getRecord",
 function (key) {
 if (this.line == null || this.line.indexOf (key) < 0) return null;
 var s = this.line;
@@ -14846,7 +14846,7 @@ while (s.indexOf (">") < 0) s += " " + this.readLine ();
 
 return this.line = s;
 }, "~S");
-Clazz_overrideMethod (c$, "readModels", 
+Clazz_overrideMethod (c$, "readModels",
 function () {
 if (!this.findRecord ("Models")) return false;
 this.line = "";
@@ -14860,7 +14860,7 @@ isFirst = false;
 }
 return true;
 });
-Clazz_overrideMethod (c$, "readACDMolFile", 
+Clazz_overrideMethod (c$, "readACDMolFile",
 function () {
 var sb =  new JU.SB ();
 sb.append (this.line.substring (this.line.indexOf ("=") + 1)).appendC ('\n');
@@ -14868,7 +14868,7 @@ while (this.readLine () != null && !this.line.contains ("$$$$")) sb.append (this
 
 return JU.PT.rep (sb.toString (), "  $$ Empty String", "");
 });
-Clazz_overrideMethod (c$, "readACDAssignments", 
+Clazz_overrideMethod (c$, "readACDAssignments",
 function (nPoints, isPeakAssignment) {
 var list =  new JU.Lst ();
 try {
@@ -14900,7 +14900,7 @@ throw e;
 }
 return list;
 }, "~N,~B");
-Clazz_overrideMethod (c$, "setACDAssignments", 
+Clazz_overrideMethod (c$, "setACDAssignments",
 function (model, mytype, peakCount, acdlist, molFile) {
 try {
 if (peakCount >= 0) this.peakIndex =  Clazz_newIntArray (-1, [peakCount]);
@@ -14955,7 +14955,7 @@ throw e;
 }
 }
 }, "~S,~S,~N,JU.Lst,~S");
-Clazz_defineMethod (c$, "fixACDAtomList", 
+Clazz_defineMethod (c$, "fixACDAtomList",
  function (atoms, zzcMap, nAtoms) {
 atoms = atoms.trim ();
 var tokens = JU.PT.getTokens (atoms.$replace (';', ' '));
@@ -14977,11 +14977,11 @@ bs.set (JU.PT.parseInt (zzcMap.get (a)));
 var s = bs.toJSON ();
 return s.substring (1, s.length - 1);
 }, "~S,java.util.Map,~N");
-Clazz_defineMethod (c$, "getACDPeakWidth", 
+Clazz_defineMethod (c$, "getACDPeakWidth",
  function (type) {
 return (type.indexOf ("HNMR") >= 0 ? 0.05 : type.indexOf ("CNMR") >= 0 ? 1 : type.indexOf ("MASS") >= 0 ? 1 : 10);
 }, "~S");
-Clazz_overrideMethod (c$, "readPeaks", 
+Clazz_overrideMethod (c$, "readPeaks",
 function (isSignals, peakCount) {
 try {
 if (peakCount >= 0) this.peakIndex =  Clazz_newIntArray (-1, [peakCount]);
@@ -15016,7 +15016,7 @@ throw e;
 }
 }
 }, "~B,~N");
-Clazz_defineMethod (c$, "setPeakData", 
+Clazz_defineMethod (c$, "setPeakData",
  function (list, offset) {
 var nH = 0;
 var n = list.size ();
@@ -15039,7 +15039,7 @@ this.loader.addPeakData (info);
 this.loader.setSpectrumPeaks (nH, this.piUnitsX, this.piUnitsY);
 return n;
 }, "JU.Lst,~N");
-Clazz_defineMethod (c$, "getStringInfo", 
+Clazz_defineMethod (c$, "getStringInfo",
  function (file, title, mytype, model, atoms, htSets, key, list, more) {
 if ("HNMR".equals (mytype)) mytype = "1HNMR";
  else if ("CNMR".equals (mytype)) mytype = "13CNMR";
@@ -15059,7 +15059,7 @@ atoms = atoms.$replace (',', ' ');
 if (atoms.equals ("*")) atoms = "0:1000";
 bs.or (JU.BS.unescape ("({" + atoms + "})"));
 }}, "~S,~S,~S,~S,~S,java.util.Map,~S,JU.Lst,~S");
-Clazz_defineMethod (c$, "getModelData", 
+Clazz_defineMethod (c$, "getModelData",
  function (isFirst) {
 this.lastModel = this.thisModelID;
 this.thisModelID = this.getAttribute (this.line, "id");
@@ -15080,17 +15080,17 @@ while (this.readLine () != null && !this.line.contains ("</ModelData>")) sb.appe
 
 this.loader.processModelData (sb.toString (), this.thisModelID, modelType, this.baseModel, this.lastModel, NaN, this.vibScale, isFirst);
 }, "~B");
-Clazz_defineMethod (c$, "findRecord", 
+Clazz_defineMethod (c$, "findRecord",
  function (tag) {
 if (this.line == null) this.readLine ();
 if (this.line.indexOf ("<" + tag) < 0) this.line = this.loader.discardLinesUntilContains2 ("<" + tag, "##");
 return (this.line != null && this.line.indexOf ("<" + tag) >= 0);
 }, "~S");
-Clazz_defineMethod (c$, "readLine", 
+Clazz_defineMethod (c$, "readLine",
  function () {
 return this.line = this.loader.rd ();
 });
-Clazz_overrideMethod (c$, "setLine", 
+Clazz_overrideMethod (c$, "setLine",
 function (s) {
 this.line = s;
 }, "~S");
@@ -15143,33 +15143,33 @@ this.vwr = null;
 this.prevPanel = null;
 Clazz_instantialize (this, arguments);
 }, JSV.app, "JSVApp", null, [JSV.api.PanelListener, JSV.api.JSVAppInterface]);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (appletFrame, isJS) {
 this.appletFrame = appletFrame;
 this.initViewer (isJS);
 this.initParams (appletFrame.getParameter ("script"));
 }, "JSV.api.AppletFrame,~B");
-Clazz_defineMethod (c$, "initViewer", 
+Clazz_defineMethod (c$, "initViewer",
  function (isJS) {
 this.vwr =  new JSV.common.JSViewer (this, true, isJS);
 this.appletFrame.setDropTargetListener (this.isSigned (), this.vwr);
 var path = this.appletFrame.getDocumentBase ();
 JSV.common.JSVFileManager.setDocumentBase (this.vwr, path);
 }, "~B");
-Clazz_overrideMethod (c$, "isPro", 
+Clazz_overrideMethod (c$, "isPro",
 function () {
 return this.isSigned ();
 });
-Clazz_overrideMethod (c$, "isSigned", 
+Clazz_overrideMethod (c$, "isSigned",
 function () {
 {
 return true;
 }});
-Clazz_defineMethod (c$, "getAppletFrame", 
+Clazz_defineMethod (c$, "getAppletFrame",
 function () {
 return this.appletFrame;
 });
-Clazz_defineMethod (c$, "dispose", 
+Clazz_defineMethod (c$, "dispose",
 function () {
 try {
 this.vwr.dispose ();
@@ -15181,76 +15181,76 @@ throw e;
 }
 }
 });
-Clazz_overrideMethod (c$, "getPropertyAsJavaObject", 
+Clazz_overrideMethod (c$, "getPropertyAsJavaObject",
 function (key) {
 return this.vwr.getPropertyAsJavaObject (key);
 }, "~S");
-Clazz_overrideMethod (c$, "getPropertyAsJSON", 
+Clazz_overrideMethod (c$, "getPropertyAsJSON",
 function (key) {
 return JU.PT.toJSON (null, this.getPropertyAsJavaObject (key));
 }, "~S");
-Clazz_overrideMethod (c$, "getCoordinate", 
+Clazz_overrideMethod (c$, "getCoordinate",
 function () {
 return this.vwr.getCoordinate ();
 });
-Clazz_overrideMethod (c$, "loadInline", 
+Clazz_overrideMethod (c$, "loadInline",
 function (data) {
 this.siOpenDataOrFile (data, null, null, null, -1, -1, true, null, null);
 this.appletFrame.validateContent (3);
 }, "~S");
-Clazz_overrideMethod (c$, "exportSpectrum", 
+Clazz_overrideMethod (c$, "exportSpectrum",
 function (type, n) {
 return this.vwr.$export (type, n);
 }, "~S,~N");
-Clazz_overrideMethod (c$, "setFilePath", 
+Clazz_overrideMethod (c$, "setFilePath",
 function (tmpFilePath) {
 this.runScript ("load " + JU.PT.esc (tmpFilePath));
 }, "~S");
-Clazz_overrideMethod (c$, "setSpectrumNumber", 
+Clazz_overrideMethod (c$, "setSpectrumNumber",
 function (n) {
 this.runScript (JSV.common.ScriptToken.SPECTRUMNUMBER + " " + n);
 }, "~N");
-Clazz_overrideMethod (c$, "reversePlot", 
+Clazz_overrideMethod (c$, "reversePlot",
 function () {
 this.toggle (JSV.common.ScriptToken.REVERSEPLOT);
 });
-Clazz_overrideMethod (c$, "toggleGrid", 
+Clazz_overrideMethod (c$, "toggleGrid",
 function () {
 this.toggle (JSV.common.ScriptToken.GRIDON);
 });
-Clazz_overrideMethod (c$, "toggleCoordinate", 
+Clazz_overrideMethod (c$, "toggleCoordinate",
 function () {
 this.toggle (JSV.common.ScriptToken.COORDINATESON);
 });
-Clazz_overrideMethod (c$, "toggleIntegration", 
+Clazz_overrideMethod (c$, "toggleIntegration",
 function () {
 this.toggle (JSV.common.ScriptToken.INTEGRATE);
 });
-Clazz_defineMethod (c$, "toggle", 
+Clazz_defineMethod (c$, "toggle",
  function (st) {
 if (this.vwr.selectedPanel != null) this.runScript (st + " TOGGLE");
 }, "JSV.common.ScriptToken");
-Clazz_overrideMethod (c$, "addHighlight", 
+Clazz_overrideMethod (c$, "addHighlight",
 function (x1, x2, r, g, b, a) {
 this.runScript ("HIGHLIGHT " + x1 + " " + x2 + " " + r + " " + g + " " + b + " " + a);
 }, "~N,~N,~N,~N,~N,~N");
-Clazz_overrideMethod (c$, "removeHighlight", 
+Clazz_overrideMethod (c$, "removeHighlight",
 function (x1, x2) {
 this.runScript ("HIGHLIGHT " + x1 + " " + x2 + " OFF");
 }, "~N,~N");
-Clazz_overrideMethod (c$, "removeAllHighlights", 
+Clazz_overrideMethod (c$, "removeAllHighlights",
 function () {
 this.runScript ("HIGHLIGHT OFF");
 });
-Clazz_overrideMethod (c$, "syncScript", 
+Clazz_overrideMethod (c$, "syncScript",
 function (peakScript) {
 this.vwr.syncScript (peakScript);
 }, "~S");
-Clazz_overrideMethod (c$, "writeStatus", 
+Clazz_overrideMethod (c$, "writeStatus",
 function (msg) {
 JU.Logger.info (msg);
 }, "~S");
-Clazz_defineMethod (c$, "initParams", 
+Clazz_defineMethod (c$, "initParams",
 function (params) {
 this.vwr.parseInitScript (params);
 this.newAppletPanel ();
@@ -15259,25 +15259,25 @@ if (this.vwr.allowMenu) {
 this.vwr.closeSource (null);
 }this.runScriptNow (params);
 }, "~S");
-Clazz_defineMethod (c$, "newAppletPanel", 
+Clazz_defineMethod (c$, "newAppletPanel",
  function () {
 JU.Logger.info ("newAppletPanel");
 this.appletFrame.createMainPanel (this.vwr);
 });
-Clazz_overrideMethod (c$, "repaint", 
+Clazz_overrideMethod (c$, "repaint",
 function () {
 var applet = (this.vwr == null ? null : this.vwr.html5Applet);
 {
 applet && self.Jmol && Jmol._repaint &&(Jmol._repaint(applet,true));
 }});
-Clazz_defineMethod (c$, "updateJS", 
+Clazz_defineMethod (c$, "updateJS",
 function (width, height) {
 }, "~N,~N");
-Clazz_overrideMethod (c$, "runScriptNow", 
+Clazz_overrideMethod (c$, "runScriptNow",
 function (params) {
 return this.vwr.runScriptNow (params);
 }, "~S");
-Clazz_defineMethod (c$, "checkCallbacks", 
+Clazz_defineMethod (c$, "checkCallbacks",
  function () {
 if (this.coordCallbackFunctionName == null && this.peakCallbackFunctionName == null) return;
 var coord =  new JSV.common.Coordinate ();
@@ -15287,61 +15287,61 @@ var iSpec = this.vwr.mainPanel.getCurrentPanelIndex ();
 if (actualCoord == null) this.appletFrame.callToJavaScript (this.coordCallbackFunctionName,  Clazz_newArray (-1, [Double.$valueOf (coord.getXVal ()), Double.$valueOf (coord.getYVal ()), Integer.$valueOf (iSpec + 1)]));
  else this.appletFrame.callToJavaScript (this.peakCallbackFunctionName,  Clazz_newArray (-1, [Double.$valueOf (coord.getXVal ()), Double.$valueOf (coord.getYVal ()), Double.$valueOf (actualCoord.getXVal ()), Double.$valueOf (actualCoord.getYVal ()), Integer.$valueOf (iSpec + 1)]));
 });
-Clazz_defineMethod (c$, "doAdvanced", 
+Clazz_defineMethod (c$, "doAdvanced",
 function (filePath) {
 }, "~S");
-Clazz_overrideMethod (c$, "panelEvent", 
+Clazz_overrideMethod (c$, "panelEvent",
 function (eventObj) {
 if (Clazz_instanceOf (eventObj, JSV.common.PeakPickEvent)) {
 this.vwr.processPeakPickEvent (eventObj, false);
 } else if (Clazz_instanceOf (eventObj, JSV.common.ZoomEvent)) {
 } else if (Clazz_instanceOf (eventObj, JSV.common.SubSpecChangeEvent)) {
 }}, "~O");
-Clazz_overrideMethod (c$, "getSolnColour", 
+Clazz_overrideMethod (c$, "getSolnColour",
 function () {
 return this.vwr.getSolutionColorStr (true);
 });
-Clazz_defineMethod (c$, "updateJSView", 
+Clazz_defineMethod (c$, "updateJSView",
  function (msg) {
 var applet = this.vwr.html5Applet;
 var panel = (applet == null ? null : this.vwr.selectedPanel);
 {
 applet && applet._viewSet != null && applet._updateView(panel, msg);
 }}, "~S");
-Clazz_overrideMethod (c$, "syncToJmol", 
+Clazz_overrideMethod (c$, "syncToJmol",
 function (msg) {
 this.updateJSView (msg);
 if (this.syncCallbackFunctionName == null) return;
 JU.Logger.info ("JSVApp.syncToJmol JSV>Jmol " + msg);
 this.appletFrame.callToJavaScript (this.syncCallbackFunctionName,  Clazz_newArray (-1, [this.vwr.fullName, msg]));
 }, "~S");
-Clazz_overrideMethod (c$, "setVisible", 
+Clazz_overrideMethod (c$, "setVisible",
 function (b) {
 this.appletFrame.setPanelVisible (b);
 }, "~B");
-Clazz_overrideMethod (c$, "setCursor", 
+Clazz_overrideMethod (c$, "setCursor",
 function (id) {
 this.vwr.apiPlatform.setCursor (id, this.appletFrame);
 }, "~N");
-Clazz_overrideMethod (c$, "runScript", 
+Clazz_overrideMethod (c$, "runScript",
 function (script) {
 this.vwr.runScript (script);
 }, "~S");
-Clazz_overrideMethod (c$, "getScriptQueue", 
+Clazz_overrideMethod (c$, "getScriptQueue",
 function () {
 return this.vwr.scriptQueue;
 });
-Clazz_overrideMethod (c$, "siSetCurrentSource", 
+Clazz_overrideMethod (c$, "siSetCurrentSource",
 function (source) {
 this.vwr.currentSource = source;
 }, "JSV.source.JDXSource");
-Clazz_overrideMethod (c$, "siSendPanelChange", 
+Clazz_overrideMethod (c$, "siSendPanelChange",
 function () {
 if (this.vwr.selectedPanel === this.prevPanel) return;
 this.prevPanel = this.vwr.selectedPanel;
 this.vwr.sendPanelChange ();
 });
-Clazz_overrideMethod (c$, "siNewWindow", 
+Clazz_overrideMethod (c$, "siNewWindow",
 function (isSelected, fromFrame) {
 this.isNewWindow = isSelected;
 if (fromFrame) {
@@ -15349,21 +15349,21 @@ if (this.vwr.jsvpPopupMenu != null) this.vwr.jsvpPopupMenu.setSelected ("Window"
 } else {
 this.appletFrame.newWindow (isSelected);
 }}, "~B,~B");
-Clazz_overrideMethod (c$, "siValidateAndRepaint", 
+Clazz_overrideMethod (c$, "siValidateAndRepaint",
 function (isAll) {
 var pd = this.vwr.pd ();
 if (pd != null) pd.setTaintedAll ();
 this.appletFrame.validate ();
 this.repaint ();
 }, "~B");
-Clazz_overrideMethod (c$, "siSyncLoad", 
+Clazz_overrideMethod (c$, "siSyncLoad",
 function (filePath) {
 this.newAppletPanel ();
 JU.Logger.info ("JSVP syncLoad reading " + filePath);
 this.siOpenDataOrFile (null, null, null, filePath, -1, -1, false, null, null);
 this.appletFrame.validateContent (3);
 }, "~S");
-Clazz_overrideMethod (c$, "siOpenDataOrFile", 
+Clazz_overrideMethod (c$, "siOpenDataOrFile",
 function (data, name, specs, url, firstSpec, lastSpec, isAppend, script, id) {
 switch (this.vwr.openDataOrFile (data, name, specs, url, firstSpec, lastSpec, isAppend, id)) {
 case 0:
@@ -15378,11 +15378,11 @@ return;
 if (this.vwr.jsvpPopupMenu != null) this.vwr.jsvpPopupMenu.setCompoundMenu (this.vwr.panelNodes, this.vwr.allowCompoundMenu);
 JU.Logger.info (this.appletFrame.getAppletInfo () + " File " + this.vwr.currentSource.getFilePath () + " Loaded Successfully");
 }, "~O,~S,JU.Lst,~S,~N,~N,~B,~S,~S");
-Clazz_overrideMethod (c$, "siProcessCommand", 
+Clazz_overrideMethod (c$, "siProcessCommand",
 function (scriptItem) {
 this.vwr.runScriptNow (scriptItem);
 }, "~S");
-Clazz_overrideMethod (c$, "siSetSelectedPanel", 
+Clazz_overrideMethod (c$, "siSetSelectedPanel",
 function (jsvp) {
 this.vwr.mainPanel.setSelectedPanel (this.vwr, jsvp, this.vwr.panelNodes);
 this.vwr.selectedPanel = jsvp;
@@ -15395,7 +15395,7 @@ if (jsvp != null) {
 jsvp.setEnabled (true);
 jsvp.setFocusable (true);
 }}, "JSV.api.JSVPanel");
-Clazz_overrideMethod (c$, "siExecSetCallback", 
+Clazz_overrideMethod (c$, "siExecSetCallback",
 function (st, value) {
 switch (st) {
 case JSV.common.ScriptToken.APPLETREADYCALLBACKFUNCTIONNAME:
@@ -15415,36 +15415,36 @@ this.coordCallbackFunctionName = value;
 break;
 }
 }, "JSV.common.ScriptToken,~S");
-Clazz_overrideMethod (c$, "siLoaded", 
+Clazz_overrideMethod (c$, "siLoaded",
 function (value) {
 if (this.loadFileCallbackFunctionName != null) this.appletFrame.callToJavaScript (this.loadFileCallbackFunctionName,  Clazz_newArray (-1, [this.vwr.appletName, value]));
 this.updateJSView (null);
 return null;
 }, "~S");
-Clazz_overrideMethod (c$, "siExecHidden", 
+Clazz_overrideMethod (c$, "siExecHidden",
 function (b) {
 }, "~B");
-Clazz_overrideMethod (c$, "siExecScriptComplete", 
+Clazz_overrideMethod (c$, "siExecScriptComplete",
 function (msg, isOK) {
 if (!isOK) this.vwr.showMessage (msg);
 this.siValidateAndRepaint (false);
 }, "~S,~B");
-Clazz_overrideMethod (c$, "siUpdateBoolean", 
+Clazz_overrideMethod (c$, "siUpdateBoolean",
 function (st, TF) {
 }, "JSV.common.ScriptToken,~B");
-Clazz_overrideMethod (c$, "siCheckCallbacks", 
+Clazz_overrideMethod (c$, "siCheckCallbacks",
 function (title) {
 this.checkCallbacks ();
 }, "~S");
-Clazz_overrideMethod (c$, "siNodeSet", 
+Clazz_overrideMethod (c$, "siNodeSet",
 function (panelNode) {
 this.appletFrame.validateContent (2);
 this.siValidateAndRepaint (false);
 }, "JSV.common.PanelNode");
-Clazz_overrideMethod (c$, "siSourceClosed", 
+Clazz_overrideMethod (c$, "siSourceClosed",
 function (source) {
 }, "JSV.source.JDXSource");
-Clazz_overrideMethod (c$, "siGetNewJSVPanel", 
+Clazz_overrideMethod (c$, "siGetNewJSVPanel",
 function (spec) {
 if (spec == null) {
 this.vwr.initialEndIndex = this.vwr.initialStartIndex = -1;
@@ -15456,7 +15456,7 @@ jsvp.getPanelData ().addListener (this);
 this.vwr.parameters.setFor (jsvp, null, true);
 return jsvp;
 }, "JSV.common.Spectrum");
-Clazz_overrideMethod (c$, "siGetNewJSVPanel2", 
+Clazz_overrideMethod (c$, "siGetNewJSVPanel2",
 function (specs) {
 if (specs == null) {
 this.vwr.initialEndIndex = this.vwr.initialStartIndex = -1;
@@ -15467,33 +15467,33 @@ jsvp.getPanelData ().addListener (this);
 this.vwr.parameters.setFor (jsvp, null, true);
 return jsvp;
 }, "JU.Lst");
-Clazz_overrideMethod (c$, "siSetPropertiesFromPreferences", 
+Clazz_overrideMethod (c$, "siSetPropertiesFromPreferences",
 function (jsvp, includeMeasures) {
 this.vwr.checkAutoIntegrate ();
 }, "JSV.api.JSVPanel,~B");
-Clazz_overrideMethod (c$, "siSetLoaded", 
+Clazz_overrideMethod (c$, "siSetLoaded",
 function (fileName, filePath) {
 }, "~S,~S");
-Clazz_overrideMethod (c$, "siSetMenuEnables", 
+Clazz_overrideMethod (c$, "siSetMenuEnables",
 function (node, isSplit) {
 }, "JSV.common.PanelNode,~B");
-Clazz_overrideMethod (c$, "siUpdateRecentMenus", 
+Clazz_overrideMethod (c$, "siUpdateRecentMenus",
 function (filePath) {
 }, "~S");
-Clazz_overrideMethod (c$, "siExecTest", 
+Clazz_overrideMethod (c$, "siExecTest",
 function (value) {
 var data = "";
 this.loadInline (data);
 }, "~S");
-Clazz_overrideMethod (c$, "print", 
+Clazz_overrideMethod (c$, "print",
 function (fileName) {
 return this.vwr.print (fileName);
 }, "~S");
-Clazz_overrideMethod (c$, "checkScript", 
+Clazz_overrideMethod (c$, "checkScript",
 function (script) {
 return this.vwr.checkScript (script);
 }, "~S");
-c$.getAppletInfo = Clazz_defineMethod (c$, "getAppletInfo", 
+c$.getAppletInfo = Clazz_defineMethod (c$, "getAppletInfo",
 function () {
 return "JSpecView Applet " + JSV.common.JSVersion.VERSION + "\n\n" + "Authors:\nProf. Robert M. Hanson,\nD. Facey, K. Bryan, C. Walters, Prof. Robert J. Lancashire and\nvolunteer developers through sourceforge.";
 });
@@ -15512,15 +15512,15 @@ this.isMouseDown = false;
 this.disposed = false;
 Clazz_instantialize (this, arguments);
 }, JSV.app, "GenericMouse", null, javajs.awt.GenericMouseInterface);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (jsvp) {
 this.jsvp = jsvp;
 this.pd = jsvp.getPanelData ();
 }, "JSV.api.JSVPanel");
-Clazz_overrideMethod (c$, "clear", 
+Clazz_overrideMethod (c$, "clear",
 function () {
 });
-Clazz_overrideMethod (c$, "processEvent", 
+Clazz_overrideMethod (c$, "processEvent",
 function (id, x, y, modifiers, time) {
 if (this.pd == null) {
 if (!this.disposed && id == 501 && (modifiers & 4) != 0) this.jsvp.showMenu (x, y);
@@ -15558,42 +15558,42 @@ return false;
 }
 return true;
 }, "~N,~N,~N,~N,~N");
-Clazz_defineMethod (c$, "mouseEntered", 
+Clazz_defineMethod (c$, "mouseEntered",
 function (e) {
 this.entered (e.getWhen (), e.getX (), e.getY ());
 }, "java.awt.event.MouseEvent");
-Clazz_defineMethod (c$, "mouseExited", 
+Clazz_defineMethod (c$, "mouseExited",
 function (e) {
 this.exited (e.getWhen (), e.getX (), e.getY ());
 }, "java.awt.event.MouseEvent");
-Clazz_defineMethod (c$, "mouseMoved", 
+Clazz_defineMethod (c$, "mouseMoved",
 function (e) {
 this.moved (e.getWhen (), e.getX (), e.getY (), e.getModifiers ());
 }, "java.awt.event.MouseEvent");
-Clazz_defineMethod (c$, "mousePressed", 
+Clazz_defineMethod (c$, "mousePressed",
 function (e) {
 this.pressed (e.getWhen (), e.getX (), e.getY (), e.getModifiers (), e.isPopupTrigger ());
 }, "java.awt.event.MouseEvent");
-Clazz_defineMethod (c$, "mouseDragged", 
+Clazz_defineMethod (c$, "mouseDragged",
 function (e) {
 var modifiers = e.getModifiers ();
 if ((modifiers & 28) == 0) modifiers |= 16;
 this.dragged (e.getWhen (), e.getX (), e.getY (), modifiers);
 }, "java.awt.event.MouseEvent");
-Clazz_defineMethod (c$, "mouseReleased", 
+Clazz_defineMethod (c$, "mouseReleased",
 function (e) {
 this.released (e.getWhen (), e.getX (), e.getY (), e.getModifiers ());
 }, "java.awt.event.MouseEvent");
-Clazz_defineMethod (c$, "mouseClicked", 
+Clazz_defineMethod (c$, "mouseClicked",
 function (e) {
 this.clicked (e.getWhen (), e.getX (), e.getY (), e.getModifiers (), e.getClickCount ());
 }, "java.awt.event.MouseEvent");
-Clazz_defineMethod (c$, "mouseWheelMoved", 
+Clazz_defineMethod (c$, "mouseWheelMoved",
 function (e) {
 e.consume ();
 this.wheeled (e.getWhen (), e.getWheelRotation (), e.getModifiers () | 32);
 }, "java.awt.event.MouseWheelEvent");
-Clazz_defineMethod (c$, "keyTyped", 
+Clazz_defineMethod (c$, "keyTyped",
 function (ke) {
 if (this.pd == null) return;
 var ch = ke.getKeyChar ();
@@ -15601,37 +15601,37 @@ var modifiers = ke.getModifiers ();
 if (JU.Logger.debuggingHigh || true) JU.Logger.info ("MouseManager keyTyped: " + ch + " " + (0 + ch.charCodeAt (0)) + " " + modifiers);
 if (this.pd.keyTyped (ch.charCodeAt (0), modifiers)) ke.consume ();
 }, "java.awt.event.KeyEvent");
-Clazz_defineMethod (c$, "keyPressed", 
+Clazz_defineMethod (c$, "keyPressed",
 function (ke) {
 if (this.pd != null && this.pd.keyPressed (ke.getKeyCode (), ke.getModifiers ())) ke.consume ();
 }, "java.awt.event.KeyEvent");
-Clazz_defineMethod (c$, "keyReleased", 
+Clazz_defineMethod (c$, "keyReleased",
 function (ke) {
 if (this.pd != null) this.pd.keyReleased (ke.getKeyCode ());
 }, "java.awt.event.KeyEvent");
-Clazz_defineMethod (c$, "entered", 
+Clazz_defineMethod (c$, "entered",
 function (time, x, y) {
 if (this.pd != null) this.pd.mouseEnterExit (time, x, y, false);
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "exited", 
+Clazz_defineMethod (c$, "exited",
 function (time, x, y) {
 if (this.pd != null) this.pd.mouseEnterExit (time, x, y, true);
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "clicked", 
+Clazz_defineMethod (c$, "clicked",
 function (time, x, y, modifiers, clickCount) {
 if (this.pd != null) this.pd.mouseAction (2, time, x, y, 1, modifiers);
 }, "~N,~N,~N,~N,~N");
-Clazz_defineMethod (c$, "moved", 
+Clazz_defineMethod (c$, "moved",
 function (time, x, y, modifiers) {
 if (this.pd == null) return;
 if (this.isMouseDown) this.pd.mouseAction (1, time, x, y, 0, JSV.app.GenericMouse.applyLeftMouse (modifiers));
  else this.pd.mouseAction (0, time, x, y, 0, modifiers & -29);
 }, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "wheeled", 
+Clazz_defineMethod (c$, "wheeled",
 function (time, rotation, modifiers) {
 if (this.pd != null) this.pd.mouseAction (3, time, 0, rotation, 0, modifiers);
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "pressed", 
+Clazz_defineMethod (c$, "pressed",
 function (time, x, y, modifiers, isPopupTrigger) {
 if (this.pd == null) {
 if (!this.disposed) this.jsvp.showMenu (x, y);
@@ -15639,26 +15639,26 @@ return;
 }this.isMouseDown = true;
 this.pd.mouseAction (4, time, x, y, 0, modifiers);
 }, "~N,~N,~N,~N,~B");
-Clazz_defineMethod (c$, "released", 
+Clazz_defineMethod (c$, "released",
 function (time, x, y, modifiers) {
 if (this.pd == null) return;
 this.isMouseDown = false;
 this.pd.mouseAction (5, time, x, y, 0, modifiers);
 }, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "dragged", 
+Clazz_defineMethod (c$, "dragged",
 function (time, x, y, modifiers) {
 if (this.pd == null) return;
 if ((modifiers & 20) == 20) modifiers = modifiers & -5 | 2;
 this.pd.mouseAction (1, time, x, y, 0, modifiers);
 }, "~N,~N,~N,~N");
-c$.applyLeftMouse = Clazz_defineMethod (c$, "applyLeftMouse", 
+c$.applyLeftMouse = Clazz_defineMethod (c$, "applyLeftMouse",
 function (modifiers) {
 return ((modifiers & 28) == 0) ? (modifiers | 16) : modifiers;
 }, "~N");
-Clazz_overrideMethod (c$, "processTwoPointGesture", 
+Clazz_overrideMethod (c$, "processTwoPointGesture",
 function (touches) {
 }, "~A");
-Clazz_overrideMethod (c$, "dispose", 
+Clazz_overrideMethod (c$, "dispose",
 function () {
 this.pd = null;
 this.jsvp = null;
@@ -15675,7 +15675,7 @@ this.viewerOptions = null;
 this.htParams = null;
 Clazz_instantialize (this, arguments);
 }, JSV.appletjs, "JSVApplet", null, [JSV.api.JSVAppletInterface, JSV.api.AppletFrame, javajs.api.JSInterface]);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (viewerOptions) {
 if (viewerOptions == null) viewerOptions =  new java.util.Hashtable ();
 this.viewerOptions = viewerOptions;
@@ -15684,13 +15684,13 @@ for (var entry, $entry = viewerOptions.entrySet ().iterator (); $entry.hasNext (
 
 this.init ();
 }, "java.util.Map");
-Clazz_defineMethod (c$, "init", 
+Clazz_defineMethod (c$, "init",
 function () {
 this.app =  new JSV.app.JSVApp (this, true);
 this.initViewer ();
 if (this.app.appletReadyCallbackFunctionName != null && this.viewer.fullName != null) this.callToJavaScript (this.app.appletReadyCallbackFunctionName,  Clazz_newArray (-1, [this.viewer.appletName, this.viewer.fullName, Boolean.TRUE, this]));
 });
-Clazz_defineMethod (c$, "initViewer", 
+Clazz_defineMethod (c$, "initViewer",
 function () {
 this.viewer = this.app.vwr;
 this.setLogging ();
@@ -15701,156 +15701,156 @@ o = document.getElementById(o);
 }this.viewer.setDisplay (o);
 JU.Logger.info (this.getAppletInfo ());
 });
-Clazz_defineMethod (c$, "setLogging", 
+Clazz_defineMethod (c$, "setLogging",
  function () {
 var iLevel = (this.getValue ("logLevel", (this.getBooleanValue ("debug", false) ? "5" : "4"))).charCodeAt (0) - 48;
 if (iLevel != 4) System.out.println ("setting logLevel=" + iLevel + " -- To change, use script \"set logLevel [0-5]\"");
 JU.Logger.setLogLevel (iLevel);
 });
-Clazz_defineMethod (c$, "getParameter", 
+Clazz_defineMethod (c$, "getParameter",
 function (paramName) {
 var o = this.htParams.get (paramName.toLowerCase ());
 return (o == null ? null :  String.instantialize (o.toString ()));
 }, "~S");
-Clazz_defineMethod (c$, "getBooleanValue", 
+Clazz_defineMethod (c$, "getBooleanValue",
  function (propertyName, defaultValue) {
 var value = this.getValue (propertyName, defaultValue ? "true" : "");
 return (value.equalsIgnoreCase ("true") || value.equalsIgnoreCase ("on") || value.equalsIgnoreCase ("yes"));
 }, "~S,~B");
-Clazz_defineMethod (c$, "getValue", 
+Clazz_defineMethod (c$, "getValue",
  function (propertyName, defaultValue) {
 var stringValue = this.getParameter (propertyName);
 System.out.println ("getValue " + propertyName + " = " + stringValue);
 if (stringValue != null) return stringValue;
 return defaultValue;
 }, "~S,~S");
-Clazz_overrideMethod (c$, "isPro", 
+Clazz_overrideMethod (c$, "isPro",
 function () {
 return this.app.isPro ();
 });
-Clazz_overrideMethod (c$, "isSigned", 
+Clazz_overrideMethod (c$, "isSigned",
 function () {
 return this.app.isSigned ();
 });
-Clazz_overrideMethod (c$, "finalize", 
+Clazz_overrideMethod (c$, "finalize",
 function () {
 System.out.println ("JSpecView " + this + " finalized");
 });
-Clazz_overrideMethod (c$, "destroy", 
+Clazz_overrideMethod (c$, "destroy",
 function () {
 this.app.dispose ();
 this.app = null;
 });
-Clazz_defineMethod (c$, "getParameter", 
+Clazz_defineMethod (c$, "getParameter",
 function (key, def) {
 return this.isStandalone ? System.getProperty (key, def) : (this.getParameter (key) != null ? this.getParameter (key) : def);
 }, "~S,~S");
-Clazz_overrideMethod (c$, "getAppletInfo", 
+Clazz_overrideMethod (c$, "getAppletInfo",
 function () {
 return JSV.app.JSVApp.getAppletInfo ();
 });
-Clazz_overrideMethod (c$, "getSolnColour", 
+Clazz_overrideMethod (c$, "getSolnColour",
 function () {
 return this.app.getSolnColour ();
 });
-Clazz_overrideMethod (c$, "getCoordinate", 
+Clazz_overrideMethod (c$, "getCoordinate",
 function () {
 return this.app.getCoordinate ();
 });
-Clazz_overrideMethod (c$, "loadInline", 
+Clazz_overrideMethod (c$, "loadInline",
 function (data) {
 this.app.loadInline (data);
 }, "~S");
-Clazz_defineMethod (c$, "$export", 
+Clazz_defineMethod (c$, "$export",
 function (type, n) {
 return this.app.exportSpectrum (type, n);
 }, "~S,~N");
-Clazz_overrideMethod (c$, "exportSpectrum", 
+Clazz_overrideMethod (c$, "exportSpectrum",
 function (type, n) {
 return this.app.exportSpectrum (type, n);
 }, "~S,~N");
-Clazz_overrideMethod (c$, "setFilePath", 
+Clazz_overrideMethod (c$, "setFilePath",
 function (tmpFilePath) {
 this.app.setFilePath (tmpFilePath);
 }, "~S");
-Clazz_overrideMethod (c$, "setSpectrumNumber", 
+Clazz_overrideMethod (c$, "setSpectrumNumber",
 function (i) {
 this.app.setSpectrumNumber (i);
 }, "~N");
-Clazz_overrideMethod (c$, "toggleGrid", 
+Clazz_overrideMethod (c$, "toggleGrid",
 function () {
 this.app.toggleGrid ();
 });
-Clazz_overrideMethod (c$, "toggleCoordinate", 
+Clazz_overrideMethod (c$, "toggleCoordinate",
 function () {
 this.app.toggleCoordinate ();
 });
-Clazz_overrideMethod (c$, "toggleIntegration", 
+Clazz_overrideMethod (c$, "toggleIntegration",
 function () {
 this.app.toggleIntegration ();
 });
-Clazz_overrideMethod (c$, "addHighlight", 
+Clazz_overrideMethod (c$, "addHighlight",
 function (x1, x2, r, g, b, a) {
 this.app.addHighlight (x1, x2, r, g, b, a);
 }, "~N,~N,~N,~N,~N,~N");
-Clazz_overrideMethod (c$, "removeAllHighlights", 
+Clazz_overrideMethod (c$, "removeAllHighlights",
 function () {
 this.app.removeAllHighlights ();
 });
-Clazz_overrideMethod (c$, "removeHighlight", 
+Clazz_overrideMethod (c$, "removeHighlight",
 function (x1, x2) {
 this.app.removeHighlight (x1, x2);
 }, "~N,~N");
-Clazz_overrideMethod (c$, "reversePlot", 
+Clazz_overrideMethod (c$, "reversePlot",
 function () {
 this.app.reversePlot ();
 });
-Clazz_defineMethod (c$, "script", 
+Clazz_defineMethod (c$, "script",
 function (script) {
 this.app.initParams (script);
 }, "~S");
-Clazz_overrideMethod (c$, "runScript", 
+Clazz_overrideMethod (c$, "runScript",
 function (script) {
 this.app.runScript (script);
 }, "~S");
-Clazz_overrideMethod (c$, "syncScript", 
+Clazz_overrideMethod (c$, "syncScript",
 function (peakScript) {
 this.app.syncScript (peakScript);
 }, "~S");
-Clazz_overrideMethod (c$, "writeStatus", 
+Clazz_overrideMethod (c$, "writeStatus",
 function (msg) {
 this.app.writeStatus (msg);
 }, "~S");
-Clazz_overrideMethod (c$, "getPropertyAsJavaObject", 
+Clazz_overrideMethod (c$, "getPropertyAsJavaObject",
 function (key) {
 return this.app.getPropertyAsJavaObject (key);
 }, "~S");
-Clazz_overrideMethod (c$, "getPropertyAsJSON", 
+Clazz_overrideMethod (c$, "getPropertyAsJSON",
 function (key) {
 return this.app.getPropertyAsJSON (key);
 }, "~S");
-Clazz_overrideMethod (c$, "runScriptNow", 
+Clazz_overrideMethod (c$, "runScriptNow",
 function (script) {
 return this.app.runScriptNow (script);
 }, "~S");
-Clazz_overrideMethod (c$, "print", 
+Clazz_overrideMethod (c$, "print",
 function (fileName) {
 return this.app.print (fileName);
 }, "~S");
-Clazz_overrideMethod (c$, "setDropTargetListener", 
+Clazz_overrideMethod (c$, "setDropTargetListener",
 function (isSigned, viewer) {
 }, "~B,JSV.common.JSViewer");
-Clazz_overrideMethod (c$, "validateContent", 
+Clazz_overrideMethod (c$, "validateContent",
 function (mode) {
 }, "~N");
-Clazz_overrideMethod (c$, "createMainPanel", 
+Clazz_overrideMethod (c$, "createMainPanel",
 function (viewer) {
 viewer.mainPanel =  new JSV.js2d.JsMainPanel ();
 }, "JSV.common.JSViewer");
-Clazz_overrideMethod (c$, "newWindow", 
+Clazz_overrideMethod (c$, "newWindow",
 function (isSelected) {
 }, "~B");
-Clazz_overrideMethod (c$, "callToJavaScript", 
+Clazz_overrideMethod (c$, "callToJavaScript",
 function (callback, data) {
 var tokens = JU.PT.split (callback, ".");
 {
@@ -15864,17 +15864,17 @@ return o(data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8]
 System.out.println(callback + " failed " + e);
 }
 }}, "~S,~A");
-Clazz_overrideMethod (c$, "setPanelVisible", 
+Clazz_overrideMethod (c$, "setPanelVisible",
 function (b) {
 }, "~B");
-Clazz_overrideMethod (c$, "getJSVPanel", 
+Clazz_overrideMethod (c$, "getJSVPanel",
 function (viewer, specs) {
 return (specs == null ? JSV.js2d.JsPanel.getEmptyPanel (viewer) : JSV.js2d.JsPanel.getPanelMany (viewer, specs));
 }, "JSV.common.JSViewer,JU.Lst");
-Clazz_overrideMethod (c$, "setVisible", 
+Clazz_overrideMethod (c$, "setVisible",
 function (b) {
 }, "~B");
-Clazz_overrideMethod (c$, "getDocumentBase", 
+Clazz_overrideMethod (c$, "getDocumentBase",
 function () {
 try {
 return  new java.net.URL (Clazz_castNullAs ("java.net.URL"), this.viewerOptions.get ("documentBase"), null);
@@ -15886,67 +15886,67 @@ throw e;
 }
 }
 });
-Clazz_overrideMethod (c$, "repaint", 
+Clazz_overrideMethod (c$, "repaint",
 function () {
 });
-Clazz_overrideMethod (c$, "validate", 
+Clazz_overrideMethod (c$, "validate",
 function () {
 });
-Clazz_overrideMethod (c$, "doExitJmol", 
+Clazz_overrideMethod (c$, "doExitJmol",
 function () {
 });
-Clazz_overrideMethod (c$, "getApp", 
+Clazz_overrideMethod (c$, "getApp",
 function () {
 return this.app;
 });
-Clazz_overrideMethod (c$, "setStatusDragDropped", 
+Clazz_overrideMethod (c$, "setStatusDragDropped",
 function (mode, x, y, fileName) {
 return true;
 }, "~N,~N,~N,~S");
-Clazz_overrideMethod (c$, "cacheFileByName", 
+Clazz_overrideMethod (c$, "cacheFileByName",
 function (fileName, isAdd) {
 return 0;
 }, "~S,~B");
-Clazz_overrideMethod (c$, "cachePut", 
+Clazz_overrideMethod (c$, "cachePut",
 function (key, data) {
 }, "~S,~O");
-Clazz_overrideMethod (c$, "getFullName", 
+Clazz_overrideMethod (c$, "getFullName",
 function () {
 return this.app.vwr.fullName;
 });
-Clazz_overrideMethod (c$, "processMouseEvent", 
+Clazz_overrideMethod (c$, "processMouseEvent",
 function (id, x, y, modifiers, time) {
 return this.app.vwr.processMouseEvent (id, x, y, modifiers, time);
 }, "~N,~N,~N,~N,~N");
-Clazz_overrideMethod (c$, "setDisplay", 
+Clazz_overrideMethod (c$, "setDisplay",
 function (canvas) {
 this.app.vwr.setDisplay (canvas);
 }, "~O");
-Clazz_overrideMethod (c$, "startHoverWatcher", 
+Clazz_overrideMethod (c$, "startHoverWatcher",
 function (enable) {
 }, "~B");
-Clazz_overrideMethod (c$, "update", 
+Clazz_overrideMethod (c$, "update",
 function () {
 this.app.vwr.updateJS ();
 });
-Clazz_defineMethod (c$, "openFile", 
+Clazz_defineMethod (c$, "openFile",
 function (fileName) {
 this.app.vwr.openFile (fileName, true);
 return null;
 }, "~S");
-Clazz_overrideMethod (c$, "openFileAsyncSpecial", 
+Clazz_overrideMethod (c$, "openFileAsyncSpecial",
 function (fileName, flags) {
 this.app.vwr.openFileAsyncSpecial (fileName, flags);
 }, "~S,~N");
-Clazz_overrideMethod (c$, "processTwoPointGesture", 
+Clazz_overrideMethod (c$, "processTwoPointGesture",
 function (touches) {
 this.app.vwr.processTwoPointGesture (touches);
 }, "~A");
-Clazz_overrideMethod (c$, "setScreenDimension", 
+Clazz_overrideMethod (c$, "setScreenDimension",
 function (width, height) {
 this.app.vwr.setScreenDimension (width, height);
 }, "~N,~N");
-Clazz_overrideMethod (c$, "checkScript", 
+Clazz_overrideMethod (c$, "checkScript",
 function (script) {
 var s = this.app.checkScript (script);
 if (s != null) System.out.println (s);
@@ -15964,7 +15964,7 @@ this.offsetY = 0;
 this.spec = null;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "Annotation", JSV.common.Coordinate);
-Clazz_defineMethod (c$, "setA", 
+Clazz_defineMethod (c$, "setA",
 function (x, y, spec, text, isPixels, is2D, offsetX, offsetY) {
 this.set (x, y);
 this.spec = spec;
@@ -15975,24 +15975,24 @@ this.offsetX = offsetX;
 this.offsetY = offsetY;
 return this;
 }, "~N,~N,JSV.common.Spectrum,~S,~B,~B,~N,~N");
-Clazz_defineMethod (c$, "setSpec", 
+Clazz_defineMethod (c$, "setSpec",
 function (spec) {
 this.spec = spec;
 return this;
 }, "JSV.common.Spectrum");
-Clazz_defineMethod (c$, "addSpecShift", 
+Clazz_defineMethod (c$, "addSpecShift",
 function (dx) {
 this.setXVal (this.getXVal () + dx);
 }, "~N");
-Clazz_defineMethod (c$, "isPixels", 
+Clazz_defineMethod (c$, "isPixels",
 function () {
 return this.$isPixels;
 });
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return "[" + this.getXVal () + ", " + this.getYVal () + "," + this.text + "]";
 });
-c$.getColoredAnnotation = Clazz_defineMethod (c$, "getColoredAnnotation", 
+c$.getColoredAnnotation = Clazz_defineMethod (c$, "getColoredAnnotation",
 function (g2d, spec, args, lastAnnotation) {
 var arg;
 var xPt = 0;
@@ -16076,15 +16076,15 @@ c$ = Clazz_decorateAsClass (function () {
 this.color = null;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "ColoredAnnotation", JSV.common.Annotation);
-Clazz_defineMethod (c$, "getColor", 
+Clazz_defineMethod (c$, "getColor",
 function () {
 return this.color;
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 Clazz_superConstructor (this, JSV.common.ColoredAnnotation, []);
 });
-Clazz_defineMethod (c$, "setCA", 
+Clazz_defineMethod (c$, "setCA",
 function (x, y, spec, text, color, isPixels, is2D, offsetX, offsetY) {
 this.setA (x, y, spec, text, isPixels, is2D, offsetX, offsetY);
 this.color = color;
@@ -16101,7 +16101,7 @@ this.plotColors = null;
 this.isDefault = false;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "ColorParameters", JSV.common.Parameters);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 Clazz_superConstructor (this, JSV.common.ColorParameters, []);
 JSV.common.ColorParameters.BLACK = this.getColor3 (0, 0, 0);
@@ -16127,7 +16127,7 @@ for (var i = 0; i < 8; i++) JSV.common.ColorParameters.defaultPlotColors[i] = th
 this.plotColors =  new Array (8);
 System.arraycopy (JSV.common.ColorParameters.defaultPlotColors, 0, this.plotColors, 0, 8);
 });
-Clazz_defineMethod (c$, "setFor", 
+Clazz_defineMethod (c$, "setFor",
 function (jsvp, ds, includeMeasures) {
 if (ds == null) ds = this;
 if (includeMeasures) jsvp.getPanelData ().setBooleans (ds, null);
@@ -16135,7 +16135,7 @@ var pd = jsvp.getPanelData ();
 if (pd.getCurrentPlotColor (1) != null) pd.setPlotColors (this.plotColors);
 pd.setColorOrFont (ds, null);
 }, "JSV.api.JSVPanel,JSV.common.ColorParameters,~B");
-Clazz_defineMethod (c$, "set", 
+Clazz_defineMethod (c$, "set",
 function (pd, st, value) {
 var param = null;
 switch (st) {
@@ -16167,31 +16167,31 @@ break;
 if (pd == null) return;
 if (param != null) pd.setColorOrFont (this, st);
 }, "JSV.common.PanelData,JSV.common.ScriptToken,~S");
-Clazz_defineMethod (c$, "getElementColor", 
+Clazz_defineMethod (c$, "getElementColor",
 function (st) {
 return this.elementColors.get (st);
 }, "JSV.common.ScriptToken");
-Clazz_defineMethod (c$, "setColor", 
+Clazz_defineMethod (c$, "setColor",
 function (st, color) {
 if (color != null) this.elementColors.put (st, color);
 return color;
 }, "JSV.common.ScriptToken,javajs.api.GenericColor");
-Clazz_defineMethod (c$, "copy", 
+Clazz_defineMethod (c$, "copy",
 function () {
 return this.copy (this.name);
 });
-Clazz_defineMethod (c$, "setElementColors", 
+Clazz_defineMethod (c$, "setElementColors",
 function (p) {
 this.displayFontName = p.displayFontName;
 for (var entry, $entry = p.elementColors.entrySet ().iterator (); $entry.hasNext () && ((entry = $entry.next ()) || true);) this.setColor (entry.getKey (), entry.getValue ());
 
 return this;
 }, "JSV.common.ColorParameters");
-Clazz_defineMethod (c$, "getColorFromString", 
+Clazz_defineMethod (c$, "getColorFromString",
 function (name) {
 return this.getColor1 (JU.CU.getArgbFromString (name));
 }, "~S");
-Clazz_defineMethod (c$, "getPlotColors", 
+Clazz_defineMethod (c$, "getPlotColors",
 function (plotColorsStr) {
 if (plotColorsStr == null) {
 this.plotColors[0] = this.getElementColor (JSV.common.ScriptToken.PLOTCOLOR);
@@ -16210,11 +16210,11 @@ throw e;
 }
 return colors.toArray ( new Array (colors.size ()));
 }, "~S");
-Clazz_defineMethod (c$, "setColorFromString", 
+Clazz_defineMethod (c$, "setColorFromString",
 function (st, value) {
 return this.setColor (st, this.getColorFromString (value));
 }, "JSV.common.ScriptToken,~S");
-Clazz_defineMethod (c$, "getFontName", 
+Clazz_defineMethod (c$, "getFontName",
 function (st, value) {
 var isValid = this.isValidFontName (value);
 switch (st) {
@@ -16237,7 +16237,7 @@ c$.defaultPlotColorNames = c$.prototype.defaultPlotColorNames =  Clazz_newArray 
 });
 Clazz_declarePackage ("JSV.common");
 c$ = Clazz_declareType (JSV.common, "CoordComparator", null, java.util.Comparator);
-Clazz_overrideMethod (c$, "compare", 
+Clazz_overrideMethod (c$, "compare",
 function (c1, c2) {
 return (c1.getXVal () > c2.getXVal () ? 1 : c1.getXVal () < c2.getXVal () ? -1 : 0);
 }, "JSV.common.Coordinate,JSV.common.Coordinate");
@@ -16248,56 +16248,56 @@ this.xVal = 0;
 this.yVal = 0;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "Coordinate");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 });
-Clazz_defineMethod (c$, "set", 
+Clazz_defineMethod (c$, "set",
 function (x, y) {
 this.xVal = x;
 this.yVal = y;
 return this;
 }, "~N,~N");
-Clazz_defineMethod (c$, "getXVal", 
+Clazz_defineMethod (c$, "getXVal",
 function () {
 return this.xVal;
 });
-Clazz_defineMethod (c$, "getYVal", 
+Clazz_defineMethod (c$, "getYVal",
 function () {
 return this.yVal;
 });
-Clazz_defineMethod (c$, "getXString", 
+Clazz_defineMethod (c$, "getXString",
 function () {
 return JU.DF.formatDecimalTrimmed (this.xVal, 8);
 });
-Clazz_defineMethod (c$, "getYString", 
+Clazz_defineMethod (c$, "getYString",
 function () {
 return JU.DF.formatDecimalTrimmed (this.yVal, 8);
 });
-Clazz_defineMethod (c$, "setXVal", 
+Clazz_defineMethod (c$, "setXVal",
 function (val) {
 this.xVal = val;
 }, "~N");
-Clazz_defineMethod (c$, "setYVal", 
+Clazz_defineMethod (c$, "setYVal",
 function (val) {
 this.yVal = val;
 }, "~N");
-Clazz_defineMethod (c$, "copy", 
+Clazz_defineMethod (c$, "copy",
 function () {
 return  new JSV.common.Coordinate ().set (this.xVal, this.yVal);
 });
-Clazz_defineMethod (c$, "equals", 
+Clazz_defineMethod (c$, "equals",
 function (coord) {
 return (coord.xVal == this.xVal && coord.yVal == this.yVal);
 }, "JSV.common.Coordinate");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return "[" + this.xVal + ", " + this.yVal + "]";
 });
-c$.isYInRange = Clazz_defineMethod (c$, "isYInRange", 
+c$.isYInRange = Clazz_defineMethod (c$, "isYInRange",
 function (xyCoords, min, max) {
 return (JSV.common.Coordinate.getMinY (xyCoords, 0, xyCoords.length) >= min && JSV.common.Coordinate.getMaxY (xyCoords, 0, xyCoords.length) >= max);
 }, "~A,~N,~N");
-c$.normalise = Clazz_defineMethod (c$, "normalise", 
+c$.normalise = Clazz_defineMethod (c$, "normalise",
 function (xyCoords, min, max) {
 var newXYCoords =  new Array (xyCoords.length);
 var minY = JSV.common.Coordinate.getMinY (xyCoords, 0, xyCoords.length);
@@ -16307,7 +16307,7 @@ for (var i = 0; i < xyCoords.length; i++) newXYCoords[i] =  new JSV.common.Coord
 
 return newXYCoords;
 }, "~A,~N,~N");
-c$.reverse = Clazz_defineMethod (c$, "reverse", 
+c$.reverse = Clazz_defineMethod (c$, "reverse",
 function (x) {
 var n = x.length;
 for (var i = 0; i < n; i++) {
@@ -16317,7 +16317,7 @@ x[n] = v;
 }
 return x;
 }, "~A");
-c$.parseDSV = Clazz_defineMethod (c$, "parseDSV", 
+c$.parseDSV = Clazz_defineMethod (c$, "parseDSV",
 function (dataPoints, xFactor, yFactor) {
 var point;
 var xval = 0;
@@ -16338,16 +16338,16 @@ xyCoords.addLast (point);
 var coord =  new Array (xyCoords.size ());
 return xyCoords.toArray (coord);
 }, "~S,~N,~N");
-c$.deltaX = Clazz_defineMethod (c$, "deltaX", 
+c$.deltaX = Clazz_defineMethod (c$, "deltaX",
 function (last, first, numPoints) {
 var test = (last - first) / (numPoints - 1);
 return test;
 }, "~N,~N,~N");
-c$.removeScale = Clazz_defineMethod (c$, "removeScale", 
+c$.removeScale = Clazz_defineMethod (c$, "removeScale",
 function (xyCoords, xScale, yScale) {
 JSV.common.Coordinate.applyScale (xyCoords, (1 / xScale), (1 / yScale));
 }, "~A,~N,~N");
-c$.applyScale = Clazz_defineMethod (c$, "applyScale", 
+c$.applyScale = Clazz_defineMethod (c$, "applyScale",
 function (xyCoords, xScale, yScale) {
 if (xScale != 1 || yScale != 1) {
 for (var i = 0; i < xyCoords.length; i++) {
@@ -16355,7 +16355,7 @@ xyCoords[i].setXVal (xyCoords[i].getXVal () * xScale);
 xyCoords[i].setYVal (xyCoords[i].getYVal () * yScale);
 }
 }}, "~A,~N,~N");
-c$.applyShiftReference = Clazz_defineMethod (c$, "applyShiftReference", 
+c$.applyShiftReference = Clazz_defineMethod (c$, "applyShiftReference",
 function (xyCoords, dataPointNum, firstX, lastX, offset, observedFreq, shiftRefType) {
 if (dataPointNum > xyCoords.length || dataPointNum < 0) return;
 var coord;
@@ -16378,7 +16378,7 @@ xyCoords[index] = coord;
 firstX -= offset;
 lastX -= offset;
 }, "~A,~N,~N,~N,~N,~N,~N");
-c$.getMinX = Clazz_defineMethod (c$, "getMinX", 
+c$.getMinX = Clazz_defineMethod (c$, "getMinX",
 function (coords, start, end) {
 var min = 1.7976931348623157E308;
 for (var index = start; index < end; index++) {
@@ -16387,7 +16387,7 @@ if (tmp < min) min = tmp;
 }
 return min;
 }, "~A,~N,~N");
-c$.getMinX = Clazz_defineMethod (c$, "getMinX", 
+c$.getMinX = Clazz_defineMethod (c$, "getMinX",
 function (spectra, vd) {
 var min = 1.7976931348623157E308;
 for (var i = 0; i < spectra.size (); i++) {
@@ -16397,7 +16397,7 @@ if (tmp < min) min = tmp;
 }
 return min;
 }, "JU.Lst,JSV.common.ViewData");
-c$.getMaxX = Clazz_defineMethod (c$, "getMaxX", 
+c$.getMaxX = Clazz_defineMethod (c$, "getMaxX",
 function (coords, start, end) {
 var max = -1.7976931348623157E308;
 for (var index = start; index < end; index++) {
@@ -16406,7 +16406,7 @@ if (tmp > max) max = tmp;
 }
 return max;
 }, "~A,~N,~N");
-c$.getMaxX = Clazz_defineMethod (c$, "getMaxX", 
+c$.getMaxX = Clazz_defineMethod (c$, "getMaxX",
 function (spectra, vd) {
 var max = -1.7976931348623157E308;
 for (var i = 0; i < spectra.size (); i++) {
@@ -16416,7 +16416,7 @@ if (tmp > max) max = tmp;
 }
 return max;
 }, "JU.Lst,JSV.common.ViewData");
-c$.getMinY = Clazz_defineMethod (c$, "getMinY", 
+c$.getMinY = Clazz_defineMethod (c$, "getMinY",
 function (coords, start, end) {
 var min = 1.7976931348623157E308;
 for (var index = start; index < end; index++) {
@@ -16425,7 +16425,7 @@ if (tmp < min) min = tmp;
 }
 return min;
 }, "~A,~N,~N");
-c$.getMinYUser = Clazz_defineMethod (c$, "getMinYUser", 
+c$.getMinYUser = Clazz_defineMethod (c$, "getMinYUser",
 function (spectra, vd) {
 var min = 1.7976931348623157E308;
 for (var i = 0; i < spectra.size (); i++) {
@@ -16437,7 +16437,7 @@ if (tmp < min) min = tmp;
 }
 return min;
 }, "JU.Lst,JSV.common.ViewData");
-c$.getMaxY = Clazz_defineMethod (c$, "getMaxY", 
+c$.getMaxY = Clazz_defineMethod (c$, "getMaxY",
 function (coords, start, end) {
 var max = -1.7976931348623157E308;
 for (var index = start; index < end; index++) {
@@ -16446,7 +16446,7 @@ if (tmp > max) max = tmp;
 }
 return max;
 }, "~A,~N,~N");
-c$.getMaxYUser = Clazz_defineMethod (c$, "getMaxYUser", 
+c$.getMaxYUser = Clazz_defineMethod (c$, "getMaxYUser",
 function (spectra, vd) {
 var max = -1.7976931348623157E308;
 for (var i = 0; i < spectra.size (); i++) {
@@ -16458,7 +16458,7 @@ if (tmp > max) max = tmp;
 }
 return max;
 }, "JU.Lst,JSV.common.ViewData");
-c$.getYValueAt = Clazz_defineMethod (c$, "getYValueAt", 
+c$.getYValueAt = Clazz_defineMethod (c$, "getYValueAt",
 function (xyCoords, xPt) {
 var i = JSV.common.Coordinate.getNearestIndexForX (xyCoords, xPt);
 if (i == 0 || i == xyCoords.length) return NaN;
@@ -16469,11 +16469,11 @@ var y0 = xyCoords[i - 1].getYVal ();
 if (x1 == x0) return y1;
 return y0 + (y1 - y0) / (x1 - x0) * (xPt - x0);
 }, "~A,~N");
-c$.intoRange = Clazz_defineMethod (c$, "intoRange", 
+c$.intoRange = Clazz_defineMethod (c$, "intoRange",
 function (i, i0, i1) {
 return Math.max (Math.min (i, i1), i0);
 }, "~N,~N,~N");
-c$.getNearestIndexForX = Clazz_defineMethod (c$, "getNearestIndexForX", 
+c$.getNearestIndexForX = Clazz_defineMethod (c$, "getNearestIndexForX",
 function (xyCoords, xPt) {
 var x =  new JSV.common.Coordinate ().set (xPt, 0);
 var i = java.util.Arrays.binarySearch (xyCoords, x, JSV.common.Coordinate.c);
@@ -16482,7 +16482,7 @@ if (i < 0) return 0;
 if (i > xyCoords.length - 1) return xyCoords.length - 1;
 return i;
 }, "~A,~N");
-c$.findXForPeakNearest = Clazz_defineMethod (c$, "findXForPeakNearest", 
+c$.findXForPeakNearest = Clazz_defineMethod (c$, "findXForPeakNearest",
 function (xyCoords, x, isMin) {
 var pt = JSV.common.Coordinate.getNearestIndexForX (xyCoords, x);
 var f = (isMin ? -1 : 1);
@@ -16493,7 +16493,7 @@ while (pt >= 1 && f * (xyCoords[pt - 1].yVal - xyCoords[pt].yVal) > 0) pt--;
 if (pt == 0 || pt == xyCoords.length - 1) return xyCoords[pt].xVal;
 return JSV.common.Coordinate.parabolicInterpolation (xyCoords, pt);
 }, "~A,~N,~B");
-c$.parabolicInterpolation = Clazz_defineMethod (c$, "parabolicInterpolation", 
+c$.parabolicInterpolation = Clazz_defineMethod (c$, "parabolicInterpolation",
 function (xyCoords, pt) {
 var alpha = xyCoords[pt - 1].yVal;
 var beta = xyCoords[pt].yVal;
@@ -16501,7 +16501,7 @@ var gamma = xyCoords[pt + 1].yVal;
 var p = (alpha - gamma) / 2 / (alpha - 2 * beta + gamma);
 return xyCoords[pt].xVal + p * (xyCoords[pt + 1].xVal - xyCoords[pt].xVal);
 }, "~A,~N");
-c$.getPickedCoordinates = Clazz_defineMethod (c$, "getPickedCoordinates", 
+c$.getPickedCoordinates = Clazz_defineMethod (c$, "getPickedCoordinates",
 function (coordsClicked, coordClicked, coord, actualCoord) {
 if (coordClicked == null) return false;
 var x = coordClicked.getXVal ();
@@ -16513,12 +16513,12 @@ actualCoord.setXVal (coordsClicked[pt].getXVal ());
 actualCoord.setYVal (coordsClicked[pt].getYVal ());
 return true;
 }, "~A,JSV.common.Coordinate,JSV.common.Coordinate,JSV.common.Coordinate");
-c$.shiftX = Clazz_defineMethod (c$, "shiftX", 
+c$.shiftX = Clazz_defineMethod (c$, "shiftX",
 function (xyCoords, dx) {
 for (var i = xyCoords.length; --i >= 0; ) xyCoords[i].xVal += dx;
 
 }, "~A,~N");
-c$.getNearestXWithYAbove = Clazz_defineMethod (c$, "getNearestXWithYAbove", 
+c$.getNearestXWithYAbove = Clazz_defineMethod (c$, "getNearestXWithYAbove",
 function (xyCoords, x, y, inverted, andGreaterThanX) {
 var pt = JSV.common.Coordinate.getNearestIndexForX (xyCoords, x);
 var f = (inverted ? -1 : 1);
@@ -16534,7 +16534,7 @@ c$.c = c$.prototype.c =  new JSV.common.CoordComparator ();
 Clazz_declarePackage ("JSV.common");
 Clazz_load (["java.lang.Enum"], "JSV.common.ExportType", null, function () {
 c$ = Clazz_declareType (JSV.common, "ExportType", Enum);
-c$.getType = Clazz_defineMethod (c$, "getType", 
+c$.getType = Clazz_defineMethod (c$, "getType",
 function (type) {
 type = type.toUpperCase ();
 if (type.equalsIgnoreCase ("Original...")) return JSV.common.ExportType.SOURCE;
@@ -16543,7 +16543,7 @@ for (var mode, $mode = 0, $$mode = JSV.common.ExportType.values (); $mode < $$mo
 
 return JSV.common.ExportType.UNK;
 }, "~S");
-c$.isExportMode = Clazz_defineMethod (c$, "isExportMode", 
+c$.isExportMode = Clazz_defineMethod (c$, "isExportMode",
 function (ext) {
 return (JSV.common.ExportType.getType (ext) !== JSV.common.ExportType.UNK);
 }, "~S");
@@ -16704,17 +16704,17 @@ this.bsSelected =  new JU.BS ();
 this.coordTemp =  new JSV.common.Coordinate ();
 this.mapX =  new java.util.Hashtable ();
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (pd) {
 this.pd = pd;
 this.jsvp = pd.jsvp;
 this.g2d = pd.g2d;
 }, "JSV.common.PanelData");
-Clazz_defineMethod (c$, "setSpectrumMovedTo", 
+Clazz_defineMethod (c$, "setSpectrumMovedTo",
  function (i) {
 return this.iSpectrumMovedTo = i;
 }, "~N");
-Clazz_defineMethod (c$, "setSpectrumClicked", 
+Clazz_defineMethod (c$, "setSpectrumClicked",
  function (i) {
 this.stackSelected = this.showAllStacked;
 if (i < 0 || this.iSpectrumClicked != i) {
@@ -16722,7 +16722,7 @@ this.lastClickX = NaN;
 this.lastPixelX = 2147483647;
 }this.iSpectrumClicked = this.setSpectrumSelected (this.setSpectrumMovedTo (i));
 }, "~N");
-Clazz_defineMethod (c$, "setSpectrumSelected", 
+Clazz_defineMethod (c$, "setSpectrumSelected",
  function (i) {
 var isNew = (i != this.iSpectrumSelected);
 this.iSpectrumSelected = i;
@@ -16730,14 +16730,14 @@ if (isNew) {
 this.getCurrentView ();
 }return this.iSpectrumSelected;
 }, "~N");
-Clazz_defineMethod (c$, "closeDialogsExcept", 
+Clazz_defineMethod (c$, "closeDialogsExcept",
 function (type) {
 if (this.dialogs != null) for (var e, $e = this.dialogs.entrySet ().iterator (); $e.hasNext () && ((e = $e.next ()) || true);) {
 var ad = e.getValue ();
 if (Clazz_instanceOf (ad, JSV.dialog.JSVDialog) && (type === JSV.common.Annotation.AType.NONE || ad.getAType () !== type)) (ad).setVisible (false);
 }
 }, "JSV.common.Annotation.AType");
-Clazz_defineMethod (c$, "dispose", 
+Clazz_defineMethod (c$, "dispose",
 function () {
 this.spectra = null;
 this.viewData = null;
@@ -16755,34 +16755,34 @@ if (Clazz_instanceOf (ad, JSV.dialog.JSVDialog)) (ad).dispose ();
 }
 this.dialogs = null;
 });
-Clazz_defineMethod (c$, "isDrawNoSpectra", 
+Clazz_defineMethod (c$, "isDrawNoSpectra",
  function () {
 return (this.iSpectrumSelected == -2147483648);
 });
-Clazz_defineMethod (c$, "getFixedSelectedSpectrumIndex", 
+Clazz_defineMethod (c$, "getFixedSelectedSpectrumIndex",
  function () {
 return Math.max (this.iSpectrumSelected, 0);
 });
-Clazz_defineMethod (c$, "getSpectrum", 
+Clazz_defineMethod (c$, "getSpectrum",
 function () {
 return this.getSpectrumAt (this.getFixedSelectedSpectrumIndex ()).getCurrentSubSpectrum ();
 });
-Clazz_defineMethod (c$, "getSpectrumAt", 
+Clazz_defineMethod (c$, "getSpectrumAt",
 function (index) {
 return this.spectra.get (index);
 }, "~N");
-Clazz_defineMethod (c$, "getSpectrumIndex", 
+Clazz_defineMethod (c$, "getSpectrumIndex",
 function (spec) {
 for (var i = this.spectra.size (); --i >= 0; ) if (this.spectra.get (i) === spec) return i;
 
 return -1;
 }, "JSV.common.Spectrum");
-Clazz_defineMethod (c$, "addSpec", 
+Clazz_defineMethod (c$, "addSpec",
  function (spec) {
 this.spectra.addLast (spec);
 this.nSpectra++;
 }, "JSV.common.Spectrum");
-Clazz_defineMethod (c$, "splitStack", 
+Clazz_defineMethod (c$, "splitStack",
 function (doSplit) {
 if (doSplit && this.isSplittable) {
 this.nSplit = this.nSpectra;
@@ -16797,7 +16797,7 @@ this.setSpectrumClicked (this.iSpectrumSelected);
 JSV.common.GraphSet.setFractionalPositions (this.pd, this.pd.graphSets, JSV.common.PanelData.LinkMode.NONE);
 this.pd.setTaintedAll ();
 }, "~B");
-Clazz_defineMethod (c$, "setPositionForFrame", 
+Clazz_defineMethod (c$, "setPositionForFrame",
  function (iSplit) {
 if (iSplit < 0) iSplit = 0;
 var marginalHeight = this.height - 50;
@@ -16825,27 +16825,27 @@ this.xPixel1 = this.xPixel0 + this.xPixels - 1;
 this.xPixels = 0;
 this.xPixel1 = this.imageView.xPixel0 - 30;
 }}}, "~N");
-Clazz_defineMethod (c$, "hasPoint", 
+Clazz_defineMethod (c$, "hasPoint",
  function (xPixel, yPixel) {
 return (xPixel >= this.xPixel00 && xPixel <= this.xPixel11 && yPixel >= this.yPixel000 && yPixel <= this.yPixel11 * this.nSplit);
 }, "~N,~N");
-Clazz_defineMethod (c$, "isInPlotRegion", 
+Clazz_defineMethod (c$, "isInPlotRegion",
  function (xPixel, yPixel) {
 return (xPixel >= this.xPixel0 && xPixel <= this.xPixel1 && yPixel >= this.yPixel0 && yPixel <= this.yPixel1);
 }, "~N,~N");
-Clazz_defineMethod (c$, "getSplitPoint", 
+Clazz_defineMethod (c$, "getSplitPoint",
 function (yPixel) {
 return Math.max (0, Math.min ((Clazz_doubleToInt ((yPixel - this.yPixel000) / (this.yPixel11 - this.yPixel00))), this.nSplit - 1));
 }, "~N");
-Clazz_defineMethod (c$, "isSplitWidget", 
+Clazz_defineMethod (c$, "isSplitWidget",
  function (xPixel, yPixel) {
 return this.isFrameBox (xPixel, yPixel, this.splitterX, this.splitterY);
 }, "~N,~N");
-Clazz_defineMethod (c$, "isCloserWidget", 
+Clazz_defineMethod (c$, "isCloserWidget",
  function (xPixel, yPixel) {
 return this.isFrameBox (xPixel, yPixel, this.closerX, this.closerY);
 }, "~N,~N");
-Clazz_defineMethod (c$, "initGraphSet", 
+Clazz_defineMethod (c$, "initGraphSet",
  function (startIndex, endIndex) {
 if (JSV.common.GraphSet.veryLightGrey == null) JSV.common.GraphSet.veryLightGrey = this.g2d.getColor3 (200, 200, 200);
 this.setPlotColors (JSV.common.ColorParameters.defaultPlotColors);
@@ -16869,7 +16869,7 @@ this.getView (0, 0, 0, 0, startIndices, endIndices, null, null);
 this.viewList =  new JU.Lst ();
 this.viewList.addLast (this.viewData);
 }, "~N,~N");
-Clazz_defineMethod (c$, "getView", 
+Clazz_defineMethod (c$, "getView",
  function (x1, x2, y1, y2, startIndices, endIndices, viewScales, yScales) {
 var graphs = (this.graphsTemp.size () == 0 ? this.spectra : this.graphsTemp);
 var subspecs = this.getSpectrumAt (0).getSubSpectra ();
@@ -16889,7 +16889,7 @@ JSV.common.ScaleData.copyScaleFactors (viewScales, this.viewData.getScaleData ()
 if (yScales != null) JSV.common.ScaleData.copyYScales (yScales, this.viewData.getScaleData ());
 this.getCurrentView ();
 }}, "~N,~N,~N,~N,~A,~A,~A,~A");
-Clazz_defineMethod (c$, "isNearby", 
+Clazz_defineMethod (c$, "isNearby",
  function (a1, a2, c, range) {
 var x = a1.getXVal ();
 var xp1 = c.toPixelX (x);
@@ -16899,96 +16899,96 @@ var xp2 = c.toPixelX (x);
 var yp2 = this.toPixelY (a2.getYVal ());
 return (Math.abs (xp1 - xp2) + Math.abs (yp1 - yp2) < range);
 }, "JSV.common.Coordinate,JSV.common.Coordinate,JSV.common.XYScaleConverter,~N");
-Clazz_defineMethod (c$, "setReversePlot", 
+Clazz_defineMethod (c$, "setReversePlot",
 function (val) {
 this.reversePlot = val;
 if (this.reversePlot) this.closeDialogsExcept (JSV.common.Annotation.AType.NONE);
 this.setDrawXAxis ();
 }, "~B");
-Clazz_defineMethod (c$, "setDrawXAxis", 
+Clazz_defineMethod (c$, "setDrawXAxis",
  function () {
 this.drawXAxisLeftToRight =  new Boolean (this.xAxisLeftToRight ^ this.reversePlot).valueOf ();
 for (var i = 0; i < this.spectra.size (); i++) (this.spectra.get (i)).setExportXAxisDirection (this.drawXAxisLeftToRight);
 
 });
-Clazz_defineMethod (c$, "isInTopBar", 
+Clazz_defineMethod (c$, "isInTopBar",
  function (xPixel, yPixel) {
 return (xPixel == this.fixX (xPixel) && yPixel > this.pin1Dx0.yPixel0 - 2 && yPixel < this.pin1Dx0.yPixel1);
 }, "~N,~N");
-Clazz_defineMethod (c$, "isInTopBar2D", 
+Clazz_defineMethod (c$, "isInTopBar2D",
  function (xPixel, yPixel) {
 return (this.imageView != null && xPixel == this.imageView.fixX (xPixel) && yPixel > this.pin2Dx0.yPixel0 - 2 && yPixel < this.pin2Dx0.yPixel1);
 }, "~N,~N");
-Clazz_defineMethod (c$, "isInRightBar", 
+Clazz_defineMethod (c$, "isInRightBar",
  function (xPixel, yPixel) {
 return (yPixel == this.fixY (yPixel) && xPixel > this.pin1Dy0.xPixel1 && xPixel < this.pin1Dy0.xPixel0 + 2);
 }, "~N,~N");
-Clazz_defineMethod (c$, "isInRightBar2D", 
+Clazz_defineMethod (c$, "isInRightBar2D",
  function (xPixel, yPixel) {
 return (this.imageView != null && yPixel == this.fixY (yPixel) && xPixel > this.pin2Dy0.xPixel1 && xPixel < this.pin2Dy0.xPixel0 + 2);
 }, "~N,~N");
-Clazz_defineMethod (c$, "toX0", 
+Clazz_defineMethod (c$, "toX0",
  function (xPixel) {
 return this.viewList.get (0).getScale ().toX0 (this.fixX (xPixel), this.xPixel0, this.xPixel1, this.drawXAxisLeftToRight);
 }, "~N");
-Clazz_defineMethod (c$, "toY0", 
+Clazz_defineMethod (c$, "toY0",
  function (yPixel) {
 return this.viewList.get (0).getScale ().toY0 (this.fixY (yPixel), this.yPixel0, this.yPixel1);
 }, "~N");
-Clazz_overrideMethod (c$, "toX", 
+Clazz_overrideMethod (c$, "toX",
 function (xPixel) {
 if (this.imageView != null && this.imageView.isXWithinRange (xPixel)) return this.imageView.toX (xPixel);
 return this.getScale ().toX (this.fixX (xPixel), this.xPixel1, this.drawXAxisLeftToRight);
 }, "~N");
-Clazz_overrideMethod (c$, "toY", 
+Clazz_overrideMethod (c$, "toY",
 function (yPixel) {
 return this.getScale ().toY (yPixel, this.yPixel0);
 }, "~N");
-Clazz_defineMethod (c$, "toPixelX", 
+Clazz_defineMethod (c$, "toPixelX",
 function (dx) {
 return this.getScale ().toPixelX (dx, this.xPixel0, this.xPixel1, this.drawXAxisLeftToRight);
 }, "~N");
-Clazz_defineMethod (c$, "toPixelY", 
+Clazz_defineMethod (c$, "toPixelY",
 function (yVal) {
 return this.getScale ().toPixelY (yVal, this.yPixel1);
 }, "~N");
-Clazz_defineMethod (c$, "toPixelX0", 
+Clazz_defineMethod (c$, "toPixelX0",
  function (x) {
 return this.viewList.get (0).getScale ().toPixelX0 (x, this.xPixel0, this.xPixel1, this.drawXAxisLeftToRight);
 }, "~N");
-Clazz_defineMethod (c$, "toPixelY0", 
+Clazz_defineMethod (c$, "toPixelY0",
  function (y) {
 return this.fixY (this.viewList.get (0).getScale ().toPixelY0 (y, this.yPixel0, this.yPixel1));
 }, "~N");
-Clazz_defineMethod (c$, "fixX", 
+Clazz_defineMethod (c$, "fixX",
 function (xPixel) {
 return JSV.common.Coordinate.intoRange (xPixel, this.xPixel0, this.xPixel1);
 }, "~N");
-Clazz_defineMethod (c$, "fixY", 
+Clazz_defineMethod (c$, "fixY",
 function (yPixel) {
 return JSV.common.Coordinate.intoRange (yPixel, this.yPixel0, this.yPixel1);
 }, "~N");
-Clazz_defineMethod (c$, "getXPixel0", 
+Clazz_defineMethod (c$, "getXPixel0",
 function () {
 return this.xPixel0;
 });
-Clazz_defineMethod (c$, "getXPixels", 
+Clazz_defineMethod (c$, "getXPixels",
 function () {
 return this.xPixels;
 });
-Clazz_overrideMethod (c$, "getYPixels", 
+Clazz_overrideMethod (c$, "getYPixels",
 function () {
 return this.yPixels;
 });
-Clazz_defineMethod (c$, "getScale", 
+Clazz_defineMethod (c$, "getScale",
 function () {
 return this.viewData.getScale ();
 });
-Clazz_defineMethod (c$, "toPixelYint", 
+Clazz_defineMethod (c$, "toPixelYint",
  function (yVal) {
 return this.yPixel1 - Clazz_doubleToInt (Double.isNaN (yVal) ? -2147483648 : this.yPixels * yVal);
 }, "~N");
-Clazz_defineMethod (c$, "findAnnotation2D", 
+Clazz_defineMethod (c$, "findAnnotation2D",
  function (xy) {
 for (var i = this.annotations.size (); --i >= 0; ) {
 var a = this.annotations.get (i);
@@ -16996,7 +16996,7 @@ if (this.isNearby (a, xy, this.imageView, 10)) return a;
 }
 return null;
 }, "JSV.common.Coordinate");
-Clazz_defineMethod (c$, "addAnnotation", 
+Clazz_defineMethod (c$, "addAnnotation",
  function (annotation, isToggle) {
 if (this.annotations == null) this.annotations =  new JU.Lst ();
 var removed = false;
@@ -17006,19 +17006,19 @@ this.annotations.removeItemAt (i);
 }
 if (annotation.text.length > 0 && (!removed || !isToggle)) this.annotations.addLast (annotation);
 }, "JSV.common.Annotation,~B");
-Clazz_defineMethod (c$, "setImageWindow", 
+Clazz_defineMethod (c$, "setImageWindow",
  function () {
 this.imageView.setPixelWidthHeight (Clazz_doubleToInt ((this.pd.display1D ? 0.6 : 1) * this.xPixels0), this.yPixels);
 this.imageView.setXY0 (this.getSpectrumAt (0), Clazz_doubleToInt (Math.floor (this.xPixel10 - this.imageView.xPixels)), this.yPixel0);
 });
-Clazz_defineMethod (c$, "findNearestMaxMin", 
+Clazz_defineMethod (c$, "findNearestMaxMin",
  function () {
 if (this.nSpectra > 1 && this.iSpectrumClicked < 0) return false;
 this.xValueMovedTo = this.getSpectrum ().findXForPeakNearest (this.xValueMovedTo);
 this.setXPixelMovedTo (this.xValueMovedTo, 1.7976931348623157E308, 0, 0);
 return !Double.isNaN (this.xValueMovedTo);
 });
-Clazz_defineMethod (c$, "setXPixelMovedTo", 
+Clazz_defineMethod (c$, "setXPixelMovedTo",
 function (x1, x2, xPixel1, xPixel2) {
 if (x1 == 1.7976931348623157E308 && x2 == 1.7976931348623157E308) {
 this.xPixelMovedTo = xPixel1;
@@ -17034,7 +17034,7 @@ if (x1 != 1e10) this.setSpectrumClicked (this.getFixedSelectedSpectrumIndex ());
 }if (x2 != 1.7976931348623157E308) {
 this.xPixelMovedTo2 = this.toPixelX (x2);
 }}, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "processPendingMeasurement", 
+Clazz_defineMethod (c$, "processPendingMeasurement",
  function (xPixel, yPixel, clickCount) {
 if (!this.isInPlotRegion (xPixel, yPixel) || this.is2dClick (xPixel, yPixel)) {
 this.pendingMeasurement = null;
@@ -17114,7 +17114,7 @@ this.lastXMax = NaN;
 }break;
 }
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "checkIntegralNormalizationClick", 
+Clazz_defineMethod (c$, "checkIntegralNormalizationClick",
  function (xPixel, yPixel) {
 if (this.selectedSpectrumIntegrals == null) return false;
 var integral = this.findMeasurement (this.selectedSpectrumIntegrals, xPixel, yPixel, -5);
@@ -17125,13 +17125,13 @@ this.updateDialog (JSV.common.Annotation.AType.Integration, -1);
 this.setSpectrumClicked (this.getSpectrumIndex (integral.spec));
 return true;
 }, "~N,~N");
-Clazz_defineMethod (c$, "getNearestPeak", 
+Clazz_defineMethod (c$, "getNearestPeak",
  function (spec, x, y) {
 var x0 = JSV.common.Coordinate.getNearestXWithYAbove (spec.getXYCoords (), x, y, spec.isInverted (), false);
 var x1 = JSV.common.Coordinate.getNearestXWithYAbove (spec.getXYCoords (), x, y, spec.isInverted (), true);
 return (Double.isNaN (x0) ? x1 : Double.isNaN (x1) ? x0 : Math.abs (x0 - x) < Math.abs (x1 - x) ? x0 : x1);
 }, "JSV.common.Spectrum,~N,~N");
-Clazz_defineMethod (c$, "findMeasurement", 
+Clazz_defineMethod (c$, "findMeasurement",
  function (measurements, xPixel, yPixel, iPt) {
 if (measurements == null || measurements.size () == 0) return null;
 if (iPt == 0) {
@@ -17171,7 +17171,7 @@ break;
 }
 return null;
 }, "JSV.common.MeasurementData,~N,~N,~N");
-Clazz_defineMethod (c$, "setMeasurement", 
+Clazz_defineMethod (c$, "setMeasurement",
  function (m) {
 var iSpec = this.getSpectrumIndex (m.spec);
 var ad = this.getDialog (JSV.common.Annotation.AType.Measurements, iSpec);
@@ -17179,7 +17179,7 @@ if (ad == null) this.addDialog (iSpec, JSV.common.Annotation.AType.Measurements,
 ad.getData ().addLast (m.copyM ());
 this.updateDialog (JSV.common.Annotation.AType.Measurements, -1);
 }, "JSV.common.Measurement");
-Clazz_defineMethod (c$, "checkArrowUpDownClick", 
+Clazz_defineMethod (c$, "checkArrowUpDownClick",
  function (xPixel, yPixel) {
 var ok = false;
 var f = (this.isArrowClick (xPixel, yPixel, 3) ? JSV.common.GraphSet.RT2 : this.isArrowClick (xPixel, yPixel, 4) ? 1 / JSV.common.GraphSet.RT2 : 0);
@@ -17198,14 +17198,14 @@ this.resetPinsFromView ();
 }this.pd.setTaintedAll ();
 }return ok;
 }, "~N,~N");
-Clazz_defineMethod (c$, "resetViewCompletely", 
+Clazz_defineMethod (c$, "resetViewCompletely",
 function () {
 this.clearViews ();
 if (this.showAllStacked && !this.stackSelected) this.closeDialogsExcept (JSV.common.Annotation.AType.NONE);
 this.viewData.resetScaleFactors ();
 this.updateDialogs ();
 });
-Clazz_defineMethod (c$, "checkArrowLeftRightClick", 
+Clazz_defineMethod (c$, "checkArrowLeftRightClick",
  function (xPixel, yPixel) {
 if (this.haveLeftRightArrows) {
 var dx = (this.isArrowClick (xPixel, yPixel, 1) ? -1 : this.isArrowClick (xPixel, yPixel, 2) ? 1 : 0);
@@ -17222,7 +17222,7 @@ this.setSpectrumSelected (-1);
 this.stackSelected = false;
 }}return false;
 }, "~N,~N");
-Clazz_defineMethod (c$, "isArrowClick", 
+Clazz_defineMethod (c$, "isArrowClick",
  function (xPixel, yPixel, type) {
 var pt;
 switch (type) {
@@ -17239,7 +17239,7 @@ return (Math.abs (pt - xPixel) < 10 && Math.abs (this.yHArrows - yPixel) < 10);
 }
 return false;
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "setWidgetValueByUser", 
+Clazz_defineMethod (c$, "setWidgetValueByUser",
  function (pw) {
 var sval;
 if (pw === this.cur2Dy) sval = "" + this.imageView.toSubspectrumIndex (pw.yPixel0);
@@ -17287,13 +17287,13 @@ throw e;
 }
 }
 }, "JSV.common.PlotWidget");
-Clazz_defineMethod (c$, "removeAllHighlights", 
+Clazz_defineMethod (c$, "removeAllHighlights",
  function (spec) {
 if (spec == null) this.highlights.clear ();
  else for (var i = this.highlights.size (); --i >= 0; ) if (this.highlights.get (i).spectrum === spec) this.highlights.removeItemAt (i);
 
 }, "JSV.common.Spectrum");
-Clazz_defineMethod (c$, "setCoordClicked", 
+Clazz_defineMethod (c$, "setCoordClicked",
  function (xPixel, x, y) {
 if (y == 0) this.nextClickForSetPeak = null;
 if (Double.isNaN (x)) {
@@ -17305,7 +17305,7 @@ this.pd.coordsClicked = this.getSpectrum ().getXYCoords ();
 this.pd.xPixelClicked = (this.lastPixelX = xPixel);
 return this.pd.coordClicked;
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "setWidgets", 
+Clazz_defineMethod (c$, "setWidgets",
  function (needNewPins, subIndex, doDraw1DObjects) {
 if (needNewPins || this.pin1Dx0 == null) {
 if (this.zoomBox1D == null) this.newPins ();
@@ -17313,7 +17313,7 @@ if (this.zoomBox1D == null) this.newPins ();
 }this.setDerivedPins (subIndex);
 this.setPinSliderPositions (doDraw1DObjects);
 }, "~B,~N,~B");
-Clazz_defineMethod (c$, "newPins", 
+Clazz_defineMethod (c$, "newPins",
  function () {
 this.zoomBox1D =  new JSV.common.PlotWidget ("zoomBox1D");
 this.pin1Dx0 =  new JSV.common.PlotWidget ("pin1Dx0");
@@ -17346,15 +17346,15 @@ this.setWidgetY (this.pin1Dy0, this.getScale ().minY);
 this.setWidgetY (this.pin1Dy1, this.getScale ().maxY);
 this.widgets =  Clazz_newArray (-1, [this.zoomBox1D, this.zoomBox2D, this.pin1Dx0, this.pin1Dx01, this.pin1Dx1, this.pin1Dy0, this.pin1Dy01, this.pin1Dy1, this.pin2Dx0, this.pin2Dx01, this.pin2Dx1, this.pin2Dy0, this.pin2Dy01, this.pin2Dy1, this.cur2Dx0, this.cur2Dx1, this.cur2Dy, this.cur1D2x1, this.cur1D2x2]);
 });
-Clazz_defineMethod (c$, "setWidgetX", 
+Clazz_defineMethod (c$, "setWidgetX",
  function (pw, x) {
 pw.setX (x, this.toPixelX0 (x));
 }, "JSV.common.PlotWidget,~N");
-Clazz_defineMethod (c$, "setWidgetY", 
+Clazz_defineMethod (c$, "setWidgetY",
  function (pw, y) {
 pw.setY (y, this.toPixelY0 (y));
 }, "JSV.common.PlotWidget,~N");
-Clazz_defineMethod (c$, "resetPinsFromView", 
+Clazz_defineMethod (c$, "resetPinsFromView",
  function () {
 if (this.pin1Dx0 == null) return;
 this.setWidgetX (this.pin1Dx0, this.getScale ().minXOnScale);
@@ -17362,7 +17362,7 @@ this.setWidgetX (this.pin1Dx1, this.getScale ().maxXOnScale);
 this.setWidgetY (this.pin1Dy0, this.getScale ().minYOnScale);
 this.setWidgetY (this.pin1Dy1, this.getScale ().maxYOnScale);
 });
-Clazz_defineMethod (c$, "resetPinPositions", 
+Clazz_defineMethod (c$, "resetPinPositions",
  function () {
 this.resetX (this.pin1Dx0);
 this.resetY (this.pin1Dy0);
@@ -17374,15 +17374,15 @@ if (this.gs2dLinkedY != null) this.resetX (this.cur1D2x2);
 this.pin2Dy0.setY (this.pin2Dy0.getYVal (), this.imageView.toPixelY0 (this.pin2Dy0.getYVal ()));
 this.pin2Dy1.setY (this.pin2Dy1.getYVal (), this.imageView.toPixelY0 (this.pin2Dy1.getYVal ()));
 }});
-Clazz_defineMethod (c$, "resetX", 
+Clazz_defineMethod (c$, "resetX",
  function (p) {
 this.setWidgetX (p, p.getXVal ());
 }, "JSV.common.PlotWidget");
-Clazz_defineMethod (c$, "resetY", 
+Clazz_defineMethod (c$, "resetY",
  function (p) {
 this.setWidgetY (p, p.getYVal ());
 }, "JSV.common.PlotWidget");
-Clazz_defineMethod (c$, "setPinSliderPositions", 
+Clazz_defineMethod (c$, "setPinSliderPositions",
  function (doDraw1DObjects) {
 this.pin1Dx0.yPixel0 = this.pin1Dx1.yPixel0 = this.pin1Dx01.yPixel0 = this.yPixel0 - 5;
 this.pin1Dx0.yPixel1 = this.pin1Dx1.yPixel1 = this.pin1Dx01.yPixel1 = this.yPixel0;
@@ -17405,7 +17405,7 @@ this.cur2Dx1.yPixel1 = this.cur2Dx1.yPixel1 = this.yPixel0 - 5;
 this.cur2Dy.xPixel0 = (doDraw1DObjects ? Clazz_doubleToInt ((this.xPixel1 + this.imageView.xPixel0) / 2) : this.imageView.xPixel0 - 6);
 this.cur2Dy.xPixel1 = this.imageView.xPixel1 + 5;
 }}, "~B");
-Clazz_defineMethod (c$, "setDerivedPins", 
+Clazz_defineMethod (c$, "setDerivedPins",
  function (subIndex) {
 this.triggered = true;
 if (this.gs2dLinkedX != null) this.cur1D2x1.setX (this.cur1D2x1.getXVal (), this.toPixelX (this.cur1D2x1.getXVal ()));
@@ -17433,7 +17433,7 @@ this.cur2Dy.yPixel0 = this.cur2Dy.yPixel1 = this.imageView.subIndexToPixelY (sub
 this.pin2Dx01.setEnabled (Math.min (this.pin2Dx0.xPixel0, this.pin2Dx1.xPixel0) != this.imageView.xPixel0 || Math.max (this.pin2Dx0.xPixel0, this.pin2Dx1.xPixel1) != this.imageView.xPixel1);
 this.pin2Dy01.setEnabled (Math.min (this.pin2Dy0.yPixel0, this.pin2Dy1.yPixel0) != this.yPixel0 || Math.max (this.pin2Dy0.yPixel0, this.pin2Dy1.yPixel1) != this.yPixel1);
 }, "~N");
-Clazz_defineMethod (c$, "doZoom", 
+Clazz_defineMethod (c$, "doZoom",
 function (initX, initY, finalX, finalY, is1D, is1DY, checkRange, checkLinked, addZoom) {
 if (initX == finalX) {
 initX = this.getScale ().minXOnScale;
@@ -17496,32 +17496,32 @@ if (ifix != isub) this.setCurrentSubSpectrum (ifix);
 if (is2DGrayScaleChange) this.update2dImage (false);
 }if (addZoom) this.addCurrentZoom ();
 }, "~N,~N,~N,~N,~B,~B,~B,~B,~B");
-Clazz_defineMethod (c$, "updateDialogs", 
+Clazz_defineMethod (c$, "updateDialogs",
  function () {
 this.updateDialog (JSV.common.Annotation.AType.PeakList, -1);
 this.updateDialog (JSV.common.Annotation.AType.Measurements, -1);
 });
-Clazz_defineMethod (c$, "setCurrentSubSpectrum", 
+Clazz_defineMethod (c$, "setCurrentSubSpectrum",
  function (i) {
 var spec0 = this.getSpectrumAt (0);
 i = spec0.setCurrentSubSpectrum (i);
 if (spec0.isForcedSubset ()) this.viewData.setXRangeForSubSpectrum (this.getSpectrum ().getXYCoords ());
 this.pd.notifySubSpectrumChange (i, this.getSpectrum ());
 }, "~N");
-Clazz_defineMethod (c$, "addCurrentZoom", 
+Clazz_defineMethod (c$, "addCurrentZoom",
  function () {
 if (this.viewList.size () > this.currentZoomIndex + 1) for (var i = this.viewList.size () - 1; i > this.currentZoomIndex; i--) this.viewList.removeItemAt (i);
 
 this.viewList.addLast (this.viewData);
 this.currentZoomIndex++;
 });
-Clazz_defineMethod (c$, "setZoomTo", 
+Clazz_defineMethod (c$, "setZoomTo",
  function (i) {
 this.currentZoomIndex = i;
 this.viewData = this.viewList.get (i);
 this.resetPinsFromView ();
 }, "~N");
-Clazz_defineMethod (c$, "clearViews", 
+Clazz_defineMethod (c$, "clearViews",
 function () {
 if (this.isLinked) {
 this.pd.clearLinkViews (this);
@@ -17529,7 +17529,7 @@ this.pd.clearLinkViews (this);
 for (var i = this.viewList.size (); --i >= 1; ) this.viewList.removeItemAt (i);
 
 });
-Clazz_defineMethod (c$, "drawAll", 
+Clazz_defineMethod (c$, "drawAll",
  function (gMain, gFront, gBack, iSplit, needNewPins, doAll) {
 this.g2d = this.pd.g2d;
 this.gMain = gMain;
@@ -17634,17 +17634,17 @@ if (subIndex >= 0) this.draw2DUnits (gMain);
 this.drawWidgets (gFront, g2, subIndex, needNewPins, doDraw1DObjects, true, true);
 }if (this.annotations != null) this.drawAnnotations (gFront, this.annotations, null);
 }, "~O,~O,~O,~N,~B,~B");
-Clazz_defineMethod (c$, "drawSpectrumSource", 
+Clazz_defineMethod (c$, "drawSpectrumSource",
  function (g, i) {
 this.pd.printFilePath (g, this.pd.thisWidth - this.pd.right, this.yPixel0, this.spectra.get (i).getFilePath ());
 }, "~O,~N");
-Clazz_defineMethod (c$, "doPlot", 
+Clazz_defineMethod (c$, "doPlot",
  function (i, iSplit) {
 var isGrey = (this.stackSelected && this.iSpectrumSelected >= 0 && this.iSpectrumSelected != i);
 var ok = (this.showAllStacked || this.iSpectrumSelected == -1 || this.iSpectrumSelected == i);
 return (this.nSplit > 1 ? i == iSplit : ok && (!this.pd.isPrinting || !isGrey));
 }, "~N,~N");
-Clazz_defineMethod (c$, "drawSpectrumPointer", 
+Clazz_defineMethod (c$, "drawSpectrumPointer",
  function (gFront, spec, yOffset, ig) {
 this.setColorFromToken (gFront, JSV.common.ScriptToken.PEAKTABCOLOR);
 var iHandle = this.pd.integralShiftMode;
@@ -17674,11 +17674,11 @@ var y = (ig == null ? yOffset + this.toPixelY (this.yValueMovedTo) : this.toPixe
 if (y == this.fixY (y)) this.g2d.drawLine (gFront, this.xPixelMovedTo, y - 10, this.xPixelMovedTo, y + 10);
 }if (ig != null) this.g2d.setStrokeBold (gFront, false);
 }, "~O,JSV.common.Spectrum,~N,JSV.common.IntegralData");
-Clazz_defineMethod (c$, "setScale", 
+Clazz_defineMethod (c$, "setScale",
 function (i) {
 this.viewData.setScale (i, this.xPixels, this.yPixels, this.spectra.get (i).isInverted ());
 }, "~N");
-Clazz_defineMethod (c$, "draw2DUnits", 
+Clazz_defineMethod (c$, "draw2DUnits",
  function (g) {
 var nucleusX = this.getSpectrumAt (0).nucleusX;
 var nucleusY = this.getSpectrumAt (0).nucleusY;
@@ -17686,7 +17686,7 @@ this.setColorFromToken (g, JSV.common.ScriptToken.PLOTCOLOR);
 this.drawUnits (g, nucleusX, this.imageView.xPixel1 + 5 * this.pd.scalingFactor, this.yPixel1, 1, 1.0);
 this.drawUnits (g, nucleusY, this.imageView.xPixel0 - 5 * this.pd.scalingFactor, this.yPixel0, 1, 0);
 }, "~O");
-Clazz_defineMethod (c$, "drawPeakTabs", 
+Clazz_defineMethod (c$, "drawPeakTabs",
  function (gFront, g2, spec) {
 var list = (this.nSpectra == 1 || this.iSpectrumSelected >= 0 ? spec.getPeakList () : null);
 if (list != null && list.size () > 0) {
@@ -17702,7 +17702,7 @@ var p = list.get (i);
 this.drawPeak (gFront, p, p === spec.getSelectedPeak () ? 14 : 7);
 }
 }}, "~O,~O,JSV.common.Spectrum");
-Clazz_defineMethod (c$, "drawPeak", 
+Clazz_defineMethod (c$, "drawPeak",
  function (g, pi, tickSize) {
 if (this.pd.isPrinting) return;
 var xMin = pi.getXMin ();
@@ -17710,7 +17710,7 @@ var xMax = pi.getXMax ();
 if (xMin == xMax) return;
 this.drawBar (g, pi, xMin, xMax, null, tickSize);
 }, "~O,JSV.common.PeakInfo,~N");
-Clazz_defineMethod (c$, "drawWidgets", 
+Clazz_defineMethod (c$, "drawWidgets",
  function (gFront, gBack, subIndex, needNewPins, doDraw1DObjects, doDraw1DY, postGrid) {
 this.setWidgets (needNewPins, subIndex, doDraw1DObjects);
 if (this.pd.isPrinting && (this.imageView == null ? !this.cur1D2Locked : this.sticky2Dcursor)) return;
@@ -17746,7 +17746,7 @@ if (pw.isPin) this.drawHandle (gFront, pw.xPixel0, pw.yPixel0, 2, !pw.isEnabled)
 this.fillBox (gBack, pw.xPixel0, pw.yPixel0, pw.xPixel1, pw.yPixel1, pw === this.zoomBox1D && this.pd.shiftPressed ? JSV.common.ScriptToken.ZOOMBOXCOLOR2 : JSV.common.ScriptToken.ZOOMBOXCOLOR);
 }}
 }, "~O,~O,~N,~B,~B,~B,~B");
-Clazz_defineMethod (c$, "drawBar", 
+Clazz_defineMethod (c$, "drawBar",
  function (g, pi, xMin, xMax, whatColor, tickSize) {
 var r = xMax + xMin;
 var d = Math.abs (xMax - xMin);
@@ -17775,7 +17775,7 @@ if (pi != null) {
 x1 = Clazz_doubleToInt ((x1 + x2) / 2);
 this.fillBox (g, x1 - 1, this.yPixel0 + 2, x1 + 1, this.yPixel0 + 2 + tickSize, whatColor);
 }}}, "~O,JSV.common.PeakInfo,~N,~N,JSV.common.ScriptToken,~N");
-Clazz_defineMethod (c$, "drawIntegration", 
+Clazz_defineMethod (c$, "drawIntegration",
  function (gFront, index, yOffset, isGrey, iData, isContinuous, isSelected) {
 if (iData != null) {
 if (this.haveIntegralDisplayed (index)) this.drawPlot (gFront, index, this.spectra.get (index), true, yOffset, false, iData, true, false);
@@ -17783,12 +17783,12 @@ this.drawIntegralValues (gFront, index, yOffset);
 }var ratios = this.getIntegrationRatios (index);
 if (ratios != null) this.drawAnnotations (gFront, ratios, JSV.common.ScriptToken.INTEGRALPLOTCOLOR);
 }, "~O,~N,~N,~B,JSV.common.IntegralData,~B,~B");
-Clazz_defineMethod (c$, "getMeasurements", 
+Clazz_defineMethod (c$, "getMeasurements",
  function (type, iSpec) {
 var ad = this.getDialog (type, iSpec);
 return (ad == null || ad.getData ().size () == 0 || !ad.getState () ? null : ad.getData ());
 }, "JSV.common.Annotation.AType,~N");
-Clazz_defineMethod (c$, "drawPlot", 
+Clazz_defineMethod (c$, "drawPlot",
  function (g, index, spec, isContinuous, yOffset, isGrey, ig, isSelected, hasPendingIntegral) {
 var xyCoords = (ig == null ? spec.getXYCoords () : this.getIntegrationGraph (index).getXYCoords ());
 var isIntegral = (ig != null);
@@ -17875,7 +17875,7 @@ if (this.getScale ().isYZeroOnScale ()) {
 var y = yOffset + this.toPixelY (this.getScale ().spectrumYRef);
 if (y == this.fixY (y)) this.g2d.drawLine (g, this.xPixel1, y, this.xPixel0, y);
 }}}, "~O,~N,JSV.common.Spectrum,~B,~N,~B,JSV.common.IntegralData,~B,~B");
-Clazz_defineMethod (c$, "drawFrame", 
+Clazz_defineMethod (c$, "drawFrame",
  function (g, iSpec, addCurrentBox, addSplitBox, drawUpDownArrows) {
 if (!this.pd.gridOn || this.pd.isPrinting) {
 this.setColorFromToken (g, JSV.common.ScriptToken.GRIDCOLOR);
@@ -17912,7 +17912,7 @@ this.fillBox (g, x2 - 10, y1, x2, y1 + 10, null);
 this.splitterX = x2 - 10;
 this.splitterY = y1;
 }}}, "~O,~N,~B,~B,~B");
-Clazz_defineMethod (c$, "drawGrid", 
+Clazz_defineMethod (c$, "drawGrid",
  function (g) {
 if (!this.pd.gridOn || this.imageView != null) return;
 this.setColorFromToken (g, JSV.common.ScriptToken.GRIDCOLOR);
@@ -17934,7 +17934,7 @@ var y = this.toPixelY (val);
 if (y == this.fixY (y)) this.g2d.drawLine (g, this.xPixel0, y, this.xPixel1, y);
 }
 }, "~O");
-Clazz_defineMethod (c$, "drawXScale", 
+Clazz_defineMethod (c$, "drawXScale",
  function (g, c) {
 this.setColorFromToken (g, JSV.common.ScriptToken.SCALECOLOR);
 if (this.pd.isPrinting) this.g2d.drawLine (g, c.getXPixel0 (), this.yPixel1, c.getXPixel0 () + c.getXPixels () - 1, this.yPixel1);
@@ -17983,11 +17983,11 @@ break;
 }
 this.mapX.clear ();
 }, "~O,JSV.common.XYScaleConverter");
-Clazz_defineMethod (c$, "drawTick", 
+Clazz_defineMethod (c$, "drawTick",
  function (g, x, y1, y2, c) {
 if (x == c.fixX (x)) this.g2d.drawLine (g, x, y1, x, y2);
 }, "~O,~N,~N,~N,JSV.common.XYScaleConverter");
-Clazz_defineMethod (c$, "drawYScale", 
+Clazz_defineMethod (c$, "drawYScale",
  function (g, c) {
 var sd = c.getScale ();
 var precision = sd.precision[1];
@@ -18023,23 +18023,23 @@ break;
 }
 this.mapX.clear ();
 }, "~O,JSV.common.XYScaleConverter");
-Clazz_defineMethod (c$, "drawXUnits", 
+Clazz_defineMethod (c$, "drawXUnits",
  function (g) {
 var units = this.spectra.get (0).getAxisLabel (true);
 if (units != null) this.drawUnits (g, units, this.xPixel1 + 25 * this.pd.scalingFactor, this.yPixel1 + 5 * this.pd.scalingFactor, 1, 1);
 }, "~O");
-Clazz_defineMethod (c$, "drawUnits", 
+Clazz_defineMethod (c$, "drawUnits",
  function (g, s, x, y, hOff, vOff) {
 this.setColorFromToken (g, JSV.common.ScriptToken.UNITSCOLOR);
 this.pd.setFont (g, (this.imageView == null ? this : this.imageView).getXPixels (), 3, 10, false);
 this.g2d.drawString (g, s, Clazz_doubleToInt (x - this.pd.getStringWidth (s) * hOff), Clazz_doubleToInt (y + this.pd.getFontHeight () * vOff));
 }, "~O,~S,~N,~N,~N,~N");
-Clazz_defineMethod (c$, "drawYUnits", 
+Clazz_defineMethod (c$, "drawYUnits",
  function (g) {
 var units = this.spectra.get (0).getAxisLabel (false);
 if (units != null) this.drawUnits (g, units, (this.pd.isPrinting ? 30 : 5) * this.pd.scalingFactor, this.yPixel0 + (this.pd.isPrinting ? 0 : 5) * this.pd.scalingFactor, 0, -1);
 }, "~O");
-Clazz_defineMethod (c$, "drawHighlightsAndPeakTabs", 
+Clazz_defineMethod (c$, "drawHighlightsAndPeakTabs",
  function (gFront, gBack, iSpec) {
 var md = this.getMeasurements (JSV.common.Annotation.AType.PeakList, iSpec);
 var spec = this.spectra.get (iSpec);
@@ -18069,7 +18069,7 @@ if (this.isVisible (this.getDialog (JSV.common.Annotation.AType.PeakList, iSpec)
 y = this.toPixelY ((md).getThresh ());
 if (y == this.fixY (y) && !this.pd.isPrinting) this.g2d.drawLine (gFront, this.xPixel0, y, this.xPixel1, y);
 }}}, "~O,~O,~N");
-Clazz_defineMethod (c$, "printPeakList", 
+Clazz_defineMethod (c$, "printPeakList",
  function (g, spec, data) {
 var sdata = data.getMeasurementListArray (null);
 if (sdata.length == 0) return;
@@ -18116,11 +18116,11 @@ var x = Clazz_doubleToInt ((xs[i] + xs[i - 1]) / 2) + Clazz_doubleToInt (h / 3);
 this.drawStringRotated (g, -90, x, y - y4 - s5, sdata[i][4]);
 }}
 }, "~O,JSV.common.Spectrum,JSV.common.PeakData");
-Clazz_defineMethod (c$, "drawStringRotated", 
+Clazz_defineMethod (c$, "drawStringRotated",
  function (g, angle, x, y, s) {
 this.g2d.drawStringRotated (g, s, x, y, angle);
 }, "~O,~N,~N,~N,~S");
-Clazz_defineMethod (c$, "drawAnnotations", 
+Clazz_defineMethod (c$, "drawAnnotations",
  function (g, annotations, whatColor) {
 this.pd.setFont (g, this.xPixels, 1, 18, false);
 for (var i = annotations.size (); --i >= 0; ) {
@@ -18132,7 +18132,7 @@ var y = (note.isPixels () ? Clazz_doubleToInt (this.yPixel0 + 10 + 10 * this.pd.
 this.g2d.drawString (g, note.text, x + note.offsetX * this.pd.scalingFactor, y - note.offsetY * this.pd.scalingFactor);
 }
 }, "~O,JU.Lst,JSV.common.ScriptToken");
-Clazz_defineMethod (c$, "drawIntegralValues", 
+Clazz_defineMethod (c$, "drawIntegralValues",
  function (g, iSpec, yOffset) {
 var integrals = this.getMeasurements (JSV.common.Annotation.AType.Integration, iSpec);
 if (integrals != null) {
@@ -18155,14 +18155,14 @@ this.g2d.drawString (g, s, x, Clazz_doubleToInt ((y1 + y2) / 2) + Clazz_doubleTo
 this.g2d.setStrokeBold (g, false);
 }if (iSpec == this.getFixedSelectedSpectrumIndex ()) this.selectedSpectrumIntegrals = integrals;
 }, "~O,~N,~N");
-Clazz_defineMethod (c$, "drawMeasurements", 
+Clazz_defineMethod (c$, "drawMeasurements",
  function (g, iSpec) {
 var md = this.getMeasurements (JSV.common.Annotation.AType.Measurements, iSpec);
 if (md != null) for (var i = md.size (); --i >= 0; ) this.drawMeasurement (g, md.get (i));
 
 if (iSpec == this.getFixedSelectedSpectrumIndex ()) this.selectedSpectrumMeasurements = md;
 }, "~O,~N");
-Clazz_defineMethod (c$, "drawMeasurement", 
+Clazz_defineMethod (c$, "drawMeasurement",
  function (g, m) {
 if (m.text.length == 0 && m !== this.pendingMeasurement) return;
 this.pd.setFont (g, this.xPixels, 1, 12, false);
@@ -18183,7 +18183,7 @@ if (drawBaseLine) {
 this.g2d.drawLine (g, x1, this.yPixel1, x1, this.yPixel1 - 6 * this.pd.scalingFactor);
 this.g2d.drawLine (g, x2, this.yPixel1, x2, this.yPixel1 - 6 * this.pd.scalingFactor);
 }}, "~O,JSV.common.Measurement");
-Clazz_defineMethod (c$, "getPinSelected", 
+Clazz_defineMethod (c$, "getPinSelected",
  function (xPixel, yPixel) {
 if (this.widgets != null) for (var i = 0; i < this.widgets.length; i++) {
 if (this.widgets[i] != null && this.widgets[i].isPinOrCursor && this.widgets[i].selected (xPixel, yPixel)) {
@@ -18191,7 +18191,7 @@ return this.widgets[i];
 }}
 return null;
 }, "~N,~N");
-Clazz_defineMethod (c$, "set2DCrossHairs", 
+Clazz_defineMethod (c$, "set2DCrossHairs",
 function (xPixel, yPixel) {
 var x;
 if (xPixel == this.imageView.fixX (xPixel) && yPixel == this.fixY (yPixel)) {
@@ -18202,7 +18202,7 @@ if (this.isLinked) {
 var y = this.imageView.toY (yPixel);
 this.pd.set2DCrossHairsLinked (this, x, y, !this.sticky2Dcursor);
 }}}, "~N,~N");
-Clazz_defineMethod (c$, "reset2D", 
+Clazz_defineMethod (c$, "reset2D",
  function (isX) {
 if (isX) {
 this.imageView.setView0 (this.imageView.xPixel0, this.pin2Dy0.yPixel0, this.imageView.xPixel1, this.pin2Dy1.yPixel0);
@@ -18210,7 +18210,7 @@ this.doZoom (0, this.getScale ().minY, 0, this.getScale ().maxY, true, false, fa
 } else {
 this.imageView.setView0 (this.pin2Dx0.xPixel0, this.imageView.yPixel0, this.pin2Dx1.xPixel0, this.imageView.yPixel1);
 }}, "~B");
-Clazz_defineMethod (c$, "setAnnotationText", 
+Clazz_defineMethod (c$, "setAnnotationText",
  function (a) {
 var sval = this.pd.getInput ("New text?", "Set Label", a.text);
 if (sval == null) return false;
@@ -18218,7 +18218,7 @@ if (sval.length == 0) this.annotations.removeObj (a);
  else a.text = sval;
 return true;
 }, "JSV.common.Annotation");
-Clazz_defineMethod (c$, "checkIntegral", 
+Clazz_defineMethod (c$, "checkIntegral",
  function (x1, x2, isFinal) {
 var ad = this.getDialog (JSV.common.Annotation.AType.Integration, -1);
 if (ad == null) return false;
@@ -18230,7 +18230,7 @@ this.pd.isIntegralDrag = !isFinal;
 this.selectedSpectrumIntegrals = null;
 return true;
 }, "~N,~N,~B");
-Clazz_defineMethod (c$, "setToolTipForPixels", 
+Clazz_defineMethod (c$, "setToolTipForPixels",
  function (xPixel, yPixel) {
 if (this.iSpectrumMovedTo != this.iSpectrumClicked || this.pd.getCurrentGraphSet () !== this) {
 this.pd.setToolTipText ("click spectrum to activate");
@@ -18288,29 +18288,29 @@ yPt = this.getIntegrationGraph (iSpec).getPercentYValueAt (xPt);
 xx += ", " + JU.DF.formatDecimalDbl (yPt, 1);
 }this.pd.setToolTipText ((this.selectedIntegral != null ? "click to set value" : this.pendingMeasurement != null || this.selectedMeasurement != null ? (this.pd.hasFocus () ? "Press ESC to delete " + (this.selectedIntegral != null ? "integral, DEL to delete all visible, or N to normalize" : this.pendingMeasurement == null ? "\"" + this.selectedMeasurement.text + "\" or DEL to delete all visible" : "measurement") : "") : Double.isNaN (yPt) ? null : xx));
 }, "~N,~N");
-Clazz_defineMethod (c$, "isFrameBox", 
+Clazz_defineMethod (c$, "isFrameBox",
  function (xPixel, yPixel, boxX, boxY) {
 return Math.abs (xPixel - (boxX + 5)) < 5 && Math.abs (yPixel - (boxY + 5)) < 5;
 }, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "setCoordStr", 
+Clazz_defineMethod (c$, "setCoordStr",
  function (xPt, yPt) {
 var xx = JU.DF.formatDecimalDbl (xPt, this.getScale ().precision[0]);
 this.pd.coordStr = "(" + xx + (this.haveSingleYScale || this.iSpectrumSelected >= 0 ? ", " + JU.DF.formatDecimalDbl (yPt, this.getScale ().precision[1]) : "") + ")";
 return xx;
 }, "~N,~N");
-Clazz_defineMethod (c$, "setStartupPinTip", 
+Clazz_defineMethod (c$, "setStartupPinTip",
  function () {
 if (this.pd.startupPinTip == null) return false;
 this.pd.setToolTipText (this.pd.startupPinTip);
 this.pd.startupPinTip = null;
 return true;
 });
-Clazz_defineMethod (c$, "get2DYLabel", 
+Clazz_defineMethod (c$, "get2DYLabel",
  function (isub, precision) {
 var spec = this.getSpectrumAt (0).getSubSpectra ().get (isub);
 return JU.DF.formatDecimalDbl (spec.getY2DPPM (), precision) + " PPM" + (spec.y2DUnits.equals ("HZ") ? " (" + JU.DF.formatDecimalDbl (spec.getY2D (), precision) + " HZ) " : "");
 }, "~N,~N");
-Clazz_defineMethod (c$, "isOnSpectrum", 
+Clazz_defineMethod (c$, "isOnSpectrum",
  function (xPixel, yPixel, index) {
 var xyCoords = null;
 var isContinuous = true;
@@ -18355,21 +18355,21 @@ if (JSV.common.GraphSet.isOnLine (xPixel, yPixel, x1, y1, x1, y2)) return true;
 }
 }return false;
 }, "~N,~N,~N");
-c$.distance = Clazz_defineMethod (c$, "distance", 
+c$.distance = Clazz_defineMethod (c$, "distance",
  function (dx, dy) {
 return Math.sqrt (dx * dx + dy * dy);
 }, "~N,~N");
-c$.findCompatibleGraphSet = Clazz_defineMethod (c$, "findCompatibleGraphSet", 
+c$.findCompatibleGraphSet = Clazz_defineMethod (c$, "findCompatibleGraphSet",
  function (graphSets, spec) {
 for (var i = 0; i < graphSets.size (); i++) if (JSV.common.Spectrum.areXScalesCompatible (spec, graphSets.get (i).getSpectrum (), false, false)) return graphSets.get (i);
 
 return null;
 }, "JU.Lst,JSV.common.Spectrum");
-c$.isGoodEvent = Clazz_defineMethod (c$, "isGoodEvent", 
+c$.isGoodEvent = Clazz_defineMethod (c$, "isGoodEvent",
  function (zOrP, p, asX) {
 return (p == null ? (Math.abs (zOrP.xPixel1 - zOrP.xPixel0) > 5 && Math.abs (zOrP.yPixel1 - zOrP.yPixel0) > 5) : asX ? Math.abs (zOrP.xPixel0 - p.xPixel0) > 5 : Math.abs (zOrP.yPixel0 - p.yPixel0) > 5);
 }, "JSV.common.PlotWidget,JSV.common.PlotWidget,~B");
-c$.isOnLine = Clazz_defineMethod (c$, "isOnLine", 
+c$.isOnLine = Clazz_defineMethod (c$, "isOnLine",
  function (xPixel, yPixel, x1, y1, x2, y2) {
 var dx1 = Math.abs (x1 - xPixel);
 if (dx1 < 2 && Math.abs (y1 - yPixel) < 2) return true;
@@ -18381,7 +18381,7 @@ var dx12 = x1 - x2;
 if (Math.abs (dx12) > 2 && (x1 < xPixel) == (x2 < xPixel)) return false;
 return (JSV.common.GraphSet.distance (dx1, y1 - yPixel) + JSV.common.GraphSet.distance (dx2, yPixel - y2) < JSV.common.GraphSet.distance (dx12, dy12) + 2);
 }, "~N,~N,~N,~N,~N,~N");
-c$.setFractionalPositions = Clazz_defineMethod (c$, "setFractionalPositions", 
+c$.setFractionalPositions = Clazz_defineMethod (c$, "setFractionalPositions",
  function (pd, graphSets, linkMode) {
 var n = graphSets.size ();
 var f = 0;
@@ -18441,7 +18441,7 @@ gs.fracX = 0.5;
 gs.fracY = 1;
 }}
 }}, "JSV.common.PanelData,JU.Lst,JSV.common.PanelData.LinkMode");
-Clazz_defineMethod (c$, "addAnnotation", 
+Clazz_defineMethod (c$, "addAnnotation",
 function (args, title) {
 if (args.size () == 0 || args.size () == 1 && args.get (0).equalsIgnoreCase ("none")) {
 this.annotations = null;
@@ -18458,13 +18458,13 @@ return s;
 this.addAnnotation (annotation, false);
 return null;
 }, "JU.Lst,~S");
-Clazz_defineMethod (c$, "addHighlight", 
+Clazz_defineMethod (c$, "addHighlight",
 function (x1, x2, spec, color) {
 if (spec == null) spec = this.getSpectrumAt (0);
 var hl = Clazz_innerTypeInstance (JSV.common.GraphSet.Highlight, this, null, x1, x2, spec, (color == null ? this.pd.getColor (JSV.common.ScriptToken.HIGHLIGHTCOLOR) : color));
 if (!this.highlights.contains (hl)) this.highlights.addLast (hl);
 }, "~N,~N,JSV.common.Spectrum,javajs.api.GenericColor");
-Clazz_defineMethod (c$, "addPeakHighlight", 
+Clazz_defineMethod (c$, "addPeakHighlight",
 function (peakInfo) {
 for (var i = this.spectra.size (); --i >= 0; ) {
 var spec = this.spectra.get (i);
@@ -18486,14 +18486,14 @@ if (this.getScale ().isInRangeX (x1) || this.getScale ().isInRangeX (x2) || x1 <
 this.setZoomTo (0);
 }}
 }, "JSV.common.PeakInfo");
-Clazz_defineMethod (c$, "advanceSubSpectrum", 
+Clazz_defineMethod (c$, "advanceSubSpectrum",
 function (dir) {
 var spec0 = this.getSpectrumAt (0);
 var i = spec0.advanceSubSpectrum (dir);
 if (spec0.isForcedSubset ()) this.viewData.setXRangeForSubSpectrum (this.getSpectrum ().getXYCoords ());
 this.pd.notifySubSpectrumChange (i, this.getSpectrum ());
 }, "~N");
-Clazz_defineMethod (c$, "checkSpectrumClickedEvent", 
+Clazz_defineMethod (c$, "checkSpectrumClickedEvent",
 function (xPixel, yPixel, clickCount) {
 if (this.nextClickForSetPeak != null) return false;
 if (clickCount > 1 || this.pendingMeasurement != null || !this.isInPlotRegion (xPixel, yPixel)) return false;
@@ -18513,19 +18513,19 @@ if (this.isDialogOpen ()) return false;
 this.setSpectrumClicked (-1);
 return this.stackSelected = false;
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "getShiftMode", 
+Clazz_defineMethod (c$, "getShiftMode",
  function (xPixel, yPixel) {
 return (this.isStartEndIntegral (xPixel, false) ? yPixel : this.isStartEndIntegral (xPixel, true) ? -yPixel : 0);
 }, "~N,~N");
-Clazz_defineMethod (c$, "isDialogOpen", 
+Clazz_defineMethod (c$, "isDialogOpen",
  function () {
 return (this.isVisible (this.getDialog (JSV.common.Annotation.AType.Integration, -1)) || this.isVisible (this.getDialog (JSV.common.Annotation.AType.Measurements, -1)) || this.isVisible (this.getDialog (JSV.common.Annotation.AType.PeakList, -1)));
 });
-Clazz_defineMethod (c$, "isStartEndIntegral", 
+Clazz_defineMethod (c$, "isStartEndIntegral",
  function (xPixel, isEnd) {
 return (isEnd ? this.xPixelPlot1 - xPixel < 20 : xPixel - this.xPixelPlot0 < 20);
 }, "~N,~B");
-Clazz_defineMethod (c$, "checkWidgetEvent", 
+Clazz_defineMethod (c$, "checkWidgetEvent",
 function (xPixel, yPixel, isPress) {
 if (!this.triggered) return false;
 this.triggered = false;
@@ -18647,15 +18647,15 @@ return true;
 return true;
 }return false;
 }, "~N,~N,~B");
-Clazz_defineMethod (c$, "clearIntegrals", 
+Clazz_defineMethod (c$, "clearIntegrals",
 function () {
 this.checkIntegral (NaN, 0, false);
 });
-Clazz_defineMethod (c$, "clearMeasurements", 
+Clazz_defineMethod (c$, "clearMeasurements",
 function () {
 this.removeDialog (this.getFixedSelectedSpectrumIndex (), JSV.common.Annotation.AType.Measurements);
 });
-c$.createGraphSetsAndSetLinkMode = Clazz_defineMethod (c$, "createGraphSetsAndSetLinkMode", 
+c$.createGraphSetsAndSetLinkMode = Clazz_defineMethod (c$, "createGraphSetsAndSetLinkMode",
 function (pd, jsvp, spectra, startIndex, endIndex, linkMode) {
 var graphSets =  new JU.Lst ();
 for (var i = 0; i < spectra.size (); i++) {
@@ -18671,7 +18671,7 @@ JU.Logger.info ("JSVGraphSet " + (i + 1) + " nSpectra = " + graphSets.get (i).nS
 }
 return graphSets;
 }, "JSV.common.PanelData,JSV.api.JSVPanel,JU.Lst,~N,~N,JSV.common.PanelData.LinkMode");
-Clazz_defineMethod (c$, "drawGraphSet", 
+Clazz_defineMethod (c$, "drawGraphSet",
 function (gMain, gFront, gBack, width, height, left, right, top, bottom, isResized, taintedAll) {
 this.zoomEnabled = this.pd.getBoolean (JSV.common.ScriptToken.ENABLEZOOM);
 this.height = height * this.pd.scalingFactor;
@@ -18692,7 +18692,7 @@ this.drawAll (gMain, gFront, gBack, iSplit, isResized || this.nSplit > 1, tainte
 this.setPositionForFrame (this.nSplit > 1 ? this.pd.currentSplitPoint : 0);
 if (this.pd.isPrinting) return;
 }, "~O,~O,~O,~N,~N,~N,~N,~N,~N,~B,~B");
-Clazz_defineMethod (c$, "escapeKeyPressed", 
+Clazz_defineMethod (c$, "escapeKeyPressed",
 function (isDEL) {
 if (this.zoomBox1D != null) this.zoomBox1D.xPixel0 = this.zoomBox1D.xPixel1 = 0;
 if (this.zoomBox2D != null) this.zoomBox2D.xPixel0 = this.zoomBox2D.xPixel1 = 0;
@@ -18713,43 +18713,43 @@ if (isDEL) this.selectedSpectrumIntegrals.clear (this.getScale ().minXOnScale, t
 this.selectedIntegral = null;
 this.updateDialog (JSV.common.Annotation.AType.Integration, -1);
 }}, "~B");
-c$.findGraphSet = Clazz_defineMethod (c$, "findGraphSet", 
+c$.findGraphSet = Clazz_defineMethod (c$, "findGraphSet",
 function (graphSets, xPixel, yPixel) {
 for (var i = graphSets.size (); --i >= 0; ) if (graphSets.get (i).hasPoint (xPixel, yPixel)) return graphSets.get (i);
 
 return null;
 }, "JU.Lst,~N,~N");
-Clazz_defineMethod (c$, "findMatchingPeakInfo", 
+Clazz_defineMethod (c$, "findMatchingPeakInfo",
 function (pi) {
 var pi2 = null;
 for (var i = 0; i < this.spectra.size (); i++) if ((pi2 = (this.spectra.get (i)).findMatchingPeakInfo (pi)) != null) break;
 
 return pi2;
 }, "JSV.common.PeakInfo");
-Clazz_defineMethod (c$, "getCurrentSpectrumIndex", 
+Clazz_defineMethod (c$, "getCurrentSpectrumIndex",
 function () {
 return (this.nSpectra == 1 ? 0 : this.iSpectrumSelected);
 });
-Clazz_defineMethod (c$, "getSelectedIntegral", 
+Clazz_defineMethod (c$, "getSelectedIntegral",
 function () {
 return this.selectedIntegral;
 });
-Clazz_defineMethod (c$, "getShowAnnotation", 
+Clazz_defineMethod (c$, "getShowAnnotation",
 function (type, i) {
 var id = this.getDialog (type, i);
 return (id != null && id.getState ());
 }, "JSV.common.Annotation.AType,~N");
-Clazz_defineMethod (c$, "hasFileLoaded", 
+Clazz_defineMethod (c$, "hasFileLoaded",
 function (filePath) {
 for (var i = this.spectra.size (); --i >= 0; ) if (this.spectra.get (i).getFilePathForwardSlash ().equals (filePath)) return true;
 
 return false;
 }, "~S");
-Clazz_defineMethod (c$, "haveSelectedSpectrum", 
+Clazz_defineMethod (c$, "haveSelectedSpectrum",
 function () {
 return this.$haveSelectedSpectrum;
 });
-Clazz_defineMethod (c$, "mouseClickedEvent", 
+Clazz_defineMethod (c$, "mouseClickedEvent",
 function (xPixel, yPixel, clickCount, isControlDown) {
 this.selectedMeasurement = null;
 this.selectedIntegral = null;
@@ -18824,11 +18824,11 @@ return;
 this.setCoordClicked (0, NaN, 0);
 }this.pd.notifyPeakPickedListeners (null);
 }, "~N,~N,~N,~B");
-Clazz_defineMethod (c$, "is2dClick", 
+Clazz_defineMethod (c$, "is2dClick",
  function (xPixel, yPixel) {
 return (this.imageView != null && xPixel == this.imageView.fixX (xPixel) && yPixel == this.fixY (yPixel));
 }, "~N,~N");
-Clazz_defineMethod (c$, "updateDialog", 
+Clazz_defineMethod (c$, "updateDialog",
  function (type, iSpec) {
 var ad = this.getDialog (type, iSpec);
 if (ad == null || !this.isVisible (ad)) return;
@@ -18836,15 +18836,15 @@ var xRange = this.toX (this.xPixel1) - this.toX (this.xPixel0);
 var yOffset = (this.getSpectrum ().isInverted () ? this.yPixel1 - this.pd.mouseY : this.pd.mouseY - this.yPixel0);
 (ad).update (this.pd.coordClicked, xRange, yOffset);
 }, "JSV.common.Annotation.AType,~N");
-Clazz_defineMethod (c$, "isVisible", 
+Clazz_defineMethod (c$, "isVisible",
  function (ad) {
 return (Clazz_instanceOf (ad, JSV.dialog.JSVDialog) && ad.isVisible ());
 }, "JSV.api.AnnotationData");
-Clazz_defineMethod (c$, "mousePressedEvent", 
+Clazz_defineMethod (c$, "mousePressedEvent",
 function (xPixel, yPixel, clickCount) {
 this.checkWidgetEvent (xPixel, yPixel, true);
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "mouseReleasedEvent", 
+Clazz_defineMethod (c$, "mouseReleasedEvent",
 function (xPixel, yPixel) {
 if (this.pendingMeasurement != null) {
 if (Math.abs (this.toPixelX (this.pendingMeasurement.getXVal ()) - xPixel) < 2) this.pendingMeasurement = null;
@@ -18877,7 +18877,7 @@ this.zoomBox1D.xPixel1 = this.zoomBox1D.xPixel0;
 } else if (thisWidget === this.pin1Dx0 || thisWidget === this.pin1Dx1 || thisWidget === this.cur2Dx0 || thisWidget === this.cur2Dx1) {
 this.addCurrentZoom ();
 }}, "~N,~N");
-Clazz_defineMethod (c$, "mouseMovedEvent", 
+Clazz_defineMethod (c$, "mouseMovedEvent",
 function (xPixel, yPixel) {
 if (this.nSpectra > 1) {
 var iFrame = this.getSplitPoint (yPixel);
@@ -18918,34 +18918,34 @@ this.piMouseOver = spec.findPeakByCoord (xPixel, this.coordTemp);
 if (!this.pd.display1D && this.sticky2Dcursor) {
 this.set2DCrossHairs (xPixel, yPixel);
 }}}}, "~N,~N");
-Clazz_defineMethod (c$, "nextView", 
+Clazz_defineMethod (c$, "nextView",
 function () {
 if (this.currentZoomIndex + 1 < this.viewList.size ()) this.setZoomTo (this.currentZoomIndex + 1);
 });
-Clazz_defineMethod (c$, "previousView", 
+Clazz_defineMethod (c$, "previousView",
 function () {
 if (this.currentZoomIndex > 0) this.setZoomTo (this.currentZoomIndex - 1);
 });
-Clazz_defineMethod (c$, "resetView", 
+Clazz_defineMethod (c$, "resetView",
 function () {
 this.setZoomTo (0);
 });
-Clazz_defineMethod (c$, "removeAllHighlights", 
+Clazz_defineMethod (c$, "removeAllHighlights",
 function () {
 this.removeAllHighlights (null);
 });
-Clazz_defineMethod (c$, "removeHighlight", 
+Clazz_defineMethod (c$, "removeHighlight",
 function (index) {
 this.highlights.removeItemAt (index);
 }, "~N");
-Clazz_defineMethod (c$, "removeHighlight", 
+Clazz_defineMethod (c$, "removeHighlight",
 function (x1, x2) {
 for (var i = this.highlights.size (); --i >= 0; ) {
 var h = this.highlights.get (i);
 if (h.x1 == x1 && h.x2 == x2) this.highlights.removeItemAt (i);
 }
 }, "~N,~N");
-Clazz_defineMethod (c$, "scaleYBy", 
+Clazz_defineMethod (c$, "scaleYBy",
 function (factor) {
 if (this.imageView == null && !this.zoomEnabled) return;
 this.viewData.scaleSpectrum (this.imageView == null ? this.iSpectrumSelected : -2, factor);
@@ -18954,7 +18954,7 @@ this.update2dImage (false);
 this.resetPinsFromView ();
 }this.pd.refresh ();
 }, "~N");
-Clazz_defineMethod (c$, "selectSpectrum", 
+Clazz_defineMethod (c$, "selectSpectrum",
 function (filePath, type, model) {
 var haveFound = false;
 for (var i = this.spectra.size (); --i >= 0; ) if ((filePath == null || this.getSpectrumAt (i).getFilePathForwardSlash ().equals (filePath)) && (this.getSpectrumAt (i).matchesPeakTypeModel (type, model))) {
@@ -18965,14 +18965,14 @@ haveFound = true;
 if (this.nSpectra > 1 && !haveFound && this.iSpectrumSelected >= 0 && !this.pd.isCurrentGraphSet (this)) this.setSpectrumSelected (-2147483648);
 return haveFound;
 }, "~S,~S,~S");
-Clazz_defineMethod (c$, "selectPeakByFileIndex", 
+Clazz_defineMethod (c$, "selectPeakByFileIndex",
 function (filePath, index, atomKey) {
 var pi;
 for (var i = this.spectra.size (); --i >= 0; ) if ((pi = this.getSpectrumAt (i).selectPeakByFileIndex (filePath, index, atomKey)) != null) return pi;
 
 return null;
 }, "~S,~S,~S");
-Clazz_defineMethod (c$, "setSelected", 
+Clazz_defineMethod (c$, "setSelected",
 function (i) {
 if (i < 0) {
 this.bsSelected.clearAll ();
@@ -18982,12 +18982,12 @@ return;
 this.setSpectrumClicked ((this.bsSelected.cardinality () == 1 ? i : -1));
 if (this.nSplit > 1 && i >= 0) this.pd.currentSplitPoint = i;
 }, "~N");
-Clazz_defineMethod (c$, "setSelectedIntegral", 
+Clazz_defineMethod (c$, "setSelectedIntegral",
 function (val) {
 var spec = this.selectedIntegral.getSpectrum ();
 this.getIntegrationGraph (this.getSpectrumIndex (spec)).setSelectedIntegral (this.selectedIntegral, val);
 }, "~N");
-Clazz_defineMethod (c$, "setShowAnnotation", 
+Clazz_defineMethod (c$, "setShowAnnotation",
 function (type, tfToggle) {
 var id = this.getDialog (type, -1);
 if (id == null) {
@@ -19003,7 +19003,7 @@ if (isON) id.setState (isON);
 if (isON || Clazz_instanceOf (id, JSV.dialog.JSVDialog)) this.pd.showDialog (type);
 if (!isON && Clazz_instanceOf (id, JSV.dialog.JSVDialog)) (id).setVisible (false);
 }, "JSV.common.Annotation.AType,Boolean");
-Clazz_defineMethod (c$, "checkIntegralParams", 
+Clazz_defineMethod (c$, "checkIntegralParams",
 function (parameters, value) {
 var spec = this.getSpectrum ();
 if (!spec.canIntegrate () || this.reversePlot) return false;
@@ -19061,7 +19061,7 @@ if (ad != null) (ad.getData ()).update (parameters);
 this.updateDialog (JSV.common.Annotation.AType.Integration, -1);
 return true;
 }, "JSV.common.Parameters,~S");
-Clazz_defineMethod (c$, "setSpectrum", 
+Clazz_defineMethod (c$, "setSpectrum",
 function (iSpec, fromSplit) {
 if (fromSplit && this.nSplit > 1) {
 if (this.nSplit > 1) this.setSpectrumClicked (iSpec);
@@ -19071,7 +19071,7 @@ this.stackSelected = false;
 this.showAllStacked = false;
 }if (iSpec >= 0) this.dialogsToFront (this.getSpectrum ());
 }, "~N,~B");
-Clazz_defineMethod (c$, "setSpectrumJDX", 
+Clazz_defineMethod (c$, "setSpectrumJDX",
 function (spec) {
 var pt = this.getFixedSelectedSpectrumIndex ();
 this.spectra.removeItemAt (pt);
@@ -19080,7 +19080,7 @@ this.pendingMeasurement = null;
 this.clearViews ();
 this.viewData.newSpectrum (this.spectra);
 }, "JSV.common.Spectrum");
-Clazz_defineMethod (c$, "setZoom", 
+Clazz_defineMethod (c$, "setZoom",
 function (x1, y1, x2, y2) {
 this.setZoomTo (0);
 if (x1 == 0 && x2 == 0 && y1 == 0 && y2 == 0) {
@@ -19091,7 +19091,7 @@ x2 = this.getScale ().maxXOnScale;
 } else {
 this.doZoom (x1, y1, x2, y2, true, (y1 != y2), false, true, true);
 }}, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "shiftSpectrum", 
+Clazz_defineMethod (c$, "shiftSpectrum",
 function (mode, xOld, xNew) {
 var spec = this.getSpectrum ();
 if (!spec.isNMR () || !spec.is1D ()) return false;
@@ -19146,7 +19146,7 @@ this.pd.setTaintedAll ();
 this.pd.repaint ();
 return true;
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "toPeak", 
+Clazz_defineMethod (c$, "toPeak",
 function (istep) {
 istep *= (this.drawXAxisLeftToRight ? 1 : -1);
 if (Double.isNaN (this.lastClickX)) this.lastClickX = this.lastPixelX = 0;
@@ -19159,16 +19159,16 @@ spec.setSelectedPeak (peak);
 this.setCoordClicked (peak.getXPixel (), peak.getX (), 0);
 this.pd.notifyPeakPickedListeners ( new JSV.common.PeakPickEvent (this.jsvp, this.pd.coordClicked, peak));
 }, "~N");
-Clazz_defineMethod (c$, "scaleSelectedBy", 
+Clazz_defineMethod (c$, "scaleSelectedBy",
 function (f) {
 for (var i = this.bsSelected.nextSetBit (0); i >= 0; i = this.bsSelected.nextSetBit (i + 1)) this.viewData.scaleSpectrum (i, f);
 
 }, "~N");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return "gs: " + this.nSpectra + " " + this.spectra + " " + this.spectra.get (0).getFilePath ();
 });
-Clazz_defineMethod (c$, "setXPointer", 
+Clazz_defineMethod (c$, "setXPointer",
 function (spec, x) {
 if (spec != null) this.setSpectrumClicked (this.getSpectrumIndex (spec));
 this.xValueMovedTo = this.lastClickX = x;
@@ -19176,25 +19176,25 @@ this.lastPixelX = this.toPixelX (x);
 this.setXPixelMovedTo (x, 1.7976931348623157E308, 0, 0);
 this.yValueMovedTo = NaN;
 }, "JSV.common.Spectrum,~N");
-Clazz_defineMethod (c$, "setXPointer2", 
+Clazz_defineMethod (c$, "setXPointer2",
 function (spec, x) {
 if (spec != null) this.setSpectrumClicked (this.getSpectrumIndex (spec));
 this.setXPixelMovedTo (1.7976931348623157E308, x, 0, 0);
 }, "JSV.common.Spectrum,~N");
-Clazz_defineMethod (c$, "hasCurrentMeasurement", 
+Clazz_defineMethod (c$, "hasCurrentMeasurement",
 function (type) {
 return ((type === JSV.common.Annotation.AType.Integration ? this.selectedSpectrumIntegrals : this.selectedSpectrumMeasurements) != null);
 }, "JSV.common.Annotation.AType");
-Clazz_defineMethod (c$, "getDialog", 
+Clazz_defineMethod (c$, "getDialog",
 function (type, iSpec) {
 if (iSpec == -1) iSpec = this.getCurrentSpectrumIndex ();
 return (this.dialogs == null || iSpec < 0 ? null : this.dialogs.get (type + "_" + iSpec));
 }, "JSV.common.Annotation.AType,~N");
-Clazz_defineMethod (c$, "removeDialog", 
+Clazz_defineMethod (c$, "removeDialog",
 function (iSpec, type) {
 if (this.dialogs != null && iSpec >= 0) this.dialogs.remove (type + "_" + iSpec);
 }, "~N,JSV.common.Annotation.AType");
-Clazz_defineMethod (c$, "addDialog", 
+Clazz_defineMethod (c$, "addDialog",
 function (iSpec, type, dialog) {
 if (this.dialogs == null) this.dialogs =  new java.util.Hashtable ();
 var key = type + "_" + iSpec;
@@ -19202,14 +19202,14 @@ dialog.setGraphSetKey (key);
 this.dialogs.put (key, dialog);
 return dialog;
 }, "~N,JSV.common.Annotation.AType,JSV.api.AnnotationData");
-Clazz_defineMethod (c$, "removeDialog", 
+Clazz_defineMethod (c$, "removeDialog",
 function (dialog) {
 var key = dialog.getGraphSetKey ();
 this.dialogs.remove (key);
 var data = dialog.getData ();
 if (data != null) this.dialogs.put (key, data);
 }, "JSV.dialog.JSVDialog");
-Clazz_defineMethod (c$, "getPeakListing", 
+Clazz_defineMethod (c$, "getPeakListing",
 function (iSpec, p, forceNew) {
 if (iSpec < 0) iSpec = this.getCurrentSpectrumIndex ();
 if (iSpec < 0) return null;
@@ -19221,7 +19221,7 @@ this.addDialog (iSpec, JSV.common.Annotation.AType.PeakList, dialog =  new JSV.c
 if (Clazz_instanceOf (dialog, JSV.dialog.JSVDialog)) (dialog).setFields ();
 return dialog.getData ();
 }, "~N,JSV.common.Parameters,~B");
-Clazz_defineMethod (c$, "setPeakListing", 
+Clazz_defineMethod (c$, "setPeakListing",
 function (tfToggle) {
 var dialog = this.getDialog (JSV.common.Annotation.AType.PeakList, -1);
 var ad = (Clazz_instanceOf (dialog, JSV.dialog.JSVDialog) ? dialog : null);
@@ -19231,27 +19231,27 @@ this.pd.showDialog (JSV.common.Annotation.AType.PeakList);
 } else {
 if (Clazz_instanceOf (dialog, JSV.dialog.JSVDialog)) (dialog).setVisible (false);
 }}, "Boolean");
-Clazz_defineMethod (c$, "haveIntegralDisplayed", 
+Clazz_defineMethod (c$, "haveIntegralDisplayed",
 function (i) {
 var ad = this.getDialog (JSV.common.Annotation.AType.Integration, i);
 return (ad != null && ad.getState ());
 }, "~N");
-Clazz_defineMethod (c$, "getIntegrationGraph", 
+Clazz_defineMethod (c$, "getIntegrationGraph",
 function (i) {
 var ad = this.getDialog (JSV.common.Annotation.AType.Integration, i);
 return (ad == null ? null : ad.getData ());
 }, "~N");
-Clazz_defineMethod (c$, "setIntegrationRatios", 
+Clazz_defineMethod (c$, "setIntegrationRatios",
 function (value) {
 var iSpec = this.getFixedSelectedSpectrumIndex ();
 if (this.aIntegrationRatios == null) this.aIntegrationRatios =  new Array (this.nSpectra);
 this.aIntegrationRatios[iSpec] = JSV.common.IntegralData.getIntegrationRatiosFromString (this.getSpectrum (), value);
 }, "~S");
-Clazz_defineMethod (c$, "getIntegrationRatios", 
+Clazz_defineMethod (c$, "getIntegrationRatios",
 function (i) {
 return (this.aIntegrationRatios == null ? null : this.aIntegrationRatios[i]);
 }, "~N");
-Clazz_defineMethod (c$, "integrate", 
+Clazz_defineMethod (c$, "integrate",
 function (iSpec, parameters) {
 var spec = this.getSpectrumAt (iSpec);
 if (parameters == null || !spec.canIntegrate ()) {
@@ -19260,7 +19260,7 @@ return false;
 }this.addDialog (iSpec, JSV.common.Annotation.AType.Integration,  new JSV.common.IntegralData (spec, parameters));
 return true;
 }, "~N,JSV.common.Parameters");
-Clazz_defineMethod (c$, "getIntegration", 
+Clazz_defineMethod (c$, "getIntegration",
 function (iSpec, p, forceNew) {
 if (iSpec < 0) iSpec = this.getCurrentSpectrumIndex ();
 if (iSpec < 0) return null;
@@ -19270,7 +19270,7 @@ if (!forceNew) return null;
 dialog = this.addDialog (iSpec, JSV.common.Annotation.AType.Integration,  new JSV.common.IntegralData (this.getSpectrum (), p));
 }return dialog.getData ();
 }, "~N,JSV.common.Parameters,~B");
-Clazz_defineMethod (c$, "getMeasurementInfo", 
+Clazz_defineMethod (c$, "getMeasurementInfo",
 function (type, iSpec) {
 var md;
 switch (type) {
@@ -19288,7 +19288,7 @@ var info =  new java.util.Hashtable ();
 md.getInfo (info);
 return info;
 }, "JSV.common.Annotation.AType,~N");
-Clazz_defineMethod (c$, "getInfo", 
+Clazz_defineMethod (c$, "getInfo",
 function (key, iSpec) {
 var spectraInfo =  new java.util.Hashtable ();
 if ("".equals (key)) {
@@ -19313,16 +19313,16 @@ specInfo.addLast (info);
 }
 return spectraInfo;
 }, "~S,~N");
-Clazz_defineMethod (c$, "getTitle", 
+Clazz_defineMethod (c$, "getTitle",
 function (forPrinting) {
 return (this.nSpectra == 1 || this.iSpectrumSelected >= 0 && (!forPrinting || this.nSplit == 1) ? this.getSpectrum ().getTitle () : null);
 }, "~B");
-Clazz_defineMethod (c$, "getCurrentView", 
+Clazz_defineMethod (c$, "getCurrentView",
 function () {
 this.setScale (this.getFixedSelectedSpectrumIndex ());
 return this.viewData.getScale ();
 });
-Clazz_defineMethod (c$, "set2DXY", 
+Clazz_defineMethod (c$, "set2DXY",
 function (x, y, isLocked) {
 var p;
 if (this.gs2dLinkedX != null) {
@@ -19339,7 +19339,7 @@ y = 1.7976931348623157E308;
 }this.cur1D2x2.setX (y, p);
 }this.cur1D2Locked = isLocked;
 }, "~N,~N,~B");
-Clazz_defineMethod (c$, "dialogsToFront", 
+Clazz_defineMethod (c$, "dialogsToFront",
 function (spec) {
 if (this.dialogs == null) return;
 if (spec == null) spec = this.getSpectrum ();
@@ -19350,7 +19350,7 @@ if (spec == null) (ad).setVisible (true);
  else (ad).setFocus (ad.getSpectrum () === spec);
 }}
 }, "JSV.common.Spectrum");
-Clazz_defineMethod (c$, "setPlotColors", 
+Clazz_defineMethod (c$, "setPlotColors",
 function (oColors) {
 var colors = oColors;
 if (colors.length > this.nSpectra) {
@@ -19366,7 +19366,7 @@ for (var i = 0, j = colors.length; i < numAdditionColors; i++, j++) tmpPlotColor
 colors = tmpPlotColors;
 }this.plotColors = colors;
 }, "~O");
-Clazz_defineMethod (c$, "disposeImage", 
+Clazz_defineMethod (c$, "disposeImage",
  function () {
 {
 if (this.image2D != null)
@@ -19377,7 +19377,7 @@ this.pd = null;
 this.highlights = null;
 this.plotColors = null;
 });
-Clazz_defineMethod (c$, "generateRandomColor", 
+Clazz_defineMethod (c$, "generateRandomColor",
  function () {
 while (true) {
 var red = Clazz_doubleToInt (Math.random () * 255);
@@ -19387,20 +19387,20 @@ var randomColor = this.g2d.getColor3 (red, green, blue);
 if (randomColor.getRGB () != 0) return randomColor;
 }
 });
-Clazz_defineMethod (c$, "setPlotColor0", 
+Clazz_defineMethod (c$, "setPlotColor0",
 function (oColor) {
 this.plotColors[0] = oColor;
 }, "~O");
-Clazz_defineMethod (c$, "getPlotColor", 
+Clazz_defineMethod (c$, "getPlotColor",
 function (index) {
 if (index >= this.plotColors.length) return null;
 return this.plotColors[index];
 }, "~N");
-Clazz_defineMethod (c$, "setColorFromToken", 
+Clazz_defineMethod (c$, "setColorFromToken",
  function (og, whatColor) {
 if (whatColor != null) this.g2d.setGraphicsColor (og, whatColor === JSV.common.ScriptToken.PLOTCOLOR ? this.plotColors[0] : this.pd.getColor (whatColor));
 }, "~O,JSV.common.ScriptToken");
-Clazz_defineMethod (c$, "setPlotColor", 
+Clazz_defineMethod (c$, "setPlotColor",
  function (og, i) {
 var c;
 switch (i) {
@@ -19419,11 +19419,11 @@ break;
 }
 this.g2d.setGraphicsColor (og, c);
 }, "~O,~N");
-Clazz_defineMethod (c$, "draw2DImage", 
+Clazz_defineMethod (c$, "draw2DImage",
  function () {
 if (this.imageView != null) this.g2d.drawGrayScaleImage (this.gMain, this.image2D, this.imageView.xPixel0, this.imageView.yPixel0, this.imageView.xPixel0 + this.imageView.xPixels - 1, this.imageView.yPixel0 + this.imageView.yPixels - 1, this.imageView.xView1, this.imageView.yView1, this.imageView.xView2, this.imageView.yView2);
 });
-Clazz_defineMethod (c$, "get2DImage", 
+Clazz_defineMethod (c$, "get2DImage",
  function (spec0) {
 this.imageView =  new JSV.common.ImageView ();
 this.imageView.set (this.viewList.get (0).getScale ());
@@ -19432,7 +19432,7 @@ this.imageView.resetZoom ();
 this.sticky2Dcursor = true;
 return true;
 }, "JSV.common.Spectrum");
-Clazz_defineMethod (c$, "update2dImage", 
+Clazz_defineMethod (c$, "update2dImage",
  function (isCreation) {
 this.imageView.set (this.viewData.getScale ());
 var spec = this.getSpectrumAt (0);
@@ -19448,34 +19448,34 @@ this.imageView.resetView ();
 this.setImageWindow ();
 return true;
 }, "~B");
-Clazz_defineMethod (c$, "getAnnotation", 
+Clazz_defineMethod (c$, "getAnnotation",
  function (x, y, text, isPixels, is2d, offsetX, offsetY) {
 return  new JSV.common.ColoredAnnotation ().setCA (x, y, this.getSpectrum (), text, this.pd.BLACK, isPixels, is2d, offsetX, offsetY);
 }, "~N,~N,~S,~B,~B,~N,~N");
-Clazz_defineMethod (c$, "getAnnotation", 
+Clazz_defineMethod (c$, "getAnnotation",
  function (args, lastAnnotation) {
 return JSV.common.Annotation.getColoredAnnotation (this.g2d, this.getSpectrum (), args, lastAnnotation);
 }, "JU.Lst,JSV.common.Annotation");
-Clazz_defineMethod (c$, "fillBox", 
+Clazz_defineMethod (c$, "fillBox",
  function (g, x0, y0, x1, y1, whatColor) {
 this.setColorFromToken (g, whatColor);
 this.g2d.fillRect (g, Math.min (x0, x1), Math.min (y0, y1), Math.abs (x0 - x1), Math.abs (y0 - y1));
 }, "~O,~N,~N,~N,~N,JSV.common.ScriptToken");
-Clazz_defineMethod (c$, "drawBox", 
+Clazz_defineMethod (c$, "drawBox",
  function (g, x0, y0, x1, y1, whatColor) {
 this.setColorFromToken (g, whatColor);
 this.g2d.drawRect (g, Math.min (x0, x1), Math.min (y0, y1), Math.abs (x0 - x1) - 1, Math.abs (y0 - y1) - 1);
 }, "~O,~N,~N,~N,~N,JSV.common.ScriptToken");
-Clazz_defineMethod (c$, "drawHandle", 
+Clazz_defineMethod (c$, "drawHandle",
  function (g, x, y, size, outlineOnly) {
 if (outlineOnly) this.g2d.drawRect (g, x - size, y - size, size * 2, size * 2);
  else this.g2d.fillRect (g, x - size, y - size, size * 2 + 1, size * 2 + 1);
 }, "~O,~N,~N,~N,~B");
-Clazz_defineMethod (c$, "setCurrentBoxColor", 
+Clazz_defineMethod (c$, "setCurrentBoxColor",
  function (g) {
 this.g2d.setGraphicsColor (g, this.pd.BLACK);
 }, "~O");
-Clazz_defineMethod (c$, "fillArrow", 
+Clazz_defineMethod (c$, "fillArrow",
  function (g, type, x, y, doFill) {
 var f = 1;
 switch (type) {
@@ -19498,12 +19498,12 @@ if (doFill) this.g2d.fillPolygon (g, axPoints, ayPoints, 7);
  else this.g2d.drawPolygon (g, axPoints, ayPoints, 7);
 }
 }, "~O,~N,~N,~N,~B");
-Clazz_defineMethod (c$, "fillCircle", 
+Clazz_defineMethod (c$, "fillCircle",
  function (g, x, y, doFill) {
 if (doFill) this.g2d.fillCircle (g, x - 4, y - 4, 8);
  else this.g2d.drawCircle (g, x - 4, y - 4, 8);
 }, "~O,~N,~N,~B");
-Clazz_defineMethod (c$, "setAnnotationColor", 
+Clazz_defineMethod (c$, "setAnnotationColor",
 function (g, note, whatColor) {
 if (whatColor != null) {
 this.setColorFromToken (g, whatColor);
@@ -19513,7 +19513,7 @@ if (Clazz_instanceOf (note, JSV.common.ColoredAnnotation)) color = (note).getCol
 if (color == null) color = this.pd.BLACK;
 this.g2d.setGraphicsColor (g, color);
 }, "~O,JSV.common.Annotation,JSV.common.ScriptToken");
-Clazz_defineMethod (c$, "setSolutionColor", 
+Clazz_defineMethod (c$, "setSolutionColor",
 function (vi, isNone, asFitted) {
 for (var i = 0; i < this.nSpectra; i++) {
 var spec = this.spectra.get (i);
@@ -19521,7 +19521,7 @@ var color = (isNone || !spec.canShowSolutionColor () ? -1 : vi.getColour (spec, 
 spec.setFillColor (color == -1 ? null : this.pd.vwr.parameters.getColor1 (color));
 }
 }, "JSV.api.VisibleInterface,~B,~B");
-Clazz_defineMethod (c$, "setIRMode", 
+Clazz_defineMethod (c$, "setIRMode",
 function (mode, type) {
 for (var i = 0; i < this.nSpectra; i++) {
 var spec = this.spectra.get (i);
@@ -19530,11 +19530,11 @@ var spec2 = JSV.common.Spectrum.taConvert (spec, mode);
 if (spec2 !== spec) this.pd.setSpecForIRMode (spec2);
 }
 }, "JSV.common.Spectrum.IRMode,~S");
-Clazz_defineMethod (c$, "getSpectrumCount", 
+Clazz_defineMethod (c$, "getSpectrumCount",
 function () {
 return 0;
 });
-Clazz_defineMethod (c$, "invertYAxis", 
+Clazz_defineMethod (c$, "invertYAxis",
 function () {
 this.viewList.get (0).init (null, 0, 0, this.getSpectrum ().invertYAxis ().isContinuous ());
 this.resetViewCompletely ();
@@ -19549,18 +19549,18 @@ this.color = null;
 this.spectrum = null;
 Clazz_instantialize (this, arguments);
 }, JSV.common.GraphSet, "Highlight");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return "highlight " + this.x1 + " " + this.x2 + " " + this.spectrum;
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (a, b, c, d) {
 this.x1 = a;
 this.x2 = b;
 this.color = d;
 this.spectrum = c;
 }, "~N,~N,JSV.common.Spectrum,javajs.api.GenericColor");
-Clazz_overrideMethod (c$, "equals", 
+Clazz_overrideMethod (c$, "equals",
 function (a) {
 if (!(Clazz_instanceOf (a, JSV.common.GraphSet.Highlight))) return false;
 var b = a;
@@ -19617,7 +19617,7 @@ this.maxZ = 0;
 this.scaleData = null;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "ImageView", null, JSV.common.XYScaleConverter);
-Clazz_defineMethod (c$, "set", 
+Clazz_defineMethod (c$, "set",
 function (view) {
 if (Double.isNaN (this.minX)) {
 this.minX = view.minX;
@@ -19626,7 +19626,7 @@ this.maxX = view.maxX;
 this.maxZ = view.maxY;
 this.scaleData =  new JSV.common.ScaleData ();
 }, "JSV.common.ScaleData");
-Clazz_defineMethod (c$, "setZoom", 
+Clazz_defineMethod (c$, "setZoom",
 function (xPixel1, yPixel1, xPixel2, yPixel2) {
 this.xPixelZoom1 = Math.min (xPixel1, xPixel2);
 this.yPixelZoom1 = Math.min (yPixel1, yPixel2);
@@ -19634,7 +19634,7 @@ this.xPixelZoom2 = Math.max (xPixel1, xPixel2);
 this.yPixelZoom2 = Math.max (yPixel1, yPixel2);
 this.setView ();
 }, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "setXY0", 
+Clazz_defineMethod (c$, "setXY0",
 function (spec, xPixel, yPixel) {
 this.xPixel0 = xPixel;
 this.yPixel0 = yPixel;
@@ -19642,19 +19642,19 @@ this.xPixel1 = this.xPixel0 + this.xPixels - 1;
 this.yPixel1 = this.yPixel0 + this.yPixels - 1;
 this.setMinMaxY (spec);
 }, "JSV.common.Spectrum,~N,~N");
-Clazz_defineMethod (c$, "setPixelWidthHeight", 
+Clazz_defineMethod (c$, "setPixelWidthHeight",
 function (xPixels, yPixels) {
 this.xPixels = xPixels;
 this.yPixels = yPixels;
 }, "~N,~N");
-Clazz_defineMethod (c$, "resetView", 
+Clazz_defineMethod (c$, "resetView",
 function () {
 this.xView1 = 0;
 this.yView1 = 0;
 this.xView2 = this.imageWidth - 1;
 this.yView2 = this.imageHeight - 1;
 });
-Clazz_defineMethod (c$, "setView", 
+Clazz_defineMethod (c$, "setView",
 function () {
 if (this.xPixelZoom1 == 0) this.resetZoom ();
 var x1 = this.toImageX (this.xPixelZoom1);
@@ -19668,60 +19668,60 @@ this.yView2 = Math.max (y1, y2);
 this.setScaleData ();
 this.resetZoom ();
 });
-Clazz_defineMethod (c$, "resetZoom", 
+Clazz_defineMethod (c$, "resetZoom",
 function () {
 this.xPixelZoom1 = this.xPixel0;
 this.yPixelZoom1 = this.yPixel0;
 this.xPixelZoom2 = this.xPixel1;
 this.yPixelZoom2 = this.yPixel1;
 });
-Clazz_defineMethod (c$, "toImageX", 
+Clazz_defineMethod (c$, "toImageX",
 function (xPixel) {
 return this.xView1 + Clazz_doubleToInt (Math.floor ((xPixel - this.xPixel0) / (this.xPixels - 1.0) * (this.xView2 - this.xView1)));
 }, "~N");
-Clazz_defineMethod (c$, "toImageY", 
+Clazz_defineMethod (c$, "toImageY",
 function (yPixel) {
 return this.yView1 + Clazz_doubleToInt (Math.floor ((yPixel - this.yPixel0) / (this.yPixels - 1.0) * (this.yView2 - this.yView1)));
 }, "~N");
-Clazz_defineMethod (c$, "toImageX0", 
+Clazz_defineMethod (c$, "toImageX0",
 function (xPixel) {
 return JSV.common.Coordinate.intoRange (Clazz_doubleToInt ((1.0 * xPixel - this.xPixel0) / (this.xPixels - 1) * (this.imageWidth - 1)), 0, this.imageWidth - 1);
 }, "~N");
-Clazz_defineMethod (c$, "toImageY0", 
+Clazz_defineMethod (c$, "toImageY0",
 function (yPixel) {
 return JSV.common.Coordinate.intoRange (Clazz_doubleToInt ((1.0 * yPixel - this.yPixel0) / (this.yPixels - 1) * (this.imageHeight - 1)), 0, this.imageHeight - 1);
 }, "~N");
-Clazz_defineMethod (c$, "isXWithinRange", 
+Clazz_defineMethod (c$, "isXWithinRange",
 function (xPixel) {
 return (xPixel >= this.xPixel0 - 5 && xPixel < this.xPixel0 + this.xPixels + 5);
 }, "~N");
-Clazz_defineMethod (c$, "toSubspectrumIndex", 
+Clazz_defineMethod (c$, "toSubspectrumIndex",
 function (yPixel) {
 return JSV.common.Coordinate.intoRange (this.imageHeight - 1 - this.toImageY (yPixel), 0, this.imageHeight - 1);
 }, "~N");
-Clazz_defineMethod (c$, "toX0", 
+Clazz_defineMethod (c$, "toX0",
 function (xPixel) {
 return this.maxX + (this.minX - this.maxX) * (this.fixX (xPixel) - this.xPixel0) / (this.xPixels - 1);
 }, "~N");
-Clazz_defineMethod (c$, "toPixelX0", 
+Clazz_defineMethod (c$, "toPixelX0",
 function (x) {
 return this.xPixel1 - Clazz_doubleToInt ((x - this.minX) / (this.maxX - this.minX) * (this.xPixels - 1));
 }, "~N");
-Clazz_defineMethod (c$, "toPixelY0", 
+Clazz_defineMethod (c$, "toPixelY0",
 function (ysub) {
 return this.yPixel1 - Clazz_doubleToInt (ysub / (this.imageHeight - 1) * (this.yPixels - 1));
 }, "~N");
-Clazz_defineMethod (c$, "subIndexToPixelY", 
+Clazz_defineMethod (c$, "subIndexToPixelY",
 function (subIndex) {
 var f = 1.0 * (this.imageHeight - 1 - subIndex - this.yView1) / (this.yView2 - this.yView1);
 var y = this.yPixel0 + Clazz_doubleToInt (f * (this.yPixels - 1));
 return y;
 }, "~N");
-Clazz_defineMethod (c$, "fixSubIndex", 
+Clazz_defineMethod (c$, "fixSubIndex",
 function (subIndex) {
 return JSV.common.Coordinate.intoRange (subIndex, this.imageHeight - 1 - this.yView2, this.imageHeight - 1 - this.yView1);
 }, "~N");
-Clazz_defineMethod (c$, "setView0", 
+Clazz_defineMethod (c$, "setView0",
 function (xp1, yp1, xp2, yp2) {
 var x1 = this.toImageX0 (xp1);
 var y1 = this.toImageY0 (yp1);
@@ -19733,7 +19733,7 @@ this.xView2 = Math.max (x1, x2);
 this.yView2 = Math.max (y1, y2);
 this.resetZoom ();
 }, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "get2dBuffer", 
+Clazz_defineMethod (c$, "get2dBuffer",
 function (spec, forceNew) {
 var subSpectra = spec.getSubSpectra ();
 if (subSpectra == null || !subSpectra.get (0).isContinuous ()) return null;
@@ -19761,7 +19761,7 @@ this.averageGray = (1 - totalGray / (this.imageWidth * this.imageHeight) / 255);
 System.out.println ("Average gray = " + this.averageGray);
 return (this.buf2d = buf);
 }, "JSV.common.Spectrum,~B");
-Clazz_defineMethod (c$, "adjustView", 
+Clazz_defineMethod (c$, "adjustView",
 function (spec, view) {
 var i = 0;
 var isLow = false;
@@ -19772,11 +19772,11 @@ this.get2dBuffer (spec, false);
 }
 return this.buf2d;
 }, "JSV.common.Spectrum,JSV.common.ViewData");
-Clazz_defineMethod (c$, "getBuffer", 
+Clazz_defineMethod (c$, "getBuffer",
 function () {
 return this.buf2d;
 });
-Clazz_defineMethod (c$, "setMinMaxY", 
+Clazz_defineMethod (c$, "setMinMaxY",
 function (spec) {
 var subSpectra = spec.getSubSpectra ();
 var spec0 = subSpectra.get (0);
@@ -19787,53 +19787,53 @@ this.maxY /= spec0.freq2dY;
 this.minY /= spec0.freq2dY;
 }this.setScaleData ();
 }, "JSV.common.Spectrum");
-Clazz_defineMethod (c$, "setScaleData", 
+Clazz_defineMethod (c$, "setScaleData",
  function () {
 this.scaleData.minY = this.minY;
 this.scaleData.maxY = this.maxY;
 this.scaleData.setYScale (this.toY (this.yPixel0), this.toY (this.yPixel1), false, false);
 });
-Clazz_overrideMethod (c$, "fixX", 
+Clazz_overrideMethod (c$, "fixX",
 function (xPixel) {
 return (xPixel < this.xPixel0 ? this.xPixel0 : xPixel > this.xPixel1 ? this.xPixel1 : xPixel);
 }, "~N");
-Clazz_overrideMethod (c$, "fixY", 
+Clazz_overrideMethod (c$, "fixY",
 function (yPixel) {
 return JSV.common.Coordinate.intoRange (yPixel, this.yPixel0, this.yPixel1);
 }, "~N");
-Clazz_overrideMethod (c$, "getScale", 
+Clazz_overrideMethod (c$, "getScale",
 function () {
 return this.scaleData;
 });
-Clazz_overrideMethod (c$, "toX", 
+Clazz_overrideMethod (c$, "toX",
 function (xPixel) {
 return this.maxX + (this.minX - this.maxX) * this.toImageX (this.fixX (xPixel)) / (this.imageWidth - 1);
 }, "~N");
-Clazz_overrideMethod (c$, "toY", 
+Clazz_overrideMethod (c$, "toY",
 function (yPixel) {
 var isub = this.toSubspectrumIndex (yPixel);
 return this.maxY + (this.minY - this.maxY) * isub / (this.imageHeight - 1);
 }, "~N");
-Clazz_overrideMethod (c$, "toPixelX", 
+Clazz_overrideMethod (c$, "toPixelX",
 function (x) {
 var x0 = this.toX (this.xPixel0);
 var x1 = this.toX (this.xPixel1);
 return this.xPixel0 + Clazz_doubleToInt ((x - x0) / (x1 - x0) * (this.xPixels - 1));
 }, "~N");
-Clazz_overrideMethod (c$, "toPixelY", 
+Clazz_overrideMethod (c$, "toPixelY",
 function (y) {
 var f = (y - this.scaleData.minYOnScale) / (this.scaleData.maxYOnScale - this.scaleData.minYOnScale);
 return Clazz_doubleToInt (this.yPixel0 + f * this.yPixels);
 }, "~N");
-Clazz_overrideMethod (c$, "getXPixels", 
+Clazz_overrideMethod (c$, "getXPixels",
 function () {
 return this.xPixels;
 });
-Clazz_overrideMethod (c$, "getYPixels", 
+Clazz_overrideMethod (c$, "getYPixels",
 function () {
 return this.yPixels;
 });
-Clazz_overrideMethod (c$, "getXPixel0", 
+Clazz_overrideMethod (c$, "getXPixel0",
 function () {
 return this.xPixel0;
 });
@@ -19844,7 +19844,7 @@ Clazz_defineStatics (c$,
 Clazz_declarePackage ("JSV.common");
 Clazz_load (["JSV.common.Measurement"], "JSV.common.Integral", null, function () {
 c$ = Clazz_declareType (JSV.common, "Integral", JSV.common.Measurement);
-Clazz_defineMethod (c$, "setInt", 
+Clazz_defineMethod (c$, "setInt",
 function (x1, y1, spec, value, x2, y2) {
 this.setA (x1, y1, spec, "", false, false, 0, 6);
 this.setPt2 (x2, y2);
@@ -19854,7 +19854,7 @@ return this;
 });
 Clazz_declarePackage ("JSV.common");
 c$ = Clazz_declareType (JSV.common, "IntegralComparator", null, java.util.Comparator);
-Clazz_overrideMethod (c$, "compare", 
+Clazz_overrideMethod (c$, "compare",
 function (m1, m2) {
 return (m1.getXVal () < m2.getXVal () ? -1 : m1.getXVal () > m2.getXVal () ? 1 : 0);
 }, "JSV.common.Measurement,JSV.common.Measurement");
@@ -19872,19 +19872,19 @@ this.haveRegions = false;
 this.xyCoords = null;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "IntegralData", JSV.common.MeasurementData);
-Clazz_defineMethod (c$, "getPercentMinimumY", 
+Clazz_defineMethod (c$, "getPercentMinimumY",
 function () {
 return this.percentMinY;
 });
-Clazz_defineMethod (c$, "getPercentOffset", 
+Clazz_defineMethod (c$, "getPercentOffset",
 function () {
 return this.percentOffset;
 });
-Clazz_defineMethod (c$, "getIntegralFactor", 
+Clazz_defineMethod (c$, "getIntegralFactor",
 function () {
 return this.intRange;
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (integralMinY, integralOffset, integralRange, spec) {
 Clazz_superConstructor (this, JSV.common.IntegralData, [JSV.common.Annotation.AType.Integration, spec]);
 this.percentMinY = integralMinY;
@@ -19892,7 +19892,7 @@ this.percentOffset = integralOffset;
 this.percentRange = integralRange;
 this.calculateIntegral ();
 }, "~N,~N,~N,JSV.common.Spectrum");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (spec, p) {
 Clazz_superConstructor (this, JSV.common.IntegralData, [JSV.common.Annotation.AType.Integration, spec]);
 if (p == null) {
@@ -19902,11 +19902,11 @@ return;
 this.percentRange = p.integralRange;
 this.calculateIntegral ();
 }, "JSV.common.Spectrum,JSV.common.Parameters");
-Clazz_defineMethod (c$, "update", 
+Clazz_defineMethod (c$, "update",
 function (parameters) {
 this.update (parameters.integralMinY, parameters.integralOffset, parameters.integralRange);
 }, "JSV.common.Parameters");
-Clazz_defineMethod (c$, "update", 
+Clazz_defineMethod (c$, "update",
 function (integralMinY, integralOffset, integralRange) {
 var percentRange0 = this.percentRange;
 if (integralRange <= 0 || integralRange == this.percentRange && integralOffset == this.percentOffset) return;
@@ -19933,11 +19933,11 @@ ir.setValue (Math.abs (y2 - y1) * 100 * this.normalizationFactor);
 }this.intRange = intRangeNew;
 this.offset = offsetNew;
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "getYValueAt", 
+Clazz_defineMethod (c$, "getYValueAt",
 function (x) {
 return JSV.common.Coordinate.getYValueAt (this.xyCoords, x);
 }, "~N");
-Clazz_defineMethod (c$, "addIntegralRegion", 
+Clazz_defineMethod (c$, "addIntegralRegion",
 function (x1, x2) {
 if (Double.isNaN (x1)) {
 this.haveRegions = false;
@@ -19958,7 +19958,7 @@ this.addLast ($in);
 java.util.Collections.sort (this, JSV.common.IntegralData.c);
 return $in;
 }, "~N,~N");
-Clazz_defineMethod (c$, "splitIntegral", 
+Clazz_defineMethod (c$, "splitIntegral",
  function (x) {
 var i = this.find (x);
 if (i < 0) return null;
@@ -19968,14 +19968,14 @@ var x2 = integral.getXVal2 ();
 this.addIntegralRegion (x0, x);
 return this.addIntegralRegion (x, x2);
 }, "~N");
-Clazz_overrideMethod (c$, "setSpecShift", 
+Clazz_overrideMethod (c$, "setSpecShift",
 function (dx) {
 JSV.common.Coordinate.shiftX (this.xyCoords, dx);
 for (var i = this.size (); --i >= 1; ) {
 this.get (i).addSpecShift (dx);
 }
 }, "~N");
-Clazz_defineMethod (c$, "addMarks", 
+Clazz_defineMethod (c$, "addMarks",
 function (ppms) {
 ppms = JU.PT.rep (" " + ppms, ",", " ");
 ppms = JU.PT.rep (ppms, " -", " #");
@@ -20008,7 +20008,7 @@ throw e;
 }
 }
 }, "~S");
-Clazz_defineMethod (c$, "calculateIntegral", 
+Clazz_defineMethod (c$, "calculateIntegral",
 function () {
 var specXyCoords = this.spec.getXYCoords ();
 this.xyCoords =  new Array (specXyCoords.length);
@@ -20038,12 +20038,12 @@ this.xyCoords[i] =  new JSV.common.Coordinate ().set (specXyCoords[i].getXVal ()
 }
 return this.xyCoords;
 });
-Clazz_defineMethod (c$, "checkRange", 
+Clazz_defineMethod (c$, "checkRange",
  function () {
 this.percentOffset = Math.max (5, this.percentOffset);
 this.percentRange = Math.max (10, this.percentRange);
 });
-c$.getIntegrationRatiosFromString = Clazz_defineMethod (c$, "getIntegrationRatiosFromString", 
+c$.getIntegrationRatiosFromString = Clazz_defineMethod (c$, "getIntegrationRatiosFromString",
 function (spec, key_values) {
 var ratios =  new JU.Lst ();
 var allParamTokens =  new java.util.StringTokenizer (key_values, ",");
@@ -20055,26 +20055,26 @@ ratios.addLast (ratio);
 }
 return ratios;
 }, "JSV.common.Spectrum,~S");
-Clazz_defineMethod (c$, "getXYCoords", 
+Clazz_defineMethod (c$, "getXYCoords",
 function () {
 return this.xyCoords;
 });
-Clazz_defineMethod (c$, "getPercentYValueAt", 
+Clazz_defineMethod (c$, "getPercentYValueAt",
 function (x) {
 return this.getYValueAt (x) * 100;
 }, "~N");
-Clazz_defineMethod (c$, "dispose", 
+Clazz_defineMethod (c$, "dispose",
 function () {
 this.spec = null;
 this.xyCoords = null;
 });
-Clazz_defineMethod (c$, "setSelectedIntegral", 
+Clazz_defineMethod (c$, "setSelectedIntegral",
 function (integral, val) {
 var val0 = integral.getValue ();
 var factor = (val <= 0 ? 1 / this.normalizationFactor : val / val0);
 this.factorAllIntegrals (factor, val <= 0);
 }, "JSV.common.Measurement,~N");
-Clazz_defineMethod (c$, "factorAllIntegrals", 
+Clazz_defineMethod (c$, "factorAllIntegrals",
  function (factor, isReset) {
 for (var i = 0; i < this.size (); i++) {
 var m = this.get (i);
@@ -20082,11 +20082,11 @@ m.setValue (factor * m.getValue ());
 }
 this.normalizationFactor = (isReset ? 1 : this.normalizationFactor * factor);
 }, "~N,~B");
-Clazz_defineMethod (c$, "remove", 
+Clazz_defineMethod (c$, "remove",
 function (i) {
 return this.removeItemAt (i);
 }, "~N");
-Clazz_defineMethod (c$, "getBitSet", 
+Clazz_defineMethod (c$, "getBitSet",
 function () {
 var bs = JU.BS.newN (this.xyCoords.length);
 if (this.size () == 0) {
@@ -20100,25 +20100,25 @@ bs.setBits (Math.min (x1, x2), Math.max (x1, x2));
 }
 return bs;
 });
-Clazz_overrideMethod (c$, "getMeasurementListArray", 
+Clazz_overrideMethod (c$, "getMeasurementListArray",
 function (units) {
 var data =  new Array (this.size ());
 for (var pt = 0, i = this.size (); --i >= 0; ) data[pt++] =  Clazz_newArray (-1, ["" + pt, JU.DF.formatDecimalDbl (this.get (i).getXVal (), 2), JU.DF.formatDecimalDbl (this.get (i).getXVal2 (), 2), this.get (i).text]);
 
 return data;
 }, "~S");
-Clazz_overrideMethod (c$, "getMeasurementListArrayReal", 
+Clazz_overrideMethod (c$, "getMeasurementListArrayReal",
 function (units) {
 var data = JU.AU.newDouble2 (this.size ());
 for (var pt = 0, i = this.size (); --i >= 0; pt++) data[pt] =  Clazz_newDoubleArray (-1, [this.get (i).getXVal (), this.get (i).getXVal2 (), this.get (i).getValue ()]);
 
 return data;
 }, "~S");
-Clazz_overrideMethod (c$, "getDataHeader", 
+Clazz_overrideMethod (c$, "getDataHeader",
 function () {
 return JSV.common.IntegralData.$HEADER;
 });
-Clazz_defineMethod (c$, "shiftY", 
+Clazz_defineMethod (c$, "shiftY",
 function (yOld, yNew, yPixel0, yPixels) {
 var pt = Clazz_doubleToInt (100.0 * (yPixel0 + yPixels - yNew) / yPixels);
 if (yOld < 0) pt -= this.percentOffset;
@@ -20127,7 +20127,7 @@ this.update (0, this.percentOffset, pt);
 } else {
 this.update (0, pt, this.percentRange);
 }}, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "autoIntegrate", 
+Clazz_defineMethod (c$, "autoIntegrate",
 function () {
 if (this.xyCoords == null) this.calculateIntegral ();
 if (this.xyCoords.length == 0) return;
@@ -20163,7 +20163,7 @@ y0 = y;
 }}
 if (this.spec.nH > 0) this.factorAllIntegrals (this.spec.nH / this.percentRange, false);
 });
-Clazz_defineMethod (c$, "getInfo", 
+Clazz_defineMethod (c$, "getInfo",
 function (info) {
 info.put ("offset", Double.$valueOf (this.myParams.integralOffset));
 info.put ("range", Double.$valueOf (this.myParams.integralRange));
@@ -20171,14 +20171,14 @@ info.put ("normalizationFactor", Double.$valueOf (this.normalizationFactor));
 info.put ("integralTotal", Double.$valueOf (this.integralTotal));
 Clazz_superCall (this, JSV.common.IntegralData, "getInfo", [info]);
 }, "java.util.Map");
-Clazz_defineMethod (c$, "setMinimumIntegral", 
+Clazz_defineMethod (c$, "setMinimumIntegral",
 function (val) {
 for (var i = this.size (); --i >= 0; ) if (this.get (i).getValue () < val) this.removeItemAt (i);
 
 }, "~N");
 Clazz_pu$h(self.c$);
 c$ = Clazz_declareType (JSV.common.IntegralData, "IntMode", Enum);
-c$.getMode = Clazz_defineMethod (c$, "getMode", 
+c$.getMode = Clazz_defineMethod (c$, "getMode",
 function (a) {
 for (var mode, $mode = 0, $$mode = JSV.common.IntegralData.IntMode.values (); $mode < $$mode.length && ((mode = $$mode[$mode]) || true); $mode++) if (a.startsWith (mode.name ())) return mode;
 
@@ -20225,29 +20225,29 @@ Clazz_instantialize (this, arguments);
 Clazz_prepareFields (c$, function () {
 this.peakList =  new JU.Lst ();
 });
-Clazz_overrideMethod (c$, "finalize", 
+Clazz_overrideMethod (c$, "finalize",
 function () {
 System.out.println ("JDXSpectrum " + this + " finalized " + this.title);
 });
-Clazz_defineMethod (c$, "dispose", 
+Clazz_defineMethod (c$, "dispose",
 function () {
 });
-Clazz_defineMethod (c$, "isForcedSubset", 
+Clazz_defineMethod (c$, "isForcedSubset",
 function () {
 return this.$isForcedSubset;
 });
-Clazz_defineMethod (c$, "setId", 
+Clazz_defineMethod (c$, "setId",
 function (id) {
 this.id = id;
 }, "~S");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 Clazz_superConstructor (this, JSV.common.Spectrum, []);
 this.headerTable =  new JU.Lst ();
 this.xyCoords =  new Array (0);
 this.parent = this;
 });
-Clazz_defineMethod (c$, "copy", 
+Clazz_defineMethod (c$, "copy",
 function () {
 var newSpectrum =  new JSV.common.Spectrum ();
 this.copyTo (newSpectrum);
@@ -20255,15 +20255,15 @@ newSpectrum.setPeakList (this.peakList, this.piUnitsX, null);
 newSpectrum.fillColor = this.fillColor;
 return newSpectrum;
 });
-Clazz_defineMethod (c$, "getXYCoords", 
+Clazz_defineMethod (c$, "getXYCoords",
 function () {
 return this.getCurrentSubSpectrum ().xyCoords;
 });
-Clazz_defineMethod (c$, "getPeakList", 
+Clazz_defineMethod (c$, "getPeakList",
 function () {
 return this.peakList;
 });
-Clazz_defineMethod (c$, "setPeakList", 
+Clazz_defineMethod (c$, "setPeakList",
 function (list, piUnitsX, piUnitsY) {
 this.peakList = list;
 this.piUnitsX = piUnitsX;
@@ -20273,7 +20273,7 @@ for (var i = list.size (); --i >= 0; ) this.peakList.get (i).spectrum = this;
 if (JU.Logger.debugging) JU.Logger.info ("Spectrum " + this.getTitle () + " peaks: " + list.size ());
 return list.size ();
 }, "JU.Lst,~S,~S");
-Clazz_defineMethod (c$, "selectPeakByFileIndex", 
+Clazz_defineMethod (c$, "selectPeakByFileIndex",
 function (filePath, index, atomKey) {
 if (this.peakList != null && this.peakList.size () > 0 && (atomKey == null || this.sourceID.equals (index))) for (var i = 0; i < this.peakList.size (); i++) if (this.peakList.get (i).checkFileIndex (filePath, index, atomKey)) {
 System.out.println ("selecting peak by FileIndex " + this + " " + this.peakList.get (i));
@@ -20281,7 +20281,7 @@ return (this.selectedPeak = this.peakList.get (i));
 }
 return null;
 }, "~S,~S,~S");
-Clazz_defineMethod (c$, "selectPeakByFilePathTypeModel", 
+Clazz_defineMethod (c$, "selectPeakByFilePathTypeModel",
 function (filePath, type, model) {
 if (this.peakList != null && this.peakList.size () > 0) for (var i = 0; i < this.peakList.size (); i++) if (this.peakList.get (i).checkFileTypeModel (filePath, type, model)) {
 System.out.println ("selecting peak byFilePathTypeModel " + this + " " + this.peakList.get (i));
@@ -20289,37 +20289,37 @@ return (this.selectedPeak = this.peakList.get (i));
 }
 return null;
 }, "~S,~S,~S");
-Clazz_defineMethod (c$, "matchesPeakTypeModel", 
+Clazz_defineMethod (c$, "matchesPeakTypeModel",
 function (type, model) {
 if (type.equals ("ID")) return (this.sourceID.equalsIgnoreCase (model));
 if (this.peakList != null && this.peakList.size () > 0) for (var i = 0; i < this.peakList.size (); i++) if (this.peakList.get (i).checkTypeModel (type, model)) return true;
 
 return false;
 }, "~S,~S");
-Clazz_defineMethod (c$, "setSelectedPeak", 
+Clazz_defineMethod (c$, "setSelectedPeak",
 function (peak) {
 this.selectedPeak = peak;
 }, "JSV.common.PeakInfo");
-Clazz_defineMethod (c$, "setHighlightedPeak", 
+Clazz_defineMethod (c$, "setHighlightedPeak",
 function (peak) {
 this.highlightedPeak = peak;
 }, "JSV.common.PeakInfo");
-Clazz_defineMethod (c$, "getSelectedPeak", 
+Clazz_defineMethod (c$, "getSelectedPeak",
 function () {
 return this.selectedPeak;
 });
-Clazz_defineMethod (c$, "getModelPeakInfoForAutoSelectOnLoad", 
+Clazz_defineMethod (c$, "getModelPeakInfoForAutoSelectOnLoad",
 function () {
 if (this.peakList != null) for (var i = 0; i < this.peakList.size (); i++) if (this.peakList.get (i).autoSelectOnLoad ()) return this.peakList.get (i);
 
 return null;
 });
-Clazz_defineMethod (c$, "getAssociatedPeakInfo", 
+Clazz_defineMethod (c$, "getAssociatedPeakInfo",
 function (xPixel, coord) {
 this.selectedPeak = this.findPeakByCoord (xPixel, coord);
 return (this.selectedPeak == null ? this.getBasePeakInfo () : this.selectedPeak);
 }, "~N,JSV.common.Coordinate");
-Clazz_defineMethod (c$, "findPeakByCoord", 
+Clazz_defineMethod (c$, "findPeakByCoord",
 function (xPixel, coord) {
 if (coord != null && this.peakList != null && this.peakList.size () > 0) {
 var xVal = coord.getXVal ();
@@ -20334,11 +20334,11 @@ iBest = i;
 if (iBest >= 0) return this.peakList.get (iBest);
 }return null;
 }, "~N,JSV.common.Coordinate");
-Clazz_defineMethod (c$, "getPeakTitle", 
+Clazz_defineMethod (c$, "getPeakTitle",
 function () {
 return (this.selectedPeak != null ? this.selectedPeak.getTitle () : this.highlightedPeak != null ? this.highlightedPeak.getTitle () : this.getTitleLabel ());
 });
-Clazz_defineMethod (c$, "getTitleLabel", 
+Clazz_defineMethod (c$, "getTitleLabel",
 function () {
 var type = (this.peakList == null || this.peakList.size () == 0 ? this.getQualifiedDataType () : this.peakList.get (0).getType ());
 if (type != null && type.startsWith ("NMR")) {
@@ -20348,7 +20348,7 @@ type = "2D" + type;
 type = this.nucleusX + type;
 }}return (type != null && type.length > 0 ? type + " " : "") + this.getTitle ();
 });
-Clazz_defineMethod (c$, "setNextPeak", 
+Clazz_defineMethod (c$, "setNextPeak",
 function (coord, istep) {
 if (this.peakList == null || this.peakList.size () == 0) return -1;
 var x0 = coord.getXVal () + istep * 0.000001;
@@ -20378,32 +20378,32 @@ if (ipt2 < 0) return -1;
 ipt1 = ipt2;
 }return ipt1;
 }, "JSV.common.Coordinate,~N");
-Clazz_defineMethod (c$, "getPercentYValueAt", 
+Clazz_defineMethod (c$, "getPercentYValueAt",
 function (x) {
 if (!this.isContinuous ()) return NaN;
 return this.getYValueAt (x);
 }, "~N");
-Clazz_defineMethod (c$, "getYValueAt", 
+Clazz_defineMethod (c$, "getYValueAt",
 function (x) {
 return JSV.common.Coordinate.getYValueAt (this.xyCoords, x);
 }, "~N");
-Clazz_defineMethod (c$, "setUserYFactor", 
+Clazz_defineMethod (c$, "setUserYFactor",
 function (userYFactor) {
 this.userYFactor = userYFactor;
 }, "~N");
-Clazz_defineMethod (c$, "getUserYFactor", 
+Clazz_defineMethod (c$, "getUserYFactor",
 function () {
 return this.userYFactor;
 });
-Clazz_defineMethod (c$, "getConvertedSpectrum", 
+Clazz_defineMethod (c$, "getConvertedSpectrum",
 function () {
 return this.convertedSpectrum;
 });
-Clazz_defineMethod (c$, "setConvertedSpectrum", 
+Clazz_defineMethod (c$, "setConvertedSpectrum",
 function (spectrum) {
 this.convertedSpectrum = spectrum;
 }, "JSV.common.Spectrum");
-c$.taConvert = Clazz_defineMethod (c$, "taConvert", 
+c$.taConvert = Clazz_defineMethod (c$, "taConvert",
 function (spectrum, mode) {
 if (!spectrum.isContinuous ()) return spectrum;
 switch (mode) {
@@ -20421,7 +20421,7 @@ break;
 var spec = spectrum.getConvertedSpectrum ();
 return (spec != null ? spec : spectrum.isAbsorbance () ? JSV.common.Spectrum.toT (spectrum) : JSV.common.Spectrum.toA (spectrum));
 }, "JSV.common.Spectrum,JSV.common.Spectrum.IRMode");
-c$.toT = Clazz_defineMethod (c$, "toT", 
+c$.toT = Clazz_defineMethod (c$, "toT",
  function (spectrum) {
 if (!spectrum.isAbsorbance ()) return null;
 var xyCoords = spectrum.getXYCoords ();
@@ -20431,7 +20431,7 @@ for (var i = 0; i < xyCoords.length; i++) newXYCoords[i] =  new JSV.common.Coord
 
 return JSV.common.Spectrum.newSpectrum (spectrum, newXYCoords, "TRANSMITTANCE");
 }, "JSV.common.Spectrum");
-c$.toA = Clazz_defineMethod (c$, "toA", 
+c$.toA = Clazz_defineMethod (c$, "toA",
  function (spectrum) {
 if (!spectrum.isTransmittance ()) return null;
 var xyCoords = spectrum.getXYCoords ();
@@ -20441,7 +20441,7 @@ for (var i = 0; i < xyCoords.length; i++) newXYCoords[i] =  new JSV.common.Coord
 
 return JSV.common.Spectrum.newSpectrum (spectrum, newXYCoords, "ABSORBANCE");
 }, "JSV.common.Spectrum");
-c$.newSpectrum = Clazz_defineMethod (c$, "newSpectrum", 
+c$.newSpectrum = Clazz_defineMethod (c$, "newSpectrum",
 function (spectrum, newXYCoords, units) {
 var specNew = spectrum.copy ();
 specNew.setOrigin ("JSpecView Converted");
@@ -20452,41 +20452,41 @@ spectrum.setConvertedSpectrum (specNew);
 specNew.setConvertedSpectrum (spectrum);
 return specNew;
 }, "JSV.common.Spectrum,~A,~S");
-c$.toAbsorbance = Clazz_defineMethod (c$, "toAbsorbance", 
+c$.toAbsorbance = Clazz_defineMethod (c$, "toAbsorbance",
  function (x, isPercent) {
 return (Math.min (4.0, isPercent ? 2 - JSV.common.Spectrum.log10 (x) : -JSV.common.Spectrum.log10 (x)));
 }, "~N,~B");
-c$.toTransmittance = Clazz_defineMethod (c$, "toTransmittance", 
+c$.toTransmittance = Clazz_defineMethod (c$, "toTransmittance",
  function (x) {
 return (x <= 0 ? 1 : Math.pow (10, -x));
 }, "~N");
-c$.log10 = Clazz_defineMethod (c$, "log10", 
+c$.log10 = Clazz_defineMethod (c$, "log10",
  function (value) {
 return Math.log (value) / Math.log (10);
 }, "~N");
-c$.process = Clazz_defineMethod (c$, "process", 
+c$.process = Clazz_defineMethod (c$, "process",
 function (specs, irMode) {
 if (irMode === JSV.common.Spectrum.IRMode.TO_ABS || irMode === JSV.common.Spectrum.IRMode.TO_TRANS) for (var i = 0; i < specs.size (); i++) specs.set (i, JSV.common.Spectrum.taConvert (specs.get (i), irMode));
 
 return true;
 }, "JU.Lst,JSV.common.Spectrum.IRMode");
-Clazz_defineMethod (c$, "getSubSpectra", 
+Clazz_defineMethod (c$, "getSubSpectra",
 function () {
 return this.subSpectra;
 });
-Clazz_defineMethod (c$, "getCurrentSubSpectrum", 
+Clazz_defineMethod (c$, "getCurrentSubSpectrum",
 function () {
 return (this.subSpectra == null ? this : this.subSpectra.get (this.currentSubSpectrumIndex));
 });
-Clazz_defineMethod (c$, "advanceSubSpectrum", 
+Clazz_defineMethod (c$, "advanceSubSpectrum",
 function (dir) {
 return this.setCurrentSubSpectrum (this.currentSubSpectrumIndex + dir);
 }, "~N");
-Clazz_defineMethod (c$, "setCurrentSubSpectrum", 
+Clazz_defineMethod (c$, "setCurrentSubSpectrum",
 function (n) {
 return (this.currentSubSpectrumIndex = JSV.common.Coordinate.intoRange (n, 0, this.subSpectra.size () - 1));
 }, "~N");
-Clazz_defineMethod (c$, "addSubSpectrum", 
+Clazz_defineMethod (c$, "addSubSpectrum",
 function (spectrum, forceSub) {
 if (!forceSub && (this.numDim < 2 || this.blockID != spectrum.blockID) || !JSV.common.Spectrum.allowSubSpec (this, spectrum)) return false;
 this.$isForcedSubset = forceSub;
@@ -20497,19 +20497,19 @@ this.addSubSpectrum (this, true);
 spectrum.parent = this;
 return true;
 }, "JSV.common.Spectrum,~B");
-Clazz_defineMethod (c$, "getSubIndex", 
+Clazz_defineMethod (c$, "getSubIndex",
 function () {
 return (this.subSpectra == null ? -1 : this.currentSubSpectrumIndex);
 });
-Clazz_defineMethod (c$, "setExportXAxisDirection", 
+Clazz_defineMethod (c$, "setExportXAxisDirection",
 function (leftToRight) {
 this.exportXAxisLeftToRight = leftToRight;
 }, "~B");
-Clazz_defineMethod (c$, "isExportXAxisLeftToRight", 
+Clazz_defineMethod (c$, "isExportXAxisLeftToRight",
 function () {
 return this.exportXAxisLeftToRight;
 });
-Clazz_defineMethod (c$, "getInfo", 
+Clazz_defineMethod (c$, "getInfo",
 function (key) {
 var info =  new java.util.Hashtable ();
 if ("id".equalsIgnoreCase (key)) {
@@ -20557,7 +20557,7 @@ JSV.common.Parameters.putInfo (key, info, "subSpectrumCount", Integer.$valueOf (
 }}if (keys != null) info.put ("KEYS", keys);
 return info;
 }, "~S");
-c$.fixInfoValue = Clazz_defineMethod (c$, "fixInfoValue", 
+c$.fixInfoValue = Clazz_defineMethod (c$, "fixInfoValue",
  function (info) {
 try {
 return (Integer.$valueOf (info));
@@ -20577,32 +20577,32 @@ throw e;
 }
 return info;
 }, "~S");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return this.getTitleLabel ();
 });
-Clazz_defineMethod (c$, "findMatchingPeakInfo", 
+Clazz_defineMethod (c$, "findMatchingPeakInfo",
 function (pi) {
 for (var i = 0; i < this.peakList.size (); i++) if (this.peakList.get (i).checkTypeMatch (pi)) return this.peakList.get (i);
 
 return null;
 }, "JSV.common.PeakInfo");
-Clazz_defineMethod (c$, "getBasePeakInfo", 
+Clazz_defineMethod (c$, "getBasePeakInfo",
 function () {
 return (this.peakList.size () == 0 ?  new JSV.common.PeakInfo () :  new JSV.common.PeakInfo (" baseModel=\"\" " + this.peakList.get (0)));
 });
-Clazz_defineMethod (c$, "getAxisLabel", 
+Clazz_defineMethod (c$, "getAxisLabel",
 function (isX) {
 var units = (isX ? this.piUnitsX : this.piUnitsY);
 if (units == null) units = (isX ? this.xLabel : this.yLabel);
 if (units == null) units = (isX ? this.xUnits : this.yUnits);
 return (units == null ? "" : units.equalsIgnoreCase ("WAVENUMBERS") ? "1/cm" : units.equalsIgnoreCase ("nanometers") ? "nm" : units);
 }, "~B");
-Clazz_defineMethod (c$, "findXForPeakNearest", 
+Clazz_defineMethod (c$, "findXForPeakNearest",
 function (x) {
 return JSV.common.Coordinate.findXForPeakNearest (this.xyCoords, x, this.isInverted ());
 }, "~N");
-Clazz_defineMethod (c$, "addSpecShift", 
+Clazz_defineMethod (c$, "addSpecShift",
 function (dx) {
 if (dx != 0) {
 this.specShift += dx;
@@ -20613,11 +20613,11 @@ if (spec !== this && spec !== this.parent) spec.addSpecShift (dx);
 }
 }return this.specShift;
 }, "~N");
-c$.allowSubSpec = Clazz_defineMethod (c$, "allowSubSpec", 
+c$.allowSubSpec = Clazz_defineMethod (c$, "allowSubSpec",
 function (s1, s2) {
 return (s1.is1D () == s2.is1D () && s1.xUnits.equalsIgnoreCase (s2.xUnits) && s1.isHNMR () == s2.isHNMR ());
 }, "JSV.common.Spectrum,JSV.common.Spectrum");
-c$.areXScalesCompatible = Clazz_defineMethod (c$, "areXScalesCompatible", 
+c$.areXScalesCompatible = Clazz_defineMethod (c$, "areXScalesCompatible",
 function (s1, s2, isSubspecCheck, isLinkCheck) {
 var isNMR1 = s1.isNMR ();
 if (isNMR1 != s2.isNMR () || s1.isContinuous () != s2.isContinuous () || !isLinkCheck && !JSV.common.Spectrum.areUnitsCompatible (s1.xUnits, s2.xUnits)) return false;
@@ -20629,31 +20629,31 @@ if (!isNMR1) return true;
 return false;
 }return (!isNMR1 || s2.is1D () && s1.parent.nucleusX.equals (s2.parent.nucleusX));
 }, "JSV.common.Spectrum,JSV.common.Spectrum,~B,~B");
-c$.areUnitsCompatible = Clazz_defineMethod (c$, "areUnitsCompatible", 
+c$.areUnitsCompatible = Clazz_defineMethod (c$, "areUnitsCompatible",
  function (u1, u2) {
 if (u1.equalsIgnoreCase (u2)) return true;
 u1 = u1.toUpperCase ();
 u2 = u2.toUpperCase ();
 return (u1.equals ("HZ") && u2.equals ("PPM") || u1.equals ("PPM") && u2.equals ("HZ"));
 }, "~S,~S");
-c$.areLinkableX = Clazz_defineMethod (c$, "areLinkableX", 
+c$.areLinkableX = Clazz_defineMethod (c$, "areLinkableX",
 function (s1, s2) {
 return (s1.isNMR () && s2.isNMR () && s1.nucleusX.equals (s2.nucleusX));
 }, "JSV.common.Spectrum,JSV.common.Spectrum");
-c$.areLinkableY = Clazz_defineMethod (c$, "areLinkableY", 
+c$.areLinkableY = Clazz_defineMethod (c$, "areLinkableY",
 function (s1, s2) {
 return (s1.isNMR () && s2.isNMR () && s1.nucleusX.equals (s2.nucleusY));
 }, "JSV.common.Spectrum,JSV.common.Spectrum");
-Clazz_defineMethod (c$, "setNHydrogens", 
+Clazz_defineMethod (c$, "setNHydrogens",
 function (nH) {
 this.nH = nH;
 }, "~N");
-Clazz_defineMethod (c$, "getPeakWidth", 
+Clazz_defineMethod (c$, "getPeakWidth",
 function () {
 var w = this.getLastX () - this.getFirstX ();
 return (w / 100);
 });
-Clazz_defineMethod (c$, "setSimulated", 
+Clazz_defineMethod (c$, "setSimulated",
 function (filePath) {
 this.isSimulation = true;
 var s = this.sourceID;
@@ -20661,14 +20661,14 @@ if (s.length == 0) s = JU.PT.rep (filePath, "http://SIMULATION/", "");
 if (s.indexOf ("MOL=") >= 0) s = "";
 this.title = "SIMULATED " + JU.PT.rep (s, "$", "");
 }, "~S");
-Clazz_defineMethod (c$, "setFillColor", 
+Clazz_defineMethod (c$, "setFillColor",
 function (color) {
 this.fillColor = color;
 if (this.convertedSpectrum != null) this.convertedSpectrum.fillColor = color;
 }, "javajs.api.GenericColor");
 Clazz_pu$h(self.c$);
 c$ = Clazz_declareType (JSV.common.Spectrum, "IRMode", Enum);
-c$.getMode = Clazz_defineMethod (c$, "getMode", 
+c$.getMode = Clazz_defineMethod (c$, "getMode",
 function (a) {
 switch (a == null ? 'I' : a.toUpperCase ().charAt (0)) {
 case 'A':
@@ -20711,11 +20711,11 @@ JSV.common.JSVersion.VERSION = JSV.common.JSVersion.VERSION_SHORT + tmpSVN + "/"
 }Clazz_declarePackage ("JSV.common");
 Clazz_load (["java.util.Hashtable"], "JSV.common.JSVFileManager", ["java.io.BufferedInputStream", "$.BufferedReader", "$.InputStreamReader", "$.StringReader", "java.net.URL", "JU.AU", "$.BS", "$.Encoding", "$.JSJSONParser", "$.P3", "$.PT", "$.SB", "JSV.common.JSVersion", "$.JSViewer", "JSV.exception.JSVException", "JU.Logger"], function () {
 c$ = Clazz_declareType (JSV.common, "JSVFileManager");
-Clazz_defineMethod (c$, "isApplet", 
+Clazz_defineMethod (c$, "isApplet",
 function () {
 return (JSV.common.JSVFileManager.appletDocumentBase != null);
 });
-c$.getFileAsString = Clazz_defineMethod (c$, "getFileAsString", 
+c$.getFileAsString = Clazz_defineMethod (c$, "getFileAsString",
 function (name) {
 if (name == null) return null;
 var br;
@@ -20737,7 +20737,7 @@ throw e;
 }
 return sb.toString ();
 }, "~S");
-c$.getBufferedReaderForInputStream = Clazz_defineMethod (c$, "getBufferedReaderForInputStream", 
+c$.getBufferedReaderForInputStream = Clazz_defineMethod (c$, "getBufferedReaderForInputStream",
 function ($in) {
 try {
 return  new java.io.BufferedReader ( new java.io.InputStreamReader ($in, "UTF-8"));
@@ -20749,11 +20749,11 @@ throw e;
 }
 }
 }, "java.io.InputStream");
-c$.getBufferedReaderForData = Clazz_defineMethod (c$, "getBufferedReaderForData", 
+c$.getBufferedReaderForData = Clazz_defineMethod (c$, "getBufferedReaderForData",
 function (data) {
 return (data == null ? null :  new java.io.BufferedReader ( new java.io.StringReader (Clazz_instanceOf (data, String) ? data :  String.instantialize (data))));
 }, "~O");
-c$.getBufferedReaderFromName = Clazz_defineMethod (c$, "getBufferedReaderFromName", 
+c$.getBufferedReaderFromName = Clazz_defineMethod (c$, "getBufferedReaderFromName",
 function (name, startCode) {
 if (name == null) throw  new JSV.exception.JSVException ("Cannot find " + name);
 JU.Logger.info ("JSVFileManager getBufferedReaderFromName " + name);
@@ -20761,7 +20761,7 @@ var path = JSV.common.JSVFileManager.getFullPathName (name);
 if (!path.equals (name)) JU.Logger.info ("JSVFileManager getBufferedReaderFromName " + path);
 return JSV.common.JSVFileManager.getUnzippedBufferedReaderFromName (path, startCode);
 }, "~S,~S");
-c$.getFullPathName = Clazz_defineMethod (c$, "getFullPathName", 
+c$.getFullPathName = Clazz_defineMethod (c$, "getFullPathName",
 function (name) {
 try {
 if (JSV.common.JSVFileManager.appletDocumentBase == null) {
@@ -20781,13 +20781,13 @@ throw e;
 }
 }
 }, "~S");
-c$.isURL = Clazz_defineMethod (c$, "isURL", 
+c$.isURL = Clazz_defineMethod (c$, "isURL",
 function (name) {
 for (var i = JSV.common.JSVFileManager.urlPrefixes.length; --i >= 0; ) if (name.startsWith (JSV.common.JSVFileManager.urlPrefixes[i])) return true;
 
 return false;
 }, "~S");
-c$.urlTypeIndex = Clazz_defineMethod (c$, "urlTypeIndex", 
+c$.urlTypeIndex = Clazz_defineMethod (c$, "urlTypeIndex",
 function (name) {
 for (var i = 0; i < JSV.common.JSVFileManager.urlPrefixes.length; ++i) {
 if (name.startsWith (JSV.common.JSVFileManager.urlPrefixes[i])) {
@@ -20795,13 +20795,13 @@ return i;
 }}
 return -1;
 }, "~S");
-c$.isLocal = Clazz_defineMethod (c$, "isLocal", 
+c$.isLocal = Clazz_defineMethod (c$, "isLocal",
 function (fileName) {
 if (fileName == null) return false;
 var itype = JSV.common.JSVFileManager.urlTypeIndex (fileName);
 return (itype < 0 || itype == 4);
 }, "~S");
-c$.getUnzippedBufferedReaderFromName = Clazz_defineMethod (c$, "getUnzippedBufferedReaderFromName", 
+c$.getUnzippedBufferedReaderFromName = Clazz_defineMethod (c$, "getUnzippedBufferedReaderFromName",
  function (name, startCode) {
 var subFileList = null;
 if (name.indexOf ("|") >= 0) {
@@ -20825,49 +20825,49 @@ throw e;
 }
 }
 }, "~S,~S");
-c$.getAbbrSimulationFileName = Clazz_defineMethod (c$, "getAbbrSimulationFileName", 
+c$.getAbbrSimulationFileName = Clazz_defineMethod (c$, "getAbbrSimulationFileName",
 function (name) {
 var type = JSV.common.JSVFileManager.getSimulationType (name);
 var filename = JSV.common.JSVFileManager.getAbbreviatedSimulationName (name, type, true);
 return filename;
 }, "~S");
-c$.getAbbreviatedSimulationName = Clazz_defineMethod (c$, "getAbbreviatedSimulationName", 
+c$.getAbbreviatedSimulationName = Clazz_defineMethod (c$, "getAbbreviatedSimulationName",
 function (name, type, addProtocol) {
 return (name.indexOf ("MOL=") >= 0 ? (addProtocol ? "http://SIMULATION/" : "") + "MOL=" + JSV.common.JSVFileManager.getSimulationHash (name, type) : name);
 }, "~S,~S,~B");
-c$.getSimulationHash = Clazz_defineMethod (c$, "getSimulationHash", 
+c$.getSimulationHash = Clazz_defineMethod (c$, "getSimulationHash",
  function (name, type) {
 var code = type + Math.abs (name.substring (name.indexOf ("V2000") + 1).hashCode ());
 if (JU.Logger.debugging) System.out.println ("JSVFileManager hash for " + name + " = " + code);
 return code;
 }, "~S,~S");
-c$.getSimulationFileData = Clazz_defineMethod (c$, "getSimulationFileData", 
+c$.getSimulationFileData = Clazz_defineMethod (c$, "getSimulationFileData",
 function (name, type) {
 return JSV.common.JSVFileManager.cacheGet (name.startsWith ("MOL=") ? name.substring (4) : JSV.common.JSVFileManager.getAbbreviatedSimulationName (name, type, false));
 }, "~S,~S");
-c$.cachePut = Clazz_defineMethod (c$, "cachePut", 
+c$.cachePut = Clazz_defineMethod (c$, "cachePut",
 function (name, data) {
 if (JU.Logger.debugging) JU.Logger.debug ("JSVFileManager cachePut " + data + " for " + name);
 if (data != null) JSV.common.JSVFileManager.htCorrelationCache.put (name, data);
 }, "~S,~S");
-c$.cacheGet = Clazz_defineMethod (c$, "cacheGet", 
+c$.cacheGet = Clazz_defineMethod (c$, "cacheGet",
 function (key) {
 var data = JSV.common.JSVFileManager.htCorrelationCache.get (key);
 if (JU.Logger.debugging) JU.Logger.info ("JSVFileManager cacheGet " + data + " for " + key);
 return data;
 }, "~S");
-c$.getSimulationReader = Clazz_defineMethod (c$, "getSimulationReader", 
+c$.getSimulationReader = Clazz_defineMethod (c$, "getSimulationReader",
  function (name) {
 var data = JSV.common.JSVFileManager.cacheGet (name);
 if (data == null) JSV.common.JSVFileManager.cachePut (name, data = JSV.common.JSVFileManager.getNMRSimulationJCampDX (name.substring ("http://SIMULATION/".length)));
 return JSV.common.JSVFileManager.getBufferedReaderForData (data);
 }, "~S");
-c$.isAB = Clazz_defineMethod (c$, "isAB", 
+c$.isAB = Clazz_defineMethod (c$, "isAB",
 function (x) {
 {
 return Clazz_isAI(x);
 }}, "~O");
-c$.isZipFile = Clazz_defineMethod (c$, "isZipFile", 
+c$.isZipFile = Clazz_defineMethod (c$, "isZipFile",
 function (is) {
 try {
 var abMagic =  Clazz_newByteArray (4, 0);
@@ -20883,7 +20883,7 @@ throw e;
 }
 }
 }, "java.io.InputStream");
-c$.isGzip = Clazz_defineMethod (c$, "isGzip", 
+c$.isGzip = Clazz_defineMethod (c$, "isGzip",
  function (is) {
 try {
 var abMagic =  Clazz_newByteArray (4, 0);
@@ -20899,7 +20899,7 @@ throw e;
 }
 }
 }, "java.io.InputStream");
-c$.getStreamAsBytes = Clazz_defineMethod (c$, "getStreamAsBytes", 
+c$.getStreamAsBytes = Clazz_defineMethod (c$, "getStreamAsBytes",
 function (bis, out) {
 try {
 var buf =  Clazz_newByteArray (1024, 0);
@@ -20926,7 +20926,7 @@ throw e;
 }
 }
 }, "java.io.BufferedInputStream,JU.OC");
-c$.postByteArray = Clazz_defineMethod (c$, "postByteArray", 
+c$.postByteArray = Clazz_defineMethod (c$, "postByteArray",
 function (fileName, bytes) {
 var ret = null;
 try {
@@ -20957,7 +20957,7 @@ throw e;
 }
 return (ret == null ? "" : JSV.common.JSVFileManager.fixUTF (ret));
 }, "~S,~A");
-c$.getUTFEncoding = Clazz_defineMethod (c$, "getUTFEncoding", 
+c$.getUTFEncoding = Clazz_defineMethod (c$, "getUTFEncoding",
  function (bytes) {
 if (bytes.length >= 3 && bytes[0] == 0xEF && bytes[1] == 0xBB && bytes[2] == 0xBF) return JU.Encoding.UTF8;
 if (bytes.length >= 4 && bytes[0] == 0 && bytes[1] == 0 && bytes[2] == 0xFE && bytes[3] == 0xFF) return JU.Encoding.UTF_32BE;
@@ -20966,7 +20966,7 @@ if (bytes.length >= 2 && bytes[0] == 0xFF && bytes[1] == 0xFE) return JU.Encodin
 if (bytes.length >= 2 && bytes[0] == 0xFE && bytes[1] == 0xFF) return JU.Encoding.UTF_16BE;
 return JU.Encoding.NONE;
 }, "~A");
-c$.fixUTF = Clazz_defineMethod (c$, "fixUTF", 
+c$.fixUTF = Clazz_defineMethod (c$, "fixUTF",
 function (bytes) {
 var encoding = JSV.common.JSVFileManager.getUTFEncoding (bytes);
 if (encoding !== JU.Encoding.NONE) try {
@@ -20990,7 +20990,7 @@ throw e;
 }
 return  String.instantialize (bytes);
 }, "~A");
-c$.getInputStream = Clazz_defineMethod (c$, "getInputStream", 
+c$.getInputStream = Clazz_defineMethod (c$, "getInputStream",
 function (name, showMsg, postBytes) {
 var isURL = JSV.common.JSVFileManager.isURL (name);
 var isApplet = (JSV.common.JSVFileManager.appletDocumentBase != null);
@@ -21019,7 +21019,7 @@ $in = JSV.common.JSVFileManager.viewer.apiPlatform.getBufferedFileInputStream (n
 }if (Clazz_instanceOf ($in, String)) throw  new JSV.exception.JSVException ($in);
 return $in;
 }, "~S,~B,~A");
-c$.getNMRSimulationJCampDX = Clazz_defineMethod (c$, "getNMRSimulationJCampDX", 
+c$.getNMRSimulationJCampDX = Clazz_defineMethod (c$, "getNMRSimulationJCampDX",
  function (name) {
 var pt = 0;
 var molFile = null;
@@ -21109,7 +21109,7 @@ JSV.common.JSVFileManager.cachePut ("jcamp", jcamp);
 JSV.common.JSVFileManager.cachePut (key, jcamp);
 return jcamp;
 }, "~S");
-c$.getAtomMap = Clazz_defineMethod (c$, "getAtomMap", 
+c$.getAtomMap = Clazz_defineMethod (c$, "getAtomMap",
  function (jsonMolFile, jmolMolFile) {
 var acJson = JSV.common.JSVFileManager.getCoord (jsonMolFile);
 var acJmol = JSV.common.JSVFileManager.getCoord (jmolMolFile);
@@ -21131,7 +21131,7 @@ break;
 }
 return (haveMap ? map : null);
 }, "~S,~S");
-c$.getCoord = Clazz_defineMethod (c$, "getCoord", 
+c$.getCoord = Clazz_defineMethod (c$, "getCoord",
  function (mol) {
 var lines = JU.PT.split (mol, "\n");
 var data =  Clazz_newFloatArray (3, 0);
@@ -21144,11 +21144,11 @@ pts[i] = JU.P3.new3 (data[0], data[1], data[2]);
 }
 return pts;
 }, "~S");
-c$.setAttr = Clazz_defineMethod (c$, "setAttr", 
+c$.setAttr = Clazz_defineMethod (c$, "setAttr",
  function (sb, mykey, lucsKey, map) {
 sb.append (mykey + "=\"").appendO (map.get (lucsKey)).append ("\" ");
 }, "JU.SB,~S,~S,java.util.Map");
-c$.getResource = Clazz_defineMethod (c$, "getResource", 
+c$.getResource = Clazz_defineMethod (c$, "getResource",
  function (object, fileName, error) {
 var url = null;
 try {
@@ -21162,7 +21162,7 @@ throw e;
 }
 return url;
 }, "~O,~S,~A");
-c$.getResourceString = Clazz_defineMethod (c$, "getResourceString", 
+c$.getResourceString = Clazz_defineMethod (c$, "getResourceString",
 function (object, name, error) {
 var url = JSV.common.JSVFileManager.getResource (object, name, error);
 if (url == null) {
@@ -21186,7 +21186,7 @@ throw e;
 }
 return sb.toString ();
 }, "~O,~S,~A");
-c$.getJmolFilePath = Clazz_defineMethod (c$, "getJmolFilePath", 
+c$.getJmolFilePath = Clazz_defineMethod (c$, "getJmolFilePath",
 function (filePath) {
 try {
 filePath = JSV.common.JSVFileManager.getFullPathName (filePath);
@@ -21199,7 +21199,7 @@ throw e;
 }
 return (JSV.common.JSVFileManager.appletDocumentBase == null ? filePath.$replace ('\\', '/') : filePath);
 }, "~S");
-c$.getTagName = Clazz_defineMethod (c$, "getTagName", 
+c$.getTagName = Clazz_defineMethod (c$, "getTagName",
 function (fileName) {
 if (fileName == null) return "String" + (++JSV.common.JSVFileManager.stringCount);
 if (JSV.common.JSVFileManager.isURL (fileName)) {
@@ -21216,12 +21216,12 @@ throw e;
 }
 }return JSV.common.JSVFileManager.viewer.apiPlatform.newFile (fileName).getName ();
 }, "~S");
-c$.setDocumentBase = Clazz_defineMethod (c$, "setDocumentBase", 
+c$.setDocumentBase = Clazz_defineMethod (c$, "setDocumentBase",
 function (v, documentBase) {
 JSV.common.JSVFileManager.viewer = v;
 JSV.common.JSVFileManager.appletDocumentBase = documentBase;
 }, "JSV.common.JSViewer,java.net.URL");
-c$.getSimulationType = Clazz_defineMethod (c$, "getSimulationType", 
+c$.getSimulationType = Clazz_defineMethod (c$, "getSimulationType",
 function (filePath) {
 return (filePath.indexOf ("C13/") >= 0 ? "C13" : "H1");
 }, "~S");
@@ -21304,17 +21304,17 @@ Clazz_prepareFields (c$, function () {
 this.irMode = JSV.common.Spectrum.IRMode.NO_CONVERT;
 this.dimScreen =  new javajs.awt.Dimension (0, 0);
 });
-Clazz_defineMethod (c$, "setProperty", 
+Clazz_defineMethod (c$, "setProperty",
 function (key, value) {
 if (this.properties != null) this.properties.setProperty (key, value);
 }, "~S,~S");
-Clazz_defineMethod (c$, "setNode", 
+Clazz_defineMethod (c$, "setNode",
 function (node) {
 if (node.jsvp !== this.selectedPanel) this.si.siSetSelectedPanel (node.jsvp);
 this.si.siSendPanelChange ();
 this.si.siNodeSet (node);
 }, "JSV.common.PanelNode");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (si, isApplet, isJS) {
 this.si = si;
 this.isApplet = isApplet;
@@ -21332,12 +21332,12 @@ this.panelNodes =  new JU.Lst ();
 this.repaintManager =  new JSV.common.RepaintManager (this);
 if (!isApplet) this.setPopupMenu (true, true);
 }, "JSV.api.ScriptInterface,~B,~B");
-Clazz_defineMethod (c$, "setPopupMenu", 
+Clazz_defineMethod (c$, "setPopupMenu",
 function (allowMenu, zoomEnabled) {
 this.popupAllowMenu = allowMenu;
 this.popupZoomEnabled = zoomEnabled;
 }, "~B,~B");
-Clazz_defineMethod (c$, "showMenu", 
+Clazz_defineMethod (c$, "showMenu",
 function (x, y) {
 if (!this.popupAllowMenu) return;
 if (this.jsvpPopupMenu == null) {
@@ -21355,7 +21355,7 @@ throw e;
 }
 }this.jsvpPopupMenu.jpiShow (x, y);
 }, "~N,~N");
-Clazz_defineMethod (c$, "runScriptNow", 
+Clazz_defineMethod (c$, "runScriptNow",
 function (script) {
 System.out.println (this.checkScript (script));
 this.scriptLevelCount++;
@@ -21603,7 +21603,7 @@ this.scriptLevelCount--;
 this.si.siExecScriptComplete (msg, true);
 return isOK;
 }, "~S");
-Clazz_defineMethod (c$, "execShiftSpectrum", 
+Clazz_defineMethod (c$, "execShiftSpectrum",
  function (st, script) {
 var tokens = JSV.common.ScriptToken.getTokens (script);
 var xOld = NaN;
@@ -21638,18 +21638,18 @@ return;
 }
 this.pd ().shiftSpectrum (mode, xOld, xNew);
 }, "JSV.common.ScriptToken,~S");
-Clazz_defineMethod (c$, "execClose", 
+Clazz_defineMethod (c$, "execClose",
  function (value) {
 var fromScript = (!value.startsWith ("!"));
 if (!fromScript) value = value.substring (1);
 this.close (JU.PT.trimQuotes (value));
 if (!fromScript || this.panelNodes.size () == 0) this.si.siValidateAndRepaint (true);
 }, "~S");
-Clazz_defineMethod (c$, "checkOvelayInterface", 
+Clazz_defineMethod (c$, "checkOvelayInterface",
 function (value) {
 return (value.equalsIgnoreCase ("single") || value.equalsIgnoreCase ("overlay"));
 }, "~S");
-Clazz_defineMethod (c$, "execPeak", 
+Clazz_defineMethod (c$, "execPeak",
  function (value) {
 try {
 var tokens = JSV.common.ScriptToken.getTokens (JU.PT.rep (value, "#", "INDEX="));
@@ -21663,7 +21663,7 @@ throw e;
 }
 }
 }, "~S");
-Clazz_defineMethod (c$, "execPeakList", 
+Clazz_defineMethod (c$, "execPeakList",
  function (value) {
 var p = this.parameters;
 var b = JSV.common.Parameters.getTFToggle (value);
@@ -21695,7 +21695,7 @@ throw e;
 }
 }
 }}, "~S");
-Clazz_defineMethod (c$, "highlight", 
+Clazz_defineMethod (c$, "highlight",
  function (value) {
 var tokens = JSV.common.ScriptToken.getTokens (value);
 var n = tokens.size ();
@@ -21727,12 +21727,12 @@ if (r >= 0 && g >= 0 && b >= 0) this.pd ().addHighlight (null, x1, x2, null, r, 
 }this.repaint (true);
 }return true;
 }, "~S");
-Clazz_defineMethod (c$, "getRGB", 
+Clazz_defineMethod (c$, "getRGB",
  function (s) {
 var f = JU.PT.parseFloat (s);
 return Clazz_floatToInt (Float.isNaN (f) ? -1 : f > 1 ? f : f * 255);
 }, "~S");
-Clazz_defineMethod (c$, "execZoom", 
+Clazz_defineMethod (c$, "execZoom",
  function (value) {
 var x1 = 0;
 var x2 = 0;
@@ -21783,7 +21783,7 @@ y2 = Double.parseDouble (tokens.get (3));
 this.pd ().setZoom (x1, y1, x2, y2);
 return true;
 }, "~S");
-Clazz_defineMethod (c$, "scaleSelectedBy", 
+Clazz_defineMethod (c$, "scaleSelectedBy",
  function (nodes, value) {
 try {
 var f = Double.parseDouble (value);
@@ -21796,15 +21796,15 @@ throw e;
 }
 }
 }, "JU.Lst,~S");
-Clazz_defineMethod (c$, "pd", 
+Clazz_defineMethod (c$, "pd",
 function () {
 return (this.selectedPanel == null ? null : this.selectedPanel.getPanelData ());
 });
-Clazz_defineMethod (c$, "isClosed", 
+Clazz_defineMethod (c$, "isClosed",
  function () {
 return (this.pd () == null);
 });
-Clazz_defineMethod (c$, "execSelect", 
+Clazz_defineMethod (c$, "execSelect",
  function (value) {
 if (value.startsWith ("ID ")) {
 if (!this.isClosed ()) try {
@@ -21822,7 +21822,7 @@ for (var i = nodes.size (); --i >= 0; ) nodes.get (i).pd ().selectFromEntireSet 
 var speclist =  new JU.Lst ();
 this.fillSpecList (value, speclist, false);
 }, "~S");
-Clazz_defineMethod (c$, "execView", 
+Clazz_defineMethod (c$, "execView",
 function (value, fromScript) {
 if (value.equals ("")) {
 this.checkOverlay ();
@@ -21833,7 +21833,7 @@ if (speclist.size () > 0) this.si.siOpenDataOrFile (null, strlist, speclist, str
 if (!fromScript) {
 this.si.siValidateAndRepaint (false);
 }}, "~S,~B");
-Clazz_defineMethod (c$, "execIRMode", 
+Clazz_defineMethod (c$, "execIRMode",
  function (value) {
 var mode = JSV.common.Spectrum.IRMode.getMode (value);
 var type = this.pd ().getSpectrum ().dataType;
@@ -21841,7 +21841,7 @@ for (var i = this.panelNodes.size (); --i >= 0; ) this.panelNodes.get (i).pd ().
 
 this.setIRmode (value);
 }, "~S");
-Clazz_defineMethod (c$, "execIntegrate", 
+Clazz_defineMethod (c$, "execIntegrate",
  function (value) {
 if (this.isClosed ()) return;
 this.pd ().checkIntegral (this.parameters, value);
@@ -21849,11 +21849,11 @@ if (this.integrationRatios != null) this.pd ().setIntegrationRatios (this.integr
 this.integrationRatios = null;
 this.repaint (true);
 }, "~S");
-Clazz_defineMethod (c$, "repaint", 
+Clazz_defineMethod (c$, "repaint",
  function (andTaintAll) {
 this.selectedPanel.doRepaint (andTaintAll);
 }, "~B");
-Clazz_defineMethod (c$, "execSetIntegralParameter", 
+Clazz_defineMethod (c$, "execSetIntegralParameter",
  function (st, value) {
 var p = this.parameters;
 switch (st) {
@@ -21866,7 +21866,7 @@ break;
 }
 if (!this.isClosed ()) this.pd ().checkIntegral (this.parameters, "update");
 }, "JSV.common.ScriptToken,~N");
-Clazz_defineMethod (c$, "setYScale", 
+Clazz_defineMethod (c$, "setYScale",
  function (value) {
 var tokens = JSV.common.ScriptToken.getTokens (value);
 var pt = 0;
@@ -21886,21 +21886,21 @@ if (JSV.common.Spectrum.areXScalesCompatible (spec, node.getSpectrum (), false, 
 } else {
 this.pd ().setZoom (0, y1, 0, y2);
 }}, "~S");
-Clazz_defineMethod (c$, "setOverlayLegendVisibility", 
+Clazz_defineMethod (c$, "setOverlayLegendVisibility",
  function (tftoggle, doSet) {
 if (doSet) this.overlayLegendVisible = (tftoggle == null ? !this.overlayLegendVisible : tftoggle === Boolean.TRUE);
 var node = JSV.common.PanelNode.findNode (this.selectedPanel, this.panelNodes);
 for (var i = this.panelNodes.size (); --i >= 0; ) this.showOverlayLegend (this.panelNodes.get (i), this.panelNodes.get (i) === node && this.overlayLegendVisible);
 
 }, "Boolean,~B");
-Clazz_defineMethod (c$, "showOverlayLegend", 
+Clazz_defineMethod (c$, "showOverlayLegend",
  function (node, visible) {
 var legend = node.legend;
 if (legend == null && visible) {
 legend = node.setLegend (node.pd ().getNumberOfSpectraInCurrentSet () > 1 && node.pd ().getNumberOfGraphSets () == 1 ? this.getDialog (JSV.common.Annotation.AType.OverlayLegend, null) : null);
 }if (legend != null) legend.setVisible (visible);
 }, "JSV.common.PanelNode,~B");
-Clazz_defineMethod (c$, "syncScript", 
+Clazz_defineMethod (c$, "syncScript",
 function (peakScript) {
 if (peakScript.equals ("TEST")) peakScript = JSV.common.JSViewer.testScript;
 JU.Logger.info ("JSViewer.syncScript Jmol>JSV " + peakScript);
@@ -21950,7 +21950,7 @@ pd.addPeakHighlight (pi);
 this.repaint (true);
 if (jmolSource == null || (pi != null && pi.getAtoms () != null)) this.si.syncToJmol (this.jmolSelect (pi));
 }, "~S");
-Clazz_defineMethod (c$, "syncPeaksAfterSyncScript", 
+Clazz_defineMethod (c$, "syncPeaksAfterSyncScript",
  function () {
 var source = this.currentSource;
 if (source == null) return;
@@ -21975,7 +21975,7 @@ throw e;
 }
 }
 });
-Clazz_defineMethod (c$, "checkFileAlreadyLoaded", 
+Clazz_defineMethod (c$, "checkFileAlreadyLoaded",
  function (fileName) {
 if (this.isClosed ()) return false;
 if (this.pd ().hasFileLoaded (fileName)) return true;
@@ -21985,7 +21985,7 @@ return true;
 }
 return false;
 }, "~S");
-Clazz_defineMethod (c$, "selectPanelByPeak", 
+Clazz_defineMethod (c$, "selectPanelByPeak",
  function (file, index, atomKey) {
 if (this.panelNodes == null) return null;
 var pi = null;
@@ -22003,7 +22003,7 @@ break;
 }}
 }return pi;
 }, "~S,~S,~S");
-Clazz_defineMethod (c$, "processPeakPickEvent", 
+Clazz_defineMethod (c$, "processPeakPickEvent",
 function (eventObj, isApp) {
 var pi;
 if (Clazz_instanceOf (eventObj, JSV.common.PeakInfo)) {
@@ -22029,18 +22029,18 @@ if (pi.isClearAll ()) this.repaint (false);
  else this.pd ().selectSpectrum (pi.getFilePath (), pi.getType (), pi.getModel (), true);
 this.si.siCheckCallbacks (pi.getTitle ());
 }, "~O,~B");
-Clazz_defineMethod (c$, "newStructToJmol", 
+Clazz_defineMethod (c$, "newStructToJmol",
 function (data) {
 JU.Logger.info ("sending new structure to Jmol:\n" + data);
 this.si.syncToJmol ("struct:" + data);
 }, "~S");
-Clazz_defineMethod (c$, "syncToJmol", 
+Clazz_defineMethod (c$, "syncToJmol",
  function (pi) {
 this.repaint (true);
 this.returnFromJmolModel = pi.getModel ();
 this.si.syncToJmol (this.jmolSelect (pi));
 }, "JSV.common.PeakInfo");
-Clazz_defineMethod (c$, "sendPanelChange", 
+Clazz_defineMethod (c$, "sendPanelChange",
 function () {
 var pd = this.pd ();
 var spec = pd.getSpectrum ();
@@ -22051,12 +22051,12 @@ pd.addPeakHighlight (pi);
 JU.Logger.info (Thread.currentThread () + "JSViewer sendFrameChange " + this.selectedPanel);
 this.syncToJmol (pi);
 });
-Clazz_defineMethod (c$, "jmolSelect", 
+Clazz_defineMethod (c$, "jmolSelect",
  function (pi) {
 var script = ("IR".equals (pi.getType ()) || "RAMAN".equals (pi.getType ()) ? "vibration ON; selectionHalos OFF;" : "vibration OFF; selectionhalos " + (pi.getAtoms () == null ? "OFF" : "ON"));
 return "Select: " + pi + " script=\"" + script + " \" sourceID=\"" + this.pd ().getSpectrum ().sourceID + "\"";
 }, "JSV.common.PeakInfo");
-Clazz_defineMethod (c$, "getPropertyAsJavaObject", 
+Clazz_defineMethod (c$, "getPropertyAsJavaObject",
 function (key) {
 var map =  new java.util.Hashtable ();
 if ("SOURCEID".equalsIgnoreCase (key)) {
@@ -22083,14 +22083,14 @@ info.addLast (this.panelNodes.get (i).getInfo (key));
 map.put ("items", info);
 return map;
 }, "~S");
-Clazz_defineMethod (c$, "getCoordinate", 
+Clazz_defineMethod (c$, "getCoordinate",
 function () {
 if (!this.isClosed ()) {
 var coord = this.pd ().getClickedCoordinate ();
 if (coord != null) return coord.getXVal () + " " + coord.getYVal ();
 }return "";
 });
-Clazz_defineMethod (c$, "fillSpecList", 
+Clazz_defineMethod (c$, "fillSpecList",
  function (value, speclist, isView) {
 var prefix = "1.";
 var list;
@@ -22172,7 +22172,7 @@ this.setNode (node);
 speclist.clear ();
 }}return (isNone ? "NONE" : sb.length () > 0 ? sb.toString ().substring (1) : null);
 }, "~S,JU.Lst,~B");
-Clazz_defineMethod (c$, "addSpecToList", 
+Clazz_defineMethod (c$, "addSpecToList",
  function (pd, userYFactor, isubspec, list, isView) {
 if (isView) {
 var spec = pd.getSpectrumAt (0);
@@ -22181,13 +22181,13 @@ pd.addToList (isubspec - 1, list);
 } else {
 pd.selectFromEntireSet (isubspec - 1);
 }}, "JSV.common.PanelData,~N,~N,JU.Lst,~B");
-Clazz_defineMethod (c$, "getSolutionColor", 
+Clazz_defineMethod (c$, "getSolutionColor",
 function (asFitted) {
 var spectrum = this.pd ().getSpectrum ();
 var vi = (spectrum.canShowSolutionColor () ? JSV.common.JSViewer.getInterface ("JSV.common.Visible") : null);
 return (vi == null ? -1 : vi.getColour (spectrum, asFitted));
 }, "~B");
-Clazz_defineMethod (c$, "openDataOrFile", 
+Clazz_defineMethod (c$, "openDataOrFile",
 function (data, name, specs, strUrl, firstSpec, lastSpec, isAppend, id) {
 if ("NONE".equals (name)) {
 this.close ("View*");
@@ -22278,7 +22278,7 @@ this.splitSpectra ();
 if (!isView) this.si.siUpdateRecentMenus (filePath);
 return 0;
 }, "~O,~S,JU.Lst,~S,~N,~N,~B,~S");
-Clazz_defineMethod (c$, "close", 
+Clazz_defineMethod (c$, "close",
 function (value) {
 var n0 = 0;
 var pt = (value == null ? -2 : value.indexOf (">"));
@@ -22319,7 +22319,7 @@ if (source != null) list.addLast (source);
 
 if (this.selectedPanel == null && this.panelNodes.size () > 0) this.si.siSetSelectedPanel (JSV.common.PanelNode.getLastFileFirstNode (this.panelNodes));
 }, "~S");
-Clazz_defineMethod (c$, "execLoad", 
+Clazz_defineMethod (c$, "execLoad",
 function (value, script) {
 var applet = this.html5Applet;
 var tokens = JSV.common.ScriptToken.getTokens (value);
@@ -22365,7 +22365,7 @@ if (isSimulation) {
 this.close ("views");
 this.execView ("*", true);
 }}, "~S,~S");
-Clazz_defineMethod (c$, "combineSpectra", 
+Clazz_defineMethod (c$, "combineSpectra",
 function (name) {
 var source = this.currentSource;
 var specs = source.getSpectra ();
@@ -22388,7 +22388,7 @@ if (this.autoShowLegend && this.pd ().getNumberOfGraphSets () == 1) node.setLege
 this.si.siSetMenuEnables (node, false);
 if (haveSimulation) this.pd ().splitStack (true);
 }, "~S");
-Clazz_defineMethod (c$, "closeSource", 
+Clazz_defineMethod (c$, "closeSource",
 function (source) {
 var rootNode = this.spectraTree.getRootNode ();
 var fileName = (source == null ? null : source.getFilePath ());
@@ -22425,12 +22425,12 @@ System.gc ();
 if (JU.Logger.debugging) JU.Logger.checkMemory ();
 this.si.siSourceClosed (source);
 }, "JSV.source.JDXSource");
-Clazz_defineMethod (c$, "setFrameAndTreeNode", 
+Clazz_defineMethod (c$, "setFrameAndTreeNode",
 function (i) {
 if (this.panelNodes == null || i < 0 || i >= this.panelNodes.size ()) return;
 this.setNode (this.panelNodes.get (i));
 }, "~N");
-Clazz_defineMethod (c$, "selectFrameNode", 
+Clazz_defineMethod (c$, "selectFrameNode",
 function (jsvp) {
 var node = JSV.common.PanelNode.findNode (jsvp, this.panelNodes);
 if (node == null) return null;
@@ -22438,7 +22438,7 @@ this.spectraTree.setPath (this.spectraTree.newTreePath (node.treeNode.getPath ()
 this.setOverlayLegendVisibility (null, false);
 return node;
 }, "JSV.api.JSVPanel");
-Clazz_defineMethod (c$, "setSpectrum", 
+Clazz_defineMethod (c$, "setSpectrum",
  function (value) {
 if (value.indexOf ('.') >= 0) {
 var node = JSV.common.PanelNode.findNodeById (value, this.panelNodes);
@@ -22452,7 +22452,7 @@ return false;
 }this.setFrameAndTreeNode (n - 1);
 }return true;
 }, "~S");
-Clazz_defineMethod (c$, "splitSpectra", 
+Clazz_defineMethod (c$, "splitSpectra",
 function () {
 var source = this.currentSource;
 var specs = source.getSpectra ();
@@ -22469,7 +22469,7 @@ this.si.siGetNewJSVPanel (null);
 var node = JSV.common.PanelNode.findNode (this.selectedPanel, this.panelNodes);
 this.si.siSetMenuEnables (node, true);
 });
-Clazz_defineMethod (c$, "selectedTreeNode", 
+Clazz_defineMethod (c$, "selectedTreeNode",
 function (node) {
 if (node == null) {
 return;
@@ -22479,7 +22479,7 @@ this.setNode (node.getPanelNode ());
 System.out.println ("not a leaf");
 }this.si.siSetCurrentSource (node.getPanelNode ().source);
 }, "JSV.api.JSVTreeNode");
-Clazz_defineMethod (c$, "dispose", 
+Clazz_defineMethod (c$, "dispose",
 function () {
 this.fileHelper = null;
 if (this.viewDialog != null) this.viewDialog.dispose ();
@@ -22494,30 +22494,30 @@ this.panelNodes.get (i).dispose ();
 this.panelNodes.removeItemAt (i);
 }
 });
-Clazz_defineMethod (c$, "runScript", 
+Clazz_defineMethod (c$, "runScript",
 function (script) {
 if (this.scriptQueue == null) this.si.siProcessCommand (script);
  else this.scriptQueue.addLast (script);
 }, "~S");
-Clazz_defineMethod (c$, "requestRepaint", 
+Clazz_defineMethod (c$, "requestRepaint",
 function () {
 if (this.selectedPanel != null) this.repaintManager.refresh ();
 });
-Clazz_defineMethod (c$, "repaintDone", 
+Clazz_defineMethod (c$, "repaintDone",
 function () {
 this.repaintManager.repaintDone ();
 });
-Clazz_defineMethod (c$, "checkOverlay", 
+Clazz_defineMethod (c$, "checkOverlay",
 function () {
 if (this.mainPanel != null) this.markSelectedPanels (this.panelNodes, this.mainPanel.getCurrentPanelIndex ());
 this.viewDialog = this.getDialog (JSV.common.Annotation.AType.Views, null);
 });
-Clazz_defineMethod (c$, "markSelectedPanels", 
+Clazz_defineMethod (c$, "markSelectedPanels",
  function (panelNodes, ip) {
 for (var i = panelNodes.size (); --i >= 0; ) panelNodes.get (i).isSelected = (ip == i);
 
 }, "JU.Lst,~N");
-Clazz_defineMethod (c$, "execOverlayOffsetY", 
+Clazz_defineMethod (c$, "execOverlayOffsetY",
  function (offset) {
 if (offset == -2147483648) {
 if (this.selectedPanel == null) return;
@@ -22529,7 +22529,7 @@ offset = Clazz_floatToInt (f);
 this.parameters.viewOffset = offset;
 if (this.isClosed ()) this.pd ().setYStackOffsetPercent (offset);
 }, "~N");
-Clazz_defineMethod (c$, "execScriptInline", 
+Clazz_defineMethod (c$, "execScriptInline",
  function (script) {
 if (script.length > 0) script = script.substring (6).trim ();
 if (script.length == 0) script = this.selectedPanel.getInput ("Enter a JSpecView script", "Script", this.recentScript);
@@ -22537,21 +22537,21 @@ if (script == null) return;
 this.recentScript = script;
 this.runScriptNow (script);
 }, "~S");
-Clazz_defineMethod (c$, "setDisplay", 
+Clazz_defineMethod (c$, "setDisplay",
 function (canvas) {
 this.apiPlatform.setViewer (this, this.display = canvas);
 var wh =  Clazz_newIntArray (2, 0);
 this.apiPlatform.getFullScreenDimensions (canvas, wh);
 this.setScreenDimension (wh[0], wh[1]);
 }, "~O");
-Clazz_defineMethod (c$, "setScreenDimension", 
+Clazz_defineMethod (c$, "setScreenDimension",
 function (width, height) {
 height = Math.min (height, this.maximumSize);
 width = Math.min (width, this.maximumSize);
 if (this.dimScreen.width == width && this.dimScreen.height == height) return;
 this.resizeImage (width, height);
 }, "~N,~N");
-Clazz_defineMethod (c$, "resizeImage", 
+Clazz_defineMethod (c$, "resizeImage",
 function (width, height) {
 if (width > 0) {
 this.dimScreen.width = width;
@@ -22561,23 +22561,23 @@ width = (this.dimScreen.width == 0 ? this.dimScreen.width = 500 : this.dimScreen
 height = (this.dimScreen.height == 0 ? this.dimScreen.height = 500 : this.dimScreen.height);
 }this.g2d.setWindowParameters (width, height);
 }, "~N,~N");
-Clazz_defineMethod (c$, "updateJS", 
+Clazz_defineMethod (c$, "updateJS",
 function () {
 if (this.selectedPanel != null) this.selectedPanel.paintComponent (this.apiPlatform.getGraphics (null));
 });
-Clazz_defineMethod (c$, "processMouseEvent", 
+Clazz_defineMethod (c$, "processMouseEvent",
 function (id, x, y, modifiers, time) {
 return (this.selectedPanel != null && this.selectedPanel.processMouseEvent (id, x, y, modifiers, time));
 }, "~N,~N,~N,~N,~N");
-Clazz_defineMethod (c$, "processTwoPointGesture", 
+Clazz_defineMethod (c$, "processTwoPointGesture",
 function (touches) {
 if (!this.isClosed ()) this.selectedPanel.processTwoPointGesture (touches);
 }, "~A");
-Clazz_defineMethod (c$, "getApplet", 
+Clazz_defineMethod (c$, "getApplet",
 function () {
 return this.html5Applet;
 });
-Clazz_defineMethod (c$, "openFileAsyncSpecial", 
+Clazz_defineMethod (c$, "openFileAsyncSpecial",
 function (fileName, flags) {
 var ans = (this.currentSource == null ? "NO" : this.getDialogManager ().getDialogInput (this, "Do you want to append this file? (Answer NO to replace.)", "Drag/Drop Action", 3, null, null, "YES"));
 if (ans == null) return;
@@ -22585,25 +22585,25 @@ var pre = (ans.toLowerCase ().startsWith ("y") ? "append" : "");
 var post = (pre === "" ? "" : "; view *");
 this.runScript ("load " + pre + " \"" + fileName + "\"" + post);
 }, "~S,~N");
-Clazz_defineMethod (c$, "getHeight", 
+Clazz_defineMethod (c$, "getHeight",
 function () {
 return this.dimScreen.height;
 });
-Clazz_defineMethod (c$, "getWidth", 
+Clazz_defineMethod (c$, "getWidth",
 function () {
 return this.dimScreen.width;
 });
-Clazz_defineMethod (c$, "getPlatformInterface", 
+Clazz_defineMethod (c$, "getPlatformInterface",
 function (type) {
 return JSV.common.JSViewer.getInterface ("JSV." + (this.isJS ? "js2d.Js" : "java.Awt") + type);
 }, "~S");
-Clazz_defineMethod (c$, "getDialogManager", 
+Clazz_defineMethod (c$, "getDialogManager",
 function () {
 if (this.dialogManager != null) return this.dialogManager;
 this.dialogManager = this.getPlatformInterface ("DialogManager");
 return this.dialogManager.set (this);
 });
-Clazz_defineMethod (c$, "getDialog", 
+Clazz_defineMethod (c$, "getDialog",
 function (type, spec) {
 var root = "JSV.dialog.";
 switch (type) {
@@ -22621,7 +22621,7 @@ default:
 return null;
 }
 }, "JSV.common.Annotation.AType,JSV.common.Spectrum");
-Clazz_defineMethod (c$, "show", 
+Clazz_defineMethod (c$, "show",
  function (what) {
 this.getDialogManager ();
 if (what.equals ("properties")) {
@@ -22647,7 +22647,7 @@ this.dialogManager.showMessage (this, "<div style='width:100%;height:100%;" + ms
 } else {
 this.selectedPanel.showMessage ("<html><body style='" + msg + "</body></html>", "Predicted Colour");
 }}}, "~S");
-Clazz_defineMethod (c$, "getDialogPrint", 
+Clazz_defineMethod (c$, "getDialogPrint",
 function (isJob) {
 if (!this.isJS) try {
 var pl = (this.getPlatformInterface ("PrintDialog")).set (this.offWindowFrame, this.lastPrintLayout, isJob).getPrintLayout ();
@@ -22661,7 +22661,7 @@ throw e;
 }
 return  new JSV.common.PrintLayout (this.pd ());
 }, "~B");
-Clazz_defineMethod (c$, "setIRmode", 
+Clazz_defineMethod (c$, "setIRmode",
 function (mode) {
 if (mode.equals ("AtoT")) {
 this.irMode = JSV.common.Spectrum.IRMode.TO_TRANS;
@@ -22670,22 +22670,22 @@ this.irMode = JSV.common.Spectrum.IRMode.TO_ABS;
 } else {
 this.irMode = JSV.common.Spectrum.IRMode.getMode (mode);
 }}, "~S");
-Clazz_defineMethod (c$, "getOptionFromDialog", 
+Clazz_defineMethod (c$, "getOptionFromDialog",
 function (items, title, label) {
 return this.getDialogManager ().getOptionFromDialog (null, items, this.selectedPanel, title, label);
 }, "~A,~S,~S");
-Clazz_defineMethod (c$, "print", 
+Clazz_defineMethod (c$, "print",
 function (fileName) {
 return this.execWrite ("PDF \"" + fileName + "\"");
 }, "~S");
-Clazz_defineMethod (c$, "execWrite", 
+Clazz_defineMethod (c$, "execWrite",
  function (value) {
 if (this.isJS && value == null) value = "PDF";
 var msg = (JSV.common.JSViewer.getInterface ("JSV.export.Exporter")).write (this, value == null ? null : JSV.common.ScriptToken.getTokens (value), false);
 this.si.writeStatus (msg);
 return msg;
 }, "~S");
-Clazz_defineMethod (c$, "$export", 
+Clazz_defineMethod (c$, "$export",
 function (type, n) {
 if (type == null) type = "XY";
 var pd = this.pd ();
@@ -22703,11 +22703,11 @@ throw e;
 }
 }
 }, "~S,~N");
-Clazz_overrideMethod (c$, "postByteArray", 
+Clazz_overrideMethod (c$, "postByteArray",
 function (fileName, bytes) {
 return JSV.common.JSVFileManager.postByteArray (fileName, bytes);
 }, "~S,~A");
-Clazz_defineMethod (c$, "getOutputChannel", 
+Clazz_defineMethod (c$, "getOutputChannel",
 function (fileName, isBinary) {
 var os = null;
 {
@@ -22715,7 +22715,7 @@ while (fileName.startsWith("/"))
 fileName = fileName.substring(1);
 }return  new JU.OC ().setParams (this, fileName, !isBinary, os);
 }, "~S,~B");
-c$.getInterface = Clazz_defineMethod (c$, "getInterface", 
+c$.getInterface = Clazz_defineMethod (c$, "getInterface",
 function (name) {
 try {
 var x = Clazz._4Name (name);
@@ -22729,11 +22729,11 @@ throw e;
 }
 }
 }, "~S");
-Clazz_defineMethod (c$, "showMessage", 
+Clazz_defineMethod (c$, "showMessage",
 function (msg) {
 if (this.selectedPanel != null && msg != null) this.selectedPanel.showMessage (msg, null);
 }, "~S");
-Clazz_defineMethod (c$, "openFileFromDialog", 
+Clazz_defineMethod (c$, "openFileFromDialog",
 function (isAppend, isURL, simulationType, script) {
 var url = null;
 if (simulationType != null) {
@@ -22751,14 +22751,14 @@ var file = this.fileHelper.showFileOpenDialog (this.mainPanel, userData);
 if (file != null) url = file.getFullPath ();
 }if (url != null) this.runScriptNow ("load " + (isAppend ? "APPEND " : "") + "\"" + url + "\"" + (script == null ? "" : ";" + script));
 }, "~B,~B,~S,~S");
-Clazz_defineMethod (c$, "openFile", 
+Clazz_defineMethod (c$, "openFile",
 function (fileName, closeFirst) {
 if (closeFirst && this.panelNodes != null) {
 var source = JSV.common.PanelNode.findSourceByNameOrId (( new java.io.File (fileName)).getAbsolutePath (), this.panelNodes);
 if (source != null) this.closeSource (source);
 }this.si.siOpenDataOrFile (null, null, null, fileName, -1, -1, true, this.defaultLoadScript, null);
 }, "~S,~B");
-Clazz_defineMethod (c$, "selectPanel", 
+Clazz_defineMethod (c$, "selectPanel",
 function (jsvp, panelNodes) {
 var iPanel = -1;
 if (panelNodes != null) {
@@ -22774,11 +22774,11 @@ j.getPanelData ().closeAllDialogsExcept (JSV.common.Annotation.AType.NONE);
 this.markSelectedPanels (panelNodes, iPanel);
 }return iPanel;
 }, "JSV.api.JSVPanel,JU.Lst");
-Clazz_defineMethod (c$, "checkAutoIntegrate", 
+Clazz_defineMethod (c$, "checkAutoIntegrate",
 function () {
 if (this.autoIntegrate) this.pd ().integrateAll (this.parameters);
 });
-Clazz_defineMethod (c$, "parseInitScript", 
+Clazz_defineMethod (c$, "parseInitScript",
 function (params) {
 if (params == null) params = "";
 var allParamTokens =  new JSV.common.ScriptTokenizer (params, true);
@@ -22851,12 +22851,12 @@ throw e;
 }
 }
 }, "~S");
-Clazz_defineMethod (c$, "getSolutionColorStr", 
+Clazz_defineMethod (c$, "getSolutionColorStr",
 function (asFit) {
 var pt = JU.CU.colorPtFromInt (this.getSolutionColor (asFit), null);
 return Clazz_floatToInt (pt.x) + "," + Clazz_floatToInt (pt.y) + "," + Clazz_floatToInt (pt.z);
 }, "~B");
-Clazz_defineMethod (c$, "checkCommandLineForTip", 
+Clazz_defineMethod (c$, "checkCommandLineForTip",
 function (c, cmd, oneLineOnly) {
 var isHelp = (c == '\1');
 if (!isHelp && c != '\0') {
@@ -22907,11 +22907,11 @@ this.si.writeStatus (tip);
 ret = tip;
 }return ret;
 }, "~S,~S,~B");
-Clazz_defineMethod (c$, "checkScript", 
+Clazz_defineMethod (c$, "checkScript",
 function (script) {
 return this.checkCommandLineForTip ('\0', script, false);
 }, "~S");
-Clazz_defineMethod (c$, "execHelp", 
+Clazz_defineMethod (c$, "execHelp",
  function (value) {
 var s = this.checkCommandLineForTip ('\1', value, false);
 if (s.indexOf (" ") < 0 && s.indexOf (",") > 0) {
@@ -22927,7 +22927,7 @@ this.getDialogManager ().showMessage (null, s, "HELP " + value);
 this.selectedPanel.showMessage (s, "Help " + value);
 }System.out.println (s);
 }, "~S");
-Clazz_defineMethod (c$, "menuShowPopup", 
+Clazz_defineMethod (c$, "menuShowPopup",
 function (popup, x, y, isTainted) {
 try {
 (popup).show (isTainted ? this.getApplet () : null, x, y);
@@ -22962,67 +22962,67 @@ Clazz_instantialize (this, arguments);
 Clazz_prepareFields (c$, function () {
 this.pt2 =  new JSV.common.Coordinate ();
 });
-Clazz_defineMethod (c$, "setM1", 
+Clazz_defineMethod (c$, "setM1",
 function (x, y, spec) {
 this.setA (x, y, spec, "", false, false, 0, 6);
 this.setPt2 (this.getXVal (), this.getYVal ());
 return this;
 }, "~N,~N,JSV.common.Spectrum");
-Clazz_defineMethod (c$, "copyM", 
+Clazz_defineMethod (c$, "copyM",
 function () {
 var m =  new JSV.common.Measurement ();
 m.setA (this.getXVal (), this.getYVal (), this.spec, this.text, false, false, this.offsetX, this.offsetY);
 m.setPt2 (this.pt2.getXVal (), this.pt2.getYVal ());
 return m;
 });
-Clazz_defineMethod (c$, "setPt2", 
+Clazz_defineMethod (c$, "setPt2",
 function (spec, doSetPt2) {
 this.spec = spec;
 if (doSetPt2) this.setPt2 (this.getXVal (), this.getYVal ());
 return this;
 }, "JSV.common.Spectrum,~B");
-Clazz_defineMethod (c$, "setPt2", 
+Clazz_defineMethod (c$, "setPt2",
 function (x, y) {
 this.pt2.setXVal (x);
 this.pt2.setYVal (y);
 this.value = Math.abs (x - this.getXVal ());
 this.text = this.spec.setMeasurementText (this);
 }, "~N,~N");
-Clazz_defineMethod (c$, "getSpectrum", 
+Clazz_defineMethod (c$, "getSpectrum",
 function () {
 return this.spec;
 });
-Clazz_defineMethod (c$, "setValue", 
+Clazz_defineMethod (c$, "setValue",
 function (value) {
 this.value = value;
 this.text = this.spec.setMeasurementText (this);
 }, "~N");
-Clazz_defineMethod (c$, "getValue", 
+Clazz_defineMethod (c$, "getValue",
 function () {
 return this.value;
 });
-Clazz_defineMethod (c$, "getXVal2", 
+Clazz_defineMethod (c$, "getXVal2",
 function () {
 return this.pt2.getXVal ();
 });
-Clazz_defineMethod (c$, "getYVal2", 
+Clazz_defineMethod (c$, "getYVal2",
 function () {
 return this.pt2.getYVal ();
 });
-Clazz_overrideMethod (c$, "addSpecShift", 
+Clazz_overrideMethod (c$, "addSpecShift",
 function (dx) {
 this.setXVal (this.getXVal () + dx);
 this.pt2.setXVal (this.pt2.getXVal () + dx);
 }, "~N");
-Clazz_defineMethod (c$, "setYVal2", 
+Clazz_defineMethod (c$, "setYVal2",
 function (y2) {
 this.pt2.setYVal (y2);
 }, "~N");
-Clazz_defineMethod (c$, "overlaps", 
+Clazz_defineMethod (c$, "overlaps",
 function (x1, x2) {
 return (Math.min (this.getXVal (), this.getXVal2 ()) < Math.max (x1, x2) && Math.max (this.getXVal (), this.getXVal2 ()) > Math.min (x1, x2));
 }, "~N,~N");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return "[" + this.getXVal () + "," + this.pt2.getXVal () + "]";
 });
@@ -23046,41 +23046,41 @@ this.isON = true;
 this.key = null;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "MeasurementData", JU.Lst, JSV.api.AnnotationData);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (type, spec) {
 Clazz_superConstructor (this, JSV.common.MeasurementData, []);
 this.type = type;
 this.spec = spec;
 this.myParams =  new JSV.common.Parameters ().setName ("MeasurementData");
 }, "JSV.common.Annotation.AType,JSV.common.Spectrum");
-Clazz_defineMethod (c$, "getMeasurements", 
+Clazz_defineMethod (c$, "getMeasurements",
 function () {
 return this;
 });
-Clazz_overrideMethod (c$, "getAType", 
+Clazz_overrideMethod (c$, "getAType",
 function () {
 return this.type;
 });
-Clazz_overrideMethod (c$, "getState", 
+Clazz_overrideMethod (c$, "getState",
 function () {
 return this.isON;
 });
-Clazz_overrideMethod (c$, "setState", 
+Clazz_overrideMethod (c$, "setState",
 function (b) {
 this.isON = b;
 }, "~B");
-Clazz_defineMethod (c$, "setMeasurements", 
+Clazz_defineMethod (c$, "setMeasurements",
 function (measurements) {
 }, "JU.Lst");
-Clazz_overrideMethod (c$, "getParameters", 
+Clazz_overrideMethod (c$, "getParameters",
 function () {
 return this.myParams;
 });
-Clazz_defineMethod (c$, "getDataHeader", 
+Clazz_defineMethod (c$, "getDataHeader",
 function () {
 return JSV.common.MeasurementData.HEADER;
 });
-Clazz_defineMethod (c$, "getMeasurementListArray", 
+Clazz_defineMethod (c$, "getMeasurementListArray",
 function (units) {
 this.units = units;
 var ddata = this.getMeasurementListArrayReal (units);
@@ -23091,7 +23091,7 @@ for (var i = this.size (); --i >= 0; ) data[i] =  Clazz_newArray (-1, ["" + (i +
 
 return data;
 }, "~S");
-Clazz_defineMethod (c$, "getMeasurementListArrayReal", 
+Clazz_defineMethod (c$, "getMeasurementListArrayReal",
 function (units) {
 var toHz = this.spec.isNMR () && units.equalsIgnoreCase ("HZ");
 var data = JU.AU.newDouble2 (this.size ());
@@ -23102,7 +23102,7 @@ data[pt++] =  Clazz_newDoubleArray (-1, [this.get (i).getXVal (), this.get (i).g
 }
 return data;
 }, "~S");
-c$.checkParameters = Clazz_defineMethod (c$, "checkParameters", 
+c$.checkParameters = Clazz_defineMethod (c$, "checkParameters",
 function (md, p) {
 if (md.size () == 0) return false;
 var myParams = md.getParameters ();
@@ -23117,15 +23117,15 @@ case JSV.common.Annotation.AType.NONE:
 }
 return false;
 }, "JSV.common.MeasurementData,JSV.common.ColorParameters");
-Clazz_overrideMethod (c$, "getSpectrum", 
+Clazz_overrideMethod (c$, "getSpectrum",
 function () {
 return this.spec;
 });
-Clazz_overrideMethod (c$, "getData", 
+Clazz_overrideMethod (c$, "getData",
 function () {
 return this;
 });
-Clazz_defineMethod (c$, "clear", 
+Clazz_defineMethod (c$, "clear",
 function (x1, x2) {
 for (var i = this.size (); --i >= 0; ) {
 var $in = this.get (i);
@@ -23133,7 +23133,7 @@ if ($in.text.length == 0 || $in.overlaps (x1, x2)) {
 this.removeItemAt (i);
 }}
 }, "~N,~N");
-Clazz_defineMethod (c$, "find", 
+Clazz_defineMethod (c$, "find",
 function (x) {
 for (var i = this.size (); --i >= 0; ) {
 var $in = this.get (i);
@@ -23142,7 +23142,7 @@ return i;
 }}
 return -1;
 }, "~N");
-Clazz_overrideMethod (c$, "setSpecShift", 
+Clazz_overrideMethod (c$, "setSpecShift",
 function (dx) {
 for (var i = this.size (); --i >= 0; ) {
 var m = this.get (i);
@@ -23152,19 +23152,19 @@ m.setValue (x);
 m.text = JU.DF.formatDecimalDbl (x, this.precision);
 }
 }, "~N");
-Clazz_overrideMethod (c$, "getGraphSetKey", 
+Clazz_overrideMethod (c$, "getGraphSetKey",
 function () {
 return this.key;
 });
-Clazz_overrideMethod (c$, "setGraphSetKey", 
+Clazz_overrideMethod (c$, "setGraphSetKey",
 function (key) {
 this.key = key;
 }, "~S");
-Clazz_overrideMethod (c$, "isVisible", 
+Clazz_overrideMethod (c$, "isVisible",
 function () {
 return true;
 });
-Clazz_defineMethod (c$, "getInfo", 
+Clazz_defineMethod (c$, "getInfo",
 function (info) {
 info.put ("header", this.getDataHeader ());
 info.put ("table", this.getMeasurementListArrayReal ("ppm"));
@@ -23250,7 +23250,7 @@ Clazz_prepareFields (c$, function () {
 this.listeners =  new JU.Lst ();
 this.options =  new java.util.Hashtable ();
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (panel, viewer) {
 this.vwr = viewer;
 this.jsvp = panel;
@@ -23260,16 +23260,16 @@ this.highlightColor = this.g2d.getColor4 (255, 0, 0, 200);
 this.zoomBoxColor = this.g2d.getColor4 (150, 150, 100, 130);
 this.zoomBoxColor2 = this.g2d.getColor4 (150, 100, 100, 130);
 }, "JSV.api.JSVPanel,JSV.common.JSViewer");
-Clazz_defineMethod (c$, "addListener", 
+Clazz_defineMethod (c$, "addListener",
 function (listener) {
 if (!this.listeners.contains (listener)) {
 this.listeners.addLast (listener);
 }}, "JSV.api.PanelListener");
-Clazz_defineMethod (c$, "getCurrentGraphSet", 
+Clazz_defineMethod (c$, "getCurrentGraphSet",
 function () {
 return this.currentGraphSet;
 });
-Clazz_defineMethod (c$, "dispose", 
+Clazz_defineMethod (c$, "dispose",
 function () {
 this.jsvp = null;
 for (var i = 0; i < this.graphSets.size (); i++) this.graphSets.get (i).dispose ();
@@ -23283,15 +23283,15 @@ this.thisWidget = null;
 this.options = null;
 this.listeners = null;
 });
-Clazz_defineMethod (c$, "setViewTitle", 
+Clazz_defineMethod (c$, "setViewTitle",
 function (title) {
 this.viewTitle = title;
 }, "~S");
-Clazz_defineMethod (c$, "getViewTitle", 
+Clazz_defineMethod (c$, "getViewTitle",
 function () {
 return (this.viewTitle == null ? this.getTitle () : this.viewTitle);
 });
-Clazz_defineMethod (c$, "getInfo", 
+Clazz_defineMethod (c$, "getInfo",
 function (selectedOnly, key) {
 var info =  new java.util.Hashtable ();
 var sets = null;
@@ -23314,7 +23314,7 @@ for (var i = this.graphSets.size (); --i >= 0; ) sets.addLast (this.graphSets.ge
 info.put ("sets", sets);
 return info;
 }, "~B,~S");
-Clazz_defineMethod (c$, "setBooleans", 
+Clazz_defineMethod (c$, "setBooleans",
 function (parameters, st) {
 if (st == null) {
 var booleans = parameters.getBooleans ();
@@ -23323,7 +23323,7 @@ for (var entry, $entry = booleans.entrySet ().iterator (); $entry.hasNext () && 
 return;
 }this.setBoolean (st, parameters.getBoolean (st));
 }, "JSV.common.Parameters,JSV.common.ScriptToken");
-Clazz_defineMethod (c$, "setBoolean", 
+Clazz_defineMethod (c$, "setBoolean",
 function (st, isTrue) {
 this.setTaintedAll ();
 if (st === JSV.common.ScriptToken.REVERSEPLOT) {
@@ -23337,14 +23337,14 @@ this.doReset = true;
 break;
 }
 }, "JSV.common.ScriptToken,~B");
-Clazz_defineMethod (c$, "getBoolean", 
+Clazz_defineMethod (c$, "getBoolean",
 function (st) {
 if (st === JSV.common.ScriptToken.REVERSEPLOT) return this.currentGraphSet.reversePlot;
 if (this.options == null) return false;
 var b = this.options.get (st);
 return (b != null && (Clazz_instanceOf (b, Boolean)) && (b) === Boolean.TRUE);
 }, "JSV.common.ScriptToken");
-Clazz_defineMethod (c$, "setFontName", 
+Clazz_defineMethod (c$, "setFontName",
 function (st, fontName) {
 switch (st) {
 case JSV.common.ScriptToken.DISPLAYFONTNAME:
@@ -23356,21 +23356,21 @@ break;
 }
 if (fontName != null) this.options.put (st, fontName);
 }, "JSV.common.ScriptToken,~S");
-Clazz_defineMethod (c$, "getDisplay1D", 
+Clazz_defineMethod (c$, "getDisplay1D",
 function () {
 return this.display1D;
 });
-Clazz_defineMethod (c$, "setTaintedAll", 
+Clazz_defineMethod (c$, "setTaintedAll",
 function () {
 this.taintedAll = true;
 });
-Clazz_defineMethod (c$, "initOne", 
+Clazz_defineMethod (c$, "initOne",
 function (spectrum) {
 this.spectra =  new JU.Lst ();
 this.spectra.addLast (spectrum);
 this.initMany (this.spectra, 0, 0);
 }, "JSV.common.Spectrum");
-Clazz_defineMethod (c$, "initMany", 
+Clazz_defineMethod (c$, "initMany",
 function (spectra, startIndex, endIndex) {
 this.startIndex = startIndex;
 this.endIndex = endIndex;
@@ -23383,59 +23383,59 @@ break;
 }
 this.setGraphSets (JSV.common.PanelData.LinkMode.NONE);
 }, "JU.Lst,~N,~N");
-Clazz_defineMethod (c$, "setGraphSets", 
+Clazz_defineMethod (c$, "setGraphSets",
  function (linkMode) {
 this.graphSets = JSV.common.GraphSet.createGraphSetsAndSetLinkMode (this, this.jsvp, this.spectra, this.startIndex, this.endIndex, linkMode);
 this.currentGraphSet = this.graphSets.get (0);
 this.title = this.getSpectrum ().getTitleLabel ();
 }, "JSV.common.PanelData.LinkMode");
-Clazz_defineMethod (c$, "findMatchingPeakInfo", 
+Clazz_defineMethod (c$, "findMatchingPeakInfo",
 function (pi) {
 var pi2 = null;
 for (var i = 0; i < this.graphSets.size (); i++) if ((pi2 = this.graphSets.get (i).findMatchingPeakInfo (pi)) != null) break;
 
 return pi2;
 }, "JSV.common.PeakInfo");
-Clazz_defineMethod (c$, "integrateAll", 
+Clazz_defineMethod (c$, "integrateAll",
 function (parameters) {
 for (var i = this.graphSets.size (); --i >= 0; ) this.graphSets.get (i).integrate (-1, parameters);
 
 }, "JSV.common.ColorParameters");
-Clazz_defineMethod (c$, "getNumberOfGraphSets", 
+Clazz_defineMethod (c$, "getNumberOfGraphSets",
 function () {
 return this.graphSets.size ();
 });
-Clazz_defineMethod (c$, "getTitle", 
+Clazz_defineMethod (c$, "getTitle",
 function () {
 return this.title;
 });
-Clazz_defineMethod (c$, "refresh", 
+Clazz_defineMethod (c$, "refresh",
 function () {
 this.doReset = true;
 });
-Clazz_defineMethod (c$, "addAnnotation", 
+Clazz_defineMethod (c$, "addAnnotation",
 function (tokens) {
 var title = this.currentGraphSet.addAnnotation (tokens, this.getTitle ());
 if (title != null) this.title = title;
 }, "JU.Lst");
-Clazz_defineMethod (c$, "addPeakHighlight", 
+Clazz_defineMethod (c$, "addPeakHighlight",
 function (peakInfo) {
 for (var i = 0; i < this.graphSets.size (); i++) this.graphSets.get (i).addPeakHighlight (peakInfo);
 
 }, "JSV.common.PeakInfo");
-Clazz_defineMethod (c$, "selectPeakByFileIndex", 
+Clazz_defineMethod (c$, "selectPeakByFileIndex",
 function (filePath, index, atomKey) {
 var pi = this.currentGraphSet.selectPeakByFileIndex (filePath, index, atomKey);
 if (pi == null) for (var i = this.graphSets.size (); --i >= 0; ) if (this.graphSets.get (i) !== this.currentGraphSet && (pi = this.graphSets.get (i).selectPeakByFileIndex (filePath, index, atomKey)) != null) break;
 
 return pi;
 }, "~S,~S,~S");
-Clazz_defineMethod (c$, "setPlotColors", 
+Clazz_defineMethod (c$, "setPlotColors",
 function (colors) {
 for (var i = this.graphSets.size (); --i >= 0; ) this.graphSets.get (i).setPlotColors (colors);
 
 }, "~A");
-Clazz_defineMethod (c$, "selectSpectrum", 
+Clazz_defineMethod (c$, "selectSpectrum",
 function (filePath, type, model, andCurrent) {
 if (andCurrent) this.currentGraphSet.selectSpectrum (filePath, type, model);
 if ("ID".equals (type)) {
@@ -23444,18 +23444,18 @@ return;
 }for (var i = 0; i < this.graphSets.size (); i++) if (this.graphSets.get (i) !== this.currentGraphSet) this.graphSets.get (i).selectSpectrum (filePath, type, model);
 
 }, "~S,~S,~S,~B");
-Clazz_defineMethod (c$, "hasFileLoaded", 
+Clazz_defineMethod (c$, "hasFileLoaded",
 function (filePath) {
 for (var i = this.graphSets.size (); --i >= 0; ) if (this.graphSets.get (i).hasFileLoaded (filePath)) return true;
 
 return false;
 }, "~S");
-Clazz_defineMethod (c$, "clearAllView", 
+Clazz_defineMethod (c$, "clearAllView",
 function () {
 for (var i = this.graphSets.size (); --i >= 0; ) this.graphSets.get (i).resetViewCompletely ();
 
 });
-Clazz_defineMethod (c$, "drawGraph", 
+Clazz_defineMethod (c$, "drawGraph",
 function (gMain, gFront, gRear, width, height, addFilePath) {
 var withCoords;
 this.gMain = gMain;
@@ -23497,17 +23497,17 @@ this.printVersion (gMain, height);
 }if (!this.testingJavaScript && (this.isPrinting || gMain === gFront)) this.setTaintedAll ();
  else this.taintedAll = false;
 }, "~O,~O,~O,~N,~N,~B");
-Clazz_defineMethod (c$, "drawCoordinates", 
+Clazz_defineMethod (c$, "drawCoordinates",
 function (g, top, x, y) {
 this.g2d.setGraphicsColor (g, this.coordinatesColor);
 var font = this.setFont (g, this.jsvp.getWidth (), 1, 14, true);
 this.g2d.drawString (g, this.coordStr, x - font.stringWidth (this.coordStr), y);
 }, "~O,~N,~N,~N");
-Clazz_defineMethod (c$, "setFont", 
+Clazz_defineMethod (c$, "setFont",
 function (g, width, style, size, isLabel) {
 return this.g2d.setFont (g, this.getFont (g, width, style, size, isLabel));
 }, "~O,~N,~N,~N,~B");
-Clazz_defineMethod (c$, "printFilePath", 
+Clazz_defineMethod (c$, "printFilePath",
 function (g, x, y, s) {
 x *= this.scalingFactor;
 y *= this.scalingFactor;
@@ -23519,7 +23519,7 @@ var font = this.setFont (g, 1000, 0, 9, true);
 if (x != this.left * this.scalingFactor) x -= font.stringWidth (s);
 this.g2d.drawString (g, s, x, y - font.getHeight ());
 }, "~O,~N,~N,~S");
-Clazz_defineMethod (c$, "printVersion", 
+Clazz_defineMethod (c$, "printVersion",
 function (g, pageHeight) {
 this.g2d.setGraphicsColor (g, this.BLACK);
 var font = this.setFont (g, 100, 0, 12, true);
@@ -23527,7 +23527,7 @@ var s = this.jsvp.getApiPlatform ().getDateFormat (null) + " JSpecView " + JSV.c
 var w = font.stringWidth (s);
 this.g2d.drawString (g, s, (this.thisWidth - this.right) * this.scalingFactor - w, pageHeight * this.scalingFactor - font.getHeight () * 3);
 }, "~O,~N");
-Clazz_defineMethod (c$, "drawTitle", 
+Clazz_defineMethod (c$, "drawTitle",
 function (g, pageHeight, pageWidth, title) {
 title = title.$replace ('\n', ' ');
 var font = this.getFont (g, pageWidth, this.isPrinting || this.getBoolean (JSV.common.ScriptToken.TITLEBOLDON) ? 1 : 0, 14, true);
@@ -23540,19 +23540,19 @@ font = this.getFont (g, pageWidth, this.isPrinting || this.getBoolean (JSV.commo
 this.setCurrentFont (this.g2d.setFont (g, font));
 this.g2d.drawString (g, title, (this.isPrinting ? this.left * this.scalingFactor : 5), pageHeight - Clazz_doubleToInt (font.getHeight () * (this.isPrinting ? 2 : 0.5)));
 }, "~O,~N,~N,~S");
-Clazz_defineMethod (c$, "setCurrentFont", 
+Clazz_defineMethod (c$, "setCurrentFont",
  function (font) {
 this.currentFont = font;
 }, "javajs.awt.Font");
-Clazz_defineMethod (c$, "getFontHeight", 
+Clazz_defineMethod (c$, "getFontHeight",
 function () {
 return this.currentFont.getAscent ();
 });
-Clazz_defineMethod (c$, "getStringWidth", 
+Clazz_defineMethod (c$, "getStringWidth",
 function (s) {
 return this.currentFont.stringWidth (s);
 }, "~S");
-Clazz_defineMethod (c$, "selectFromEntireSet", 
+Clazz_defineMethod (c$, "selectFromEntireSet",
 function (iSpec) {
 for (var i = 0, pt = 0; i < this.graphSets.size (); i++) {
 if (iSpec == -2147483648) {
@@ -23563,17 +23563,17 @@ for (var j = 0; j < specs.size (); j++, pt++) if (iSpec < 0 || iSpec == pt) this
 
 }
 }, "~N");
-Clazz_defineMethod (c$, "addToList", 
+Clazz_defineMethod (c$, "addToList",
 function (iSpec, list) {
 for (var i = 0; i < this.spectra.size (); i++) if (iSpec < 0 || i == iSpec) list.addLast (this.spectra.get (i));
 
 }, "~N,JU.Lst");
-Clazz_defineMethod (c$, "scaleSelectedBy", 
+Clazz_defineMethod (c$, "scaleSelectedBy",
 function (f) {
 for (var i = this.graphSets.size (); --i >= 0; ) this.graphSets.get (i).scaleSelectedBy (f);
 
 }, "~N");
-Clazz_defineMethod (c$, "setCurrentGraphSet", 
+Clazz_defineMethod (c$, "setCurrentGraphSet",
  function (gs, yPixel) {
 var splitPoint = (gs.nSplit > 1 ? gs.getSplitPoint (yPixel) : gs.getCurrentSpectrumIndex ());
 var isNewSet = (this.currentGraphSet !== gs);
@@ -23589,12 +23589,12 @@ this.setSpectrum (splitPoint, true);
 }this.jumpToSpectrumIndex (splitPoint, isNewSet || gs.nSplit > 1 && isNewSplitPoint);
 return isNewSet;
 }, "JSV.common.GraphSet,~N");
-Clazz_defineMethod (c$, "jumpToSpectrum", 
+Clazz_defineMethod (c$, "jumpToSpectrum",
 function (spec) {
 var index = this.currentGraphSet.getSpectrumIndex (spec);
 this.jumpToSpectrumIndex (index, true);
 }, "JSV.common.Spectrum");
-Clazz_defineMethod (c$, "jumpToSpectrumIndex", 
+Clazz_defineMethod (c$, "jumpToSpectrumIndex",
 function (index, doSetSpec) {
 if (index < 0 || index >= this.currentGraphSet.nSpectra) return;
 this.currentSplitPoint = index;
@@ -23602,52 +23602,52 @@ if (doSetSpec) this.setSpectrum (this.currentSplitPoint, this.currentGraphSet.nS
 var spec = this.getSpectrum ();
 this.notifySubSpectrumChange (spec.getSubIndex (), spec);
 }, "~N,~B");
-Clazz_defineMethod (c$, "splitStack", 
+Clazz_defineMethod (c$, "splitStack",
 function (doSplit) {
 this.currentGraphSet.splitStack (doSplit);
 }, "~B");
-Clazz_defineMethod (c$, "getNumberOfSpectraInCurrentSet", 
+Clazz_defineMethod (c$, "getNumberOfSpectraInCurrentSet",
 function () {
 return this.currentGraphSet.nSpectra;
 });
-Clazz_defineMethod (c$, "getSourceID", 
+Clazz_defineMethod (c$, "getSourceID",
 function () {
 var id = this.getSpectrum ().sourceID;
 return (id == null ? this.getSpectrumAt (0).sourceID : id);
 });
-Clazz_defineMethod (c$, "getStartingPointIndex", 
+Clazz_defineMethod (c$, "getStartingPointIndex",
 function (index) {
 return this.currentGraphSet.viewData.getStartingPointIndex (index);
 }, "~N");
-Clazz_defineMethod (c$, "getEndingPointIndex", 
+Clazz_defineMethod (c$, "getEndingPointIndex",
 function (index) {
 return this.currentGraphSet.viewData.getEndingPointIndex (index);
 }, "~N");
-Clazz_defineMethod (c$, "haveSelectedSpectrum", 
+Clazz_defineMethod (c$, "haveSelectedSpectrum",
 function () {
 return this.currentGraphSet.haveSelectedSpectrum ();
 });
-Clazz_defineMethod (c$, "getShowAnnotation", 
+Clazz_defineMethod (c$, "getShowAnnotation",
 function (type) {
 return this.currentGraphSet.getShowAnnotation (type, -1);
 }, "JSV.common.Annotation.AType");
-Clazz_defineMethod (c$, "showAnnotation", 
+Clazz_defineMethod (c$, "showAnnotation",
 function (type, tfToggle) {
 this.currentGraphSet.setShowAnnotation (type, tfToggle);
 }, "JSV.common.Annotation.AType,Boolean");
-Clazz_defineMethod (c$, "setYStackOffsetPercent", 
+Clazz_defineMethod (c$, "setYStackOffsetPercent",
 function (offset) {
 this.currentGraphSet.yStackOffsetPercent = offset;
 }, "~N");
-Clazz_defineMethod (c$, "setSpectrum", 
+Clazz_defineMethod (c$, "setSpectrum",
 function (iSpec, isSplit) {
 this.currentGraphSet.setSpectrum (iSpec, isSplit);
 }, "~N,~B");
-Clazz_defineMethod (c$, "getSpectrum", 
+Clazz_defineMethod (c$, "getSpectrum",
 function () {
 return this.currentGraphSet.getSpectrum ();
 });
-Clazz_defineMethod (c$, "setSpecForIRMode", 
+Clazz_defineMethod (c$, "setSpecForIRMode",
 function (spec) {
 this.setTaintedAll ();
 var spec0 = this.currentGraphSet.getSpectrum ();
@@ -23655,112 +23655,112 @@ this.currentGraphSet.setSpectrumJDX (spec);
 for (var i = 0; i < this.spectra.size (); i++) if (this.spectra.get (i) === spec0) this.spectra.set (i, spec);
 
 }, "JSV.common.Spectrum");
-Clazz_defineMethod (c$, "isShowAllStacked", 
+Clazz_defineMethod (c$, "isShowAllStacked",
 function () {
 return this.currentGraphSet.showAllStacked;
 });
-Clazz_defineMethod (c$, "getCurrentSpectrumIndex", 
+Clazz_defineMethod (c$, "getCurrentSpectrumIndex",
 function () {
 return this.currentGraphSet.getCurrentSpectrumIndex ();
 });
-Clazz_defineMethod (c$, "getSpectrumAt", 
+Clazz_defineMethod (c$, "getSpectrumAt",
 function (index) {
 if (this.currentGraphSet == null) return null;
 return this.currentGraphSet.getSpectrumAt (index);
 }, "~N");
-Clazz_defineMethod (c$, "addHighlight", 
+Clazz_defineMethod (c$, "addHighlight",
 function (gs, x1, x2, spec, r, g, b, a) {
 (gs == null ? this.currentGraphSet : gs).addHighlight (x1, x2, spec, this.g2d.getColor4 (r, g, b, a));
 }, "JSV.common.GraphSet,~N,~N,JSV.common.Spectrum,~N,~N,~N,~N");
-Clazz_defineMethod (c$, "removeHighlight", 
+Clazz_defineMethod (c$, "removeHighlight",
 function (x1, x2) {
 this.currentGraphSet.removeHighlight (x1, x2);
 }, "~N,~N");
-Clazz_defineMethod (c$, "removeAllHighlights", 
+Clazz_defineMethod (c$, "removeAllHighlights",
 function () {
 this.currentGraphSet.removeAllHighlights ();
 });
-Clazz_defineMethod (c$, "setZoom", 
+Clazz_defineMethod (c$, "setZoom",
 function (x1, y1, x2, y2) {
 this.currentGraphSet.setZoom (x1, y1, x2, y2);
 this.doReset = true;
 this.setTaintedAll ();
 this.notifyListeners ( new JSV.common.ZoomEvent ());
 }, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "resetView", 
+Clazz_defineMethod (c$, "resetView",
 function () {
 this.currentGraphSet.resetView ();
 });
-Clazz_defineMethod (c$, "previousView", 
+Clazz_defineMethod (c$, "previousView",
 function () {
 this.currentGraphSet.previousView ();
 });
-Clazz_defineMethod (c$, "nextView", 
+Clazz_defineMethod (c$, "nextView",
 function () {
 this.currentGraphSet.nextView ();
 });
-Clazz_defineMethod (c$, "getSelectedIntegral", 
+Clazz_defineMethod (c$, "getSelectedIntegral",
 function () {
 return this.currentGraphSet.getSelectedIntegral ();
 });
-Clazz_defineMethod (c$, "advanceSubSpectrum", 
+Clazz_defineMethod (c$, "advanceSubSpectrum",
 function (dir) {
 this.currentGraphSet.advanceSubSpectrum (dir);
 }, "~N");
-Clazz_defineMethod (c$, "setSelectedIntegral", 
+Clazz_defineMethod (c$, "setSelectedIntegral",
 function (val) {
 this.currentGraphSet.setSelectedIntegral (val);
 }, "~N");
-Clazz_defineMethod (c$, "scaleYBy", 
+Clazz_defineMethod (c$, "scaleYBy",
 function (f) {
 this.currentGraphSet.scaleYBy (f);
 }, "~N");
-Clazz_defineMethod (c$, "toPeak", 
+Clazz_defineMethod (c$, "toPeak",
 function (i) {
 this.currentGraphSet.toPeak (i);
 }, "~N");
-Clazz_defineMethod (c$, "getClickedCoordinate", 
+Clazz_defineMethod (c$, "getClickedCoordinate",
 function () {
 return this.coordClicked;
 });
-Clazz_defineMethod (c$, "getPickedCoordinates", 
+Clazz_defineMethod (c$, "getPickedCoordinates",
 function (coord, actualCoord) {
 return JSV.common.Coordinate.getPickedCoordinates (this.coordsClicked, this.coordClicked, coord, actualCoord);
 }, "JSV.common.Coordinate,JSV.common.Coordinate");
-Clazz_defineMethod (c$, "shiftSpectrum", 
+Clazz_defineMethod (c$, "shiftSpectrum",
 function (mode, xOld, xNew) {
 return this.currentGraphSet.shiftSpectrum (mode, xOld, xNew);
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "findX", 
+Clazz_defineMethod (c$, "findX",
 function (spec, d) {
 this.currentGraphSet.setXPointer (spec, d);
 }, "JSV.common.Spectrum,~N");
-Clazz_defineMethod (c$, "setXPointers", 
+Clazz_defineMethod (c$, "setXPointers",
 function (spec, x1, spec2, x2) {
 this.currentGraphSet.setXPointer (spec, x1);
 this.currentGraphSet.setXPointer2 (spec2, x2);
 }, "JSV.common.Spectrum,~N,JSV.common.Spectrum,~N");
-Clazz_defineMethod (c$, "isCurrentGraphSet", 
+Clazz_defineMethod (c$, "isCurrentGraphSet",
 function (graphSet) {
 return graphSet === this.currentGraphSet;
 }, "JSV.common.GraphSet");
-Clazz_defineMethod (c$, "repaint", 
+Clazz_defineMethod (c$, "repaint",
 function () {
 this.jsvp.doRepaint (false);
 });
-Clazz_defineMethod (c$, "setToolTipText", 
+Clazz_defineMethod (c$, "setToolTipText",
 function (s) {
 this.jsvp.setToolTipText (s);
 }, "~S");
-Clazz_defineMethod (c$, "setHighlightColor", 
+Clazz_defineMethod (c$, "setHighlightColor",
 function (color) {
 this.setColor (JSV.common.ScriptToken.HIGHLIGHTCOLOR, color);
 }, "javajs.api.GenericColor");
-Clazz_defineMethod (c$, "getInput", 
+Clazz_defineMethod (c$, "getInput",
 function (message, title, sval) {
 return this.jsvp.getInput (message, title, sval);
 }, "~S,~S,~S");
-Clazz_defineMethod (c$, "getFont", 
+Clazz_defineMethod (c$, "getFont",
  function (g, width, style, size, isLabel) {
 size *= this.scalingFactor;
 if (isLabel) {
@@ -23770,34 +23770,34 @@ if (width < 250) size = ((width * size) / 250);
 }var face = this.jsvp.getFontFaceID (this.isPrinting ? this.printingFontName : this.displayFontName);
 return this.currentFont = javajs.awt.Font.createFont3D (face, style, size, size, this.jsvp.getApiPlatform (), g);
 }, "~O,~N,~N,~N,~B");
-Clazz_defineMethod (c$, "notifySubSpectrumChange", 
+Clazz_defineMethod (c$, "notifySubSpectrumChange",
 function (isub, spec) {
 this.notifyListeners ( new JSV.common.SubSpecChangeEvent (isub, (spec == null ? null : spec.getTitleLabel ())));
 }, "~N,JSV.common.Spectrum");
-Clazz_defineMethod (c$, "notifyPeakPickedListeners", 
+Clazz_defineMethod (c$, "notifyPeakPickedListeners",
 function (p) {
 if (p == null) {
 p =  new JSV.common.PeakPickEvent (this.jsvp, this.coordClicked, this.getSpectrum ().getAssociatedPeakInfo (this.xPixelClicked, this.coordClicked));
 }this.notifyListeners (p);
 }, "JSV.common.PeakPickEvent");
-Clazz_defineMethod (c$, "notifyListeners", 
+Clazz_defineMethod (c$, "notifyListeners",
 function (eventObj) {
 for (var i = 0; i < this.listeners.size (); i++) if (this.listeners.get (i) != null) this.listeners.get (i).panelEvent (eventObj);
 
 }, "~O");
-Clazz_defineMethod (c$, "escapeKeyPressed", 
+Clazz_defineMethod (c$, "escapeKeyPressed",
 function (isDEL) {
 this.currentGraphSet.escapeKeyPressed (isDEL);
 }, "~B");
-Clazz_defineMethod (c$, "hasFocus", 
+Clazz_defineMethod (c$, "hasFocus",
 function () {
 return this.jsvp.hasFocus ();
 });
-Clazz_defineMethod (c$, "isMouseUp", 
+Clazz_defineMethod (c$, "isMouseUp",
 function () {
 return (this.mouseState === JSV.common.PanelData.Mouse.UP);
 });
-Clazz_defineMethod (c$, "doMouseMoved", 
+Clazz_defineMethod (c$, "doMouseMoved",
 function (xPixel, yPixel) {
 this.mouseX = xPixel;
 this.mouseY = yPixel;
@@ -23807,7 +23807,7 @@ var gs = JSV.common.GraphSet.findGraphSet (this.graphSets, xPixel, yPixel);
 if (gs == null) return;
 gs.mouseMovedEvent (xPixel, yPixel);
 }, "~N,~N");
-Clazz_defineMethod (c$, "doMousePressed", 
+Clazz_defineMethod (c$, "doMousePressed",
 function (xPixel, yPixel) {
 this.mouseState = JSV.common.PanelData.Mouse.DOWN;
 var gs = JSV.common.GraphSet.findGraphSet (this.graphSets, xPixel, yPixel);
@@ -23816,7 +23816,7 @@ this.setCurrentGraphSet (gs, yPixel);
 this.clickCount = (++this.clickCount % 3);
 this.currentGraphSet.mousePressedEvent (xPixel, yPixel, this.clickCount);
 }, "~N,~N");
-Clazz_defineMethod (c$, "doMouseDragged", 
+Clazz_defineMethod (c$, "doMouseDragged",
 function (xPixel, yPixel) {
 this.isIntegralDrag = new Boolean (this.isIntegralDrag | this.ctrlPressed).valueOf ();
 this.mouseState = JSV.common.PanelData.Mouse.DOWN;
@@ -23824,7 +23824,7 @@ if (JSV.common.GraphSet.findGraphSet (this.graphSets, xPixel, yPixel) !== this.c
 if (this.currentGraphSet.checkWidgetEvent (xPixel, yPixel, false)) this.setTaintedAll ();
 this.currentGraphSet.mouseMovedEvent (xPixel, yPixel);
 }, "~N,~N");
-Clazz_defineMethod (c$, "doMouseReleased", 
+Clazz_defineMethod (c$, "doMouseReleased",
 function (xPixel, yPixel, isButton1) {
 this.mouseState = JSV.common.PanelData.Mouse.UP;
 if (this.thisWidget == null && this.currentGraphSet.pendingMeasurement == null || !isButton1) return;
@@ -23833,7 +23833,7 @@ this.thisWidget = null;
 this.isIntegralDrag = false;
 this.integralShiftMode = 0;
 }, "~N,~N,~B");
-Clazz_defineMethod (c$, "doMouseClicked", 
+Clazz_defineMethod (c$, "doMouseClicked",
 function (xPixel, yPixel, isControlDown) {
 var gs = JSV.common.GraphSet.findGraphSet (this.graphSets, xPixel, yPixel);
 if (gs == null) return;
@@ -23842,45 +23842,45 @@ gs.mouseClickedEvent (xPixel, yPixel, this.clickCount, isControlDown);
 this.setTaintedAll ();
 this.repaint ();
 }, "~N,~N,~B");
-Clazz_defineMethod (c$, "hasCurrentMeasurements", 
+Clazz_defineMethod (c$, "hasCurrentMeasurements",
 function (type) {
 return this.currentGraphSet.hasCurrentMeasurement (type);
 }, "JSV.common.Annotation.AType");
-Clazz_defineMethod (c$, "getDialog", 
+Clazz_defineMethod (c$, "getDialog",
 function (type) {
 return this.currentGraphSet.getDialog (type, -1);
 }, "JSV.common.Annotation.AType");
-Clazz_defineMethod (c$, "addDialog", 
+Clazz_defineMethod (c$, "addDialog",
 function (iSpec, type, dialog) {
 this.currentGraphSet.addDialog (iSpec, type, dialog);
 }, "~N,JSV.common.Annotation.AType,JSV.api.AnnotationData");
-Clazz_defineMethod (c$, "getPeakListing", 
+Clazz_defineMethod (c$, "getPeakListing",
 function (p, tfToggle) {
 if (p != null) this.currentGraphSet.getPeakListing (-1, p, true);
 this.currentGraphSet.setPeakListing (tfToggle);
 }, "JSV.common.Parameters,Boolean");
-Clazz_defineMethod (c$, "checkIntegral", 
+Clazz_defineMethod (c$, "checkIntegral",
 function (parameters, value) {
 this.currentGraphSet.checkIntegralParams (parameters, value);
 }, "JSV.common.Parameters,~S");
-Clazz_defineMethod (c$, "setIntegrationRatios", 
+Clazz_defineMethod (c$, "setIntegrationRatios",
 function (value) {
 this.currentGraphSet.setIntegrationRatios (value);
 }, "~S");
-Clazz_defineMethod (c$, "getView", 
+Clazz_defineMethod (c$, "getView",
 function () {
 return this.currentGraphSet.getCurrentView ();
 });
-Clazz_defineMethod (c$, "closeAllDialogsExcept", 
+Clazz_defineMethod (c$, "closeAllDialogsExcept",
 function (type) {
 for (var i = this.graphSets.size (); --i >= 0; ) this.graphSets.get (i).closeDialogsExcept (type);
 
 }, "JSV.common.Annotation.AType");
-Clazz_defineMethod (c$, "removeDialog", 
+Clazz_defineMethod (c$, "removeDialog",
 function (dialog) {
 this.currentGraphSet.removeDialog (dialog);
 }, "JSV.dialog.JSVDialog");
-Clazz_defineMethod (c$, "normalizeIntegral", 
+Clazz_defineMethod (c$, "normalizeIntegral",
 function () {
 var integral = this.getSelectedIntegral ();
 if (integral == null) return;
@@ -23896,7 +23896,7 @@ throw e;
 }
 }
 });
-Clazz_defineMethod (c$, "getDrawTitle", 
+Clazz_defineMethod (c$, "getDrawTitle",
 function (isPrinting) {
 var title = null;
 if (isPrinting) title = this.printJobTitle;
@@ -23910,7 +23910,7 @@ title = this.jsvp.getTitle ().trim ();
 }if (title.indexOf ("\n") >= 0) title = title.substring (0, title.indexOf ("\n")).trim ();
 return title;
 }, "~B");
-Clazz_defineMethod (c$, "getPrintJobTitle", 
+Clazz_defineMethod (c$, "getPrintJobTitle",
 function (isPrinting) {
 var title = null;
 if (this.nSpectra == 1) {
@@ -23924,13 +23924,13 @@ title = this.jsvp.getTitle ().trim ();
  else if (title.startsWith ("$")) title = title.substring (1);
 return title;
 }, "~B");
-Clazz_defineMethod (c$, "linkSpectra", 
+Clazz_defineMethod (c$, "linkSpectra",
 function (mode) {
 if (mode === JSV.common.PanelData.LinkMode.ALL) mode = (this.nSpectra == 2 ? JSV.common.PanelData.LinkMode.AB : this.nSpectra == 3 ? JSV.common.PanelData.LinkMode.ABC : JSV.common.PanelData.LinkMode.NONE);
 if (mode !== JSV.common.PanelData.LinkMode.NONE && mode.toString ().length != this.nSpectra) return;
 this.setGraphSets (mode);
 }, "JSV.common.PanelData.LinkMode");
-Clazz_defineMethod (c$, "doZoomLinked", 
+Clazz_defineMethod (c$, "doZoomLinked",
 function (graphSet, initX, finalX, addZoom, checkRange, is1d) {
 if (this.linking) return;
 this.linking = true;
@@ -23941,7 +23941,7 @@ if (gs !== graphSet && JSV.common.Spectrum.areXScalesCompatible (spec, this.grap
 }
 this.linking = false;
 }, "JSV.common.GraphSet,~N,~N,~B,~B,~B");
-Clazz_defineMethod (c$, "clearLinkViews", 
+Clazz_defineMethod (c$, "clearLinkViews",
 function (graphSet) {
 if (this.linking) return;
 this.linking = true;
@@ -23952,7 +23952,7 @@ if (gs !== graphSet && JSV.common.Spectrum.areXScalesCompatible (spec, this.grap
 }
 this.linking = false;
 }, "JSV.common.GraphSet");
-Clazz_defineMethod (c$, "setlinkedXMove", 
+Clazz_defineMethod (c$, "setlinkedXMove",
 function (graphSet, x, isX2) {
 if (this.linking) return;
 this.linking = true;
@@ -23967,18 +23967,18 @@ gs.setXPixelMovedTo (x, 1.7976931348623157E308, 0, 0);
 }}}
 this.linking = false;
 }, "JSV.common.GraphSet,~N,~B");
-Clazz_defineMethod (c$, "set2DCrossHairsLinked", 
+Clazz_defineMethod (c$, "set2DCrossHairsLinked",
 function (graphSet, x, y, isLocked) {
 for (var i = this.graphSets.size (); --i >= 0; ) {
 var gs = this.graphSets.get (i);
 if (gs !== graphSet) gs.set2DXY (x, y, isLocked);
 }
 }, "JSV.common.GraphSet,~N,~N,~B");
-Clazz_defineMethod (c$, "dialogsToFront", 
+Clazz_defineMethod (c$, "dialogsToFront",
 function (spec) {
 this.currentGraphSet.dialogsToFront (spec);
 }, "JSV.common.Spectrum");
-Clazz_defineMethod (c$, "setColor", 
+Clazz_defineMethod (c$, "setColor",
 function (st, color) {
 if (color != null) this.options.put (st, JU.CU.toRGBHexString (color));
 switch (st) {
@@ -24029,7 +24029,7 @@ return;
 }
 this.taintedAll = true;
 }, "JSV.common.ScriptToken,javajs.api.GenericColor");
-Clazz_defineMethod (c$, "getColor", 
+Clazz_defineMethod (c$, "getColor",
 function (whatColor) {
 switch (whatColor) {
 default:
@@ -24057,7 +24057,7 @@ case JSV.common.ScriptToken.UNITSCOLOR:
 return this.unitsColor;
 }
 }, "JSV.common.ScriptToken");
-Clazz_defineMethod (c$, "getOverlayLegendData", 
+Clazz_defineMethod (c$, "getOverlayLegendData",
 function () {
 var numSpectra = this.currentGraphSet.nSpectra;
 var data =  new Array (numSpectra);
@@ -24077,7 +24077,7 @@ data[index] = cols;
 }
 return data;
 });
-Clazz_defineMethod (c$, "setColorOrFont", 
+Clazz_defineMethod (c$, "setColorOrFont",
 function (params, st) {
 if (st == null) {
 var colors = params.elementColors;
@@ -24096,11 +24096,11 @@ return;
 }
 this.setColor (st, params.getElementColor (st));
 }, "JSV.common.ColorParameters,JSV.common.ScriptToken");
-Clazz_defineMethod (c$, "getCurrentPlotColor", 
+Clazz_defineMethod (c$, "getCurrentPlotColor",
 function (i) {
 return this.currentGraphSet.getPlotColor (i);
 }, "~N");
-Clazz_defineMethod (c$, "setPrint", 
+Clazz_defineMethod (c$, "setPrint",
 function (pl, fontName) {
 if (pl == null) {
 this.options.putAll (this.optionsSaved);
@@ -24118,14 +24118,14 @@ this.setBoolean (JSV.common.ScriptToken.XUNITSON, pl.showXScale);
 this.setBoolean (JSV.common.ScriptToken.YSCALEON, pl.showYScale);
 this.setBoolean (JSV.common.ScriptToken.YUNITSON, pl.showYScale);
 }, "JSV.common.PrintLayout,~S");
-Clazz_defineMethod (c$, "setDefaultPrintOptions", 
+Clazz_defineMethod (c$, "setDefaultPrintOptions",
 function (pl) {
 pl.showGrid = this.gridOn;
 pl.showXScale = this.getBoolean (JSV.common.ScriptToken.XSCALEON);
 pl.showYScale = this.getBoolean (JSV.common.ScriptToken.YSCALEON);
 pl.showTitle = this.titleOn;
 }, "JSV.common.PrintLayout");
-Clazz_defineMethod (c$, "showDialog", 
+Clazz_defineMethod (c$, "showDialog",
 function (type) {
 var ad = this.getDialog (type);
 this.closeAllDialogsExcept (type);
@@ -24142,12 +24142,12 @@ this.addDialog (iSpec, type, dialog);
 dialog.reEnable ();
 return dialog;
 }, "JSV.common.Annotation.AType");
-Clazz_defineMethod (c$, "printPdf", 
+Clazz_defineMethod (c$, "printPdf",
 function (pdfCreator, pl) {
 var isPortrait = !pl.layout.equals ("landscape");
 this.print (pdfCreator, (isPortrait ? pl.imageableHeight : pl.imageableWidth), (isPortrait ? pl.imageableWidth : pl.imageableHeight), pl.imageableX, pl.imageableY, pl.paperHeight, pl.paperWidth, isPortrait, 0);
 }, "J.api.GenericGraphics,JSV.common.PrintLayout");
-Clazz_defineMethod (c$, "print", 
+Clazz_defineMethod (c$, "print",
 function (g, height, width, x, y, paperHeight, paperWidth, isPortrait, pi) {
 this.g2d = this.g2d0;
 if (pi == 0) {
@@ -24184,7 +24184,7 @@ return 0;
 }this.isPrinting = false;
 return 1;
 }, "~O,~N,~N,~N,~N,~N,~N,~B,~N");
-Clazz_overrideMethod (c$, "keyPressed", 
+Clazz_overrideMethod (c$, "keyPressed",
 function (code, modifiers) {
 if (this.isPrinting) return false;
 this.checkKeyControl (code, true);
@@ -24246,12 +24246,12 @@ this.setTaintedAll ();
 this.repaint ();
 }return doConsume;
 }, "~N,~N");
-Clazz_overrideMethod (c$, "keyReleased", 
+Clazz_overrideMethod (c$, "keyReleased",
 function (keyCode) {
 if (this.isPrinting) return;
 this.checkKeyControl (keyCode, false);
 }, "~N");
-Clazz_overrideMethod (c$, "keyTyped", 
+Clazz_overrideMethod (c$, "keyTyped",
 function (ch, mods) {
 if (this.isPrinting) return false;
 switch (ch) {
@@ -24274,7 +24274,7 @@ return true;
 }
 return false;
 }, "~N,~N");
-Clazz_overrideMethod (c$, "mouseAction", 
+Clazz_overrideMethod (c$, "mouseAction",
 function (mode, time, x, y, countIgnored, buttonMods) {
 if (this.isPrinting) return;
 switch (mode) {
@@ -24309,11 +24309,11 @@ this.doMouseClicked (x, y, this.updateControlPressed (buttonMods));
 break;
 }
 }, "~N,~N,~N,~N,~N,~N");
-Clazz_defineMethod (c$, "checkMod", 
+Clazz_defineMethod (c$, "checkMod",
 function (buttonMods, mask) {
 return ((buttonMods & mask) == mask);
 }, "~N,~N");
-Clazz_defineMethod (c$, "checkKeyControl", 
+Clazz_defineMethod (c$, "checkKeyControl",
 function (keyCode, isPressed) {
 switch (keyCode) {
 case 17:
@@ -24325,11 +24325,11 @@ this.shiftPressed = isPressed;
 break;
 }
 }, "~N,~B");
-Clazz_defineMethod (c$, "updateControlPressed", 
+Clazz_defineMethod (c$, "updateControlPressed",
 function (mods) {
 return (this.ctrlPressed = new Boolean (this.ctrlPressed | (this.checkMod (mods, 2) || this.checkMod (mods, 20))).valueOf ());
 }, "~N");
-Clazz_overrideMethod (c$, "mouseEnterExit", 
+Clazz_overrideMethod (c$, "mouseEnterExit",
 function (time, x, y, isExit) {
 if (isExit) {
 this.thisWidget = null;
@@ -24346,7 +24346,7 @@ throw e;
 }
 }
 }}, "~N,~N,~N,~B");
-Clazz_defineMethod (c$, "setSolutionColor", 
+Clazz_defineMethod (c$, "setSolutionColor",
 function (what) {
 var isNone = (what.indexOf ("none") >= 0);
 var asFitted = (what.indexOf ("false") < 0);
@@ -24358,12 +24358,12 @@ var vi = JSV.common.JSViewer.getInterface ("JSV.common.Visible");
 for (var i = this.graphSets.size (); --i >= 0; ) this.graphSets.get (i).setSolutionColor (vi, isNone, asFitted);
 
 }}, "~S");
-Clazz_defineMethod (c$, "setIRMode", 
+Clazz_defineMethod (c$, "setIRMode",
 function (mode, type) {
 for (var i = this.graphSets.size (); --i >= 0; ) this.graphSets.get (i).setIRMode (mode, type);
 
 }, "JSV.common.Spectrum.IRMode,~S");
-Clazz_defineMethod (c$, "closeSpectrum", 
+Clazz_defineMethod (c$, "closeSpectrum",
 function () {
 this.vwr.close ("views");
 this.vwr.close (this.getSourceID ());
@@ -24371,7 +24371,7 @@ this.vwr.execView ("*", true);
 });
 Clazz_pu$h(self.c$);
 c$ = Clazz_declareType (JSV.common.PanelData, "LinkMode", Enum);
-c$.getMode = Clazz_defineMethod (c$, "getMode", 
+c$.getMode = Clazz_defineMethod (c$, "getMode",
 function (a) {
 if (a.equals ("*")) return JSV.common.PanelData.LinkMode.ALL;
 for (var mode, $mode = 0, $$mode = JSV.common.PanelData.LinkMode.values (); $mode < $$mode.length && ((mode = $$mode[$mode]) || true); $mode++) if (mode.name ().equalsIgnoreCase (a)) return mode;
@@ -24411,7 +24411,7 @@ this.isSimulation = false;
 this.frameTitle = null;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "PanelNode");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (id, fileName, source, jsvp) {
 this.id = id;
 this.source = source;
@@ -24422,15 +24422,15 @@ if (jsvp != null) {
 this.pd ().getSpectrumAt (0).setId (id);
 this.frameTitle = jsvp.getTitle ();
 }}, "~S,~S,JSV.source.JDXSource,JSV.api.JSVPanel");
-Clazz_defineMethod (c$, "setTreeNode", 
+Clazz_defineMethod (c$, "setTreeNode",
 function (node) {
 this.treeNode = node;
 }, "JSV.api.JSVTreeNode");
-Clazz_defineMethod (c$, "getTreeNode", 
+Clazz_defineMethod (c$, "getTreeNode",
 function () {
 return this.treeNode;
 });
-Clazz_defineMethod (c$, "dispose", 
+Clazz_defineMethod (c$, "dispose",
 function () {
 this.source.dispose ();
 if (this.jsvp != null) this.jsvp.dispose ();
@@ -24438,25 +24438,25 @@ this.source = null;
 this.jsvp = null;
 this.legend = null;
 });
-Clazz_defineMethod (c$, "pd", 
+Clazz_defineMethod (c$, "pd",
 function () {
 return this.jsvp.getPanelData ();
 });
-Clazz_defineMethod (c$, "getSpectrum", 
+Clazz_defineMethod (c$, "getSpectrum",
 function () {
 return this.pd ().getSpectrum ();
 });
-Clazz_defineMethod (c$, "setLegend", 
+Clazz_defineMethod (c$, "setLegend",
 function (legend) {
 if (this.legend != null) this.legend.dispose ();
 this.legend = legend;
 return legend;
 }, "JSV.dialog.JSVDialog");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return ((this.id == null ? "" : this.id + ": ") + (this.frameTitle == null ? this.fileName : this.frameTitle));
 });
-c$.findSourceByNameOrId = Clazz_defineMethod (c$, "findSourceByNameOrId", 
+c$.findSourceByNameOrId = Clazz_defineMethod (c$, "findSourceByNameOrId",
 function (id, panelNodes) {
 for (var i = panelNodes.size (); --i >= 0; ) {
 var node = panelNodes.get (i);
@@ -24468,19 +24468,19 @@ if (id.equals (node.fileName)) return node.source;
 }
 return null;
 }, "~S,JU.Lst");
-c$.findNodeById = Clazz_defineMethod (c$, "findNodeById", 
+c$.findNodeById = Clazz_defineMethod (c$, "findNodeById",
 function (id, panelNodes) {
 if (id != null) for (var i = panelNodes.size (); --i >= 0; ) if (id.equals (panelNodes.get (i).id) || id.equals (panelNodes.get (i).frameTitle)) return panelNodes.get (i);
 
 return null;
 }, "~S,JU.Lst");
-c$.findNode = Clazz_defineMethod (c$, "findNode", 
+c$.findNode = Clazz_defineMethod (c$, "findNode",
 function (jsvp, panelNodes) {
 for (var i = panelNodes.size (); --i >= 0; ) if (panelNodes.get (i).jsvp === jsvp) return panelNodes.get (i);
 
 return null;
 }, "JSV.api.JSVPanel,JU.Lst");
-c$.getSpectrumListAsString = Clazz_defineMethod (c$, "getSpectrumListAsString", 
+c$.getSpectrumListAsString = Clazz_defineMethod (c$, "getSpectrumListAsString",
 function (panelNodes) {
 var sb =  new JU.SB ();
 for (var i = 0; i < panelNodes.size (); i++) {
@@ -24489,7 +24489,7 @@ if (!node.isView) sb.append (" ").append (node.id);
 }
 return sb.toString ().trim ();
 }, "JU.Lst");
-c$.isOpen = Clazz_defineMethod (c$, "isOpen", 
+c$.isOpen = Clazz_defineMethod (c$, "isOpen",
 function (panelNodes, filePath) {
 var pt = -1;
 if (filePath != null) for (var i = panelNodes.size (); --i >= 0; ) {
@@ -24497,11 +24497,11 @@ if (panelNodes.get (i).source.matchesFilePath (filePath) || filePath.equals (pan
 }
 return -1;
 }, "JU.Lst,~S");
-Clazz_defineMethod (c$, "setFrameTitle", 
+Clazz_defineMethod (c$, "setFrameTitle",
 function (name) {
 this.frameTitle = name;
 }, "~S");
-c$.getLastFileFirstNode = Clazz_defineMethod (c$, "getLastFileFirstNode", 
+c$.getLastFileFirstNode = Clazz_defineMethod (c$, "getLastFileFirstNode",
 function (panelNodes) {
 var n = panelNodes.size ();
 var node = (n == 0 ? null : panelNodes.get (n - 1));
@@ -24511,7 +24511,7 @@ node = panelNodes.get (i);
 }
 return (node == null ? null : node.jsvp);
 }, "JU.Lst");
-Clazz_defineMethod (c$, "getInfo", 
+Clazz_defineMethod (c$, "getInfo",
 function (key) {
 var info = this.pd ().getInfo (false, key);
 JSV.common.Parameters.putInfo (key, info, "panelId", this.id);
@@ -24535,7 +24535,7 @@ this.precision = 2;
 this.htBooleans = null;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "Parameters");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 this.htBooleans =  new java.util.Hashtable ();
 this.setBoolean (JSV.common.ScriptToken.TITLEON, true);
@@ -24549,33 +24549,33 @@ this.setBoolean (JSV.common.ScriptToken.YSCALEON, true);
 this.setBoolean (JSV.common.ScriptToken.XUNITSON, true);
 this.setBoolean (JSV.common.ScriptToken.YUNITSON, true);
 });
-Clazz_defineMethod (c$, "setName", 
+Clazz_defineMethod (c$, "setName",
 function (name) {
 this.name = name;
 return this;
 }, "~S");
-Clazz_defineMethod (c$, "getBooleans", 
+Clazz_defineMethod (c$, "getBooleans",
 function () {
 return this.htBooleans;
 });
-Clazz_defineMethod (c$, "setBoolean", 
+Clazz_defineMethod (c$, "setBoolean",
 function (st, val) {
 this.htBooleans.put (st, Boolean.$valueOf (val));
 return val;
 }, "JSV.common.ScriptToken,~B");
-Clazz_defineMethod (c$, "getBoolean", 
+Clazz_defineMethod (c$, "getBoolean",
 function (t) {
 return Boolean.TRUE === this.htBooleans.get (t);
 }, "JSV.common.ScriptToken");
-c$.isTrue = Clazz_defineMethod (c$, "isTrue", 
+c$.isTrue = Clazz_defineMethod (c$, "isTrue",
 function (value) {
 return (value.length == 0 || Boolean.parseBoolean (value));
 }, "~S");
-c$.getTFToggle = Clazz_defineMethod (c$, "getTFToggle", 
+c$.getTFToggle = Clazz_defineMethod (c$, "getTFToggle",
 function (value) {
 return (value.equalsIgnoreCase ("TOGGLE") ? null : JSV.common.Parameters.isTrue (value) ? Boolean.TRUE : Boolean.FALSE);
 }, "~S");
-Clazz_defineMethod (c$, "setP", 
+Clazz_defineMethod (c$, "setP",
 function (pd, st, value) {
 switch (st) {
 default:
@@ -24617,11 +24617,11 @@ break;
 if (pd == null) return;
 pd.setBooleans (this, st);
 }, "JSV.common.PanelData,JSV.common.ScriptToken,~S");
-c$.isMatch = Clazz_defineMethod (c$, "isMatch", 
+c$.isMatch = Clazz_defineMethod (c$, "isMatch",
 function (match, key) {
 return match == null || key.equalsIgnoreCase (match);
 }, "~S,~S");
-c$.putInfo = Clazz_defineMethod (c$, "putInfo", 
+c$.putInfo = Clazz_defineMethod (c$, "putInfo",
 function (match, info, key, value) {
 if (value != null && JSV.common.Parameters.isMatch (match, key)) info.put (match == null ? key : match, value);
 }, "~S,java.util.Map,~S,~O");
@@ -24634,15 +24634,15 @@ this.minY = 0;
 this.maxY = 0;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "PeakData", JSV.common.MeasurementData);
-Clazz_defineMethod (c$, "getThresh", 
+Clazz_defineMethod (c$, "getThresh",
 function () {
 return this.thresh;
 });
-Clazz_overrideMethod (c$, "getDataHeader", 
+Clazz_overrideMethod (c$, "getDataHeader",
 function () {
 return (this.spec.isHNMR () ? JSV.common.PeakData.HNMR_HEADER :  Clazz_newArray (-1, ["peak", this.spec.getXUnits (), this.spec.getYUnits ()]));
 });
-Clazz_overrideMethod (c$, "getMeasurementListArray", 
+Clazz_overrideMethod (c$, "getMeasurementListArray",
 function (units) {
 var data =  new Array (this.size ());
 var last =  Clazz_newDoubleArray (-1, [-1.0E100, 1e100, 1e100]);
@@ -24654,7 +24654,7 @@ if (ddata.length == 2) data[pt] =  Clazz_newArray (-1, ["" + (pt + 1), JU.DF.for
 }
 return data;
 }, "~S");
-Clazz_overrideMethod (c$, "getMeasurementListArrayReal", 
+Clazz_overrideMethod (c$, "getMeasurementListArrayReal",
 function (units) {
 var data =  Clazz_newDoubleArray (this.size (), 0);
 var last =  Clazz_newDoubleArray (-1, [-1.0E100, 1e100, 1e100]);
@@ -24662,13 +24662,13 @@ for (var pt = 0, i = this.size (); --i >= 0; pt++) data[pt] = this.spec.getPeakL
 
 return data;
 }, "~S");
-Clazz_defineMethod (c$, "getInfo", 
+Clazz_defineMethod (c$, "getInfo",
 function (info) {
 info.put ("interpolation", this.myParams.peakListInterpolation);
 info.put ("threshold", Double.$valueOf (this.myParams.peakListThreshold));
 Clazz_superCall (this, JSV.common.PeakData, "getInfo", [info]);
 }, "java.util.Map");
-Clazz_defineMethod (c$, "setPeakList", 
+Clazz_defineMethod (c$, "setPeakList",
 function (p, precision, view) {
 this.precision = (precision == -2147483648 ? this.spec.getDefaultUnitPrecision () : precision);
 var xyCoords = this.spec.getXYCoords ();
@@ -24735,10 +24735,10 @@ this._match = null;
 this.atomKey = null;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "PeakInfo");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (s) {
 this.stringInfo = s;
 this.type = JU.PT.getQuotedAttribute (s, "type");
@@ -24764,111 +24764,111 @@ this.xMin = JU.PT.parseFloat (JU.PT.getQuotedAttribute (s, "xMin"));
 this.yMax = JU.PT.parseFloat (JU.PT.getQuotedAttribute (s, "yMax"));
 this.yMin = JU.PT.parseFloat (JU.PT.getQuotedAttribute (s, "yMin"));
 }, "~S");
-Clazz_defineMethod (c$, "isClearAll", 
+Clazz_defineMethod (c$, "isClearAll",
 function () {
 return (this.spectrum == null);
 });
-Clazz_defineMethod (c$, "getType", 
+Clazz_defineMethod (c$, "getType",
 function () {
 return this.type;
 });
-Clazz_defineMethod (c$, "getAtoms", 
+Clazz_defineMethod (c$, "getAtoms",
 function () {
 return this.atoms;
 });
-Clazz_defineMethod (c$, "getXMax", 
+Clazz_defineMethod (c$, "getXMax",
 function () {
 return this.xMax;
 });
-Clazz_defineMethod (c$, "getXMin", 
+Clazz_defineMethod (c$, "getXMin",
 function () {
 return this.xMin;
 });
-Clazz_defineMethod (c$, "getYMin", 
+Clazz_defineMethod (c$, "getYMin",
 function () {
 return this.yMin;
 });
-Clazz_defineMethod (c$, "getYMax", 
+Clazz_defineMethod (c$, "getYMax",
 function () {
 return this.yMax;
 });
-Clazz_defineMethod (c$, "getX", 
+Clazz_defineMethod (c$, "getX",
 function () {
 return (this.xMax + this.xMin) / 2;
 });
-Clazz_defineMethod (c$, "getMatch", 
+Clazz_defineMethod (c$, "getMatch",
 function () {
 return this._match;
 });
-c$.fixType = Clazz_defineMethod (c$, "fixType", 
+c$.fixType = Clazz_defineMethod (c$, "fixType",
  function (type) {
 return (type.equals ("HNMR") ? "1HNMR" : type.equals ("CNMR") ? "13CNMR" : type);
 }, "~S");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return this.stringInfo;
 });
-Clazz_defineMethod (c$, "getIndex", 
+Clazz_defineMethod (c$, "getIndex",
 function () {
 return this.index;
 });
-Clazz_defineMethod (c$, "getTitle", 
+Clazz_defineMethod (c$, "getTitle",
 function () {
 return this.title;
 });
-Clazz_defineMethod (c$, "checkFileIndex", 
+Clazz_defineMethod (c$, "checkFileIndex",
 function (filePath, sIndex, sAtomKey) {
 return (sAtomKey != null ? this.atomKey.indexOf (sAtomKey) >= 0 : sIndex.equals (this.index) && (filePath.equals (this.file) || filePath.equals (this.filePathForwardSlash)));
 }, "~S,~S,~S");
-Clazz_defineMethod (c$, "checkFileTypeModel", 
+Clazz_defineMethod (c$, "checkFileTypeModel",
 function (filePath, type, model) {
 return filePath.equals (this.file) && this.checkModel (model) && this.type.endsWith (type);
 }, "~S,~S,~S");
-Clazz_defineMethod (c$, "checkTypeModel", 
+Clazz_defineMethod (c$, "checkTypeModel",
 function (type, model) {
 return this.checkType (type) && this.checkModel (model);
 }, "~S,~S");
-Clazz_defineMethod (c$, "checkModel", 
+Clazz_defineMethod (c$, "checkModel",
  function (model) {
 return (model != null && model.equals (this.model));
 }, "~S");
-Clazz_defineMethod (c$, "checkType", 
+Clazz_defineMethod (c$, "checkType",
  function (type) {
 return (type.endsWith (this.type));
 }, "~S");
-Clazz_defineMethod (c$, "checkTypeMatch", 
+Clazz_defineMethod (c$, "checkTypeMatch",
 function (pi) {
 return (this.checkType (pi.type) && (this.checkId (pi._match) || this.checkModel (pi._match) || this.title.toUpperCase ().indexOf (pi._match) >= 0));
 }, "JSV.common.PeakInfo");
-Clazz_defineMethod (c$, "checkId", 
+Clazz_defineMethod (c$, "checkId",
  function (match) {
 if (match == null) return false;
 return (this.id != null && match.toUpperCase ().startsWith ("ID=") && match.substring (3).equals (this.id) || (match = match.toUpperCase ()).startsWith ("INDEX=") && match.equals ("INDEX=" + this.index) || match.startsWith ("#=") && match.equals ("#=" + this.index));
 }, "~S");
-Clazz_defineMethod (c$, "getModel", 
+Clazz_defineMethod (c$, "getModel",
 function () {
 return this.model;
 });
-Clazz_defineMethod (c$, "getFilePath", 
+Clazz_defineMethod (c$, "getFilePath",
 function () {
 return this.file;
 });
-Clazz_defineMethod (c$, "autoSelectOnLoad", 
+Clazz_defineMethod (c$, "autoSelectOnLoad",
 function () {
 return (this.type.startsWith ("GC"));
 });
-Clazz_defineMethod (c$, "setPixelRange", 
+Clazz_defineMethod (c$, "setPixelRange",
 function (x0, x1) {
 this.px0 = x0;
 this.px1 = x1;
 }, "~N,~N");
-Clazz_defineMethod (c$, "checkRange", 
+Clazz_defineMethod (c$, "checkRange",
 function (xPixel, xVal) {
 if (xPixel != 2147483647 ? (this.px0 <= xPixel && this.px1 >= xPixel) : xVal >= this.xMin && xVal <= this.xMax) {
 return Math.abs (xVal - this.getX ());
 }return 1e100;
 }, "~N,~N");
-Clazz_defineMethod (c$, "getXPixel", 
+Clazz_defineMethod (c$, "getXPixel",
 function () {
 return Clazz_doubleToInt ((this.px0 + this.px1) / 2);
 });
@@ -24877,7 +24877,7 @@ c$.nullPeakInfo = c$.prototype.nullPeakInfo =  new JSV.common.PeakInfo ();
 Clazz_declarePackage ("JSV.common");
 Clazz_load (["JSV.common.Measurement"], "JSV.common.PeakPick", null, function () {
 c$ = Clazz_declareType (JSV.common, "PeakPick", JSV.common.Measurement);
-Clazz_defineMethod (c$, "setValue", 
+Clazz_defineMethod (c$, "setValue",
 function (x, y, spec, text, value) {
 if (text == null) {
 this.set (x, y);
@@ -24896,21 +24896,21 @@ this.coord = null;
 this.peakInfo = null;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "PeakPickEvent", java.util.EventObject);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (source, coord, peakInfo) {
 Clazz_superConstructor (this, JSV.common.PeakPickEvent, [source]);
 this.coord = coord;
 this.peakInfo = (peakInfo == null ? null : peakInfo);
 }, "~O,JSV.common.Coordinate,JSV.common.PeakInfo");
-Clazz_defineMethod (c$, "getCoord", 
+Clazz_defineMethod (c$, "getCoord",
 function () {
 return this.coord;
 });
-Clazz_defineMethod (c$, "getPeakInfo", 
+Clazz_defineMethod (c$, "getPeakInfo",
 function () {
 return this.peakInfo;
 });
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return (this.peakInfo == null ? null : this.peakInfo.toString ());
 });
@@ -24936,11 +24936,11 @@ Clazz_instantialize (this, arguments);
 Clazz_prepareFields (c$, function () {
 this.color = JSV.common.ScriptToken.PLOTCOLOR;
 });
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return this.name + (!this.isPinOrCursor ? "" + this.xPixel0 + " " + this.yPixel0 + " / " + this.xPixel1 + " " + this.yPixel1 : " x=" + this.getXVal () + "/" + this.xPixel0 + " y=" + this.getYVal () + "/" + this.yPixel0);
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (name) {
 Clazz_superConstructor (this, JSV.common.PlotWidget, []);
 this.name = name;
@@ -24950,25 +24950,25 @@ this.isXtype = (name.indexOf ("x") >= 0);
 this.is2D = (name.indexOf ("2D") >= 0);
 this.is2Donly = (this.is2D && name.charAt (0) == 'p');
 }, "~S");
-Clazz_defineMethod (c$, "selected", 
+Clazz_defineMethod (c$, "selected",
 function (xPixel, yPixel) {
 return (this.isVisible && Math.abs (xPixel - this.xPixel0) < 5 && Math.abs (yPixel - this.yPixel0) < 5);
 }, "~N,~N");
-Clazz_defineMethod (c$, "setX", 
+Clazz_defineMethod (c$, "setX",
 function (x, xPixel) {
 this.setXVal (x);
 this.xPixel0 = this.xPixel1 = xPixel;
 }, "~N,~N");
-Clazz_defineMethod (c$, "setY", 
+Clazz_defineMethod (c$, "setY",
 function (y, yPixel) {
 this.setYVal (y);
 this.yPixel0 = this.yPixel1 = yPixel;
 }, "~N,~N");
-Clazz_defineMethod (c$, "getValue", 
+Clazz_defineMethod (c$, "getValue",
 function () {
 return (this.isXtype ? this.getXVal () : this.getYVal ());
 });
-Clazz_defineMethod (c$, "setEnabled", 
+Clazz_defineMethod (c$, "setEnabled",
 function (enabled) {
 this.isEnabled = enabled;
 }, "~B");
@@ -25000,7 +25000,7 @@ this.paperWidth = Clazz_floatToInt (Math.min (8.5, 8.27) * 72);
 this.imageableHeight = this.paperHeight;
 this.imageableWidth = this.paperWidth;
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (pd) {
 if (pd != null) {
 this.asPDF = true;
@@ -25012,11 +25012,11 @@ this.repaintPending = false;
 this.vwr = null;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "RepaintManager");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (viewer) {
 this.vwr = viewer;
 }, "JSV.common.JSViewer");
-Clazz_defineMethod (c$, "refresh", 
+Clazz_defineMethod (c$, "refresh",
 function () {
 if (this.repaintPending) {
 return false;
@@ -25028,7 +25028,7 @@ Jmol._repaint(applet, false);
 this.repaintDone();
 }return true;
 });
-Clazz_defineMethod (c$, "repaintDone", 
+Clazz_defineMethod (c$, "repaintDone",
 function () {
 this.repaintPending = false;
 this.notify ();
@@ -25074,16 +25074,16 @@ this.exportPrecision =  Clazz_newIntArray (2, 0);
 this.steps =  Clazz_newDoubleArray (2, 0);
 this.minorTickCounts =  Clazz_newIntArray (2, 0);
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (iStart, iEnd) {
 this.startDataPointIndex = iStart;
 this.endDataPointIndex = iEnd;
 this.pointCount = this.endDataPointIndex - this.startDataPointIndex + 1;
 }, "~N,~N");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (coords, start, end, isContinuous, isInverted) {
 this.minX = JSV.common.Coordinate.getMinX (coords, start, end);
 this.maxX = JSV.common.Coordinate.getMaxX (coords, start, end);
@@ -25092,13 +25092,13 @@ if (this.minY > 0 && !isContinuous) this.minY = 0;
 this.maxY = JSV.common.Coordinate.getMaxY (coords, start, end);
 this.setScale (isContinuous, isInverted);
 }, "~A,~N,~N,~B,~B");
-Clazz_defineMethod (c$, "setScale", 
+Clazz_defineMethod (c$, "setScale",
 function (isContinuous, isInverted) {
 this.setXScale ();
 if (!isContinuous) this.maxXOnScale += this.steps[0] / 2;
 this.setYScale (this.minY, this.maxY, true, isInverted);
 }, "~B,~B");
-Clazz_defineMethod (c$, "setXScale", 
+Clazz_defineMethod (c$, "setXScale",
  function () {
 var xStep = this.setScaleParams (this.minX, this.maxX, 0);
 this.firstX = Math.floor (this.minX / xStep) * xStep;
@@ -25106,11 +25106,11 @@ if (Math.abs ((this.minX - this.firstX) / xStep) > 0.0001) this.firstX += xStep;
 this.minXOnScale = this.minX;
 this.maxXOnScale = this.maxX;
 });
-Clazz_defineMethod (c$, "isYZeroOnScale", 
+Clazz_defineMethod (c$, "isYZeroOnScale",
 function () {
 return (this.minYOnScale < this.spectrumYRef && this.maxYOnScale > this.spectrumYRef);
 });
-Clazz_defineMethod (c$, "setYScale", 
+Clazz_defineMethod (c$, "setYScale",
 function (minY, maxY, setScaleMinMax, isInverted) {
 if (minY == 0 && maxY == 0) maxY = 1;
 if (this.isShiftZoomedY) {
@@ -25135,7 +25135,7 @@ this.initMaxYOnScale = this.maxYOnScale;
 this.initMinY = minY;
 this.initMaxY = maxY;
 }}, "~N,~N,~B,~B");
-Clazz_defineMethod (c$, "scale2D", 
+Clazz_defineMethod (c$, "scale2D",
 function (f) {
 var dy = this.maxY - this.minY;
 if (f == 1) {
@@ -25144,13 +25144,13 @@ this.minY = this.initMinY;
 return;
 }this.maxY = this.minY + dy / f;
 }, "~N");
-Clazz_defineMethod (c$, "setXRange", 
+Clazz_defineMethod (c$, "setXRange",
 function (x1, x2) {
 this.minX = x1;
 this.maxX = x2;
 this.setXScale ();
 }, "~N,~N");
-c$.getXRange = Clazz_defineMethod (c$, "getXRange", 
+c$.getXRange = Clazz_defineMethod (c$, "getXRange",
  function (i, xyCoords, initX, finalX, iStart, iEnd, startIndices, endIndices) {
 var index = 0;
 var ptCount = 0;
@@ -25169,7 +25169,7 @@ break;
 endIndices[i] = index - 1;
 return ptCount;
 }, "~N,~A,~N,~N,~N,~N,~A,~A");
-Clazz_defineMethod (c$, "setScaleParams", 
+Clazz_defineMethod (c$, "setScaleParams",
  function (min, max, i) {
 var dx = (max == min ? 1 : Math.abs (max - min) / 14);
 var log = Math.log10 (Math.abs (dx));
@@ -25192,11 +25192,11 @@ break;
 this.minorTickCounts[i] = n;
 return this.steps[i];
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "isInRangeX", 
+Clazz_defineMethod (c$, "isInRangeX",
 function (x) {
 return (x >= this.minX && x <= this.maxX);
 }, "~N");
-Clazz_defineMethod (c$, "addSpecShift", 
+Clazz_defineMethod (c$, "addSpecShift",
 function (dx) {
 this.specShift += dx;
 this.minX += dx;
@@ -25205,7 +25205,7 @@ this.minXOnScale += dx;
 this.maxXOnScale += dx;
 this.firstX += dx;
 }, "~N");
-Clazz_defineMethod (c$, "getInfo", 
+Clazz_defineMethod (c$, "getInfo",
 function (info) {
 info.put ("specShift", Double.$valueOf (this.specShift));
 info.put ("minX", Double.$valueOf (this.minX));
@@ -25220,58 +25220,58 @@ info.put ("minorTickCountX", Integer.$valueOf (this.minorTickCounts[0]));
 info.put ("xStep", Double.$valueOf (this.steps[0]));
 return info;
 }, "java.util.Map");
-Clazz_defineMethod (c$, "setMinMax", 
+Clazz_defineMethod (c$, "setMinMax",
 function (minX, maxX, minY, maxY) {
 this.minX = minX;
 this.maxX = maxX;
 this.minY = minY;
 this.maxY = maxY;
 }, "~N,~N,~N,~N");
-Clazz_defineMethod (c$, "toX", 
+Clazz_defineMethod (c$, "toX",
 function (xPixel, xPixel1, drawXAxisLeftToRight) {
 return this.toXScaled (xPixel, xPixel1, drawXAxisLeftToRight, this.xFactorForScale);
 }, "~N,~N,~B");
-Clazz_defineMethod (c$, "toX0", 
+Clazz_defineMethod (c$, "toX0",
 function (xPixel, xPixel0, xPixel1, drawXAxisLeftToRight) {
 return this.toXScaled (xPixel, xPixel1, drawXAxisLeftToRight, (this.maxXOnScale - this.minXOnScale) / (xPixel1 - xPixel0));
 }, "~N,~N,~N,~B");
-Clazz_defineMethod (c$, "toXScaled", 
+Clazz_defineMethod (c$, "toXScaled",
  function (xPixel, xPixel1, drawXAxisLeftToRight, factor) {
 return (drawXAxisLeftToRight ? this.maxXOnScale - (xPixel1 - xPixel) * factor : this.minXOnScale + (xPixel1 - xPixel) * factor);
 }, "~N,~N,~B,~N");
-Clazz_defineMethod (c$, "toPixelX", 
+Clazz_defineMethod (c$, "toPixelX",
 function (dx, xPixel0, xPixel1, drawXAxisLeftToRight) {
 return this.toPixelXScaled (dx, xPixel0, xPixel1, drawXAxisLeftToRight, this.xFactorForScale);
 }, "~N,~N,~N,~B");
-Clazz_defineMethod (c$, "toPixelX0", 
+Clazz_defineMethod (c$, "toPixelX0",
 function (dx, xPixel0, xPixel1, drawXAxisLeftToRight) {
 return this.toPixelXScaled (dx, xPixel0, xPixel1, drawXAxisLeftToRight, (this.maxXOnScale - this.minXOnScale) / (xPixel1 - xPixel0));
 }, "~N,~N,~N,~B");
-Clazz_defineMethod (c$, "toPixelXScaled", 
+Clazz_defineMethod (c$, "toPixelXScaled",
  function (dx, xPixel0, xPixel1, drawXAxisLeftToRight, factor) {
 var x = Clazz_doubleToInt ((dx - this.minXOnScale) / factor);
 return (drawXAxisLeftToRight ? xPixel0 + x : xPixel1 - x);
 }, "~N,~N,~N,~B,~N");
-Clazz_defineMethod (c$, "toY", 
+Clazz_defineMethod (c$, "toY",
 function (yPixel, yPixel0) {
 return this.maxYOnScale + (yPixel0 - yPixel) * this.yFactorForScale;
 }, "~N,~N");
-Clazz_defineMethod (c$, "toY0", 
+Clazz_defineMethod (c$, "toY0",
 function (yPixel, yPixel0, yPixel1) {
 var factor = (this.maxYOnScale - this.minYOnScale) / (yPixel1 - yPixel0);
 var y = this.maxYOnScale + (yPixel0 - yPixel) * factor;
 return Math.max (this.minYOnScale, Math.min (y, this.maxYOnScale));
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "toPixelY", 
+Clazz_defineMethod (c$, "toPixelY",
 function (yVal, yPixel1) {
 return (Double.isNaN (yVal) ? -2147483648 : yPixel1 - Clazz_doubleToInt (((yVal - this.spectrumYRef) * this.userYFactor + this.spectrumYRef - this.minYOnScale) / this.yFactorForScale));
 }, "~N,~N");
-Clazz_defineMethod (c$, "toPixelY0", 
+Clazz_defineMethod (c$, "toPixelY0",
 function (y, yPixel0, yPixel1) {
 var factor = (this.maxYOnScale - this.minYOnScale) / (yPixel1 - yPixel0);
 return Clazz_doubleToInt (yPixel0 + (this.maxYOnScale - y) / factor);
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "setXYScale", 
+Clazz_defineMethod (c$, "setXYScale",
 function (xPixels, yPixels, isInverted) {
 var yRef = this.spectrumYRef;
 var f = this.spectrumScaleFactor;
@@ -25284,7 +25284,7 @@ this.setYScale ((minY - yRef) / f + yRef, (maxY - yRef) / f + yRef, f == 1, isIn
 this.xFactorForScale = (this.maxXOnScale - this.minXOnScale) / (xPixels - 1);
 this.yFactorForScale = (this.maxYOnScale - this.minYOnScale) / (yPixels - 1);
 }, "~N,~N,~B");
-c$.copyScaleFactors = Clazz_defineMethod (c$, "copyScaleFactors", 
+c$.copyScaleFactors = Clazz_defineMethod (c$, "copyScaleFactors",
 function (sdFrom, sdTo) {
 for (var i = 0; i < sdFrom.length; i++) {
 sdTo[i].spectrumScaleFactor = sdFrom[i].spectrumScaleFactor;
@@ -25294,7 +25294,7 @@ sdTo[i].specShift = sdFrom[i].specShift;
 sdTo[i].isShiftZoomedY = sdFrom[i].isShiftZoomedY;
 }
 }, "~A,~A");
-c$.copyYScales = Clazz_defineMethod (c$, "copyYScales", 
+c$.copyYScales = Clazz_defineMethod (c$, "copyYScales",
 function (sdFrom, sdTo) {
 for (var i = 0; i < sdFrom.length; i++) {
 sdTo[i].initMinYOnScale = sdFrom[i].initMinYOnScale;
@@ -25307,7 +25307,7 @@ sdTo[i].minYOnScale = sdFrom[i].minYOnScale;
 sdTo[i].maxYOnScale = sdFrom[i].maxYOnScale;
 }}
 }, "~A,~A");
-c$.setDataPointIndices = Clazz_defineMethod (c$, "setDataPointIndices", 
+c$.setDataPointIndices = Clazz_defineMethod (c$, "setDataPointIndices",
 function (graphsTemp, initX, finalX, minPoints, startIndices, endIndices) {
 var nSpectraOK = 0;
 var nSpectra = graphsTemp.size ();
@@ -25317,7 +25317,7 @@ if (JSV.common.ScaleData.getXRange (i, xyCoords, initX, finalX, 0, xyCoords.leng
 }
 return (nSpectraOK == nSpectra);
 }, "JU.Lst,~N,~N,~N,~A,~A");
-c$.fixScale = Clazz_defineMethod (c$, "fixScale", 
+c$.fixScale = Clazz_defineMethod (c$, "fixScale",
 function (map) {
 if (map.isEmpty ()) return;
 while (true) {
@@ -25336,7 +25336,7 @@ if (pt >= 0) entry.setValue (s.substring (0, pt - 1) + s.substring (pt));
 }
 }
 }, "java.util.Map");
-Clazz_defineMethod (c$, "scaleBy", 
+Clazz_defineMethod (c$, "scaleBy",
 function (f) {
 if (this.isShiftZoomedY) {
 var center = (this.isYZeroOnScale () ? this.spectrumYRef : (this.minYOnScale + this.maxYOnScale) / 2);
@@ -25356,24 +25356,24 @@ this.tip = null;
 this.description = null;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "ScriptToken", Enum);
-Clazz_defineMethod (c$, "getTip", 
+Clazz_defineMethod (c$, "getTip",
 function () {
 return "  " + (this.tip === "T" ? "TRUE/FALSE/TOGGLE" : this.tip === "TF" ? "TRUE or FALSE" : this.tip === "C" ? "COLOR" : this.tip);
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
  function () {
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
  function (tip) {
 this.tip = tip;
 this.description = "";
 }, "~S");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
  function (tip, description) {
 this.tip = tip;
 this.description = "-- " + description;
 }, "~S,~S");
-c$.getScriptToken = Clazz_defineMethod (c$, "getScriptToken", 
+c$.getScriptToken = Clazz_defineMethod (c$, "getScriptToken",
 function (name) {
 if (JSV.common.ScriptToken.htParams == null) {
 JSV.common.ScriptToken.htParams =  new java.util.Hashtable ();
@@ -25382,7 +25382,7 @@ for (var item, $item = 0, $$item = JSV.common.ScriptToken.values (); $item < $$i
 }var st = JSV.common.ScriptToken.htParams.get (name.toUpperCase ());
 return (st == null ? JSV.common.ScriptToken.UNKNOWN : st);
 }, "~S");
-c$.getScriptTokenList = Clazz_defineMethod (c$, "getScriptTokenList", 
+c$.getScriptTokenList = Clazz_defineMethod (c$, "getScriptTokenList",
 function (name, isExact) {
 if (name != null) name = name.toUpperCase ();
 var list =  new JU.Lst ();
@@ -25394,7 +25394,7 @@ for (var entry, $entry = JSV.common.ScriptToken.htParams.entrySet ().iterator ()
 
 }return list;
 }, "~S,~B");
-c$.getValue = Clazz_defineMethod (c$, "getValue", 
+c$.getValue = Clazz_defineMethod (c$, "getValue",
 function (st, params, cmd) {
 if (!params.hasMoreTokens ()) return "";
 switch (st) {
@@ -25419,20 +25419,20 @@ case JSV.common.ScriptToken.ZOOM:
 return JSV.common.ScriptToken.removeCommandName (cmd).$replace (',', ' ').trim ();
 }
 }, "JSV.common.ScriptToken,JSV.common.ScriptTokenizer,~S");
-c$.removeCommandName = Clazz_defineMethod (c$, "removeCommandName", 
+c$.removeCommandName = Clazz_defineMethod (c$, "removeCommandName",
  function (cmd) {
 var pt = cmd.indexOf (" ");
 if (pt < 0) return "";
 return cmd.substring (pt).trim ();
 }, "~S");
-c$.getKey = Clazz_defineMethod (c$, "getKey", 
+c$.getKey = Clazz_defineMethod (c$, "getKey",
 function (eachParam) {
 var key = eachParam.nextToken ();
 if (key.startsWith ("#") || key.startsWith ("//")) return null;
 if (key.equalsIgnoreCase ("SET")) key = eachParam.nextToken ();
 return key.toUpperCase ();
 }, "JSV.common.ScriptTokenizer");
-c$.getTokens = Clazz_defineMethod (c$, "getTokens", 
+c$.getTokens = Clazz_defineMethod (c$, "getTokens",
 function (value) {
 if (value.startsWith ("'") && value.endsWith ("'")) value = "\"" + JU.PT.trim (value, "'") + "\"";
 var tokens =  new JU.Lst ();
@@ -25444,7 +25444,7 @@ tokens.addLast (s);
 }
 return tokens;
 }, "~S");
-c$.getNameList = Clazz_defineMethod (c$, "getNameList", 
+c$.getNameList = Clazz_defineMethod (c$, "getNameList",
 function (list) {
 if (list.size () == 0) return "";
 var sb =  new JU.SB ();
@@ -25452,7 +25452,7 @@ for (var i = 0; i < list.size (); i++) sb.append (",").append (list.get (i).toSt
 
 return sb.toString ().substring (1);
 }, "JU.Lst");
-Clazz_defineMethod (c$, "getDescription", 
+Clazz_defineMethod (c$, "getDescription",
 function () {
 return this.description;
 });
@@ -25564,18 +25564,18 @@ this.isCmd = false;
 this.doCheck = true;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "ScriptTokenizer");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (str, isCmd) {
 this.str = str;
 this.len = str.length;
 this.isCmd = isCmd;
 }, "~S,~B");
-c$.nextStringToken = Clazz_defineMethod (c$, "nextStringToken", 
+c$.nextStringToken = Clazz_defineMethod (c$, "nextStringToken",
 function (eachParam, removeQuotes) {
 var s = eachParam.nextToken ();
 return (removeQuotes && s.charAt (0) == '"' && s.endsWith ("\"") && s.length > 1 ? JU.PT.trimQuotes (s) : s);
 }, "JSV.common.ScriptTokenizer,~B");
-Clazz_defineMethod (c$, "nextToken", 
+Clazz_defineMethod (c$, "nextToken",
 function () {
 if (this.doCheck) this.hasMoreTokens ();
 var pt0 = this.pt;
@@ -25606,7 +25606,7 @@ break;
 this.doCheck = true;
 return this.str.substring (pt0, this.pt);
 });
-Clazz_defineMethod (c$, "hasMoreTokens", 
+Clazz_defineMethod (c$, "hasMoreTokens",
 function () {
 while (++this.pt < this.len) {
 switch (this.str.charAt (this.pt)) {
@@ -25620,7 +25620,7 @@ break;
 this.doCheck = false;
 return (this.pt < this.len);
 });
-Clazz_defineMethod (c$, "getRemainingScript", 
+Clazz_defineMethod (c$, "getRemainingScript",
 function () {
 return this.str.substring (this.pt);
 });
@@ -25631,20 +25631,20 @@ this.isub = 0;
 this.title = null;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "SubSpecChangeEvent");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (isub, title) {
 this.isub = isub;
 this.title = title;
 }, "~N,~S");
-Clazz_defineMethod (c$, "isValid", 
+Clazz_defineMethod (c$, "isValid",
 function () {
 return (this.title != null);
 });
-Clazz_defineMethod (c$, "getSubIndex", 
+Clazz_defineMethod (c$, "getSubIndex",
 function () {
 return this.isub;
 });
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return this.title;
 });
@@ -25658,15 +25658,15 @@ this.iThisScale = 0;
 this.spectra = null;
 Clazz_instantialize (this, arguments);
 }, JSV.common, "ViewData");
-Clazz_defineMethod (c$, "getScaleData", 
+Clazz_defineMethod (c$, "getScaleData",
 function () {
 return this.scaleData;
 });
-Clazz_defineMethod (c$, "getScale", 
+Clazz_defineMethod (c$, "getScale",
 function () {
 return this.thisScale;
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (spectra, yPt1, yPt2, startList, endList, isContinuous, is2D) {
 this.nSpectra = (is2D ? 1 : spectra.size ());
 this.scaleData =  new Array (this.nSpectra);
@@ -25674,7 +25674,7 @@ for (var j = 0; j < this.nSpectra; j++) this.scaleData[j] =  new JSV.common.Scal
 
 this.init (spectra, yPt1, yPt2, isContinuous);
 }, "JU.Lst,~N,~N,~A,~A,~B,~B");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (spectra, yPt1, yPt2, isContinuous) {
 this.nSpectra = spectra.size ();
 var n = spectra.get (0).getXYCoords ().length;
@@ -25682,7 +25682,7 @@ this.scaleData =  new Array (1);
 this.scaleData[0] =  new JSV.common.ScaleData (0, n - 1);
 this.init (spectra, yPt1, yPt2, isContinuous);
 }, "JU.Lst,~N,~N,~B");
-Clazz_defineMethod (c$, "init", 
+Clazz_defineMethod (c$, "init",
 function (spectra, yPt1, yPt2, isContinuous) {
 if (spectra == null) spectra = this.spectra;
  else this.spectra = spectra;
@@ -25709,15 +25709,15 @@ this.scaleData[i].setMinMax (minX, maxX, minY, maxY);
 this.scaleData[i].setScale (isContinuous, isInverted);
 }
 }, "JU.Lst,~N,~N,~B");
-Clazz_defineMethod (c$, "newSpectrum", 
+Clazz_defineMethod (c$, "newSpectrum",
 function (spectra) {
 this.init (spectra, 0, 0, false);
 }, "JU.Lst");
-Clazz_defineMethod (c$, "setXRangeForSubSpectrum", 
+Clazz_defineMethod (c$, "setXRangeForSubSpectrum",
 function (xyCoords) {
 this.setXRange (0, xyCoords, this.scaleData[0].minX, this.scaleData[0].maxX, 0, xyCoords.length - 1);
 }, "~A");
-Clazz_defineMethod (c$, "setXRange", 
+Clazz_defineMethod (c$, "setXRange",
  function (i, xyCoords, initX, finalX, iStart, iEnd) {
 var index = 0;
 var ptCount = 0;
@@ -25736,32 +25736,32 @@ break;
 this.scaleData[i % this.scaleData.length].endDataPointIndex = index - 1;
 return ptCount;
 }, "~N,~A,~N,~N,~N,~N");
-Clazz_defineMethod (c$, "getStartingPointIndex", 
+Clazz_defineMethod (c$, "getStartingPointIndex",
 function (i) {
 return this.scaleData[i % this.scaleData.length].startDataPointIndex;
 }, "~N");
-Clazz_defineMethod (c$, "getEndingPointIndex", 
+Clazz_defineMethod (c$, "getEndingPointIndex",
 function (i) {
 return this.scaleData[i % this.scaleData.length].endDataPointIndex;
 }, "~N");
-Clazz_defineMethod (c$, "areYScalesSame", 
+Clazz_defineMethod (c$, "areYScalesSame",
 function (i, j) {
 i %= this.scaleData.length;
 j %= this.scaleData.length;
 return (this.scaleData[i].minYOnScale == this.scaleData[j].minYOnScale && this.scaleData[i].maxYOnScale == this.scaleData[j].maxYOnScale);
 }, "~N,~N");
-Clazz_defineMethod (c$, "setScale", 
+Clazz_defineMethod (c$, "setScale",
 function (i, xPixels, yPixels, isInverted) {
 this.iThisScale = i % this.scaleData.length;
 this.thisScale = this.scaleData[this.iThisScale];
 this.thisScale.setXYScale (xPixels, yPixels, isInverted);
 }, "~N,~N,~N,~B");
-Clazz_defineMethod (c$, "resetScaleFactors", 
+Clazz_defineMethod (c$, "resetScaleFactors",
 function () {
 for (var i = 0; i < this.scaleData.length; i++) this.scaleData[i].spectrumScaleFactor = 1;
 
 });
-Clazz_defineMethod (c$, "scaleSpectrum", 
+Clazz_defineMethod (c$, "scaleSpectrum",
 function (i, f) {
 if (f <= 0 || i >= this.nSpectra) return;
 if (i == -2) {
@@ -25771,7 +25771,7 @@ return;
 
  else this.scaleData[i % this.scaleData.length].scaleBy (f);
 }, "~N,~N");
-Clazz_defineMethod (c$, "getNewScales", 
+Clazz_defineMethod (c$, "getNewScales",
 function (iSelected, isXOnly, y1, y2) {
 if (isXOnly) return this.scaleData;
 iSelected %= this.scaleData.length;
@@ -25795,7 +25795,7 @@ Clazz_declarePackage ("JSV.common");
 Clazz_declareInterface (JSV.common, "XYScaleConverter");
 Clazz_declarePackage ("JSV.common");
 c$ = Clazz_declareType (JSV.common, "ZoomEvent");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 });
 Clazz_declarePackage ("JSV.dialog");
@@ -25840,7 +25840,7 @@ this.iRowSelected = -1;
 this.iColSelected = -1;
 Clazz_instantialize (this, arguments);
 }, JSV.dialog, "JSVDialog", JSV.common.Annotation, JSV.api.AnnotationData);
-Clazz_defineMethod (c$, "setParams", 
+Clazz_defineMethod (c$, "setParams",
 function (title, viewer, spec) {
 title = JSV.dialog.DialogManager.fixTitle (title);
 this.title = title;
@@ -25888,14 +25888,14 @@ break;
 this.initDialog ();
 return this;
 }, "~S,JSV.common.JSViewer,JSV.common.Spectrum");
-Clazz_defineMethod (c$, "initDialog", 
+Clazz_defineMethod (c$, "initDialog",
  function () {
 this.dialog = this.manager.getDialog (this);
 this.restoreDialogPosition (this.jsvp, this.getPosXY ());
 this.dialog.setTitle (this.title);
 this.layoutDialog ();
 });
-Clazz_defineMethod (c$, "layoutDialog", 
+Clazz_defineMethod (c$, "layoutDialog",
 function () {
 this.dialog.startLayout ();
 this.addUniqueControls ();
@@ -25909,7 +25909,7 @@ if (this.addClearBtn) this.dialog.addButton ("btnClear", "Clear");
 this.checkEnables ();
 this.dialog.setVisible (this.defaultVisible);
 });
-Clazz_defineMethod (c$, "callbackAD", 
+Clazz_defineMethod (c$, "callbackAD",
 function (id, msg) {
 if (id.equals ("FOCUS")) {
 this.eventFocus ();
@@ -25932,93 +25932,93 @@ return true;
 }if (this.jsvp != null) this.jsvp.doRepaint (true);
 return true;
 }, "~S,~S");
-Clazz_defineMethod (c$, "addUniqueControls", 
+Clazz_defineMethod (c$, "addUniqueControls",
 function (dialogHelper) {
 }, "JSV.dialog.DialogManager");
-Clazz_overrideMethod (c$, "getAType", 
+Clazz_overrideMethod (c$, "getAType",
 function () {
 return this.type;
 });
-Clazz_overrideMethod (c$, "getGraphSetKey", 
+Clazz_overrideMethod (c$, "getGraphSetKey",
 function () {
 return this.graphSetKey;
 });
-Clazz_overrideMethod (c$, "setGraphSetKey", 
+Clazz_overrideMethod (c$, "setGraphSetKey",
 function (key) {
 this.graphSetKey = key;
 }, "~S");
-Clazz_overrideMethod (c$, "getSpectrum", 
+Clazz_overrideMethod (c$, "getSpectrum",
 function () {
 return this.$spec;
 });
-Clazz_overrideMethod (c$, "getState", 
+Clazz_overrideMethod (c$, "getState",
 function () {
 return this.isON;
 });
-Clazz_overrideMethod (c$, "setState", 
+Clazz_overrideMethod (c$, "setState",
 function (b) {
 this.isON = b;
 }, "~B");
-Clazz_defineMethod (c$, "checkEnables", 
+Clazz_defineMethod (c$, "checkEnables",
 function () {
 var isShow = this.checkVisible ();
 this.dialog.setText (this.showHideButton, isShow ? "Hide" : "Show");
 });
-Clazz_defineMethod (c$, "createTable", 
+Clazz_defineMethod (c$, "createTable",
 function (data, header, widths) {
 this.tableData = data;
 this.dialog.createTable (data, header, widths);
 }, "~A,~A,~A");
-Clazz_defineMethod (c$, "setTableSelectionEnabled", 
+Clazz_defineMethod (c$, "setTableSelectionEnabled",
 function (enabled) {
 this.dialog.setCellSelectionEnabled (enabled);
 }, "~B");
-Clazz_defineMethod (c$, "getParameters", 
+Clazz_defineMethod (c$, "getParameters",
 function () {
 return this.myParams;
 });
-Clazz_defineMethod (c$, "showMessage", 
+Clazz_defineMethod (c$, "showMessage",
 function (msg, title, msgType) {
 this.manager.showMessageDialog (this.dialog, msg, title, msgType);
 }, "~S,~S,~N");
-Clazz_defineMethod (c$, "setThreshold", 
+Clazz_defineMethod (c$, "setThreshold",
 function (y) {
 this.dialog.setText (this.txt1, this.getThreasholdText (y));
 }, "~N");
-Clazz_defineMethod (c$, "setComboSelected", 
+Clazz_defineMethod (c$, "setComboSelected",
 function (i) {
 this.dialog.setSelectedIndex (this.combo1, i);
 }, "~N");
-Clazz_defineMethod (c$, "applyFromFields", 
+Clazz_defineMethod (c$, "applyFromFields",
 function () {
 this.apply (null);
 });
-Clazz_defineMethod (c$, "reEnable", 
+Clazz_defineMethod (c$, "reEnable",
 function () {
 this.paramsReEnable ();
 return this;
 });
-Clazz_defineMethod (c$, "dispose", 
+Clazz_defineMethod (c$, "dispose",
 function () {
 this.dialog.dispose ();
 });
-Clazz_defineMethod (c$, "setVisible", 
+Clazz_defineMethod (c$, "setVisible",
 function (visible) {
 this.dialog.setVisible (visible);
 }, "~B");
-Clazz_overrideMethod (c$, "isVisible", 
+Clazz_overrideMethod (c$, "isVisible",
 function () {
 return this.dialog.isVisible ();
 });
-Clazz_defineMethod (c$, "selectTableRow", 
+Clazz_defineMethod (c$, "selectTableRow",
 function (i) {
 this.dialog.selectTableRow (i);
 }, "~N");
-Clazz_defineMethod (c$, "repaint", 
+Clazz_defineMethod (c$, "repaint",
 function () {
 this.dialog.repaint ();
 });
-Clazz_defineMethod (c$, "setFields", 
+Clazz_defineMethod (c$, "setFields",
 function () {
 switch (this.type) {
 case JSV.common.Annotation.AType.Integration:
@@ -26039,11 +26039,11 @@ case JSV.common.Annotation.AType.Views:
 break;
 }
 });
-Clazz_defineMethod (c$, "setFocus", 
+Clazz_defineMethod (c$, "setFocus",
 function (tf) {
 this.dialog.setFocus (tf);
 }, "~B");
-Clazz_defineMethod (c$, "update", 
+Clazz_defineMethod (c$, "update",
 function (clicked, xRange, yOffset) {
 this.selectTableRow (-1);
 switch (this.type) {
@@ -26081,28 +26081,28 @@ case JSV.common.Annotation.AType.Views:
 break;
 }
 }, "JSV.common.Coordinate,~N,~N");
-Clazz_defineMethod (c$, "getPeakData", 
+Clazz_defineMethod (c$, "getPeakData",
 function () {
 var md =  new JSV.common.PeakData (JSV.common.Annotation.AType.PeakList, this.$spec);
 md.setPeakList (this.myParams, this.precision, this.jsvp.getPanelData ().getView ());
 this.xyData = md;
 return null;
 });
-Clazz_overrideMethod (c$, "getData", 
+Clazz_overrideMethod (c$, "getData",
 function () {
 if (this.xyData == null) this.createData ();
 return this.xyData;
 });
-Clazz_defineMethod (c$, "setData", 
+Clazz_defineMethod (c$, "setData",
 function (data) {
 this.myParams = data.getParameters ();
 this.xyData = data;
 }, "JSV.api.AnnotationData");
-Clazz_overrideMethod (c$, "setSpecShift", 
+Clazz_overrideMethod (c$, "setSpecShift",
 function (dx) {
 if (this.xyData != null) this.xyData.setSpecShift (dx);
 }, "~N");
-Clazz_defineMethod (c$, "setType", 
+Clazz_defineMethod (c$, "setType",
 function (type) {
 this.type = type;
 switch (type) {
@@ -26121,7 +26121,7 @@ case JSV.common.Annotation.AType.NONE:
 break;
 }
 }, "JSV.common.Annotation.AType");
-Clazz_defineMethod (c$, "apply", 
+Clazz_defineMethod (c$, "apply",
 function (objects) {
 try {
 switch (this.type) {
@@ -26159,7 +26159,7 @@ throw e;
 }
 }
 }, "~A");
-Clazz_defineMethod (c$, "done", 
+Clazz_defineMethod (c$, "done",
 function () {
 if (this.jsvp != null && this.$spec != null) this.jsvp.getPanelData ().removeDialog (this);
 if (this.xyData != null) this.xyData.setState (this.isON);
@@ -26167,7 +26167,7 @@ this.saveDialogPosition (this.getPosXY ());
 this.dispose ();
 this.jsvp.doRepaint (true);
 });
-Clazz_defineMethod (c$, "restoreDialogPosition", 
+Clazz_defineMethod (c$, "restoreDialogPosition",
  function (panel, posXY) {
 if (panel != null) {
 if (posXY[0] == -2147483648) {
@@ -26178,7 +26178,7 @@ var height = panel.getHeight ();
 this.loc =  Clazz_newIntArray (-1, [Math.max (0, pt[0] + posXY[0]), Math.max (0, pt[1] + height + posXY[1])]);
 this.dialog.setIntLocation (this.loc);
 }}, "JSV.api.JSVPanel,~A");
-Clazz_defineMethod (c$, "saveDialogPosition", 
+Clazz_defineMethod (c$, "saveDialogPosition",
  function (posXY) {
 try {
 var pt = this.manager.getLocationOnScreen (this.dialog);
@@ -26191,7 +26191,7 @@ throw e;
 }
 }
 }, "~A");
-Clazz_defineMethod (c$, "getThreasholdText", 
+Clazz_defineMethod (c$, "getThreasholdText",
  function (y) {
 if (Double.isNaN (y)) {
 var pd = this.jsvp.getPanelData ();
@@ -26201,17 +26201,17 @@ y = (c == null ? (pd.getView ().minYOnScale * f + pd.getView ().maxYOnScale) * (
 }var sy = JU.DF.formatDecimalDbl (y, y < 1000 ? 2 : -2);
 return " " + sy;
 }, "~N");
-Clazz_defineMethod (c$, "checkVisible", 
+Clazz_defineMethod (c$, "checkVisible",
  function () {
 return this.vwr.pd ().getShowAnnotation (this.type);
 });
-Clazz_defineMethod (c$, "getUnitOptions", 
+Clazz_defineMethod (c$, "getUnitOptions",
  function () {
 var key = this.optionKey + "_format";
 var format = this.options.get (key);
 if (format == null) this.options.put (key, format = Integer.$valueOf (this.formatOptions[this.unitPtr == null ? 0 : this.unitPtr.intValue ()]));
 });
-Clazz_defineMethod (c$, "eventFocus", 
+Clazz_defineMethod (c$, "eventFocus",
 function () {
 if (this.$spec != null) this.jsvp.getPanelData ().jumpToSpectrum (this.$spec);
 switch (this.type) {
@@ -26234,7 +26234,7 @@ case JSV.common.Annotation.AType.Views:
 break;
 }
 });
-Clazz_defineMethod (c$, "eventApply", 
+Clazz_defineMethod (c$, "eventApply",
 function () {
 switch (this.type) {
 case JSV.common.Annotation.AType.Integration:
@@ -26254,21 +26254,21 @@ break;
 }
 this.applyFromFields ();
 });
-Clazz_defineMethod (c$, "eventShowHide", 
+Clazz_defineMethod (c$, "eventShowHide",
  function (isShow) {
 this.isON = isShow;
 if (isShow) this.eventApply ();
 this.jsvp.doRepaint (true);
 this.checkEnables ();
 }, "~B");
-Clazz_defineMethod (c$, "clear", 
+Clazz_defineMethod (c$, "clear",
  function () {
 this.setState (true);
 if (this.xyData != null) {
 this.xyData.clear ();
 this.applyFromFields ();
 }});
-Clazz_defineMethod (c$, "paramsReEnable", 
+Clazz_defineMethod (c$, "paramsReEnable",
  function () {
 switch (this.type) {
 case JSV.common.Annotation.AType.Integration:
@@ -26289,7 +26289,7 @@ this.setVisible (true);
 this.isON = true;
 this.applyFromFields ();
 });
-Clazz_defineMethod (c$, "tableCellSelect", 
+Clazz_defineMethod (c$, "tableCellSelect",
  function (iRow, iCol) {
 System.out.println (iRow + " jSVDial " + iCol);
 if (iRow < 0) {
@@ -26347,7 +26347,7 @@ throw e;
 }
 }
 }, "~N,~N");
-Clazz_defineMethod (c$, "loadData", 
+Clazz_defineMethod (c$, "loadData",
 function () {
 var data;
 var header;
@@ -26389,7 +26389,7 @@ case JSV.common.Annotation.AType.Views:
 break;
 }
 });
-Clazz_defineMethod (c$, "createData", 
+Clazz_defineMethod (c$, "createData",
  function () {
 switch (this.type) {
 case JSV.common.Annotation.AType.Integration:
@@ -26423,11 +26423,11 @@ case JSV.common.Annotation.AType.Views:
 break;
 }
 });
-Clazz_defineMethod (c$, "setPrecision", 
+Clazz_defineMethod (c$, "setPrecision",
  function (i) {
 this.precision = this.formatOptions[i];
 }, "~N");
-Clazz_defineMethod (c$, "tableSelect", 
+Clazz_defineMethod (c$, "tableSelect",
  function (url) {
 var isAdjusting = "true".equals (this.getField (url, "adjusting"));
 if (isAdjusting) {
@@ -26450,7 +26450,7 @@ break;
 if (this.iColSelected >= 0 && this.iRowSelected >= 0) {
 this.tableCellSelect (this.iRowSelected, this.iColSelected);
 }}, "~S");
-Clazz_defineMethod (c$, "getField", 
+Clazz_defineMethod (c$, "getField",
  function (url, name) {
 url += "&";
 var key = "&" + name + "=";
@@ -26464,60 +26464,60 @@ c$ = Clazz_declareType (JSV.exception, "JSVException", Exception);
 });
 Clazz_declarePackage ("JSV.js2d");
 c$ = Clazz_declareType (JSV.js2d, "Display");
-c$.getFullScreenDimensions = Clazz_defineMethod (c$, "getFullScreenDimensions", 
+c$.getFullScreenDimensions = Clazz_defineMethod (c$, "getFullScreenDimensions",
 function (canvas, widthHeight) {
 {
 widthHeight[0] = canvas.width;
 widthHeight[1] = canvas.height;
 }}, "~O,~A");
-c$.hasFocus = Clazz_defineMethod (c$, "hasFocus", 
+c$.hasFocus = Clazz_defineMethod (c$, "hasFocus",
 function (canvas) {
 {
 }return true;
 }, "~O");
-c$.requestFocusInWindow = Clazz_defineMethod (c$, "requestFocusInWindow", 
+c$.requestFocusInWindow = Clazz_defineMethod (c$, "requestFocusInWindow",
 function (canvas) {
 {
 }}, "~O");
-c$.repaint = Clazz_defineMethod (c$, "repaint", 
+c$.repaint = Clazz_defineMethod (c$, "repaint",
 function (canvas) {
 }, "~O");
-c$.renderScreenImage = Clazz_defineMethod (c$, "renderScreenImage", 
+c$.renderScreenImage = Clazz_defineMethod (c$, "renderScreenImage",
 function (viewer, g, size) {
 {
 }}, "javajs.awt.PlatformViewer,~O,~O");
-c$.setTransparentCursor = Clazz_defineMethod (c$, "setTransparentCursor", 
+c$.setTransparentCursor = Clazz_defineMethod (c$, "setTransparentCursor",
 function (canvas) {
 {
 }}, "~O");
-c$.setCursor = Clazz_defineMethod (c$, "setCursor", 
+c$.setCursor = Clazz_defineMethod (c$, "setCursor",
 function (c, canvas) {
 {
 }}, "~N,~O");
-c$.prompt = Clazz_defineMethod (c$, "prompt", 
+c$.prompt = Clazz_defineMethod (c$, "prompt",
 function (label, data, list, asButtons) {
 {
 var s = prompt(label, data);
 if (s != null)return s;
 }return "null";
 }, "~S,~S,~A,~B");
-c$.convertPointFromScreen = Clazz_defineMethod (c$, "convertPointFromScreen", 
+c$.convertPointFromScreen = Clazz_defineMethod (c$, "convertPointFromScreen",
 function (canvas, ptTemp) {
 {
 }}, "~O,JU.P3");
 Clazz_declarePackage ("JSV.js2d");
 c$ = Clazz_declareType (JSV.js2d, "Image");
-c$.getWidth = Clazz_defineMethod (c$, "getWidth", 
+c$.getWidth = Clazz_defineMethod (c$, "getWidth",
 function (canvas) {
 {
 return (canvas.imageWidth ? canvas.imageWidth : canvas.width);
 }}, "~O");
-c$.getHeight = Clazz_defineMethod (c$, "getHeight", 
+c$.getHeight = Clazz_defineMethod (c$, "getHeight",
 function (canvas) {
 {
 return (canvas.imageHeight ? canvas.imageHeight : canvas.height);
 }}, "~O");
-c$.grabPixels = Clazz_defineMethod (c$, "grabPixels", 
+c$.grabPixels = Clazz_defineMethod (c$, "grabPixels",
 function (context, width, height) {
 var data = null;
 {
@@ -26525,7 +26525,7 @@ if (context._buf32) return context._buf32; // non-canvas internal buffer for ima
 data = context.getImageData(0, 0, width, height).data;
 }return JSV.js2d.Image.toIntARGB (data);
 }, "~O,~N,~N");
-c$.toIntARGB = Clazz_defineMethod (c$, "toIntARGB", 
+c$.toIntARGB = Clazz_defineMethod (c$, "toIntARGB",
 function (imgData) {
 var n = Clazz_doubleToInt (imgData.length / 4);
 var iData =  Clazz_newIntArray (n, 0);
@@ -26534,7 +26534,7 @@ iData[i++] = (imgData[j++] << 16) | (imgData[j++] << 8) | imgData[j++] | 0xFF000
 }
 return iData;
 }, "~A");
-c$.fromIntARGB = Clazz_defineMethod (c$, "fromIntARGB", 
+c$.fromIntARGB = Clazz_defineMethod (c$, "fromIntARGB",
 function (buf32, buf8) {
 var n = buf8.length >> 2;
 for (var i = 0, j = 0; i < n; i++) {
@@ -26544,7 +26544,7 @@ buf8[j++] = buf32[i] & 0xFF;
 buf8[j++] = 0xFF;
 }
 }, "~A,~A");
-c$.getTextPixels = Clazz_defineMethod (c$, "getTextPixels", 
+c$.getTextPixels = Clazz_defineMethod (c$, "getTextPixels",
 function (text, font3d, context, width, height, ascent) {
 {
 context.fillStyle = "#000000";
@@ -26554,23 +26554,23 @@ context.font = font3d.font;
 context.fillText(text, 0, ascent);
 }return JSV.js2d.Image.grabPixels (context, width, height);
 }, "~S,javajs.awt.Font,~O,~N,~N,~N");
-c$.allocateRgbImage = Clazz_defineMethod (c$, "allocateRgbImage", 
+c$.allocateRgbImage = Clazz_defineMethod (c$, "allocateRgbImage",
 function (windowWidth, windowHeight, pBuffer, windowSize, backgroundTransparent, canvas) {
 {
 if (canvas == null)
 canvas = {width:windowWidth,height:windowHeight};
 canvas.buf32 = pBuffer;
 }}, "~N,~N,~A,~N,~B,~O");
-c$.getStaticGraphics = Clazz_defineMethod (c$, "getStaticGraphics", 
+c$.getStaticGraphics = Clazz_defineMethod (c$, "getStaticGraphics",
 function (canvas, backgroundTransparent) {
 return JSV.js2d.Image.getGraphics (canvas);
 }, "~O,~B");
-c$.getGraphics = Clazz_defineMethod (c$, "getGraphics", 
+c$.getGraphics = Clazz_defineMethod (c$, "getGraphics",
 function (canvas) {
 {
 return canvas.getContext("2d");
 }}, "~O");
-c$.drawImage = Clazz_defineMethod (c$, "drawImage", 
+c$.drawImage = Clazz_defineMethod (c$, "drawImage",
 function (context, canvas, x, y, width, height) {
 {
 this.fromIntARGB(canvas.buf32, canvas.buf8);
@@ -26583,11 +26583,11 @@ this.name = null;
 this.fullName = null;
 Clazz_instantialize (this, arguments);
 }, JSV.js2d, "JsFile", null, javajs.api.GenericFileInterface);
-c$.newFile = Clazz_defineMethod (c$, "newFile", 
+c$.newFile = Clazz_defineMethod (c$, "newFile",
 function (name) {
 return  new JSV.js2d.JsFile (name);
 }, "~S");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (name) {
 this.name = name.$replace ('\\', '/');
 this.fullName = name;
@@ -26595,28 +26595,28 @@ if (!this.fullName.startsWith ("/") && JSV.common.JSVFileManager.urlTypeIndex (n
 this.fullName = JU.PT.rep (this.fullName, "/./", "/");
 name = name.substring (name.lastIndexOf ("/") + 1);
 }, "~S");
-Clazz_overrideMethod (c$, "getParentAsFile", 
+Clazz_overrideMethod (c$, "getParentAsFile",
 function () {
 var pt = this.fullName.lastIndexOf ("/");
 return (pt < 0 ? null :  new JSV.js2d.JsFile (this.fullName.substring (0, pt)));
 });
-Clazz_overrideMethod (c$, "getFullPath", 
+Clazz_overrideMethod (c$, "getFullPath",
 function () {
 return this.fullName;
 });
-Clazz_overrideMethod (c$, "getName", 
+Clazz_overrideMethod (c$, "getName",
 function () {
 return this.name;
 });
-Clazz_overrideMethod (c$, "isDirectory", 
+Clazz_overrideMethod (c$, "isDirectory",
 function () {
 return this.fullName.endsWith ("/");
 });
-Clazz_overrideMethod (c$, "length", 
+Clazz_overrideMethod (c$, "length",
 function () {
 return 0;
 });
-c$.getURLContents = Clazz_defineMethod (c$, "getURLContents", 
+c$.getURLContents = Clazz_defineMethod (c$, "getURLContents",
 function (url, outputBytes, post) {
 try {
 var conn = url.openConnection ();
@@ -26638,15 +26638,15 @@ c$ = Clazz_decorateAsClass (function () {
 this.vwr = null;
 Clazz_instantialize (this, arguments);
 }, JSV.js2d, "JsFileHelper", null, JSV.api.JSVFileHelper);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 });
-Clazz_overrideMethod (c$, "set", 
+Clazz_overrideMethod (c$, "set",
 function (viewer) {
 this.vwr = viewer;
 return this;
 }, "JSV.common.JSViewer");
-Clazz_overrideMethod (c$, "getFile", 
+Clazz_overrideMethod (c$, "getFile",
 function (fileName, panelOrFrame, isSave) {
 var f = null;
 fileName = JU.PT.rep (fileName, "=", "_");
@@ -26654,21 +26654,21 @@ fileName = JU.PT.rep (fileName, "=", "_");
 f = prompt("Enter a file name:", fileName);
 }return (f == null ? null :  new JSV.js2d.JsFile (f));
 }, "~S,~O,~B");
-Clazz_overrideMethod (c$, "setDirLastExported", 
+Clazz_overrideMethod (c$, "setDirLastExported",
 function (name) {
 return name;
 }, "~S");
-Clazz_overrideMethod (c$, "setFileChooser", 
+Clazz_overrideMethod (c$, "setFileChooser",
 function (pdf) {
 }, "JSV.common.ExportType");
-Clazz_overrideMethod (c$, "showFileOpenDialog", 
+Clazz_overrideMethod (c$, "showFileOpenDialog",
 function (panelOrFrame, userData) {
 var applet = this.vwr.html5Applet;
 {
 Jmol._loadFileAsynchronously(this, applet, "?", userData);
 }return null;
 }, "~O,~A");
-Clazz_defineMethod (c$, "setData", 
+Clazz_defineMethod (c$, "setData",
 function (fileName, data, userInfo) {
 if (fileName == null) return;
 if (data == null) {
@@ -26682,7 +26682,7 @@ script = userInfo[1];
 }this.vwr.si.siOpenDataOrFile ( String.instantialize (data), "cache://" + fileName, null, null, -1, -1, isAppend, null, null);
 if (script != null) this.vwr.runScript (script);
 }, "~S,~O,~A");
-Clazz_overrideMethod (c$, "getUrlFromDialog", 
+Clazz_overrideMethod (c$, "getUrlFromDialog",
 function (info, msg) {
 {
 return prompt(info, msg);
@@ -26690,12 +26690,12 @@ return prompt(info, msg);
 });
 Clazz_declarePackage ("JSV.js2d");
 c$ = Clazz_declareType (JSV.js2d, "JsFont");
-c$.newFont = Clazz_defineMethod (c$, "newFont", 
+c$.newFont = Clazz_defineMethod (c$, "newFont",
 function (fontFace, isBold, isItalic, fontSize, type) {
 fontFace = (fontFace.equals ("Monospaced") ? "Courier" : fontFace.startsWith ("Sans") ? "Sans-Serif" : "Serif");
 return (isBold ? "bold " : "") + (isItalic ? "italic " : "") + fontSize + type + " " + fontFace;
 }, "~S,~B,~B,~N,~S");
-c$.getFontMetrics = Clazz_defineMethod (c$, "getFontMetrics", 
+c$.getFontMetrics = Clazz_defineMethod (c$, "getFontMetrics",
 function (font, context) {
 {
 if (context.font != font.font) {
@@ -26708,17 +26708,17 @@ context._fontDescent = Math.ceil(font.fontSize * 0.25);//approx
 }
 }return context;
 }, "javajs.awt.Font,~O");
-c$.getAscent = Clazz_defineMethod (c$, "getAscent", 
+c$.getAscent = Clazz_defineMethod (c$, "getAscent",
 function (context) {
 {
 return Math.ceil(context._fontAscent);
 }}, "~O");
-c$.getDescent = Clazz_defineMethod (c$, "getDescent", 
+c$.getDescent = Clazz_defineMethod (c$, "getDescent",
 function (context) {
 {
 return Math.ceil(context._fontDescent);
 }}, "~O");
-c$.stringWidth = Clazz_defineMethod (c$, "stringWidth", 
+c$.stringWidth = Clazz_defineMethod (c$, "stringWidth",
 function (font, text) {
 {
 font.fontMetrics.font = font.font;
@@ -26733,28 +26733,28 @@ this.isShifted = false;
 this.inPath = false;
 Clazz_instantialize (this, arguments);
 }, JSV.js2d, "JsG2D", null, J.api.GenericGraphics);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 });
-Clazz_overrideMethod (c$, "getColor4", 
+Clazz_overrideMethod (c$, "getColor4",
 function (r, g, b, a) {
 return javajs.awt.Color.get4 (r, g, b, a);
 }, "~N,~N,~N,~N");
-Clazz_overrideMethod (c$, "getColor3", 
+Clazz_overrideMethod (c$, "getColor3",
 function (r, g, b) {
 return javajs.awt.Color.get3 (r, g, b);
 }, "~N,~N,~N");
-Clazz_overrideMethod (c$, "getColor1", 
+Clazz_overrideMethod (c$, "getColor1",
 function (rgb) {
 return javajs.awt.Color.get1 (rgb);
 }, "~N");
-Clazz_overrideMethod (c$, "newGrayScaleImage", 
+Clazz_overrideMethod (c$, "newGrayScaleImage",
 function (context, image, width, height, grayBuffer) {
 {
 image = Jmol._newGrayScaleImage(context, image, width, height, grayBuffer);
 }return image;
 }, "~O,~O,~N,~N,~A");
-Clazz_overrideMethod (c$, "drawGrayScaleImage", 
+Clazz_overrideMethod (c$, "drawGrayScaleImage",
 function (g, image, destX0, destY0, destX1, destY1, srcX0, srcY0, srcX1, srcY1) {
 var iw;
 var ih;
@@ -26783,7 +26783,7 @@ div.style.top = y + "px";
 div.style.width = w + "px";
 div.style.height = h + "px";
 }}, "~O,~O,~N,~N,~N,~N,~N,~N,~N,~N");
-Clazz_overrideMethod (c$, "drawLine", 
+Clazz_overrideMethod (c$, "drawLine",
 function (g, x0, y0, x1, y1) {
 var inPath = this.inPath;
 {
@@ -26792,7 +26792,7 @@ g.moveTo(x0, y0);
 g.lineTo(x1, y1);
 if (!inPath) g.stroke();
 }}, "~O,~N,~N,~N,~N");
-Clazz_overrideMethod (c$, "drawCircle", 
+Clazz_overrideMethod (c$, "drawCircle",
 function (g, x, y, diameter) {
 {
 var r = diameter/2;
@@ -26800,11 +26800,11 @@ g.beginPath();
 g.arc(x + r, y + r, r, 0, 2 * Math.PI, false);
 g.stroke();
 }}, "~O,~N,~N,~N");
-Clazz_overrideMethod (c$, "drawPolygon", 
+Clazz_overrideMethod (c$, "drawPolygon",
 function (g, ayPoints, axPoints, nPoints) {
 this.doPoly (g, ayPoints, axPoints, nPoints, false);
 }, "~O,~A,~A,~N");
-Clazz_defineMethod (c$, "doPoly", 
+Clazz_defineMethod (c$, "doPoly",
  function (g, axPoints, ayPoints, nPoints, doFill) {
 {
 g.beginPath();
@@ -26816,22 +26816,22 @@ g.fill();
 else
 g.stroke();
 }}, "~O,~A,~A,~N,~B");
-Clazz_overrideMethod (c$, "drawRect", 
+Clazz_overrideMethod (c$, "drawRect",
 function (g, x, y, width, height) {
 {
 g.beginPath();
 g.rect(x ,y, width, height);
 g.stroke();
 }}, "~O,~N,~N,~N,~N");
-Clazz_overrideMethod (c$, "drawString", 
+Clazz_overrideMethod (c$, "drawString",
 function (g, s, x, y) {
 {
 g.fillText(s,x,y);
 }}, "~O,~S,~N,~N");
-Clazz_overrideMethod (c$, "drawStringRotated", 
+Clazz_overrideMethod (c$, "drawStringRotated",
 function (g, s, x, y, angle) {
 }, "~O,~S,~N,~N,~N");
-Clazz_overrideMethod (c$, "fillBackground", 
+Clazz_overrideMethod (c$, "fillBackground",
 function (g, bgcolor) {
 if (bgcolor == null) {
 {
@@ -26844,7 +26844,7 @@ return;
 }}this.setGraphicsColor (g, bgcolor);
 this.fillRect (g, 0, 0, this.windowWidth, this.windowHeight);
 }, "~O,javajs.api.GenericColor");
-Clazz_overrideMethod (c$, "fillCircle", 
+Clazz_overrideMethod (c$, "fillCircle",
 function (g, x, y, diameter) {
 {
 var r = diameter/2;
@@ -26852,22 +26852,22 @@ g.beginPath();
 g.arc(x + r, y + r, r, 0, 2 * Math.PI, false);
 g.fill();
 }}, "~O,~N,~N,~N");
-Clazz_overrideMethod (c$, "fillPolygon", 
+Clazz_overrideMethod (c$, "fillPolygon",
 function (g, ayPoints, axPoints, nPoints) {
 this.doPoly (g, ayPoints, axPoints, nPoints, true);
 }, "~O,~A,~A,~N");
-Clazz_overrideMethod (c$, "fillRect", 
+Clazz_overrideMethod (c$, "fillRect",
 function (g, x, y, width, height) {
 {
 g.fillRect(x, y, width, height);
 }}, "~O,~N,~N,~N,~N");
-Clazz_overrideMethod (c$, "setGraphicsColor", 
+Clazz_overrideMethod (c$, "setGraphicsColor",
 function (g, c) {
 var s = JU.CU.toCSSString (c);
 {
 g.fillStyle = g.strokeStyle = s;
 }}, "~O,javajs.api.GenericColor");
-Clazz_overrideMethod (c$, "setFont", 
+Clazz_overrideMethod (c$, "setFont",
 function (g, font) {
 var s = font.getInfo ();
 var pt = s.indexOf (" ");
@@ -26876,24 +26876,24 @@ s = s.substring (0, pt) + "px" + s.substring (pt);
 g.font = s;
 }return font;
 }, "~O,javajs.awt.Font");
-Clazz_overrideMethod (c$, "setStrokeBold", 
+Clazz_overrideMethod (c$, "setStrokeBold",
 function (g, tf) {
 {
 g.lineWidth = (tf ? 2 : 1);
 }}, "~O,~B");
-Clazz_overrideMethod (c$, "setWindowParameters", 
+Clazz_overrideMethod (c$, "setWindowParameters",
 function (width, height) {
 this.windowWidth = width;
 this.windowHeight = height;
 }, "~N,~N");
-Clazz_overrideMethod (c$, "translateScale", 
+Clazz_overrideMethod (c$, "translateScale",
 function (g, x, y, scale) {
 }, "~O,~N,~N,~N");
-Clazz_overrideMethod (c$, "canDoLineTo", 
+Clazz_overrideMethod (c$, "canDoLineTo",
 function () {
 return true;
 });
-Clazz_overrideMethod (c$, "doStroke", 
+Clazz_overrideMethod (c$, "doStroke",
 function (g, isBegin) {
 this.inPath = isBegin;
 {
@@ -26903,7 +26903,7 @@ g.beginPath();
 g.stroke();
 }
 }}, "~O,~B");
-Clazz_overrideMethod (c$, "lineTo", 
+Clazz_overrideMethod (c$, "lineTo",
 function (g, x2, y2) {
 {
 g.lineTo(x2, y2);
@@ -26920,62 +26920,62 @@ this.name = null;
 this.bgcolor = null;
 Clazz_instantialize (this, arguments);
 }, JSV.js2d, "JsPanel", null, JSV.api.JSVPanel);
-Clazz_overrideMethod (c$, "finalize", 
+Clazz_overrideMethod (c$, "finalize",
 function () {
 JU.Logger.info ("JSVPanel " + this + " finalized");
 });
-Clazz_overrideMethod (c$, "getApiPlatform", 
+Clazz_overrideMethod (c$, "getApiPlatform",
 function () {
 return this.apiPlatform;
 });
-Clazz_overrideMethod (c$, "getPanelData", 
+Clazz_overrideMethod (c$, "getPanelData",
 function () {
 return this.pd;
 });
-c$.getEmptyPanel = Clazz_defineMethod (c$, "getEmptyPanel", 
+c$.getEmptyPanel = Clazz_defineMethod (c$, "getEmptyPanel",
 function (viewer) {
 var p =  new JSV.js2d.JsPanel (viewer, false);
 p.pd = null;
 return p;
 }, "JSV.common.JSViewer");
-c$.getPanelMany = Clazz_defineMethod (c$, "getPanelMany", 
+c$.getPanelMany = Clazz_defineMethod (c$, "getPanelMany",
 function (viewer, spectra) {
 var p =  new JSV.js2d.JsPanel (viewer, true);
 p.pd.initMany (spectra, viewer.initialStartIndex, viewer.initialEndIndex);
 return p;
 }, "JSV.common.JSViewer,JU.Lst");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
  function (viewer, withPd) {
 this.vwr = viewer;
 this.pd = (withPd ?  new JSV.common.PanelData (this, viewer) : null);
 this.apiPlatform = viewer.apiPlatform;
 this.mouse = this.apiPlatform.getMouseManager (0, this);
 }, "JSV.common.JSViewer,~B");
-Clazz_overrideMethod (c$, "getTitle", 
+Clazz_overrideMethod (c$, "getTitle",
 function () {
 return this.pd.getTitle ();
 });
-Clazz_overrideMethod (c$, "dispose", 
+Clazz_overrideMethod (c$, "dispose",
 function () {
 if (this.pd != null) this.pd.dispose ();
 this.pd = null;
 this.mouse.dispose ();
 this.mouse = null;
 });
-Clazz_overrideMethod (c$, "setTitle", 
+Clazz_overrideMethod (c$, "setTitle",
 function (title) {
 this.pd.title = title;
 this.name = title;
 }, "~S");
-Clazz_defineMethod (c$, "setColorOrFont", 
+Clazz_defineMethod (c$, "setColorOrFont",
 function (ds, st) {
 this.pd.setColorOrFont (ds, st);
 }, "JSV.common.ColorParameters,JSV.common.ScriptToken");
-Clazz_overrideMethod (c$, "setBackgroundColor", 
+Clazz_overrideMethod (c$, "setBackgroundColor",
 function (color) {
 this.bgcolor = color;
 }, "javajs.api.GenericColor");
-Clazz_overrideMethod (c$, "getInput", 
+Clazz_overrideMethod (c$, "getInput",
 function (message, title, sval) {
 var ret = null;
 {
@@ -26983,7 +26983,7 @@ ret = prompt(message, sval);
 }this.getFocusNow (true);
 return ret;
 }, "~S,~S,~S");
-Clazz_overrideMethod (c$, "showMessage", 
+Clazz_overrideMethod (c$, "showMessage",
 function (msg, title) {
 JU.Logger.info (msg);
 var applet = this.vwr.html5Applet;
@@ -26991,21 +26991,21 @@ var applet = this.vwr.html5Applet;
 applet._showStatus(msg, title);
 }this.getFocusNow (true);
 }, "~S,~S");
-Clazz_overrideMethod (c$, "getFocusNow", 
+Clazz_overrideMethod (c$, "getFocusNow",
 function (asThread) {
 if (this.pd != null) this.pd.dialogsToFront (null);
 }, "~B");
-Clazz_overrideMethod (c$, "getFontFaceID", 
+Clazz_overrideMethod (c$, "getFontFaceID",
 function (name) {
 return javajs.awt.Font.getFontFaceID ("SansSerif");
 }, "~S");
-Clazz_overrideMethod (c$, "doRepaint", 
+Clazz_overrideMethod (c$, "doRepaint",
 function (andTaintAll) {
 if (this.pd == null) return;
 if (andTaintAll) this.pd.setTaintedAll ();
 if (!this.pd.isPrinting) this.vwr.requestRepaint ();
 }, "~B");
-Clazz_overrideMethod (c$, "paintComponent", 
+Clazz_overrideMethod (c$, "paintComponent",
 function (context) {
 var contextFront = null;
 var contextRear = null;
@@ -27024,7 +27024,7 @@ this.pd.g2d = this.pd.g2d0;
 this.pd.drawGraph (context, contextFront, contextRear, this.getWidth (), this.getHeight (), false);
 this.vwr.repaintDone ();
 }, "~O");
-Clazz_overrideMethod (c$, "printPanel", 
+Clazz_overrideMethod (c$, "printPanel",
 function (pl, os, title) {
 pl.title = title;
 pl.date = this.apiPlatform.getDateFormat ("8824");
@@ -27041,7 +27041,7 @@ throw ex;
 this.pd.setPrint (null, null);
 }
 }, "JSV.common.PrintLayout,java.io.OutputStream,~S");
-Clazz_overrideMethod (c$, "saveImage", 
+Clazz_overrideMethod (c$, "saveImage",
 function (type, file, out) {
 var fname = file.getName ();
 var isPNG = type.equals (JSV.common.ExportType.PNG);
@@ -27064,14 +27064,14 @@ throw e;
 }
 }
 }, "~S,javajs.api.GenericFileInterface,JU.OC");
-Clazz_overrideMethod (c$, "hasFocus", 
+Clazz_overrideMethod (c$, "hasFocus",
 function () {
 return false;
 });
-Clazz_overrideMethod (c$, "repaint", 
+Clazz_overrideMethod (c$, "repaint",
 function () {
 });
-Clazz_overrideMethod (c$, "setToolTipText", 
+Clazz_overrideMethod (c$, "setToolTipText",
 function (s) {
 var x = this.pd.mouseX;
 var y = this.pd.mouseY;
@@ -27079,45 +27079,45 @@ var applet = this.vwr.html5Applet;
 {
 applet._showTooltip && applet._showTooltip(s, x, y);
 }}, "~S");
-Clazz_overrideMethod (c$, "getHeight", 
+Clazz_overrideMethod (c$, "getHeight",
 function () {
 return this.vwr.getHeight ();
 });
-Clazz_overrideMethod (c$, "getWidth", 
+Clazz_overrideMethod (c$, "getWidth",
 function () {
 return this.vwr.getWidth ();
 });
-Clazz_overrideMethod (c$, "isEnabled", 
+Clazz_overrideMethod (c$, "isEnabled",
 function () {
 return false;
 });
-Clazz_overrideMethod (c$, "isFocusable", 
+Clazz_overrideMethod (c$, "isFocusable",
 function () {
 return false;
 });
-Clazz_overrideMethod (c$, "isVisible", 
+Clazz_overrideMethod (c$, "isVisible",
 function () {
 return false;
 });
-Clazz_overrideMethod (c$, "setEnabled", 
+Clazz_overrideMethod (c$, "setEnabled",
 function (b) {
 }, "~B");
-Clazz_overrideMethod (c$, "setFocusable", 
+Clazz_overrideMethod (c$, "setFocusable",
 function (b) {
 }, "~B");
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return (this.pd == null ? "<closed>" : "" + this.pd.getSpectrumAt (0));
 });
-Clazz_overrideMethod (c$, "processMouseEvent", 
+Clazz_overrideMethod (c$, "processMouseEvent",
 function (id, x, y, modifiers, time) {
 return this.mouse != null && this.mouse.processEvent (id, x, y, modifiers, time);
 }, "~N,~N,~N,~N,~N");
-Clazz_overrideMethod (c$, "processTwoPointGesture", 
+Clazz_overrideMethod (c$, "processTwoPointGesture",
 function (touches) {
 if (this.mouse != null) this.mouse.processTwoPointGesture (touches);
 }, "~A");
-Clazz_overrideMethod (c$, "showMenu", 
+Clazz_overrideMethod (c$, "showMenu",
 function (x, y) {
 this.vwr.showMenu (x, y);
 }, "~N,~N");
@@ -27125,23 +27125,23 @@ this.vwr.showMenu (x, y);
 Clazz_declarePackage ("JSV.js2d");
 Clazz_load (["JSV.common.ColorParameters"], "JSV.js2d.JsParameters", ["javajs.awt.Color"], function () {
 c$ = Clazz_declareType (JSV.js2d, "JsParameters", JSV.common.ColorParameters);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function () {
 Clazz_superConstructor (this, JSV.js2d.JsParameters, []);
 });
-Clazz_overrideMethod (c$, "isValidFontName", 
+Clazz_overrideMethod (c$, "isValidFontName",
 function (name) {
 return true;
 }, "~S");
-Clazz_overrideMethod (c$, "getColor1", 
+Clazz_overrideMethod (c$, "getColor1",
 function (rgb) {
 return javajs.awt.Color.get1 (rgb);
 }, "~N");
-Clazz_overrideMethod (c$, "getColor3", 
+Clazz_overrideMethod (c$, "getColor3",
 function (r, g, b) {
 return javajs.awt.Color.get3 (r, g, b);
 }, "~N,~N,~N");
-Clazz_defineMethod (c$, "copy", 
+Clazz_defineMethod (c$, "copy",
 function (newName) {
 return ( new JSV.js2d.JsParameters ().setName (newName)).setElementColors (this);
 }, "~S");
@@ -27154,7 +27154,7 @@ this.viewer = null;
 this.context = null;
 Clazz_instantialize (this, arguments);
 }, JSV.js2d, "JsPlatform", null, javajs.awt.GenericPlatform);
-Clazz_overrideMethod (c$, "setViewer", 
+Clazz_overrideMethod (c$, "setViewer",
 function (viewer, canvas) {
 var context = "";
 this.viewer = viewer;
@@ -27171,82 +27171,82 @@ java.net.URL.setURLStreamHandlerFactory ( new JU.AjaxURLStreamHandlerFactory ())
 } catch (e) {
 }
 }, "javajs.awt.PlatformViewer,~O");
-Clazz_overrideMethod (c$, "isSingleThreaded", 
+Clazz_overrideMethod (c$, "isSingleThreaded",
 function () {
 return true;
 });
-Clazz_overrideMethod (c$, "getJsObjectInfo", 
+Clazz_overrideMethod (c$, "getJsObjectInfo",
 function (jsObject, method, args) {
 {
 return (method == null ? null : method == "localName" ? jsObject[0]["nodeName"] : args == null ? jsObject[0][method] : jsObject[0][method](args[0]));
 }}, "~A,~S,~A");
-Clazz_overrideMethod (c$, "isHeadless", 
+Clazz_overrideMethod (c$, "isHeadless",
 function () {
 return false;
 });
-Clazz_overrideMethod (c$, "getMouseManager", 
+Clazz_overrideMethod (c$, "getMouseManager",
 function (privateKey, jsvp) {
 return  new JSV.app.GenericMouse (jsvp);
 }, "~N,~O");
-Clazz_overrideMethod (c$, "convertPointFromScreen", 
+Clazz_overrideMethod (c$, "convertPointFromScreen",
 function (canvas, ptTemp) {
 JSV.js2d.Display.convertPointFromScreen (canvas, ptTemp);
 }, "~O,JU.P3");
-Clazz_overrideMethod (c$, "getFullScreenDimensions", 
+Clazz_overrideMethod (c$, "getFullScreenDimensions",
 function (canvas, widthHeight) {
 JSV.js2d.Display.getFullScreenDimensions (canvas, widthHeight);
 }, "~O,~A");
-Clazz_overrideMethod (c$, "getMenuPopup", 
+Clazz_overrideMethod (c$, "getMenuPopup",
 function (menuStructure, type) {
 return null;
 }, "~S,~S");
-Clazz_overrideMethod (c$, "hasFocus", 
+Clazz_overrideMethod (c$, "hasFocus",
 function (canvas) {
 return JSV.js2d.Display.hasFocus (canvas);
 }, "~O");
-Clazz_overrideMethod (c$, "prompt", 
+Clazz_overrideMethod (c$, "prompt",
 function (label, data, list, asButtons) {
 return JSV.js2d.Display.prompt (label, data, list, asButtons);
 }, "~S,~S,~A,~B");
-Clazz_overrideMethod (c$, "renderScreenImage", 
+Clazz_overrideMethod (c$, "renderScreenImage",
 function (context, size) {
 JSV.js2d.Display.renderScreenImage (this.viewer, context, size);
 }, "~O,~O");
-Clazz_overrideMethod (c$, "drawImage", 
+Clazz_overrideMethod (c$, "drawImage",
 function (context, canvas, x, y, width, height, isDTI) {
 JSV.js2d.Image.drawImage (context, canvas, x, y, width, height);
 }, "~O,~O,~N,~N,~N,~N,~B");
-Clazz_overrideMethod (c$, "requestFocusInWindow", 
+Clazz_overrideMethod (c$, "requestFocusInWindow",
 function (canvas) {
 JSV.js2d.Display.requestFocusInWindow (canvas);
 }, "~O");
-Clazz_overrideMethod (c$, "repaint", 
+Clazz_overrideMethod (c$, "repaint",
 function (canvas) {
 JSV.js2d.Display.repaint (canvas);
 }, "~O");
-Clazz_overrideMethod (c$, "setTransparentCursor", 
+Clazz_overrideMethod (c$, "setTransparentCursor",
 function (canvas) {
 JSV.js2d.Display.setTransparentCursor (canvas);
 }, "~O");
-Clazz_overrideMethod (c$, "setCursor", 
+Clazz_overrideMethod (c$, "setCursor",
 function (c, canvas) {
 JSV.js2d.Display.setCursor (c, canvas);
 }, "~N,~O");
-Clazz_overrideMethod (c$, "allocateRgbImage", 
+Clazz_overrideMethod (c$, "allocateRgbImage",
 function (windowWidth, windowHeight, pBuffer, windowSize, backgroundTransparent, isImageWrite) {
 return JSV.js2d.Image.allocateRgbImage (windowWidth, windowHeight, pBuffer, windowSize, backgroundTransparent, (isImageWrite ? null : this.canvas));
 }, "~N,~N,~A,~N,~B,~B");
-Clazz_overrideMethod (c$, "notifyEndOfRendering", 
+Clazz_overrideMethod (c$, "notifyEndOfRendering",
 function () {
 });
-Clazz_overrideMethod (c$, "createImage", 
+Clazz_overrideMethod (c$, "createImage",
 function (data) {
 return null;
 }, "~O");
-Clazz_overrideMethod (c$, "disposeGraphics", 
+Clazz_overrideMethod (c$, "disposeGraphics",
 function (gOffscreen) {
 }, "~O");
-Clazz_overrideMethod (c$, "grabPixels", 
+Clazz_overrideMethod (c$, "grabPixels",
 function (canvas, width, height, pixels, startRow, nRows) {
 {
 if (canvas.image && (width != canvas.width || height != canvas.height))
@@ -27257,72 +27257,72 @@ if (canvas.buf32) return canvas.buf32;
 canvas.buf32 = buf;
 }return buf;
 }, "~O,~N,~N,~A,~N,~N");
-Clazz_overrideMethod (c$, "drawImageToBuffer", 
+Clazz_overrideMethod (c$, "drawImageToBuffer",
 function (gOffscreen, imageOffscreen, canvas, width, height, bgcolor) {
 return this.grabPixels (canvas, width, height, null, 0, 0);
 }, "~O,~O,~O,~N,~N,~N");
-Clazz_overrideMethod (c$, "getTextPixels", 
+Clazz_overrideMethod (c$, "getTextPixels",
 function (text, font3d, context, image, width, height, ascent) {
 return JSV.js2d.Image.getTextPixels (text, font3d, context, width, height, ascent);
 }, "~S,javajs.awt.Font,~O,~O,~N,~N,~N");
-Clazz_overrideMethod (c$, "flushImage", 
+Clazz_overrideMethod (c$, "flushImage",
 function (imagePixelBuffer) {
 }, "~O");
-Clazz_overrideMethod (c$, "getGraphics", 
+Clazz_overrideMethod (c$, "getGraphics",
 function (canvas) {
 return (canvas == null ? this.context : (this.context = JSV.js2d.Image.getGraphics (this.canvas = canvas)));
 }, "~O");
-Clazz_overrideMethod (c$, "getImageHeight", 
+Clazz_overrideMethod (c$, "getImageHeight",
 function (canvas) {
 return (canvas == null ? -1 : JSV.js2d.Image.getHeight (canvas));
 }, "~O");
-Clazz_overrideMethod (c$, "getImageWidth", 
+Clazz_overrideMethod (c$, "getImageWidth",
 function (canvas) {
 return (canvas == null ? -1 : JSV.js2d.Image.getWidth (canvas));
 }, "~O");
-Clazz_overrideMethod (c$, "getStaticGraphics", 
+Clazz_overrideMethod (c$, "getStaticGraphics",
 function (image, backgroundTransparent) {
 return JSV.js2d.Image.getStaticGraphics (image, backgroundTransparent);
 }, "~O,~B");
-Clazz_overrideMethod (c$, "newBufferedImage", 
+Clazz_overrideMethod (c$, "newBufferedImage",
 function (image, w, h) {
 {
 if (self.Jmol && Jmol._getHiddenCanvas)
 return Jmol._getHiddenCanvas(this.vwr.html5Applet, "stereoImage", w, h);
 }return null;
 }, "~O,~N,~N");
-Clazz_overrideMethod (c$, "newOffScreenImage", 
+Clazz_overrideMethod (c$, "newOffScreenImage",
 function (w, h) {
 {
 if (self.Jmol && Jmol._getHiddenCanvas)
 return Jmol._getHiddenCanvas(this.vwr.html5Applet, "textImage", w, h);
 }return null;
 }, "~N,~N");
-Clazz_overrideMethod (c$, "waitForDisplay", 
+Clazz_overrideMethod (c$, "waitForDisplay",
 function (echoNameAndPath, zipBytes) {
 return false;
 }, "~O,~O");
-Clazz_overrideMethod (c$, "fontStringWidth", 
+Clazz_overrideMethod (c$, "fontStringWidth",
 function (font, text) {
 return JSV.js2d.JsFont.stringWidth (font, text);
 }, "javajs.awt.Font,~S");
-Clazz_overrideMethod (c$, "getFontAscent", 
+Clazz_overrideMethod (c$, "getFontAscent",
 function (context) {
 return JSV.js2d.JsFont.getAscent (context);
 }, "~O");
-Clazz_overrideMethod (c$, "getFontDescent", 
+Clazz_overrideMethod (c$, "getFontDescent",
 function (context) {
 return JSV.js2d.JsFont.getDescent (context);
 }, "~O");
-Clazz_overrideMethod (c$, "getFontMetrics", 
+Clazz_overrideMethod (c$, "getFontMetrics",
 function (font, context) {
 return JSV.js2d.JsFont.getFontMetrics (font, context);
 }, "javajs.awt.Font,~O");
-Clazz_overrideMethod (c$, "newFont", 
+Clazz_overrideMethod (c$, "newFont",
 function (fontFace, isBold, isItalic, fontSize) {
 return JSV.js2d.JsFont.newFont (fontFace, isBold, isItalic, fontSize, "px");
 }, "~S,~B,~B,~N");
-Clazz_overrideMethod (c$, "getDateFormat", 
+Clazz_overrideMethod (c$, "getDateFormat",
 function (isoType) {
 {
 if (isoType == null) {
@@ -27341,15 +27341,15 @@ return x[3] + MM + dd + x[4].replace(/\:/g,"") + x[5].substring(3,6) + "'" + x[5
 }
 return ("" + (new Date())).split(" (")[0];
 }}, "~S");
-Clazz_overrideMethod (c$, "newFile", 
+Clazz_overrideMethod (c$, "newFile",
 function (name) {
 return  new JSV.js2d.JsFile (name);
 }, "~S");
-Clazz_overrideMethod (c$, "getBufferedFileInputStream", 
+Clazz_overrideMethod (c$, "getBufferedFileInputStream",
 function (name) {
 return null;
 }, "~S");
-Clazz_overrideMethod (c$, "getURLContents", 
+Clazz_overrideMethod (c$, "getURLContents",
 function (url, outputBytes, post, asString) {
 var ret = JSV.js2d.JsFile.getURLContents (url, outputBytes, post);
 try {
@@ -27362,15 +27362,15 @@ throw e;
 }
 }
 }, "java.net.URL,~A,~S,~B");
-Clazz_overrideMethod (c$, "getLocalUrl", 
+Clazz_overrideMethod (c$, "getLocalUrl",
 function (fileName) {
 return null;
 }, "~S");
-Clazz_overrideMethod (c$, "getImageDialog", 
+Clazz_overrideMethod (c$, "getImageDialog",
 function (title, imageMap) {
 return null;
 }, "~S,java.util.Map");
-Clazz_overrideMethod (c$, "forceAsyncLoad", 
+Clazz_overrideMethod (c$, "forceAsyncLoad",
 function (filename) {
 return false;
 }, "~S");
@@ -27386,53 +27386,53 @@ this.focusable = false;
 this.enabled = false;
 Clazz_instantialize (this, arguments);
 }, JSV.js2d, "JsMainPanel", null, JSV.api.JSVMainPanel);
-Clazz_overrideMethod (c$, "getCurrentPanelIndex", 
+Clazz_overrideMethod (c$, "getCurrentPanelIndex",
 function () {
 return this.currentPanelIndex;
 });
-Clazz_overrideMethod (c$, "dispose", 
+Clazz_overrideMethod (c$, "dispose",
 function () {
 });
-Clazz_overrideMethod (c$, "getTitle", 
+Clazz_overrideMethod (c$, "getTitle",
 function () {
 return this.title;
 });
-Clazz_overrideMethod (c$, "setTitle", 
+Clazz_overrideMethod (c$, "setTitle",
 function (title) {
 this.title = title;
 }, "~S");
-Clazz_overrideMethod (c$, "setSelectedPanel", 
+Clazz_overrideMethod (c$, "setSelectedPanel",
 function (viewer, jsvp, panelNodes) {
 if (jsvp !== this.selectedPanel) this.selectedPanel = jsvp;
 var i = viewer.selectPanel (jsvp, panelNodes);
 if (i >= 0) this.currentPanelIndex = i;
 this.visible = true;
 }, "JSV.common.JSViewer,JSV.api.JSVPanel,JU.Lst");
-Clazz_defineMethod (c$, "getHeight", 
+Clazz_defineMethod (c$, "getHeight",
 function () {
 return (this.selectedPanel == null ? 0 : this.selectedPanel.getHeight ());
 });
-Clazz_defineMethod (c$, "getWidth", 
+Clazz_defineMethod (c$, "getWidth",
 function () {
 return (this.selectedPanel == null ? 0 : this.selectedPanel.getWidth ());
 });
-Clazz_overrideMethod (c$, "isEnabled", 
+Clazz_overrideMethod (c$, "isEnabled",
 function () {
 return this.enabled;
 });
-Clazz_overrideMethod (c$, "isFocusable", 
+Clazz_overrideMethod (c$, "isFocusable",
 function () {
 return this.focusable;
 });
-Clazz_overrideMethod (c$, "isVisible", 
+Clazz_overrideMethod (c$, "isVisible",
 function () {
 return this.visible;
 });
-Clazz_overrideMethod (c$, "setEnabled", 
+Clazz_overrideMethod (c$, "setEnabled",
 function (b) {
 this.enabled = b;
 }, "~B");
-Clazz_overrideMethod (c$, "setFocusable", 
+Clazz_overrideMethod (c$, "setFocusable",
 function (b) {
 this.focusable = b;
 }, "~B");
@@ -27481,108 +27481,108 @@ this.deltaX = NaN;
 this.normalizationFactor = 1;
 Clazz_instantialize (this, arguments);
 }, JSV.source, "JDXDataObject", JSV.source.JDXHeader);
-Clazz_defineMethod (c$, "setFilePath", 
+Clazz_defineMethod (c$, "setFilePath",
 function (filePath) {
 if (filePath != null) this.filePathForwardSlash = (this.filePath = filePath.trim ()).$replace ('\\', '/');
 }, "~S");
-Clazz_defineMethod (c$, "getFilePath", 
+Clazz_defineMethod (c$, "getFilePath",
 function () {
 return this.filePath;
 });
-Clazz_defineMethod (c$, "getFilePathForwardSlash", 
+Clazz_defineMethod (c$, "getFilePathForwardSlash",
 function () {
 return this.filePathForwardSlash;
 });
-Clazz_defineMethod (c$, "setBlockID", 
+Clazz_defineMethod (c$, "setBlockID",
 function (id) {
 this.blockID = id;
 }, "~N");
-Clazz_defineMethod (c$, "isImaginary", 
+Clazz_defineMethod (c$, "isImaginary",
 function () {
 return this.varName.contains ("IMAG");
 });
-Clazz_defineMethod (c$, "setXFactor", 
+Clazz_defineMethod (c$, "setXFactor",
 function (xFactor) {
 this.xFactor = xFactor;
 }, "~N");
-Clazz_defineMethod (c$, "getXFactor", 
+Clazz_defineMethod (c$, "getXFactor",
 function () {
 return this.xFactor;
 });
-Clazz_defineMethod (c$, "setYFactor", 
+Clazz_defineMethod (c$, "setYFactor",
 function (yFactor) {
 this.yFactor = yFactor;
 }, "~N");
-Clazz_defineMethod (c$, "getYFactor", 
+Clazz_defineMethod (c$, "getYFactor",
 function () {
 return this.yFactor;
 });
-Clazz_defineMethod (c$, "checkRequiredTokens", 
+Clazz_defineMethod (c$, "checkRequiredTokens",
 function () {
 var err = (this.fileFirstX == 1.7976931348623157E308 ? "##FIRSTX" : this.fileLastX == 1.7976931348623157E308 ? "##LASTX" : this.nPointsFile == -1 ? "##NPOINTS" : this.xFactor == 1.7976931348623157E308 ? "##XFACTOR" : this.yFactor == 1.7976931348623157E308 ? "##YFACTOR" : null);
 if (err != null) throw  new JSV.exception.JSVException ("Error Reading Data Set: " + err + " not found");
 });
-Clazz_defineMethod (c$, "setXUnits", 
+Clazz_defineMethod (c$, "setXUnits",
 function (xUnits) {
 this.xUnits = xUnits;
 }, "~S");
-Clazz_defineMethod (c$, "getXUnits", 
+Clazz_defineMethod (c$, "getXUnits",
 function () {
 return this.xUnits;
 });
-Clazz_defineMethod (c$, "setYUnits", 
+Clazz_defineMethod (c$, "setYUnits",
 function (yUnits) {
 if (yUnits.equals ("PPM")) yUnits = "ARBITRARY UNITS";
 this.yUnits = yUnits;
 }, "~S");
-Clazz_defineMethod (c$, "getYUnits", 
+Clazz_defineMethod (c$, "getYUnits",
 function () {
 return this.yUnits;
 });
-Clazz_defineMethod (c$, "setXLabel", 
+Clazz_defineMethod (c$, "setXLabel",
 function (value) {
 this.xLabel = value;
 }, "~S");
-Clazz_defineMethod (c$, "setYLabel", 
+Clazz_defineMethod (c$, "setYLabel",
 function (value) {
 this.yLabel = value;
 }, "~S");
-Clazz_defineMethod (c$, "setObservedNucleus", 
+Clazz_defineMethod (c$, "setObservedNucleus",
 function (value) {
 this.observedNucl = value;
 if (this.numDim == 1) this.parent.nucleusX = this.nucleusX = this.fixNucleus (value);
 }, "~S");
-Clazz_defineMethod (c$, "setObservedFreq", 
+Clazz_defineMethod (c$, "setObservedFreq",
 function (observedFreq) {
 this.observedFreq = observedFreq;
 }, "~N");
-Clazz_defineMethod (c$, "getObservedFreq", 
+Clazz_defineMethod (c$, "getObservedFreq",
 function () {
 return this.observedFreq;
 });
-Clazz_defineMethod (c$, "is1D", 
+Clazz_defineMethod (c$, "is1D",
 function () {
 return this.numDim == 1;
 });
-Clazz_defineMethod (c$, "setY2D", 
+Clazz_defineMethod (c$, "setY2D",
 function (d) {
 this.y2D = d;
 }, "~N");
-Clazz_defineMethod (c$, "getY2D", 
+Clazz_defineMethod (c$, "getY2D",
 function () {
 return this.y2D;
 });
-Clazz_defineMethod (c$, "setY2DUnits", 
+Clazz_defineMethod (c$, "setY2DUnits",
 function (units) {
 this.y2DUnits = units;
 }, "~S");
-Clazz_defineMethod (c$, "getY2DPPM", 
+Clazz_defineMethod (c$, "getY2DPPM",
 function () {
 var d = this.y2D;
 if (this.y2DUnits.equals ("HZ")) d /= this.freq2dY;
 return d;
 });
-Clazz_defineMethod (c$, "setNucleusAndFreq", 
+Clazz_defineMethod (c$, "setNucleusAndFreq",
 function (nuc, isX) {
 nuc = this.fixNucleus (nuc);
 if (isX) this.nucleusX = nuc;
@@ -27598,11 +27598,11 @@ freq = this.observedFreq * g2 / g1;
  else this.freq2dY = freq;
 JU.Logger.info ("Freq for " + nuc + " = " + freq);
 }, "~S,~B");
-Clazz_defineMethod (c$, "fixNucleus", 
+Clazz_defineMethod (c$, "fixNucleus",
  function (nuc) {
 return JU.PT.rep (JU.PT.trim (nuc, "[]^<>"), "NUC_", "");
 }, "~S");
-c$.getGyroMagneticRatio = Clazz_defineMethod (c$, "getGyroMagneticRatio", 
+c$.getGyroMagneticRatio = Clazz_defineMethod (c$, "getGyroMagneticRatio",
  function (nuc) {
 var pt = 0;
 while (pt < nuc.length && !Character.isDigit (nuc.charAt (pt))) pt++;
@@ -27613,77 +27613,77 @@ for (; i < JSV.source.JDXDataObject.gyroData.length; i += 2) if (JSV.source.JDXD
 
 return (JSV.source.JDXDataObject.gyroData[i] == pt ? JSV.source.JDXDataObject.gyroData[i + 1] : NaN);
 }, "~S");
-Clazz_defineMethod (c$, "isTransmittance", 
+Clazz_defineMethod (c$, "isTransmittance",
 function () {
 var s = this.yUnits.toLowerCase ();
 return (s.equals ("transmittance") || s.contains ("trans") || s.equals ("t"));
 });
-Clazz_defineMethod (c$, "isAbsorbance", 
+Clazz_defineMethod (c$, "isAbsorbance",
 function () {
 var s = this.yUnits.toLowerCase ();
 return (s.equals ("absorbance") || s.contains ("abs") || s.equals ("a"));
 });
-Clazz_defineMethod (c$, "canSaveAsJDX", 
+Clazz_defineMethod (c$, "canSaveAsJDX",
 function () {
 return this.getDataClass ().equals ("XYDATA");
 });
-Clazz_defineMethod (c$, "canIntegrate", 
+Clazz_defineMethod (c$, "canIntegrate",
 function () {
 return (this.continuous && (this.isHNMR () || this.isGC ()) && this.is1D ());
 });
-Clazz_defineMethod (c$, "isAutoOverlayFromJmolClick", 
+Clazz_defineMethod (c$, "isAutoOverlayFromJmolClick",
 function () {
 return (this.isGC ());
 });
-Clazz_defineMethod (c$, "isGC", 
+Clazz_defineMethod (c$, "isGC",
 function () {
 return this.dataType.startsWith ("GC") || this.dataType.startsWith ("GAS");
 });
-Clazz_defineMethod (c$, "isMS", 
+Clazz_defineMethod (c$, "isMS",
 function () {
 return this.dataType.startsWith ("MASS") || this.dataType.startsWith ("MS");
 });
-Clazz_defineMethod (c$, "isStackable", 
+Clazz_defineMethod (c$, "isStackable",
 function () {
 return !this.isMS ();
 });
-Clazz_defineMethod (c$, "isScalable", 
+Clazz_defineMethod (c$, "isScalable",
 function () {
 return true;
 });
-Clazz_defineMethod (c$, "getYRef", 
+Clazz_defineMethod (c$, "getYRef",
 function () {
 return (!this.isTransmittance () ? 0.0 : JSV.common.Coordinate.getMaxY (this.xyCoords, 0, this.xyCoords.length) < 2 ? 1.0 : 100.0);
 });
-Clazz_defineMethod (c$, "isInverted", 
+Clazz_defineMethod (c$, "isInverted",
 function () {
 return this.isTransmittance ();
 });
-Clazz_defineMethod (c$, "canConvertTransAbs", 
+Clazz_defineMethod (c$, "canConvertTransAbs",
 function () {
 return (this.continuous && (this.yUnits.toLowerCase ().contains ("abs")) || this.yUnits.toLowerCase ().contains ("trans"));
 });
-Clazz_defineMethod (c$, "canShowSolutionColor", 
+Clazz_defineMethod (c$, "canShowSolutionColor",
 function () {
 return (this.isContinuous () && this.canConvertTransAbs () && (this.xUnits.toLowerCase ().contains ("nanometer") || this.xUnits.equalsIgnoreCase ("nm")) && this.getFirstX () < 401 && this.getLastX () > 699 && this.xyCoords.length >= 30);
 });
-Clazz_defineMethod (c$, "isHZtoPPM", 
+Clazz_defineMethod (c$, "isHZtoPPM",
 function () {
 return this.$isHZtoPPM;
 });
-Clazz_defineMethod (c$, "setHZtoPPM", 
+Clazz_defineMethod (c$, "setHZtoPPM",
 function (val) {
 this.$isHZtoPPM = val;
 }, "~B");
-Clazz_defineMethod (c$, "setIncreasing", 
+Clazz_defineMethod (c$, "setIncreasing",
 function (val) {
 this.xIncreases = val;
 }, "~B");
-Clazz_defineMethod (c$, "isXIncreasing", 
+Clazz_defineMethod (c$, "isXIncreasing",
 function () {
 return this.xIncreases;
 });
-Clazz_defineMethod (c$, "shouldDisplayXAxisIncreasing", 
+Clazz_defineMethod (c$, "shouldDisplayXAxisIncreasing",
 function () {
 var dt = this.dataType.toUpperCase ();
 var xu = this.xUnits.toUpperCase ();
@@ -27699,15 +27699,15 @@ return false;
 return true;
 }return this.xIncreases;
 });
-Clazz_defineMethod (c$, "setContinuous", 
+Clazz_defineMethod (c$, "setContinuous",
 function (val) {
 this.continuous = val;
 }, "~B");
-Clazz_defineMethod (c$, "isContinuous", 
+Clazz_defineMethod (c$, "isContinuous",
 function () {
 return this.continuous;
 });
-Clazz_defineMethod (c$, "getHeaderRowDataAsArray", 
+Clazz_defineMethod (c$, "getHeaderRowDataAsArray",
 function () {
 var n = 8;
 if (this.observedFreq != 1.7976931348623157E308) n++;
@@ -27728,11 +27728,11 @@ rowData[i++] =  Clazz_newArray (-1, ["##YFACTOR", String.valueOf (this.getYFacto
 rowData[i++] =  Clazz_newArray (-1, ["##NPOINTS", String.valueOf (this.xyCoords.length)]);
 return rowData;
 });
-Clazz_defineMethod (c$, "getDefaultUnitPrecision", 
+Clazz_defineMethod (c$, "getDefaultUnitPrecision",
 function () {
 return 2;
 });
-Clazz_defineMethod (c$, "setMeasurementText", 
+Clazz_defineMethod (c$, "setMeasurementText",
 function (m) {
 var dx = m.getValue ();
 if (Double.isNaN (dx)) return "";
@@ -27752,19 +27752,19 @@ precision = 2;
 return "";
 }}return (dx < 0.1 ? "" : JU.DF.formatDecimalDbl (dx, precision) + units);
 }, "JSV.common.Measurement");
-Clazz_defineMethod (c$, "isNMR", 
+Clazz_defineMethod (c$, "isNMR",
 function () {
 return (this.dataType.toUpperCase ().indexOf ("NMR") >= 0);
 });
-Clazz_defineMethod (c$, "isHNMR", 
+Clazz_defineMethod (c$, "isHNMR",
 function () {
 return (this.isNMR () && this.observedNucl.toUpperCase ().indexOf ("H") >= 0);
 });
-Clazz_defineMethod (c$, "setXYCoords", 
+Clazz_defineMethod (c$, "setXYCoords",
 function (coords) {
 this.xyCoords = coords;
 }, "~A");
-Clazz_defineMethod (c$, "invertYAxis", 
+Clazz_defineMethod (c$, "invertYAxis",
 function () {
 for (var i = this.xyCoords.length; --i >= 0; ) {
 this.xyCoords[i].setYVal (-this.xyCoords[i].getYVal ());
@@ -27774,39 +27774,39 @@ this.minY = -this.maxY;
 this.maxY = -d;
 return this;
 });
-Clazz_defineMethod (c$, "getFirstX", 
+Clazz_defineMethod (c$, "getFirstX",
 function () {
 return this.xyCoords[0].getXVal ();
 });
-Clazz_defineMethod (c$, "getFirstY", 
+Clazz_defineMethod (c$, "getFirstY",
 function () {
 return this.xyCoords[0].getYVal ();
 });
-Clazz_defineMethod (c$, "getLastX", 
+Clazz_defineMethod (c$, "getLastX",
 function () {
 return this.xyCoords[this.xyCoords.length - 1].getXVal ();
 });
-Clazz_defineMethod (c$, "getLastY", 
+Clazz_defineMethod (c$, "getLastY",
 function () {
 return this.xyCoords[this.xyCoords.length - 1].getYVal ();
 });
-Clazz_defineMethod (c$, "getMinX", 
+Clazz_defineMethod (c$, "getMinX",
 function () {
 return (Double.isNaN (this.minX) ? (this.minX = JSV.common.Coordinate.getMinX (this.xyCoords, 0, this.xyCoords.length)) : this.minX);
 });
-Clazz_defineMethod (c$, "getMinY", 
+Clazz_defineMethod (c$, "getMinY",
 function () {
 return (Double.isNaN (this.minY) ? (this.minY = JSV.common.Coordinate.getMinY (this.xyCoords, 0, this.xyCoords.length)) : this.minY);
 });
-Clazz_defineMethod (c$, "getMaxX", 
+Clazz_defineMethod (c$, "getMaxX",
 function () {
 return (Double.isNaN (this.maxX) ? (this.maxX = JSV.common.Coordinate.getMaxX (this.xyCoords, 0, this.xyCoords.length)) : this.maxX);
 });
-Clazz_defineMethod (c$, "getMaxY", 
+Clazz_defineMethod (c$, "getMaxY",
 function () {
 return (Double.isNaN (this.maxY) ? (this.maxY = JSV.common.Coordinate.getMaxY (this.xyCoords, 0, this.xyCoords.length)) : this.maxY);
 });
-Clazz_defineMethod (c$, "doNormalize", 
+Clazz_defineMethod (c$, "doNormalize",
 function (max) {
 if (!this.isNMR () || !this.is1D ()) return;
 this.normalizationFactor = max / this.getMaxY ();
@@ -27814,11 +27814,11 @@ this.maxY = NaN;
 JSV.common.Coordinate.applyScale (this.xyCoords, 1, this.normalizationFactor);
 JU.Logger.info ("Y values have been scaled by a factor of " + this.normalizationFactor);
 }, "~N");
-Clazz_defineMethod (c$, "getDeltaX", 
+Clazz_defineMethod (c$, "getDeltaX",
 function () {
 return (Double.isNaN (this.deltaX) ? (this.deltaX = JSV.common.Coordinate.deltaX (this.getLastX (), this.getFirstX (), this.xyCoords.length)) : this.deltaX);
 });
-Clazz_defineMethod (c$, "copyTo", 
+Clazz_defineMethod (c$, "copyTo",
 function (newObj) {
 newObj.setTitle (this.title);
 newObj.setJcampdx (this.jcampdx);
@@ -27850,11 +27850,11 @@ newObj.freq2dY = this.freq2dY;
 newObj.setFilePath (this.filePath);
 newObj.nH = this.nH;
 }, "JSV.source.JDXDataObject");
-Clazz_defineMethod (c$, "getTypeLabel", 
+Clazz_defineMethod (c$, "getTypeLabel",
 function () {
 return (this.isNMR () ? this.nucleusX + "NMR" : this.dataType);
 });
-Clazz_defineMethod (c$, "getDefaultAnnotationInfo", 
+Clazz_defineMethod (c$, "getDefaultAnnotationInfo",
 function (type) {
 var s1;
 var s2;
@@ -27878,7 +27878,7 @@ break;
 }
 return null;
 }, "JSV.common.Annotation.AType");
-Clazz_defineMethod (c$, "getPeakListArray", 
+Clazz_defineMethod (c$, "getPeakListArray",
 function (m, last, maxY) {
 var x = m.getXVal ();
 var y = m.getYVal ();
@@ -27930,15 +27930,15 @@ this.yval = 0;
 this.firstLastX = null;
 Clazz_instantialize (this, arguments);
 }, JSV.source, "JDXDecompressor");
-Clazz_defineMethod (c$, "getMinY", 
+Clazz_defineMethod (c$, "getMinY",
 function () {
 return this.minY;
 });
-Clazz_defineMethod (c$, "getMaxY", 
+Clazz_defineMethod (c$, "getMaxY",
 function () {
 return this.maxY;
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (t, firstX, xFactor, yFactor, deltaX, nPoints) {
 this.t = t;
 this.firstX = firstX;
@@ -27949,7 +27949,7 @@ this.nPoints = nPoints;
 this.lineNumber = t.labelLineNo;
 this.debugging = JU.Logger.isActiveLevel (6);
 }, "JSV.source.JDXSourceStreamTokenizer,~N,~N,~N,~N,~N");
-Clazz_defineMethod (c$, "addPoint", 
+Clazz_defineMethod (c$, "addPoint",
  function (pt) {
 if (this.ipt == this.xyCoords.length) {
 var t =  new Array (this.ipt * 2);
@@ -27962,7 +27962,7 @@ if (this.debugging) this.logError ("Coord: " + this.ipt + pt);
 this.xyCoords[this.ipt++] = pt;
 this.firstLastX[1] = pt.getXVal ();
 }, "JSV.common.Coordinate");
-Clazz_defineMethod (c$, "decompressData", 
+Clazz_defineMethod (c$, "decompressData",
 function (errorLog, firstLastX) {
 this.errorLog = errorLog;
 this.firstLastX = firstLastX;
@@ -28017,12 +28017,12 @@ System.arraycopy (this.xyCoords, 0, temp, 0, this.ipt);
 this.xyCoords = temp;
 }return (this.deltaX > 0 ? this.xyCoords : JSV.common.Coordinate.reverse (this.xyCoords));
 }, "JU.SB,~A");
-Clazz_defineMethod (c$, "logError", 
+Clazz_defineMethod (c$, "logError",
  function (s) {
 if (this.debugging) JU.Logger.debug (s);
 this.errorLog.append (s).appendC ('\n');
 }, "~S");
-Clazz_defineMethod (c$, "getYValue", 
+Clazz_defineMethod (c$, "getYValue",
  function () {
 if (this.dupCount > 0) {
 --this.dupCount;
@@ -28122,14 +28122,14 @@ if (this.difVal != -2147483648) this.difVal = this.getDifDup (this.difVal);
  else this.dupCount = this.getDifDup (this.dupCount) - 1;
 return this.getYValue ();
 });
-Clazz_defineMethod (c$, "getDifDup", 
+Clazz_defineMethod (c$, "getDifDup",
  function (i) {
 var ich0 = this.ich;
 this.next ();
 var s = i + this.line.substring (ich0, this.ich);
 return (ich0 == this.ich ? i : Integer.$valueOf (s).intValue ());
 }, "~N");
-Clazz_defineMethod (c$, "getValue", 
+Clazz_defineMethod (c$, "getValue",
  function () {
 var ich0 = this.ich;
 if (this.ich == this.lineLen) return NaN;
@@ -28182,7 +28182,7 @@ return this.getValue ();
 this.next ();
 return Double.$valueOf (leader + this.line.substring (ich0, this.ich)).doubleValue ();
 });
-Clazz_defineMethod (c$, "getValueDelim", 
+Clazz_defineMethod (c$, "getValueDelim",
  function () {
 var ich0 = this.ich;
 var ch = '\u0000';
@@ -28206,13 +28206,13 @@ break;
 }
 return factor * ((Double.$valueOf (this.line.substring (ich0, this.ich))).doubleValue ());
 });
-Clazz_defineMethod (c$, "next", 
+Clazz_defineMethod (c$, "next",
  function () {
 while (this.ich < this.lineLen && "+-%@ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrs? ,\t\n".indexOf (this.line.charAt (this.ich)) < 0) this.ich++;
 
 return (this.ich == this.lineLen ? '\0' : this.line.charAt (this.ich));
 });
-Clazz_defineMethod (c$, "testAlgorithm", 
+Clazz_defineMethod (c$, "testAlgorithm",
  function () {
 });
 Clazz_defineStatics (c$,
@@ -28238,47 +28238,47 @@ Clazz_instantialize (this, arguments);
 Clazz_prepareFields (c$, function () {
 this.headerTable =  new JU.Lst ();
 });
-Clazz_defineMethod (c$, "setTitle", 
+Clazz_defineMethod (c$, "setTitle",
 function (title) {
 this.title = title;
 }, "~S");
-Clazz_defineMethod (c$, "setJcampdx", 
+Clazz_defineMethod (c$, "setJcampdx",
 function (versionNum) {
 this.jcampdx = versionNum;
 }, "~S");
-Clazz_defineMethod (c$, "setDataType", 
+Clazz_defineMethod (c$, "setDataType",
 function (dataType) {
 this.dataType = dataType;
 }, "~S");
-Clazz_defineMethod (c$, "setDataClass", 
+Clazz_defineMethod (c$, "setDataClass",
 function (dataClass) {
 this.dataClass = dataClass;
 }, "~S");
-Clazz_defineMethod (c$, "setOrigin", 
+Clazz_defineMethod (c$, "setOrigin",
 function (origin) {
 this.origin = origin;
 }, "~S");
-Clazz_defineMethod (c$, "setOwner", 
+Clazz_defineMethod (c$, "setOwner",
 function (owner) {
 this.owner = owner;
 }, "~S");
-Clazz_defineMethod (c$, "setLongDate", 
+Clazz_defineMethod (c$, "setLongDate",
 function (longDate) {
 this.longDate = longDate;
 }, "~S");
-Clazz_defineMethod (c$, "setDate", 
+Clazz_defineMethod (c$, "setDate",
 function (date) {
 this.date = date;
 }, "~S");
-Clazz_defineMethod (c$, "setTime", 
+Clazz_defineMethod (c$, "setTime",
 function (time) {
 this.time = time;
 }, "~S");
-Clazz_defineMethod (c$, "getTitle", 
+Clazz_defineMethod (c$, "getTitle",
 function () {
 return this.title;
 });
-c$.getTypeName = Clazz_defineMethod (c$, "getTypeName", 
+c$.getTypeName = Clazz_defineMethod (c$, "getTypeName",
 function (type) {
 type = type.toUpperCase ();
 for (var i = 0; i < JSV.source.JDXHeader.typeNames.length; i++) if (JSV.source.JDXHeader.typeNames[i].startsWith (type)) {
@@ -28286,51 +28286,51 @@ return JSV.source.JDXHeader.typeNames[i].substring (18);
 }
 return type;
 }, "~S");
-Clazz_defineMethod (c$, "getQualifiedDataType", 
+Clazz_defineMethod (c$, "getQualifiedDataType",
 function () {
 return (this.qualifiedType == null ? (this.qualifiedType = JSV.source.JDXHeader.getTypeName (this.dataType)) : this.qualifiedType);
 });
-Clazz_defineMethod (c$, "getJcampdx", 
+Clazz_defineMethod (c$, "getJcampdx",
 function () {
 return this.jcampdx;
 });
-Clazz_defineMethod (c$, "getDataType", 
+Clazz_defineMethod (c$, "getDataType",
 function () {
 return this.dataType;
 });
-Clazz_defineMethod (c$, "getOrigin", 
+Clazz_defineMethod (c$, "getOrigin",
 function () {
 return this.origin;
 });
-Clazz_defineMethod (c$, "getOwner", 
+Clazz_defineMethod (c$, "getOwner",
 function () {
 return this.owner;
 });
-Clazz_defineMethod (c$, "getLongDate", 
+Clazz_defineMethod (c$, "getLongDate",
 function () {
 return this.longDate;
 });
-Clazz_defineMethod (c$, "getDate", 
+Clazz_defineMethod (c$, "getDate",
 function () {
 return this.date;
 });
-Clazz_defineMethod (c$, "getTime", 
+Clazz_defineMethod (c$, "getTime",
 function () {
 return this.time;
 });
-Clazz_defineMethod (c$, "getDataClass", 
+Clazz_defineMethod (c$, "getDataClass",
 function () {
 return this.dataClass;
 });
-Clazz_defineMethod (c$, "setHeaderTable", 
+Clazz_defineMethod (c$, "setHeaderTable",
 function (table) {
 this.headerTable = table;
 }, "JU.Lst");
-Clazz_defineMethod (c$, "getHeaderTable", 
+Clazz_defineMethod (c$, "getHeaderTable",
 function () {
 return this.headerTable;
 });
-Clazz_defineMethod (c$, "getHeaderRowDataAsArray", 
+Clazz_defineMethod (c$, "getHeaderRowDataAsArray",
 function (addDataClass, nMore) {
 var rowData =  new Array ((addDataClass ? 6 : 5) + this.headerTable.size () + nMore);
 var i = 0;
@@ -28344,7 +28344,7 @@ for (var j = 0; j < this.headerTable.size (); j++) rowData[i++] = this.getRow (j
 
 return rowData;
 }, "~B,~N");
-Clazz_defineMethod (c$, "getRow", 
+Clazz_defineMethod (c$, "getRow",
  function (j) {
 var s = this.headerTable.get (j);
 {
@@ -28379,12 +28379,12 @@ this.acdMolFile = null;
 this.peakData = null;
 Clazz_instantialize (this, arguments);
 }, JSV.source, "JDXReader", null, J.api.JmolJDXMOLReader);
-c$.getVarList = Clazz_defineMethod (c$, "getVarList", 
+c$.getVarList = Clazz_defineMethod (c$, "getVarList",
 function (dataClass) {
 var index = JSV.source.JDXReader.VAR_LIST_TABLE[0].indexOf (dataClass);
 return JSV.source.JDXReader.VAR_LIST_TABLE[1].substring (index + 1, index + 12).trim ();
 }, "~S");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
  function (filePath, obscure, loadImaginary, iSpecFirst, iSpecLast, nmrNormalization) {
 filePath = JU.PT.trimQuotes (filePath);
 this.isSimulation = (filePath != null && filePath.startsWith ("http://SIMULATION/"));
@@ -28396,11 +28396,11 @@ this.firstSpec = iSpecFirst;
 this.lastSpec = iSpecLast;
 this.loadImaginary = loadImaginary;
 }, "~S,~B,~B,~N,~N,~N");
-c$.createJDXSourceFromStream = Clazz_defineMethod (c$, "createJDXSourceFromStream", 
+c$.createJDXSourceFromStream = Clazz_defineMethod (c$, "createJDXSourceFromStream",
 function ($in, obscure, loadImaginary, nmrMaxY) {
 return JSV.source.JDXReader.createJDXSource (JSV.common.JSVFileManager.getBufferedReaderForInputStream ($in), "stream", obscure, loadImaginary, -1, -1, nmrMaxY);
 }, "java.io.InputStream,~B,~B,~N");
-c$.createJDXSource = Clazz_defineMethod (c$, "createJDXSource", 
+c$.createJDXSource = Clazz_defineMethod (c$, "createJDXSource",
 function (br, filePath, obscure, loadImaginary, iSpecFirst, iSpecLast, nmrMaxY) {
 var header = null;
 try {
@@ -28435,7 +28435,7 @@ throw e;
 }
 }
 }, "java.io.BufferedReader,~S,~B,~B,~N,~N,~N");
-Clazz_defineMethod (c$, "getJDXSource", 
+Clazz_defineMethod (c$, "getJDXSource",
  function (reader) {
 this.source =  new JSV.source.JDXSource (0, this.filePath);
 this.isZipFile = (Clazz_instanceOf (reader, JSV.api.JSVZipReader));
@@ -28475,16 +28475,16 @@ if (!isOK) throw  new JSV.exception.JSVException ("##TITLE record not found");
 this.source.setErrorLog (this.errorLog.toString ());
 return this.source;
 }, "~O");
-Clazz_defineMethod (c$, "getValue", 
+Clazz_defineMethod (c$, "getValue",
  function (label) {
 var value = (this.isTabularDataLabel (label) ? "" : this.t.getValue ());
 return ("##END".equals (label) ? null : value);
 }, "~S");
-Clazz_defineMethod (c$, "isTabularDataLabel", 
+Clazz_defineMethod (c$, "isTabularDataLabel",
  function (label) {
 return (this.isTabularData = ("##DATATABLE##PEAKTABLE##XYDATA##XYPOINTS#".indexOf (label + "#") >= 0));
 }, "~S");
-Clazz_defineMethod (c$, "addSpectrum", 
+Clazz_defineMethod (c$, "addSpectrum",
  function (spectrum, forceSub) {
 if (!this.loadImaginary && spectrum.isImaginary ()) {
 JU.Logger.info ("FileReader skipping imaginary spectrum -- use LOADIMAGINARY TRUE to load this spectrum.");
@@ -28514,7 +28514,7 @@ spectrum.setBlockID (this.blockID);
 this.source.addJDXSpectrum (null, spectrum, forceSub);
 return true;
 }, "JSV.common.Spectrum,~B");
-Clazz_defineMethod (c$, "getBlockSpectra", 
+Clazz_defineMethod (c$, "getBlockSpectra",
  function (sourceLDRTable) {
 JU.Logger.debug ("--JDX block start--");
 var label = "";
@@ -28585,11 +28585,11 @@ this.source.setErrorLog (this.errorLog.toString ());
 JU.Logger.debug ("--JDX block end--");
 return this.source;
 }, "JU.Lst");
-Clazz_defineMethod (c$, "addErrorLogSeparator", 
+Clazz_defineMethod (c$, "addErrorLogSeparator",
  function () {
 if (this.errorLog.length () > 0 && this.errorLog.lastIndexOf ("=====================\n") != this.errorLog.length () - "=====================\n".length) this.errorLog.append ("=====================\n");
 });
-Clazz_defineMethod (c$, "getNTupleSpectra", 
+Clazz_defineMethod (c$, "getNTupleSpectra",
  function (sourceLDRTable, spectrum0, label) {
 var minMaxY =  Clazz_newDoubleArray (-1, [1.7976931348623157E308, 4.9E-324]);
 this.blockID = Math.random ();
@@ -28683,7 +28683,7 @@ this.source.setErrorLog (this.errorLog.toString ());
 JU.Logger.info ("NTUPLE MIN/MAX Y = " + minMaxY[0] + " " + minMaxY[1]);
 return this.source;
 }, "JU.Lst,JSV.source.JDXDataObject,~S");
-Clazz_defineMethod (c$, "readDataLabel", 
+Clazz_defineMethod (c$, "readDataLabel",
  function (spectrum, label, value, errorLog, obscure) {
 if (JSV.source.JDXReader.readHeaderLabel (spectrum, label, value, errorLog, obscure)) return true;
 label += " ";
@@ -28761,7 +28761,7 @@ return true;
 }}
 return false;
 }, "JSV.source.JDXDataObject,~S,~S,JU.SB,~B");
-c$.readHeaderLabel = Clazz_defineMethod (c$, "readHeaderLabel", 
+c$.readHeaderLabel = Clazz_defineMethod (c$, "readHeaderLabel",
  function (jdxHeader, label, value, errorLog, obscure) {
 switch (("##TITLE#####JCAMPDX###ORIGIN####OWNER#####DATATYPE##LONGDATE##DATE######TIME####").indexOf (label + "#")) {
 case 0:
@@ -28794,14 +28794,14 @@ return true;
 }
 return false;
 }, "JSV.source.JDXHeader,~S,~S,JU.SB,~B");
-Clazz_defineMethod (c$, "setTabularDataType", 
+Clazz_defineMethod (c$, "setTabularDataType",
  function (spectrum, label) {
 if (label.equals ("##PEAKASSIGNMENTS")) spectrum.setDataClass ("PEAKASSIGNMENTS");
  else if (label.equals ("##PEAKTABLE")) spectrum.setDataClass ("PEAKTABLE");
  else if (label.equals ("##XYDATA")) spectrum.setDataClass ("XYDATA");
  else if (label.equals ("##XYPOINTS")) spectrum.setDataClass ("XYPOINTS");
 }, "JSV.source.JDXDataObject,~S");
-Clazz_defineMethod (c$, "processTabularData", 
+Clazz_defineMethod (c$, "processTabularData",
  function (spec, table) {
 spec.setHeaderTable (table);
 if (spec.dataClass.equals ("XYDATA")) {
@@ -28827,7 +28827,7 @@ spec.setIncreasing (fileDeltaX > 0);
 return true;
 }return false;
 }, "JSV.source.JDXDataObject,JU.Lst");
-Clazz_defineMethod (c$, "readNTUPLECoords", 
+Clazz_defineMethod (c$, "readNTUPLECoords",
  function (spec, nTupleTable, plotSymbols, minMaxY) {
 var list;
 if (spec.dataClass.equals ("XYDATA")) {
@@ -28867,7 +28867,7 @@ spec.setXYCoords (JSV.common.Coordinate.parseDSV (this.t.getValue (), spec.xFact
 return true;
 }return false;
 }, "JSV.source.JDXDataObject,java.util.Map,~A,~A");
-Clazz_defineMethod (c$, "decompressData", 
+Clazz_defineMethod (c$, "decompressData",
  function (spec, minMaxY) {
 var errPt = this.errorLog.length ();
 var fileDeltaX = JSV.common.Coordinate.deltaX (spec.fileLastX, spec.fileFirstX, spec.nPointsFile);
@@ -28901,7 +28901,7 @@ this.errorLog.append ("Number of points in Header " + spec.nPointsFile + " Found
 }if (JU.Logger.debugging) {
 System.err.println (this.errorLog.toString ());
 }}, "JSV.source.JDXDataObject,~A");
-c$.addHeader = Clazz_defineMethod (c$, "addHeader", 
+c$.addHeader = Clazz_defineMethod (c$, "addHeader",
 function (table, label, value) {
 var entry;
 for (var i = 0; i < table.size (); i++) if ((entry = table.get (i))[0].equals (label)) {
@@ -28910,7 +28910,7 @@ return;
 }
 table.addLast ( Clazz_newArray (-1, [label, value, JSV.source.JDXSourceStreamTokenizer.cleanLabel (label)]));
 }, "JU.Lst,~S,~S");
-Clazz_defineMethod (c$, "checkCustomTags", 
+Clazz_defineMethod (c$, "checkCustomTags",
  function (spectrum, label, value) {
 if (label.length > 10) label = label.substring (0, 10);
 if (spectrum == null) System.out.println (label);
@@ -28950,42 +28950,42 @@ this.reader = null;
 }
 return true;
 }, "JSV.common.Spectrum,~S,~S");
-Clazz_defineMethod (c$, "getMpr", 
+Clazz_defineMethod (c$, "getMpr",
  function () {
 return (this.mpr == null ? this.mpr = JSV.common.JSViewer.getInterface ("J.jsv.JDXMOLParser") : this.mpr);
 });
-Clazz_overrideMethod (c$, "rd", 
+Clazz_overrideMethod (c$, "rd",
 function () {
 return this.reader.readLine ();
 });
-Clazz_overrideMethod (c$, "setSpectrumPeaks", 
+Clazz_overrideMethod (c$, "setSpectrumPeaks",
 function (nH, piUnitsX, piUnitsY) {
 this.modelSpectrum.setPeakList (this.peakData, piUnitsX, piUnitsY);
 if (this.modelSpectrum.isNMR ()) this.modelSpectrum.setNHydrogens (nH);
 }, "~N,~S,~S");
-Clazz_overrideMethod (c$, "addPeakData", 
+Clazz_overrideMethod (c$, "addPeakData",
 function (info) {
 if (this.peakData == null) this.peakData =  new JU.Lst ();
 this.peakData.addLast ( new JSV.common.PeakInfo (info));
 }, "~S");
-Clazz_overrideMethod (c$, "processModelData", 
+Clazz_overrideMethod (c$, "processModelData",
 function (id, data, type, base, last, modelScale, vibScale, isFirst) {
 }, "~S,~S,~S,~S,~S,~N,~N,~B");
-Clazz_overrideMethod (c$, "discardLinesUntilContains", 
+Clazz_overrideMethod (c$, "discardLinesUntilContains",
 function (containsMatch) {
 var line;
 while ((line = this.rd ()) != null && line.indexOf (containsMatch) < 0) {
 }
 return line;
 }, "~S");
-Clazz_overrideMethod (c$, "discardLinesUntilContains2", 
+Clazz_overrideMethod (c$, "discardLinesUntilContains2",
 function (s1, s2) {
 var line;
 while ((line = this.rd ()) != null && line.indexOf (s1) < 0 && line.indexOf (s2) < 0) {
 }
 return line;
 }, "~S,~S");
-Clazz_overrideMethod (c$, "discardLinesUntilNonBlank", 
+Clazz_overrideMethod (c$, "discardLinesUntilNonBlank",
 function () {
 var line;
 while ((line = this.rd ()) != null && line.trim ().length == 0) {
@@ -29008,12 +29008,12 @@ this.peakCount = 0;
 this.isView = false;
 Clazz_instantialize (this, arguments);
 }, JSV.source, "JDXSource", JSV.source.JDXHeader);
-Clazz_defineMethod (c$, "dispose", 
+Clazz_defineMethod (c$, "dispose",
 function () {
 this.headerTable = null;
 this.jdxSpectra = null;
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (type, filePath) {
 Clazz_superConstructor (this, JSV.source.JDXSource, []);
 this.type = type;
@@ -29022,46 +29022,46 @@ this.headerTable =  new JU.Lst ();
 this.jdxSpectra =  new JU.Lst ();
 this.isCompoundSource = (type != 0);
 }, "~N,~S");
-Clazz_defineMethod (c$, "getJDXSpectrum", 
+Clazz_defineMethod (c$, "getJDXSpectrum",
 function (index) {
 return (this.jdxSpectra.size () <= index ? null : this.jdxSpectra.get (index));
 }, "~N");
-Clazz_defineMethod (c$, "addJDXSpectrum", 
+Clazz_defineMethod (c$, "addJDXSpectrum",
 function (filePath, spectrum, forceSub) {
 if (filePath == null) filePath = this.filePath;
 spectrum.setFilePath (filePath);
 var n = this.jdxSpectra.size ();
 if (n == 0 || !this.jdxSpectra.get (n - 1).addSubSpectrum (spectrum, forceSub)) this.jdxSpectra.addLast (spectrum);
 }, "~S,JSV.common.Spectrum,~B");
-Clazz_defineMethod (c$, "getNumberOfSpectra", 
+Clazz_defineMethod (c$, "getNumberOfSpectra",
 function () {
 return this.jdxSpectra.size ();
 });
-Clazz_defineMethod (c$, "getSpectra", 
+Clazz_defineMethod (c$, "getSpectra",
 function () {
 return this.jdxSpectra;
 });
-Clazz_defineMethod (c$, "getSpectraAsArray", 
+Clazz_defineMethod (c$, "getSpectraAsArray",
 function () {
 return (this.jdxSpectra == null ? null : this.jdxSpectra.toArray ());
 });
-Clazz_defineMethod (c$, "getErrorLog", 
+Clazz_defineMethod (c$, "getErrorLog",
 function () {
 return this.errors;
 });
-Clazz_defineMethod (c$, "setErrorLog", 
+Clazz_defineMethod (c$, "setErrorLog",
 function (errors) {
 this.errors = errors;
 }, "~S");
-Clazz_defineMethod (c$, "setFilePath", 
+Clazz_defineMethod (c$, "setFilePath",
 function (filePath) {
 this.filePath = filePath;
 }, "~S");
-Clazz_defineMethod (c$, "getFilePath", 
+Clazz_defineMethod (c$, "getFilePath",
 function () {
 return this.filePath;
 });
-c$.createView = Clazz_defineMethod (c$, "createView", 
+c$.createView = Clazz_defineMethod (c$, "createView",
 function (specs) {
 var source =  new JSV.source.JDXSource (-2, "view");
 source.isView = true;
@@ -29069,7 +29069,7 @@ for (var i = 0; i < specs.size (); i++) source.addJDXSpectrum (specs.get (i).get
 
 return source;
 }, "JU.Lst");
-Clazz_defineMethod (c$, "getHeaderRowDataAsArray", 
+Clazz_defineMethod (c$, "getHeaderRowDataAsArray",
 function (addDataClass, rowData) {
 if (rowData == null) rowData =  Clazz_newArray (0, 0, null);
 var data = this.getHeaderRowDataAsArray (addDataClass, rowData.length);
@@ -29077,11 +29077,11 @@ for (var i = rowData.length; --i >= 0; ) data[data.length - rowData.length + i] 
 
 return data;
 }, "~B,~A");
-Clazz_defineMethod (c$, "setID", 
+Clazz_defineMethod (c$, "setID",
 function (id) {
 this.jdxSpectra.get (0).sourceID = id;
 }, "~S");
-Clazz_defineMethod (c$, "matchesFilePath", 
+Clazz_defineMethod (c$, "matchesFilePath",
 function (filePath) {
 return this.filePath.equals (filePath) || this.filePath.$replace ('\\', '/').equals (filePath);
 }, "~S");
@@ -29103,19 +29103,19 @@ this.line = null;
 this.lineNo = 0;
 Clazz_instantialize (this, arguments);
 }, JSV.source, "JDXSourceStreamTokenizer");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (br) {
 this.br = br;
 }, "java.io.BufferedReader");
-Clazz_defineMethod (c$, "peakLabel", 
+Clazz_defineMethod (c$, "peakLabel",
 function () {
 return this.nextLabel (false);
 });
-Clazz_defineMethod (c$, "getLabel", 
+Clazz_defineMethod (c$, "getLabel",
 function () {
 return this.nextLabel (true);
 });
-Clazz_defineMethod (c$, "nextLabel", 
+Clazz_defineMethod (c$, "nextLabel",
  function (isGet) {
 this.rawLabel = null;
 this.value = null;
@@ -29149,7 +29149,7 @@ if (isGet) this.line = this.line.substring (pt + 1);
 if (JU.Logger.debugging) JU.Logger.info (this.rawLabel);
 return JSV.source.JDXSourceStreamTokenizer.cleanLabel (this.rawLabel);
 }, "~B");
-c$.cleanLabel = Clazz_defineMethod (c$, "cleanLabel", 
+c$.cleanLabel = Clazz_defineMethod (c$, "cleanLabel",
 function (label) {
 if (label == null) return null;
 var i;
@@ -29169,7 +29169,7 @@ break;
 }
 return str.toString ().toUpperCase ();
 }, "~S");
-Clazz_defineMethod (c$, "getValue", 
+Clazz_defineMethod (c$, "getValue",
 function () {
 if (this.value != null) return this.value;
 var sb =  new JU.SB ().append (this.line);
@@ -29190,7 +29190,7 @@ this.value = (this.rawLabel.startsWith ("##$") ? sb.toString ().trim () : JSV.so
 if (JU.Logger.debugging) JU.Logger.info (this.value);
 return this.value;
 });
-Clazz_defineMethod (c$, "readLineTrimmed", 
+Clazz_defineMethod (c$, "readLineTrimmed",
 function () {
 this.readLine ();
 if (this.line == null) return null;
@@ -29198,19 +29198,19 @@ if (this.line.indexOf ("$$") < 0) return this.line.trim ();
 var sb =  new JU.SB ().append (this.line);
 return JSV.source.JDXSourceStreamTokenizer.trimLines (sb);
 });
-Clazz_defineMethod (c$, "flushLine", 
+Clazz_defineMethod (c$, "flushLine",
 function () {
 var sb =  new JU.SB ().append (this.line);
 this.line = null;
 return JSV.source.JDXSourceStreamTokenizer.trimLines (sb);
 });
-Clazz_defineMethod (c$, "readLine", 
+Clazz_defineMethod (c$, "readLine",
  function () {
 this.line = this.br.readLine ();
 this.lineNo++;
 return this.line;
 });
-c$.trimLines = Clazz_defineMethod (c$, "trimLines", 
+c$.trimLines = Clazz_defineMethod (c$, "trimLines",
  function (v) {
 var n = v.length ();
 var ilast = n - 1;
@@ -29243,19 +29243,19 @@ buffer[pt++] = ch;
 if (pt > 0 && buffer[pt - 1] == '\n') --pt;
 return ( String.instantialize (buffer)).substring (0, pt).trim ();
 }, "JU.SB");
-c$.ptNonWhite = Clazz_defineMethod (c$, "ptNonWhite", 
+c$.ptNonWhite = Clazz_defineMethod (c$, "ptNonWhite",
  function (v, pt, n) {
 while (pt < n && Character.isWhitespace (v.charAt (pt))) pt++;
 
 return pt;
 }, "JU.SB,~N,~N");
-c$.ptNonSpace = Clazz_defineMethod (c$, "ptNonSpace", 
+c$.ptNonSpace = Clazz_defineMethod (c$, "ptNonSpace",
  function (v, pt, n) {
 while (pt < n && (v.charAt (pt) == ' ' || v.charAt (pt) == '\t')) pt++;
 
 return pt;
 }, "JU.SB,~N,~N");
-c$.ptNonSpaceRev = Clazz_defineMethod (c$, "ptNonSpaceRev", 
+c$.ptNonSpaceRev = Clazz_defineMethod (c$, "ptNonSpaceRev",
  function (v, pt) {
 while (--pt >= 0 && (v.charAt (pt) == ' ' || v.charAt (pt) == '\t')) {
 }
@@ -29272,36 +29272,36 @@ this.vwr = null;
 this.selectedPath = null;
 Clazz_instantialize (this, arguments);
 }, JSV.tree, "SimpleTree", null, JSV.api.JSVTree);
-Clazz_overrideMethod (c$, "getRootNode", 
+Clazz_overrideMethod (c$, "getRootNode",
 function () {
 return this.rootNode;
 });
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (viewer) {
 this.vwr = viewer;
 this.rootNode =  new JSV.tree.SimpleTreeNode ("Spectra", null);
 this.spectraTreeModel =  new JSV.tree.SimpleTreeModel (this.rootNode);
 }, "JSV.common.JSViewer");
-Clazz_defineMethod (c$, "valueChanged", 
+Clazz_defineMethod (c$, "valueChanged",
 function () {
 this.vwr.selectedTreeNode (this.getLastSelectedPathComponent ());
 });
-Clazz_defineMethod (c$, "getLastSelectedPathComponent", 
+Clazz_defineMethod (c$, "getLastSelectedPathComponent",
  function () {
 return (this.selectedPath == null ? null : this.selectedPath.getLastPathComponent ());
 });
-Clazz_overrideMethod (c$, "setSelectedPanel", 
+Clazz_overrideMethod (c$, "setSelectedPanel",
 function (si, jsvp) {
 if (jsvp != null) {
 var treeNode = JSV.common.PanelNode.findNode (jsvp, this.vwr.panelNodes).treeNode;
 this.setSelectionPath (this.vwr.spectraTree.newTreePath (treeNode.getPath ()));
 }}, "JSV.api.ScriptInterface,JSV.api.JSVPanel");
-Clazz_defineMethod (c$, "setSelectionPath", 
+Clazz_defineMethod (c$, "setSelectionPath",
  function (newTreePath) {
 this.selectedPath = newTreePath;
 this.valueChanged ();
 }, "JSV.api.JSVTreePath");
-Clazz_overrideMethod (c$, "createTree", 
+Clazz_overrideMethod (c$, "createTree",
 function (fileCount, source, panels) {
 var tree = this.vwr.spectraTree;
 var rootNode = tree.getRootNode ();
@@ -29323,15 +29323,15 @@ tree.spectraTreeModel.insertNodeInto (treeNode, fileNode, fileNode.getChildCount
 this.vwr.selectFrameNode (panels[0]);
 return fileNode;
 }, "~N,JSV.source.JDXSource,~A");
-Clazz_overrideMethod (c$, "setPath", 
+Clazz_overrideMethod (c$, "setPath",
 function (path) {
 this.setSelectionPath (path);
 }, "JSV.api.JSVTreePath");
-Clazz_defineMethod (c$, "newTreePath", 
+Clazz_defineMethod (c$, "newTreePath",
 function (path) {
 return  new JSV.tree.SimpleTreePath (path);
 }, "~A");
-Clazz_overrideMethod (c$, "deleteNodes", 
+Clazz_overrideMethod (c$, "deleteNodes",
 function (toDelete) {
 for (var i = 0; i < toDelete.size (); i++) {
 this.spectraTreeModel.removeNodeFromParent (toDelete.get (i));
@@ -29345,15 +29345,15 @@ this.node = null;
 this.pt = 0;
 Clazz_instantialize (this, arguments);
 }, JSV.tree, "SimpleTreeEnumeration", null, java.util.Enumeration);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (jsTreeNode) {
 this.node = jsTreeNode;
 }, "JSV.tree.SimpleTreeNode");
-Clazz_overrideMethod (c$, "hasMoreElements", 
+Clazz_overrideMethod (c$, "hasMoreElements",
 function () {
 return (this.pt < this.node.$children.size ());
 });
-Clazz_overrideMethod (c$, "nextElement", 
+Clazz_overrideMethod (c$, "nextElement",
 function () {
 return this.node.$children.get (this.pt++);
 });
@@ -29363,17 +29363,17 @@ c$ = Clazz_decorateAsClass (function () {
 this.rootNode = null;
 Clazz_instantialize (this, arguments);
 }, JSV.tree, "SimpleTreeModel");
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (rootNode) {
 this.rootNode = rootNode;
 }, "JSV.api.JSVTreeNode");
-Clazz_defineMethod (c$, "insertNodeInto", 
+Clazz_defineMethod (c$, "insertNodeInto",
 function (fileNode, rootNode, i) {
 var node = rootNode;
 node.$children.add (i, fileNode);
 (fileNode).prevNode = node;
 }, "JSV.api.JSVTreeNode,JSV.api.JSVTreeNode,~N");
-Clazz_defineMethod (c$, "removeNodeFromParent", 
+Clazz_defineMethod (c$, "removeNodeFromParent",
 function (node) {
 (node).prevNode.$children.removeObj (node);
 }, "JSV.api.JSVTreeNode");
@@ -29387,33 +29387,33 @@ this.$children = null;
 this.text = null;
 Clazz_instantialize (this, arguments);
 }, JSV.tree, "SimpleTreeNode", null, JSV.api.JSVTreeNode);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (text, panelNode) {
 this.text = text;
 this.panelNode = panelNode;
 this.$children =  new JU.Lst ();
 }, "~S,JSV.common.PanelNode");
-Clazz_overrideMethod (c$, "getPanelNode", 
+Clazz_overrideMethod (c$, "getPanelNode",
 function () {
 return this.panelNode;
 });
-Clazz_overrideMethod (c$, "getIndex", 
+Clazz_overrideMethod (c$, "getIndex",
 function () {
 return this.index;
 });
-Clazz_overrideMethod (c$, "setIndex", 
+Clazz_overrideMethod (c$, "setIndex",
 function (index) {
 this.index = index;
 }, "~N");
-Clazz_overrideMethod (c$, "children", 
+Clazz_overrideMethod (c$, "children",
 function () {
 return  new JSV.tree.SimpleTreeEnumeration (this);
 });
-Clazz_overrideMethod (c$, "getChildCount", 
+Clazz_overrideMethod (c$, "getChildCount",
 function () {
 return this.$children.size ();
 });
-Clazz_overrideMethod (c$, "getPath", 
+Clazz_overrideMethod (c$, "getPath",
 function () {
 var o =  new JU.Lst ();
 var node = this;
@@ -29422,11 +29422,11 @@ while ((node = node.prevNode) != null) o.add (0, node);
 
 return o.toArray ();
 });
-Clazz_overrideMethod (c$, "isLeaf", 
+Clazz_overrideMethod (c$, "isLeaf",
 function () {
 return (this.prevNode != null && this.prevNode.prevNode != null);
 });
-Clazz_overrideMethod (c$, "toString", 
+Clazz_overrideMethod (c$, "toString",
 function () {
 return this.text;
 });
@@ -29437,11 +29437,11 @@ c$ = Clazz_decorateAsClass (function () {
 this.path = null;
 Clazz_instantialize (this, arguments);
 }, JSV.tree, "SimpleTreePath", null, JSV.api.JSVTreePath);
-Clazz_makeConstructor (c$, 
+Clazz_makeConstructor (c$,
 function (path) {
 this.path = path;
 }, "~A");
-Clazz_overrideMethod (c$, "getLastPathComponent", 
+Clazz_overrideMethod (c$, "getLastPathComponent",
 function () {
 return (this.path == null || this.path.length == 0 ? null : this.path[this.path.length - 1]);
 });

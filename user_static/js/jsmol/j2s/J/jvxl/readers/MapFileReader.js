@@ -36,24 +36,24 @@ this.origin =  new JU.P3 ();
 this.vectors =  new Array (3);
 this.p3 =  new JU.P3 ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.MapFileReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2MFR (sg, br);
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.defineMethod (c$, "init2MFR", 
+Clazz.defineMethod (c$, "init2MFR",
 function (sg, br) {
 this.init2VFR (sg, br);
 this.isAngstroms = true;
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.defineMethod (c$, "checkInsideOut", 
+Clazz.defineMethod (c$, "checkInsideOut",
 function (mapc, mapr, maps) {
 if (this.params.thePlane == null) this.params.insideOut = (";123;231;312;".indexOf (";" + mapc + mapr + maps) >= 0);
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "getVectorsAndOrigin", 
+Clazz.defineMethod (c$, "getVectorsAndOrigin",
 function () {
 this.checkInsideOut (this.mapc, this.mapr, this.maps);
 JU.Logger.info ("grid parameters: nx,ny,nz: " + this.n0 + "," + this.n1 + "," + this.n2);
@@ -99,7 +99,7 @@ unitCell.toCartesian (this.p3, true);
 this.p3.add (this.origin);
 JU.Logger.info ("boundbox corners " + this.origin + " " + this.p3 + ";draw bbox boundbox mesh nofill");
 });
-Clazz.defineMethod (c$, "setCutoffAutomatic", 
+Clazz.defineMethod (c$, "setCutoffAutomatic",
 function () {
 if (this.params.thePlane == null && this.params.cutoffAutomatic) {
 this.params.cutoff = -1.0;

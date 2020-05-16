@@ -6,11 +6,11 @@ this.Ydelim = "";
 this.peakData = null;
 Clazz.instantialize (this, arguments);
 }, JSV.source, "CMLReader", JSV.source.XMLReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JSV.source.CMLReader, []);
 });
-Clazz.overrideMethod (c$, "getXML", 
+Clazz.overrideMethod (c$, "getXML",
 function (br) {
 try {
 this.source =  new JSV.source.JDXSource (0, this.filePath);
@@ -36,7 +36,7 @@ throw e1;
 }
 return this.source;
 }, "java.io.BufferedReader");
-Clazz.overrideMethod (c$, "processTag", 
+Clazz.overrideMethod (c$, "processTag",
 function (tagId) {
 switch (tagId) {
 case 4:
@@ -68,16 +68,16 @@ System.out.println ("CMLSource not processing tag " + JSV.source.XMLReader.tagNa
 return false;
 }
 }, "~N");
-Clazz.overrideMethod (c$, "processEndTag", 
+Clazz.overrideMethod (c$, "processEndTag",
 function (tagId) {
 }, "~N");
-Clazz.defineMethod (c$, "processSpectrum", 
+Clazz.defineMethod (c$, "processSpectrum",
  function () {
 if (this.attrList.contains ("title")) this.title = this.parser.getAttrValue ("title");
  else if (this.attrList.contains ("id")) this.title = this.parser.getAttrValue ("id");
 if (this.attrList.contains ("type")) this.techname = this.parser.getAttrValue ("type").toUpperCase () + " SPECTRUM";
 });
-Clazz.defineMethod (c$, "processMetadataList", 
+Clazz.defineMethod (c$, "processMetadataList",
  function () {
 if (this.tagName.equals ("metadata")) {
 this.tagName = this.parser.getAttrValueLC ("name");
@@ -91,7 +91,7 @@ if (this.attrList.contains ("content")) this.owner = this.parser.getAttrValue ("
 if (this.attrList.contains ("content")) this.obNucleus = this.parser.getAttrValue ("content");
  else this.obNucleus = this.parser.thisValue ();
 }}});
-Clazz.defineMethod (c$, "processParameterList", 
+Clazz.defineMethod (c$, "processParameterList",
  function () {
 if (this.tagName.equals ("parameter")) {
 var title = this.parser.getAttrValueLC ("title");
@@ -105,7 +105,7 @@ this.modelType = this.parser.getAttrValue ("value");
 } else if (title.equals ("resolution")) {
 this.resolution = this.parser.qualifiedValue ();
 }}});
-Clazz.defineMethod (c$, "processConditionList", 
+Clazz.defineMethod (c$, "processConditionList",
  function () {
 if (this.tagName.equals ("scalar")) {
 var dictRef = this.parser.getAttrValueLC ("dictRef");
@@ -113,7 +113,7 @@ if (dictRef.contains (":field")) {
 this.StrObFreq = this.parser.thisValue ();
 if (this.StrObFreq.charCodeAt (0) > 47 && this.StrObFreq.charCodeAt (0) < 58) this.obFreq = Double.parseDouble (this.StrObFreq);
 }}});
-Clazz.defineMethod (c$, "processSample", 
+Clazz.defineMethod (c$, "processSample",
  function () {
 if (this.tagName.equals ("formula")) {
 if (this.attrList.contains ("concise")) this.molForm = this.parser.getAttrValue ("concise");
@@ -121,7 +121,7 @@ if (this.attrList.contains ("concise")) this.molForm = this.parser.getAttrValue 
 } else if (this.tagName.equals ("name")) {
 this.casName = this.parser.thisValue ();
 }});
-Clazz.defineMethod (c$, "processSpectrumData", 
+Clazz.defineMethod (c$, "processSpectrumData",
  function () {
 if (this.tagName.equals ("xaxis")) {
 if (this.attrList.contains ("multipliertodata")) this.xFactor = Double.parseDouble (this.parser.getAttrValue ("multiplierToData"));
@@ -204,7 +204,7 @@ this.yaxisData[jj] = Double.parseDouble (this.attrList) * this.yFactor;
 }this.firstY = this.yaxisData[0];
 this.specfound = true;
 }});
-Clazz.defineMethod (c$, "processPeaks", 
+Clazz.defineMethod (c$, "processPeaks",
  function () {
 if (this.specfound) return;
 this.peakData =  new java.util.Vector ();
@@ -224,7 +224,7 @@ this.firstY = this.yaxisData[0];
 this.increasing = (this.lastX > this.firstX);
 this.continuous = false;
 });
-Clazz.defineMethod (c$, "processPeakList", 
+Clazz.defineMethod (c$, "processPeakList",
 function () {
 if (this.tagName.equals ("peak")) {
 if (this.attrList.contains ("xvalue")) {
@@ -237,7 +237,7 @@ if (this.attrList.contains ("yunits")) this.yUnits = JSV.source.CMLReader.checkU
 if (this.attrList.contains ("atomrefs")) xy[1] = 49 * JU.PT.getTokens (this.parser.getAttrValue ("atomRefs")).length;
 this.peakData.add (xy);
 }}});
-c$.checkUnits = Clazz.defineMethod (c$, "checkUnits", 
+c$.checkUnits = Clazz.defineMethod (c$, "checkUnits",
  function (units) {
 units = units.substring (units.indexOf (":") + 1).toUpperCase ();
 return (units.equals ("RELABUNDANCE") ? "RELATIVE ABUNDANCE" : units.contains ("ARBITRARY") ? "ARBITRARY UNITS" : units.equals ("MOVERZ") ? "M/Z" : units.equals ("CM-1") ? "1/CM" : units.equals ("NM") ? "NANOMETERS" : units);

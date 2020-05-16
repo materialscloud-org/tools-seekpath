@@ -21,24 +21,24 @@ Clazz.prepareFields (c$, function () {
 this.names =  new JU.Lst ();
 this.variables =  new java.util.Hashtable ();
 });
-Clazz.defineMethod (c$, "isVariable", 
+Clazz.defineMethod (c$, "isVariable",
 function (ident) {
 return this.variables.containsKey (ident);
 }, "~S");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (name, tok) {
 this.set (name, tok);
 this.typeName = JS.T.nameOf (tok);
 }, "~S,~N");
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (name, tok) {
 this.name = name;
 this.tok = tok;
 }, "~S,~N");
-Clazz.defineMethod (c$, "setVariables", 
+Clazz.defineMethod (c$, "setVariables",
 function (contextVariables, params) {
 var nParams = (params == null ? 0 : params.size ());
 for (var i = this.names.size (); --i >= 0; ) {
@@ -52,7 +52,7 @@ contextVariables.put ("_argcount", JS.SV.newI (params == null ? 0 : params.size 
 contextVariables.put ("_arguments", (params == null ? JS.SV.getVariableAI ( Clazz.newIntArray (-1, [])) : JS.SV.getVariableList (params)));
 }contextVariables.put ("_retval", JS.SV.newI (this.tok == 364558 ? 2147483647 : 0));
 }, "java.util.Map,JU.Lst");
-Clazz.defineMethod (c$, "unsetVariables", 
+Clazz.defineMethod (c$, "unsetVariables",
 function (contextVariables, params) {
 var nParams = (params == null ? 0 : params.size ());
 var nNames = this.names.size ();
@@ -65,13 +65,13 @@ if (local.tok != 7) continue;
 global.value = local.value;
 }
 }, "java.util.Map,JU.Lst");
-Clazz.defineMethod (c$, "addVariable", 
+Clazz.defineMethod (c$, "addVariable",
 function (name, isParameter) {
 this.variables.put (name, name);
 this.names.addLast (name);
 if (isParameter) this.nParameters++;
 }, "~S,~B");
-c$.setFunction = Clazz.defineMethod (c$, "setFunction", 
+c$.setFunction = Clazz.defineMethod (c$, "setFunction",
 function ($function, script, ichCurrentCommand, pt, lineNumbers, lineIndices, lltoken) {
 var cmdpt0 = $function.cmdpt0;
 var chpt0 = $function.chpt0;
@@ -94,19 +94,19 @@ lltoken.removeItemAt (i);
 lineIndices[i][0] = lineIndices[i][1] = 0;
 }
 }, "JS.ScriptFunction,~S,~N,~N,~A,~A,JU.Lst");
-Clazz.defineMethod (c$, "setScript", 
+Clazz.defineMethod (c$, "setScript",
  function (s) {
 this.script = s;
 if (this.script != null && this.script !== "" && !this.script.endsWith ("\n")) this.script += "\n";
 }, "~S");
-Clazz.overrideMethod (c$, "toString", 
+Clazz.overrideMethod (c$, "toString",
 function () {
 var s =  new JU.SB ().append ("/*\n * ").append (this.name).append ("\n */\n").append (this.getSignature ()).append (" {\n");
 if (this.script != null) s.append (this.script);
 s.append ("}\n");
 return s.toString ();
 });
-Clazz.overrideMethod (c$, "getSignature", 
+Clazz.overrideMethod (c$, "getSignature",
 function () {
 if (this.typeName == null) return JS.T.nameOf (this.tok);
 var s =  new JU.SB ().append (this.typeName).append (" ").append (this.name).append ("(");
@@ -117,15 +117,15 @@ s.append (this.names.get (i));
 s.append (")");
 return s.toString ();
 });
-Clazz.overrideMethod (c$, "geTokens", 
+Clazz.overrideMethod (c$, "geTokens",
 function () {
 return this.aatoken;
 });
-Clazz.overrideMethod (c$, "getName", 
+Clazz.overrideMethod (c$, "getName",
 function () {
 return this.name;
 });
-Clazz.overrideMethod (c$, "getTok", 
+Clazz.overrideMethod (c$, "getTok",
 function () {
 return this.tok;
 });

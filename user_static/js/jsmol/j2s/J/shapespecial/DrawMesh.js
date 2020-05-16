@@ -19,26 +19,26 @@ this.scale = 1;
 this.isScaleSet = false;
 Clazz.instantialize (this, arguments);
 }, J.shapespecial, "DrawMesh", J.shape.Mesh);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (vwr, thisID, colix, index) {
 this.drawType = J.shapespecial.Draw.EnumDrawType.NONE;
 this.axis = JU.V3.new3 (1, 0, 0);
 this.bsMeshesVisible =  new JU.BS ();
 this.mesh1 (vwr, thisID, colix, index);
 }, "JV.Viewer,~S,~N,~N");
-Clazz.overrideMethod (c$, "clear", 
+Clazz.overrideMethod (c$, "clear",
 function (meshType) {
 this.clearMesh (meshType);
 this.scale = 1;
 this.isScaleSet = false;
 }, "~S");
-Clazz.defineMethod (c$, "setCenters", 
+Clazz.defineMethod (c$, "setCenters",
 function () {
 if (this.ptCenters == null) this.setCenter (-1);
  else for (var i = this.ptCenters.length; --i >= 0; ) this.setCenter (i);
 
 });
-Clazz.defineMethod (c$, "setCenter", 
+Clazz.defineMethod (c$, "setCenter",
 function (iModel) {
 var center = JU.P3.new3 (0, 0, 0);
 var iptlast = -1;
@@ -64,12 +64,12 @@ this.ptCenter.setT (center);
 } else {
 this.ptCenters[iModel] = center;
 }}, "~N");
-Clazz.defineMethod (c$, "offset", 
+Clazz.defineMethod (c$, "offset",
 function (offset) {
 this.rotateTranslate (null, offset, false);
 this.setCenters ();
 }, "JU.V3");
-Clazz.defineMethod (c$, "deleteAtoms", 
+Clazz.defineMethod (c$, "deleteAtoms",
 function (modelIndex) {
 if (modelIndex >= this.pc) return;
 this.pc--;
@@ -81,7 +81,7 @@ this.axes = JU.AU.deleteElements (this.axes, modelIndex, 1);
 var bs = JU.BSUtil.newAndSetBit (modelIndex);
 JU.BSUtil.deleteBits (this.modelFlags, bs);
 }, "~N");
-Clazz.defineMethod (c$, "isRenderScalable", 
+Clazz.defineMethod (c$, "isRenderScalable",
 function () {
 switch (this.drawType) {
 case J.shapespecial.Draw.EnumDrawType.ARROW:

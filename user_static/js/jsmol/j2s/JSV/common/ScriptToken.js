@@ -5,24 +5,24 @@ this.tip = null;
 this.description = null;
 Clazz.instantialize (this, arguments);
 }, JSV.common, "ScriptToken", Enum);
-Clazz.defineMethod (c$, "getTip", 
+Clazz.defineMethod (c$, "getTip",
 function () {
 return "  " + (this.tip === "T" ? "TRUE/FALSE/TOGGLE" : this.tip === "TF" ? "TRUE or FALSE" : this.tip === "C" ? "COLOR" : this.tip);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function () {
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function (tip) {
 this.tip = tip;
 this.description = "";
 }, "~S");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function (tip, description) {
 this.tip = tip;
 this.description = "-- " + description;
 }, "~S,~S");
-c$.getScriptToken = Clazz.defineMethod (c$, "getScriptToken", 
+c$.getScriptToken = Clazz.defineMethod (c$, "getScriptToken",
 function (name) {
 if (JSV.common.ScriptToken.htParams == null) {
 JSV.common.ScriptToken.htParams =  new java.util.Hashtable ();
@@ -31,7 +31,7 @@ for (var item, $item = 0, $$item = JSV.common.ScriptToken.values (); $item < $$i
 }var st = JSV.common.ScriptToken.htParams.get (name.toUpperCase ());
 return (st == null ? JSV.common.ScriptToken.UNKNOWN : st);
 }, "~S");
-c$.getScriptTokenList = Clazz.defineMethod (c$, "getScriptTokenList", 
+c$.getScriptTokenList = Clazz.defineMethod (c$, "getScriptTokenList",
 function (name, isExact) {
 if (name != null) name = name.toUpperCase ();
 var list =  new JU.Lst ();
@@ -43,7 +43,7 @@ for (var entry, $entry = JSV.common.ScriptToken.htParams.entrySet ().iterator ()
 
 }return list;
 }, "~S,~B");
-c$.getValue = Clazz.defineMethod (c$, "getValue", 
+c$.getValue = Clazz.defineMethod (c$, "getValue",
 function (st, params, cmd) {
 if (!params.hasMoreTokens ()) return "";
 switch (st) {
@@ -68,20 +68,20 @@ case JSV.common.ScriptToken.ZOOM:
 return JSV.common.ScriptToken.removeCommandName (cmd).$replace (',', ' ').trim ();
 }
 }, "JSV.common.ScriptToken,JSV.common.ScriptTokenizer,~S");
-c$.removeCommandName = Clazz.defineMethod (c$, "removeCommandName", 
+c$.removeCommandName = Clazz.defineMethod (c$, "removeCommandName",
  function (cmd) {
 var pt = cmd.indexOf (" ");
 if (pt < 0) return "";
 return cmd.substring (pt).trim ();
 }, "~S");
-c$.getKey = Clazz.defineMethod (c$, "getKey", 
+c$.getKey = Clazz.defineMethod (c$, "getKey",
 function (eachParam) {
 var key = eachParam.nextToken ();
 if (key.startsWith ("#") || key.startsWith ("//")) return null;
 if (key.equalsIgnoreCase ("SET")) key = eachParam.nextToken ();
 return key.toUpperCase ();
 }, "JSV.common.ScriptTokenizer");
-c$.getTokens = Clazz.defineMethod (c$, "getTokens", 
+c$.getTokens = Clazz.defineMethod (c$, "getTokens",
 function (value) {
 if (value.startsWith ("'") && value.endsWith ("'")) value = "\"" + JU.PT.trim (value, "'") + "\"";
 var tokens =  new JU.Lst ();
@@ -93,7 +93,7 @@ tokens.addLast (s);
 }
 return tokens;
 }, "~S");
-c$.getNameList = Clazz.defineMethod (c$, "getNameList", 
+c$.getNameList = Clazz.defineMethod (c$, "getNameList",
 function (list) {
 if (list.size () == 0) return "";
 var sb =  new JU.SB ();
@@ -101,7 +101,7 @@ for (var i = 0; i < list.size (); i++) sb.append (",").append (list.get (i).toSt
 
 return sb.toString ().substring (1);
 }, "JU.Lst");
-Clazz.defineMethod (c$, "getDescription", 
+Clazz.defineMethod (c$, "getDescription",
 function () {
 return this.description;
 });

@@ -1,12 +1,12 @@
 Clazz.declarePackage ("J.export");
 Clazz.load (["J.export._VrmlExporter"], "J.export._X3dExporter", ["JU.Lst", "$.PT", "J.export.UseTable", "JV.Viewer"], function () {
 c$ = Clazz.declareType (J["export"], "_X3dExporter", J["export"]._VrmlExporter);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J["export"]._X3dExporter);
 this.useTable =  new J["export"].UseTable ("USE='");
 });
-Clazz.overrideMethod (c$, "outputHeader", 
+Clazz.overrideMethod (c$, "outputHeader",
 function () {
 this.output ("<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n");
 this.output ("<!DOCTYPE X3D PUBLIC \"ISO//Web3D//DTD X3D 3.1//EN\" \"http://www.web3d.org/specifications/x3d-3.1.dtd\">\n");
@@ -36,27 +36,27 @@ this.output ("\n  -->\n\n");
 this.commentChar = null;
 this.outputInitialTransform ();
 });
-Clazz.overrideMethod (c$, "outputAttrPt", 
+Clazz.overrideMethod (c$, "outputAttrPt",
 function (attr, pt) {
 this.output (" " + attr + "='" + pt.x + " " + pt.y + " " + pt.z + "'");
 }, "~S,JU.T3");
-Clazz.overrideMethod (c$, "pushMatrix", 
+Clazz.overrideMethod (c$, "pushMatrix",
 function () {
 this.output ("<Transform ");
 });
-Clazz.overrideMethod (c$, "popMatrix", 
+Clazz.overrideMethod (c$, "popMatrix",
 function () {
 this.output ("</Transform>\n");
 });
-Clazz.overrideMethod (c$, "outputAttr", 
+Clazz.overrideMethod (c$, "outputAttr",
 function (attr, x, y, z) {
 this.output (" " + attr + "='" + J["export"].___Exporter.round (x) + " " + J["export"].___Exporter.round (y) + " " + J["export"].___Exporter.round (z) + "'");
 }, "~S,~N,~N,~N");
-Clazz.overrideMethod (c$, "outputRotation", 
+Clazz.overrideMethod (c$, "outputRotation",
 function (a) {
 this.output (" rotation='" + a.x + " " + a.y + " " + a.z + " " + a.angle + "'");
 }, "JU.A4");
-Clazz.overrideMethod (c$, "outputFooter", 
+Clazz.overrideMethod (c$, "outputFooter",
 function () {
 this.useTable = null;
 this.popMatrix ();
@@ -64,7 +64,7 @@ this.popMatrix ();
 this.output ("</Scene>\n");
 this.output ("</X3D>\n");
 });
-Clazz.overrideMethod (c$, "outputAppearance", 
+Clazz.overrideMethod (c$, "outputAppearance",
 function (colix, isText) {
 var def = this.getDef ((isText ? "T" : "") + colix);
 this.output ("<Appearance ");
@@ -76,50 +76,50 @@ if (isText) this.output ("0 0 0' specularColor='0 0 0' ambientIntensity='0.0' sh
 } else this.output (def + ">");
 this.output ("</Appearance>");
 }, "~N,~B");
-Clazz.overrideMethod (c$, "outputChildShapeStart", 
+Clazz.overrideMethod (c$, "outputChildShapeStart",
 function () {
 this.outputShapeStart ();
 });
-Clazz.overrideMethod (c$, "outputShapeStart", 
+Clazz.overrideMethod (c$, "outputShapeStart",
 function () {
 this.output ("<Shape>");
 this.outputFaceSetStart ();
 });
-Clazz.overrideMethod (c$, "outputChildStart", 
+Clazz.overrideMethod (c$, "outputChildStart",
 function () {
 });
-Clazz.overrideMethod (c$, "outputChildClose", 
+Clazz.overrideMethod (c$, "outputChildClose",
 function () {
 });
-Clazz.overrideMethod (c$, "outputDefChildFaceSet", 
+Clazz.overrideMethod (c$, "outputDefChildFaceSet",
 function (child) {
 if (child != null) this.output ("DEF='" + child + "'");
 }, "~S");
-Clazz.overrideMethod (c$, "outputFaceSetStart", 
+Clazz.overrideMethod (c$, "outputFaceSetStart",
 function () {
 this.output ("<IndexedFaceSet ");
 });
-Clazz.overrideMethod (c$, "outputFaceSetClose", 
+Clazz.overrideMethod (c$, "outputFaceSetClose",
 function () {
 this.output ("</IndexedFaceSet>\n");
 });
-Clazz.overrideMethod (c$, "outputUseChildClose", 
+Clazz.overrideMethod (c$, "outputUseChildClose",
 function (child) {
 this.output (child + "/>");
 }, "~S");
-Clazz.overrideMethod (c$, "outputChildShapeClose", 
+Clazz.overrideMethod (c$, "outputChildShapeClose",
 function () {
 this.outputShapeClose ();
 });
-Clazz.overrideMethod (c$, "outputShapeClose", 
+Clazz.overrideMethod (c$, "outputShapeClose",
 function () {
 this.output ("</Shape>\n");
 });
-Clazz.overrideMethod (c$, "outputCloseTag", 
+Clazz.overrideMethod (c$, "outputCloseTag",
 function () {
 this.output (">\n");
 });
-Clazz.overrideMethod (c$, "outputTriangle", 
+Clazz.overrideMethod (c$, "outputTriangle",
 function (pt1, pt2, pt3, colix) {
 this.output ("<Shape>\n");
 this.output ("<IndexedFaceSet solid='false' ");
@@ -135,7 +135,7 @@ this.output ("</IndexedFaceSet>\n");
 this.outputAppearance (colix, false);
 this.output ("\n</Shape>\n");
 }, "JU.T3,JU.T3,JU.T3,~N");
-Clazz.overrideMethod (c$, "outputCircle", 
+Clazz.overrideMethod (c$, "outputCircle",
 function (pt1, pt2, radius, colix, doFill) {
 if (doFill) {
 this.pushMatrix ();
@@ -186,7 +186,7 @@ this.output (child + ">");
 }this.output ("</Billboard>\n");
 this.popMatrix ();
 }, "JU.P3,JU.P3,~N,~N,~B");
-Clazz.overrideMethod (c$, "outputGeometry", 
+Clazz.overrideMethod (c$, "outputGeometry",
 function (vertices, normals, colixes, indices, polygonColixes, nVertices, nPolygons, bsPolygons, faceVertexMax, colorList, htColixes, offset) {
 this.output (" creaseAngle='0.5'\n");
 if (polygonColixes != null) this.output (" colorPerVertex='false'\n");
@@ -221,10 +221,10 @@ this.output ("<Color color='\n");
 this.outputColors (colorList);
 this.output ("'/>\n");
 }}, "~A,~A,~A,~A,~A,~N,~N,JU.BS,~N,JU.Lst,java.util.Map,JU.P3");
-Clazz.overrideMethod (c$, "outputTextPixel", 
+Clazz.overrideMethod (c$, "outputTextPixel",
 function (pt, argb) {
 }, "JU.P3,~N");
-Clazz.overrideMethod (c$, "plotText", 
+Clazz.overrideMethod (c$, "plotText",
 function (x, y, z, colix, text, font3d) {
 }, "~N,~N,~N,~N,~S,javajs.awt.Font");
 });

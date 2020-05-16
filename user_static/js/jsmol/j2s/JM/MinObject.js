@@ -6,15 +6,15 @@ this.key = null;
 this.ddata = null;
 Clazz.instantialize (this, arguments);
 }, JM, "MinObject");
-Clazz.overrideMethod (c$, "toString", 
+Clazz.overrideMethod (c$, "toString",
 function () {
 return this.type + " " + this.data[0] + "," + this.data[1] + (this.data.length > 2 ? "," + this.data[2] + "," + this.data[3] : "") + " " + JM.MinObject.decodeKey (this.key);
 });
-c$.getKey = Clazz.defineMethod (c$, "getKey", 
+c$.getKey = Clazz.defineMethod (c$, "getKey",
 function (type, a1, a2, a3, a4) {
 return Integer.$valueOf ((((((((a4 << 7) + a3) << 7) + a2) << 7) + a1) << 4) + type);
 }, "~N,~N,~N,~N,~N");
-c$.decodeKey = Clazz.defineMethod (c$, "decodeKey", 
+c$.decodeKey = Clazz.defineMethod (c$, "decodeKey",
 function (key) {
 if (key == null) return null;
 var i = key.intValue ();

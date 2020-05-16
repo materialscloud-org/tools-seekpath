@@ -12,18 +12,18 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.navMinMax =  Clazz.newIntArray (4, 0);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (vwr) {
 this.vwr = vwr;
 this.bsRenderableAtoms =  new JU.BS ();
 this.bsSlabbedInternal =  new JU.BS ();
 }, "JV.Viewer");
-Clazz.defineMethod (c$, "findNearestShapeAtomIndex", 
+Clazz.defineMethod (c$, "findNearestShapeAtomIndex",
 function (x, y, closest, bsNot) {
 if (this.shapes != null) for (var i = 0; i < this.shapes.length && closest[0] == null; ++i) if (this.shapes[i] != null) this.shapes[i].findNearestAtomIndex (x, y, closest, bsNot);
 
 }, "~N,~N,~A,JU.BS");
-Clazz.defineMethod (c$, "getShapePropertyIndex", 
+Clazz.defineMethod (c$, "getShapePropertyIndex",
 function (shapeID, propertyName, index) {
 if (this.shapes == null || this.shapes[shapeID] == null) return null;
 this.vwr.setShapeErrorState (shapeID, "get " + propertyName);
@@ -31,7 +31,7 @@ var result = this.shapes[shapeID].getProperty (propertyName, index);
 this.vwr.setShapeErrorState (-1, null);
 return result;
 }, "~N,~S,~N");
-Clazz.defineMethod (c$, "getShapePropertyData", 
+Clazz.defineMethod (c$, "getShapePropertyData",
 function (shapeID, propertyName, data) {
 if (this.shapes == null || this.shapes[shapeID] == null) return false;
 this.vwr.setShapeErrorState (shapeID, "get " + propertyName);
@@ -39,13 +39,13 @@ var result = this.shapes[shapeID].getPropertyData (propertyName, data);
 this.vwr.setShapeErrorState (-1, null);
 return result;
 }, "~N,~S,~A");
-Clazz.defineMethod (c$, "getShapeIdFromObjectName", 
+Clazz.defineMethod (c$, "getShapeIdFromObjectName",
 function (objectName) {
 if (this.shapes != null) for (var i = 16; i < 30; ++i) if (this.shapes[i] != null && this.shapes[i].getIndexFromName (objectName) >= 0) return i;
 
 return -1;
 }, "~S");
-Clazz.defineMethod (c$, "loadDefaultShapes", 
+Clazz.defineMethod (c$, "loadDefaultShapes",
 function (newModelSet) {
 this.ms = newModelSet;
 if (this.shapes != null) for (var i = 0; i < this.shapes.length; ++i) if (this.shapes[i] != null) this.shapes[i].setModelSet (newModelSet);
@@ -53,7 +53,7 @@ if (this.shapes != null) for (var i = 0; i < this.shapes.length; ++i) if (this.s
 this.loadShape (0);
 this.loadShape (1);
 }, "JM.ModelSet");
-Clazz.defineMethod (c$, "loadShape", 
+Clazz.defineMethod (c$, "loadShape",
 function (shapeID) {
 if (this.shapes == null) return null;
 if (this.shapes[shapeID] != null) return this.shapes[shapeID];
@@ -66,22 +66,22 @@ shape.initializeShape (this.vwr, this.ms, shapeID);
 this.vwr.setShapeErrorState (-1, null);
 return this.shapes[shapeID] = shape;
 }, "~N");
-Clazz.defineMethod (c$, "notifyAtomPositionsChanged", 
+Clazz.defineMethod (c$, "notifyAtomPositionsChanged",
 function (baseModel, bs, mat) {
 var Imodel = Integer.$valueOf (baseModel);
 var bsModelAtoms = this.vwr.getModelUndeletedAtomsBitSet (baseModel);
 for (var i = 0; i < 37; i++) if (this.shapes[i] != null) this.setShapePropertyBs (i, "refreshTrajectories",  Clazz.newArray (-1, [Imodel, bs, mat]), bsModelAtoms);
 
 }, "~N,JU.BS,JU.M4");
-Clazz.defineMethod (c$, "releaseShape", 
+Clazz.defineMethod (c$, "releaseShape",
 function (shapeID) {
 if (this.shapes != null) this.shapes[shapeID] = null;
 }, "~N");
-Clazz.defineMethod (c$, "resetShapes", 
+Clazz.defineMethod (c$, "resetShapes",
 function () {
 this.shapes =  new Array (37);
 });
-Clazz.defineMethod (c$, "setShapeSizeBs", 
+Clazz.defineMethod (c$, "setShapeSizeBs",
 function (shapeID, size, rd, bsSelected) {
 if (this.shapes == null) return;
 if (bsSelected == null && (shapeID != 1 || size != 2147483647)) bsSelected = this.vwr.bsA ();
@@ -92,7 +92,7 @@ if (this.shapes[shapeID] != null) {
 this.shapes[shapeID].setShapeSizeRD (size, rd, bsSelected);
 }this.vwr.setShapeErrorState (-1, null);
 }, "~N,~N,J.atomdata.RadiusData,JU.BS");
-Clazz.defineMethod (c$, "setLabel", 
+Clazz.defineMethod (c$, "setLabel",
 function (strLabel, bsSelection) {
 if (strLabel == null) {
 if (this.shapes[5] == null) return;
@@ -101,7 +101,7 @@ this.loadShape (5);
 this.setShapeSizeBs (5, 0, null, bsSelection);
 }this.setShapePropertyBs (5, "label", strLabel, bsSelection);
 }, "~O,JU.BS");
-Clazz.defineMethod (c$, "setShapePropertyBs", 
+Clazz.defineMethod (c$, "setShapePropertyBs",
 function (shapeID, propertyName, value, bsSelected) {
 if (this.shapes == null || this.shapes[shapeID] == null) return;
 if (bsSelected == null) bsSelected = this.vwr.bsA ();
@@ -109,12 +109,12 @@ this.vwr.setShapeErrorState (shapeID, "set " + propertyName);
 this.shapes[shapeID].setProperty (propertyName.intern (), value, bsSelected);
 this.vwr.setShapeErrorState (-1, null);
 }, "~N,~S,~O,JU.BS");
-Clazz.defineMethod (c$, "checkFrankclicked", 
+Clazz.defineMethod (c$, "checkFrankclicked",
 function (x, y) {
 var frankShape = this.shapes[36];
 return (frankShape != null && frankShape.wasClicked (x, y));
 }, "~N,~N");
-Clazz.defineMethod (c$, "checkObjectClicked", 
+Clazz.defineMethod (c$, "checkObjectClicked",
 function (x, y, modifiers, bsVisible, drawPicking) {
 var shape;
 var map = null;
@@ -125,7 +125,7 @@ for (var i = 0; i < JV.ShapeManager.clickableMax; i++) if ((shape = this.shapes[
 
 return null;
 }, "~N,~N,~N,JU.BS,~B");
-Clazz.defineMethod (c$, "checkObjectDragged", 
+Clazz.defineMethod (c$, "checkObjectDragged",
 function (prevX, prevY, x, y, modifiers, bsVisible, iShape) {
 var found = false;
 var n = (iShape > 0 ? iShape + 1 : 37);
@@ -133,7 +133,7 @@ for (var i = iShape; !found && i < n; ++i) if (this.shapes[i] != null) found = t
 
 return found;
 }, "~N,~N,~N,~N,~N,JU.BS,~N");
-Clazz.defineMethod (c$, "checkObjectHovered", 
+Clazz.defineMethod (c$, "checkObjectHovered",
 function (x, y, bsVisible, checkBonds) {
 var shape = this.shapes[1];
 if (checkBonds && shape != null && shape.checkObjectHovered (x, y, bsVisible)) return true;
@@ -143,18 +143,18 @@ if (shape != null && shape.checkObjectHovered (x, y, bsVisible)) return true;
 }
 return false;
 }, "~N,~N,JU.BS,~B");
-Clazz.defineMethod (c$, "deleteShapeAtoms", 
+Clazz.defineMethod (c$, "deleteShapeAtoms",
 function (value, bs) {
 if (this.shapes != null) for (var j = 0; j < 37; j++) if (this.shapes[j] != null) this.setShapePropertyBs (j, "deleteModelAtoms", value, bs);
 
 }, "~A,JU.BS");
-Clazz.defineMethod (c$, "deleteVdwDependentShapes", 
+Clazz.defineMethod (c$, "deleteVdwDependentShapes",
 function (bs) {
 if (bs == null) bs = this.vwr.bsA ();
 if (this.shapes[24] != null) this.shapes[24].setProperty ("deleteVdw", null, bs);
 if (this.shapes[25] != null) this.shapes[25].setProperty ("deleteVdw", null, bs);
 }, "JU.BS");
-Clazz.defineMethod (c$, "getAtomShapeValue", 
+Clazz.defineMethod (c$, "getAtomShapeValue",
 function (tok, group, atomIndex) {
 var iShape = JV.JC.shapeTokenIndex (tok);
 if (iShape < 0 || this.shapes[iShape] == null) return 0;
@@ -164,29 +164,29 @@ if ((group.shapeVisibilityFlags & this.shapes[iShape].vf) == 0) return 0;
 mad = this.shapes[iShape].getSizeG (group);
 }return mad / 2000;
 }, "~N,JM.Group,~N");
-Clazz.defineMethod (c$, "replaceGroup", 
+Clazz.defineMethod (c$, "replaceGroup",
 function (g0, g1) {
 if (this.shapes == null) return;
 for (var i = 9; i < 16; i++) if (this.shapes[i] != null) this.shapes[i].replaceGroup (g0, g1);
 
 }, "JM.Group,JM.Group");
-Clazz.defineMethod (c$, "getObjectMap", 
+Clazz.defineMethod (c$, "getObjectMap",
 function (map, withDollar) {
 if (this.shapes == null) return;
 var bDollar = Boolean.$valueOf (withDollar);
 for (var i = 16; i < 30; ++i) this.getShapePropertyData (i, "getNames",  Clazz.newArray (-1, [map, bDollar]));
 
 }, "java.util.Map,~B");
-Clazz.defineMethod (c$, "getProperty", 
+Clazz.defineMethod (c$, "getProperty",
 function (paramInfo) {
 if (paramInfo.equals ("getShapes")) return this.shapes;
 return null;
 }, "~O");
-Clazz.defineMethod (c$, "getShape", 
+Clazz.defineMethod (c$, "getShape",
 function (i) {
 return (this.shapes == null ? null : this.shapes[i]);
 }, "~N");
-Clazz.defineMethod (c$, "resetBioshapes", 
+Clazz.defineMethod (c$, "resetBioshapes",
 function (bsAllAtoms) {
 if (this.shapes == null) return;
 for (var i = 0; i < this.shapes.length; ++i) if (this.shapes[i] != null && this.shapes[i].isBioShape) {
@@ -195,11 +195,11 @@ this.shapes[i].setShapeSizeRD (0, null, bsAllAtoms);
 this.shapes[i].setProperty ("color", J.c.PAL.NONE, bsAllAtoms);
 }
 }, "JU.BS");
-Clazz.defineMethod (c$, "setAtomLabel", 
+Clazz.defineMethod (c$, "setAtomLabel",
 function (strLabel, i) {
 if (this.shapes != null) this.shapes[5].setProperty ("label:" + strLabel, Integer.$valueOf (i), null);
 }, "~S,~N");
-Clazz.defineMethod (c$, "setModelVisibility", 
+Clazz.defineMethod (c$, "setModelVisibility",
 function () {
 var shapes = this.shapes;
 if (shapes == null || shapes[0] == null) return;
@@ -224,14 +224,14 @@ atom.setShapeVisibility (f, true);
 }}}
 }this.setShapeVis ();
 });
-Clazz.defineMethod (c$, "setShapeVis", 
+Clazz.defineMethod (c$, "setShapeVis",
  function () {
 for (var i = 0; i < 37; ++i) {
 var shape = this.shapes[i];
 if (shape != null) shape.setAtomClickability ();
 }
 });
-Clazz.defineMethod (c$, "finalizeAtoms", 
+Clazz.defineMethod (c$, "finalizeAtoms",
 function (bsTranslateSelected, finalizeParams) {
 var vwr = this.vwr;
 var tm = vwr.tm;
@@ -324,16 +324,16 @@ this.navMinMax[2] = minY;
 this.navMinMax[3] = maxY;
 return this.navMinMax;
 }, "JU.BS,~B");
-Clazz.defineMethod (c$, "setModelSet", 
+Clazz.defineMethod (c$, "setModelSet",
 function (modelSet) {
 this.ms = this.vwr.ms = modelSet;
 }, "JM.ModelSet");
-Clazz.defineMethod (c$, "checkInheritedShapes", 
+Clazz.defineMethod (c$, "checkInheritedShapes",
 function () {
 if (this.shapes[24] == null) return;
 this.setShapePropertyBs (24, "remapInherited", null, null);
 });
-Clazz.defineMethod (c$, "restrictSelected", 
+Clazz.defineMethod (c$, "restrictSelected",
 function (isBond, doInvert) {
 var bsSelected = this.vwr.slm.getSelectedAtomsNoSubset ();
 if (doInvert) {

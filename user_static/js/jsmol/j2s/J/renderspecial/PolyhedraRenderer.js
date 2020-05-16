@@ -13,7 +13,7 @@ this.showNumbers = false;
 this.meshSurface = null;
 Clazz.instantialize (this, arguments);
 }, J.renderspecial, "PolyhedraRenderer", J.render.ShapeRenderer);
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 var polyhedra = this.shape;
 var polyhedrons = polyhedra.polyhedrons;
@@ -27,7 +27,7 @@ for (var i = polyhedra.polyhedronCount; --i >= 0; ) if (polyhedrons[i].isValid &
 
 return needTranslucent;
 });
-Clazz.defineMethod (c$, "render1", 
+Clazz.defineMethod (c$, "render1",
  function (p) {
 if (p.visibilityFlags == 0) return false;
 var colixes = (this.shape).colixes;
@@ -124,7 +124,7 @@ this.drawEdges (normixes[i], sc[pl[0]], sc[pl[1]], sc[pl[2]], -pl[3]);
 }
 }return needTranslucent;
 }, "J.shapespecial.Polyhedron");
-Clazz.defineMethod (c$, "drawEdges", 
+Clazz.defineMethod (c$, "drawEdges",
  function (normix, a, b, c, edgeMask) {
 if (this.isAll || this.edgesOnly || this.frontOnly && this.vwr.gdata.isDirectedTowardsCamera (normix)) {
 var d = (this.g3d.isAntialiased () ? 6 : 3);

@@ -1,14 +1,14 @@
 Clazz.declarePackage ("JM.FF");
 Clazz.load (["JM.FF.Calculation"], "JM.FF.MMFFTorsionCalc", null, function () {
 c$ = Clazz.declareType (JM.FF, "MMFFTorsionCalc", JM.FF.Calculation);
-Clazz.defineMethod (c$, "setData", 
+Clazz.defineMethod (c$, "setData",
 function (calc, t) {
 if (this.calcs.isLinear (t.data[1]) || this.calcs.isLinear (t.data[2])) return;
 var data = this.calcs.getParameterObj (t);
 if (data == null) return;
 calc.addLast ( Clazz.newArray (-1, [t.data, data, t.key]));
 }, "JU.Lst,JM.MinTorsion");
-Clazz.overrideMethod (c$, "compute", 
+Clazz.overrideMethod (c$, "compute",
 function (dataIn) {
 this.key = dataIn[2];
 this.getPointers (dataIn);

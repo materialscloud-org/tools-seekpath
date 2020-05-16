@@ -1,7 +1,7 @@
 Clazz.declarePackage ("J.adapter.readers.simple");
 Clazz.load (["J.adapter.smarter.AtomSetCollectionReader"], "J.adapter.readers.simple.JmeReader", ["JU.PT", "J.adapter.smarter.Bond"], function () {
 c$ = Clazz.declareType (J.adapter.readers.simple, "JmeReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.asc.setCollectionName ("JME");
 this.asc.newAtomSet ();
@@ -15,7 +15,7 @@ this.readBonds (bondCount);
 this.set2D ();
 this.continuing = false;
 });
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function (ac) {
 for (var i = 0; i < ac; ++i) {
 var strAtom = this.parseToken ();
@@ -32,7 +32,7 @@ atom.formalCharge = -1;
 }atom.elementSymbol = elementSymbol;
 }
 }, "~N");
-Clazz.defineMethod (c$, "readBonds", 
+Clazz.defineMethod (c$, "readBonds",
  function (bondCount) {
 for (var i = 0; i < bondCount; ++i) {
 var atomIndex1 = this.parseInt () - 1;

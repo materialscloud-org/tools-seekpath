@@ -20,7 +20,7 @@ this.radii =  Clazz.newFloatArray (2, 0);
 this.vdws =  Clazz.newFloatArray (2, 0);
 this.myAtoms =  new Array (2);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (atoms, i1, i2, R, r, vdwA, vdwB) {
 this.radii[0] = R;
 this.radii[1] = r;
@@ -40,7 +40,7 @@ this.radii[0] = R = vdwA;
 this.radii[1] = r = vdwB;
 }this.getVolume ();
 }, "~A,~N,~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "getVolume", 
+Clazz.defineMethod (c$, "getVolume",
  function () {
 var R = this.radii[0];
 var r = this.radii[1];
@@ -50,7 +50,7 @@ this.vdwVolume = (this.score > 0 ? -this.volume : this.volume);
 var a = (this.d * this.d - r * r + R * R);
 this.chord = Math.sqrt (4 * this.d * this.d * R * R - a * a) / this.d;
 });
-Clazz.defineMethod (c$, "setForVdwClash", 
+Clazz.defineMethod (c$, "setForVdwClash",
 function (isVdw) {
 if (Float.isNaN (this.xVdwClash)) return false;
 if (isVdw) {
@@ -65,7 +65,7 @@ this.radii[1] = this.vdws[1];
 }this.getVolume ();
 return true;
 }, "~B");
-Clazz.defineMethod (c$, "switchAtoms", 
+Clazz.defineMethod (c$, "switchAtoms",
 function () {
 var atom = this.myAtoms[0];
 this.myAtoms[0] = this.myAtoms[1];
@@ -77,7 +77,7 @@ r = this.vdws[0];
 this.vdws[0] = this.vdws[1];
 this.vdws[1] = r;
 });
-Clazz.overrideMethod (c$, "toString", 
+Clazz.overrideMethod (c$, "toString",
 function () {
 return "type=" + JS.T.nameOf (this.contactType) + " " + this.myAtoms[0] + " " + this.myAtoms[1] + " dAB=" + this.d + " score=" + this.score + " chord=" + this.chord + " volume=" + this.volume;
 });

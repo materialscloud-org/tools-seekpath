@@ -44,14 +44,14 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.newXYCoords =  new JU.Lst ();
 });
-Clazz.defineMethod (c$, "setup", 
+Clazz.defineMethod (c$, "setup",
 function (viewer, spec, out, startIndex, endIndex) {
 this.startIndex = startIndex;
 this.endIndex = endIndex;
 this.initForm (viewer, out);
 return this.setParameters (spec);
 }, "JSV.common.JSViewer,JSV.common.Spectrum,JU.OC,~N,~N");
-Clazz.defineMethod (c$, "setParameters", 
+Clazz.defineMethod (c$, "setParameters",
 function (spec) {
 this.continuous = spec.isContinuous ();
 if (!this.continuous) return false;
@@ -99,13 +99,13 @@ this.deltaX *= this.obFreq;
 }this.setParams (spec.getHeaderTable ());
 return true;
 }, "JSV.common.Spectrum");
-c$.getParamIndex = Clazz.defineMethod (c$, "getParamIndex", 
+c$.getParamIndex = Clazz.defineMethod (c$, "getParamIndex",
  function (label) {
 for (var i = 0; i < JSV["export"].XMLExporter.params.length; i++) if (JSV["export"].XMLExporter.params[i].equalsIgnoreCase (label)) return i;
 
 return -1;
 }, "~S");
-Clazz.defineMethod (c$, "setParams", 
+Clazz.defineMethod (c$, "setParams",
  function (table) {
 for (var i = 0; i < table.size (); i++) {
 var entry = table.get (i);
@@ -150,7 +150,7 @@ break;
 }
 }
 }, "JU.Lst");
-Clazz.defineMethod (c$, "setContext", 
+Clazz.defineMethod (c$, "setContext",
 function () {
 this.context.put ("continuous", Boolean.$valueOf (this.continuous));
 this.context.put ("file", this.out.getFileName () + "");
@@ -190,7 +190,7 @@ this.context.put ("SolvRef", this.solvRef);
 this.context.put ("vendor", this.vendor);
 this.context.put ("model", this.model);
 });
-Clazz.defineMethod (c$, "writeFormType", 
+Clazz.defineMethod (c$, "writeFormType",
 function (type) {
 return this.writeForm (type + (this.datatype.contains ("NMR") ? "_nmr" : "_tmp") + ".vm");
 }, "~S");

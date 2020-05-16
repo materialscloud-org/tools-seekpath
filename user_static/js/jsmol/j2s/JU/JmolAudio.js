@@ -9,10 +9,10 @@ this.id = null;
 this.autoClose = false;
 Clazz.instantialize (this, arguments);
 }, JU, "JmolAudio", null, [J.api.JmolAudioPlayer]);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "playAudio", 
+Clazz.defineMethod (c$, "playAudio",
 function (vwr, htParams) {
 try {
 this.id = htParams.get ("id");
@@ -41,10 +41,10 @@ throw e;
 }
 }
 }, "JV.Viewer,java.util.Map");
-Clazz.overrideMethod (c$, "update", 
+Clazz.overrideMethod (c$, "update",
 function (le) {
 }, "javax.sound.sampled.LineEvent");
-Clazz.defineMethod (c$, "processUpdate", 
+Clazz.defineMethod (c$, "processUpdate",
 function (type) {
 JU.Logger.info ("audio id " + this.id + " " + this.fileName + " " + type);
 if (type === "open" || type === "Open") {
@@ -61,7 +61,7 @@ this.params.put ("status", "ended");
 this.params.put ("status", type);
 }this.vwr.sm.notifyAudioStatus (this.params);
 }, "~S");
-Clazz.overrideMethod (c$, "action", 
+Clazz.overrideMethod (c$, "action",
 function (action) {
 if (this.myClip == null) {
 if (action === "kill") return;

@@ -7,7 +7,7 @@ this.partialCharges = null;
 this.atomPositions = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.simple, "AmpacReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.indexOf ("CARTESIAN COORDINATES") >= 0) {
 if (!this.doGetModel (++this.modelNumber, null)) return this.checkLastModel ();
@@ -22,7 +22,7 @@ this.readFrequencies ();
 return true;
 }return true;
 });
-Clazz.defineMethod (c$, "readCoordinates", 
+Clazz.defineMethod (c$, "readCoordinates",
  function () {
 var haveFreq = (this.freqAtom0 >= 0);
 if (haveFreq) {
@@ -42,7 +42,7 @@ this.addAtomXYZSymName (tokens, 2, tokens[1], null);
 }
 if (haveFreq) this.setPositions ();
 });
-Clazz.defineMethod (c$, "setPositions", 
+Clazz.defineMethod (c$, "setPositions",
  function () {
 var maxAtom = this.asc.ac;
 var atoms = this.asc.atoms;
@@ -51,7 +51,7 @@ atoms[i].setT (this.atomPositions[i % this.ac]);
 atoms[i].partialCharge = this.partialCharges[i % this.ac];
 }
 });
-Clazz.defineMethod (c$, "readPartialCharges", 
+Clazz.defineMethod (c$, "readPartialCharges",
  function () {
 this.rd ();
 this.partialCharges =  Clazz.newFloatArray (this.ac, 0);
@@ -61,7 +61,7 @@ if (this.rd () == null || (tokens = this.getTokens ()).length < 4) break;
 this.partialCharges[i] = this.parseFloatStr (tokens[2]);
 }
 });
-Clazz.defineMethod (c$, "readFrequencies", 
+Clazz.defineMethod (c$, "readFrequencies",
  function () {
 while (this.rd () != null && this.line.indexOf ("FREQ  :") < 0) {
 }

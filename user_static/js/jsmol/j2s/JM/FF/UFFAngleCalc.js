@@ -1,7 +1,7 @@
 Clazz.declarePackage ("JM.FF");
 Clazz.load (["JM.FF.Calculation"], "JM.FF.UFFAngleCalc", ["JM.FF.CalculationsUFF"], function () {
 c$ = Clazz.declareType (JM.FF, "UFFAngleCalc", JM.FF.Calculation);
-Clazz.defineMethod (c$, "setData", 
+Clazz.defineMethod (c$, "setData",
 function (calc, angle) {
 this.a = this.calcs.minAtoms[this.ia = angle[0]];
 this.b = this.calcs.minAtoms[this.ib = angle[1]];
@@ -45,7 +45,7 @@ var rac = Math.sqrt (this.rab * this.rab + rbc * rbc - 2.0 * this.rab * rbc * co
 var ka = (2696.8016159999997) * (zi * zk / (Math.pow (rac, 5.0))) * (3.0 * this.rab * rbc * (1.0 - cosT0 * cosT0) - rac * rac * cosT0);
 calc.addLast ( Clazz.newArray (-1, [ Clazz.newIntArray (-1, [this.ia, this.ib, this.ic, coordination]),  Clazz.newDoubleArray (-1, [ka, theta0 * 57.29577951308232, c0 - c2, c1, 2 * c2, preliminaryMagnification * ka])]));
 }, "JU.Lst,~A");
-Clazz.overrideMethod (c$, "compute", 
+Clazz.overrideMethod (c$, "compute",
 function (dataIn) {
 this.getPointers (dataIn);
 var coordination = this.iData[3];

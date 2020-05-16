@@ -6,7 +6,7 @@ this.bondData = "";
 this.constraints = "";
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.spartan, "SpartanInputReader", J.adapter.readers.quantum.BasisFunctionReader);
-Clazz.defineMethod (c$, "readInputRecords", 
+Clazz.defineMethod (c$, "readInputRecords",
 function () {
 var ac0 = this.asc.ac;
 var modelName = this.readInputHeader ();
@@ -27,7 +27,7 @@ if (this.line != null && this.line.indexOf ("BEGINCONSTRAINTS") >= 0) this.readC
 if (this.line != null && this.line.indexOf ("MOLSTATE") >= 0) this.readTransform ();
 return modelName;
 });
-Clazz.defineMethod (c$, "readConstraints", 
+Clazz.defineMethod (c$, "readConstraints",
  function () {
 this.constraints = "";
 while (this.rd () != null && this.line.indexOf ("END") < 0) this.constraints += (this.constraints === "" ? "" : "\n") + this.line;
@@ -38,20 +38,20 @@ this.asc.setCurrentModelInfo ("constraints", this.constraints);
 this.asc.setAtomSetModelProperty (".PATH", "EnergyProfile");
 this.asc.setAtomSetModelProperty ("Constraint", this.constraints);
 });
-Clazz.defineMethod (c$, "readTransform", 
+Clazz.defineMethod (c$, "readTransform",
  function () {
 this.rd ();
 var tokens = JU.PT.getTokens (this.rd () + " " + this.rd ());
 this.setTransform (this.parseFloatStr (tokens[0]), this.parseFloatStr (tokens[1]), this.parseFloatStr (tokens[2]), this.parseFloatStr (tokens[4]), this.parseFloatStr (tokens[5]), this.parseFloatStr (tokens[6]), this.parseFloatStr (tokens[8]), this.parseFloatStr (tokens[9]), this.parseFloatStr (tokens[10]));
 });
-Clazz.defineMethod (c$, "readInputHeader", 
+Clazz.defineMethod (c$, "readInputHeader",
  function () {
 while (this.rd () != null && !this.line.startsWith (" ")) {
 }
 this.rd ();
 return this.line.substring (0, (this.line + ";").indexOf (";")).trim ();
 });
-Clazz.defineMethod (c$, "readInputAtoms", 
+Clazz.defineMethod (c$, "readInputAtoms",
  function () {
 this.modelAtomCount = 0;
 while (this.rd () != null && !this.line.startsWith ("ENDCART")) {
@@ -61,7 +61,7 @@ this.modelAtomCount++;
 }
 if (this.debugging) JU.Logger.debug (this.asc.ac + " atoms read");
 });
-Clazz.defineMethod (c$, "readAtomNames", 
+Clazz.defineMethod (c$, "readAtomNames",
  function () {
 var atom0 = this.asc.ac - this.modelAtomCount;
 for (var i = 0; i < this.modelAtomCount; i++) {
@@ -70,7 +70,7 @@ var name = this.line.substring (1, this.line.length - 1);
 this.asc.atoms[atom0 + i].atomName = name;
 }
 });
-Clazz.defineMethod (c$, "readBonds", 
+Clazz.defineMethod (c$, "readBonds",
  function (ac0) {
 var nAtoms = this.modelAtomCount;
 this.bondData = "";

@@ -5,7 +5,7 @@ this.mar = 0;
 this.width = 0;
 Clazz.instantialize (this, arguments);
 }, J.render, "StarsRenderer", J.render.ShapeRenderer);
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 var stars = this.shape;
 if (stars.mads == null) return false;
@@ -22,7 +22,7 @@ if (this.g3d.setC (this.colix)) this.render1 (atom, stars.mads[i]);
 }
 return needTranslucent;
 });
-Clazz.defineMethod (c$, "render1", 
+Clazz.defineMethod (c$, "render1",
  function (atom, mad) {
 var x = atom.sX;
 var y = atom.sY;
@@ -42,7 +42,7 @@ this.drawLine (x + 1, y + 1 - r, z, x + 1, y + 1 - r + d, z);
 this.drawLine (x, y - r, z, x, y - r + d, z);
 this.drawLine (x, y, z - r, x, y, z - r + d);
 }, "JM.Atom,~N");
-Clazz.defineMethod (c$, "drawLine", 
+Clazz.defineMethod (c$, "drawLine",
  function (xA, yA, zA, xB, yB, zB) {
 if (this.mar > 0) this.g3d.fillCylinderXYZ (this.colix, this.colix, 2, this.width, xA, yA, zA, xB, yB, zB);
  else this.g3d.drawLineXYZ (xA, yA, zA, xB, yB, zB);

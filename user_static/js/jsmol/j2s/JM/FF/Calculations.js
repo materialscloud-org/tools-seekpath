@@ -47,15 +47,15 @@ this.v1 =  new JU.V3d ();
 this.v2 =  new JU.V3d ();
 this.v3 =  new JU.V3d ();
 });
-Clazz.defineMethod (c$, "getParameter", 
+Clazz.defineMethod (c$, "getParameter",
 function (o) {
 return this.ffParams.get (o);
 }, "~O");
-Clazz.defineMethod (c$, "setConstraints", 
+Clazz.defineMethod (c$, "setConstraints",
 function (constraints) {
 this.constraints = constraints;
 }, "JU.Lst");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (ff, minAtoms, minBonds, minAngles, minTorsions, minPositions, constraints) {
 this.ff = ff;
 this.minAtoms = minAtoms;
@@ -69,34 +69,34 @@ this.angleCount = minAngles.length;
 this.torsionCount = minTorsions.length;
 this.constraints = constraints;
 }, "JM.FF.ForceField,~A,~A,~A,~A,~A,JU.Lst");
-Clazz.defineMethod (c$, "addForce", 
+Clazz.defineMethod (c$, "addForce",
 function (v, i, dE) {
 this.minAtoms[i].force[0] += v.x * dE;
 this.minAtoms[i].force[1] += v.y * dE;
 this.minAtoms[i].force[2] += v.z * dE;
 }, "JU.V3d,~N,~N");
-Clazz.defineMethod (c$, "setSilent", 
+Clazz.defineMethod (c$, "setSilent",
 function (TF) {
 this.silent = TF;
 }, "~B");
-Clazz.defineMethod (c$, "getLogData", 
+Clazz.defineMethod (c$, "getLogData",
 function () {
 return this.logData.toString ();
 });
-Clazz.defineMethod (c$, "appendLogData", 
+Clazz.defineMethod (c$, "appendLogData",
 function (s) {
 this.logData.append (s).append ("\n");
 }, "~S");
-Clazz.defineMethod (c$, "setLoggingEnabled", 
+Clazz.defineMethod (c$, "setLoggingEnabled",
 function (TF) {
 this.loggingEnabled = TF;
 if (this.loggingEnabled) this.logData =  new JU.SB ();
 }, "~B");
-Clazz.defineMethod (c$, "setPreliminary", 
+Clazz.defineMethod (c$, "setPreliminary",
 function (TF) {
 this.isPreliminary = TF;
 }, "~B");
-Clazz.defineMethod (c$, "pairSearch", 
+Clazz.defineMethod (c$, "pairSearch",
 function (calc1, pc1, calc2, pc2) {
 for (var i = 0; i < this.ac - 1; i++) {
 var bsVdw = this.minAtoms[i].bsVdw;
@@ -106,7 +106,7 @@ if (pc2 != null) pc2.setData (calc2, i, j, 0);
 }
 }
 }, "JU.Lst,JM.FF.Calculation,JU.Lst,JM.FF.Calculation");
-Clazz.defineMethod (c$, "calc", 
+Clazz.defineMethod (c$, "calc",
  function (iType, gradients) {
 this.logging = this.loggingEnabled && !this.silent;
 this.gradients = gradients;
@@ -121,39 +121,39 @@ if (this.logging) this.appendLogData (this.getDebugFooter (iType, energy));
 if (this.constraints != null && iType <= 3) energy += this.constraintEnergy (iType);
 return energy;
 }, "~N,~B");
-Clazz.defineMethod (c$, "energyStrBnd", 
+Clazz.defineMethod (c$, "energyStrBnd",
 function (gradients) {
 return 0.0;
 }, "~B");
-Clazz.defineMethod (c$, "energyBond", 
+Clazz.defineMethod (c$, "energyBond",
 function (gradients) {
 return this.calc (0, gradients);
 }, "~B");
-Clazz.defineMethod (c$, "energyAngle", 
+Clazz.defineMethod (c$, "energyAngle",
 function (gradients) {
 return this.calc (1, gradients);
 }, "~B");
-Clazz.defineMethod (c$, "energyTorsion", 
+Clazz.defineMethod (c$, "energyTorsion",
 function (gradients) {
 return this.calc (3, gradients);
 }, "~B");
-Clazz.defineMethod (c$, "energyStretchBend", 
+Clazz.defineMethod (c$, "energyStretchBend",
 function (gradients) {
 return this.calc (2, gradients);
 }, "~B");
-Clazz.defineMethod (c$, "energyOOP", 
+Clazz.defineMethod (c$, "energyOOP",
 function (gradients) {
 return this.calc (4, gradients);
 }, "~B");
-Clazz.defineMethod (c$, "energyVDW", 
+Clazz.defineMethod (c$, "energyVDW",
 function (gradients) {
 return this.calc (5, gradients);
 }, "~B");
-Clazz.defineMethod (c$, "energyES", 
+Clazz.defineMethod (c$, "energyES",
 function (gradients) {
 return this.calc (6, gradients);
 }, "~B");
-Clazz.defineMethod (c$, "constraintEnergy", 
+Clazz.defineMethod (c$, "constraintEnergy",
  function (iType) {
 var value = 0;
 var k = 0;
@@ -198,7 +198,7 @@ energy += this.constrainQuadratic (value, targetValue, k, iType);
 }
 return energy;
 }, "~N");
-Clazz.defineMethod (c$, "constrainQuadratic", 
+Clazz.defineMethod (c$, "constrainQuadratic",
  function (value, targetValue, k, iType) {
 if (!JM.Util.isFinite (value)) return 0;
 var delta = value - targetValue;
@@ -215,7 +215,7 @@ this.addForce (this.da, this.ia, dE);
 }
 }return k * delta * delta;
 }, "~N,~N,~N,~N");
-Clazz.defineMethod (c$, "getConstraintList", 
+Clazz.defineMethod (c$, "getConstraintList",
 function () {
 if (this.constraints == null || this.constraints.size () == 0) return;
 this.appendLogData ("C O N S T R A I N T S\n---------------------");
@@ -248,7 +248,7 @@ break;
 }
 this.appendLogData ("---------------------\n");
 });
-Clazz.defineMethod (c$, "getAtomList", 
+Clazz.defineMethod (c$, "getAtomList",
 function (title) {
 var trailer = "--------------------------------------------------------------------------------------------------\n";
 var sb =  new JU.SB ();
@@ -269,7 +269,7 @@ sb.append (JU.PT.sprintf ("%3d %8.3f %8.3f %8.3f %-5s %2d %8.3f %8.3f %8.3f" + s
 sb.append (trailer + "\n\n");
 return sb.toString ();
 }, "~S");
-Clazz.defineMethod (c$, "getDebugHeader2", 
+Clazz.defineMethod (c$, "getDebugHeader2",
 function (iType) {
 switch (iType) {
 case -1:
@@ -291,11 +291,11 @@ return "\nE L E C T R O S T A T I C   I N T E R A C T I O N S  (partial list)\n\
 }
 return "";
 }, "~N");
-Clazz.defineMethod (c$, "getDebugLine", 
+Clazz.defineMethod (c$, "getDebugLine",
 function (iType, c) {
 return this.getDebugLineC (iType, c);
 }, "~N,JM.FF.Calculation");
-Clazz.defineMethod (c$, "getDebugLineC", 
+Clazz.defineMethod (c$, "getDebugLineC",
 function (iType, c) {
 var energy = this.ff.toUserUnits (c.energy);
 switch (iType) {
@@ -315,7 +315,7 @@ return JU.PT.sprintf ("%3d %3d  %-5s %-5s %6.3f  %8.3f  %8.3f  %8.3f  %8.3f", "s
 }
 return "";
 }, "~N,JM.FF.Calculation");
-Clazz.defineMethod (c$, "getDebugFooter", 
+Clazz.defineMethod (c$, "getDebugFooter",
 function (iType, energy) {
 var s = "";
 switch (iType) {
@@ -343,7 +343,7 @@ break;
 }
 return JU.PT.sprintf ("\n     TOTAL %s ENERGY = %8.3f %s/mol\n", "sfs",  Clazz.newArray (-1, [s, Float.$valueOf (this.ff.toUserUnits (energy)), this.ff.minimizer.units]));
 }, "~N,~N");
-Clazz.defineMethod (c$, "setPairVariables", 
+Clazz.defineMethod (c$, "setPairVariables",
 function (c) {
 if (this.gradients) {
 this.setCoords (c, 2);
@@ -352,7 +352,7 @@ c.rab = JM.Util.restorativeForceAndDistance (this.da, this.db, this.dc);
 c.rab = Math.sqrt (JM.Util.distance2 (this.minAtoms[c.ia].coord, this.minAtoms[c.ib].coord));
 }if (JM.Util.isNearZero2 (c.rab, 1.0e-3)) c.rab = 1.0e-3;
 }, "JM.FF.Calculation");
-Clazz.defineMethod (c$, "setAngleVariables", 
+Clazz.defineMethod (c$, "setAngleVariables",
 function (c) {
 if (this.gradients) {
 this.setCoords (c, 3);
@@ -361,7 +361,7 @@ c.theta = JM.Util.restorativeForceAndAngleRadians (this.da, this.db, this.dc);
 c.theta = JM.Util.getAngleRadiansABC (this.minAtoms[c.ia].coord, this.minAtoms[c.ib].coord, this.minAtoms[c.ic].coord);
 }if (!JM.Util.isFinite (c.theta)) c.theta = 0.0;
 }, "JM.FF.Calculation");
-Clazz.defineMethod (c$, "setOopVariables", 
+Clazz.defineMethod (c$, "setOopVariables",
 function (c, fixTheta) {
 this.setCoords (c, 4);
 if (this.gradients) {
@@ -370,7 +370,7 @@ c.theta = JM.Util.restorativeForceAndOutOfPlaneAngleRadians (this.da, this.db, t
 c.theta = JM.Util.pointPlaneAngleRadians (this.da, this.db, this.dc, this.dd, this.v1, this.v2, this.v3, fixTheta);
 }if (!JM.Util.isFinite (c.theta)) c.theta = 0.0;
 }, "JM.FF.Calculation,~B");
-Clazz.defineMethod (c$, "setTorsionVariables", 
+Clazz.defineMethod (c$, "setTorsionVariables",
 function (c) {
 if (this.gradients) {
 this.setCoords (c, 4);
@@ -379,7 +379,7 @@ if (!JM.Util.isFinite (c.theta)) c.theta = 1.7453292519943296E-5;
 } else {
 c.theta = JM.Util.getTorsionAngleRadians (this.minAtoms[c.ia].coord, this.minAtoms[c.ib].coord, this.minAtoms[c.ic].coord, this.minAtoms[c.id].coord, this.v1, this.v2, this.v3);
 }}, "JM.FF.Calculation");
-Clazz.defineMethod (c$, "setCoords", 
+Clazz.defineMethod (c$, "setCoords",
 function (c, n) {
 switch (n) {
 case 4:
@@ -392,7 +392,7 @@ case 1:
 this.dd.setA (this.minAtoms[c.id].coord);
 }
 }, "JM.FF.Calculation,~N");
-Clazz.defineMethod (c$, "addForces", 
+Clazz.defineMethod (c$, "addForces",
 function (c, n) {
 switch (n) {
 case 4:
@@ -405,7 +405,7 @@ case 1:
 this.addForce (this.da, c.ia, c.dE);
 }
 }, "JM.FF.Calculation,~N");
-Clazz.defineMethod (c$, "isLinear", 
+Clazz.defineMethod (c$, "isLinear",
 function (i) {
 return false;
 }, "~N");

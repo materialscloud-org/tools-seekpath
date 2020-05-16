@@ -38,7 +38,7 @@ this.screenArrowHead =  new JU.P3 ();
 this.headOffsetVector =  new JU.V3 ();
 this.pTemp3 =  new JU.P3 ();
 });
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 var vectors = this.shape;
 if (!vectors.isActive) return false;
@@ -89,7 +89,7 @@ this.renderVector (atom, null);
 }
 return needTranslucent;
 });
-Clazz.defineMethod (c$, "transform", 
+Clazz.defineMethod (c$, "transform",
  function (mad, atom, vib, mod2) {
 var isMod = (vib == null || vib.modDim >= 0);
 var isSpin = (!isMod && vib.modDim == -2);
@@ -148,7 +148,7 @@ this.headWidthPixels = this.diameter << 1;
 if (this.headWidthPixels < this.diameter + 2) this.headWidthPixels = this.diameter + 2;
 return true;
 }, "~N,JM.Atom,JU.Vibration,J.api.JmolModulationSet");
-Clazz.defineMethod (c$, "renderVector", 
+Clazz.defineMethod (c$, "renderVector",
  function (atom, vib) {
 if (vib != null && this.vectorTrail > 0) {
 if (this.ptTemp4 == null) {

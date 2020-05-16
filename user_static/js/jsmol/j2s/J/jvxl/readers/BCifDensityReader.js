@@ -9,18 +9,18 @@ this.thisData = null;
 this.isDiff = false;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.readers, "BCifDensityReader", J.jvxl.readers.MapFileReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.BCifDensityReader, []);
 });
-Clazz.defineMethod (c$, "getCifData", 
+Clazz.defineMethod (c$, "getCifData",
 function (fileName, data) {
 this.binarydoc = this.newBinaryDocument ();
 if (JU.AU.isAB (data)) this.binarydoc.setStream ( new java.io.BufferedInputStream ( new java.io.ByteArrayInputStream (data)), true);
  else this.setStream (fileName, true);
 this.nSurfaces = 1;
 }, "~S,~O");
-Clazz.defineMethod (c$, "readCifP3", 
+Clazz.defineMethod (c$, "readCifP3",
 function (key, p3) {
 if (p3 == null) p3 =  new JU.P3 ();
 var x = this.getCifFloat (key + "[0]");
@@ -32,7 +32,7 @@ p3.y = this.getCifFloat (key + "[1]");
 p3.z = this.getCifFloat (key + "[2]");
 }return p3;
 }, "~S,JU.P3");
-Clazz.defineMethod (c$, "getCifMap", 
+Clazz.defineMethod (c$, "getCifMap",
 function (type) {
 if (this.cifData == null) try {
 this.cifData = ( new JU.MessagePackReader (this.binarydoc, true)).readMap ();
@@ -63,7 +63,7 @@ return this.thisData = map;
 }}
 return null;
 }, "~S");
-Clazz.defineMethod (c$, "getCifString", 
+Clazz.defineMethod (c$, "getCifString",
 function (key) {
 var map = this.thisData.get (key);
 var data = map.get ("data");
@@ -71,7 +71,7 @@ var encoding = (map.get ("encoding"))[0];
 var o = encoding.get ("offsetEncoding");
 return null;
 }, "~S");
-Clazz.defineMethod (c$, "getCifFloat", 
+Clazz.defineMethod (c$, "getCifFloat",
 function (key) {
 var map = this.thisData.get (key);
 var data = map.get ("data");
@@ -98,7 +98,7 @@ throw e;
 }
 return f;
 }, "~S");
-Clazz.defineMethod (c$, "readCifFloats", 
+Clazz.defineMethod (c$, "readCifFloats",
 function (key, values) {
 var map = this.thisData.get (key);
 var data = map.get ("data");
@@ -116,7 +116,7 @@ values[i] = min + delta * ((data[i] + 256) % 256);
 System.out.println ("BCifDensityReader: value encoding type? " + kind);
 }return values;
 }, "~S,~A");
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.allowSigma = true;
 this.init2MFR (sg, br);
@@ -127,7 +127,7 @@ this.isDiff = (fileName != null && fileName.indexOf ("&diff=1") >= 0 || Clazz.in
 this.getCifData (fileName, data);
 this.nSurfaces = 1;
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "readParameters", 
+Clazz.overrideMethod (c$, "readParameters",
 function () {
 this.getCifMap (this.isDiff ? "FO-FC" : "2FO-FC");
 var test = this.getCifString ("_volume_data_3d_info_name");
@@ -178,7 +178,7 @@ JU.Logger.info ("Cutoff set to (mean + rmsDeviation*" + sigma + " = " + this.par
 this.jvxlFileHeaderBuffer.append ("CifDensity reader\n");
 this.jvxlFileHeaderBuffer.append ("see http://www.ebi.ac.uk/pdbe/densities/x-ray/1cbs/dbox/\n");
 });
-Clazz.defineMethod (c$, "getXYZ", 
+Clazz.defineMethod (c$, "getXYZ",
  function (a, x) {
 switch (Clazz.floatToInt (x)) {
 case 0:
@@ -190,17 +190,17 @@ default:
 return a.z;
 }
 }, "JU.P3,~N");
-Clazz.overrideMethod (c$, "nextVoxel", 
+Clazz.overrideMethod (c$, "nextVoxel",
 function () {
 var v = this.values[this.pt++];
 this.checkSum += v;
 return v;
 });
-Clazz.overrideMethod (c$, "skipData", 
+Clazz.overrideMethod (c$, "skipData",
 function (nPoints) {
 this.pt += nPoints;
 }, "~N");
-Clazz.defineMethod (c$, "closeReader", 
+Clazz.defineMethod (c$, "closeReader",
 function () {
 if (this.readerClosed) return;
 System.out.println ("CifDensityReader checkSum=" + this.checkSum);

@@ -4,18 +4,18 @@ c$ = Clazz.decorateAsClass (function () {
 this.energyWithUnits = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.simple, "MopacArchiveReader", J.adapter.readers.simple.InputReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.asc.newAtomSet ();
 if (!this.checkFilterKey ("NOCENTER")) this.doCentralize = true;
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.indexOf ("=") == 34) return this.getMyValue ();
 if (this.line.indexOf ("FINAL GEOMETRY OBTAINED") >= 0) return this.readCoordinates ();
 return true;
 });
-Clazz.defineMethod (c$, "getMyValue", 
+Clazz.defineMethod (c$, "getMyValue",
  function () {
 if (this.line.substring (0, 10).trim ().length != 0) return true;
 var key = this.line.substring (0, 34).trim ().$replace (' ', '_');
@@ -27,7 +27,7 @@ this.energyWithUnits = " (" + tokens[3] + " " + tokens[4] + ")";
 this.asc.setAtomSetEnergy (tokens[3], this.parseFloatStr (tokens[3]));
 }return true;
 });
-Clazz.defineMethod (c$, "readCoordinates", 
+Clazz.defineMethod (c$, "readCoordinates",
  function () {
 this.rd ();
 this.line = this.rd ().trim ();

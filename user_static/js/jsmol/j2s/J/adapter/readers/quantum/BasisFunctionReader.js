@@ -25,7 +25,7 @@ this.orbitals =  new JU.Lst ();
 this.orbitalMaps =  new java.util.Hashtable ();
 this.highLEnabled =  Clazz.newIntArray (J.quantum.QS.idSpherical.length, 0);
 });
-Clazz.defineMethod (c$, "filterMO", 
+Clazz.defineMethod (c$, "filterMO",
 function () {
 var isHeader = (this.line.indexOf ('\n') == 0);
 if (!isHeader && !this.doReadMolecularOrbitals) return false;
@@ -49,7 +49,7 @@ if (!isHeader) JU.Logger.info ("filter MOs: " + isOK + " for \"" + this.line + "
 }this.spin = (ucline.indexOf ("ALPHA") >= 0 ? "alpha" : ucline.indexOf ("BETA") >= 0 ? "beta" : null);
 return isOK;
 });
-Clazz.defineMethod (c$, "setMO", 
+Clazz.defineMethod (c$, "setMO",
 function (mo) {
 if (this.dfCoefMaps != null) mo.put ("dfCoefMaps", this.dfCoefMaps);
 this.orbitals.addLast (mo);
@@ -57,7 +57,7 @@ mo.put ("index", Integer.$valueOf (this.orbitals.size ()));
 if (this.spin != null) mo.put ("spin", this.spin);
 this.moData.put ("highLEnabled", this.highLEnabled);
 }, "java.util.Map");
-Clazz.defineMethod (c$, "getDFMap", 
+Clazz.defineMethod (c$, "getDFMap",
 function (shell, fileList, shellType, jmolList, minLength) {
 this.orbitalMaps.put (shell, fileList);
 this.moData.put ("orbitalMaps", this.orbitalMaps);
@@ -68,15 +68,15 @@ var isOK = J.quantum.QS.createDFMap (this.dfCoefMaps[shellType], fileList, jmolL
 if (!isOK) JU.Logger.error ("Disabling orbitals of type " + shellType + " -- Cannot read orbital order for: " + fileList + "\n expecting: " + jmolList);
 return isOK;
 }, "~S,~S,~N,~S,~N");
-Clazz.defineMethod (c$, "enableShell", 
+Clazz.defineMethod (c$, "enableShell",
 function (shellType) {
 this.highLEnabled[shellType] = 1;
 }, "~N");
-Clazz.defineMethod (c$, "getDfCoefMaps", 
+Clazz.defineMethod (c$, "getDfCoefMaps",
 function () {
 return (this.dfCoefMaps == null ? (this.dfCoefMaps = J.quantum.QS.getNewDfCoefMap ()) : this.dfCoefMaps);
 });
-c$.canonicalizeQuantumSubshellTag = Clazz.defineMethod (c$, "canonicalizeQuantumSubshellTag", 
+c$.canonicalizeQuantumSubshellTag = Clazz.defineMethod (c$, "canonicalizeQuantumSubshellTag",
 function (tag) {
 var firstChar = tag.charAt (0);
 if (firstChar == 'X' || firstChar == 'Y' || firstChar == 'Z') {
@@ -85,7 +85,7 @@ java.util.Arrays.sort (sorted);
 return  String.instantialize (sorted);
 }return tag;
 }, "~S");
-Clazz.defineMethod (c$, "fixSlaterTypes", 
+Clazz.defineMethod (c$, "fixSlaterTypes",
 function (typeOld, typeNew) {
 if (this.shells == null) return 0;
 this.nCoef = 0;
@@ -97,25 +97,25 @@ this.nCoef += m;
 }
 return this.nCoef;
 }, "~N,~N");
-c$.getQuantumShellTagIDSpherical = Clazz.defineMethod (c$, "getQuantumShellTagIDSpherical", 
+c$.getQuantumShellTagIDSpherical = Clazz.defineMethod (c$, "getQuantumShellTagIDSpherical",
 function (tag) {
 return J.quantum.QS.getQuantumShellTagIDSpherical (tag);
 }, "~S");
-c$.getQuantumShellTagID = Clazz.defineMethod (c$, "getQuantumShellTagID", 
+c$.getQuantumShellTagID = Clazz.defineMethod (c$, "getQuantumShellTagID",
 function (tag) {
 return J.quantum.QS.getQuantumShellTagID (tag);
 }, "~S");
-c$.getQuantumShellTag = Clazz.defineMethod (c$, "getQuantumShellTag", 
+c$.getQuantumShellTag = Clazz.defineMethod (c$, "getQuantumShellTag",
 function (id) {
 return J.quantum.QS.getQuantumShellTag (id);
 }, "~N");
-Clazz.overrideMethod (c$, "discardPreviousAtoms", 
+Clazz.overrideMethod (c$, "discardPreviousAtoms",
 function () {
 this.asc.discardPreviousAtoms ();
 this.moData.remove ("mos");
 this.orbitals.clear ();
 });
-Clazz.defineMethod (c$, "clearOrbitals", 
+Clazz.defineMethod (c$, "clearOrbitals",
 function () {
 this.orbitals =  new JU.Lst ();
 this.moData =  new java.util.Hashtable ();
@@ -127,7 +127,7 @@ c$ = Clazz.decorateAsClass (function () {
 Clazz.prepareCallback (this, arguments);
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.quantum.BasisFunctionReader, "MOEnergySorter", null, java.util.Comparator);
-Clazz.overrideMethod (c$, "compare", 
+Clazz.overrideMethod (c$, "compare",
 function (a, b) {
 var c = ((a).get ("energy")).floatValue ();
 var d = ((b).get ("energy")).floatValue ();

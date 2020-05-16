@@ -8,11 +8,11 @@ this.lastSequenceNumber = 2147483647;
 this.chainID = 64;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.more, "Mol2Reader", J.adapter.readers.more.ForceFieldReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.setUserAtomTypes ();
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.equals ("@<TRIPOS>MOLECULE")) {
 if (!this.processMolecule ()) {
@@ -23,7 +23,7 @@ return false;
 this.checkCurrentLineForScript ();
 }return true;
 });
-Clazz.defineMethod (c$, "processMolecule", 
+Clazz.defineMethod (c$, "processMolecule",
  function () {
 this.isPDB = false;
 var thisDataSetName = this.rd ().trim ();
@@ -67,7 +67,7 @@ this.setModelPDB (true);
 }this.applySymmetryAndSetTrajectory ();
 return true;
 });
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function (ac) {
 if (ac == 0) return;
 var i0 = this.asc.ac;
@@ -124,7 +124,7 @@ g3 = null;
 }atoms[i].group3 = g3;
 }
 }, "~N");
-Clazz.defineMethod (c$, "getPDBGroupLength", 
+Clazz.defineMethod (c$, "getPDBGroupLength",
  function (g3) {
 var pt0 = g3.length;
 var pt = pt0;
@@ -132,7 +132,7 @@ while (--pt > 0 && Character.isDigit (g3.charAt (pt))) {
 }
 return ++pt;
 }, "~S");
-Clazz.defineMethod (c$, "readBonds", 
+Clazz.defineMethod (c$, "readBonds",
  function (bondCount) {
 for (var i = 0; i < bondCount; ++i) {
 var tokens = JU.PT.getTokens (this.rd ());
@@ -143,13 +143,13 @@ if (order == -2147483648) order = (tokens[3].equals ("ar") ? 515 : tokens[3].equ
 this.asc.addBond ( new J.adapter.smarter.Bond (this.nAtoms + atomIndex1 - 1, this.nAtoms + atomIndex2 - 1, order));
 }
 }, "~N");
-Clazz.defineMethod (c$, "readResInfo", 
+Clazz.defineMethod (c$, "readResInfo",
  function (resCount) {
 for (var i = 0; i < resCount; ++i) {
 this.rd ();
 }
 }, "~N");
-Clazz.defineMethod (c$, "readCrystalInfo", 
+Clazz.defineMethod (c$, "readCrystalInfo",
  function () {
 this.rd ();
 var tokens = this.getTokens ();

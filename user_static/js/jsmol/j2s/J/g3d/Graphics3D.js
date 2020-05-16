@@ -57,17 +57,17 @@ this.vectorNormal =  new JU.V3 ();
 this.shadeIndexes =  Clazz.newByteArray (JU.GData.normixCount, 0);
 this.shadeIndexes2Sided =  Clazz.newByteArray (JU.GData.normixCount, 0);
 });
-Clazz.overrideMethod (c$, "isWebGL", 
+Clazz.overrideMethod (c$, "isWebGL",
 function () {
 return false;
 });
-Clazz.overrideMethod (c$, "clear", 
+Clazz.overrideMethod (c$, "clear",
 function () {
 this.stringCount = 0;
 this.strings = null;
 J.g3d.TextRenderer.clearFontCache ();
 });
-Clazz.overrideMethod (c$, "destroy", 
+Clazz.overrideMethod (c$, "destroy",
 function () {
 this.releaseBuffers ();
 this.platform = null;
@@ -76,17 +76,17 @@ this.pixelT0 = null;
 this.pixelScreened = null;
 this.graphicsForMetrics = null;
 });
-Clazz.defineMethod (c$, "setZMargin", 
+Clazz.defineMethod (c$, "setZMargin",
 function (dz) {
 this.zMargin = dz;
 }, "~N");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.g3d.Graphics3D, []);
 for (var i = JU.GData.normixCount; --i >= 0; ) this.transformedVectors[i] =  new JU.V3 ();
 
 });
-Clazz.overrideMethod (c$, "initialize", 
+Clazz.overrideMethod (c$, "initialize",
 function (vwr, apiPlatform) {
 this.vwr = vwr;
 this.apiPlatform = apiPlatform;
@@ -97,7 +97,7 @@ this.line3d =  new J.g3d.LineRenderer (this);
 this.sphere3d =  new J.g3d.SphereRenderer (this);
 this.cylinder3d =  new J.g3d.CylinderRenderer (this);
 }, "JV.Viewer,javajs.awt.GenericPlatform");
-Clazz.overrideMethod (c$, "addRenderer", 
+Clazz.overrideMethod (c$, "addRenderer",
 function (tok) {
 switch (tok) {
 case 1073741880:
@@ -112,24 +112,24 @@ this.triangle3d = this.getRenderer ("Triangle");
 }break;
 }
 }, "~N");
-Clazz.defineMethod (c$, "getRenderer", 
+Clazz.defineMethod (c$, "getRenderer",
  function (type) {
 var r = (J.api.Interface.getOption ("g3d." + type + "Renderer", this.vwr, "render"));
 if (r == null) throw  new NullPointerException ("Interface");
 r.set (this, this);
 return r;
 }, "~S");
-Clazz.overrideMethod (c$, "setWindowParameters", 
+Clazz.overrideMethod (c$, "setWindowParameters",
 function (width, height, antialias) {
 this.setWinParams (width, height, antialias);
 if (this.currentlyRendering) this.endRendering ();
 }, "~N,~N,~B");
-Clazz.overrideMethod (c$, "checkTranslucent", 
+Clazz.overrideMethod (c$, "checkTranslucent",
 function (isAlphaTranslucent) {
 if (isAlphaTranslucent) this.$haveTranslucentObjects = true;
 return (!this.twoPass || this.twoPass && (this.isPass2 == isAlphaTranslucent));
 }, "~B");
-Clazz.overrideMethod (c$, "beginRendering", 
+Clazz.overrideMethod (c$, "beginRendering",
 function (rotationMatrix, translucentMode, isImageWrite, renderLow) {
 if (this.currentlyRendering) this.endRendering ();
 this.renderLow = renderLow;
@@ -168,11 +168,11 @@ this.platform.clearBuffer ();
 if (this.backgroundImage != null) this.plotImage (-2147483648, 0, -2147483648, this.backgroundImage, null, 0, 0, 0);
 this.textY = 0;
 }, "JU.M3,~B,~B,~B");
-Clazz.overrideMethod (c$, "setBackgroundTransparent", 
+Clazz.overrideMethod (c$, "setBackgroundTransparent",
 function (TF) {
 if (this.platform != null) this.platform.setBackgroundTransparent (TF);
 }, "~B");
-Clazz.defineMethod (c$, "releaseBuffers", 
+Clazz.defineMethod (c$, "releaseBuffers",
  function () {
 this.pbuf = null;
 this.zbuf = null;
@@ -182,7 +182,7 @@ this.aobuf = null;
 this.platform.releaseBuffers ();
 this.line3d.clearLineCache ();
 });
-Clazz.overrideMethod (c$, "setPass2", 
+Clazz.overrideMethod (c$, "setPass2",
 function (antialiasTranslucent) {
 if (!this.$haveTranslucentObjects || !this.currentlyRendering) return false;
 this.isPass2 = true;
@@ -200,7 +200,7 @@ if (this.pixel.p0 == null) this.pixel = this.pixelT0;
  else this.pixel.p0 = this.pixelT0;
 return true;
 }, "~B");
-Clazz.overrideMethod (c$, "endRendering", 
+Clazz.overrideMethod (c$, "endRendering",
 function () {
 if (!this.currentlyRendering) return;
 if (this.pbuf != null) {
@@ -212,7 +212,7 @@ if (this.antialiasThisFrame) this.downsampleFullSceneAntialiasing (false);
 this.platform.notifyEndOfRendering ();
 this.currentlyRendering = this.isPass2 = false;
 });
-c$.mergeBufferPixel = Clazz.defineMethod (c$, "mergeBufferPixel", 
+c$.mergeBufferPixel = Clazz.defineMethod (c$, "mergeBufferPixel",
 function (argbA, argbB, bgcolor) {
 if (argbB == 0 || argbA == argbB) return argbA;
 if (argbA == 0) argbA = bgcolor;
@@ -257,13 +257,13 @@ break;
 }
 return 0xFF000000 | rbA | gA;
 }, "~N,~N,~N");
-Clazz.overrideMethod (c$, "getScreenImage", 
+Clazz.overrideMethod (c$, "getScreenImage",
 function (isImageWrite) {
 {
 var obj = this.platform.bufferedImage; if (isImageWrite) {
 this.releaseBuffers(); } return obj;
 }}, "~B");
-Clazz.overrideMethod (c$, "applyAnaglygh", 
+Clazz.overrideMethod (c$, "applyAnaglygh",
 function (stereoMode, stereoColors) {
 switch (stereoMode) {
 case J.c.STER.REDCYAN:
@@ -300,7 +300,7 @@ case J.c.STER.NONE:
 break;
 }
 }, "J.c.STER,~A");
-Clazz.overrideMethod (c$, "snapshotAnaglyphChannelBytes", 
+Clazz.overrideMethod (c$, "snapshotAnaglyphChannelBytes",
 function () {
 if (this.currentlyRendering) throw  new NullPointerException ();
 this.anaglyphLength = this.windowWidth * this.windowHeight;
@@ -308,15 +308,15 @@ if (this.anaglyphChannelBytes == null || this.anaglyphChannelBytes.length != thi
 for (var i = this.anaglyphLength; --i >= 0; ) this.anaglyphChannelBytes[i] = this.pbuf[i];
 
 });
-Clazz.overrideMethod (c$, "releaseScreenImage", 
+Clazz.overrideMethod (c$, "releaseScreenImage",
 function () {
 this.platform.clearScreenBufferThreaded ();
 });
-Clazz.overrideMethod (c$, "haveTranslucentObjects", 
+Clazz.overrideMethod (c$, "haveTranslucentObjects",
 function () {
 return this.$haveTranslucentObjects;
 });
-Clazz.overrideMethod (c$, "setSlabAndZShade", 
+Clazz.overrideMethod (c$, "setSlabAndZShade",
 function (slabValue, depthValue, zSlab, zDepth, zShadePower) {
 this.setSlab (slabValue);
 this.setDepth (depthValue);
@@ -326,7 +326,7 @@ this.pixel = this.pixelShaded.set (zSlab, zDepth, zShadePower);
 } else {
 this.pixel = this.pixel0;
 }}, "~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "downsampleFullSceneAntialiasing", 
+Clazz.defineMethod (c$, "downsampleFullSceneAntialiasing",
  function (downsampleZBuffer) {
 var bgcheck = this.bgcolor;
 if (downsampleZBuffer) bgcheck += ((bgcheck & 0xFF) == 0xFF ? -1 : 1);
@@ -336,7 +336,7 @@ J.g3d.Graphics3D.downsample2dZ (this.pbuf, this.zbuf, this.windowWidth, this.win
 this.antialiasThisFrame = false;
 this.setWidthHeight (false);
 }}, "~B");
-c$.downsample2d = Clazz.defineMethod (c$, "downsample2d", 
+c$.downsample2d = Clazz.defineMethod (c$, "downsample2d",
 function (pbuf, width, height, bgcheck) {
 var width4 = width << 1;
 if (bgcheck != 0) {
@@ -356,7 +356,7 @@ pbuf[offset1] = argb & 0x00FFFFFF | 0xFF000000;
 }}
 
 }, "~A,~N,~N,~N");
-c$.downsample2dZ = Clazz.defineMethod (c$, "downsample2dZ", 
+c$.downsample2dZ = Clazz.defineMethod (c$, "downsample2dZ",
  function (pbuf, zbuf, width, height, bgcheck) {
 var width4 = width << 1;
 var offset1 = 0;
@@ -370,11 +370,11 @@ zbuf[offset1] = (pbuf[offset1] == bgcheck ? 2147483647 : z);
 }
 
 }, "~A,~A,~N,~N,~N");
-Clazz.defineMethod (c$, "hasContent", 
+Clazz.defineMethod (c$, "hasContent",
 function () {
 return this.platform.hasContent ();
 });
-Clazz.overrideMethod (c$, "setC", 
+Clazz.overrideMethod (c$, "setC",
 function (colix) {
 var isLast = JU.C.isColixLastAvailable (colix);
 if (!isLast && colix == this.colixCurrent && this.currentShadeIndex == -1) return true;
@@ -401,7 +401,7 @@ this.currentShadeIndex = -1;
 this.setColor (this.getColorArgbOrGray (colix));
 return true;
 }, "~N");
-Clazz.defineMethod (c$, "setScreened", 
+Clazz.defineMethod (c$, "setScreened",
 function (isScreened) {
 if (this.wasScreened != isScreened) {
 this.wasScreened = isScreened;
@@ -415,7 +415,7 @@ this.pixel = (this.isPass2 ? this.pixelT0 : this.pixel0);
 this.pixel.p0 = (this.isPass2 ? this.pixelT0 : this.pixel0);
 }}return this.pixel;
 }, "~B");
-Clazz.overrideMethod (c$, "drawFilledCircle", 
+Clazz.overrideMethod (c$, "drawFilledCircle",
 function (colixRing, colixFill, diameter, x, y, z) {
 if (this.isClippedZ (z)) return;
 var r = Clazz.doubleToInt ((diameter + 1) / 2);
@@ -430,7 +430,7 @@ if (!this.isClippedXY (diameter, x, y)) (this.circle3d).plotCircleCenteredClippe
 if (isClipped) (this.circle3d).plotFilledCircleCenteredClipped (x, y, z, diameter);
  else (this.circle3d).plotFilledCircleCenteredUnclipped (x, y, z, diameter);
 }}, "~N,~N,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "volumeRender4", 
+Clazz.overrideMethod (c$, "volumeRender4",
 function (diameter, x, y, z) {
 if (diameter == 1) {
 this.plotPixelClippedArgb (this.argbCurrent, x, y, z, this.width, this.zbuf, this.pixel);
@@ -442,7 +442,7 @@ if (isClipped && this.isClippedXY (diameter, x, y)) return;
 if (isClipped) (this.circle3d).plotFilledCircleCenteredClipped (x, y, z, diameter);
  else (this.circle3d).plotFilledCircleCenteredUnclipped (x, y, z, diameter);
 }, "~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "fillSphereXYZ", 
+Clazz.overrideMethod (c$, "fillSphereXYZ",
 function (diameter, x, y, z) {
 switch (diameter) {
 case 1:
@@ -453,7 +453,7 @@ return;
 }
 if (diameter <= (this.antialiasThisFrame ? 2000 : 1000)) this.sphere3d.render (this.shadesCurrent, diameter, x, y, z, null, null, null, -1, null);
 }, "~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "volumeRender", 
+Clazz.overrideMethod (c$, "volumeRender",
 function (TF) {
 if (TF) {
 this.saveAmbient = this.getAmbientPercent ();
@@ -465,15 +465,15 @@ this.addRenderer (1073741880);
 this.setAmbientPercent (this.saveAmbient);
 this.setDiffusePercent (this.saveDiffuse);
 }}, "~B");
-Clazz.overrideMethod (c$, "fillSphereI", 
+Clazz.overrideMethod (c$, "fillSphereI",
 function (diameter, center) {
 this.fillSphereXYZ (diameter, center.x, center.y, center.z);
 }, "~N,JU.P3i");
-Clazz.overrideMethod (c$, "fillSphereBits", 
+Clazz.overrideMethod (c$, "fillSphereBits",
 function (diameter, center) {
 this.fillSphereXYZ (diameter, Math.round (center.x), Math.round (center.y), Math.round (center.z));
 }, "~N,JU.P3");
-Clazz.overrideMethod (c$, "fillEllipsoid", 
+Clazz.overrideMethod (c$, "fillEllipsoid",
 function (center, points, x, y, z, diameter, mToEllipsoidal, coef, mDeriv, selectedOctant, octantPoints) {
 switch (diameter) {
 case 1:
@@ -484,7 +484,7 @@ return;
 }
 if (diameter <= (this.antialiasThisFrame ? 2000 : 1000)) this.sphere3d.render (this.shadesCurrent, diameter, x, y, z, mToEllipsoidal, coef, mDeriv, selectedOctant, octantPoints);
 }, "JU.P3,~A,~N,~N,~N,~N,JU.M3,~A,JU.M4,~N,~A");
-Clazz.overrideMethod (c$, "drawRect", 
+Clazz.overrideMethod (c$, "drawRect",
 function (x, y, z, zSlab, rWidth, rHeight) {
 if (zSlab != 0 && this.isClippedZ (zSlab)) return;
 var w = rWidth - 1;
@@ -496,7 +496,7 @@ if (yBottom >= 0 && yBottom < this.height) this.drawHLine (x, yBottom, z, w);
 if (x >= 0 && x < this.width) this.drawVLine (x, y, z, h);
 if (xRight >= 0 && xRight < this.width) this.drawVLine (xRight, y, z, h);
 }, "~N,~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "drawHLine", 
+Clazz.defineMethod (c$, "drawHLine",
  function (x, y, z, w) {
 if (w < 0) {
 x += w;
@@ -513,7 +513,7 @@ if (z < this.zbuf[offset]) p.addPixel (offset, z, c);
 offset++;
 }
 }, "~N,~N,~N,~N");
-Clazz.defineMethod (c$, "drawVLine", 
+Clazz.defineMethod (c$, "drawVLine",
  function (x, y, z, h) {
 if (h < 0) {
 y += h;
@@ -531,7 +531,7 @@ if (z < this.zbuf[offset]) p.addPixel (offset, z, c);
 offset += this.width;
 }
 }, "~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "fillTextRect", 
+Clazz.overrideMethod (c$, "fillTextRect",
 function (x, y, z, zSlab, widthFill, heightFill) {
 if (this.isClippedZ (zSlab)) return;
 var w = this.width;
@@ -553,14 +553,14 @@ var p = this.pixel;
 while (--heightFill >= 0) this.plotPixelsUnclippedCount (c, widthFill, x, y++, z, w, zb, p);
 
 }, "~N,~N,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "drawString", 
+Clazz.overrideMethod (c$, "drawString",
 function (str, font3d, xBaseline, yBaseline, z, zSlab, bgColix) {
 this.currentShadeIndex = 0;
 if (str == null) return;
 if (this.isClippedZ (zSlab)) return;
 this.drawStringNoSlab (str, font3d, xBaseline, yBaseline, z, bgColix);
 }, "~S,javajs.awt.Font,~N,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "drawStringNoSlab", 
+Clazz.overrideMethod (c$, "drawStringNoSlab",
 function (str, font3d, xBaseline, yBaseline, z, bgColix) {
 if (str == null) return;
 if (this.strings == null) this.strings =  new Array (10);
@@ -569,7 +569,7 @@ var t =  new J.g3d.TextString ();
 t.setText (str, font3d == null ? this.currentFont : (this.currentFont = font3d), this.argbCurrent, JU.C.isColixTranslucent (bgColix) ? (this.getColorArgbOrGray (bgColix) & 0xFFFFFF) | ((bgColix & 30720) << 13) : 0, xBaseline, yBaseline, z);
 this.strings[this.stringCount++] = t;
 }, "~S,javajs.awt.Font,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "renderAllStrings", 
+Clazz.overrideMethod (c$, "renderAllStrings",
 function (jmolRenderer) {
 if (this.strings == null) return;
 if (this.stringCount >= 2) {
@@ -582,15 +582,15 @@ this.plotText (ts.x, ts.y, ts.z, ts.argb, ts.bgargb, ts.text, ts.font, jmolRende
 this.strings = null;
 this.stringCount = 0;
 }, "~O");
-Clazz.overrideMethod (c$, "plotText", 
+Clazz.overrideMethod (c$, "plotText",
 function (x, y, z, argb, bgargb, text, font3d, jmolRenderer) {
 J.g3d.TextRenderer.plot (x, y, z, argb, bgargb, text, font3d, this, jmolRenderer, this.antialiasThisFrame);
 }, "~N,~N,~N,~N,~N,~S,javajs.awt.Font,J.api.JmolRendererInterface");
-Clazz.overrideMethod (c$, "drawImage", 
+Clazz.overrideMethod (c$, "drawImage",
 function (objImage, x, y, z, zSlab, bgcolix, width, height) {
 if (objImage != null && width > 0 && height > 0 && !this.isClippedZ (zSlab)) this.plotImage (x, y, z, objImage, null, bgcolix, width, height);
 }, "~O,~N,~N,~N,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "plotImage", 
+Clazz.overrideMethod (c$, "plotImage",
 function (x, y, z, image, jmolRenderer, bgcolix, imageWidth, imageHeight) {
 this.setC (bgcolix);
 if (!this.isPass2) this.translucencyMask = -1;
@@ -629,19 +629,19 @@ if ((b & 0xFF000000) == (-16777216)) jmolRenderer.plotImagePixel (b, x + j, y + 
 }
 
 }}, "~N,~N,~N,~O,J.api.JmolRendererInterface,~N,~N,~N");
-Clazz.overrideMethod (c$, "setFontFid", 
+Clazz.overrideMethod (c$, "setFontFid",
 function (fid) {
 this.currentFont = javajs.awt.Font.getFont3D (fid);
 }, "~N");
-Clazz.overrideMethod (c$, "setFont", 
+Clazz.overrideMethod (c$, "setFont",
 function (font3d) {
 this.currentFont = font3d;
 }, "javajs.awt.Font");
-Clazz.overrideMethod (c$, "drawPixel", 
+Clazz.overrideMethod (c$, "drawPixel",
 function (x, y, z) {
 this.plotPixelClippedArgb (this.argbCurrent, x, y, z, this.width, this.zbuf, this.pixel);
 }, "~N,~N,~N");
-Clazz.overrideMethod (c$, "drawPoints", 
+Clazz.overrideMethod (c$, "drawPoints",
 function (count, coordinates, scale) {
 if (scale > 1) {
 var s2 = scale * scale * 0.8;
@@ -655,30 +655,30 @@ this.plotPoints (count, coordinates, i, j);
 } else {
 this.plotPoints (count, coordinates, 0, 0);
 }}, "~N,~A,~N");
-Clazz.overrideMethod (c$, "drawDashedLineBits", 
+Clazz.overrideMethod (c$, "drawDashedLineBits",
 function (run, rise, pointA, pointB) {
 this.setScreeni (pointA, this.sA);
 this.setScreeni (pointB, this.sB);
 this.line3d.plotLineBits (this.argbCurrent, this.argbCurrent, this.sA, this.sB, run, rise, true);
 }, "~N,~N,JU.P3,JU.P3");
-Clazz.defineMethod (c$, "setScreeni", 
+Clazz.defineMethod (c$, "setScreeni",
  function (pt, p) {
 p.x = Math.round (pt.x);
 p.y = Math.round (pt.y);
 p.z = Math.round (pt.z);
 }, "JU.P3,JU.P3i");
-Clazz.overrideMethod (c$, "drawLineXYZ", 
+Clazz.overrideMethod (c$, "drawLineXYZ",
 function (x1, y1, z1, x2, y2, z2) {
 this.line3d.plotLineOld (this.argbCurrent, this.argbCurrent, x1, y1, z1, x2, y2, z2);
 }, "~N,~N,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "drawLine", 
+Clazz.overrideMethod (c$, "drawLine",
 function (colixA, colixB, x1, y1, z1, x2, y2, z2) {
 if (!this.setC (colixA)) colixA = 0;
 var argbA = this.argbCurrent;
 if (!this.setC (colixB)) colixB = 0;
 if (colixA != 0 || colixB != 0) this.line3d.plotLineOld (argbA, this.argbCurrent, x1, y1, z1, x2, y2, z2);
 }, "~N,~N,~N,~N,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "drawLineBits", 
+Clazz.overrideMethod (c$, "drawLineBits",
 function (colixA, colixB, pointA, pointB) {
 if (!this.setC (colixA)) colixA = 0;
 var argbA = this.argbCurrent;
@@ -688,13 +688,13 @@ this.setScreeni (pointA, this.sA);
 this.setScreeni (pointB, this.sB);
 this.line3d.plotLineBits (argbA, this.argbCurrent, this.sA, this.sB, 0, 0, false);
 }}, "~N,~N,JU.P3,JU.P3");
-Clazz.overrideMethod (c$, "drawLineAB", 
+Clazz.overrideMethod (c$, "drawLineAB",
 function (pointA, pointB) {
 this.setScreeni (pointA, this.sA);
 this.setScreeni (pointB, this.sB);
 this.line3d.plotLineBits (this.argbCurrent, this.argbCurrent, this.sA, this.sB, 0, 0, false);
 }, "JU.P3,JU.P3");
-Clazz.overrideMethod (c$, "fillCylinderXYZ", 
+Clazz.overrideMethod (c$, "fillCylinderXYZ",
 function (colixA, colixB, endcaps, diameter, xA, yA, zA, xB, yB, zB) {
 if (diameter > this.ht3) return;
 var screen = 0;
@@ -706,15 +706,15 @@ if (this.wasScreened) screen += 1;
 if (colixA == 0 && colixB == 0) return;
 this.cylinder3d.renderOld (colixA, colixB, screen, endcaps, diameter, xA, yA, zA, xB, yB, zB);
 }, "~N,~N,~N,~N,~N,~N,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "fillCylinderScreen3I", 
+Clazz.overrideMethod (c$, "fillCylinderScreen3I",
 function (endcaps, diameter, screenA, screenB, pt0f, pt1f, radius) {
 if (diameter <= this.ht3) this.cylinder3d.renderOld (this.colixCurrent, this.colixCurrent, 0, endcaps, diameter, Clazz.floatToInt (screenA.x), Clazz.floatToInt (screenA.y), Clazz.floatToInt (screenA.z), Clazz.floatToInt (screenB.x), Clazz.floatToInt (screenB.y), Clazz.floatToInt (screenB.z));
 }, "~N,~N,JU.P3,JU.P3,JU.P3,JU.P3,~N");
-Clazz.overrideMethod (c$, "fillCylinder", 
+Clazz.overrideMethod (c$, "fillCylinder",
 function (endcaps, diameter, screenA, screenB) {
 if (diameter <= this.ht3) this.cylinder3d.renderOld (this.colixCurrent, this.colixCurrent, 0, endcaps, diameter, screenA.x, screenA.y, screenA.z, screenB.x, screenB.y, screenB.z);
 }, "~N,~N,JU.P3i,JU.P3i");
-Clazz.overrideMethod (c$, "fillCylinderBits", 
+Clazz.overrideMethod (c$, "fillCylinderBits",
 function (endcaps, diameter, screenA, screenB) {
 if (diameter <= this.ht3 && screenA.z != 1 && screenB.z != 1) {
 if (diameter == 0 || diameter == 1) {
@@ -724,7 +724,7 @@ this.line3d.plotLineBits (this.getColorArgbOrGray (this.colixCurrent), this.getC
 return;
 }this.cylinder3d.renderBitsFloat (this.colixCurrent, this.colixCurrent, 0, endcaps, diameter, screenA, screenB);
 }}, "~N,~N,JU.P3,JU.P3");
-Clazz.overrideMethod (c$, "fillCylinderBits2", 
+Clazz.overrideMethod (c$, "fillCylinderBits2",
 function (colixA, colixB, endcaps, diameter, screenA, screenB) {
 if (diameter > this.ht3) return;
 var screen = 0;
@@ -738,15 +738,15 @@ this.setScreeni (screenA, this.sA);
 this.setScreeni (screenB, this.sB);
 this.cylinder3d.renderBits (colixA, colixB, screen, endcaps, diameter, this.sA, this.sB);
 }, "~N,~N,~N,~N,JU.P3,JU.P3");
-Clazz.overrideMethod (c$, "fillConeScreen3f", 
+Clazz.overrideMethod (c$, "fillConeScreen3f",
 function (endcap, screenDiameter, screenBase, screenTip, isBarb) {
 if (screenDiameter <= this.ht3) this.cylinder3d.renderConeOld (this.colixCurrent, endcap, screenDiameter, screenBase.x, screenBase.y, screenBase.z, screenTip.x, screenTip.y, screenTip.z, true, isBarb);
 }, "~N,~N,JU.P3,JU.P3,~B");
-Clazz.overrideMethod (c$, "drawHermite4", 
+Clazz.overrideMethod (c$, "drawHermite4",
 function (tension, s0, s1, s2, s3) {
 (this.hermite3d).renderHermiteRope (false, tension, 0, 0, 0, s0, s1, s2, s3);
 }, "~N,JU.P3,JU.P3,JU.P3,JU.P3");
-Clazz.overrideMethod (c$, "drawHermite7", 
+Clazz.overrideMethod (c$, "drawHermite7",
 function (fill, border, tension, s0, s1, s2, s3, s4, s5, s6, s7, aspectRatio, colixBack) {
 if (colixBack == 0) {
 (this.hermite3d).renderHermiteRibbon (fill, border, tension, s0, s1, s2, s3, s4, s5, s6, s7, aspectRatio, 0);
@@ -757,29 +757,29 @@ this.setC (colixBack);
 (this.hermite3d).renderHermiteRibbon (fill, border, tension, s0, s1, s2, s3, s4, s5, s6, s7, aspectRatio, -1);
 this.setC (colix);
 }, "~B,~B,~N,JU.P3,JU.P3,JU.P3,JU.P3,JU.P3,JU.P3,JU.P3,JU.P3,~N,~N");
-Clazz.overrideMethod (c$, "fillHermite", 
+Clazz.overrideMethod (c$, "fillHermite",
 function (tension, diameterBeg, diameterMid, diameterEnd, s0, s1, s2, s3) {
 (this.hermite3d).renderHermiteRope (true, tension, diameterBeg, diameterMid, diameterEnd, s0, s1, s2, s3);
 }, "~N,~N,~N,~N,JU.P3,JU.P3,JU.P3,JU.P3");
-Clazz.overrideMethod (c$, "drawTriangle3C", 
+Clazz.overrideMethod (c$, "drawTriangle3C",
 function (screenA, colixA, screenB, colixB, screenC, colixC, check) {
 if ((check & 1) == 1) this.drawLine (colixA, colixB, screenA.x, screenA.y, screenA.z, screenB.x, screenB.y, screenB.z);
 if ((check & 2) == 2) this.drawLine (colixB, colixC, screenB.x, screenB.y, screenB.z, screenC.x, screenC.y, screenC.z);
 if ((check & 4) == 4) this.drawLine (colixA, colixC, screenA.x, screenA.y, screenA.z, screenC.x, screenC.y, screenC.z);
 }, "JU.P3i,~N,JU.P3i,~N,JU.P3i,~N,~N");
-Clazz.overrideMethod (c$, "fillTriangleTwoSided", 
+Clazz.overrideMethod (c$, "fillTriangleTwoSided",
 function (normix, screenA, screenB, screenC) {
 this.setColorNoisy (this.getShadeIndex (normix));
 this.fillTriangleP3f (screenA, screenB, screenC, false);
 }, "~N,JU.P3,JU.P3,JU.P3");
-Clazz.defineMethod (c$, "fillTriangleP3f", 
+Clazz.defineMethod (c$, "fillTriangleP3f",
  function (screenA, screenB, screenC, useGouraud) {
 this.setScreeni (screenA, this.sA);
 this.setScreeni (screenB, this.sB);
 this.setScreeni (screenC, this.sC);
 (this.triangle3d).fillTriangle (this.sA, this.sB, this.sC, useGouraud);
 }, "JU.P3,JU.P3,JU.P3,~B");
-Clazz.overrideMethod (c$, "fillTriangle3f", 
+Clazz.overrideMethod (c$, "fillTriangle3f",
 function (screenA, screenB, screenC, isSolid) {
 var i = this.getShadeIndexP3 (screenA, screenB, screenC, isSolid);
 if (i < 0) return;
@@ -787,7 +787,7 @@ if (isSolid) this.setColorNoisy (i);
  else this.setColor (this.shadesCurrent[i]);
 this.fillTriangleP3f (screenA, screenB, screenC, false);
 }, "JU.P3,JU.P3,JU.P3,~B");
-Clazz.overrideMethod (c$, "fillTriangle3i", 
+Clazz.overrideMethod (c$, "fillTriangle3i",
 function (screenA, screenB, screenC, ptA, ptB, ptC, doShade) {
 if (doShade) {
 var v = this.vectorAB;
@@ -803,15 +803,15 @@ shadeIndex = v.z >= 0 ? this.shader.getShadeIndex (-v.x, -v.y, v.z) : this.shade
 this.setColorNoisy (shadeIndex);
 }this.fillTriangleP3f (screenA, screenB, screenC, false);
 }, "JU.P3,JU.P3,JU.P3,JU.T3,JU.T3,JU.T3,~B");
-Clazz.overrideMethod (c$, "fillTriangle3CN", 
+Clazz.overrideMethod (c$, "fillTriangle3CN",
 function (screenA, colixA, normixA, screenB, colixB, normixB, screenC, colixC, normixC) {
 (this.triangle3d).fillTriangle (screenA, screenB, screenC, this.checkGouraud (colixA, colixB, colixC, normixA, normixB, normixC));
 }, "JU.P3i,~N,~N,JU.P3i,~N,~N,JU.P3i,~N,~N");
-Clazz.overrideMethod (c$, "fillTriangle3CNBits", 
+Clazz.overrideMethod (c$, "fillTriangle3CNBits",
 function (screenA, colixA, normixA, screenB, colixB, normixB, screenC, colixC, normixC, twoSided) {
 this.fillTriangleP3f (screenA, screenB, screenC, this.checkGouraud (colixA, colixB, colixC, normixA, normixB, normixC));
 }, "JU.P3,~N,~N,JU.P3,~N,~N,JU.P3,~N,~N,~B");
-Clazz.defineMethod (c$, "checkGouraud", 
+Clazz.defineMethod (c$, "checkGouraud",
  function (colixA, colixB, colixC, normixA, normixB, normixC) {
 if (!this.isPass2 && normixA == normixB && normixA == normixC && colixA == colixB && colixA == colixC) {
 var shadeIndex = this.getShadeIndex (normixA);
@@ -824,11 +824,11 @@ this.setColorNoisy (shadeIndex);
 (this.triangle3d).setGouraud (this.getShades (colixA)[this.getShadeIndex (normixA)], this.getShades (colixB)[this.getShadeIndex (normixB)], this.getShades (colixC)[this.getShadeIndex (normixC)]);
 return true;
 }, "~N,~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "getShadeIndex", 
+Clazz.defineMethod (c$, "getShadeIndex",
 function (normix) {
 return (normix == -10000 || normix == 9999 ? J.g3d.Graphics3D.nullShadeIndex : normix < 0 ? this.shadeIndexes2Sided[~normix] : this.shadeIndexes[normix]);
 }, "~N");
-Clazz.defineMethod (c$, "setTriangleTranslucency", 
+Clazz.defineMethod (c$, "setTriangleTranslucency",
  function (colixA, colixB, colixC) {
 if (this.isPass2) {
 var maskA = colixA & 30720;
@@ -840,7 +840,7 @@ maskC &= -16385;
 var mask = JU.GData.roundInt (Clazz.doubleToInt ((maskA + maskB + maskC) / 3)) & 30720;
 this.translucencyMask = (mask << 13) | 0xFFFFFF;
 }}, "~N,~N,~N");
-Clazz.overrideMethod (c$, "fillQuadrilateral", 
+Clazz.overrideMethod (c$, "fillQuadrilateral",
 function (screenA, screenB, screenC, screenD, isSolid) {
 var i = this.getShadeIndexP3 (screenA, screenB, screenC, isSolid);
 if (i < 0) return;
@@ -848,30 +848,30 @@ this.setColorNoisy (i);
 this.fillTriangleP3f (screenA, screenB, screenC, false);
 this.fillTriangleP3f (screenA, screenC, screenD, false);
 }, "JU.P3,JU.P3,JU.P3,JU.P3,~B");
-Clazz.overrideMethod (c$, "drawSurface", 
+Clazz.overrideMethod (c$, "drawSurface",
 function (meshSurface, colix) {
 }, "JU.MeshSurface,~N");
-Clazz.overrideMethod (c$, "plotPixelClippedP3i", 
+Clazz.overrideMethod (c$, "plotPixelClippedP3i",
 function (screen) {
 this.plotPixelClippedArgb (this.argbCurrent, screen.x, screen.y, screen.z, this.width, this.zbuf, this.pixel);
 }, "JU.P3i");
-Clazz.defineMethod (c$, "plotPixelClippedArgb", 
+Clazz.defineMethod (c$, "plotPixelClippedArgb",
 function (argb, x, y, z, width, zbuf, p) {
 if (this.isClipped3 (x, y, z)) return;
 var offset = y * width + x;
 if (z < zbuf[offset]) p.addPixel (offset, z, argb);
 }, "~N,~N,~N,~N,~N,~A,J.g3d.Pixelator");
-Clazz.defineMethod (c$, "plotPixelUnclipped", 
+Clazz.defineMethod (c$, "plotPixelUnclipped",
 function (argb, x, y, z, width, zbuf, p) {
 var offset = y * width + x;
 if (z < zbuf[offset]) p.addPixel (offset, z, argb);
 }, "~N,~N,~N,~N,~N,~A,J.g3d.Pixelator");
-Clazz.defineMethod (c$, "plotImagePixel", 
+Clazz.defineMethod (c$, "plotImagePixel",
 function (argb, x, y, z, shade, bgargb, width, height, zbuf, p, transpLog) {
 if (x < 0 || x >= width || y < 0 || y >= height) return;
 (p).addImagePixel (shade, transpLog, y * width + x, z, argb, bgargb);
 }, "~N,~N,~N,~N,~N,~N,~N,~N,~A,~O,~N");
-Clazz.defineMethod (c$, "plotPixelsClippedRaster", 
+Clazz.defineMethod (c$, "plotPixelsClippedRaster",
 function (count, x, y, zAtLeft, zPastRight, rgb16Left, rgb16Right) {
 var depth;
 var slab;
@@ -921,7 +921,7 @@ gScaled += gIncrement;
 bScaled += bIncrement;
 }
 }}, "~N,~N,~N,~N,~N,JU.Rgb16,JU.Rgb16");
-Clazz.defineMethod (c$, "plotPixelsUnclippedRaster", 
+Clazz.defineMethod (c$, "plotPixelsUnclippedRaster",
 function (count, x, y, zAtLeft, zPastRight, rgb16Left, rgb16Right) {
 if (count <= 0) return;
 var seed = ((x << 16) + (y << 1) ^ 0x33333333) & 0x7FFFFFFF;
@@ -962,7 +962,7 @@ gScaled += gIncrement;
 bScaled += bIncrement;
 }
 }}, "~N,~N,~N,~N,~N,JU.Rgb16,JU.Rgb16");
-Clazz.defineMethod (c$, "plotPixelsClippedRasterBits", 
+Clazz.defineMethod (c$, "plotPixelsClippedRasterBits",
 function (count, x, y, zAtLeft, zPastRight, rgb16Left, rgb16Right, a, b) {
 var depth;
 var slab;
@@ -1005,7 +1005,7 @@ gScaled += gIncrement;
 bScaled += bIncrement;
 }
 }}, "~N,~N,~N,~N,~N,JU.Rgb16,JU.Rgb16,~N,~N");
-Clazz.defineMethod (c$, "plotPixelsUnclippedRasterBits", 
+Clazz.defineMethod (c$, "plotPixelsUnclippedRasterBits",
 function (count, x, y, rgb16Left, rgb16Right, a, b) {
 if (count <= 0) return;
 var seed = ((x << 16) + (y << 1) ^ 0x33333333) & 0x7FFFFFFF;
@@ -1041,7 +1041,7 @@ gScaled += gIncrement;
 bScaled += bIncrement;
 }
 }}, "~N,~N,~N,JU.Rgb16,JU.Rgb16,~N,~N");
-Clazz.defineMethod (c$, "plotPixelsUnclippedCount", 
+Clazz.defineMethod (c$, "plotPixelsUnclippedCount",
 function (c, count, x, y, z, width, zbuf, p) {
 var offsetPbuf = y * width + x;
 while (--count >= 0) {
@@ -1049,7 +1049,7 @@ if (z < zbuf[offsetPbuf]) p.addPixel (offsetPbuf, z, c);
 ++offsetPbuf;
 }
 }, "~N,~N,~N,~N,~N,~N,~A,J.g3d.Pixelator");
-Clazz.defineMethod (c$, "plotPoints", 
+Clazz.defineMethod (c$, "plotPoints",
  function (count, coordinates, xOffset, yOffset) {
 var p = this.pixel;
 var c = this.argbCurrent;
@@ -1072,14 +1072,14 @@ offset = y * w + (--x);
 if (!this.isClipped3 (x, y, z) && z < zb[offset]) p.addPixel (offset, z, c);
 }}
 }, "~N,~A,~N,~N");
-Clazz.defineMethod (c$, "setColorNoisy", 
+Clazz.defineMethod (c$, "setColorNoisy",
 function (shadeIndex) {
 this.currentShadeIndex = shadeIndex;
 this.argbCurrent = this.shadesCurrent[shadeIndex];
 this.argbNoisyUp = this.shadesCurrent[shadeIndex < 63 ? shadeIndex + 1 : 63];
 this.argbNoisyDn = this.shadesCurrent[shadeIndex > 0 ? shadeIndex - 1 : 0];
 }, "~N");
-Clazz.defineMethod (c$, "getShadeIndexP3", 
+Clazz.defineMethod (c$, "getShadeIndexP3",
  function (screenA, screenB, screenC, isSolid) {
 this.vectorAB.sub2 (screenB, screenA);
 this.vectorAC.sub2 (screenC, screenA);
@@ -1088,54 +1088,54 @@ v.cross (this.vectorAB, this.vectorAC);
 var i = (v.z < 0 ? this.shader.getShadeIndex (v.x, v.y, -v.z) : isSolid ? -1 : this.shader.getShadeIndex (-v.x, -v.y, v.z));
 return i;
 }, "JU.P3,JU.P3,JU.P3,~B");
-Clazz.overrideMethod (c$, "renderBackground", 
+Clazz.overrideMethod (c$, "renderBackground",
 function (jmolRenderer) {
 if (this.backgroundImage != null) this.plotImage (-2147483648, 0, -2147483648, this.backgroundImage, jmolRenderer, 0, 0, 0);
 }, "J.api.JmolRendererInterface");
-Clazz.overrideMethod (c$, "drawAtom", 
+Clazz.overrideMethod (c$, "drawAtom",
 function (atom, radius) {
 this.fillSphereXYZ (atom.sD, atom.sX, atom.sY, atom.sZ);
 }, "JM.Atom,~N");
-Clazz.overrideMethod (c$, "getExportType", 
+Clazz.overrideMethod (c$, "getExportType",
 function () {
 return 0;
 });
-Clazz.overrideMethod (c$, "getExportName", 
+Clazz.overrideMethod (c$, "getExportName",
 function () {
 return null;
 });
-Clazz.defineMethod (c$, "canDoTriangles", 
+Clazz.defineMethod (c$, "canDoTriangles",
 function () {
 return true;
 });
-Clazz.defineMethod (c$, "isCartesianExport", 
+Clazz.defineMethod (c$, "isCartesianExport",
 function () {
 return false;
 });
-Clazz.overrideMethod (c$, "initializeExporter", 
+Clazz.overrideMethod (c$, "initializeExporter",
 function (vwr, privateKey, g3d, params) {
 return null;
 }, "JV.Viewer,~N,JU.GData,java.util.Map");
-Clazz.overrideMethod (c$, "finalizeOutput", 
+Clazz.overrideMethod (c$, "finalizeOutput",
 function () {
 return null;
 });
-Clazz.overrideMethod (c$, "drawBond", 
+Clazz.overrideMethod (c$, "drawBond",
 function (atomA, atomB, colixA, colixB, endcaps, mad, bondOrder) {
 }, "JU.P3,JU.P3,~N,~N,~N,~N,~N");
-Clazz.overrideMethod (c$, "drawEllipse", 
+Clazz.overrideMethod (c$, "drawEllipse",
 function (ptAtom, ptX, ptY, fillArc, wireframeOnly) {
 return false;
 }, "JU.P3,JU.P3,JU.P3,~B,~B");
-Clazz.defineMethod (c$, "getPrivateKey", 
+Clazz.defineMethod (c$, "getPrivateKey",
 function () {
 return 0;
 });
-Clazz.overrideMethod (c$, "clearFontCache", 
+Clazz.overrideMethod (c$, "clearFontCache",
 function () {
 J.g3d.TextRenderer.clearFontCache ();
 });
-Clazz.defineMethod (c$, "setRotationMatrix", 
+Clazz.defineMethod (c$, "setRotationMatrix",
 function (rotationMatrix) {
 var vertexVectors = JU.Normix.getVertexVectors ();
 for (var i = JU.GData.normixCount; --i >= 0; ) {
@@ -1145,7 +1145,7 @@ this.shadeIndexes[i] = this.shader.getShadeB (tv.x, -tv.y, tv.z);
 this.shadeIndexes2Sided[i] = (tv.z >= 0 ? this.shadeIndexes[i] : this.shader.getShadeB (-tv.x, tv.y, -tv.z));
 }
 }, "JU.M3");
-Clazz.overrideMethod (c$, "renderCrossHairs", 
+Clazz.overrideMethod (c$, "renderCrossHairs",
 function (minMax, screenWidth, screenHeight, navOffset, navDepth) {
 var antialiased = this.isAntialiased ();
 this.setC (navDepth < 0 ? 10 : navDepth > 100 ? 11 : 23);
@@ -1169,7 +1169,7 @@ this.drawRect (x, y - off, z, 0, w, h);
 this.setC (minMax[2] > navOffset.y ? 21 : 11);
 this.drawRect (x, y + h, z, 0, w, h);
 }, "~A,~N,~N,JU.P3,~N");
-Clazz.overrideMethod (c$, "initializeOutput", 
+Clazz.overrideMethod (c$, "initializeOutput",
 function (vwr, privateKey, params) {
 return false;
 }, "JV.Viewer,~N,java.util.Map");

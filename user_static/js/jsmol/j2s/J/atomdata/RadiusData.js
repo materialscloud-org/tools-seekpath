@@ -13,7 +13,7 @@ Clazz.prepareFields (c$, function () {
 this.factorType = J.atomdata.RadiusData.EnumType.ABSOLUTE;
 this.vdwType = J.c.VDW.AUTO;
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (values, value, factorType, vdwType) {
 if (values != null) {
 this.values = values;
@@ -24,7 +24,7 @@ this.factorType = factorType;
 this.value = value;
 if (vdwType != null) this.vdwType = vdwType;
 }, "~A,~N,J.atomdata.RadiusData.EnumType,J.c.VDW");
-Clazz.overrideMethod (c$, "toString", 
+Clazz.overrideMethod (c$, "toString",
 function () {
 if (Float.isNaN (this.value)) return "";
 var sb =  new JU.SB ();

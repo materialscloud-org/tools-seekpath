@@ -13,7 +13,7 @@ this.evt = null;
 this.consumed = false;
 Clazz.instantialize (this, arguments);
 }, java.awt, "Event");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (target, when, id, x, y, key, modifiers, arg) {
 this.target = target;
 this.when = when;
@@ -44,32 +44,32 @@ break;
 default:
 }
 }, "~O,~N,~N,~N,~N,~N,~N,~O");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (target, when, id, x, y, key, modifiers) {
 this.construct (target, when, id, x, y, key, modifiers, null);
 }, "~O,~N,~N,~N,~N,~N,~N");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (target, id, arg) {
 this.construct (target, 0, id, 0, 0, 0, 0, arg);
 }, "~O,~N,~O");
-Clazz.defineMethod (c$, "translate", 
+Clazz.defineMethod (c$, "translate",
 function (dx, dy) {
 this.x += dx;
 this.y += dy;
 }, "~N,~N");
-Clazz.defineMethod (c$, "shiftDown", 
+Clazz.defineMethod (c$, "shiftDown",
 function () {
 return (this.modifiers & 1) != 0;
 });
-Clazz.defineMethod (c$, "controlDown", 
+Clazz.defineMethod (c$, "controlDown",
 function () {
 return (this.modifiers & 2) != 0;
 });
-Clazz.defineMethod (c$, "metaDown", 
+Clazz.defineMethod (c$, "metaDown",
 function () {
 return (this.modifiers & 4) != 0;
 });
-Clazz.defineMethod (c$, "consume", 
+Clazz.defineMethod (c$, "consume",
 function () {
 switch (this.id) {
 case 401:
@@ -81,11 +81,11 @@ break;
 default:
 }
 });
-Clazz.defineMethod (c$, "isConsumed", 
+Clazz.defineMethod (c$, "isConsumed",
 function () {
 return this.consumed;
 });
-c$.getOldEventKey = Clazz.defineMethod (c$, "getOldEventKey", 
+c$.getOldEventKey = Clazz.defineMethod (c$, "getOldEventKey",
 function (e) {
 var keyCode = e.getKeyCode ();
 for (var i = 0; i < java.awt.Event.actionKeyCodes.length; i++) {
@@ -94,7 +94,7 @@ return java.awt.Event.actionKeyCodes[i][1];
 }}
 return e.getKeyChar ();
 }, "java.awt.event.KeyEvent");
-Clazz.defineMethod (c$, "getKeyEventChar", 
+Clazz.defineMethod (c$, "getKeyEventChar",
 function () {
 for (var i = 0; i < java.awt.Event.actionKeyCodes.length; i++) {
 if (java.awt.Event.actionKeyCodes[i][1] == this.key) {
@@ -102,7 +102,7 @@ return '\uffff';
 }}
 return String.fromCharCode (this.key);
 });
-Clazz.defineMethod (c$, "paramString", 
+Clazz.defineMethod (c$, "paramString",
 function () {
 var str = "id=" + this.id + ",x=" + this.x + ",y=" + this.y;
 if (this.key != 0) {
@@ -119,7 +119,7 @@ str += ",target=" + this.target;
 str += ",arg=" + this.arg;
 }return str;
 });
-Clazz.overrideMethod (c$, "toString", 
+Clazz.overrideMethod (c$, "toString",
 function () {
 return this.getClass ().getName () + "[" + this.paramString () + "]";
 });

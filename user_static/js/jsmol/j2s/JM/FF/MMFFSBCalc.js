@@ -1,7 +1,7 @@
 Clazz.declarePackage ("JM.FF");
 Clazz.load (["JM.FF.Calculation"], "JM.FF.MMFFSBCalc", null, function () {
 c$ = Clazz.declareType (JM.FF, "MMFFSBCalc", JM.FF.Calculation);
-Clazz.defineMethod (c$, "setData", 
+Clazz.defineMethod (c$, "setData",
 function (calc, angle) {
 if (this.calcs.isLinear (angle.data[1])) return;
 var data = this.calcs.getParameter (angle.sbKey);
@@ -15,7 +15,7 @@ var r0jk = datajk[1];
 calc.addLast ( Clazz.newArray (-1, [angle.data,  Clazz.newDoubleArray (-1, [data[0], theta0, r0ij]), angle.sbKey]));
 calc.addLast ( Clazz.newArray (-1, [ Clazz.newIntArray (-1, [angle.data[2], angle.data[1], angle.data[0]]),  Clazz.newDoubleArray (-1, [data[1], theta0, r0jk]), angle.sbKey]));
 }, "JU.Lst,JM.MinAngle");
-Clazz.overrideMethod (c$, "compute", 
+Clazz.overrideMethod (c$, "compute",
 function (dataIn) {
 this.key = dataIn[2];
 this.getPointers (dataIn);

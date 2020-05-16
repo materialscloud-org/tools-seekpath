@@ -1,21 +1,21 @@
 Clazz.declarePackage ("J.popup");
 Clazz.load (["J.popup.PopupResource"], "J.popup.MainPopupResourceBundle", ["JU.PT", "J.i18n.GT", "JV.JC", "$.Viewer"], function () {
 c$ = Clazz.declareType (J.popup, "MainPopupResourceBundle", J.popup.PopupResource);
-Clazz.overrideMethod (c$, "getMenuName", 
+Clazz.overrideMethod (c$, "getMenuName",
 function () {
 return "popupMenu";
 });
-Clazz.overrideMethod (c$, "buildStructure", 
+Clazz.overrideMethod (c$, "buildStructure",
 function (menuStructure) {
 this.addItems (J.popup.MainPopupResourceBundle.menuContents);
 this.addItems (J.popup.MainPopupResourceBundle.structureContents);
 if (menuStructure != null) this.setStructure (menuStructure,  new J.i18n.GT ());
 }, "~S");
-c$.Box = Clazz.defineMethod (c$, "Box", 
+c$.Box = Clazz.defineMethod (c$, "Box",
  function (cmd) {
 return "if (showBoundBox or showUnitcell) {" + cmd + "} else {boundbox on;" + cmd + ";boundbox off}";
 }, "~S");
-Clazz.overrideMethod (c$, "getWordContents", 
+Clazz.overrideMethod (c$, "getWordContents",
 function () {
 var wasTranslating = J.i18n.GT.setDoTranslate (true);
 var vdw = J.i18n.GT._ ("{0}% van der Waals");
@@ -31,7 +31,7 @@ for (var i = 1, n = words.length; i < n; i += 2) if (words[i] == null) words[i] 
 
 return words;
 });
-Clazz.overrideMethod (c$, "getMenuAsText", 
+Clazz.overrideMethod (c$, "getMenuAsText",
 function (title) {
 return this.getStuctureAsText (title, J.popup.MainPopupResourceBundle.menuContents, J.popup.MainPopupResourceBundle.structureContents);
 }, "~S");

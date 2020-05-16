@@ -4,12 +4,12 @@ c$ = Clazz.decorateAsClass (function () {
 this.lowdenCharges = false;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.quantum, "GamessUSReader", J.adapter.readers.quantum.GamessReader);
-Clazz.defineMethod (c$, "initializeReader", 
+Clazz.defineMethod (c$, "initializeReader",
 function () {
 this.lowdenCharges = this.checkAndRemoveFilterKey ("CHARGE=LOW");
 Clazz.superCall (this, J.adapter.readers.quantum.GamessUSReader, "initializeReader", []);
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.startsWith (" $DATA")) return this.readInputDeck ();
 if (this.line.indexOf ("***************") >= 0) JU.Logger.info (this.rd ());
@@ -59,7 +59,7 @@ this.readMolecularOrbitals (2);
 return false;
 }return this.checkNboLine ();
 });
-Clazz.defineMethod (c$, "readInputDeck", 
+Clazz.defineMethod (c$, "readInputDeck",
  function () {
 this.readLines (2);
 this.asc.newAtomSet ();
@@ -69,12 +69,12 @@ if (tokens.length > 4) this.addAtomXYZSymName (tokens, 2, tokens[0], null).eleme
 }
 return (this.continuing = false);
 });
-Clazz.defineMethod (c$, "readMolecularOrbitals", 
+Clazz.defineMethod (c$, "readMolecularOrbitals",
 function (headerType) {
 this.setCalculationType ();
 Clazz.superCall (this, J.adapter.readers.quantum.GamessUSReader, "readMolecularOrbitals", [headerType]);
 }, "~N");
-Clazz.defineMethod (c$, "readEFPInBohrCoordinates", 
+Clazz.defineMethod (c$, "readEFPInBohrCoordinates",
 function () {
 var acInFirstModel = this.asc.ac;
 this.discardLinesUntilContains ("MULTIPOLE COORDINATES");
@@ -94,7 +94,7 @@ this.setAtomCoordXYZ (atom, x * 0.5291772, y * 0.5291772, z * 0.5291772);
 this.atomNames.addLast (atomName);
 }
 });
-Clazz.overrideMethod (c$, "readAtomsInBohrCoordinates", 
+Clazz.overrideMethod (c$, "readAtomsInBohrCoordinates",
 function () {
 this.rd ();
 var atomName;
@@ -112,7 +112,7 @@ this.setAtomCoordXYZ (atom, x * 0.5291772, y * 0.5291772, z * 0.5291772);
 this.atomNames.addLast (atomName);
 }
 });
-Clazz.defineMethod (c$, "readAtomsInAngstromCoordinates", 
+Clazz.defineMethod (c$, "readAtomsInAngstromCoordinates",
  function () {
 this.rd ();
 this.rd ();
@@ -148,11 +148,11 @@ this.setAtomCoordXYZ (atom, x, y, z);
 this.atomNames.addLast (atomName);
 }
 }});
-Clazz.overrideMethod (c$, "fixShellTag", 
+Clazz.overrideMethod (c$, "fixShellTag",
 function (tag) {
 return tag;
 }, "~S");
-Clazz.defineMethod (c$, "readPartialCharges", 
+Clazz.defineMethod (c$, "readPartialCharges",
 function () {
 var tokens = null;
 var searchstr = (this.lowdenCharges ? "LOW.POP." : "MULL.POP.");
@@ -169,7 +169,7 @@ var endAtom = this.asc.ac;
 for (var i = startAtom; i < endAtom && this.rd () != null; ++i) atoms[i].partialCharge = this.parseFloatStr (JU.PT.getTokens (this.prevline)[poploc]);
 
 });
-Clazz.defineMethod (c$, "readDipoleMoment", 
+Clazz.defineMethod (c$, "readDipoleMoment",
 function () {
 var tokens = null;
 this.rd ();

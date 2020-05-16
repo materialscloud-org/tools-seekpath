@@ -1,25 +1,25 @@
 Clazz.declarePackage ("JSV.popup");
 Clazz.load (["J.popup.PopupResource"], "JSV.popup.JSVPopupResourceBundle", null, function () {
 c$ = Clazz.declareType (JSV.popup, "JSVPopupResourceBundle", J.popup.PopupResource);
-Clazz.overrideMethod (c$, "getMenuName", 
+Clazz.overrideMethod (c$, "getMenuName",
 function () {
 return "appMenu";
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JSV.popup.JSVPopupResourceBundle, [null, null]);
 });
-Clazz.overrideMethod (c$, "buildStructure", 
+Clazz.overrideMethod (c$, "buildStructure",
 function (menuStructure) {
 this.addItems (JSV.popup.JSVPopupResourceBundle.menuContents);
 this.addItems (JSV.popup.JSVPopupResourceBundle.structureContents);
 if (menuStructure != null) this.setStructure (menuStructure, null);
 }, "~S");
-Clazz.overrideMethod (c$, "getWordContents", 
+Clazz.overrideMethod (c$, "getWordContents",
 function () {
 return  Clazz.newArray (-1, []);
 });
-Clazz.overrideMethod (c$, "getMenuAsText", 
+Clazz.overrideMethod (c$, "getMenuAsText",
 function (title) {
 return this.getStuctureAsText (title, JSV.popup.JSVPopupResourceBundle.menuContents, JSV.popup.JSVPopupResourceBundle.structureContents);
 }, "~S");

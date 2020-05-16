@@ -1,7 +1,7 @@
 Clazz.declarePackage ("J.adapter.smarter");
 Clazz.load (null, "J.adapter.smarter.Resolver", ["java.io.BufferedInputStream", "$.InputStream", "java.lang.Float", "java.util.StringTokenizer", "javajs.api.GenericBinaryDocument", "JU.LimitedLineReader", "$.PT", "$.Rdr", "J.adapter.smarter.AtomSetCollectionReader", "$.SmarterJmolAdapter", "J.api.Interface", "JU.Logger", "JV.FileManager", "$.JC"], function () {
 c$ = Clazz.declareType (J.adapter.smarter, "Resolver");
-c$.getReaderClassBase = Clazz.defineMethod (c$, "getReaderClassBase", 
+c$.getReaderClassBase = Clazz.defineMethod (c$, "getReaderClassBase",
 function (type) {
 var name = type + "Reader";
 if (type.startsWith ("Xml")) return "J.adapter.readers." + "xml." + name;
@@ -10,7 +10,7 @@ for (var i = 1; i < J.adapter.smarter.Resolver.readerSets.length; i += 2) if (J.
 
 return "J.adapter.readers." + "???." + name;
 }, "~S");
-c$.getFileType = Clazz.defineMethod (c$, "getFileType", 
+c$.getFileType = Clazz.defineMethod (c$, "getFileType",
 function (br) {
 try {
 return J.adapter.smarter.Resolver.determineAtomSetCollectionReader (br, false);
@@ -22,7 +22,7 @@ throw e;
 }
 }
 }, "java.io.BufferedReader");
-c$.getAtomCollectionReader = Clazz.defineMethod (c$, "getAtomCollectionReader", 
+c$.getAtomCollectionReader = Clazz.defineMethod (c$, "getAtomCollectionReader",
 function (fullName, type, readerOrDocument, htParams, ptFile) {
 var readerName;
 fullName = JV.FileManager.fixDOSName (fullName);
@@ -54,7 +54,7 @@ if (ptFile <= 0) htParams.put ("readerName", readerName);
 if (readerName.indexOf ("Xml") == 0) readerName = "Xml";
 return J.adapter.smarter.Resolver.getReader (readerName, htParams);
 }, "~S,~S,~O,java.util.Map,~N");
-c$.getReader = Clazz.defineMethod (c$, "getReader", 
+c$.getReader = Clazz.defineMethod (c$, "getReader",
 function (readerName, htParams) {
 var rdr = null;
 var className = null;
@@ -66,7 +66,7 @@ JU.Logger.error (err);
 return err;
 }return rdr;
 }, "~S,java.util.Map");
-c$.getReaderFromType = Clazz.defineMethod (c$, "getReaderFromType", 
+c$.getReaderFromType = Clazz.defineMethod (c$, "getReaderFromType",
  function (type) {
 type = ";" + type.toLowerCase () + ";";
 if (";zmatrix;cfi;c;vfi;v;mnd;jag;adf;gms;g;gau;mp;nw;orc;pqs;qc;".indexOf (type) >= 0) return "Input";
@@ -76,7 +76,7 @@ for (var i = J.adapter.smarter.Resolver.readerSets.length; --i >= 0; ) if ((pt =
 
 return null;
 }, "~S");
-c$.split = Clazz.defineMethod (c$, "split", 
+c$.split = Clazz.defineMethod (c$, "split",
  function (a, n) {
 var s = "";
 var l = a.length;
@@ -84,7 +84,7 @@ for (var i = 0, j = 0; i < l; i = j) s += a.substring (i, (j = Math.min (i + n, 
 
 return s;
 }, "~S,~N");
-c$.DOMResolve = Clazz.defineMethod (c$, "DOMResolve", 
+c$.DOMResolve = Clazz.defineMethod (c$, "DOMResolve",
 function (htParams) {
 var rdrName = J.adapter.smarter.Resolver.getXmlType (htParams.get ("nameSpaceInfo"));
 if (JU.Logger.debugging) {
@@ -92,7 +92,7 @@ JU.Logger.debug ("The Resolver thinks " + rdrName);
 }htParams.put ("readerName", rdrName);
 return J.adapter.smarter.Resolver.getReader ("XmlReader", htParams);
 }, "java.util.Map");
-c$.determineAtomSetCollectionReader = Clazz.defineMethod (c$, "determineAtomSetCollectionReader", 
+c$.determineAtomSetCollectionReader = Clazz.defineMethod (c$, "determineAtomSetCollectionReader",
  function (readerOrDocument, returnLines) {
 var readerName;
 if (Clazz.instanceOf (readerOrDocument, javajs.api.GenericBinaryDocument)) {
@@ -122,11 +122,11 @@ if ((readerName = J.adapter.smarter.Resolver.checkHeaderContains (llr.getHeader 
 if ((readerName = J.adapter.smarter.Resolver.checkSpecial2 (lines)) != null) return readerName;
 return (returnLines ? "\n" + lines[0] + "\n" + lines[1] + "\n" + lines[2] + "\n" : null);
 }, "~O,~B");
-c$.getBinaryType = Clazz.defineMethod (c$, "getBinaryType", 
+c$.getBinaryType = Clazz.defineMethod (c$, "getBinaryType",
 function (inputStream) {
 return (JU.Rdr.isPickleS (inputStream) ? "PyMOL" : (JU.Rdr.getMagic (inputStream, 1)[0] & 0xDE) == 0xDE ? "MMTF" : null);
 }, "java.io.InputStream");
-c$.checkFileStart = Clazz.defineMethod (c$, "checkFileStart", 
+c$.checkFileStart = Clazz.defineMethod (c$, "checkFileStart",
  function (leader) {
 for (var i = 0; i < J.adapter.smarter.Resolver.fileStartsWithRecords.length; ++i) {
 var recordTags = J.adapter.smarter.Resolver.fileStartsWithRecords[i];
@@ -137,7 +137,7 @@ if (leader.startsWith (recordTag)) return recordTags[0];
 }
 return null;
 }, "~S");
-c$.checkSpecial1 = Clazz.defineMethod (c$, "checkSpecial1", 
+c$.checkSpecial1 = Clazz.defineMethod (c$, "checkSpecial1",
  function (nLines, lines, leader) {
 if (nLines == 1 && lines[0].length > 0 && JU.PT.isDigit (lines[0].charAt (0))) return "Jme";
 if (J.adapter.smarter.Resolver.checkMopacGraphf (lines)) return "MopacGraphf";
@@ -163,7 +163,7 @@ if (J.adapter.smarter.Resolver.checkAims (lines)) return "Aims";
 if (J.adapter.smarter.Resolver.checkGenNBO (lines, leader)) return "GenNBO";
 return null;
 }, "~N,~A,~S");
-c$.checkAims = Clazz.defineMethod (c$, "checkAims", 
+c$.checkAims = Clazz.defineMethod (c$, "checkAims",
  function (lines) {
 for (var i = 0; i < lines.length; i++) {
 if (lines[i].startsWith ("mol 1")) return false;
@@ -173,7 +173,7 @@ if (tokens[0].startsWith ("atom") && tokens.length > 4 && Float.isNaN (JU.PT.par
 }
 return false;
 }, "~A");
-c$.checkAlchemy = Clazz.defineMethod (c$, "checkAlchemy", 
+c$.checkAlchemy = Clazz.defineMethod (c$, "checkAlchemy",
  function (line) {
 var pt;
 if ((pt = line.indexOf ("ATOMS")) >= 0 && line.indexOf ("BONDS") > pt) try {
@@ -187,7 +187,7 @@ throw nfe;
 }
 return false;
 }, "~S");
-c$.checkCube = Clazz.defineMethod (c$, "checkCube", 
+c$.checkCube = Clazz.defineMethod (c$, "checkCube",
  function (lines) {
 try {
 for (var j = 2; j <= 5; j++) {
@@ -208,7 +208,7 @@ throw nfe;
 }
 return false;
 }, "~A");
-c$.checkFoldingXyz = Clazz.defineMethod (c$, "checkFoldingXyz", 
+c$.checkFoldingXyz = Clazz.defineMethod (c$, "checkFoldingXyz",
  function (lines) {
 var tokens =  new java.util.StringTokenizer (lines[0].trim (), " \t");
 if (tokens.countTokens () < 2) return false;
@@ -236,11 +236,11 @@ throw nfe;
 }
 return true;
 }, "~A");
-c$.checkGenNBO = Clazz.defineMethod (c$, "checkGenNBO", 
+c$.checkGenNBO = Clazz.defineMethod (c$, "checkGenNBO",
  function (lines, leader) {
 return (leader.indexOf ("$GENNBO") >= 0 || lines[1].startsWith (" Basis set information needed for plotting orbitals") || lines[1].indexOf ("s in the AO basis:") >= 0 || lines[1].indexOf ("***** NBO ") >= 0 || lines[2].indexOf (" N A T U R A L   A T O M I C   O R B I T A L") >= 0);
 }, "~A,~S");
-c$.checkMol = Clazz.defineMethod (c$, "checkMol", 
+c$.checkMol = Clazz.defineMethod (c$, "checkMol",
  function (lines) {
 var line4trimmed = ("X" + lines[3]).trim ().toUpperCase ();
 if (line4trimmed.length < 7 || line4trimmed.indexOf (".") >= 0) return 0;
@@ -258,11 +258,11 @@ throw nfe;
 }
 return 0;
 }, "~A");
-c$.checkMopacGraphf = Clazz.defineMethod (c$, "checkMopacGraphf", 
+c$.checkMopacGraphf = Clazz.defineMethod (c$, "checkMopacGraphf",
  function (lines) {
 return (lines[0].indexOf ("MOPAC-Graphical data") > 2);
 }, "~A");
-c$.checkOdyssey = Clazz.defineMethod (c$, "checkOdyssey", 
+c$.checkOdyssey = Clazz.defineMethod (c$, "checkOdyssey",
  function (lines) {
 var i;
 for (i = 0; i < lines.length; i++) if (!lines[i].startsWith ("C ") && lines[i].length != 0) break;
@@ -283,11 +283,11 @@ throw e;
 }
 return false;
 }, "~A");
-c$.checkWien2k = Clazz.defineMethod (c$, "checkWien2k", 
+c$.checkWien2k = Clazz.defineMethod (c$, "checkWien2k",
  function (lines) {
 return (lines[2].startsWith ("MODE OF CALC=") || lines[2].startsWith ("             RELA") || lines[2].startsWith ("             NREL"));
 }, "~A");
-c$.checkXyz = Clazz.defineMethod (c$, "checkXyz", 
+c$.checkXyz = Clazz.defineMethod (c$, "checkXyz",
  function (lines) {
 try {
 Integer.parseInt (lines[0].trim ());
@@ -310,7 +310,7 @@ throw nfe;
 }
 return 0;
 }, "~A");
-c$.checkLineStarts = Clazz.defineMethod (c$, "checkLineStarts", 
+c$.checkLineStarts = Clazz.defineMethod (c$, "checkLineStarts",
  function (lines) {
 for (var i = 0; i < J.adapter.smarter.Resolver.lineStartsWithRecords.length; ++i) {
 var recordTags = J.adapter.smarter.Resolver.lineStartsWithRecords[i];
@@ -323,7 +323,7 @@ if (lines[k].startsWith (recordTag)) return recordTags[0];
 }
 return null;
 }, "~A");
-c$.checkHeaderContains = Clazz.defineMethod (c$, "checkHeaderContains", 
+c$.checkHeaderContains = Clazz.defineMethod (c$, "checkHeaderContains",
  function (header) {
 for (var i = 0; i < J.adapter.smarter.Resolver.headerContainsRecords.length; ++i) {
 var recordTags = J.adapter.smarter.Resolver.headerContainsRecords[i];
@@ -338,7 +338,7 @@ return (header.indexOf ("<!DOCTYPE HTML PUBLIC") < 0 && header.indexOf ("XHTML")
 }
 return null;
 }, "~S");
-c$.getXmlType = Clazz.defineMethod (c$, "getXmlType", 
+c$.getXmlType = Clazz.defineMethod (c$, "getXmlType",
  function (header) {
 if (header.indexOf ("http://www.molpro.net/") >= 0) {
 return "XmlMolpro";
@@ -358,7 +358,7 @@ return "XmlVasp";
 return "XmlQE";
 }return "XmlCml(unidentified)";
 }, "~S");
-c$.checkSpecial2 = Clazz.defineMethod (c$, "checkSpecial2", 
+c$.checkSpecial2 = Clazz.defineMethod (c$, "checkSpecial2",
  function (lines) {
 if (J.adapter.smarter.Resolver.checkGromacs (lines)) return "Gromacs";
 if (J.adapter.smarter.Resolver.checkCrystal (lines)) return "Crystal";
@@ -366,7 +366,7 @@ var s = J.adapter.smarter.Resolver.checkCastepVasp (lines);
 if (s != null) return s;
 return null;
 }, "~A");
-c$.checkCrystal = Clazz.defineMethod (c$, "checkCrystal", 
+c$.checkCrystal = Clazz.defineMethod (c$, "checkCrystal",
  function (lines) {
 var s = lines[1].trim ();
 if (s.equals ("SLAB") || s.equals ("MOLECULE") || s.equals ("CRYSTAL") || s.equals ("POLYMER") || (s = lines[3]).equals ("SLAB") || s.equals ("MOLECULE") || s.equals ("POLYMER")) return true;
@@ -375,7 +375,7 @@ if (lines[i].trim ().equals ("OPTGEOM") || lines[i].trim ().equals ("FREQCALC") 
 }
 return false;
 }, "~A");
-c$.checkGromacs = Clazz.defineMethod (c$, "checkGromacs", 
+c$.checkGromacs = Clazz.defineMethod (c$, "checkGromacs",
  function (lines) {
 if (JU.PT.parseInt (lines[1]) == -2147483648) return false;
 var len = -1;
@@ -383,7 +383,7 @@ for (var i = 2; i < 16 && len != 0; i++) if ((len = lines[i].length) != 69 && le
 
 return true;
 }, "~A");
-c$.checkCastepVasp = Clazz.defineMethod (c$, "checkCastepVasp", 
+c$.checkCastepVasp = Clazz.defineMethod (c$, "checkCastepVasp",
  function (lines) {
 for (var i = 0; i < lines.length; i++) {
 var line = lines[i].toUpperCase ();

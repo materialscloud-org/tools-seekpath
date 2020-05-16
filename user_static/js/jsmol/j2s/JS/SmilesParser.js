@@ -20,16 +20,16 @@ Clazz.prepareFields (c$, function () {
 this.connections =  new java.util.Hashtable ();
 this.htMeasures =  new java.util.Hashtable ();
 });
-c$.newSearch = Clazz.defineMethod (c$, "newSearch", 
+c$.newSearch = Clazz.defineMethod (c$, "newSearch",
 function (pattern, isSmarts, isTarget) {
 return ( new JS.SmilesParser (isSmarts, isTarget)).parse (pattern);
 }, "~S,~B,~B");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (isSmarts, isTarget) {
 this.isSmarts = isSmarts;
 this.isTarget = isTarget;
 }, "~B,~B");
-Clazz.defineMethod (c$, "parse", 
+Clazz.defineMethod (c$, "parse",
 function (pattern) {
 if (pattern == null) throw  new JS.InvalidSmilesException ("expression must not be null");
 var search =  new JS.SmilesSearch ();
@@ -53,7 +53,7 @@ toDo += key;
 }}
 return search;
 }, "~S");
-Clazz.defineMethod (c$, "parseVariableLength", 
+Clazz.defineMethod (c$, "parseVariableLength",
  function (pattern) {
 var sout =  new JU.SB ();
 var len = pattern.length - 1;
@@ -144,7 +144,7 @@ sout.appendSB (sb);
 if (!isOK) throw  new JS.InvalidSmilesException ("bad variable expression: " + bracketed);
 }return (haveInternalOr ? this.parseVariableLength (sout.substring (2)) : sout.length () < 2 ? pattern : sout.substring (2));
 }, "~S");
-Clazz.defineMethod (c$, "getSubsearch", 
+Clazz.defineMethod (c$, "getSubsearch",
 function (parent, pattern, flags) {
 this.htMeasures =  new java.util.Hashtable ();
 var search =  new JS.SmilesSearch ();
@@ -163,7 +163,7 @@ if (this.isSmarts) for (var i = search.ac; --i >= 0; ) this.checkNested (search,
 if (!this.ignoreStereochemistry && !this.isTarget) this.fixChirality (search);
 return search;
 }, "JS.SmilesSearch,~S,~N");
-Clazz.defineMethod (c$, "checkNested", 
+Clazz.defineMethod (c$, "checkNested",
  function (search, atom, flags) {
 if (atom.iNested > 0) {
 var o = search.getNested (atom.iNested);
@@ -177,14 +177,14 @@ search.setNested (atom.iNested, nested);
 }}for (var i = 0; i < atom.nSubAtoms; i++) this.checkNested (search, atom.subAtoms[i], flags);
 
 }, "JS.SmilesSearch,JS.SmilesAtom,~N");
-Clazz.defineMethod (c$, "fixChirality", 
+Clazz.defineMethod (c$, "fixChirality",
  function (search) {
 for (var i = search.ac; --i >= 0; ) {
 var sAtom = search.patternAtoms[i];
 if (sAtom.stereo != null) sAtom.stereo.fixStereo (sAtom);
 }
 }, "JS.SmilesSearch");
-Clazz.defineMethod (c$, "parseSmiles", 
+Clazz.defineMethod (c$, "parseSmiles",
  function (search, pattern, currentAtom, isBranchAtom) {
 var ret =  Clazz.newIntArray (1, 0);
 var pt = 0;
@@ -312,7 +312,7 @@ if (ch == '}' && this.checkBrace (search, ch, '}')) index++;
 isBranchAtom = false;
 }
 }, "JS.SmilesSearch,~S,JS.SmilesAtom,~B");
-Clazz.defineMethod (c$, "parseConnection", 
+Clazz.defineMethod (c$, "parseConnection",
  function (search, ringNum, currentAtom, bond) {
 var r = Integer.$valueOf (ringNum);
 var bond0 = this.connections.get (r);
@@ -337,12 +337,12 @@ bond0.set (bond);
 currentAtom.bondCount--;
 bond0.setAtom2 (currentAtom, search);
 }, "JS.SmilesSearch,~N,JS.SmilesAtom,JS.SmilesBond");
-Clazz.defineMethod (c$, "setBondAtom", 
+Clazz.defineMethod (c$, "setBondAtom",
  function (bond, a1, a2, search) {
 bond.set2a (a1, a2);
 if (search != null && bond.order == 2 && bond.atom1 != null && bond.atom2 != null && bond.atom1.isAromatic && bond.atom2.isAromatic && ((this.flags & 512) == 0)) search.setFlags (this.flags = (this.flags | 512));
 }, "JS.SmilesBond,JS.SmilesAtom,JS.SmilesAtom,JS.SmilesSearch");
-c$.getRingNumber = Clazz.defineMethod (c$, "getRingNumber", 
+c$.getRingNumber = Clazz.defineMethod (c$, "getRingNumber",
 function (pattern, index, ch, ret) {
 var ringNumber;
 switch (ch) {
@@ -364,7 +364,7 @@ index++;
 ret[0] = ringNumber;
 return index;
 }, "~S,~N,~S,~A");
-Clazz.defineMethod (c$, "checkBioType", 
+Clazz.defineMethod (c$, "checkBioType",
  function (pattern, index) {
 this.isBioSequence = (pattern.charAt (index) == '~');
 if (this.isBioSequence) {
@@ -376,7 +376,7 @@ this.bioType = ch;
 index = 3;
 }}return index;
 }, "~S,~N");
-Clazz.defineMethod (c$, "parseMeasure", 
+Clazz.defineMethod (c$, "parseMeasure",
  function (search, strMeasure, currentAtom) {
 var pt = strMeasure.indexOf (":");
 var id = (pt < 0 ? strMeasure : strMeasure.substring (0, pt));
@@ -429,7 +429,7 @@ return;
 }
 throw  new JS.InvalidSmilesException ("invalid measure: " + strMeasure);
 }, "JS.SmilesSearch,~S,JS.SmilesAtom");
-Clazz.defineMethod (c$, "checkBrace", 
+Clazz.defineMethod (c$, "checkBrace",
  function (search, ch, type) {
 switch (ch) {
 case '{':
@@ -448,7 +448,7 @@ return false;
 }
 throw  new JS.InvalidSmilesException ("Unmatched '}'");
 }, "JS.SmilesSearch,~S,~S");
-Clazz.defineMethod (c$, "parseNested", 
+Clazz.defineMethod (c$, "parseNested",
  function (search, pattern, prefix) {
 var index;
 prefix = "$(" + prefix;
@@ -465,7 +465,7 @@ pattern = pattern + op + "_" + search.top.addNested (s) + "_" + ext;
 }
 return pattern;
 }, "JS.SmilesSearch,~S,~S");
-Clazz.defineMethod (c$, "parseVariables", 
+Clazz.defineMethod (c$, "parseVariables",
  function (pattern) {
 var keys =  new JU.Lst ();
 var values =  new JU.Lst ();
@@ -496,7 +496,7 @@ if (!v.equals (k)) pattern = JU.PT.rep (pattern, k, v);
 if (JU.Logger.debugging) JU.Logger.info (pattern);
 return pattern;
 }, "~S");
-Clazz.defineMethod (c$, "parseAtom", 
+Clazz.defineMethod (c$, "parseAtom",
  function (search, atomSet, pattern, atom, bond, isBracketed, isAND, isBranchAtom) {
 if (pattern == null || pattern.length == 0) throw  new JS.InvalidSmilesException ("Empty atom definition");
 var newAtom =  new JS.SmilesAtom ();
@@ -684,7 +684,7 @@ if (this.branchLevel == 0 && (bond.order == 17 || bond.order == 112)) this.branc
 }if (this.branchLevel == 0) search.lastChainAtom = newAtom;
 return newAtom;
 }, "JS.SmilesSearch,JS.SmilesAtom,~S,JS.SmilesAtom,JS.SmilesBond,~B,~B,~B");
-Clazz.defineMethod (c$, "checkCharge", 
+Clazz.defineMethod (c$, "checkCharge",
  function (pattern, index, newAtom) {
 var len = pattern.length;
 var ch = pattern.charAt (index);
@@ -705,7 +705,7 @@ count++;
 }}newAtom.setCharge (ch == '+' ? count : -count);
 return index;
 }, "~S,~N,JS.SmilesAtom");
-Clazz.defineMethod (c$, "parseBond", 
+Clazz.defineMethod (c$, "parseBond",
  function (search, bondSet, pattern, bond, currentAtom, isAND, isBranchAtom, len, ret) {
 var ch;
 if (len > 0) {
@@ -766,7 +766,7 @@ if (this.isBioSequence && bondSet != null) bondSet.set2 (bondType, isBondNot);
 }if (len == -1) throw  new JS.InvalidSmilesException ("invalid bond:" + ch);
 return newBond;
 }, "JS.SmilesSearch,JS.SmilesBond,~S,JS.SmilesBond,JS.SmilesAtom,~B,~B,~N,~A");
-Clazz.defineMethod (c$, "checkLogic", 
+Clazz.defineMethod (c$, "checkLogic",
  function (search, pattern, atom, bond, currentAtom, isAND, isBranchAtom, ret) {
 var pt = pattern.lastIndexOf ("!");
 if (atom != null) atom.pattern = pattern;
@@ -838,7 +838,7 @@ return false;
 var ch = pattern.charAt (pt);
 throw  new JS.InvalidSmilesException ((this.isSmarts ? "invalid placement for '" + ch + "'" : "[" + ch + "] notation only valid with SMARTS, not SMILES,") + " in " + pattern);
 }, "JS.SmilesSearch,~S,JS.SmilesAtom,JS.SmilesBond,JS.SmilesAtom,~B,~B,~A");
-c$.getSubPattern = Clazz.defineMethod (c$, "getSubPattern", 
+c$.getSubPattern = Clazz.defineMethod (c$, "getSubPattern",
 function (pattern, index, ch) {
 var ch2;
 var margin = 1;
@@ -870,11 +870,11 @@ pCount++;
 }}
 throw  new JS.InvalidSmilesException ("Unmatched " + ch);
 }, "~S,~N,~S");
-c$.getChar = Clazz.defineMethod (c$, "getChar", 
+c$.getChar = Clazz.defineMethod (c$, "getChar",
 function (pattern, i) {
 return (i < pattern.length ? pattern.charAt (i) : '\0');
 }, "~S,~N");
-c$.getDigits = Clazz.defineMethod (c$, "getDigits", 
+c$.getDigits = Clazz.defineMethod (c$, "getDigits",
 function (pattern, index, ret) {
 var pt = index;
 var len = pattern.length;
@@ -892,7 +892,7 @@ throw e;
 ret[0] = -2147483648;
 return pt;
 }, "~S,~N,~A");
-c$.skipTo = Clazz.defineMethod (c$, "skipTo", 
+c$.skipTo = Clazz.defineMethod (c$, "skipTo",
  function (pattern, index, ch0) {
 var pt = index;
 var ch;
@@ -900,7 +900,7 @@ while ((ch = JS.SmilesParser.getChar (pattern, ++pt)) != ch0 && ch != '\0') {
 }
 return (ch == '\0' ? -1 : pt);
 }, "~S,~N,~S");
-c$.cleanPattern = Clazz.defineMethod (c$, "cleanPattern", 
+c$.cleanPattern = Clazz.defineMethod (c$, "cleanPattern",
 function (pattern) {
 pattern = JU.PT.replaceAllCharacters (pattern, " \t\n\r", "");
 pattern = JU.PT.rep (pattern, "^^", "`");
@@ -911,7 +911,7 @@ while ((i = pattern.indexOf ("//*")) >= 0 && (i2 = pattern.indexOf ("*//")) >= i
 pattern = JU.PT.rep (pattern, "//", "");
 return pattern;
 }, "~S");
-c$.extractFlags = Clazz.defineMethod (c$, "extractFlags", 
+c$.extractFlags = Clazz.defineMethod (c$, "extractFlags",
 function (pattern, ret) {
 pattern = JS.SmilesParser.cleanPattern (pattern);
 var flags = 0;
@@ -923,7 +923,7 @@ flags = JS.SmilesSearch.addFlags (flags, strFlags);
 ret[0] = flags;
 return pattern;
 }, "~S,~A");
-c$.getFlags = Clazz.defineMethod (c$, "getFlags", 
+c$.getFlags = Clazz.defineMethod (c$, "getFlags",
 function (pattern) {
 var ret =  Clazz.newIntArray (1, 0);
 JS.SmilesParser.extractFlags (pattern, ret);

@@ -35,7 +35,7 @@ Clazz.prepareFields (c$, function () {
 this.atomLabels =  new java.util.Hashtable ();
 this.ptTemp =  new JU.P3 ();
 });
-Clazz.overrideMethod (c$, "initShape", 
+Clazz.overrideMethod (c$, "initShape",
 function () {
 this.defaultFontId = this.zeroFontId = this.vwr.gdata.getFont3DFSS ("SansSerif", "Plain", 13).fid;
 this.defaultColix = 0;
@@ -46,7 +46,7 @@ this.defaultPointer = 0;
 this.defaultZPos = 0;
 this.translucentAllowed = false;
 });
-Clazz.overrideMethod (c$, "setProperty", 
+Clazz.overrideMethod (c$, "setProperty",
 function (propertyName, value, bsSelected) {
 this.isActive = true;
 if ("setDefaults" === propertyName) {
@@ -230,11 +230,11 @@ JU.BSUtil.deleteBits (this.bsFontSet, bsSelected);
 JU.BSUtil.deleteBits (this.bsBgColixSet, bsSelected);
 }this.setPropAS (propertyName, value, bsSelected);
 }, "~S,~O,JU.BS");
-Clazz.defineMethod (c$, "isPickingMode", 
+Clazz.defineMethod (c$, "isPickingMode",
  function () {
 return (this.vwr.getPickingMode () == 2 && this.labelBoxes != null);
 });
-Clazz.defineMethod (c$, "checkStringLength", 
+Clazz.defineMethod (c$, "checkStringLength",
  function (n) {
 n = Math.min (this.ac, n);
 if (this.strings == null || n > this.strings.length) {
@@ -243,14 +243,14 @@ this.strings = JU.AU.ensureLengthS (this.strings, n);
 if (this.bsSizeSet == null) this.bsSizeSet = JU.BS.newN (n);
 }return n;
 }, "~N");
-Clazz.defineMethod (c$, "checkBgColixLength", 
+Clazz.defineMethod (c$, "checkBgColixLength",
  function (colix, n) {
 n = Math.min (this.ac, n);
 if (colix == 0) return (this.bgcolixes == null ? 0 : this.bgcolixes.length);
 if (this.bgcolixes == null || n > this.bgcolixes.length) this.bgcolixes = JU.AU.ensureLengthShort (this.bgcolixes, n);
 return n;
 }, "~N,~N");
-Clazz.defineMethod (c$, "setPymolLabels", 
+Clazz.defineMethod (c$, "setPymolLabels",
  function (labels, bsSelected) {
 this.setScaling ();
 var n = this.checkStringLength (this.ac);
@@ -258,7 +258,7 @@ this.checkColixLength (-1, n);
 for (var i = bsSelected.nextSetBit (0); i >= 0 && i < n; i = bsSelected.nextSetBit (i + 1)) this.setPymolLabel (i, labels.get (Integer.$valueOf (i)), null);
 
 }, "java.util.Map,JU.BS");
-Clazz.defineMethod (c$, "setPymolOffset", 
+Clazz.defineMethod (c$, "setPymolOffset",
  function (i, value) {
 var text = this.getLabel (i);
 if (text == null) {
@@ -269,14 +269,14 @@ text = JM.Text.newLabel (this.vwr, javajs.awt.Font.getFont3D (fid), this.strings
 this.setPymolLabel (i, text, this.formats[i]);
 }text.pymolOffset = value;
 }, "~N,~A");
-Clazz.defineMethod (c$, "setScaling", 
+Clazz.defineMethod (c$, "setScaling",
  function () {
 this.isActive = true;
 if (this.bsSizeSet == null) this.bsSizeSet = JU.BS.newN (this.ac);
 this.isScaled = this.vwr.getBoolean (603979845);
 this.scalePixelsPerMicron = (this.isScaled ? this.vwr.getScalePixelsPerAngstrom (false) * 10000 : 0);
 });
-Clazz.defineMethod (c$, "setPymolLabel", 
+Clazz.defineMethod (c$, "setPymolLabel",
  function (i, t, format) {
 if (t == null) return;
 var label = t.text;
@@ -287,7 +287,7 @@ if (t.colix >= 0) this.setLabelColix (i, t.colix, J.c.PAL.UNKNOWN.id);
 this.setFont (i, t.font.fid);
 this.putLabel (i, t);
 }, "~N,JM.Text,~S");
-Clazz.defineMethod (c$, "setLabel", 
+Clazz.defineMethod (c$, "setLabel",
  function (temp, strLabel, i, doAll) {
 var atom = this.atoms[i];
 var tokens = temp[0];
@@ -312,7 +312,7 @@ if (this.defaultColix != 0 || this.defaultPaletteID != 0) this.setLabelColix (i,
 if (this.defaultBgcolix != 0) this.setBgcolix (i, this.defaultBgcolix);
 if (this.defaultFontId != this.zeroFontId) this.setFont (i, this.defaultFontId);
 }, "~A,~S,~N,~B");
-Clazz.defineMethod (c$, "addString", 
+Clazz.defineMethod (c$, "addString",
  function (atom, i, label, strLabel) {
 atom.setShapeVisibility (this.vf, label != null);
 var notNull = (strLabel != null);
@@ -322,47 +322,47 @@ this.formats[i] = (notNull && strLabel.indexOf ("%{") >= 0 ? label : strLabel);
 this.bsSizeSet.setBitTo (i, notNull);
 return isNew;
 }, "JM.Atom,~N,~S,~S");
-Clazz.overrideMethod (c$, "getProperty", 
+Clazz.overrideMethod (c$, "getProperty",
 function (property, index) {
 if (property.equals ("offsets")) return this.offsets;
 if (property.equals ("label")) return (this.strings != null && index < this.strings.length && this.strings[index] != null ? this.strings[index] : "");
 return null;
 }, "~S,~N");
-Clazz.defineMethod (c$, "putLabel", 
+Clazz.defineMethod (c$, "putLabel",
 function (i, text) {
 if (text == null) this.atomLabels.remove (Integer.$valueOf (i));
  else {
 this.atomLabels.put (Integer.$valueOf (i), text);
 text.textUnformatted = this.formats[i];
 }}, "~N,JM.Text");
-Clazz.defineMethod (c$, "getLabel", 
+Clazz.defineMethod (c$, "getLabel",
 function (i) {
 return this.atomLabels.get (Integer.$valueOf (i));
 }, "~N");
-Clazz.defineMethod (c$, "putBox", 
+Clazz.defineMethod (c$, "putBox",
 function (i, boxXY) {
 if (this.labelBoxes == null) this.labelBoxes =  new java.util.Hashtable ();
 this.labelBoxes.put (Integer.$valueOf (i), boxXY);
 }, "~N,~A");
-Clazz.defineMethod (c$, "getBox", 
+Clazz.defineMethod (c$, "getBox",
 function (i) {
 if (this.labelBoxes == null) return null;
 return this.labelBoxes.get (Integer.$valueOf (i));
 }, "~N");
-Clazz.defineMethod (c$, "setLabelColix", 
+Clazz.defineMethod (c$, "setLabelColix",
  function (i, colix, pid) {
 this.setColixAndPalette (colix, pid, i);
 var text;
 if (this.colixes != null && ((text = this.getLabel (i)) != null)) text.colix = this.colixes[i];
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "setBgcolix", 
+Clazz.defineMethod (c$, "setBgcolix",
  function (i, bgcolix) {
 this.bgcolixes[i] = bgcolix;
 this.bsBgColixSet.setBitTo (i, bgcolix != 0);
 var text = this.getLabel (i);
 if (text != null) text.bgcolix = bgcolix;
 }, "~N,~N");
-Clazz.defineMethod (c$, "setOffsets", 
+Clazz.defineMethod (c$, "setOffsets",
  function (i, offset) {
 if (this.offsets == null || i >= this.offsets.length) {
 if (offset == JV.JC.LABEL_DEFAULT_OFFSET) return;
@@ -371,7 +371,7 @@ this.offsets = JU.AU.ensureLengthI (this.offsets, this.ac);
 var text = this.getLabel (i);
 if (text != null) text.setOffset (offset);
 }, "~N,~N");
-Clazz.defineMethod (c$, "setHorizAlignment", 
+Clazz.defineMethod (c$, "setHorizAlignment",
  function (i, hAlign) {
 if (this.offsets == null || i >= this.offsets.length) {
 switch (hAlign) {
@@ -385,7 +385,7 @@ this.offsets[i] = JV.JC.setHorizAlignment (this.offsets[i], hAlign);
 var text = this.getLabel (i);
 if (text != null) text.setAlignment (hAlign);
 }, "~N,~N");
-Clazz.defineMethod (c$, "setPointer", 
+Clazz.defineMethod (c$, "setPointer",
  function (i, pointer) {
 if (this.offsets == null || i >= this.offsets.length) {
 if (pointer == 0) return;
@@ -394,14 +394,14 @@ this.offsets = JU.AU.ensureLengthI (this.offsets, this.ac);
 var text = this.getLabel (i);
 if (text != null) text.pointer = pointer;
 }, "~N,~N");
-Clazz.defineMethod (c$, "setZPos", 
+Clazz.defineMethod (c$, "setZPos",
  function (i, flag, TF) {
 if (this.offsets == null || i >= this.offsets.length) {
 if (!TF) return;
 this.offsets = JU.AU.ensureLengthI (this.offsets, this.ac);
 }this.offsets[i] = JV.JC.setZPosition (this.offsets[i], TF ? flag : 0);
 }, "~N,~N,~B");
-Clazz.defineMethod (c$, "setFont", 
+Clazz.defineMethod (c$, "setFont",
  function (i, fid) {
 if (this.fids == null || i >= this.fids.length) {
 if (fid == this.zeroFontId) return;
@@ -412,7 +412,7 @@ var text = this.getLabel (i);
 if (text != null) {
 text.setFontFromFid (fid);
 }}, "~N,~N");
-Clazz.overrideMethod (c$, "setAtomClickability", 
+Clazz.overrideMethod (c$, "setAtomClickability",
 function () {
 if (this.strings == null) return;
 for (var i = this.strings.length; --i >= 0; ) {
@@ -420,7 +420,7 @@ var label = this.strings[i];
 if (label != null && this.ms.at.length > i && !this.ms.isAtomHidden (i)) this.ms.at[i].setClickable (this.vf);
 }
 });
-Clazz.overrideMethod (c$, "checkObjectClicked", 
+Clazz.overrideMethod (c$, "checkObjectClicked",
 function (x, y, modifiers, bsVisible, drawPicking) {
 if (!this.isPickingMode ()) return null;
 var iAtom = this.findNearestLabel (x, y);
@@ -431,7 +431,7 @@ map.put ("atomIndex", Integer.$valueOf (iAtom));
 this.lastPicked = iAtom;
 return map;
 }, "~N,~N,~N,JU.BS,~B");
-Clazz.overrideMethod (c$, "checkObjectDragged", 
+Clazz.overrideMethod (c$, "checkObjectDragged",
 function (prevX, prevY, x, y, dragAction, bsVisible) {
 if (!this.isPickingMode ()) return false;
 if (prevX == -2147483648) {
@@ -450,7 +450,7 @@ if (this.pickedAtom < 0) return false;
 this.move2D (this.pickedAtom, x, y);
 return true;
 }, "~N,~N,~N,~N,~N,JU.BS");
-Clazz.defineMethod (c$, "findNearestLabel", 
+Clazz.defineMethod (c$, "findNearestLabel",
  function (x, y) {
 if (this.labelBoxes == null) return -1;
 var dmin = 3.4028235E38;
@@ -471,7 +471,7 @@ imin = entry.getKey ().intValue ();
 }}
 return imin;
 }, "~N,~N");
-Clazz.defineMethod (c$, "move2D", 
+Clazz.defineMethod (c$, "move2D",
  function (pickedAtom, x, y) {
 var xOffset = JV.JC.getXOffset (this.pickedOffset);
 var yOffset = JV.JC.getYOffset (this.pickedOffset);
@@ -480,7 +480,7 @@ yOffset -= y - this.pickedY;
 var offset = JV.JC.getOffset (xOffset, yOffset, true);
 this.setOffsets (pickedAtom, offset);
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "getColix2", 
+Clazz.defineMethod (c$, "getColix2",
 function (i, atom, isBg) {
 var colix;
 if (isBg) {

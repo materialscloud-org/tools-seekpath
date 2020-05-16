@@ -30,7 +30,7 @@ Clazz.prepareFields (c$, function () {
 this.userScale =  Clazz.newIntArray (-1, [-8355712]);
 this.thisScale =  Clazz.newIntArray (-1, [-8355712]);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (ce, vwr) {
 if (ce == null) {
 this.vwr = vwr;
@@ -46,19 +46,19 @@ this.ce = ce;
 this.vwr = ce.vwr;
 this.schemes = ce.schemes;
 }}, "JU.ColorEncoder,JV.Viewer");
-c$.getSchemeIndex = Clazz.defineMethod (c$, "getSchemeIndex", 
+c$.getSchemeIndex = Clazz.defineMethod (c$, "getSchemeIndex",
  function (colorScheme) {
 for (var i = 0; i < JU.ColorEncoder.colorSchemes.length; i++) if (JU.ColorEncoder.colorSchemes[i].equalsIgnoreCase (colorScheme)) return (i >= 16 ? i - 16 : i < 13 ? i : -i);
 
 return -1;
 }, "~S");
-c$.fixName = Clazz.defineMethod (c$, "fixName", 
+c$.fixName = Clazz.defineMethod (c$, "fixName",
  function (name) {
 if (name.equalsIgnoreCase ("byelement")) return "byelement_jmol";
 var ipt = JU.ColorEncoder.getSchemeIndex (name);
 return (ipt >= 0 ? JU.ColorEncoder.colorSchemes[ipt] : name.toLowerCase ());
 }, "~S");
-Clazz.defineMethod (c$, "makeColorScheme", 
+Clazz.defineMethod (c$, "makeColorScheme",
  function (name, scale, isOverloaded) {
 name = JU.ColorEncoder.fixName (name);
 if (scale == null) {
@@ -137,19 +137,19 @@ break;
 }
 return -1;
 }, "~S,~A,~B");
-Clazz.defineMethod (c$, "getShapely", 
+Clazz.defineMethod (c$, "getShapely",
  function () {
 return (this.argbsShapely == null ? this.argbsShapely = this.vwr.getJBR ().getArgbs (1073742144) : this.argbsShapely);
 });
-Clazz.defineMethod (c$, "getAmino", 
+Clazz.defineMethod (c$, "getAmino",
  function () {
 return (this.argbsAmino == null ? this.argbsAmino = this.vwr.getJBR ().getArgbs (2097154) : this.argbsAmino);
 });
-Clazz.defineMethod (c$, "getNucleic", 
+Clazz.defineMethod (c$, "getNucleic",
  function () {
 return (this.argbsNucleic == null ? this.argbsNucleic = this.vwr.getJBR ().getArgbs (2097166) : this.argbsNucleic);
 });
-Clazz.defineMethod (c$, "createColorScheme", 
+Clazz.defineMethod (c$, "createColorScheme",
 function (colorScheme, defaultToRoygb, isOverloaded) {
 colorScheme = colorScheme.toLowerCase ();
 if (colorScheme.equals ("inherit")) return 15;
@@ -190,12 +190,12 @@ this.setThisScheme (colorScheme, this.schemes.get (colorScheme));
 return ipt;
 }return (ipt != -1 ? ipt : defaultToRoygb ? 0 : 2147483647);
 }, "~S,~B,~B");
-Clazz.defineMethod (c$, "setUserScale", 
+Clazz.defineMethod (c$, "setUserScale",
 function (scale) {
 this.ce.userScale = scale;
 this.makeColorScheme ("user", scale, false);
 }, "~A");
-Clazz.defineMethod (c$, "getColorSchemeArray", 
+Clazz.defineMethod (c$, "getColorSchemeArray",
 function (palette) {
 var b;
 switch (palette) {
@@ -241,7 +241,7 @@ default:
 return null;
 }
 }, "~N");
-Clazz.defineMethod (c$, "getColorIndexFromPalette", 
+Clazz.defineMethod (c$, "getColorIndexFromPalette",
 function (val, lo, hi, palette, isTranslucent) {
 var colix = JU.C.getColix (this.getArgbFromPalette (val, lo, hi, palette));
 if (isTranslucent) {
@@ -251,7 +251,7 @@ if (f > 1) f = 1;
 colix = JU.C.getColixTranslucent3 (colix, true, f);
 }return colix;
 }, "~N,~N,~N,~N,~B");
-Clazz.defineMethod (c$, "getPaletteColorCount", 
+Clazz.defineMethod (c$, "getPaletteColorCount",
  function (palette) {
 switch (palette) {
 case -1:
@@ -287,7 +287,7 @@ default:
 return 0;
 }
 }, "~N");
-Clazz.defineMethod (c$, "getArgbFromPalette", 
+Clazz.defineMethod (c$, "getArgbFromPalette",
 function (val, lo, hi, palette) {
 if (Float.isNaN (val)) return -8355712;
 var n = this.getPaletteColorCount (palette);
@@ -333,26 +333,26 @@ default:
 return -8355712;
 }
 }, "~N,~N,~N,~N");
-Clazz.defineMethod (c$, "setThisScheme", 
+Clazz.defineMethod (c$, "setThisScheme",
  function (name, scale) {
 this.thisName = name;
 this.thisScale = scale;
 if (name.equals ("user")) this.userScale = scale;
 this.isColorIndex = (name.indexOf ("byelement") == 0 || name.indexOf ("byresidue") == 0);
 }, "~S,~A");
-Clazz.defineMethod (c$, "getArgb", 
+Clazz.defineMethod (c$, "getArgb",
 function (val) {
 return (this.isReversed ? this.getArgbFromPalette (-val, -this.hi, -this.lo, this.currentPalette) : this.getArgbFromPalette (val, this.lo, this.hi, this.currentPalette));
 }, "~N");
-Clazz.defineMethod (c$, "getArgbMinMax", 
+Clazz.defineMethod (c$, "getArgbMinMax",
 function (val, min, max) {
 return (this.isReversed ? this.getArgbFromPalette (-val, -max, -min, this.currentPalette) : this.getArgbFromPalette (val, min, max, this.currentPalette));
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "getColorIndex", 
+Clazz.defineMethod (c$, "getColorIndex",
 function (val) {
 return (this.isReversed ? this.getColorIndexFromPalette (-val, -this.hi, -this.lo, this.currentPalette, this.isTranslucent) : this.getColorIndexFromPalette (val, this.lo, this.hi, this.currentPalette, this.isTranslucent));
 }, "~N");
-Clazz.defineMethod (c$, "getColorKey", 
+Clazz.defineMethod (c$, "getColorKey",
 function () {
 var info =  new java.util.Hashtable ();
 var segmentCount = this.getPaletteColorCount (this.currentPalette);
@@ -373,16 +373,16 @@ info.put ("reversed", Boolean.$valueOf (this.isReversed));
 info.put ("name", this.getCurrentColorSchemeName ());
 return info;
 });
-Clazz.defineMethod (c$, "getColorScheme", 
+Clazz.defineMethod (c$, "getColorScheme",
 function () {
 return (this.isTranslucent ? "translucent " : "") + (this.currentPalette < 0 ? JU.ColorEncoder.getColorSchemeList (this.getColorSchemeArray (this.currentPalette)) : this.getColorSchemeName (this.currentPalette));
 });
-Clazz.defineMethod (c$, "setColorScheme", 
+Clazz.defineMethod (c$, "setColorScheme",
 function (colorScheme, isTranslucent) {
 this.isTranslucent = isTranslucent;
 if (colorScheme != null) this.currentPalette = this.createColorScheme (colorScheme, true, false);
 }, "~S,~B");
-Clazz.defineMethod (c$, "setRange", 
+Clazz.defineMethod (c$, "setRange",
 function (lo, hi, isReversed) {
 if (hi == 3.4028235E38) {
 lo = 1;
@@ -391,16 +391,16 @@ hi = this.getPaletteColorCount (this.currentPalette) + 1;
 this.hi = Math.max (lo, hi);
 this.isReversed = isReversed;
 }, "~N,~N,~B");
-Clazz.defineMethod (c$, "getCurrentColorSchemeName", 
+Clazz.defineMethod (c$, "getCurrentColorSchemeName",
 function () {
 return this.getColorSchemeName (this.currentPalette);
 });
-Clazz.defineMethod (c$, "getColorSchemeName", 
+Clazz.defineMethod (c$, "getColorSchemeName",
 function (i) {
 var absi = Math.abs (i);
 return (i == -1 ? this.thisName : absi < JU.ColorEncoder.colorSchemes.length && absi >= 0 ? JU.ColorEncoder.colorSchemes[absi] : null);
 }, "~N");
-c$.getColorSchemeList = Clazz.defineMethod (c$, "getColorSchemeList", 
+c$.getColorSchemeList = Clazz.defineMethod (c$, "getColorSchemeList",
 function (scheme) {
 if (scheme == null) return "";
 var colors = "";
@@ -408,7 +408,7 @@ for (var i = 0; i < scheme.length; i++) colors += (i == 0 ? "" : " ") + JU.Escap
 
 return colors;
 }, "~A");
-c$.getRasmolScale = Clazz.defineMethod (c$, "getRasmolScale", 
+c$.getRasmolScale = Clazz.defineMethod (c$, "getRasmolScale",
 function () {
 if (JU.ColorEncoder.rasmolScale != null) return JU.ColorEncoder.rasmolScale;
 JU.ColorEncoder.rasmolScale =  Clazz.newIntArray (J.c.PAL.argbsCpk.length, 0);
@@ -421,11 +421,11 @@ JU.ColorEncoder.rasmolScale[argb >> 24] = argb | 0xFF000000;
 }
 return JU.ColorEncoder.rasmolScale;
 });
-Clazz.defineMethod (c$, "getPaletteAC", 
+Clazz.defineMethod (c$, "getPaletteAC",
  function () {
 return (this.ce.paletteFriendly == null ? this.ce.paletteFriendly =  Clazz.newIntArray (-1, [0x808080, 0x104BA9, 0xAA00A2, 0xC9F600, 0xFFA200, 0x284A7E, 0x7F207B, 0x9FB82E, 0xBF8B30, 0x052D6E, 0x6E0069, 0x83A000, 0xA66A00, 0x447BD4, 0xD435CD, 0xD8FA3F, 0xFFBA40, 0x6A93D4, 0xD460CF, 0xE1FA71, 0xFFCC73]) : this.ce.paletteFriendly);
 });
-Clazz.defineMethod (c$, "getPaletteWB", 
+Clazz.defineMethod (c$, "getPaletteWB",
  function () {
 if (this.ce.paletteWB != null) return this.ce.paletteWB;
 var b =  Clazz.newIntArray (JV.JC.argbsRoygbScale.length, 0);
@@ -435,7 +435,7 @@ b[i] = JU.CU.colorTriadToFFRGB (xff, xff, xff);
 }
 return this.ce.paletteWB = b;
 });
-c$.getPaletteAtoB = Clazz.defineMethod (c$, "getPaletteAtoB", 
+c$.getPaletteAtoB = Clazz.defineMethod (c$, "getPaletteAtoB",
 function (color1, color2, n) {
 if (n < 2) n = JV.JC.argbsRoygbScale.length;
 var b =  Clazz.newIntArray (n, 0);
@@ -450,7 +450,7 @@ for (var i = 0; i < n; i++) b[i] = JU.CU.colorTriadToFFRGB (rgb1[0] + dr * i, rg
 
 return b;
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "getPaletteBW", 
+Clazz.defineMethod (c$, "getPaletteBW",
  function () {
 if (this.ce.paletteBW != null) return this.ce.paletteBW;
 var b =  Clazz.newIntArray (JV.JC.argbsRoygbScale.length, 0);
@@ -460,13 +460,13 @@ b[i] = JU.CU.colorTriadToFFRGB (xff, xff, xff);
 }
 return this.ce.paletteBW = b;
 });
-Clazz.defineMethod (c$, "quantize", 
+Clazz.defineMethod (c$, "quantize",
 function (x, isLowEnd) {
 var n = this.getPaletteColorCount (this.currentPalette);
 x = ((Clazz.floatToInt (x * n)) + (isLowEnd ? 0 : 1)) / n;
 return (x <= 0 ? this.lo : x >= 1 ? this.hi : this.lo + (this.hi - this.lo) * x);
 }, "~N,~B");
-c$.quantize4 = Clazz.defineMethod (c$, "quantize4", 
+c$.quantize4 = Clazz.defineMethod (c$, "quantize4",
 function (val, lo, hi, segmentCount) {
 var range = hi - lo;
 if (range <= 0 || Float.isNaN (val)) return Clazz.doubleToInt (segmentCount / 2);
@@ -477,11 +477,11 @@ var q = Clazz.floatToInt (t / quanta + 0.0001);
 if (q >= segmentCount) q = segmentCount - 1;
 return q;
 }, "~N,~N,~N,~N");
-c$.colorIndex = Clazz.defineMethod (c$, "colorIndex", 
+c$.colorIndex = Clazz.defineMethod (c$, "colorIndex",
  function (q, segmentCount) {
 return Clazz.doubleToInt (Math.floor (q <= 0 || q >= segmentCount ? 0 : q));
 }, "~N,~N");
-c$.colorIndexRepeat = Clazz.defineMethod (c$, "colorIndexRepeat", 
+c$.colorIndexRepeat = Clazz.defineMethod (c$, "colorIndexRepeat",
  function (q, segmentCount) {
 var i = Clazz.doubleToInt (Math.floor (q <= 0 ? 0 : q));
 return i % segmentCount;

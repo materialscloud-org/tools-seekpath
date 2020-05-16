@@ -26,12 +26,12 @@ this.ptTemp =  new JU.P3 ();
 this.planeShades =  Clazz.newIntArray (3, 0);
 this.dxyz =  Clazz.newFloatArray (3, 3, 0);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (g3d) {
 this.g3d = g3d;
 this.shader = g3d.shader;
 }, "J.g3d.Graphics3D");
-Clazz.defineMethod (c$, "render", 
+Clazz.defineMethod (c$, "render",
 function (shades, diameter, x, y, z, mat, coef, mDeriv, selectedOctant, octantPoints) {
 if (z == 1) return;
 if (diameter > 49) diameter &= -2;
@@ -121,7 +121,7 @@ sh.sphereShapeCache[diameter - 1] = ss;
  else this.renderSphereUnclipped (ss, z, diameter, shades);
 }this.zbuf = null;
 }, "~A,~N,~N,~N,~N,JU.M3,~A,JU.M4,~N,~A");
-Clazz.defineMethod (c$, "renderSphereUnclipped", 
+Clazz.defineMethod (c$, "renderSphereUnclipped",
  function (sphereShape, z, diameter, shades) {
 var offsetSphere = 0;
 var evenSizeCorrection = 1 - (diameter & 1);
@@ -153,7 +153,7 @@ offsetSouthCenter += width;
 offsetNorthCenter -= width;
 } while (--nLines > 0);
 }, "~A,~N,~N,~A");
-Clazz.defineMethod (c$, "renderSphereClipped", 
+Clazz.defineMethod (c$, "renderSphereClipped",
  function (sphereShape, x, y, z, diameter, shades) {
 var w = this.width;
 var h = this.height;
@@ -223,7 +223,7 @@ offsetNorthCenter -= w;
 --yNorth;
 } while (--nLines > 0);
 }, "~A,~N,~N,~N,~N,~A");
-Clazz.defineMethod (c$, "renderQuadrant", 
+Clazz.defineMethod (c$, "renderQuadrant",
  function (xSign, ySign, x, y, z, diameter, shades) {
 var radius = Clazz.doubleToInt (diameter / 2);
 var t = x + radius * xSign;
@@ -236,7 +236,7 @@ var unclipped = (this.mat == null && xStatus == 0 && yStatus == 0 && z - radius 
 if (unclipped) this.renderQuadrantUnclipped (radius, xSign, ySign, z, shades);
  else this.renderQuadrantClipped (radius, xSign, ySign, x, y, z, shades);
 }, "~N,~N,~N,~N,~N,~N,~A");
-Clazz.defineMethod (c$, "renderQuadrantUnclipped", 
+Clazz.defineMethod (c$, "renderQuadrantUnclipped",
  function (radius, xSign, ySign, z, s) {
 var r2 = radius * radius;
 var dDivisor = radius * 2 + 1;
@@ -260,7 +260,7 @@ p.addPixel (offset, z0, s[indexes[((y8 << 8) + x8)]]);
 }
 }
 }, "~N,~N,~N,~N,~A");
-Clazz.defineMethod (c$, "renderQuadrantClipped", 
+Clazz.defineMethod (c$, "renderQuadrantClipped",
  function (radius, xSign, ySign, x, y, z, shades) {
 var isEllipsoid = (this.mat != null);
 var checkOctant = (this.selectedOctant >= 0);

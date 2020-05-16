@@ -37,18 +37,18 @@ this.ptNext =  new JU.P3 ();
 this.mat =  new JU.M3 ();
 this.norml =  new JU.V3 ();
 });
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 return false;
 });
-Clazz.defineMethod (c$, "initialize", 
+Clazz.defineMethod (c$, "initialize",
 function (bsr, bioShape, monomerCount) {
 this.bsr = bsr;
 this.bsRenderMesh = JU.BS.newN (monomerCount);
 this.meshReady = bioShape.meshReady;
 this.meshes = bioShape.meshes;
 }, "J.render.ShapeRenderer,J.shapebio.BioShape,~N");
-Clazz.defineMethod (c$, "renderBioMesh", 
+Clazz.defineMethod (c$, "renderBioMesh",
  function (mesh) {
 if (mesh.normalsTemp != null) {
 mesh.setNormixes (mesh.normalsTemp);
@@ -57,7 +57,7 @@ mesh.normalsTemp = null;
 mesh.initialize (1073741958, null, null);
 }this.renderMesh2 (mesh);
 }, "J.shape.Mesh");
-Clazz.defineMethod (c$, "setFancyRibbon", 
+Clazz.defineMethod (c$, "setFancyRibbon",
 function (i) {
 try {
 if ((this.meshes[i] == null || !this.meshReady[i]) && !this.createMesh (i, this.bsr.madBeg, this.bsr.madMid, this.bsr.madEnd, this.bsr.aspectRatio, this.bsr.isNucleic ? 4 : 7)) return;
@@ -74,7 +74,7 @@ throw e;
 }
 }
 }, "~N");
-Clazz.defineMethod (c$, "setFancyConic", 
+Clazz.defineMethod (c$, "setFancyConic",
 function (i, tension) {
 try {
 if ((this.meshes[i] == null || !this.meshReady[i]) && !this.createMesh (i, this.bsr.madBeg, this.bsr.madMid, this.bsr.madEnd, 1, tension)) return;
@@ -91,7 +91,7 @@ throw e;
 }
 }
 }, "~N,~N");
-Clazz.defineMethod (c$, "setFancyArrowHead", 
+Clazz.defineMethod (c$, "setFancyArrowHead",
 function (i) {
 try {
 this.doCap0 = true;
@@ -110,7 +110,7 @@ throw e;
 }
 }
 }, "~N");
-Clazz.defineMethod (c$, "createMesh", 
+Clazz.defineMethod (c$, "createMesh",
  function (i, madBeg, madMid, madEnd, aspectRatio, tension) {
 this.bsr.setNeighbors (i);
 var cp = this.bsr.controlPoints;
@@ -234,7 +234,7 @@ this.adjustCartoonSeamNormals (i, nPer);
 mesh.setVisibilityFlags (1);
 return true;
 }, "~N,~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "adjustCartoonSeamNormals", 
+Clazz.defineMethod (c$, "adjustCartoonSeamNormals",
 function (i, nPer) {
 if (this.bsTemp == null) this.bsTemp = JU.Normix.newVertexBitSet ();
 if (i == this.bsr.iNext - 1 && this.bsr.iNext < this.bsr.monomerCount && this.bsr.monomers[i].getStrucNo () == this.bsr.monomers[this.bsr.iNext].getStrucNo () && this.meshReady[i] && this.meshReady[this.bsr.iNext]) {
@@ -256,24 +256,24 @@ throw e;
 }
 }
 }}, "~N,~N");
-Clazz.defineMethod (c$, "renderMeshes", 
+Clazz.defineMethod (c$, "renderMeshes",
 function () {
 if (this.bsRenderMesh.isEmpty ()) return;
 this.setColix (this.bsr.colix);
 for (var i = this.bsRenderMesh.nextSetBit (0); i >= 0; i = this.bsRenderMesh.nextSetBit (i + 1)) this.renderBioMesh (this.meshes[i]);
 
 });
-Clazz.defineMethod (c$, "initBS", 
+Clazz.defineMethod (c$, "initBS",
 function () {
 this.bsRenderMesh.clearAll ();
 });
-Clazz.defineMethod (c$, "check", 
+Clazz.defineMethod (c$, "check",
 function (doCap0, doCap1) {
 this.doCap0 = doCap0;
 this.doCap1 = doCap1;
 return (this.exportType == 1 || this.checkDiameter (this.bsr.diameterBeg) || this.checkDiameter (this.bsr.diameterMid) || this.checkDiameter (this.bsr.diameterEnd));
 }, "~B,~B");
-Clazz.defineMethod (c$, "checkDiameter", 
+Clazz.defineMethod (c$, "checkDiameter",
  function (d) {
 return (this.bsr.isHighRes && d > 3 || d >= 8);
 }, "~N");

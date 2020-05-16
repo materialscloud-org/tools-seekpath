@@ -17,11 +17,11 @@ J.adapter.readers.quantum.QchemReader.$QchemReader$MOInfo$ ();
 }
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.quantum, "QchemReader", J.adapter.readers.quantum.MOReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.energyUnits = "au";
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.indexOf ("Standard Nuclear Orientation") >= 0) {
 this.readAtoms ();
@@ -61,11 +61,11 @@ if (this.filterMO ()) this.readQchemMolecularOrbitals ();
 return true;
 }return this.checkNboLine ();
 });
-Clazz.defineMethod (c$, "readCalculationType", 
+Clazz.defineMethod (c$, "readCalculationType",
  function () {
 this.calculationType = this.line.substring (this.line.indexOf ("set is") + 6).trim ();
 });
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function () {
 this.asc.newAtomSet ();
 this.setMOData (true);
@@ -80,7 +80,7 @@ if (J.api.JmolAdapter.getElementNumber (symbol) > 0) this.addAtomXYZSymName (tok
 }
 this.asc.setAtomSetModelProperty (".PATH", "Job " + this.calculationNumber);
 });
-Clazz.defineMethod (c$, "readFrequencies", 
+Clazz.defineMethod (c$, "readFrequencies",
  function () {
 while (this.rd () != null && this.line.indexOf ("STANDARD") < 0) {
 if (!this.line.startsWith (" Frequency:")) this.discardLinesUntilStartsWith (" Frequency:");
@@ -100,7 +100,7 @@ this.fillFrequencyData (iAtom0, ac, ac, ignore, true, 0, 0, null, 0, null);
 this.discardLinesUntilBlank ();
 }
 });
-Clazz.defineMethod (c$, "readPartialCharges", 
+Clazz.defineMethod (c$, "readPartialCharges",
  function () {
 this.readLines (3);
 var atoms = this.asc.atoms;
@@ -108,7 +108,7 @@ var ac = this.asc.getLastAtomSetAtomCount ();
 for (var i = 0; i < ac && this.rd () != null; ++i) atoms[i].partialCharge = this.parseFloatStr (this.getTokens ()[2]);
 
 });
-Clazz.defineMethod (c$, "readEnergy", 
+Clazz.defineMethod (c$, "readEnergy",
  function () {
 var ac = this.asc.getLastAtomSetAtomCount ();
 var tokens = this.getTokens ();
@@ -118,7 +118,7 @@ this.asc.setAtomSetEnergy (energyString, this.parseFloatStr (energyString));
 this.asc.setAtomSetName (energyKey + " = " + energyString);
 this.asc.setModelInfoForSet ("name", energyKey + " " + energyString, ac);
 });
-Clazz.defineMethod (c$, "readBasis", 
+Clazz.defineMethod (c$, "readBasis",
  function () {
 this.moData =  new java.util.Hashtable ();
 var ac = 1;
@@ -162,7 +162,7 @@ JU.Logger.debug (gaussianCount + " gaussian primitives read");
 tokens = this.getTokens ();
 this.nBasis = this.parseIntStr (tokens[5]);
 });
-Clazz.defineMethod (c$, "readESym", 
+Clazz.defineMethod (c$, "readESym",
  function (haveSym) {
 this.alphas =  new Array (this.nBasis);
 this.betas =  new Array (this.nBasis);
@@ -201,7 +201,7 @@ nMO++;
 }
 if (!readBetas) this.betas = this.alphas;
 }, "~B");
-Clazz.defineMethod (c$, "readQchemMolecularOrbitals", 
+Clazz.defineMethod (c$, "readQchemMolecularOrbitals",
  function () {
 var orbitalType = this.getTokens ()[0];
 this.alphaBeta = "A";
@@ -226,7 +226,7 @@ this.shells = null;
 }}this.setMOData (this.shells == null);
 this.shells = null;
 });
-Clazz.defineMethod (c$, "readMOs", 
+Clazz.defineMethod (c$, "readMOs",
  function (restricted, moInfos) {
 var mos = JU.AU.createArrayOfHashtable (6);
 var mocoef = JU.AU.newFloat2 (6);

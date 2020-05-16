@@ -17,11 +17,11 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.buf =  Clazz.newByteArray (1024, 0);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JSV.common.JSVZipFileSequentialReader, [ new java.io.StringReader ("")]);
 });
-Clazz.overrideMethod (c$, "set", 
+Clazz.overrideMethod (c$, "set",
 function (bis, subFileList, startCode) {
 this.subFileList = subFileList;
 this.zis =  new java.util.zip.ZipInputStream (bis);
@@ -29,7 +29,7 @@ this.startCode = startCode;
 this.nextEntry ();
 return this;
 }, "java.io.InputStream,~A,~S");
-Clazz.overrideMethod (c$, "close", 
+Clazz.overrideMethod (c$, "close",
 function () {
 try {
 this.close ();
@@ -41,24 +41,24 @@ throw e;
 }
 }
 });
-Clazz.overrideMethod (c$, "mark", 
+Clazz.overrideMethod (c$, "mark",
 function (limit) {
 this.ptMark = this.pt;
 if (this.len == 0) {
 this.readLine ();
 this.pt = this.ptMark;
 }}, "~N");
-Clazz.overrideMethod (c$, "reset", 
+Clazz.overrideMethod (c$, "reset",
 function () {
 this.pt = this.ptMark;
 });
-Clazz.overrideMethod (c$, "read", 
+Clazz.overrideMethod (c$, "read",
 function (chars, chPt, chLen) {
 var l = Math.min (this.len - this.pt, chLen);
 this.data.getChars (0, l, chars, chPt);
 return l;
 }, "~A,~N,~N");
-Clazz.overrideMethod (c$, "readLine", 
+Clazz.overrideMethod (c$, "readLine",
 function () {
 while (this.ze != null) {
 try {
@@ -75,7 +75,7 @@ this.nextEntry ();
 }
 return null;
 });
-Clazz.defineMethod (c$, "nextEntry", 
+Clazz.defineMethod (c$, "nextEntry",
  function () {
 this.len = this.pt = 0;
 this.cr = '\0';
@@ -91,7 +91,7 @@ throw e;
 }
 }
 });
-Clazz.defineMethod (c$, "isEntryOK", 
+Clazz.defineMethod (c$, "isEntryOK",
  function (name) {
 if (this.subFileList == null || this.subFileList.length == 1) return true;
 for (var i = this.subFileList.length; --i >= 0; ) if (this.subFileList[i].equals (name)) {
@@ -101,7 +101,7 @@ return true;
 JU.Logger.info ("...skipping zip entry " + name);
 return false;
 }, "~S");
-Clazz.defineMethod (c$, "getEntryLine", 
+Clazz.defineMethod (c$, "getEntryLine",
  function () {
 var line = null;
 while (this.len >= 0 && (this.pt < this.len || this.zis.available () == 1)) {

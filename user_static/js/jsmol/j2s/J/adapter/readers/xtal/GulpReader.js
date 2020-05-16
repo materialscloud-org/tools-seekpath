@@ -19,13 +19,13 @@ this.totEnergy = null;
 this.energyUnits = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.xtal, "GulpReader", J.adapter.smarter.AtomSetCollectionReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.$isPrimitive = !this.checkFilterKey ("CONV");
 this.coordinatesArePrimitive = true;
 this.setFractionalCoordinates (this.readDimensionality ());
 });
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 if (this.atomCharges == null) return;
 var atoms = this.asc.atoms;
@@ -33,7 +33,7 @@ var f;
 for (var i = this.asc.ac; --i >= 0; ) if ((f = this.atomCharges.get (atoms[i].atomName)) != null || (f = this.atomCharges.get (atoms[i].getElementSymbol ())) != null) atoms[i].partialCharge = f.floatValue ();
 
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.contains ("Space group ")) {
 this.readSpaceGroup ();
@@ -56,7 +56,7 @@ this.readFinalCell ();
 return true;
 }return true;
 });
-Clazz.defineMethod (c$, "readDimensionality", 
+Clazz.defineMethod (c$, "readDimensionality",
  function () {
 this.discardLinesUntilContains ("Dimensionality");
 var tokens = this.getTokens ();
@@ -76,17 +76,17 @@ break;
 }
 return true;
 });
-Clazz.defineMethod (c$, "readSpaceGroup", 
+Clazz.defineMethod (c$, "readSpaceGroup",
  function () {
 this.sgName = this.line.substring (this.line.indexOf (":") + 1).trim ();
 });
-c$.parameterIndex = Clazz.defineMethod (c$, "parameterIndex", 
+c$.parameterIndex = Clazz.defineMethod (c$, "parameterIndex",
  function (key) {
 for (var i = J.adapter.readers.xtal.GulpReader.tags.length; --i >= 0; ) if (J.adapter.readers.xtal.GulpReader.tags[i].equals (key)) return i;
 
 return -1;
 }, "~S");
-Clazz.defineMethod (c$, "setParameter", 
+Clazz.defineMethod (c$, "setParameter",
  function (key, value) {
 switch (J.adapter.readers.xtal.GulpReader.parameterIndex (key)) {
 case 0:
@@ -109,14 +109,14 @@ this.gamma = value;
 break;
 }
 }, "~S,~N");
-Clazz.defineMethod (c$, "newAtomSet", 
+Clazz.defineMethod (c$, "newAtomSet",
  function (doSetUnitCell) {
 this.asc.newAtomSet ();
 if (doSetUnitCell) {
 this.setModelParameters (this.coordinatesArePrimitive);
 if (this.totEnergy != null) this.setEnergy ();
 }}, "~B");
-Clazz.defineMethod (c$, "setModelParameters", 
+Clazz.defineMethod (c$, "setModelParameters",
  function (isPrimitive) {
 if (this.sgName != null) this.setSpaceGroupName (isPrimitive ? "P1" : this.sgName);
 if (isPrimitive && this.primitiveData != null) {
@@ -132,7 +132,7 @@ this.b = this.c = -1;
 this.alpha = this.beta = this.gamma = 90;
 }this.setUnitCell (this.a, this.b, this.c, this.alpha, this.beta, this.gamma);
 }}, "~B");
-Clazz.defineMethod (c$, "readCellParameters", 
+Clazz.defineMethod (c$, "readCellParameters",
  function (isLatticeVectors) {
 if (isLatticeVectors) {
 this.rd ();
@@ -148,7 +148,7 @@ for (var i = i0; i < i0 + 4; i += 2) if (tokens.length > i + 1) this.setParamete
 
 }
 }, "~B");
-Clazz.defineMethod (c$, "readFinalCell", 
+Clazz.defineMethod (c$, "readFinalCell",
  function () {
 this.discardLinesUntilContains (this.sep);
 var tokens;
@@ -172,7 +172,7 @@ break;
 this.applySymmetryAndSetTrajectory ();
 if (this.totEnergy != null) this.setEnergy ();
 });
-Clazz.defineMethod (c$, "scalePrimitiveData", 
+Clazz.defineMethod (c$, "scalePrimitiveData",
  function (i, value) {
 var v = JU.V3.new3 (this.primitiveData[i], this.primitiveData[i + 1], this.primitiveData[i + 2]);
 v.normalize ();
@@ -181,7 +181,7 @@ this.primitiveData[i++] = v.x;
 this.primitiveData[i++] = v.y;
 this.primitiveData[i++] = v.z;
 }, "~N,~N");
-Clazz.overrideMethod (c$, "applySymmetryAndSetTrajectory", 
+Clazz.overrideMethod (c$, "applySymmetryAndSetTrajectory",
 function () {
 if (this.coordinatesArePrimitive && this.iHaveUnitCell && this.doCheckUnitCell && this.primitiveData != null && !this.$isPrimitive) {
 this.setModelParameters (false);
@@ -199,7 +199,7 @@ if (this.fixJavaFloat) JU.PT.fixPtFloats (atom, 100000.0);
 this.setModelParameters (false);
 }this.applySymTrajASCR ();
 });
-Clazz.defineMethod (c$, "readAtomicPos", 
+Clazz.defineMethod (c$, "readAtomicPos",
  function (finalizeSymmetry) {
 this.newAtomSet (finalizeSymmetry);
 this.discardLinesUntilContains (this.sep);
@@ -215,7 +215,7 @@ if (tokens[2].equals ("c")) this.addAtomXYZSymName (tokens, 3, null, tokens[1]);
 }
 if (finalizeSymmetry) this.applySymmetryAndSetTrajectory ();
 }, "~B");
-Clazz.defineMethod (c$, "readPartialCharges", 
+Clazz.defineMethod (c$, "readPartialCharges",
  function () {
 this.atomCharges =  new java.util.Hashtable ();
 this.discardLinesUntilContains (this.sep);
@@ -228,7 +228,7 @@ var f = (charge == null ? 0 : charge.floatValue ());
 this.atomCharges.put (species, Float.$valueOf ((f + this.parseFloatStr (tokens[4]))));
 }
 });
-Clazz.defineMethod (c$, "readEnergy", 
+Clazz.defineMethod (c$, "readEnergy",
  function () {
 if (this.line.indexOf ("=") < 0) this.discardLinesUntilContains ("=");
 var tokens = JU.PT.getTokens (this.line.substring (this.line.indexOf ("=")));
@@ -236,7 +236,7 @@ this.totEnergy = Double.$valueOf (Double.parseDouble (tokens[1]));
 this.energyUnits = tokens[2];
 this.discardLinesUntilContains (this.sep);
 });
-Clazz.defineMethod (c$, "setEnergy", 
+Clazz.defineMethod (c$, "setEnergy",
  function () {
 this.asc.setAtomSetEnergy ("" + this.totEnergy, this.totEnergy.floatValue ());
 this.asc.setInfo ("Energy", this.totEnergy);

@@ -12,19 +12,19 @@ Float.toString = Float.prototype.toString = function () {
 	}
 	return "" + this.valueOf ();
 };
-Clazz.makeConstructor (Float, 
+Clazz.makeConstructor (Float,
 function () {
 this.valueOf = function () {
 	return 0.0;
 };
 });
-Clazz.makeConstructor (Float, 
+Clazz.makeConstructor (Float,
 function (value) {
 this.valueOf = function () {
 	return value;
 };
 }, "Number");
-Clazz.makeConstructor (Float, 
+Clazz.makeConstructor (Float,
 function (s) {
 var value = null;
 if (s != null) {
@@ -44,7 +44,7 @@ Float.POSITIVE_INFINITY = Number.POSITIVE_INFINITY;
 Float.NaN = Number.NaN;
 Float.TYPE = Float.prototype.TYPE = Float;
 
-Clazz.defineMethod (Float, "parseFloat", 
+Clazz.defineMethod (Float, "parseFloat",
 function (s) {
 if (s == null) {
 throw  new NumberFormatException ("null");
@@ -57,29 +57,29 @@ return floatVal;
 }, "String");
 Float.parseFloat = Float.prototype.parseFloat;
 
-Clazz.defineMethod (Float, "$valueOf", 
+Clazz.defineMethod (Float, "$valueOf",
 function (s) {
 return new Float(Float.parseFloat (s, 10));
 }, "String");
 
-Clazz.defineMethod (Float, "$valueOf", 
+Clazz.defineMethod (Float, "$valueOf",
 function (s) {
 return new Float(s);
 }, "Number");
 
 Float.$valueOf = Float.prototype.$valueOf;
-Clazz.defineMethod (Float, "isNaN", 
+Clazz.defineMethod (Float, "isNaN",
 function (num) {
 return isNaN (num);
 }, "Number");
 Float.isNaN = Float.prototype.isNaN;
-Clazz.defineMethod (Float, "isInfinite", 
+Clazz.defineMethod (Float, "isInfinite",
 function (num) {
 return !isFinite (num);
 }, "Number");
 Float.isInfinite = Float.prototype.isInfinite;
 
-Clazz.overrideMethod(Float, "equals", 
+Clazz.overrideMethod(Float, "equals",
 function (s) {
 if(s == null || ! Clazz.instanceOf(s, Float) ){
 	return false;

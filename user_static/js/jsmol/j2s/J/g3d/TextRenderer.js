@@ -10,13 +10,13 @@ this.tmap = null;
 this.isInvalid = false;
 Clazz.instantialize (this, arguments);
 }, J.g3d, "TextRenderer");
-c$.clearFontCache = Clazz.defineMethod (c$, "clearFontCache", 
+c$.clearFontCache = Clazz.defineMethod (c$, "clearFontCache",
 function () {
 if (J.g3d.TextRenderer.working) return;
 J.g3d.TextRenderer.htFont3d.clear ();
 J.g3d.TextRenderer.htFont3dAntialias.clear ();
 });
-c$.plot = Clazz.defineMethod (c$, "plot", 
+c$.plot = Clazz.defineMethod (c$, "plot",
 function (x, y, z, argb, bgargb, text, font3d, g3d, jr, antialias) {
 if (text.length == 0) return 0;
 if (text.indexOf ("<su") >= 0 || text.indexOf ("<color") >= 0) return J.g3d.TextRenderer.plotByCharacter (x, y, z, argb, bgargb, text, font3d, g3d, jr, antialias);
@@ -48,7 +48,7 @@ for (var i = 0, off = 0, pbufOffset = y * width + x; i < textHeight; i++, pbufOf
 
 }return text3d.width;
 }, "~N,~N,~N,~N,~N,~S,javajs.awt.Font,J.g3d.Graphics3D,J.api.JmolRendererInterface,~B");
-c$.plotByCharacter = Clazz.defineMethod (c$, "plotByCharacter", 
+c$.plotByCharacter = Clazz.defineMethod (c$, "plotByCharacter",
  function (x, y, z, argb, bgargb, text, font3d, g3d, jmolRenderer, antialias) {
 var w = 0;
 var len = text.length;
@@ -89,7 +89,7 @@ w += width;
 }
 return w;
 }, "~N,~N,~N,~N,~N,~S,javajs.awt.Font,J.g3d.Graphics3D,J.api.JmolRendererInterface,~B");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function (text, font3d) {
 this.ascent = font3d.getAscent ();
 this.height = font3d.getHeight ();
@@ -98,7 +98,7 @@ if (this.width == 0) return;
 this.mapWidth = this.width;
 this.size = this.mapWidth * this.height;
 }, "~S,javajs.awt.Font");
-c$.getPlotText3D = Clazz.defineMethod (c$, "getPlotText3D", 
+c$.getPlotText3D = Clazz.defineMethod (c$, "getPlotText3D",
  function (x, y, g3d, text, font3d, antialias) {
 J.g3d.TextRenderer.working = true;
 var ht = (antialias ? J.g3d.TextRenderer.htFont3dAntialias : J.g3d.TextRenderer.htFont3d);
@@ -123,7 +123,7 @@ htForThisFont.put (text, text3d);
 }J.g3d.TextRenderer.working = false;
 return text3d;
 }, "~N,~N,J.g3d.Graphics3D,~S,javajs.awt.Font,~B");
-Clazz.defineMethod (c$, "setTranslucency", 
+Clazz.defineMethod (c$, "setTranslucency",
  function (text, font3d, g3d) {
 var pixels = g3d.apiPlatform.getTextPixels (text, font3d, g3d.platform.getGraphicsForTextOrImage (this.mapWidth, this.height), g3d.platform.offscreenImage, this.mapWidth, this.height, this.ascent);
 if (pixels == null) return;

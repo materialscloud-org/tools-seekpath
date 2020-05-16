@@ -14,17 +14,17 @@ this.isNot = false;
 this.sorter = null;
 Clazz.instantialize (this, arguments);
 }, JS, "SmilesStereo");
-c$.getChiralityClass = Clazz.defineMethod (c$, "getChiralityClass", 
+c$.getChiralityClass = Clazz.defineMethod (c$, "getChiralityClass",
  function (xx) {
 return Clazz.doubleToInt (("0;PH;AL;TP;TH;TB;OH;SP;TS;SS;".indexOf (xx) + 1) / 3);
 }, "~S");
-c$.newStereo = Clazz.defineMethod (c$, "newStereo", 
+c$.newStereo = Clazz.defineMethod (c$, "newStereo",
 function (search) {
 var stereo =  new JS.SmilesStereo (0, 0, 0, null, null);
 stereo.search = search;
 return stereo;
 }, "JS.SmilesSearch");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (chiralClass, chiralOrder, atomCount, details, directives) {
 this.chiralClass = chiralClass;
 this.chiralOrder = chiralOrder;
@@ -33,12 +33,12 @@ this.details = details;
 this.directives = directives;
 if (chiralClass == 1) this.getPolyhedralOrders ();
 }, "~N,~N,~N,~S,~S");
-Clazz.defineMethod (c$, "getChiralClass", 
+Clazz.defineMethod (c$, "getChiralClass",
 function (sAtom) {
 if (this.chiralClass == 0) this.setChiralClass (sAtom);
 return this.chiralClass;
 }, "JS.SmilesAtom");
-Clazz.defineMethod (c$, "setChiralClass", 
+Clazz.defineMethod (c$, "setChiralClass",
  function (sAtom) {
 var nBonds = Math.max (sAtom.explicitHydrogenCount, 0) + sAtom.getBondCount ();
 if (this.chiralClass == 0) {
@@ -57,7 +57,7 @@ break;
 }
 }return nBonds;
 }, "JS.SmilesAtom");
-Clazz.defineMethod (c$, "fixStereo", 
+Clazz.defineMethod (c$, "fixStereo",
 function (sAtom) {
 var nBonds = this.setChiralClass (sAtom);
 var nH = Math.max (sAtom.explicitHydrogenCount, 0);
@@ -86,7 +86,7 @@ sAtom.stereo = null;
 }
 if (sAtom.stereo == null) throw  new JS.InvalidSmilesException ("Incorrect number of bonds for stereochemistry descriptor");
 }, "JS.SmilesAtom");
-Clazz.defineMethod (c$, "normalizeClass", 
+Clazz.defineMethod (c$, "normalizeClass",
  function (atom) {
 try {
 var bonds = atom.bonds;
@@ -144,7 +144,7 @@ throw e;
 }
 return true;
 }, "JS.SmilesAtom");
-Clazz.defineMethod (c$, "setTopoCoordinates", 
+Clazz.defineMethod (c$, "setTopoCoordinates",
 function (atom, sAtom, sAtom2, cAtoms) {
 var chClass = atom.stereo.chiralClass;
 var chiralOrder = atom.stereo.chiralOrder;
@@ -242,7 +242,7 @@ return false;
 }
 return true;
 }, "JS.SmilesAtom,JS.SmilesAtom,JS.SmilesAtom,~A");
-Clazz.defineMethod (c$, "getMappedTopoAtoms", 
+Clazz.defineMethod (c$, "getMappedTopoAtoms",
  function (atom, a2, cAtoms) {
 var map =  Clazz.newIntArray (cAtoms[4] == null ? 4 : cAtoms[5] == null ? 5 : 6, 0);
 for (var i = 0; i < map.length; i++) {
@@ -260,7 +260,7 @@ map[i] = map[i] % 10;
 }
 return map;
 }, "JS.SmilesAtom,JS.SmilesAtom,~A");
-c$.getTopoMapPt = Clazz.defineMethod (c$, "getTopoMapPt", 
+c$.getTopoMapPt = Clazz.defineMethod (c$, "getTopoMapPt",
  function (map, i, atom, cAtom, bonds, n000) {
 if (cAtom.index == -2147483648) {
 map[i] = (bonds[0].isFromPreviousTo (atom) ? 100 : 0) + n000 + i;
@@ -274,11 +274,11 @@ return true;
 }}
 return false;
 }, "~A,~N,JS.SmilesAtom,JS.SmilesAtom,~A,~N");
-Clazz.defineMethod (c$, "getJmolAtom", 
+Clazz.defineMethod (c$, "getJmolAtom",
  function (i) {
 return (i < 0 || i >= this.jmolAtoms.length ? null : this.jmolAtoms[i]);
 }, "~N");
-Clazz.defineMethod (c$, "sortBondsByStereo", 
+Clazz.defineMethod (c$, "sortBondsByStereo",
 function (atom, atomPrev, ref, bonds, vTemp) {
 if (bonds.length < 2 || !(Clazz.instanceOf (atom, JU.T3))) return;
 if (atomPrev == null) atomPrev = bonds[0].getOtherNode (atom);
@@ -297,7 +297,7 @@ if (JU.Logger.debugging) JU.Logger.info (JU.Escape.e (aTemp));
 for (var i = bonds.length; --i >= 0; ) bonds[i] = aTemp[i][0];
 
 }, "JU.SimpleNode,JU.SimpleNode,JU.T3,~A,JU.V3");
-Clazz.defineMethod (c$, "checkStereoChemistry", 
+Clazz.defineMethod (c$, "checkStereoChemistry",
 function (search, v) {
 this.v = v;
 this.search = search;
@@ -321,7 +321,7 @@ return false;
 }
 return true;
 }, "JS.SmilesSearch,JS.VTemp");
-Clazz.defineMethod (c$, "checkStereoForAtom", 
+Clazz.defineMethod (c$, "checkStereoForAtom",
 function (pAtom, atom0, isNot, haveTopo) {
 var atom1 = null;
 var atom2 = null;
@@ -422,7 +422,7 @@ return 0;
 }
 return 0;
 }, "JS.SmilesAtom,JU.Node,~B,~B");
-Clazz.defineMethod (c$, "getAlleneAtoms", 
+Clazz.defineMethod (c$, "getAlleneAtoms",
 function (pAtom, pAtom1) {
 if (pAtom1 == null) pAtom1 = pAtom.getBond (0).getOtherAtom (pAtom);
 var pAtom2 = pAtom.getBond (1).getOtherAtom (pAtom);
@@ -477,7 +477,7 @@ for (var k = 0; k < 4; k++) if (jn[k] == null) this.addAlleneLonePair (k < 2 ? p
 
 return jn;
 }, "JS.SmilesAtom,JS.SmilesAtom");
-Clazz.defineMethod (c$, "addAlleneLonePair", 
+Clazz.defineMethod (c$, "addAlleneLonePair",
  function (pAtom, jn, k) {
 var atom = pAtom.getMatchingAtom ();
 jn[k] = this.search.findImplicitHydrogen (atom);
@@ -492,7 +492,7 @@ v.scaleAdd2 (2, pAtom.getMatchingAtom (), v);
 }jn[k] =  new JS.SmilesAtom ().setIndex (-2147483648);
 (jn[k]).setT (v);
 }, "JS.SmilesAtom,~A,~N");
-c$.getStereoFlag = Clazz.defineMethod (c$, "getStereoFlag", 
+c$.getStereoFlag = Clazz.defineMethod (c$, "getStereoFlag",
 function (atom0, atoms, nAtoms, v) {
 var atom1 = atoms[0];
 var atom2 = atoms[1];
@@ -520,7 +520,7 @@ return (JS.SmilesStereo.checkStereochemistryAll (false, atom0, chiralClass, 1, a
 }}
 return "";
 }, "JU.SimpleNode,~A,~N,JS.VTemp");
-c$.checkStereochemistryAll = Clazz.defineMethod (c$, "checkStereochemistryAll", 
+c$.checkStereochemistryAll = Clazz.defineMethod (c$, "checkStereochemistryAll",
  function (isNot, atom0, chiralClass, order, atom1, atom2, atom3, atom4, atom5, atom6, v) {
 switch (chiralClass) {
 default:
@@ -561,7 +561,7 @@ case 1:
 return true;
 }
 }, "~B,JU.SimpleNode,~N,~N,JU.SimpleNode,JU.SimpleNode,JU.SimpleNode,JU.SimpleNode,JU.SimpleNode,JU.SimpleNode,JS.VTemp");
-c$.isDiaxial = Clazz.defineMethod (c$, "isDiaxial", 
+c$.isDiaxial = Clazz.defineMethod (c$, "isDiaxial",
 function (atomA, atomB, atom1, atom2, v, f) {
 v.vA.sub2 (atomA, atom1);
 v.vB.sub2 (atomB, atom2);
@@ -569,19 +569,19 @@ v.vA.normalize ();
 v.vB.normalize ();
 return (v.vA.dot (v.vB) < f);
 }, "JU.SimpleNode,JU.SimpleNode,JU.SimpleNode,JU.SimpleNode,JS.VTemp,~N");
-c$.getHandedness = Clazz.defineMethod (c$, "getHandedness", 
+c$.getHandedness = Clazz.defineMethod (c$, "getHandedness",
 function (a, b, c, pt, v) {
 var d = JU.Measure.getNormalThroughPoints (a, b, c, v.vTemp, v.vA);
 d = JU.Measure.distanceToPlaneV (v.vTemp, d, pt);
 return (d > 0 ? 1 : 2);
 }, "JU.SimpleNode,JU.SimpleNode,JU.SimpleNode,JU.SimpleNode,JS.VTemp");
-c$.getPlaneNormals = Clazz.defineMethod (c$, "getPlaneNormals", 
+c$.getPlaneNormals = Clazz.defineMethod (c$, "getPlaneNormals",
  function (atom1, atom2, atom3, atom4, v) {
 JU.Measure.getNormalThroughPoints (atom1, atom2, atom3, v.vNorm2, v.vTemp1);
 JU.Measure.getNormalThroughPoints (atom2, atom3, atom4, v.vNorm3, v.vTemp1);
 JU.Measure.getNormalThroughPoints (atom3, atom4, atom1, v.vNorm4, v.vTemp1);
 }, "JU.P3,JU.P3,JU.P3,JU.P3,JS.VTemp");
-c$.checkChirality = Clazz.defineMethod (c$, "checkChirality", 
+c$.checkChirality = Clazz.defineMethod (c$, "checkChirality",
 function (search, pattern, index, newAtom) {
 var stereoClass = 0;
 var order = -2147483648;
@@ -648,7 +648,7 @@ JU.Logger.info ("Ignoring '?' in stereochemistry");
 index++;
 }return index;
 }, "JS.SmilesSearch,~S,~N,JS.SmilesAtom");
-Clazz.defineMethod (c$, "getPolyhedralOrders", 
+Clazz.defineMethod (c$, "getPolyhedralOrders",
  function () {
 var po = this.polyhedralOrders = JU.AU.newInt2 (this.atomCount);
 if (this.details == null) return;

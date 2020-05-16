@@ -8,18 +8,18 @@ this.bytearr = null;
 this.pos = 0;
 Clazz.instantialize (this, arguments);
 }, java.io, "InputStreamReader", java.io.Reader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function ($in, charsetName) {
 Clazz.superConstructor (this, java.io.InputStreamReader, [$in]);
 this.$in = $in;
 this.charsetName = charsetName;
 if (!(this.isUTF8 = "UTF-8".equals (charsetName)) && !"ISO-8859-1".equals (charsetName)) throw  new NullPointerException ("charsetName");
 }, "java.io.InputStream,~S");
-Clazz.defineMethod (c$, "getEncoding", 
+Clazz.defineMethod (c$, "getEncoding",
 function () {
 return this.charsetName;
 });
-Clazz.overrideMethod (c$, "read", 
+Clazz.overrideMethod (c$, "read",
 function (cbuf, offset, length) {
 if (this.bytearr == null || this.bytearr.length < length) this.bytearr =  Clazz.newByteArray (length, 0);
 var c;
@@ -67,11 +67,11 @@ this.bytearr[i] = this.bytearr[byteCount++];
 }
 return charCount - offset;
 }, "~A,~N,~N");
-Clazz.overrideMethod (c$, "ready", 
+Clazz.overrideMethod (c$, "ready",
 function () {
 return this.isOpen;
 });
-Clazz.overrideMethod (c$, "close", 
+Clazz.overrideMethod (c$, "close",
 function () {
 this.$in.close ();
 this.isOpen = false;

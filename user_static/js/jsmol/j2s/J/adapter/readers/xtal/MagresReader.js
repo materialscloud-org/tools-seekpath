@@ -13,18 +13,18 @@ this.magresUnits =  new java.util.Hashtable ();
 this.interactionTensors =  new JU.Lst ();
 this.header =  new JU.SB ();
 });
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.setFractionalCoordinates (false);
 this.ignoreFileSpaceGroupName = true;
 });
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 this.asc.setInfo ("fileHeader", this.header.toString ());
 this.finalizeReaderASCR ();
 if (this.interactionTensors.size () > 0) this.asc.setCurrentModelInfo ("interactionTensors", this.interactionTensors);
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (!this.trimLine ()) return true;
 switch (this.checkBlock ()) {
@@ -44,14 +44,14 @@ return this.readTensor ();
 }
 return true;
 });
-Clazz.defineMethod (c$, "trimLine", 
+Clazz.defineMethod (c$, "trimLine",
  function () {
 var pt = this.line.indexOf ("#");
 if (pt >= 0) this.line = this.line.substring (0, pt);
 this.line = this.line.trim ();
 return (this.line.length > 0);
 });
-Clazz.defineMethod (c$, "checkBlock", 
+Clazz.defineMethod (c$, "checkBlock",
  function () {
 if (!(this.line.startsWith ("<") && this.line.endsWith (">")) && !(this.line.startsWith ("[") && this.line.endsWith ("]"))) return this.currentBlock;
 this.line = JU.PT.rep (this.line, "<", "[");
@@ -87,7 +87,7 @@ break;
 }
 return -2;
 });
-Clazz.defineMethod (c$, "setUnits", 
+Clazz.defineMethod (c$, "setUnits",
  function (isMagresBlock) {
 var tokens = this.getTokens ();
 var id = tokens[1];
@@ -95,12 +95,12 @@ if (isMagresBlock) this.appendLoadNote ("Ellipsoid set " + JU.PT.esc (id) + ": "
 this.magresUnits.put (id, tokens[2]);
 return true;
 }, "~B");
-Clazz.defineMethod (c$, "readSymmetry", 
+Clazz.defineMethod (c$, "readSymmetry",
  function () {
 this.setSymmetryOperator (this.getTokens ()[1]);
 return true;
 });
-Clazz.defineMethod (c$, "readCellParams", 
+Clazz.defineMethod (c$, "readCellParams",
  function () {
 var tokens = this.getTokens ();
 this.cellParams =  Clazz.newFloatArray (9, 0);
@@ -112,7 +112,7 @@ this.addExplicitLatticeVector (2, this.cellParams, 6);
 this.setSpaceGroupName ("P1");
 return true;
 });
-Clazz.defineMethod (c$, "readAtom", 
+Clazz.defineMethod (c$, "readAtom",
  function () {
 var units = this.magresUnits.get ("atom");
 if (units == null) return true;
@@ -130,11 +130,11 @@ atom.set (x, y, z);
 this.setAtomCoord (atom);
 return true;
 });
-c$.getAtomName = Clazz.defineMethod (c$, "getAtomName", 
+c$.getAtomName = Clazz.defineMethod (c$, "getAtomName",
  function (name, index) {
 return name + "_" + index;
 }, "~S,~S");
-Clazz.defineMethod (c$, "readTensor", 
+Clazz.defineMethod (c$, "readTensor",
  function () {
 var tokens = this.getTokens ();
 var type = tokens[0];

@@ -29,7 +29,7 @@ this.v2 =  new JU.V3 ();
 this.plane1 =  new JU.P4 ();
 this.plane2 =  new JU.P4 ();
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.firstLine) {
 this.firstLine = false;
@@ -91,7 +91,7 @@ break;
 this.lineBuffer.addLast (this.tokens);
 return true;
 });
-Clazz.defineMethod (c$, "readConFile", 
+Clazz.defineMethod (c$, "readConFile",
  function () {
 this.rd ();
 var map =  new java.util.Hashtable ();
@@ -110,7 +110,7 @@ for (var j = 6; j < tokens.length; j++) this.asc.addBond ( new J.adapter.smarter
 
 }
 });
-Clazz.defineMethod (c$, "readCFI", 
+Clazz.defineMethod (c$, "readCFI",
  function () {
 this.tokens = this.getTokens ();
 var nAtoms = Clazz.floatToInt (this.getValue (0));
@@ -128,7 +128,7 @@ var orders = this.fillFloatArray (null, 0,  Clazz.newFloatArray (nBonds, 0));
 for (var i = 0, pt = 0; i < nBonds; i++) this.asc.addBond ( new J.adapter.smarter.Bond (map.get ("" + Clazz.floatToInt (bonds[pt++])).index, map.get ("" + Clazz.floatToInt (bonds[pt++])).index, Clazz.floatToInt (orders[i])));
 
 });
-Clazz.defineMethod (c$, "readVFI", 
+Clazz.defineMethod (c$, "readVFI",
  function () {
 var map =  new java.util.Hashtable ();
 var bonds =  new JU.Lst ();
@@ -147,14 +147,14 @@ this.asc.addBond ( new J.adapter.smarter.Bond (map.get (b[0]).index, map.get (b[
 }
 return (this.continuing = false);
 });
-Clazz.defineMethod (c$, "readBlock", 
+Clazz.defineMethod (c$, "readBlock",
  function (strEnd) {
 this.lineBuffer.clear ();
 while (this.rd () != null && this.cleanLine () != null && (strEnd == null ? this.line.length > 0 : this.line.indexOf (strEnd) < 0)) this.lineBuffer.addLast (this.getTokens ());
 
 return (this.continuing = false);
 }, "~S");
-Clazz.defineMethod (c$, "cleanLine", 
+Clazz.defineMethod (c$, "cleanLine",
  function () {
 this.line = this.line.$replace (',', ' ');
 var pt1;
@@ -163,21 +163,21 @@ while ((pt1 = this.line.indexOf ('(')) >= 0 && (pt2 = this.line.indexOf ('(', pt
 
 return (this.line = this.line.trim ());
 });
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 var firstLine = 0;
 for (var i = firstLine; i < this.lineBuffer.size (); i++) if ((this.tokens = this.lineBuffer.get (i)).length > 0) this.getAtom ();
 
 this.finalizeReaderASCR ();
 });
-Clazz.defineMethod (c$, "getSymbolic", 
+Clazz.defineMethod (c$, "getSymbolic",
  function () {
 if (this.symbolicMap.containsKey (this.tokens[0])) return;
 var f = this.parseFloatStr (this.tokens[1]);
 this.symbolicMap.put (this.tokens[0], Float.$valueOf (f));
 JU.Logger.info ("symbolic " + this.tokens[0] + " = " + f);
 });
-Clazz.defineMethod (c$, "getAtom", 
+Clazz.defineMethod (c$, "getAtom",
  function () {
 var atom =  new J.adapter.smarter.Atom ();
 var element = this.tokens[0];
@@ -194,7 +194,7 @@ element = element.substring (0, i);
 this.parseAtomTokens (atom, element);
 return atom;
 });
-Clazz.defineMethod (c$, "parseAtomTokens", 
+Clazz.defineMethod (c$, "parseAtomTokens",
  function (atom, element) {
 this.setElementAndIsotope (atom, element);
 if (this.tokens.length > 5 && this.tokens[1].indexOf (".") >= 0) {
@@ -244,7 +244,7 @@ this.setAtomCoord (atom);
 JU.Logger.info (atom.atomName + " " + atom.x + " " + atom.y + " " + atom.z);
 if (bondOrder < 0 || this.isJmolZformat && bondOrder > 0) this.asc.addBond ( new J.adapter.smarter.Bond (atom.index, this.vAtoms.get (ia).index, Math.abs (bondOrder)));
 }}, "J.adapter.smarter.Atom,~S");
-Clazz.defineMethod (c$, "getAtomGeneral", 
+Clazz.defineMethod (c$, "getAtomGeneral",
  function (atom, ia, bondOrder) {
 var ib;
 var ic;
@@ -256,7 +256,7 @@ var theta2 = (this.tokens.length < 7 ? 3.4028235E38 : this.getValue (6));
 if (this.tokens.length == 8 && !this.isJmolZformat && !this.isMopac && bondOrder == 1) d = -Math.abs (d);
 return atom = this.setAtom (atom, ia, ib, ic, d, theta1, theta2);
 }, "J.adapter.smarter.Atom,~N,~N");
-Clazz.defineMethod (c$, "getSymbolic", 
+Clazz.defineMethod (c$, "getSymbolic",
  function (key) {
 var isNeg = key.startsWith ("-");
 var F = this.symbolicMap.get (isNeg ? key.substring (1) : key);
@@ -264,7 +264,7 @@ if (F == null) return NaN;
 var f = F.floatValue ();
 return (isNeg ? -f : f);
 }, "~S");
-Clazz.defineMethod (c$, "getValue", 
+Clazz.defineMethod (c$, "getValue",
  function (i) {
 var f = this.getSymbolic (this.tokens[i]);
 if (Float.isNaN (f)) {
@@ -272,7 +272,7 @@ f = this.parseFloatStr (this.tokens[i]);
 if (Float.isNaN (f)) throw  new Exception ("Bad Z-matrix value: " + this.tokens[i]);
 }return f;
 }, "~N");
-Clazz.defineMethod (c$, "getAtomIndex", 
+Clazz.defineMethod (c$, "getAtomIndex",
  function (i) {
 var name;
 if (i >= this.tokens.length || (name = this.tokens[i]).indexOf (".") >= 0 || !JU.PT.isLetterOrDigit (name.charAt (0))) return -1;
@@ -292,7 +292,7 @@ break;
 ia--;
 }return ia;
 }, "~N");
-Clazz.defineMethod (c$, "setAtom", 
+Clazz.defineMethod (c$, "setAtom",
 function (atom, ia, ib, ic, d, theta1, theta2) {
 if (Float.isNaN (theta1) || Float.isNaN (theta2)) return null;
 this.pt0.setT (this.vAtoms.get (ia));

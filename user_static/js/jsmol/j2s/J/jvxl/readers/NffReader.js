@@ -10,25 +10,25 @@ Clazz.prepareFields (c$, function () {
 this.vertexMap =  new java.util.Hashtable ();
 this.pt =  new JU.P3 ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.NffReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2PFR (sg, br);
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.defineMethod (c$, "setHeader", 
+Clazz.defineMethod (c$, "setHeader",
 function () {
 this.jvxlFileHeaderBuffer.append ("NFF file format\nvertices and triangles only\n");
 J.jvxl.data.JvxlCoder.jvxlCreateHeaderWithoutTitleOrAtoms (this.volumeData, this.jvxlFileHeaderBuffer);
 });
-Clazz.overrideMethod (c$, "getSurfaceData", 
+Clazz.overrideMethod (c$, "getSurfaceData",
 function () {
 if (this.readVerticesAndPolygons ()) JU.Logger.info ("NFF file contains " + this.nVertices + " vertices and " + this.nTriangles + " triangles");
  else JU.Logger.error (this.params.fileName + ": Error reading Nff data ");
 });
-Clazz.defineMethod (c$, "readVerticesAndPolygons", 
+Clazz.defineMethod (c$, "readVerticesAndPolygons",
 function () {
 var color = 0xFF0000;
 try {
@@ -60,7 +60,7 @@ throw e;
 }
 return true;
 });
-Clazz.defineMethod (c$, "getVertex", 
+Clazz.defineMethod (c$, "getVertex",
  function () {
 var i = this.vertexMap.get (this.rd ());
 if (i == null) {

@@ -19,12 +19,12 @@ this.tmpbuf =  Clazz.newByteArray (512, 0);
 this.byteTest =  Clazz.newByteArray (-1, [0x20]);
 this.$b =  Clazz.newByteArray (256, 0);
 });
-Clazz.defineMethod (c$, "ensureOpen", 
+Clazz.defineMethod (c$, "ensureOpen",
  function () {
 if (this.$closed) {
 throw  new java.io.IOException ("Stream closed");
 }});
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function ($in) {
 Clazz.superConstructor (this, java.util.zip.ZipInputStream, [ new java.io.PushbackInputStream ($in, 1024), java.util.zip.ZipInputStream.newInflater (), 512]);
 var charset = "UTF-8";
@@ -39,11 +39,11 @@ throw e;
 }
 this.zc = charset;
 }, "java.io.InputStream");
-c$.newInflater = Clazz.defineMethod (c$, "newInflater", 
+c$.newInflater = Clazz.defineMethod (c$, "newInflater",
  function () {
 return  new java.util.zip.Inflater ().init (0, true);
 });
-Clazz.defineMethod (c$, "getNextEntry", 
+Clazz.defineMethod (c$, "getNextEntry",
 function () {
 this.ensureOpen ();
 if (this.entry != null) {
@@ -57,19 +57,19 @@ this.remaining = this.entry.size;
 }this.entryEOF = false;
 return this.entry;
 });
-Clazz.defineMethod (c$, "closeEntry", 
+Clazz.defineMethod (c$, "closeEntry",
 function () {
 this.ensureOpen ();
 while (this.read (this.tmpbuf, 0, this.tmpbuf.length) != -1) {
 }
 this.entryEOF = true;
 });
-Clazz.overrideMethod (c$, "available", 
+Clazz.overrideMethod (c$, "available",
 function () {
 this.ensureOpen ();
 return (this.entryEOF ? 0 : 1);
 });
-Clazz.defineMethod (c$, "read", 
+Clazz.defineMethod (c$, "read",
 function (b, off, len) {
 this.ensureOpen ();
 if (off < 0 || len < 0 || off > b.length - len) {
@@ -107,7 +107,7 @@ default:
 throw  new java.util.zip.ZipException ("invalid compression method");
 }
 }, "~A,~N,~N");
-Clazz.overrideMethod (c$, "skip", 
+Clazz.overrideMethod (c$, "skip",
 function (n) {
 if (n < 0) {
 throw  new IllegalArgumentException ("negative skip length");
@@ -126,13 +126,13 @@ break;
 }
 return total;
 }, "~N");
-Clazz.defineMethod (c$, "close", 
+Clazz.defineMethod (c$, "close",
 function () {
 if (!this.$closed) {
 Clazz.superCall (this, java.util.zip.ZipInputStream, "close", []);
 this.$closed = true;
 }});
-Clazz.defineMethod (c$, "readLOC", 
+Clazz.defineMethod (c$, "readLOC",
  function () {
 try {
 this.readFully (this.tmpbuf, 0, 30);
@@ -185,7 +185,7 @@ break;
 }
 }}return e;
 });
-Clazz.defineMethod (c$, "toStringUTF8", 
+Clazz.defineMethod (c$, "toStringUTF8",
  function (b2, len) {
 try {
 return  String.instantialize (b2, 0, len, this.zc);
@@ -197,15 +197,15 @@ throw e;
 }
 }
 }, "~A,~N");
-Clazz.defineMethod (c$, "toStringb2", 
+Clazz.defineMethod (c$, "toStringb2",
  function (b2, len) {
 return  String.instantialize (b2, 0, len);
 }, "~A,~N");
-Clazz.defineMethod (c$, "createZipEntry", 
+Clazz.defineMethod (c$, "createZipEntry",
 function (name) {
 return  new java.util.zip.ZipEntry (name);
 }, "~S");
-Clazz.defineMethod (c$, "readEnd", 
+Clazz.defineMethod (c$, "readEnd",
  function (e) {
 var n = this.inf.getAvailIn ();
 if (n > 0) {
@@ -243,7 +243,7 @@ throw  new java.util.zip.ZipException ("invalid entry compressed size (expected 
 }if (e.crc != this.crc.getValue ()) {
 throw  new java.util.zip.ZipException ("invalid entry CRC (expected 0x" + Long.toHexString (e.crc) + " but got 0x" + Long.toHexString (this.crc.getValue ()) + ")");
 }}, "java.util.zip.ZipEntry");
-Clazz.defineMethod (c$, "readFully", 
+Clazz.defineMethod (c$, "readFully",
  function (b, off, len) {
 while (len > 0) {
 var n = this.$in.read (b, off, len);
@@ -253,15 +253,15 @@ throw  new java.io.EOFException ();
 len -= n;
 }
 }, "~A,~N,~N");
-c$.get16 = Clazz.defineMethod (c$, "get16", 
+c$.get16 = Clazz.defineMethod (c$, "get16",
  function (b, off) {
 return (b[off] & 0xff) | ((b[off + 1] & 0xff) << 8);
 }, "~A,~N");
-c$.get32 = Clazz.defineMethod (c$, "get32", 
+c$.get32 = Clazz.defineMethod (c$, "get32",
  function (b, off) {
 return (java.util.zip.ZipInputStream.get16 (b, off) | (java.util.zip.ZipInputStream.get16 (b, off + 2) << 16)) & 0xffffffff;
 }, "~A,~N");
-c$.get64 = Clazz.defineMethod (c$, "get64", 
+c$.get64 = Clazz.defineMethod (c$, "get64",
  function (b, off) {
 return java.util.zip.ZipInputStream.get32 (b, off) | (java.util.zip.ZipInputStream.get32 (b, off + 4) << 32);
 }, "~A,~N");

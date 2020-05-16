@@ -21,15 +21,15 @@ this.boundingBox = null;
 this.isScaledAlready = false;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.readers, "VolumeFileReader", J.jvxl.readers.SurfaceFileReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.VolumeFileReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2VFR (sg, br);
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.defineMethod (c$, "init2VFR", 
+Clazz.defineMethod (c$, "init2VFR",
 function (sg, br) {
 this.init2SFR (sg, br);
 this.canDownsample = this.isProgressive = this.isXLowToHigh = true;
@@ -40,7 +40,7 @@ this.hasColorData = (this.params.parameters == null || this.params.parameters[1]
 this.getNCIPlanes = true;
 this.params.insideOut = !this.params.insideOut;
 }}, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.defineMethod (c$, "recordData", 
+Clazz.defineMethod (c$, "recordData",
 function (value) {
 if (Float.isNaN (value)) return value;
 if (value < this.dataMin) this.dataMin = value;
@@ -49,7 +49,7 @@ this.dataMean += value;
 this.nData++;
 return value;
 }, "~N");
-Clazz.overrideMethod (c$, "closeReader", 
+Clazz.overrideMethod (c$, "closeReader",
 function () {
 if (this.readerClosed) return;
 this.readerClosed = true;
@@ -58,7 +58,7 @@ if (this.nData == 0 || this.dataMax == -3.4028235E38) return;
 this.dataMean /= this.nData;
 JU.Logger.info ("VolumeFileReader closing file: " + this.nData + " points read \ndata min/max/mean = " + this.dataMin + "/" + this.dataMax + "/" + this.dataMean);
 });
-Clazz.overrideMethod (c$, "readVolumeParameters", 
+Clazz.overrideMethod (c$, "readVolumeParameters",
 function (isMapData) {
 this.endOfData = false;
 this.nSurfaces = this.readVolumetricHeader ();
@@ -68,17 +68,17 @@ JU.Logger.warn ("not enough surfaces in file -- resetting params.fileIndex to " 
 this.params.fileIndex = this.nSurfaces;
 }return true;
 }, "~B");
-Clazz.overrideMethod (c$, "readVolumeData", 
+Clazz.overrideMethod (c$, "readVolumeData",
 function (isMapData) {
 return this.readVolumeDataVFR (isMapData);
 }, "~B");
-Clazz.defineMethod (c$, "readVolumeDataVFR", 
+Clazz.defineMethod (c$, "readVolumeDataVFR",
 function (isMapData) {
 if (!this.gotoAndReadVoxelData (isMapData)) return false;
 if (!this.vertexDataOnly) JU.Logger.info ("JVXL read: " + this.nPointsX + " x " + this.nPointsY + " x " + this.nPointsZ + " data points");
 return true;
 }, "~B");
-Clazz.defineMethod (c$, "readVolumetricHeader", 
+Clazz.defineMethod (c$, "readVolumetricHeader",
  function () {
 try {
 this.readParameters ();
@@ -118,14 +118,14 @@ throw e;
 }
 }
 });
-Clazz.defineMethod (c$, "skipComments", 
+Clazz.defineMethod (c$, "skipComments",
 function (allowBlankLines) {
 var sb =  new JU.SB ();
 while (this.rd () != null && (allowBlankLines && this.line.length == 0 || this.line.indexOf ("#") == 0)) sb.append (this.line).appendC ('\n');
 
 return sb.toString ();
 }, "~B");
-Clazz.defineMethod (c$, "readVoxelVector", 
+Clazz.defineMethod (c$, "readVoxelVector",
 function (voxelVectorIndex) {
 this.rd ();
 var voxelVector = this.volumetricVectors[voxelVectorIndex];
@@ -133,7 +133,7 @@ if ((this.voxelCounts[voxelVectorIndex] = this.parseIntStr (this.line)) == -2147
 voxelVector.set (this.parseFloat (), this.parseFloat (), this.parseFloat ());
 if (this.isAnisotropic) this.setVectorAnisotropy (voxelVector);
 }, "~N");
-Clazz.defineMethod (c$, "initializeSurfaceData", 
+Clazz.defineMethod (c$, "initializeSurfaceData",
 function () {
 this.downsampleFactor = this.params.downsampleFactor;
 this.nSkipX = 0;
@@ -152,11 +152,11 @@ this.next[0] = 0;
 this.line = "";
 this.jvxlNSurfaceInts = 0;
 });
-Clazz.overrideMethod (c$, "readSurfaceData", 
+Clazz.overrideMethod (c$, "readSurfaceData",
 function (isMapData) {
 this.readSurfaceDataVFR (isMapData);
 }, "~B");
-Clazz.defineMethod (c$, "readSurfaceDataVFR", 
+Clazz.defineMethod (c$, "readSurfaceDataVFR",
 function (isMapData) {
 this.initializeSurfaceData ();
 if (this.isProgressive && !isMapData || this.isJvxl) {
@@ -195,7 +195,7 @@ if (this.nSkipZ != 0) this.skipVoxels (this.nSkipZ);
 }
 }this.volumeData.setVoxelDataAsArray (this.voxelData);
 }, "~B");
-Clazz.overrideMethod (c$, "getPlane", 
+Clazz.overrideMethod (c$, "getPlane",
 function (x) {
 if (x == 0) this.initPlanes ();
 if (this.getNCIPlanes) return this.getPlaneNCI (x);
@@ -203,7 +203,7 @@ var plane = this.getPlaneSR (x);
 if (this.qpc == null) this.getPlaneVFR (plane, true);
 return plane;
 }, "~N");
-Clazz.defineMethod (c$, "getPlaneNCI", 
+Clazz.defineMethod (c$, "getPlaneNCI",
 function (x) {
 var plane;
 if (this.iPlaneNCI == 0) {
@@ -252,7 +252,7 @@ for (var i = 0; i < this.yzCount; i++) plane[i] = NaN;
 
 }return plane;
 }, "~N");
-Clazz.defineMethod (c$, "getPlaneVFR", 
+Clazz.defineMethod (c$, "getPlaneVFR",
  function (plane, doRecord) {
 try {
 for (var y = 0, ptyz = 0; y < this.nPointsY; ++y) {
@@ -272,23 +272,23 @@ throw e;
 }
 }
 }, "~A,~B");
-Clazz.overrideMethod (c$, "getValue", 
+Clazz.overrideMethod (c$, "getValue",
 function (x, y, z, ptyz) {
 if (this.boundingBox != null) {
 this.volumeData.voxelPtToXYZ (x, y, z, this.ptTemp);
 if (this.ptTemp.x < this.boundingBox[0].x || this.ptTemp.x > this.boundingBox[1].x || this.ptTemp.y < this.boundingBox[0].y || this.ptTemp.y > this.boundingBox[1].y || this.ptTemp.z < this.boundingBox[0].z || this.ptTemp.z > this.boundingBox[1].z) return NaN;
 }return this.getValue2 (x, y, z, ptyz);
 }, "~N,~N,~N,~N");
-Clazz.defineMethod (c$, "skipVoxels", 
+Clazz.defineMethod (c$, "skipVoxels",
  function (n) {
 for (var i = n; --i >= 0; ) this.getNextVoxelValue ();
 
 }, "~N");
-Clazz.defineMethod (c$, "getVoxelBitSet", 
+Clazz.defineMethod (c$, "getVoxelBitSet",
 function (nPoints) {
 return null;
 }, "~N");
-Clazz.defineMethod (c$, "getNextVoxelValue", 
+Clazz.defineMethod (c$, "getNextVoxelValue",
 function () {
 var voxelValue = 0;
 if (this.nSurfaces > 1 && !this.params.blockCubeData) {
@@ -301,7 +301,7 @@ for (var i = this.params.fileIndex; i < this.nSurfaces; i++) this.nextVoxel ();
 voxelValue = this.nextVoxel ();
 }return voxelValue;
 });
-Clazz.defineMethod (c$, "nextVoxel", 
+Clazz.defineMethod (c$, "nextVoxel",
 function () {
 var voxelValue = this.parseFloat ();
 if (Float.isNaN (voxelValue)) {
@@ -313,24 +313,24 @@ this.endOfData = true;
 this.line = "0 0 0 0 0 0 0 0 0 0";
 }}return voxelValue;
 });
-Clazz.overrideMethod (c$, "gotoData", 
+Clazz.overrideMethod (c$, "gotoData",
 function (n, nPoints) {
 if (!this.params.blockCubeData) return;
 if (n > 0) JU.Logger.info ("skipping " + n + " data sets, " + nPoints + " points each");
 for (var i = 0; i < n; i++) this.skipData (nPoints);
 
 }, "~N,~N");
-Clazz.defineMethod (c$, "skipData", 
+Clazz.defineMethod (c$, "skipData",
 function (nPoints) {
 this.skipDataVFR (nPoints);
 }, "~N");
-Clazz.defineMethod (c$, "skipDataVFR", 
+Clazz.defineMethod (c$, "skipDataVFR",
 function (nPoints) {
 var iV = 0;
 while (iV < nPoints) iV += this.countData (this.rd ());
 
 }, "~N");
-Clazz.defineMethod (c$, "countData", 
+Clazz.defineMethod (c$, "countData",
  function (str) {
 var count = 0;
 var ich = 0;
@@ -345,7 +345,7 @@ while (ich < ichMax && ((ch = str.charAt (ich)) != ' ' && ch != '\t')) ++ich;
 }
 return count;
 }, "~S");
-c$.checkAtomLine = Clazz.defineMethod (c$, "checkAtomLine", 
+c$.checkAtomLine = Clazz.defineMethod (c$, "checkAtomLine",
 function (isXLowToHigh, isAngstroms, strAtomCount, atomLine, bs) {
 if (atomLine.indexOf ("ANGSTROMS") >= 0) isAngstroms = true;
 var ac = (strAtomCount == null ? 2147483647 : JU.PT.parseInt (strAtomCount));
@@ -369,11 +369,11 @@ if (atomLine.indexOf ("BOHR") < 0) atomLine += " BOHR";
 bs.append (atomLine);
 return isAngstroms;
 }, "~B,~B,~S,~S,JU.SB");
-Clazz.overrideMethod (c$, "getSurfacePointAndFraction", 
+Clazz.overrideMethod (c$, "getSurfacePointAndFraction",
 function (cutoff, isCutoffAbsolute, valueA, valueB, pointA, edgeVector, x, y, z, vA, vB, fReturn, ptReturn) {
 return this.getSPFv (cutoff, isCutoffAbsolute, valueA, valueB, pointA, edgeVector, x, y, z, vA, vB, fReturn, ptReturn);
 }, "~N,~B,~N,~N,JU.T3,JU.V3,~N,~N,~N,~N,~N,~A,JU.T3");
-Clazz.defineMethod (c$, "getSPFv", 
+Clazz.defineMethod (c$, "getSPFv",
 function (cutoff, isCutoffAbsolute, valueA, valueB, pointA, edgeVector, x, y, z, vA, vB, fReturn, ptReturn) {
 var zero = this.getSPF (cutoff, isCutoffAbsolute, valueA, valueB, pointA, edgeVector, x, y, z, vA, vB, fReturn, ptReturn);
 if (this.qpc == null || Float.isNaN (zero) || !this.hasColorData) return zero;
@@ -381,7 +381,7 @@ vA = this.marchingCubes.getLinearOffset (x, y, z, vA);
 vB = this.marchingCubes.getLinearOffset (x, y, z, vB);
 return this.qpc.process (vA, vB, fReturn[0]);
 }, "~N,~B,~N,~N,JU.T3,JU.V3,~N,~N,~N,~N,~N,~A,JU.T3");
-Clazz.defineMethod (c$, "scaleIsosurface", 
+Clazz.defineMethod (c$, "scaleIsosurface",
  function (scale) {
 if (this.isScaledAlready) return;
 this.isScaledAlready = true;
@@ -395,7 +395,7 @@ this.volumetricVectors[0].scale (scale);
 this.volumetricVectors[1].scale (scale);
 this.volumetricVectors[2].scale (scale);
 }, "~N");
-Clazz.defineMethod (c$, "swapXZ", 
+Clazz.defineMethod (c$, "swapXZ",
 function () {
 var v = this.volumetricVectors[0];
 this.volumetricVectors[0] = this.volumetricVectors[2];

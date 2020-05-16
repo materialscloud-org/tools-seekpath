@@ -7,14 +7,14 @@ this.doPopPush = false;
 this.isPauseDelay = false;
 Clazz.instantialize (this, arguments);
 }, JS, "ScriptDelayThread", J.thread.JmolThread);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (eval, vwr, millis) {
 Clazz.superConstructor (this, JS.ScriptDelayThread, []);
 this.setViewer (vwr, "ScriptDelayThread");
 this.millis = millis;
 this.setEval (eval);
 }, "J.api.JmolScriptEvaluator,JV.Viewer,~N");
-Clazz.overrideMethod (c$, "run1", 
+Clazz.overrideMethod (c$, "run1",
 function (mode) {
 while (true) switch (mode) {
 case -1:

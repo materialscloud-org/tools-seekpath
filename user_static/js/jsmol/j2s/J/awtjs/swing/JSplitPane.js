@@ -7,23 +7,23 @@ this.right = null;
 this.left = null;
 Clazz.instantialize (this, arguments);
 }, J.awtjs.swing, "JSplitPane", J.awtjs.swing.JComponent);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (split) {
 Clazz.superConstructor (this, J.awtjs.swing.JSplitPane, ["JSpP"]);
 this.split = split;
 this.isH = (split == 1);
 }, "~N");
-Clazz.defineMethod (c$, "setRightComponent", 
+Clazz.defineMethod (c$, "setRightComponent",
 function (r) {
 this.right =  new J.awtjs.swing.JComponentImp (null);
 this.right.add (r);
 }, "J.awtjs.swing.JComponent");
-Clazz.defineMethod (c$, "setLeftComponent", 
+Clazz.defineMethod (c$, "setLeftComponent",
 function (l) {
 this.left =  new J.awtjs.swing.JComponentImp (null);
 this.left.add (l);
 }, "J.awtjs.swing.JComponent");
-Clazz.defineMethod (c$, "getSubcomponentWidth", 
+Clazz.defineMethod (c$, "getSubcomponentWidth",
 function () {
 var w = this.width;
 if (w == 0) {
@@ -34,7 +34,7 @@ if (this.isH) w = wleft + wright;
  else w = Math.max (wleft, wright);
 }}return w;
 });
-Clazz.defineMethod (c$, "getSubcomponentHeight", 
+Clazz.defineMethod (c$, "getSubcomponentHeight",
 function () {
 var h = this.height;
 if (h == 0) {
@@ -45,7 +45,7 @@ if (this.isH) h = Math.max (hleft, hright);
  else h = hleft + hright;
 }}return h;
 });
-Clazz.defineMethod (c$, "toHTML", 
+Clazz.defineMethod (c$, "toHTML",
 function () {
 if (this.left == null || this.right == null) return "";
 var isH = (this.split == 1);

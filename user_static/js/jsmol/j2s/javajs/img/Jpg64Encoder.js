@@ -4,13 +4,13 @@ c$ = Clazz.decorateAsClass (function () {
 this.outTemp = null;
 Clazz.instantialize (this, arguments);
 }, javajs.img, "Jpg64Encoder", javajs.img.JpgEncoder);
-Clazz.defineMethod (c$, "setParams", 
+Clazz.defineMethod (c$, "setParams",
 function (params) {
 this.defaultQuality = 75;
 this.outTemp = params.remove ("outputChannelTemp");
 Clazz.superCall (this, javajs.img.Jpg64Encoder, "setParams", [params]);
 }, "java.util.Map");
-Clazz.defineMethod (c$, "generate", 
+Clazz.defineMethod (c$, "generate",
 function () {
 var out0 = this.out;
 this.out = this.outTemp;

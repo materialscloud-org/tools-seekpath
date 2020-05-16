@@ -15,11 +15,11 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.tokens =  new Array (0);
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.Pmesh4Reader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2PFR (sg, br);
 var fileName = (sg.getReaderData ())[0];
@@ -29,13 +29,13 @@ this.type = "pmesh4";
 this.jvxlFileHeaderBuffer.append (this.type + " file format\nvertices and triangles only\n");
 J.jvxl.data.JvxlCoder.jvxlCreateHeaderWithoutTitleOrAtoms (this.volumeData, this.jvxlFileHeaderBuffer);
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "getSurfaceData", 
+Clazz.overrideMethod (c$, "getSurfaceData",
 function () {
 this.rd ();
 if (this.readVerticesAndPolygons ()) JU.Logger.info (this.type + " file contains " + this.nVertices + " 4D vertices and " + this.nPolygons + " polygons for " + this.nTriangles + " triangles");
  else JU.Logger.error (this.params.fileName + ": " + (this.pmeshError == null ? "Error reading pmesh4 data " : this.pmeshError));
 });
-Clazz.defineMethod (c$, "readVerticesAndPolygons", 
+Clazz.defineMethod (c$, "readVerticesAndPolygons",
  function () {
 try {
 this.readColor ();
@@ -53,12 +53,12 @@ throw e;
 }
 return false;
 });
-Clazz.defineMethod (c$, "readColor", 
+Clazz.defineMethod (c$, "readColor",
  function () {
 this.color = JU.CU.colorTriadToFFRGB (this.getFloat (), this.getFloat (), this.getFloat ());
 this.transparency = this.getFloat ();
 });
-Clazz.defineMethod (c$, "readVertices", 
+Clazz.defineMethod (c$, "readVertices",
  function () {
 this.nVertices = this.nX * this.nY;
 this.iToken = 2147483647;
@@ -72,7 +72,7 @@ this.iToken = 2147483647;
 this.pmeshError = null;
 return true;
 });
-Clazz.defineMethod (c$, "createMesh", 
+Clazz.defineMethod (c$, "createMesh",
  function () {
 for (var i = 0; i < this.nX - 1; i++) {
 for (var j = 0; j < this.nY - 1; j++) {
@@ -82,7 +82,7 @@ this.addTriangleCheck ((i + 1) * this.nY + j + 1, i * this.nY + j + 1, i * this.
 }
 }
 });
-Clazz.defineMethod (c$, "nextToken", 
+Clazz.defineMethod (c$, "nextToken",
  function () {
 while (this.iToken >= this.tokens.length) {
 this.iToken = 0;
@@ -91,11 +91,11 @@ this.tokens = this.getTokens ();
 }
 return this.tokens[this.iToken++];
 });
-Clazz.defineMethod (c$, "getInt", 
+Clazz.defineMethod (c$, "getInt",
  function () {
 return this.parseIntStr (this.nextToken ());
 });
-Clazz.defineMethod (c$, "getFloat", 
+Clazz.defineMethod (c$, "getFloat",
  function () {
 return this.parseFloatStr (this.nextToken ());
 });

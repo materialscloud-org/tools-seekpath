@@ -4,13 +4,13 @@ this.lock = null;
 this.skipBuffer = null;
 Clazz.instantialize (this, arguments);
 }, java.io, "Reader", null, java.io.Closeable);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (lock) {
 if (lock == null) {
 throw  new NullPointerException ();
 }this.lock = lock;
 }, "~O");
-Clazz.defineMethod (c$, "skip", 
+Clazz.defineMethod (c$, "skip",
 function (n) {
 if (n < 0) throw  new IllegalArgumentException ("skip value is negative");
 var nn = Math.min (n, 8192);
@@ -24,19 +24,19 @@ r -= nc;
 }
 return n - r;
 }}, "~N");
-Clazz.defineMethod (c$, "ready", 
+Clazz.defineMethod (c$, "ready",
 function () {
 return false;
 });
-Clazz.defineMethod (c$, "markSupported", 
+Clazz.defineMethod (c$, "markSupported",
 function () {
 return false;
 });
-Clazz.defineMethod (c$, "mark", 
+Clazz.defineMethod (c$, "mark",
 function (readAheadLimit) {
 throw  new java.io.IOException ("mark() not supported");
 }, "~N");
-Clazz.defineMethod (c$, "reset", 
+Clazz.defineMethod (c$, "reset",
 function () {
 throw  new java.io.IOException ("reset() not supported");
 });

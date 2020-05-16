@@ -8,7 +8,7 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.tempXY =  Clazz.newFloatArray (3, 0);
 });
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 if (this.tm.isNavigating ()) return false;
 if (this.ptTemp == null) this.ptTemp =  new JU.P3 ();
@@ -31,7 +31,7 @@ text.setText (label);
 J.render.TextRenderer.render (text, this.g3d, 0, antialias ? 2 : 1, false, null, this.tempXY);
 return true;
 });
-Clazz.defineMethod (c$, "fixLabel", 
+Clazz.defineMethod (c$, "fixLabel",
 function (atom, label) {
 if (label == null) return null;
 return (this.vwr.ms.isJmolDataFrameForModel (atom.mi) && label.equals ("%U") ? "%W" : label);

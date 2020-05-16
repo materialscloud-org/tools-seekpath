@@ -6,7 +6,7 @@ this.lumoEnergy = 3.4028235E38;
 this.haveLine = false;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.quantum, "JaguarReader", J.adapter.readers.quantum.MOReader);
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.startsWith (" Input geometry:") || this.line.startsWith (" Symmetrized geometry:") || this.line.startsWith ("  final geometry:")) {
 this.readAtoms ();
@@ -41,7 +41,7 @@ this.continuing = false;
 return false;
 }return this.checkNboLine ();
 });
-Clazz.defineMethod (c$, "readAtoms", 
+Clazz.defineMethod (c$, "readAtoms",
  function () {
 this.discardPreviousAtoms ();
 this.readLines (2);
@@ -54,7 +54,7 @@ var elementSymbol = (ch2 >= 'a' && ch2 <= 'z' ? atomName.substring (0, 2) : atom
 this.addAtomXYZSymName (tokens, 1, elementSymbol, atomName);
 }
 });
-Clazz.defineMethod (c$, "readCharges", 
+Clazz.defineMethod (c$, "readCharges",
  function () {
 var iAtom = 0;
 while (this.rd () != null && this.line.indexOf ("sum") < 0) {
@@ -64,7 +64,7 @@ for (var i = 1; i < tokens.length; i++) this.asc.atoms[iAtom++].partialCharge = 
 
 }
 });
-Clazz.defineMethod (c$, "readUnnormalizedBasis", 
+Clazz.defineMethod (c$, "readUnnormalizedBasis",
  function () {
 var lastAtom = "";
 var iAtom = 0;
@@ -113,7 +113,7 @@ if (this.debugging) {
 JU.Logger.debug (sarray.size () + " slater shells read");
 JU.Logger.debug (this.gaussianCount + " gaussian primitives read");
 }});
-Clazz.defineMethod (c$, "readBasisNormalized", 
+Clazz.defineMethod (c$, "readBasisNormalized",
  function () {
 var lastAtom = "";
 var iAtom = 0;
@@ -172,7 +172,7 @@ JU.Logger.debug (sarray.size () + " slater shells read");
 JU.Logger.debug (this.gaussianCount + " gaussian primitives read");
 }this.moData.put ("isNormalized", Boolean.TRUE);
 });
-Clazz.defineMethod (c$, "readJaguarMolecularOrbitals", 
+Clazz.defineMethod (c$, "readJaguarMolecularOrbitals",
  function () {
 var dataBlock =  new Array (this.moCount);
 this.rd ();
@@ -209,7 +209,7 @@ this.setMO (mo);
 this.moData.put ("mos", this.orbitals);
 this.finalizeMOData (this.moData);
 });
-Clazz.defineMethod (c$, "readFrequencies", 
+Clazz.defineMethod (c$, "readFrequencies",
  function () {
 var ac = this.asc.getLastAtomSetAtomCount ();
 this.discardLinesUntilStartsWith ("  frequencies ");
@@ -238,7 +238,7 @@ this.rd ();
 this.rd ();
 }
 });
-Clazz.defineMethod (c$, "rd", 
+Clazz.defineMethod (c$, "rd",
 function () {
 if (!this.haveLine) return Clazz.superCall (this, J.adapter.readers.quantum.JaguarReader, "rd", []);
 this.haveLine = false;

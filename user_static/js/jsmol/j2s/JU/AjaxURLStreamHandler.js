@@ -4,16 +4,16 @@ c$ = Clazz.decorateAsClass (function () {
 this.protocol = null;
 Clazz.instantialize (this, arguments);
 }, JU, "AjaxURLStreamHandler", java.net.URLStreamHandler);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (protocol) {
 Clazz.superConstructor (this, JU.AjaxURLStreamHandler, []);
 this.protocol = protocol;
 }, "~S");
-Clazz.overrideMethod (c$, "openConnection", 
+Clazz.overrideMethod (c$, "openConnection",
 function (url) {
 return  new JU.AjaxURLConnection (url);
 }, "java.net.URL");
-Clazz.overrideMethod (c$, "toExternalForm", 
+Clazz.overrideMethod (c$, "toExternalForm",
 function (u) {
 var result =  new JU.SB ();
 result.append (u.getProtocol ());

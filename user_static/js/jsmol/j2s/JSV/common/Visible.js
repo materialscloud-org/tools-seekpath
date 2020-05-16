@@ -1,10 +1,10 @@
 Clazz.declarePackage ("JSV.common");
 Clazz.load (["JSV.api.VisibleInterface"], "JSV.common.Visible", ["JU.CU"], function () {
 c$ = Clazz.declareType (JSV.common, "Visible", null, JSV.api.VisibleInterface);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.overrideMethod (c$, "getColour", 
+Clazz.overrideMethod (c$, "getColour",
 function (spec, useFitted) {
 var xyCoords = spec.getXYCoords ();
 var isAbsorbance = spec.isAbsorbance ();
@@ -20,11 +20,11 @@ for (var i = 0; i < 3; i++) rgb[i] = (rgb[i] > 0.00304 ? 1.055 * Math.pow (rgb[i
 var c = JU.CU.rgb (JSV.common.Visible.fix (rgb[0]), JSV.common.Visible.fix (rgb[1]), JSV.common.Visible.fix (rgb[2]));
 return c;
 }, "JSV.common.Spectrum,~B");
-c$.fix = Clazz.defineMethod (c$, "fix", 
+c$.fix = Clazz.defineMethod (c$, "fix",
  function (d) {
 return (d <= 0 ? 0 : d >= 1 ? 255 : Math.round (255 * d));
 }, "~N");
-c$.getXYZfitted = Clazz.defineMethod (c$, "getXYZfitted", 
+c$.getXYZfitted = Clazz.defineMethod (c$, "getXYZfitted",
  function (xyCoords, isAbsorbance, xyzd) {
 var cie;
 var xb;
@@ -45,7 +45,7 @@ xyzd[2] += y * zb * cie;
 xyzd[3] += yb * cie;
 }
 }, "~A,~B,~A");
-c$.gauss = Clazz.defineMethod (c$, "gauss", 
+c$.gauss = Clazz.defineMethod (c$, "gauss",
  function (a, b, x) {
 return a * Math.exp (-b * x * x);
 }, "~N,~N,~N");

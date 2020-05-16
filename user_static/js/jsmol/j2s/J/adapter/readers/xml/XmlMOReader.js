@@ -29,12 +29,12 @@ this.iHaveCoefMaps = false;
 this.maxContraction = 0;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.xml, "XmlMOReader", J.adapter.readers.xml.XmlCmlReader);
-Clazz.overrideMethod (c$, "processXml", 
+Clazz.overrideMethod (c$, "processXml",
 function (parent, saxReader) {
 this.htModelAtomMap =  new java.util.Hashtable ();
 this.processXml2 (parent, saxReader);
 }, "J.adapter.readers.xml.XmlReader,~O");
-Clazz.defineMethod (c$, "processStartMO", 
+Clazz.defineMethod (c$, "processStartMO",
 function (localName) {
 if (!this.parent.doReadMolecularOrbitals) return false;
 if (localName.equals ("molecule")) {
@@ -82,7 +82,7 @@ this.setKeepChars (true);
 return true;
 }}return false;
 }, "~S");
-Clazz.defineMethod (c$, "processEndMO", 
+Clazz.defineMethod (c$, "processEndMO",
 function (localName) {
 if (this.moReader != null) {
 if (localName.equals ("basisexponents")) {
@@ -154,7 +154,7 @@ this.slaterCount += this.basisIds.length * this.basisAtoms.length;
 }return true;
 }}return false;
 }, "~S");
-Clazz.defineMethod (c$, "buildSlaters", 
+Clazz.defineMethod (c$, "buildSlaters",
  function () {
 var gaussians = JU.AU.newFloat2 (this.gaussianCount);
 for (var i = 0, p = 0, n = this.lstGaussians.size (); i < n; i++) {
@@ -187,7 +187,7 @@ slaters.addLast (slater);
 }
 }
 });
-Clazz.defineMethod (c$, "getXlink", 
+Clazz.defineMethod (c$, "getXlink",
  function (href, key, addMoleculeID) {
 var p = href.indexOf (key + "[") + 1;
 var tokens = JU.PT.split (href.substring (p), "'");

@@ -5,12 +5,12 @@ this.resource = null;
 this.resourceMap = null;
 Clazz.instantialize (this, arguments);
 }, J.i18n, "Resource");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function (resource, className) {
 if (className == null) this.resourceMap = resource;
  else this.resource = resource;
 }, "~O,~S");
-c$.getResource = Clazz.defineMethod (c$, "getResource", 
+c$.getResource = Clazz.defineMethod (c$, "getResource",
 function (vwr, className, name) {
 var poData = null;
 if (vwr != null && vwr.isApplet) {
@@ -22,7 +22,7 @@ return J.i18n.Resource.getResourceFromPO (poData);
 var o = J.api.Interface.getInterface (className, vwr, "gt");
 return (o == null ? null :  new J.i18n.Resource (o, className));
 }, "JV.Viewer,~S,~S");
-Clazz.defineMethod (c$, "getString", 
+Clazz.defineMethod (c$, "getString",
 function (string) {
 try {
 return (this.resource == null ? this.resourceMap.get (string) : this.resource.getString (string));
@@ -34,14 +34,14 @@ throw e;
 }
 }
 }, "~S");
-c$.getLanguage = Clazz.defineMethod (c$, "getLanguage", 
+c$.getLanguage = Clazz.defineMethod (c$, "getLanguage",
 function () {
 var language = null;
 {
 language = Jmol.featureDetection.getDefaultLanguage().replace(/-/g,'_');
 }return language;
 });
-c$.getResourceFromPO = Clazz.defineMethod (c$, "getResourceFromPO", 
+c$.getResourceFromPO = Clazz.defineMethod (c$, "getResourceFromPO",
 function (data) {
 if (data == null || data.length == 0) return null;
 var map =  new java.util.Hashtable ();
@@ -75,7 +75,7 @@ throw e;
 JU.Logger.info (map.size () + " translations loaded");
 return (map.size () == 0 ? null :  new J.i18n.Resource (map, null));
 }, "~S");
-c$.fix = Clazz.defineMethod (c$, "fix", 
+c$.fix = Clazz.defineMethod (c$, "fix",
 function (line) {
 if (line.indexOf ("\\\"") >= 0) line = JU.PT.rep (line, "\\\"", "\"");
 return JU.PT.rep (line.substring (line.indexOf ("\"") + 1, line.lastIndexOf ("\"")), "\\n", "\n");

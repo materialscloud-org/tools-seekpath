@@ -7,12 +7,12 @@ this.$atomTypes = null;
 this.group3s = null;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.more, "MdTopReader", J.adapter.readers.more.ForceFieldReader);
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.setIsPDB ();
 this.setUserAtomTypes ();
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (this.line.indexOf ("%FLAG ") != 0) return true;
 this.line = this.line.substring (6).trim ();
@@ -25,7 +25,7 @@ if (this.line.equals ("POINTERS")) this.getPointers ();
  else if (this.line.equals ("MASS")) this.getMasses ();
 return false;
 });
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 this.finalizeReaderASCR ();
 var atoms = this.asc.atoms;
@@ -57,7 +57,7 @@ for (var i = 0; i < this.nAtoms; i++) this.asc.addAtom (atoms2[i]);
 this.setModelPDB (true);
 this.htParams.put ("defaultType", "mdcrd");
 });
-Clazz.defineMethod (c$, "getDataBlock", 
+Clazz.defineMethod (c$, "getDataBlock",
  function () {
 var vdata =  new JU.Lst ();
 this.discardLinesUntilContains ("FORMAT");
@@ -75,7 +75,7 @@ i += n;
 }
 return vdata.toArray ( new Array (vdata.size ()));
 });
-Clazz.defineMethod (c$, "getPointers", 
+Clazz.defineMethod (c$, "getPointers",
  function () {
 var tokens = this.getDataBlock ();
 this.ac = this.parseIntStr (tokens[0]);
@@ -88,11 +88,11 @@ this.htParams.put ("templateAtomCount", Integer.$valueOf (this.ac));
 for (var i = 0; i < this.ac; i++) this.asc.addAtom ( new J.adapter.smarter.Atom ());
 
 });
-Clazz.defineMethod (c$, "getAtomTypes", 
+Clazz.defineMethod (c$, "getAtomTypes",
  function () {
 this.$atomTypes = this.getDataBlock ();
 });
-Clazz.defineMethod (c$, "getCharges", 
+Clazz.defineMethod (c$, "getCharges",
  function () {
 var data = this.getDataBlock ();
 if (data.length != this.ac) return;
@@ -100,7 +100,7 @@ var atoms = this.asc.atoms;
 for (var i = this.ac; --i >= 0; ) atoms[i].partialCharge = this.parseFloatStr (data[i]);
 
 });
-Clazz.defineMethod (c$, "getResiduePointers", 
+Clazz.defineMethod (c$, "getResiduePointers",
  function () {
 var resPtrs = this.getDataBlock ();
 JU.Logger.info ("Total number of residues=" + resPtrs.length);
@@ -116,18 +116,18 @@ atoms[ptr++].sequenceNumber = i + 1;
 pt1 = pt2;
 }
 });
-Clazz.defineMethod (c$, "getResidueLabels", 
+Clazz.defineMethod (c$, "getResidueLabels",
  function () {
 this.group3s = this.getDataBlock ();
 });
-Clazz.defineMethod (c$, "getAtomNames", 
+Clazz.defineMethod (c$, "getAtomNames",
  function () {
 var names = this.getDataBlock ();
 var atoms = this.asc.atoms;
 for (var i = 0; i < this.ac; i++) atoms[i].atomName = names[i];
 
 });
-Clazz.defineMethod (c$, "getMasses", 
+Clazz.defineMethod (c$, "getMasses",
  function () {
 });
 });

@@ -1,5 +1,5 @@
 Some files in SeeK-path include code taken from other open-source
-licenses. 
+licenses.
 
 These include:
 
@@ -14,19 +14,19 @@ These include:
   - webservice/static/js/orig.Projector.js
   - webservice/static/js/orig/SVGRenderer.js
   - webservice/static/js/orig/dontautominify/three.js
-  - webservice/static/js/orig/OrbitControls.js  
-  
+  - webservice/static/js/orig/OrbitControls.js
+
 
 - Bootstrap:
   MIT license, from https://github.com/twbs/bootstrap
   Files involved:
-  - webservice/static/css/bootstrap* 
+  - webservice/static/css/bootstrap*
   - webservice/static/css/orig/dontautominify/bootstrap*
   - webservice/static/js/bootstrap.min.js
   - webservice/static/js/orig/dontautominify/bootstrap.js
 
 - JQuery and JQueryUI:
-  MIT license, from https://github.com/jquery/jquery and 
+  MIT license, from https://github.com/jquery/jquery and
   https://github.com/jquery/jquery-ui
   Files involved:
   - webservice/static/css/jquery-ui.1.12.1.min.css

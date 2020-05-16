@@ -7,7 +7,7 @@ this.ka = 0;
 this.theta0 = NaN;
 Clazz.instantialize (this, arguments);
 }, JM, "MinAngle", JM.MinObject);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (data) {
 Clazz.superConstructor (this, JM.MinAngle, []);
 this.data = data;

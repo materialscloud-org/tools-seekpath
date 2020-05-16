@@ -10,17 +10,17 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.bsBackbone =  new JU.BS ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.adapter.readers.xml.XmlXsdReader, []);
 });
-Clazz.overrideMethod (c$, "processXml", 
+Clazz.overrideMethod (c$, "processXml",
 function (parent, saxReader) {
 parent.htParams.put ("backboneAtoms", this.bsBackbone);
 this.processXml2 (parent, saxReader);
 this.asc.atomSymbolicMap.clear ();
 }, "J.adapter.readers.xml.XmlReader,~O");
-Clazz.overrideMethod (c$, "processStartElement", 
+Clazz.overrideMethod (c$, "processStartElement",
 function (localName, nodeName) {
 var tokens;
 if ("molecule".equals (localName)) {
@@ -58,7 +58,7 @@ if (type.equals ("Double")) order = 2;
 }this.asc.addNewBondFromNames (atoms[0], atoms[1], order);
 return;
 }}, "~S,~S");
-Clazz.overrideMethod (c$, "processEndElement", 
+Clazz.overrideMethod (c$, "processEndElement",
 function (localName) {
 if ("atom3d".equalsIgnoreCase (localName)) {
 if (this.atom.elementSymbol != null && !Float.isNaN (this.atom.z)) {

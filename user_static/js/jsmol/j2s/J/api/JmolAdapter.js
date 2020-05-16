@@ -1,49 +1,49 @@
 Clazz.declarePackage ("J.api");
 Clazz.load (null, "J.api.JmolAdapter", ["JU.PT", "J.api.JmolViewer", "JU.Elements"], function () {
 c$ = Clazz.declareType (J.api, "JmolAdapter");
-c$.getElementSymbol = Clazz.defineMethod (c$, "getElementSymbol", 
+c$.getElementSymbol = Clazz.defineMethod (c$, "getElementSymbol",
 function (elementNumber) {
 return JU.Elements.elementSymbolFromNumber (elementNumber);
 }, "~N");
-c$.getElementNumber = Clazz.defineMethod (c$, "getElementNumber", 
+c$.getElementNumber = Clazz.defineMethod (c$, "getElementNumber",
 function (elementSymbol) {
 return JU.Elements.elementNumberFromSymbol (elementSymbol, false);
 }, "~S");
-c$.getNaturalIsotope = Clazz.defineMethod (c$, "getNaturalIsotope", 
+c$.getNaturalIsotope = Clazz.defineMethod (c$, "getNaturalIsotope",
 function (elementNumber) {
 return JU.Elements.getNaturalIsotope (elementNumber);
 }, "~N");
-c$.getBondingRadius = Clazz.defineMethod (c$, "getBondingRadius", 
+c$.getBondingRadius = Clazz.defineMethod (c$, "getBondingRadius",
 function (atomicNumberWithIsotope, charge) {
 return JU.Elements.getBondingRadius (atomicNumberWithIsotope, charge);
 }, "~N,~N");
-Clazz.defineMethod (c$, "getAtomSetCollectionFromReaderType", 
+Clazz.defineMethod (c$, "getAtomSetCollectionFromReaderType",
 function (name, type, bufferedReader, htParams) {
 var a = this.getAtomSetCollectionReader (name, type, bufferedReader, (J.api.JmolViewer.allocateViewer (null, this)).setLoadParameters (htParams, false));
 if (Clazz.instanceOf (a, String)) return a;
 return this.getAtomSetCollection (a);
 }, "~S,~S,~O,java.util.Map");
-Clazz.defineMethod (c$, "openBufferedReader", 
+Clazz.defineMethod (c$, "openBufferedReader",
 function (name, bufferedReader) {
 return this.getAtomSetCollectionFromReaderType (name, null, bufferedReader, null);
 }, "~S,java.io.BufferedReader");
-Clazz.defineMethod (c$, "openBufferedReader", 
+Clazz.defineMethod (c$, "openBufferedReader",
 function (name, bufferedReader, htParams) {
 return this.getAtomSetCollectionFromReaderType (name, null, bufferedReader, htParams);
 }, "~S,java.io.BufferedReader,java.util.Map");
-Clazz.defineMethod (c$, "openBufferedReader", 
+Clazz.defineMethod (c$, "openBufferedReader",
 function (name, type, bufferedReader) {
 return this.getAtomSetCollectionFromReaderType (name, type, bufferedReader, null);
 }, "~S,~S,java.io.BufferedReader");
-c$.canonizeAlphaDigit = Clazz.defineMethod (c$, "canonizeAlphaDigit", 
+c$.canonizeAlphaDigit = Clazz.defineMethod (c$, "canonizeAlphaDigit",
  function (ch) {
 return (JU.PT.isLetterOrDigit (ch) ? ch : '\0');
 }, "~S");
-c$.canonizeInsertionCode = Clazz.defineMethod (c$, "canonizeInsertionCode", 
+c$.canonizeInsertionCode = Clazz.defineMethod (c$, "canonizeInsertionCode",
 function (insertionCode) {
 return J.api.JmolAdapter.canonizeAlphaDigit (insertionCode);
 }, "~S");
-c$.canonizeAlternateLocationID = Clazz.defineMethod (c$, "canonizeAlternateLocationID", 
+c$.canonizeAlternateLocationID = Clazz.defineMethod (c$, "canonizeAlternateLocationID",
 function (altLoc) {
 return J.api.JmolAdapter.canonizeAlphaDigit (altLoc);
 }, "~S");

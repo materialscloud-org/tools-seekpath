@@ -28,7 +28,7 @@ this.points[i] =  new JU.P3 ();
 }this.cross0 =  new JU.P3 ();
 this.cross1 =  new JU.P3 ();
 });
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 var dipoles = this.shape;
 this.dipoleVectorScale = this.vwr.getFloat (570425355);
@@ -40,7 +40,7 @@ if (dipole.visibilityFlags != 0 && (dipole.atoms[0] == null || !this.ms.isAtomHi
 }
 return needTranslucent;
 });
-Clazz.defineMethod (c$, "renderDipoleVector", 
+Clazz.defineMethod (c$, "renderDipoleVector",
  function (dipole, vis) {
 this.mad = dipole.mad;
 this.offsetSide = dipole.offsetSide;
@@ -68,7 +68,7 @@ if (bsAtoms.intersects (vis)) needTranslucent = this.renderVector (v, origin, nu
 }
 return needTranslucent;
 }, "J.shapespecial.Dipole,JU.BS");
-Clazz.defineMethod (c$, "renderVector", 
+Clazz.defineMethod (c$, "renderVector",
  function (vector, origin, dcenter, factor, isGroup) {
 this.offset.setT (vector);
 if (dcenter == null) {

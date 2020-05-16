@@ -4,7 +4,7 @@ c$ = Clazz.decorateAsClass (function () {
 this.bsSelected = null;
 Clazz.instantialize (this, arguments);
 }, J.shapebio, "Backbone", J.shapebio.BioShapeCollection);
-Clazz.overrideMethod (c$, "initShape", 
+Clazz.overrideMethod (c$, "initShape",
 function () {
 this.madOn = 1;
 this.madHelixSheet = 1500;
@@ -12,14 +12,14 @@ this.madTurnRandom = 500;
 this.madDnaRna = 2000;
 this.isActive = true;
 });
-Clazz.overrideMethod (c$, "setProperty", 
+Clazz.overrideMethod (c$, "setProperty",
 function (propertyName, value, bsSelected) {
 if ("bitset" === propertyName) {
 this.bsSelected = value;
 return;
 }this.setPropBSC (propertyName, value, bsSelected);
 }, "~S,~O,JU.BS");
-Clazz.overrideMethod (c$, "setShapeSizeRD", 
+Clazz.overrideMethod (c$, "setShapeSizeRD",
 function (size, rd, bsSelected) {
 var mad = size;
 this.initialize ();
@@ -58,12 +58,12 @@ bioShape.bsSizeDefault.setBitTo (i, mad == -1);
 }
 if (useThisBsSelected) this.bsSelected = null;
 }, "~N,J.atomdata.RadiusData,JU.BS");
-Clazz.defineMethod (c$, "addDisplayedBackbone", 
+Clazz.defineMethod (c$, "addDisplayedBackbone",
 function (a, isVisible) {
 a.nBackbonesDisplayed += (isVisible ? 1 : -1);
 a.setShapeVisibility (this.vf, isVisible);
 }, "JM.Atom,~B");
-Clazz.overrideMethod (c$, "setAtomClickability", 
+Clazz.overrideMethod (c$, "setAtomClickability",
 function () {
 if (this.bioShapes == null) return;
 for (var iShape = this.bioShapes.length; --iShape >= 0; ) {

@@ -26,7 +26,7 @@ this.tensors = null;
 this.ignoreSymmetry = false;
 Clazz.instantialize (this, arguments);
 }, J.adapter.smarter, "Atom", JU.P3, Cloneable);
-Clazz.defineMethod (c$, "addTensor", 
+Clazz.defineMethod (c$, "addTensor",
 function (tensor, type, reset) {
 if (tensor == null) return null;
 if (reset || this.tensors == null) this.tensors =  new JU.Lst ();
@@ -34,12 +34,12 @@ this.tensors.addLast (tensor);
 if (type != null) tensor.setType (type);
 return tensor;
 }, "JU.Tensor,~S,~B");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.adapter.smarter.Atom, []);
 this.set (NaN, NaN, NaN);
 });
-Clazz.defineMethod (c$, "getClone", 
+Clazz.defineMethod (c$, "getClone",
 function () {
 var a = this.clone ();
 if (this.vib != null) {
@@ -54,7 +54,7 @@ for (var i = this.tensors.size (); --i >= 0; ) a.tensors.addLast ((this.tensors.
 
 }return a;
 });
-Clazz.defineMethod (c$, "getElementSymbol", 
+Clazz.defineMethod (c$, "getElementSymbol",
 function () {
 if (this.elementSymbol == null && this.atomName != null) {
 var len = this.atomName.length;
@@ -76,19 +76,19 @@ break;
 }
 }return this.elementSymbol;
 });
-c$.isValidSym1 = Clazz.defineMethod (c$, "isValidSym1", 
+c$.isValidSym1 = Clazz.defineMethod (c$, "isValidSym1",
 function (ch) {
 return (ch >= 'A' && ch <= 'Z' && J.adapter.smarter.Atom.elementCharMasks[ch.charCodeAt (0) - 65] < 0);
 }, "~S");
-c$.isValidSym2 = Clazz.defineMethod (c$, "isValidSym2", 
+c$.isValidSym2 = Clazz.defineMethod (c$, "isValidSym2",
 function (ch1, ch2) {
 return (ch1 >= 'A' && ch1 <= 'Z' && ch2 >= 'a' && ch2 <= 'z' && ((J.adapter.smarter.Atom.elementCharMasks[ch1.charCodeAt (0) - 65] >> (ch2.charCodeAt (0) - 97)) & 1) != 0);
 }, "~S,~S");
-c$.isValidSymNoCase = Clazz.defineMethod (c$, "isValidSymNoCase", 
+c$.isValidSymNoCase = Clazz.defineMethod (c$, "isValidSymNoCase",
 function (ch1, ch2) {
 return J.adapter.smarter.Atom.isValidSym2 (ch1, ch2 < 'a' ? String.fromCharCode (ch2.charCodeAt (0) + 32) : ch2);
 }, "~S,~S");
-c$.isValidSymChar1 = Clazz.defineMethod (c$, "isValidSymChar1", 
+c$.isValidSymChar1 = Clazz.defineMethod (c$, "isValidSymChar1",
  function (ch) {
 return (ch >= 'A' && ch <= 'Z' && J.adapter.smarter.Atom.elementCharMasks[ch.charCodeAt (0) - 65] != 0);
 }, "~S");

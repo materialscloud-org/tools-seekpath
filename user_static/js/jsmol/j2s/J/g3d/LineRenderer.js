@@ -20,13 +20,13 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.lineCache =  new java.util.Hashtable ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (g3d) {
 Clazz.superConstructor (this, J.g3d.LineRenderer, []);
 this.g3d = g3d;
 this.shader = g3d.shader;
 }, "J.g3d.Graphics3D");
-Clazz.defineMethod (c$, "setLineBits", 
+Clazz.defineMethod (c$, "setLineBits",
 function (dx, dy) {
 this.slope = (dx != 0 ? dy / dx : dy >= 0 ? 3.4028235E38 : -3.4028235E38);
 this.lineTypeX = (this.slope <= 1 && this.slope >= -1);
@@ -53,11 +53,11 @@ twoDError -= twoDx;
 }}
 this.lineCache.put (this.slopeKey, this.lineBits);
 }, "~N,~N");
-Clazz.defineMethod (c$, "clearLineCache", 
+Clazz.defineMethod (c$, "clearLineCache",
 function () {
 this.lineCache.clear ();
 });
-Clazz.defineMethod (c$, "plotLineOld", 
+Clazz.defineMethod (c$, "plotLineOld",
 function (argbA, argbB, xA, yA, zA, xB, yB, zB) {
 this.x1t = xA;
 this.x2t = xB;
@@ -75,7 +75,7 @@ return;
 }
 this.plotLineClippedOld (argbA, argbB, xA, yA, zA, xB - xA, yB - yA, zB - zA, clipped, 0, 0);
 }, "~N,~N,~N,~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "plotLineDeltaOld", 
+Clazz.defineMethod (c$, "plotLineDeltaOld",
 function (argbA, argbB, xA, yA, zA, dxBA, dyBA, dzBA, clipped) {
 this.x1t = xA;
 this.x2t = xA + dxBA;
@@ -92,7 +92,7 @@ break;
 }
 this.plotLineClippedOld (argbA, argbB, xA, yA, zA, dxBA, dyBA, dzBA, clipped, 0, 0);
 }, "~N,~N,~N,~N,~N,~N,~N,~N,~B");
-Clazz.defineMethod (c$, "plotLineDeltaAOld", 
+Clazz.defineMethod (c$, "plotLineDeltaAOld",
 function (shades1, shades2, screenMask, shadeIndex, x, y, z, dx, dy, dz, clipped) {
 this.x1t = x;
 this.x2t = x + dx;
@@ -202,7 +202,7 @@ p.addPixel (offset, zCurrent, rand8 < 85 ? argbDn : (rand8 > 170 ? argbUp : argb
 }}runIndex = (runIndex + 1) % run;
 }
 }}, "~A,~A,~N,~N,~N,~N,~N,~N,~N,~N,~B");
-Clazz.defineMethod (c$, "plotLineDeltaABitsFloat", 
+Clazz.defineMethod (c$, "plotLineDeltaABitsFloat",
 function (shades1, shades2, shadeIndex, ptA, ptB, screenMask, clipped) {
 var x = Math.round (ptA.x);
 var y = Math.round (ptA.y);
@@ -292,7 +292,7 @@ if (this.lineBits.get (iBits % this.nBits)) {
 offset += yOffsetIncrement;
 }}
 }, "~A,~A,~N,JU.P3,JU.P3,~N,~B");
-Clazz.defineMethod (c$, "plotLineDeltaABitsInt", 
+Clazz.defineMethod (c$, "plotLineDeltaABitsInt",
 function (shades1, shades2, shadeIndex, ptA, ptB, screenMask, clipped) {
 var x = ptA.x;
 var y = ptA.y;
@@ -382,7 +382,7 @@ if (this.lineBits.get (iBits % this.nBits)) {
 offset += yOffsetIncrement;
 }}
 }, "~A,~A,~N,JU.P3i,JU.P3i,~N,~B");
-Clazz.defineMethod (c$, "plotLineBits", 
+Clazz.defineMethod (c$, "plotLineBits",
 function (argbA, argbB, ptA, ptB, run, rise, andClip) {
 if (ptA.z <= 1 || ptB.z <= 1) return;
 var clipped = true;
@@ -475,7 +475,7 @@ if (zCurrent < zbuf[offset]) p.addPixel (offset, zCurrent, argb);
 }runIndex = (runIndex + 1) % run;
 }
 }}, "~N,~N,JU.P3i,JU.P3i,~N,~N,~B");
-Clazz.defineMethod (c$, "getTrimmedLineImpl", 
+Clazz.defineMethod (c$, "getTrimmedLineImpl",
  function () {
 var cc1 = this.g3d.clipCode3 (this.x1t, this.y1t, this.z1t);
 var cc2 = this.g3d.clipCode3 (this.x2t, this.y2t, this.z2t);
@@ -546,7 +546,7 @@ this.z2t = depth;
 }} while ((cc1 | cc2) != 0);
 return 1;
 });
-Clazz.defineMethod (c$, "plotLineClippedOld", 
+Clazz.defineMethod (c$, "plotLineClippedOld",
  function (argb1, argb2, x, y, z, dx, dy, dz, clipped, run, rise) {
 var zbuf = this.g3d.zbuf;
 var width = this.g3d.width;

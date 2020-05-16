@@ -5,20 +5,20 @@ this.$$name = null;
 this.$isBiColor = false;
 Clazz.instantialize (this, arguments);
 }, J.c, "STER", Enum);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function (name, isBiColor) {
 this.$$name = name;
 this.$isBiColor = isBiColor;
 }, "~S,~B");
-Clazz.defineMethod (c$, "getName", 
+Clazz.defineMethod (c$, "getName",
 function () {
 return this.$$name;
 });
-Clazz.defineMethod (c$, "isBiColor", 
+Clazz.defineMethod (c$, "isBiColor",
 function () {
 return this.$isBiColor;
 });
-c$.getStereoMode = Clazz.defineMethod (c$, "getStereoMode", 
+c$.getStereoMode = Clazz.defineMethod (c$, "getStereoMode",
 function (id) {
 for (var item, $item = 0, $$item = J.c.STER.values (); $item < $$item.length && ((item = $$item[$item]) || true); $item++) if (item.$$name.equalsIgnoreCase (id)) return item;
 

@@ -4,7 +4,7 @@ c$ = Clazz.decorateAsClass (function () {
 this.tuples = null;
 Clazz.instantialize (this, arguments);
 }, J.bspt, "Leaf", J.bspt.Element);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (bspt, leaf, countToKeep) {
 this.bspt = bspt;
 this.count = 0;
@@ -16,7 +16,7 @@ leaf.tuples[i] = null;
 }
 leaf.count = countToKeep;
 }, "J.bspt.Bspt,J.bspt.Leaf,~N");
-Clazz.defineMethod (c$, "sort", 
+Clazz.defineMethod (c$, "sort",
 function (dim) {
 for (var i = this.count; --i > 0; ) {
 var champion = this.tuples[i];
@@ -32,7 +32,7 @@ championValue = challengerValue;
 }}
 }
 }, "~N");
-Clazz.overrideMethod (c$, "addTuple", 
+Clazz.overrideMethod (c$, "addTuple",
 function (level, tuple) {
 if (this.count < 2) {
 this.tuples[this.count++] = tuple;

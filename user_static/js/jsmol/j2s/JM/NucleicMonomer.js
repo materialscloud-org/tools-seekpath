@@ -11,10 +11,10 @@ this.dssrBoxHeight = 0;
 this.dssrFrame = null;
 Clazz.instantialize (this, arguments);
 }, JM, "NucleicMonomer", JM.PhosphorusMonomer);
-Clazz.overrideConstructor (c$, 
+Clazz.overrideConstructor (c$,
  function () {
 });
-c$.validateAndAllocate = Clazz.defineMethod (c$, "validateAndAllocate", 
+c$.validateAndAllocate = Clazz.defineMethod (c$, "validateAndAllocate",
 function (chain, group3, seqcode, firstAtomIndex, lastAtomIndex, specialAtomIndexes) {
 var offsets = JM.Monomer.scanForOffsets (firstAtomIndex, specialAtomIndexes, JM.NucleicMonomer.interestingNucleicAtomIDs);
 if (offsets == null) return null;
@@ -25,7 +25,7 @@ JM.Monomer.checkOptional (offsets, 23, firstAtomIndex, specialAtomIndexes[75]);
 JM.Monomer.checkOptional (offsets, 24, firstAtomIndex, specialAtomIndexes[77]);
 return ( new JM.NucleicMonomer ()).set4 (chain, group3, seqcode, firstAtomIndex, lastAtomIndex, offsets);
 }, "JM.Chain,~S,~N,~N,~N,~A");
-Clazz.defineMethod (c$, "set4", 
+Clazz.defineMethod (c$, "set4",
  function (chain, group3, seqcode, firstAtomIndex, lastAtomIndex, offsets) {
 this.set2 (chain, group3, seqcode, firstAtomIndex, lastAtomIndex, offsets);
 if (!JM.Monomer.have (offsets, 15)) {
@@ -36,124 +36,124 @@ this.$isPyrimidine = JM.Monomer.have (offsets, 8);
 this.$isPurine = JM.Monomer.have (offsets, 9) && JM.Monomer.have (offsets, 10) && JM.Monomer.have (offsets, 11);
 return this;
 }, "JM.Chain,~S,~N,~N,~N,~A");
-Clazz.overrideMethod (c$, "isNucleicMonomer", 
+Clazz.overrideMethod (c$, "isNucleicMonomer",
 function () {
 return true;
 });
-Clazz.overrideMethod (c$, "isDna", 
+Clazz.overrideMethod (c$, "isDna",
 function () {
 return !this.hasRnaO2Prime;
 });
-Clazz.overrideMethod (c$, "isRna", 
+Clazz.overrideMethod (c$, "isRna",
 function () {
 return this.hasRnaO2Prime;
 });
-Clazz.overrideMethod (c$, "isPurine", 
+Clazz.overrideMethod (c$, "isPurine",
 function () {
 return this.$isPurine || !this.$isPyrimidine && this.isPurineByID ();
 });
-Clazz.overrideMethod (c$, "isPyrimidine", 
+Clazz.overrideMethod (c$, "isPyrimidine",
 function () {
 return this.$isPyrimidine || !this.$isPurine && this.isPyrimidineByID ();
 });
-Clazz.defineMethod (c$, "isGuanine", 
+Clazz.defineMethod (c$, "isGuanine",
 function () {
 return JM.Monomer.have (this.offsets, 17);
 });
-Clazz.overrideMethod (c$, "getProteinStructureType", 
+Clazz.overrideMethod (c$, "getProteinStructureType",
 function () {
 return (this.hasRnaO2Prime ? J.c.STR.RNA : J.c.STR.DNA);
 });
-Clazz.defineMethod (c$, "getP", 
+Clazz.defineMethod (c$, "getP",
 function () {
 return this.getAtomFromOffsetIndex (0);
 });
-Clazz.defineMethod (c$, "getC1P", 
+Clazz.defineMethod (c$, "getC1P",
 function () {
 return this.getAtomFromOffsetIndex (25);
 });
-Clazz.defineMethod (c$, "getC2", 
+Clazz.defineMethod (c$, "getC2",
 function () {
 return this.getAtomFromOffsetIndex (5);
 });
-Clazz.defineMethod (c$, "getC5", 
+Clazz.defineMethod (c$, "getC5",
 function () {
 return this.getAtomFromOffsetIndex (3);
 });
-Clazz.defineMethod (c$, "getC6", 
+Clazz.defineMethod (c$, "getC6",
 function () {
 return this.getAtomFromOffsetIndex (1);
 });
-Clazz.defineMethod (c$, "getC8", 
+Clazz.defineMethod (c$, "getC8",
 function () {
 return this.getAtomFromOffsetIndex (10);
 });
-Clazz.defineMethod (c$, "getC4P", 
+Clazz.defineMethod (c$, "getC4P",
 function () {
 return this.getAtomFromOffsetIndex (27);
 });
-Clazz.defineMethod (c$, "getN1", 
+Clazz.defineMethod (c$, "getN1",
 function () {
 return this.getAtomFromOffsetIndex (4);
 });
-Clazz.defineMethod (c$, "getN3", 
+Clazz.defineMethod (c$, "getN3",
 function () {
 return this.getAtomFromOffsetIndex (6);
 });
-Clazz.defineMethod (c$, "getN2", 
+Clazz.defineMethod (c$, "getN2",
 function () {
 return this.getAtomFromOffsetIndex (17);
 });
-Clazz.defineMethod (c$, "getN4", 
+Clazz.defineMethod (c$, "getN4",
 function () {
 return this.getAtomFromOffsetIndex (14);
 });
-Clazz.defineMethod (c$, "getN6", 
+Clazz.defineMethod (c$, "getN6",
 function () {
 return this.getAtomFromOffsetIndex (16);
 });
-Clazz.defineMethod (c$, "getO2", 
+Clazz.defineMethod (c$, "getO2",
 function () {
 return this.getAtomFromOffsetIndex (8);
 });
-Clazz.defineMethod (c$, "getO4", 
+Clazz.defineMethod (c$, "getO4",
 function () {
 return this.getAtomFromOffsetIndex (12);
 });
-Clazz.defineMethod (c$, "getO6", 
+Clazz.defineMethod (c$, "getO6",
 function () {
 return this.getAtomFromOffsetIndex (13);
 });
-Clazz.overrideMethod (c$, "getTerminatorAtom", 
+Clazz.overrideMethod (c$, "getTerminatorAtom",
 function () {
 return this.getAtomFromOffsetIndex (JM.Monomer.have (this.offsets, 20) ? 20 : 21);
 });
-Clazz.defineMethod (c$, "getBaseRing6Points", 
+Clazz.defineMethod (c$, "getBaseRing6Points",
 function (pts) {
 this.getPoints (JM.NucleicMonomer.ring6OffsetIndexes, pts);
 }, "~A");
-Clazz.defineMethod (c$, "getPoints", 
+Clazz.defineMethod (c$, "getPoints",
  function (a, pts) {
 for (var i = a.length; --i >= 0; ) pts[i] = this.getAtomFromOffsetIndex (a[i]);
 
 }, "~A,~A");
-Clazz.defineMethod (c$, "maybeGetBaseRing5Points", 
+Clazz.defineMethod (c$, "maybeGetBaseRing5Points",
 function (pts) {
 if (this.$isPurine) this.getPoints (JM.NucleicMonomer.ring5OffsetIndexes, pts);
 return this.$isPurine;
 }, "~A");
-Clazz.defineMethod (c$, "getRiboseRing5Points", 
+Clazz.defineMethod (c$, "getRiboseRing5Points",
 function (pts) {
 this.getPoints (JM.NucleicMonomer.riboseOffsetIndexes, pts);
 }, "~A");
-Clazz.overrideMethod (c$, "isConnectedAfter", 
+Clazz.overrideMethod (c$, "isConnectedAfter",
 function (possiblyPreviousMonomer) {
 if (possiblyPreviousMonomer == null) return true;
 var myPhosphorusAtom = this.getAtomFromOffsetIndex (15);
 if (myPhosphorusAtom == null) return false;
 return ((possiblyPreviousMonomer).getAtomFromOffsetIndex (21).isBonded (myPhosphorusAtom) || this.isCA2 (possiblyPreviousMonomer));
 }, "JM.Monomer");
-Clazz.overrideMethod (c$, "findNearestAtomIndex", 
+Clazz.overrideMethod (c$, "findNearestAtomIndex",
 function (x, y, closest, madBegin, madEnd) {
 var competitor = closest[0];
 var lead = this.getLeadAtom ();
@@ -165,29 +165,29 @@ var radius = Clazz.floatToInt (this.scaleToScreen (lead.sZ, mar));
 if (radius < 4) radius = 4;
 if (this.isCursorOnTopOf (lead, x, y, radius, competitor) || this.isCursorOnTopOf (o5prime, x, y, radius, competitor) || this.isCursorOnTopOf (c3prime, x, y, radius, competitor)) closest[0] = lead;
 }, "~N,~N,~A,~N,~N");
-Clazz.defineMethod (c$, "setRingsVisible", 
+Clazz.defineMethod (c$, "setRingsVisible",
 function (isVisible) {
 for (var i = 6; --i >= 0; ) this.getAtomFromOffsetIndex (JM.NucleicMonomer.ring6OffsetIndexes[i]).setShapeVisibility (32768, isVisible);
 
 if (this.$isPurine) for (var i = 4; --i >= 1; ) this.getAtomFromOffsetIndex (JM.NucleicMonomer.ring5OffsetIndexes[i]).setShapeVisibility (32768, isVisible);
 
 }, "~B");
-Clazz.defineMethod (c$, "setRingsClickable", 
+Clazz.defineMethod (c$, "setRingsClickable",
 function () {
 for (var i = 6; --i >= 0; ) this.getAtomFromOffsetIndex (JM.NucleicMonomer.ring6OffsetIndexes[i]).setClickable (32768);
 
 if (this.$isPurine) for (var i = 4; --i >= 1; ) this.getAtomFromOffsetIndex (JM.NucleicMonomer.ring5OffsetIndexes[i]).setClickable (32768);
 
 });
-Clazz.defineMethod (c$, "getN0", 
+Clazz.defineMethod (c$, "getN0",
 function () {
 return (this.getAtomFromOffsetIndex (this.$isPurine ? 11 : 4));
 });
-Clazz.overrideMethod (c$, "getHelixData", 
+Clazz.overrideMethod (c$, "getHelixData",
 function (tokType, qType, mStep) {
 return this.getHelixData2 (tokType, qType, mStep);
 }, "~N,~S,~N");
-Clazz.overrideMethod (c$, "getQuaternionFrameCenter", 
+Clazz.overrideMethod (c$, "getQuaternionFrameCenter",
 function (qType) {
 switch (qType) {
 case 'x':
@@ -212,7 +212,7 @@ default:
 return this.getN0 ();
 }
 }, "~S");
-Clazz.overrideMethod (c$, "getQuaternion", 
+Clazz.overrideMethod (c$, "getQuaternion",
 function (qType) {
 if (this.bioPolymer == null) return null;
 var ptA = null;
@@ -280,7 +280,7 @@ var vB = JU.V3.newVsub (ptB, ptNorP);
 if (reverseY) vB.scale (-1);
 return JU.Quat.getQuaternionFrameV (vA, vB, null, yBased);
 }, "~S");
-Clazz.overrideMethod (c$, "isCrossLinked", 
+Clazz.overrideMethod (c$, "isCrossLinked",
 function (g) {
 if (!(Clazz.instanceOf (g, JM.NucleicMonomer)) || this.$isPurine == g.isPurine ()) return false;
 var otherNucleotide = (this.$isPurine ? g : this);
@@ -289,7 +289,7 @@ var myN1 = myNucleotide.getN1 ();
 var otherN3 = otherNucleotide.getN3 ();
 return (myN1.isBonded (otherN3));
 }, "JM.Group");
-Clazz.overrideMethod (c$, "getCrossLinkVector", 
+Clazz.overrideMethod (c$, "getCrossLinkVector",
 function (vReturn, crosslinkCovalent, crosslinkHBond) {
 if (!crosslinkHBond) return false;
 var N = (this.$isPurine ? this.getN1 () : this.getN3 ());
@@ -309,7 +309,7 @@ vReturn.addLast (Integer.$valueOf (m.leadAtomIndex));
 }}}
 return vReturn != null && vReturn.size () > 0;
 }, "JU.Lst,~B,~B");
-Clazz.defineMethod (c$, "getEdgePoints", 
+Clazz.defineMethod (c$, "getEdgePoints",
 function (pts) {
 pts[0] = this.getLeadAtom ();
 pts[1] = this.getC4P ();
@@ -337,27 +337,27 @@ default:
 return false;
 }
 }, "~A");
-Clazz.defineMethod (c$, "addBasePair", 
+Clazz.defineMethod (c$, "addBasePair",
 function (bp) {
 if (this.bps == null) this.bps =  new JU.Lst ();
 this.bps.addLast (bp);
 }, "JM.BasePair");
-Clazz.defineMethod (c$, "setGroup1", 
+Clazz.defineMethod (c$, "setGroup1",
 function (g) {
 if (this.group1 == '\0') this.group1 = g;
 }, "~S");
-Clazz.defineMethod (c$, "getBasePairs", 
+Clazz.defineMethod (c$, "getBasePairs",
 function () {
 if (this.bioPolymer != null && !(this.bioPolymer).isDssrSet) this.bioPolymer.model.ms.vwr.getAnnotationParser (true).getBasePairs (this.bioPolymer.model.ms.vwr, this.bioPolymer.model.modelIndex);
 return this.bps;
 });
-Clazz.overrideMethod (c$, "getGroup1b", 
+Clazz.overrideMethod (c$, "getGroup1b",
 function () {
 var g3 = JM.Group.group3Names[this.groupID];
 var g1 = (JM.NucleicPolymer.htGroup1 == null ? null : JM.NucleicPolymer.htGroup1.get (g3));
 return (g1 == null ? Character.toLowerCase (g3.charAt (g3.length - 1)) : g1.charAt (0));
 });
-Clazz.defineMethod (c$, "getDSSRFrame", 
+Clazz.defineMethod (c$, "getDSSRFrame",
 function (vwr) {
 if (this.dssrFrame != null) return this.dssrFrame;
 if (this.dssrNT != null) return this.dssrFrame = vwr.getAnnotationParser (true).getDSSRFrame (this.dssrNT);

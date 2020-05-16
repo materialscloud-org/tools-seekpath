@@ -25,10 +25,10 @@ this.hydrogenAtomCount = 0;
 this.adpMode = 0;
 Clazz.instantialize (this, arguments);
 }, J.atomdata, "AtomData");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "transformXYZ", 
+Clazz.defineMethod (c$, "transformXYZ",
 function (mat, bs) {
 var p =  new Array (this.xyz.length);
 if (bs == null) bs = JU.BSUtil.newBitSet2 (0, this.xyz.length);

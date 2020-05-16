@@ -1,4 +1,4 @@
-// BH removed inner class 
+// BH removed inner class
 Clazz.load(null,"java.lang.Enum",["java.lang.CloneNotSupportedException","$.IllegalArgumentException","$.NullPointerException"],function(){
 c$=Clazz.decorateAsClass(function(){
 this.$name=null;

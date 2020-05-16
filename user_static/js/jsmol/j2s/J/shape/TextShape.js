@@ -16,7 +16,7 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.objects =  new java.util.Hashtable ();
 });
-Clazz.defineMethod (c$, "setPropTS", 
+Clazz.defineMethod (c$, "setPropTS",
 function (propertyName, value, bsSelected) {
 if ("text" === propertyName) {
 var text = value;
@@ -132,21 +132,21 @@ text.modelIndex--;
 return;
 }this.setPropS (propertyName, value, bsSelected);
 }, "~S,~O,JU.BS");
-Clazz.overrideMethod (c$, "getShapeState", 
+Clazz.overrideMethod (c$, "getShapeState",
 function () {
 return null;
 });
-Clazz.overrideMethod (c$, "initModelSet", 
+Clazz.overrideMethod (c$, "initModelSet",
 function () {
 this.currentObject = null;
 this.isAll = false;
 });
-Clazz.overrideMethod (c$, "setModelVisibilityFlags", 
+Clazz.overrideMethod (c$, "setModelVisibilityFlags",
 function (bsModels) {
 if (!this.isHover) for (var t, $t = this.objects.values ().iterator (); $t.hasNext () && ((t = $t.next ()) || true);) t.visible = (t.modelIndex < 0 || bsModels.get (t.modelIndex));
 
 }, "JU.BS");
-Clazz.overrideMethod (c$, "checkObjectClicked", 
+Clazz.overrideMethod (c$, "checkObjectClicked",
 function (x, y, modifiers, bsVisible, drawPicking) {
 if (this.isHover || modifiers == 0) return null;
 var isAntialiased = this.vwr.antialiased;
@@ -165,7 +165,7 @@ return map;
 }}
 return null;
 }, "~N,~N,~N,JU.BS,~B");
-Clazz.overrideMethod (c$, "checkObjectHovered", 
+Clazz.overrideMethod (c$, "checkObjectHovered",
 function (x, y, bsVisible) {
 if (this.isHover) return false;
 var haveScripts = false;

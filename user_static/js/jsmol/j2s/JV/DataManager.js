@@ -8,19 +8,19 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.dataValues =  new java.util.Hashtable ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.overrideMethod (c$, "set", 
+Clazz.overrideMethod (c$, "set",
 function (vwr) {
 this.vwr = vwr;
 return this;
 }, "JV.Viewer");
-Clazz.overrideMethod (c$, "clear", 
+Clazz.overrideMethod (c$, "clear",
 function () {
 this.dataValues.clear ();
 });
-Clazz.overrideMethod (c$, "setData", 
+Clazz.overrideMethod (c$, "setData",
 function (type, data, arrayCount, actualAtomCount, matchField, matchFieldColumnCount, field, fieldColumnCount) {
 if (type == null) {
 this.clear ();
@@ -94,18 +94,18 @@ this.vwr.setAtomProperty (bs, tok, 0, 0, null, fValues, null);
 return;
 }}this.dataValues.put (type, data);
 }, "~S,~A,~N,~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "getType", 
+Clazz.defineMethod (c$, "getType",
  function (data) {
 return (data[3]).intValue ();
 }, "~A");
-c$.setSelectedFloats = Clazz.defineMethod (c$, "setSelectedFloats", 
+c$.setSelectedFloats = Clazz.defineMethod (c$, "setSelectedFloats",
  function (f, bs, data) {
 var isAll = (bs == null);
 var i0 = (isAll ? 0 : bs.nextSetBit (0));
 for (var i = i0; i >= 0 && i < data.length; i = (isAll ? i + 1 : bs.nextSetBit (i + 1))) data[i] = f;
 
 }, "~N,JU.BS,~A");
-Clazz.overrideMethod (c$, "getData", 
+Clazz.overrideMethod (c$, "getData",
 function (label, bsSelected, dataType) {
 if (this.dataValues.size () == 0 || label == null) return null;
 label = label.toLowerCase ();
@@ -131,7 +131,7 @@ for (var i = 0, n = f.length, p = bsSelected.nextSetBit (0); p >= 0 && i < n; p 
 return fnew;
 }
 }, "~S,JU.BS,~N");
-Clazz.overrideMethod (c$, "deleteModelAtoms", 
+Clazz.overrideMethod (c$, "deleteModelAtoms",
 function (firstAtomIndex, nAtoms, bsDeleted) {
 if (this.dataValues.size () == 0) return;
 for (var name, $name = this.dataValues.keySet ().iterator (); $name.hasNext () && ((name = $name.next ()) || true);) {
@@ -141,7 +141,7 @@ JU.BSUtil.deleteBits (obj[2], bsDeleted);
 obj[1] = JU.AU.deleteElements (obj[1], firstAtomIndex, nAtoms);
 }}
 }, "~N,~N,JU.BS");
-Clazz.overrideMethod (c$, "getDefaultVdwNameOrData", 
+Clazz.overrideMethod (c$, "getDefaultVdwNameOrData",
 function (type, bs) {
 var sb =  new JU.SB ();
 sb.append (type.getVdwLabel ()).append ("\n");
@@ -152,7 +152,7 @@ for (var i = i0; i < i1 && i >= 0; i = (isAll ? i + 1 : bs.nextSetBit (i + 1))) 
 
 return (bs == null ? sb.toString () : "\n  DATA \"element_vdw\"\n" + sb.append ("  end \"element_vdw\";\n\n").toString ());
 }, "J.c.VDW,JU.BS");
-Clazz.overrideMethod (c$, "getDataState", 
+Clazz.overrideMethod (c$, "getDataState",
 function (sc, sb) {
 if (this.dataValues.size () == 0) return false;
 var haveData = false;
@@ -178,7 +178,7 @@ sb.append ("\n").append (JU.Escape.encapsulateData (name, data, type));
 }}
 return haveData;
 }, "JV.JmolStateCreator,JU.SB");
-Clazz.overrideMethod (c$, "createFileData", 
+Clazz.overrideMethod (c$, "createFileData",
 function (strModel) {
 var o =  new Array (4);
 o[0] = "model";

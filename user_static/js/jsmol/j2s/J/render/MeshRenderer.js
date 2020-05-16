@@ -48,7 +48,7 @@ this.pt2i =  new JU.P3i ();
 this.pt3i =  new JU.P3i ();
 this.bsPolygonsToExport =  new JU.BS ();
 });
-Clazz.defineMethod (c$, "renderMesh2", 
+Clazz.defineMethod (c$, "renderMesh2",
 function (mesh) {
 this.mesh = mesh;
 if (!this.setVariables ()) return false;
@@ -110,7 +110,7 @@ this.render2 (this.isExport);
 if (this.p3Screens != null) this.vwr.freeTempPoints (this.p3Screens);
 return true;
 }, "J.shape.Mesh");
-Clazz.defineMethod (c$, "setVariables", 
+Clazz.defineMethod (c$, "setVariables",
  function () {
 if (this.mesh.visibilityFlags == 0) return false;
 this.forceShowTriangles = this.vwr.getBoolean (603979964);
@@ -145,7 +145,7 @@ if (this.frontOnly || this.isShell) this.transformedVectors = this.vwr.gdata.get
 if (this.transformedVectors == null) this.frontOnly = this.isShell = false;
 }return true;
 });
-Clazz.defineMethod (c$, "setColix", 
+Clazz.defineMethod (c$, "setColix",
 function (colix) {
 if (this.isGhostPass) return true;
 if (this.volumeRender && !this.isTranslucent) colix = JU.C.getColixTranslucent3 (colix, true, 0.8);
@@ -153,22 +153,22 @@ this.colix = colix;
 if (JU.C.isColixLastAvailable (colix)) this.vwr.gdata.setColor (this.mesh.color);
 return this.g3d.setC (colix);
 }, "~N");
-Clazz.defineMethod (c$, "isPolygonDisplayable", 
+Clazz.defineMethod (c$, "isPolygonDisplayable",
 function (i) {
 return true;
 }, "~N");
-Clazz.defineMethod (c$, "render2", 
+Clazz.defineMethod (c$, "render2",
 function (generateSet) {
 this.render2b (generateSet);
 }, "~B");
-Clazz.defineMethod (c$, "render2b", 
+Clazz.defineMethod (c$, "render2b",
 function (generateSet) {
 if (!this.g3d.setC (this.isGhostPass ? this.mesh.slabColix : this.colix)) return;
 if (this.renderLow || this.mesh.showPoints || this.mesh.pc <= 0) this.renderPoints ();
 if (!this.renderLow && (this.isGhostPass ? this.mesh.slabMeshType == 1073742018 : this.mesh.drawTriangles)) this.renderTriangles (false, this.showTriangles, false);
 if (!this.renderLow && this.mesh.pc > 0 && (this.isGhostPass ? this.mesh.slabMeshType == 1073741938 : this.mesh.fillTriangles)) this.renderTriangles (true, this.showTriangles, generateSet);
 }, "~B");
-Clazz.defineMethod (c$, "renderPoints", 
+Clazz.defineMethod (c$, "renderPoints",
 function () {
 if (!this.mesh.isDrawPolygon || this.mesh.pc < 0) {
 for (var i = this.vertexCount; --i >= 0; ) if (!this.frontOnly || this.normixes == null || this.isVisibleNormix (this.normixes[i])) this.drawPoint (i, false);
@@ -191,7 +191,7 @@ this.drawPoint (pt, true);
 }
 }
 });
-Clazz.defineMethod (c$, "drawPoint", 
+Clazz.defineMethod (c$, "drawPoint",
  function (pt, forTriangle) {
 if (this.renderLow && forTriangle) {
 var s = this.screens[pt];
@@ -201,11 +201,11 @@ this.drawMeshSphere (this.screens[pt]);
 } else {
 this.drawEdge (pt, pt, false, this.vertices[pt], this.vertices[pt], this.screens[pt], null);
 }}, "~N,~B");
-Clazz.defineMethod (c$, "drawMeshSphere", 
+Clazz.defineMethod (c$, "drawMeshSphere",
  function (pt) {
 this.g3d.fillSphereI (4, pt);
 }, "JU.P3i");
-Clazz.defineMethod (c$, "renderTriangles", 
+Clazz.defineMethod (c$, "renderTriangles",
 function (fill, iShowTriangles, generateSet) {
 this.g3d.addRenderer (1073742182);
 var polygons = this.mesh.pis;
@@ -270,11 +270,11 @@ continue;
 }
 if (generateSet) this.exportSurface (this.colix);
 }, "~B,~B,~B");
-Clazz.defineMethod (c$, "isVisibleNormix", 
+Clazz.defineMethod (c$, "isVisibleNormix",
 function (normix) {
 return (normix < 0 || this.transformedVectors[normix].z >= 0);
 }, "~N");
-Clazz.defineMethod (c$, "drawTriangleBits", 
+Clazz.defineMethod (c$, "drawTriangleBits",
  function (screenA, colixA, screenB, colixB, screenC, colixC, check, diam) {
 if (!this.antialias && diam == 1) {
 this.vwr.gdata.drawTriangleBits (this.g3d, screenA, colixA, screenB, colixB, screenC, colixC, check);
@@ -284,7 +284,7 @@ if ((check & 1) == 1) this.g3d.fillCylinderBits2 (colixA, colixB, 1, diam, scree
 if ((check & 2) == 2) this.g3d.fillCylinderBits2 (colixB, colixC, 1, diam, screenB, screenC);
 if ((check & 4) == 4) this.g3d.fillCylinderBits2 (colixA, colixC, 1, diam, screenA, screenC);
 }, "JU.P3,~N,JU.P3,~N,JU.P3,~N,~N,~N");
-Clazz.defineMethod (c$, "drawTriangle", 
+Clazz.defineMethod (c$, "drawTriangle",
 function (screenA, colixA, screenB, colixB, screenC, colixC, check, diam) {
 if (!this.antialias && diam == 1) {
 this.g3d.drawTriangle3C (screenA, colixA, screenB, colixB, screenC, colixC, check);
@@ -294,7 +294,7 @@ if ((check & 1) == 1) this.g3d.fillCylinderXYZ (colixA, colixB, 1, diam, screenA
 if ((check & 2) == 2) this.g3d.fillCylinderXYZ (colixB, colixC, 1, diam, screenB.x, screenB.y, screenB.z, screenC.x, screenC.y, screenC.z);
 if ((check & 4) == 4) this.g3d.fillCylinderXYZ (colixA, colixC, 1, diam, screenA.x, screenA.y, screenA.z, screenC.x, screenC.y, screenC.z);
 }, "JU.P3i,~N,JU.P3i,~N,JU.P3i,~N,~N,~N");
-Clazz.defineMethod (c$, "checkFront", 
+Clazz.defineMethod (c$, "checkFront",
 function (nA, nB, nC) {
 var check = 7;
 if (this.transformedVectors[nA].z < 0) check ^= 1;
@@ -302,7 +302,7 @@ if (this.transformedVectors[nB].z < 0) check ^= 2;
 if (this.transformedVectors[nC].z < 0) check ^= 4;
 return check;
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "drawEdge", 
+Clazz.defineMethod (c$, "drawEdge",
 function (iA, iB, fill, vA, vB, sA, sB) {
 var endCap = (iA != iB && !fill ? 0 : this.width < 0 || this.width == -0.0 || iA != iB && this.isTranslucent ? 2 : 3);
 if (this.width == 0) {
@@ -324,7 +324,7 @@ this.tm.transformPt3f (vA, this.pt1f);
 this.tm.transformPt3f (vB, this.pt2f);
 this.g3d.fillCylinderBits (endCap, this.diameter, this.pt1f, this.pt2f);
 }, "~N,~N,~B,JU.T3,JU.T3,JU.P3i,JU.P3i");
-Clazz.defineMethod (c$, "exportSurface", 
+Clazz.defineMethod (c$, "exportSurface",
 function (colix) {
 this.mesh.normals = this.mesh.getNormals (this.vertices, null);
 this.mesh.bsPolygons = this.bsPolygonsToExport;

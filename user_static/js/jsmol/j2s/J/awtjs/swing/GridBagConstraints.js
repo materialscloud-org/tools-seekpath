@@ -14,7 +14,7 @@ this.ipadx = 0;
 this.ipady = 0;
 Clazz.instantialize (this, arguments);
 }, J.awtjs.swing, "GridBagConstraints");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (gridx, gridy, gridwidth, gridheight, weightx, weighty, anchor, fill, insets, ipadx, ipady) {
 this.gridx = gridx;
 this.gridy = gridy;
@@ -29,7 +29,7 @@ this.insets = insets;
 this.ipadx = ipadx;
 this.ipady = ipady;
 }, "~N,~N,~N,~N,~N,~N,~N,~N,J.awtjs.swing.Insets,~N,~N");
-Clazz.defineMethod (c$, "getStyle", 
+Clazz.defineMethod (c$, "getStyle",
 function (margins) {
 return "style='" + (margins ? "margin:" + this.insets.top + "px " + (this.ipady + this.insets.right) + "px " + this.insets.bottom + "px " + (this.ipadx + this.insets.left) + "px;" : "text-align:" + (this.anchor == 13 ? "right" : this.anchor == 17 ? "left" : "center")) + "'";
 }, "~B");

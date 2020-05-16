@@ -1,7 +1,7 @@
 Clazz.declarePackage ("JM.FF");
 Clazz.load (["JM.FF.Calculation"], "JM.FF.UFFOOPCalc", null, function () {
 c$ = Clazz.declareType (JM.FF, "UFFOOPCalc", JM.FF.Calculation);
-Clazz.overrideMethod (c$, "setData", 
+Clazz.overrideMethod (c$, "setData",
 function (calc, ib, elemNo, dd) {
 this.b = this.calcs.minAtoms[ib];
 var atomList = this.b.getBondedAtomIndexes ();
@@ -48,7 +48,7 @@ calc.addLast ( Clazz.newArray (-1, [ Clazz.newIntArray (-1, [this.ia, ib, this.i
 calc.addLast ( Clazz.newArray (-1, [ Clazz.newIntArray (-1, [this.ic, ib, this.id, this.ia]),  Clazz.newDoubleArray (-1, [koop, a0, a1, a2, koop * 10])]));
 calc.addLast ( Clazz.newArray (-1, [ Clazz.newIntArray (-1, [this.id, ib, this.ia, this.ic]),  Clazz.newDoubleArray (-1, [koop, a0, a1, a2, koop * 10])]));
 }, "JU.Lst,~N,~N,~N");
-Clazz.overrideMethod (c$, "compute", 
+Clazz.overrideMethod (c$, "compute",
 function (dataIn) {
 this.getPointers (dataIn);
 var koop = (this.calcs.isPreliminary ? this.dData[4] : this.dData[0]);

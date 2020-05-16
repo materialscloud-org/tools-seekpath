@@ -3,11 +3,11 @@ c$ = Clazz.decorateAsClass (function () {
 this.data = null;
 Clazz.instantialize (this, arguments);
 }, JU, "BArray");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (data) {
 this.data = data;
 }, "~A");
-Clazz.overrideMethod (c$, "equals", 
+Clazz.overrideMethod (c$, "equals",
 function (o) {
 if (Clazz.instanceOf (o, JU.BArray)) {
 var d = (o).data;
@@ -17,11 +17,11 @@ for (var i = 0; i < d.length; i++) if (d[i] != this.data[i]) return false;
 return true;
 }}return false;
 }, "~O");
-Clazz.defineMethod (c$, "hashCode", 
+Clazz.defineMethod (c$, "hashCode",
 function () {
 return this.data.hashCode ();
 });
-Clazz.overrideMethod (c$, "toString", 
+Clazz.overrideMethod (c$, "toString",
 function () {
 return  String.instantialize (this.data);
 });

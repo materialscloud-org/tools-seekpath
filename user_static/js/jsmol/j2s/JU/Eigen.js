@@ -7,10 +7,10 @@ this.e = null;
 this.V = null;
 Clazz.instantialize (this, arguments);
 }, JU, "Eigen", null, javajs.api.EigenInterface);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (n) {
 this.n = n;
 this.V =  Clazz.newDoubleArray (n, n, 0);
@@ -18,17 +18,17 @@ this.d =  Clazz.newDoubleArray (n, 0);
 this.e =  Clazz.newDoubleArray (n, 0);
 return this;
 }, "~N");
-Clazz.overrideMethod (c$, "setM", 
+Clazz.overrideMethod (c$, "setM",
 function (m) {
 this.set (m.length);
 this.calc (m);
 return this;
 }, "~A");
-Clazz.overrideMethod (c$, "getEigenvalues", 
+Clazz.overrideMethod (c$, "getEigenvalues",
 function () {
 return this.d;
 });
-Clazz.overrideMethod (c$, "fillFloatArrays", 
+Clazz.overrideMethod (c$, "fillFloatArrays",
 function (eigenVectors, eigenValues) {
 for (var i = 0; i < 3; i++) {
 if (eigenVectors != null) {
@@ -37,7 +37,7 @@ eigenVectors[i].set (this.V[0][i], this.V[1][i], this.V[2][i]);
 }if (eigenValues != null) eigenValues[i] = this.d[i];
 }
 }, "~A,~A");
-Clazz.overrideMethod (c$, "getEigenvectorsFloatTransposed", 
+Clazz.overrideMethod (c$, "getEigenvectorsFloatTransposed",
 function () {
 var f =  Clazz.newFloatArray (this.n, this.n, 0);
 for (var i = this.n; --i >= 0; ) for (var j = this.n; --j >= 0; ) f[j][i] = this.V[i][j];
@@ -45,7 +45,7 @@ for (var i = this.n; --i >= 0; ) for (var j = this.n; --j >= 0; ) f[j][i] = this
 
 return f;
 });
-Clazz.defineMethod (c$, "calc", 
+Clazz.defineMethod (c$, "calc",
 function (A) {
 for (var i = 0; i < this.n; i++) {
 for (var j = 0; j < this.n; j++) {
@@ -55,15 +55,15 @@ this.V[i][j] = A[i][j];
 this.tred2 ();
 this.tql2 ();
 }, "~A");
-Clazz.defineMethod (c$, "getRealEigenvalues", 
+Clazz.defineMethod (c$, "getRealEigenvalues",
 function () {
 return this.d;
 });
-Clazz.defineMethod (c$, "getImagEigenvalues", 
+Clazz.defineMethod (c$, "getImagEigenvalues",
 function () {
 return this.e;
 });
-Clazz.defineMethod (c$, "tred2", 
+Clazz.defineMethod (c$, "tred2",
  function () {
 for (var j = 0; j < this.n; j++) {
 this.d[j] = this.V[this.n - 1][j];
@@ -154,7 +154,7 @@ this.V[this.n - 1][j] = 0.0;
 this.V[this.n - 1][this.n - 1] = 1.0;
 this.e[0] = 0.0;
 });
-Clazz.defineMethod (c$, "tql2", 
+Clazz.defineMethod (c$, "tql2",
  function () {
 for (var i = 1; i < this.n; i++) {
 this.e[i - 1] = this.e[i];
@@ -238,7 +238,7 @@ this.V[j][k] = p;
 }
 }}
 });
-c$.hypot = Clazz.defineMethod (c$, "hypot", 
+c$.hypot = Clazz.defineMethod (c$, "hypot",
  function (a, b) {
 var r;
 if (Math.abs (a) > Math.abs (b)) {

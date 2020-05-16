@@ -11,58 +11,58 @@ this.errorType = null;
 this.iCommandError = 0;
 Clazz.instantialize (this, arguments);
 }, JS, "ScriptError", null, J.api.JmolScriptEvaluator);
-Clazz.overrideMethod (c$, "getErrorMessage", 
+Clazz.overrideMethod (c$, "getErrorMessage",
 function () {
 return this.errorMessage;
 });
-Clazz.overrideMethod (c$, "getErrorMessageUntranslated", 
+Clazz.overrideMethod (c$, "getErrorMessageUntranslated",
 function () {
 return this.errorMessageUntranslated == null ? this.errorMessage : this.errorMessageUntranslated;
 });
-Clazz.defineMethod (c$, "invArg", 
+Clazz.defineMethod (c$, "invArg",
 function () {
 this.error (22);
 });
-Clazz.defineMethod (c$, "bad", 
+Clazz.defineMethod (c$, "bad",
 function () {
 this.error (2);
 });
-Clazz.defineMethod (c$, "integerOutOfRange", 
+Clazz.defineMethod (c$, "integerOutOfRange",
 function (min, max) {
 this.errorOrWarn (21, "" + min, "" + max, null, true);
 }, "~N,~N");
-Clazz.defineMethod (c$, "numberOutOfRange", 
+Clazz.defineMethod (c$, "numberOutOfRange",
 function (min, max) {
 this.errorOrWarn (36, "" + min, "" + max, null, true);
 }, "~N,~N");
-Clazz.defineMethod (c$, "error", 
+Clazz.defineMethod (c$, "error",
 function (iError) {
 this.errorOrWarn (iError, null, null, null, false);
 }, "~N");
-Clazz.defineMethod (c$, "errorStr", 
+Clazz.defineMethod (c$, "errorStr",
 function (iError, value) {
 this.errorOrWarn (iError, value, null, null, false);
 }, "~N,~S");
-Clazz.defineMethod (c$, "errorStr2", 
+Clazz.defineMethod (c$, "errorStr2",
 function (iError, value, more) {
 this.errorOrWarn (iError, value, more, null, false);
 }, "~N,~S,~S");
-Clazz.defineMethod (c$, "errorMore", 
+Clazz.defineMethod (c$, "errorMore",
 function (iError, value, more, more2) {
 this.errorOrWarn (iError, value, more, more2, false);
 }, "~N,~S,~S,~S");
-Clazz.defineMethod (c$, "warning", 
+Clazz.defineMethod (c$, "warning",
 function (iError, value, more) {
 this.errorOrWarn (iError, value, more, null, true);
 }, "~N,~S,~S");
-Clazz.defineMethod (c$, "errorOrWarn", 
+Clazz.defineMethod (c$, "errorOrWarn",
  function (iError, value, more, more2, warningOnly) {
 var strError = (this.ignoreError ? null : JS.ScriptError.errorString (iError, value, more, more2, true));
 var strUntranslated = (this.ignoreError || !J.i18n.GT.getDoTranslate () ? null : JS.ScriptError.errorString (iError, value, more, more2, false));
 if (!warningOnly) this.evalError (strError, strUntranslated);
 this.showStringPrint (strError, true);
 }, "~N,~S,~S,~S,~B");
-Clazz.defineMethod (c$, "evalError", 
+Clazz.defineMethod (c$, "evalError",
 function (message, strUntranslated) {
 if (this.ignoreError) throw  new NullPointerException ();
 if (strUntranslated == null) strUntranslated = message;
@@ -72,11 +72,11 @@ this.vwr.setBooleanProperty ("refreshing", true);
 this.vwr.setStringProperty ("_errormessage", strUntranslated);
 }throw  new JS.ScriptException (this, message, strUntranslated, true);
 }, "~S,~S");
-Clazz.defineMethod (c$, "setCursorWait", 
+Clazz.defineMethod (c$, "setCursorWait",
 function (TF) {
 if (!this.chk) this.vwr.setCursor (TF ? 3 : 0);
 }, "~B");
-c$.errorString = Clazz.defineMethod (c$, "errorString", 
+c$.errorString = Clazz.defineMethod (c$, "errorString",
 function (iError, value, more, more2, translated) {
 var doTranslate = false;
 if (!translated && (doTranslate = J.i18n.GT.getDoTranslate ()) == true) J.i18n.GT.setDoTranslate (false);
@@ -267,14 +267,14 @@ if (msg.indexOf ("{2}") >= 0) msg = JU.PT.rep (msg, "{2}", more);
 }if (doTranslate) J.i18n.GT.setDoTranslate (true);
 return msg;
 }, "~N,~S,~S,~S,~B");
-c$.getErrorLineMessage = Clazz.defineMethod (c$, "getErrorLineMessage", 
+c$.getErrorLineMessage = Clazz.defineMethod (c$, "getErrorLineMessage",
 function (functionName, filename, lineCurrent, pcCurrent, lineInfo) {
 var err = "\n----";
 if (filename != null || functionName != null) err += "line " + lineCurrent + " command " + (pcCurrent + 1) + " of " + (functionName == null ? filename : functionName.equals ("try") ? "try" : "function " + functionName) + ":";
 err += "\n         " + lineInfo;
 return err;
 }, "~S,~S,~N,~N,~S");
-Clazz.defineMethod (c$, "setErrorMessage", 
+Clazz.defineMethod (c$, "setErrorMessage",
 function (err) {
 this.errorMessageUntranslated = null;
 if (err == null) {

@@ -12,20 +12,20 @@ Integer.toString = Integer.prototype.toString = function () {
 	}
 	return "" + this.valueOf ();
 };
-Clazz.makeConstructor (Integer, 
+Clazz.makeConstructor (Integer,
 function () {
 this.valueOf = function () {
 	return 0;
 };
 });
-Clazz.makeConstructor (Integer, 
+Clazz.makeConstructor (Integer,
 function (value) {
 var v = Math.round (value) & 0xffffffff;
 this.valueOf = function () {
 	return v;
 };
 }, "Number");
-Clazz.makeConstructor (Integer, 
+Clazz.makeConstructor (Integer,
 function (s) {
 var value = Integer.parseInt (s, 10);
 this.valueOf = function () {
@@ -37,7 +37,7 @@ Integer.MIN_VALUE = Integer.prototype.MIN_VALUE = -0x80000000;
 Integer.MAX_VALUE = Integer.prototype.MAX_VALUE = 0x7fffffff;
 Integer.TYPE = Integer.prototype.TYPE = Integer;
 
-Clazz.defineMethod (Integer, "parseInt", 
+Clazz.defineMethod (Integer, "parseInt",
 function (s, radix) {
 if (s == null) {
 throw new NumberFormatException ("null");
@@ -53,7 +53,7 @@ throw new NumberFormatException ("Not a Number : " + s);
 return integer;
 }, "String, Number");
 Integer.parseInt = Integer.prototype.parseInt;
-Clazz.defineMethod (Integer, "parseInt", 
+Clazz.defineMethod (Integer, "parseInt",
 function (s) {
 return Integer.parseInt (s, 10);
 }, "String");
@@ -63,25 +63,25 @@ Integer.parseInt = Integer.prototype.parseInt;
 
 /*
 
-Clazz.defineMethod (Integer, "$valueOf", 
+Clazz.defineMethod (Integer, "$valueOf",
 function (s) {
 return new Integer(Integer.parseInt (s, 10));
 }, "String");
 
 */
 
-Clazz.defineMethod (Integer, "$valueOf", 
+Clazz.defineMethod (Integer, "$valueOf",
 function (s) {
 return new Integer(s);
 }, "Number");
 
-Clazz.defineMethod (Integer, "$valueOf", 
+Clazz.defineMethod (Integer, "$valueOf",
 function (s, r) {
 return new Integer(Integer.parseInt (s, r));
 }, "String, Number");
 
 Integer.$valueOf = Integer.prototype.$valueOf;
-Clazz.overrideMethod(Integer, "equals", 
+Clazz.overrideMethod(Integer, "equals",
 function (s) {
 if(s == null || ! Clazz.instanceOf(s, Integer) ){
 	return false;
@@ -98,7 +98,7 @@ Integer.toOctalString = Integer.prototype.toOctalString = function (i) {
 Integer.toBinaryString = Integer.prototype.toBinaryString = function (i) {
 	return i.toString (2);
 };
-Integer.decode = Clazz.defineMethod (Integer, "decode", 
+Integer.decode = Clazz.defineMethod (Integer, "decode",
 function (nm) {
 var radix = 10;
 var index = 0;
@@ -131,7 +131,7 @@ throw e;
 return result;
 }, "~S");
 
-Clazz.overrideMethod(Integer, "hashCode", 
+Clazz.overrideMethod(Integer, "hashCode",
 function () {
 return this.valueOf ();
 });

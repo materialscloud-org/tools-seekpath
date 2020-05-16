@@ -24,12 +24,12 @@ this.acdMolFile = null;
 this.peakData = null;
 Clazz.instantialize (this, arguments);
 }, JSV.source, "JDXReader", null, J.api.JmolJDXMOLReader);
-c$.getVarList = Clazz.defineMethod (c$, "getVarList", 
+c$.getVarList = Clazz.defineMethod (c$, "getVarList",
 function (dataClass) {
 var index = JSV.source.JDXReader.VAR_LIST_TABLE[0].indexOf (dataClass);
 return JSV.source.JDXReader.VAR_LIST_TABLE[1].substring (index + 1, index + 12).trim ();
 }, "~S");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
  function (filePath, obscure, loadImaginary, iSpecFirst, iSpecLast, nmrNormalization) {
 filePath = JU.PT.trimQuotes (filePath);
 this.isSimulation = (filePath != null && filePath.startsWith ("http://SIMULATION/"));
@@ -41,11 +41,11 @@ this.firstSpec = iSpecFirst;
 this.lastSpec = iSpecLast;
 this.loadImaginary = loadImaginary;
 }, "~S,~B,~B,~N,~N,~N");
-c$.createJDXSourceFromStream = Clazz.defineMethod (c$, "createJDXSourceFromStream", 
+c$.createJDXSourceFromStream = Clazz.defineMethod (c$, "createJDXSourceFromStream",
 function ($in, obscure, loadImaginary, nmrMaxY) {
 return JSV.source.JDXReader.createJDXSource (JSV.common.JSVFileManager.getBufferedReaderForInputStream ($in), "stream", obscure, loadImaginary, -1, -1, nmrMaxY);
 }, "java.io.InputStream,~B,~B,~N");
-c$.createJDXSource = Clazz.defineMethod (c$, "createJDXSource", 
+c$.createJDXSource = Clazz.defineMethod (c$, "createJDXSource",
 function (br, filePath, obscure, loadImaginary, iSpecFirst, iSpecLast, nmrMaxY) {
 var header = null;
 try {
@@ -80,7 +80,7 @@ throw e;
 }
 }
 }, "java.io.BufferedReader,~S,~B,~B,~N,~N,~N");
-Clazz.defineMethod (c$, "getJDXSource", 
+Clazz.defineMethod (c$, "getJDXSource",
  function (reader) {
 this.source =  new JSV.source.JDXSource (0, this.filePath);
 this.isZipFile = (Clazz.instanceOf (reader, JSV.api.JSVZipReader));
@@ -120,16 +120,16 @@ if (!isOK) throw  new JSV.exception.JSVException ("##TITLE record not found");
 this.source.setErrorLog (this.errorLog.toString ());
 return this.source;
 }, "~O");
-Clazz.defineMethod (c$, "getValue", 
+Clazz.defineMethod (c$, "getValue",
  function (label) {
 var value = (this.isTabularDataLabel (label) ? "" : this.t.getValue ());
 return ("##END".equals (label) ? null : value);
 }, "~S");
-Clazz.defineMethod (c$, "isTabularDataLabel", 
+Clazz.defineMethod (c$, "isTabularDataLabel",
  function (label) {
 return (this.isTabularData = ("##DATATABLE##PEAKTABLE##XYDATA##XYPOINTS#".indexOf (label + "#") >= 0));
 }, "~S");
-Clazz.defineMethod (c$, "addSpectrum", 
+Clazz.defineMethod (c$, "addSpectrum",
  function (spectrum, forceSub) {
 if (!this.loadImaginary && spectrum.isImaginary ()) {
 JU.Logger.info ("FileReader skipping imaginary spectrum -- use LOADIMAGINARY TRUE to load this spectrum.");
@@ -159,7 +159,7 @@ spectrum.setBlockID (this.blockID);
 this.source.addJDXSpectrum (null, spectrum, forceSub);
 return true;
 }, "JSV.common.Spectrum,~B");
-Clazz.defineMethod (c$, "getBlockSpectra", 
+Clazz.defineMethod (c$, "getBlockSpectra",
  function (sourceLDRTable) {
 JU.Logger.debug ("--JDX block start--");
 var label = "";
@@ -230,11 +230,11 @@ this.source.setErrorLog (this.errorLog.toString ());
 JU.Logger.debug ("--JDX block end--");
 return this.source;
 }, "JU.Lst");
-Clazz.defineMethod (c$, "addErrorLogSeparator", 
+Clazz.defineMethod (c$, "addErrorLogSeparator",
  function () {
 if (this.errorLog.length () > 0 && this.errorLog.lastIndexOf ("=====================\n") != this.errorLog.length () - "=====================\n".length) this.errorLog.append ("=====================\n");
 });
-Clazz.defineMethod (c$, "getNTupleSpectra", 
+Clazz.defineMethod (c$, "getNTupleSpectra",
  function (sourceLDRTable, spectrum0, label) {
 var minMaxY =  Clazz.newDoubleArray (-1, [1.7976931348623157E308, 4.9E-324]);
 this.blockID = Math.random ();
@@ -328,7 +328,7 @@ this.source.setErrorLog (this.errorLog.toString ());
 JU.Logger.info ("NTUPLE MIN/MAX Y = " + minMaxY[0] + " " + minMaxY[1]);
 return this.source;
 }, "JU.Lst,JSV.source.JDXDataObject,~S");
-Clazz.defineMethod (c$, "readDataLabel", 
+Clazz.defineMethod (c$, "readDataLabel",
  function (spectrum, label, value, errorLog, obscure) {
 if (JSV.source.JDXReader.readHeaderLabel (spectrum, label, value, errorLog, obscure)) return true;
 label += " ";
@@ -406,7 +406,7 @@ return true;
 }}
 return false;
 }, "JSV.source.JDXDataObject,~S,~S,JU.SB,~B");
-c$.readHeaderLabel = Clazz.defineMethod (c$, "readHeaderLabel", 
+c$.readHeaderLabel = Clazz.defineMethod (c$, "readHeaderLabel",
  function (jdxHeader, label, value, errorLog, obscure) {
 switch (("##TITLE#####JCAMPDX###ORIGIN####OWNER#####DATATYPE##LONGDATE##DATE######TIME####").indexOf (label + "#")) {
 case 0:
@@ -439,14 +439,14 @@ return true;
 }
 return false;
 }, "JSV.source.JDXHeader,~S,~S,JU.SB,~B");
-Clazz.defineMethod (c$, "setTabularDataType", 
+Clazz.defineMethod (c$, "setTabularDataType",
  function (spectrum, label) {
 if (label.equals ("##PEAKASSIGNMENTS")) spectrum.setDataClass ("PEAKASSIGNMENTS");
  else if (label.equals ("##PEAKTABLE")) spectrum.setDataClass ("PEAKTABLE");
  else if (label.equals ("##XYDATA")) spectrum.setDataClass ("XYDATA");
  else if (label.equals ("##XYPOINTS")) spectrum.setDataClass ("XYPOINTS");
 }, "JSV.source.JDXDataObject,~S");
-Clazz.defineMethod (c$, "processTabularData", 
+Clazz.defineMethod (c$, "processTabularData",
  function (spec, table) {
 spec.setHeaderTable (table);
 if (spec.dataClass.equals ("XYDATA")) {
@@ -472,7 +472,7 @@ spec.setIncreasing (fileDeltaX > 0);
 return true;
 }return false;
 }, "JSV.source.JDXDataObject,JU.Lst");
-Clazz.defineMethod (c$, "readNTUPLECoords", 
+Clazz.defineMethod (c$, "readNTUPLECoords",
  function (spec, nTupleTable, plotSymbols, minMaxY) {
 var list;
 if (spec.dataClass.equals ("XYDATA")) {
@@ -512,7 +512,7 @@ spec.setXYCoords (JSV.common.Coordinate.parseDSV (this.t.getValue (), spec.xFact
 return true;
 }return false;
 }, "JSV.source.JDXDataObject,java.util.Map,~A,~A");
-Clazz.defineMethod (c$, "decompressData", 
+Clazz.defineMethod (c$, "decompressData",
  function (spec, minMaxY) {
 var errPt = this.errorLog.length ();
 var fileDeltaX = JSV.common.Coordinate.deltaX (spec.fileLastX, spec.fileFirstX, spec.nPointsFile);
@@ -546,7 +546,7 @@ this.errorLog.append ("Number of points in Header " + spec.nPointsFile + " Found
 }if (JU.Logger.debugging) {
 System.err.println (this.errorLog.toString ());
 }}, "JSV.source.JDXDataObject,~A");
-c$.addHeader = Clazz.defineMethod (c$, "addHeader", 
+c$.addHeader = Clazz.defineMethod (c$, "addHeader",
 function (table, label, value) {
 var entry;
 for (var i = 0; i < table.size (); i++) if ((entry = table.get (i))[0].equals (label)) {
@@ -555,7 +555,7 @@ return;
 }
 table.addLast ( Clazz.newArray (-1, [label, value, JSV.source.JDXSourceStreamTokenizer.cleanLabel (label)]));
 }, "JU.Lst,~S,~S");
-Clazz.defineMethod (c$, "checkCustomTags", 
+Clazz.defineMethod (c$, "checkCustomTags",
  function (spectrum, label, value) {
 if (label.length > 10) label = label.substring (0, 10);
 if (spectrum == null) System.out.println (label);
@@ -595,42 +595,42 @@ this.reader = null;
 }
 return true;
 }, "JSV.common.Spectrum,~S,~S");
-Clazz.defineMethod (c$, "getMpr", 
+Clazz.defineMethod (c$, "getMpr",
  function () {
 return (this.mpr == null ? this.mpr = JSV.common.JSViewer.getInterface ("J.jsv.JDXMOLParser") : this.mpr);
 });
-Clazz.overrideMethod (c$, "rd", 
+Clazz.overrideMethod (c$, "rd",
 function () {
 return this.reader.readLine ();
 });
-Clazz.overrideMethod (c$, "setSpectrumPeaks", 
+Clazz.overrideMethod (c$, "setSpectrumPeaks",
 function (nH, piUnitsX, piUnitsY) {
 this.modelSpectrum.setPeakList (this.peakData, piUnitsX, piUnitsY);
 if (this.modelSpectrum.isNMR ()) this.modelSpectrum.setNHydrogens (nH);
 }, "~N,~S,~S");
-Clazz.overrideMethod (c$, "addPeakData", 
+Clazz.overrideMethod (c$, "addPeakData",
 function (info) {
 if (this.peakData == null) this.peakData =  new JU.Lst ();
 this.peakData.addLast ( new JSV.common.PeakInfo (info));
 }, "~S");
-Clazz.overrideMethod (c$, "processModelData", 
+Clazz.overrideMethod (c$, "processModelData",
 function (id, data, type, base, last, modelScale, vibScale, isFirst) {
 }, "~S,~S,~S,~S,~S,~N,~N,~B");
-Clazz.overrideMethod (c$, "discardLinesUntilContains", 
+Clazz.overrideMethod (c$, "discardLinesUntilContains",
 function (containsMatch) {
 var line;
 while ((line = this.rd ()) != null && line.indexOf (containsMatch) < 0) {
 }
 return line;
 }, "~S");
-Clazz.overrideMethod (c$, "discardLinesUntilContains2", 
+Clazz.overrideMethod (c$, "discardLinesUntilContains2",
 function (s1, s2) {
 var line;
 while ((line = this.rd ()) != null && line.indexOf (s1) < 0 && line.indexOf (s2) < 0) {
 }
 return line;
 }, "~S,~S");
-Clazz.overrideMethod (c$, "discardLinesUntilNonBlank", 
+Clazz.overrideMethod (c$, "discardLinesUntilNonBlank",
 function () {
 var line;
 while ((line = this.rd ()) != null && line.trim ().length == 0) {

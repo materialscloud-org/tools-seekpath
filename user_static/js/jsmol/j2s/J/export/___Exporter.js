@@ -47,14 +47,14 @@ this.tempV1 =  new JU.V3 ();
 this.tempV2 =  new JU.V3 ();
 this.tempC =  new JU.P3 ();
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "initializeOutput", 
+Clazz.defineMethod (c$, "initializeOutput",
 function (vwr, privateKey, gdata, params) {
 return this.initOutput (vwr, privateKey, gdata, params);
 }, "JV.Viewer,~N,JU.GData,java.util.Map");
-Clazz.defineMethod (c$, "initOutput", 
+Clazz.defineMethod (c$, "initOutput",
 function (vwr, privateKey, g3d, params) {
 this.vwr = vwr;
 this.tm = vwr.tm;
@@ -86,24 +86,24 @@ if (this.out != null) this.fileName = this.out.getFileName ();
 this.outputHeader ();
 return true;
 }, "JV.Viewer,~N,JU.GData,java.util.Map");
-Clazz.defineMethod (c$, "output", 
+Clazz.defineMethod (c$, "output",
 function (data) {
 this.out.append (data);
 }, "~S");
-Clazz.defineMethod (c$, "getByteCount", 
+Clazz.defineMethod (c$, "getByteCount",
 function () {
 return this.out.getByteCount ();
 });
-Clazz.defineMethod (c$, "outputComment", 
+Clazz.defineMethod (c$, "outputComment",
 function (comment) {
 if (this.commentChar != null) this.output (this.commentChar + comment + "\n");
 }, "~S");
-c$.setTempVertex = Clazz.defineMethod (c$, "setTempVertex", 
+c$.setTempVertex = Clazz.defineMethod (c$, "setTempVertex",
 function (pt, offset, ptTemp) {
 ptTemp.setT (pt);
 if (offset != null) ptTemp.add (offset);
 }, "JU.T3,JU.T3,JU.T3");
-Clazz.defineMethod (c$, "outputVertices", 
+Clazz.defineMethod (c$, "outputVertices",
 function (vertices, nVertices, offset) {
 for (var i = 0; i < nVertices; i++) {
 if (Float.isNaN (vertices[i].x)) continue;
@@ -111,16 +111,16 @@ this.outputVertex (vertices[i], offset);
 this.output ("\n");
 }
 }, "~A,~N,JU.T3");
-Clazz.defineMethod (c$, "outputVertex", 
+Clazz.defineMethod (c$, "outputVertex",
 function (pt, offset) {
 J["export"].___Exporter.setTempVertex (pt, offset, this.tempV1);
 this.output (this.tempV1);
 }, "JU.T3,JU.T3");
-Clazz.defineMethod (c$, "outputJmolPerspective", 
+Clazz.defineMethod (c$, "outputJmolPerspective",
 function () {
 this.outputComment (this.getJmolPerspective ());
 });
-Clazz.defineMethod (c$, "getJmolPerspective", 
+Clazz.defineMethod (c$, "getJmolPerspective",
 function () {
 if (this.commentChar == null) return "";
 var sb =  new JU.SB ();
@@ -141,14 +141,14 @@ sb.append ("\n").append (this.commentChar).append ("moveto command: " + this.vwr
 sb.append ("\n");
 return sb.toString ();
 });
-Clazz.defineMethod (c$, "outputFooter", 
+Clazz.defineMethod (c$, "outputFooter",
 function () {
 });
-Clazz.defineMethod (c$, "finalizeOutput", 
+Clazz.defineMethod (c$, "finalizeOutput",
 function () {
 return this.finalizeOutput2 ();
 });
-Clazz.defineMethod (c$, "finalizeOutput2", 
+Clazz.defineMethod (c$, "finalizeOutput2",
 function () {
 this.outputFooter ();
 if (this.out == null) return null;
@@ -159,23 +159,23 @@ JU.Logger.info (ret);
 return "ERROR EXPORTING FILE: " + ret;
 }return "OK " + this.out.getByteCount () + " " + this.export3D.getExportName () + " " + this.fileName;
 });
-Clazz.defineMethod (c$, "getExportDate", 
+Clazz.defineMethod (c$, "getExportDate",
 function () {
 return this.vwr.apiPlatform.getDateFormat (null);
 });
-Clazz.defineMethod (c$, "rgbFractionalFromColix", 
+Clazz.defineMethod (c$, "rgbFractionalFromColix",
 function (colix) {
 return this.rgbFractionalFromArgb (this.gdata.getColorArgbOrGray (colix));
 }, "~N");
-Clazz.defineMethod (c$, "getTriadC", 
+Clazz.defineMethod (c$, "getTriadC",
 function (t) {
 return this.getTriad (t);
 }, "JU.T3");
-Clazz.defineMethod (c$, "getTriad", 
+Clazz.defineMethod (c$, "getTriad",
 function (t) {
 return J["export"].___Exporter.round (t.x) + " " + J["export"].___Exporter.round (t.y) + " " + J["export"].___Exporter.round (t.z);
 }, "JU.T3");
-Clazz.defineMethod (c$, "rgbFractionalFromArgb", 
+Clazz.defineMethod (c$, "rgbFractionalFromArgb",
 function (argb) {
 var red = (argb >> 16) & 0xFF;
 var green = (argb >> 8) & 0xFF;
@@ -183,29 +183,29 @@ var blue = argb & 0xFF;
 this.tempC.set (red == 0 ? 0 : (red + 1) / 256, green == 0 ? 0 : (green + 1) / 256, blue == 0 ? 0 : (blue + 1) / 256);
 return this.getTriadC (this.tempC);
 }, "~N");
-c$.translucencyFractionalFromColix = Clazz.defineMethod (c$, "translucencyFractionalFromColix", 
+c$.translucencyFractionalFromColix = Clazz.defineMethod (c$, "translucencyFractionalFromColix",
 function (colix) {
 return J["export"].___Exporter.round (JU.C.getColixTranslucencyFractional (colix));
 }, "~N");
-c$.opacityFractionalFromColix = Clazz.defineMethod (c$, "opacityFractionalFromColix", 
+c$.opacityFractionalFromColix = Clazz.defineMethod (c$, "opacityFractionalFromColix",
 function (colix) {
 return J["export"].___Exporter.round (1 - JU.C.getColixTranslucencyFractional (colix));
 }, "~N");
-c$.opacityFractionalFromArgb = Clazz.defineMethod (c$, "opacityFractionalFromArgb", 
+c$.opacityFractionalFromArgb = Clazz.defineMethod (c$, "opacityFractionalFromArgb",
 function (argb) {
 var opacity = (argb >> 24) & 0xFF;
 return J["export"].___Exporter.round (opacity == 0 ? 0 : (opacity + 1) / 256);
 }, "~N");
-c$.round = Clazz.defineMethod (c$, "round", 
+c$.round = Clazz.defineMethod (c$, "round",
 function (number) {
 var s;
 return (number == 0 ? "0" : number == 1 ? "1" : (s = "" + (Math.round (number * 1000) / 1000)).startsWith ("0.") ? s.substring (1) : s.startsWith ("-0.") ? "-" + s.substring (2) : s.endsWith (".0") ? s.substring (0, s.length - 2) : s);
 }, "~N");
-c$.round = Clazz.defineMethod (c$, "round", 
+c$.round = Clazz.defineMethod (c$, "round",
 function (pt) {
 return J["export"].___Exporter.round (pt.x) + " " + J["export"].___Exporter.round (pt.y) + " " + J["export"].___Exporter.round (pt.z);
 }, "JU.T3");
-Clazz.defineMethod (c$, "getColorList", 
+Clazz.defineMethod (c$, "getColorList",
 function (i00, colixes, nVertices, bsSelected, htColixes) {
 var nColix = 0;
 var list =  new JU.Lst ();
@@ -219,7 +219,7 @@ htColixes.put (color, Integer.$valueOf (i00 + nColix++));
 }}
 return list;
 }, "~N,~A,~N,JU.BS,java.util.Map");
-c$.getConeMesh = Clazz.defineMethod (c$, "getConeMesh", 
+c$.getConeMesh = Clazz.defineMethod (c$, "getConeMesh",
 function (centerBase, matRotateScale, colix) {
 var ms =  new JU.MeshSurface ();
 var ndeg = 10;
@@ -246,7 +246,7 @@ ms.vs[i].add (centerBase);
 }
 }return ms;
 }, "JU.P3,JU.M3,~N");
-Clazz.defineMethod (c$, "getRotationMatrix", 
+Clazz.defineMethod (c$, "getRotationMatrix",
 function (pt1, pt2, radius) {
 var m =  new JU.M3 ();
 var m1;
@@ -266,7 +266,7 @@ m.m22 = pt2.distance (pt1);
 m1.mul (m);
 return m1;
 }, "JU.P3,JU.P3,~N");
-Clazz.defineMethod (c$, "getRotationMatrix", 
+Clazz.defineMethod (c$, "getRotationMatrix",
 function (pt1, ptZ, radius, ptX, ptY) {
 var m =  new JU.M3 ();
 m.m00 = ptX.distance (pt1) * radius;
@@ -277,7 +277,7 @@ var m1 = q.getMatrix ();
 m1.mul (m);
 return m1;
 }, "JU.P3,JU.P3,~N,JU.P3,JU.P3");
-Clazz.defineMethod (c$, "drawSurface", 
+Clazz.defineMethod (c$, "drawSurface",
 function (meshSurface, colix) {
 var nVertices = meshSurface.vc;
 if (nVertices == 0) return;
@@ -304,25 +304,25 @@ if (polygonColixes != null) colorList = this.getColorList (0, polygonColixes, nP
  else if (colixes != null) colorList = this.getColorList (0, colixes, nVertices, null, htColixes);
 }this.outputSurface (vertices, normals, colixes, indices, polygonColixes, nVertices, nPolygons, nTriangles, bsPolygons, faceVertexMax, colix, colorList, htColixes, meshSurface.offset);
 }, "JU.MeshSurface,~N");
-Clazz.defineMethod (c$, "outputSurface", 
+Clazz.defineMethod (c$, "outputSurface",
 function (vertices, normals, colixes, indices, polygonColixes, nVertices, nPolygons, nTriangles, bsPolygons, faceVertexMax, colix, colorList, htColixes, offset) {
 }, "~A,~A,~A,~A,~A,~N,~N,~N,JU.BS,~N,~N,JU.Lst,java.util.Map,JU.P3");
-Clazz.defineMethod (c$, "drawFilledCircle", 
+Clazz.defineMethod (c$, "drawFilledCircle",
 function (colixRing, colixFill, diameter, x, y, z) {
 if (colixRing != 0) this.drawCircle (x, y, z, diameter, colixRing, false);
 if (colixFill != 0) this.drawCircle (x, y, z, diameter, colixFill, true);
 }, "~N,~N,~N,~N,~N,~N");
-Clazz.defineMethod (c$, "fixScreenZ", 
+Clazz.defineMethod (c$, "fixScreenZ",
 function (z) {
 return (z <= 3 ? z + Clazz.floatToInt (this.tm.cameraDistance) : z);
 }, "~N");
-Clazz.defineMethod (c$, "plotImage", 
+Clazz.defineMethod (c$, "plotImage",
 function (x, y, z, image, bgcolix, width, height) {
 this.outputComment ("start image " + (++this.nImage));
 this.gdata.plotImage (x, y, z, image, this.export3D, bgcolix, width, height);
 this.outputComment ("end image " + this.nImage);
 }, "~N,~N,~N,~O,~N,~N,~N");
-Clazz.defineMethod (c$, "plotText", 
+Clazz.defineMethod (c$, "plotText",
 function (x, y, z, colix, text, font3d) {
 this.outputComment ("start text " + (++this.nText) + ": " + text);
 this.gdata.plotText (x, y, z, this.gdata.getColorArgbOrGray (colix), 0, text, font3d, this.export3D);

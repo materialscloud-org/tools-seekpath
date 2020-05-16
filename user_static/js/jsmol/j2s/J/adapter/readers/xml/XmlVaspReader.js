@@ -22,16 +22,16 @@ this.beta = 0;
 this.gamma = 0;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.xml, "XmlVaspReader", J.adapter.readers.xml.XmlReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.adapter.readers.xml.XmlVaspReader, []);
 });
-Clazz.overrideMethod (c$, "processXml", 
+Clazz.overrideMethod (c$, "processXml",
 function (parent, saxReader) {
 parent.doProcessLines = true;
 this.processXml2 (parent, saxReader);
 }, "J.adapter.readers.xml.XmlReader,~O");
-Clazz.overrideMethod (c$, "processStartElement", 
+Clazz.overrideMethod (c$, "processStartElement",
 function (localName, nodeName) {
 if (this.debugging) JU.Logger.debug ("xmlvasp: start " + localName);
 if (!this.parent.continuing) return;
@@ -75,7 +75,7 @@ return;
 this.setKeepChars (true);
 return;
 }}, "~S,~S");
-Clazz.overrideMethod (c$, "processEndElement", 
+Clazz.overrideMethod (c$, "processEndElement",
 function (localName) {
 if (this.debugging) JU.Logger.debug ("xmlvasp: end " + localName);
 while (true) {

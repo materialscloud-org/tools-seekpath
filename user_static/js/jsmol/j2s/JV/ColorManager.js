@@ -12,7 +12,7 @@ this.colixRubberband = 22;
 this.colixBackgroundContrast = 0;
 Clazz.instantialize (this, arguments);
 }, JV, "ColorManager");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (vwr, gdata) {
 this.vwr = vwr;
 this.ce =  new JU.ColorEncoder (null, vwr);
@@ -20,7 +20,7 @@ this.g3d = gdata;
 this.argbsCpk = J.c.PAL.argbsCpk;
 this.altArgbsCpk = JU.AU.arrayCopyRangeI (JV.JC.altArgbsCpk, 0, -1);
 }, "JV.Viewer,JU.GData");
-Clazz.defineMethod (c$, "setDefaultColors", 
+Clazz.defineMethod (c$, "setDefaultColors",
 function (isRasmol) {
 if (isRasmol) {
 this.isDefaultColorRasmol = true;
@@ -35,15 +35,15 @@ for (var i = J.c.PAL.argbsCpk.length; --i >= 0; ) this.g3d.changeColixArgb (i, t
 for (var i = JV.JC.altArgbsCpk.length; --i >= 0; ) this.g3d.changeColixArgb (JU.Elements.elementNumberMax + i, this.altArgbsCpk[i]);
 
 }, "~B");
-Clazz.defineMethod (c$, "setRubberbandArgb", 
+Clazz.defineMethod (c$, "setRubberbandArgb",
 function (argb) {
 this.colixRubberband = (argb == 0 ? 0 : JU.C.getColix (argb));
 }, "~N");
-Clazz.defineMethod (c$, "setColixBackgroundContrast", 
+Clazz.defineMethod (c$, "setColixBackgroundContrast",
 function (argb) {
 this.colixBackgroundContrast = JU.C.getBgContrast (argb);
 }, "~N");
-Clazz.defineMethod (c$, "getColixBondPalette", 
+Clazz.defineMethod (c$, "getColixBondPalette",
 function (bond, pid) {
 var argb = 0;
 switch (pid) {
@@ -52,7 +52,7 @@ return this.ce.getColorIndexFromPalette (bond.getEnergy (), -2.5, -0.5, 7, false
 }
 return (argb == 0 ? 10 : JU.C.getColix (argb));
 }, "JM.Bond,~N");
-Clazz.defineMethod (c$, "getColixAtomPalette", 
+Clazz.defineMethod (c$, "getColixAtomPalette",
 function (atom, pid) {
 var argb = 0;
 var index;
@@ -138,11 +138,11 @@ break;
 }
 return (argb == 0 ? 22 : JU.C.getColix (argb));
 }, "JM.Atom,~N");
-Clazz.defineMethod (c$, "getArgbs", 
+Clazz.defineMethod (c$, "getArgbs",
  function (tok) {
 return this.vwr.getJBR ().getArgbs (tok);
 }, "~N");
-Clazz.defineMethod (c$, "getJmolOrRasmolArgb", 
+Clazz.defineMethod (c$, "getJmolOrRasmolArgb",
  function (id, argb) {
 switch (argb) {
 case 1073741991:
@@ -156,7 +156,7 @@ return argb;
 }
 return JV.JC.altArgbsCpk[JU.Elements.altElementIndexFromNumber (id)];
 }, "~N,~N");
-Clazz.defineMethod (c$, "setElementArgb", 
+Clazz.defineMethod (c$, "setElementArgb",
 function (id, argb) {
 if (argb == 1073741991 && this.argbsCpk === J.c.PAL.argbsCpk) return 0;
 argb = this.getJmolOrRasmolArgb (id, argb);
@@ -173,11 +173,11 @@ this.altArgbsCpk[id] = argb;
 this.g3d.changeColixArgb (JU.Elements.elementNumberMax + id, argb);
 return 0;
 }, "~N,~N");
-Clazz.defineMethod (c$, "getPropertyColorRange", 
+Clazz.defineMethod (c$, "getPropertyColorRange",
 function () {
 return (this.ce.isReversed ?  Clazz.newFloatArray (-1, [this.ce.hi, this.ce.lo]) :  Clazz.newFloatArray (-1, [this.ce.lo, this.ce.hi]));
 });
-Clazz.defineMethod (c$, "setPropertyColorRangeData", 
+Clazz.defineMethod (c$, "setPropertyColorRangeData",
 function (data, bs) {
 this.colorData = data;
 this.ce.currentPalette = this.ce.createColorScheme (this.vwr.g.propertyColorScheme, true, false);
@@ -194,12 +194,12 @@ this.ce.lo = Math.min (this.ce.lo, d);
 }
 this.setPropertyColorRange (this.ce.lo, this.ce.hi);
 }, "~A,JU.BS");
-Clazz.defineMethod (c$, "setPropertyColorRange", 
+Clazz.defineMethod (c$, "setPropertyColorRange",
 function (min, max) {
 this.ce.setRange (min, max, min > max);
 if (JU.Logger.debugging) JU.Logger.debug ("ColorManager: color \"" + this.ce.getCurrentColorSchemeName () + "\" range " + min + " " + max);
 }, "~N,~N");
-Clazz.defineMethod (c$, "setPropertyColorScheme", 
+Clazz.defineMethod (c$, "setPropertyColorScheme",
 function (colorScheme, isTranslucent, isOverloaded) {
 var isReset = (colorScheme.length == 0);
 if (isReset) colorScheme = "=";
@@ -208,12 +208,12 @@ this.ce.currentPalette = this.ce.createColorScheme (colorScheme, true, isOverloa
 if (!isReset) this.setPropertyColorRange (range[0], range[1]);
 this.ce.isTranslucent = isTranslucent;
 }, "~S,~B,~B");
-Clazz.defineMethod (c$, "getColorSchemeList", 
+Clazz.defineMethod (c$, "getColorSchemeList",
 function (colorScheme) {
 var iPt = (colorScheme == null || colorScheme.length == 0) ? this.ce.currentPalette : this.ce.createColorScheme (colorScheme, true, false);
 return JU.ColorEncoder.getColorSchemeList (this.ce.getColorSchemeArray (iPt));
 }, "~S");
-Clazz.defineMethod (c$, "getColorEncoder", 
+Clazz.defineMethod (c$, "getColorEncoder",
 function (colorScheme) {
 if (colorScheme == null || colorScheme.length == 0) return this.ce;
 var c =  new JU.ColorEncoder (this.ce, this.vwr);

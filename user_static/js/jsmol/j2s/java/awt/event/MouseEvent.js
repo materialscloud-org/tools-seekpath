@@ -10,23 +10,23 @@ this.button = 0;
 this.popupTrigger = false;
 Clazz.instantialize (this, arguments);
 }, java.awt.event, "MouseEvent", java.awt.event.InputEvent);
-Clazz.defineMethod (c$, "getXOnScreen", 
+Clazz.defineMethod (c$, "getXOnScreen",
 function () {
 return this.xAbs;
 });
-Clazz.defineMethod (c$, "getYOnScreen", 
+Clazz.defineMethod (c$, "getYOnScreen",
 function () {
 return this.yAbs;
 });
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (source, id, when, modifiers, x, y, clickCount, popupTrigger, button) {
 this.construct (source, id, when, modifiers, x, y, 0, 0, clickCount, popupTrigger, button);
 }, "~O,~N,~N,~N,~N,~N,~N,~B,~N");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (source, id, when, modifiers, x, y, clickCount, popupTrigger) {
 this.construct (source, id, when, modifiers, x, y, clickCount, popupTrigger, 0);
 }, "~O,~N,~N,~N,~N,~N,~N,~B");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (source, id, when, modifiers, x, y, xAbs, yAbs, clickCount, popupTrigger, button) {
 Clazz.superConstructor (this, java.awt.event.MouseEvent, [source, id, when, modifiers]);
 this.x = x;
@@ -43,36 +43,36 @@ this.setNewModifiers ();
 } else if ((this.getModifiers () == 0) && (this.getModifiersEx () != 0 || button != 0)) {
 this.setOldModifiers ();
 }}, "~O,~N,~N,~N,~N,~N,~N,~N,~N,~B,~N");
-Clazz.defineMethod (c$, "getX", 
+Clazz.defineMethod (c$, "getX",
 function () {
 return this.x;
 });
-Clazz.defineMethod (c$, "getY", 
+Clazz.defineMethod (c$, "getY",
 function () {
 return this.y;
 });
-Clazz.defineMethod (c$, "translatePoint", 
+Clazz.defineMethod (c$, "translatePoint",
 function (x, y) {
 this.x += x;
 this.y += y;
 }, "~N,~N");
-Clazz.defineMethod (c$, "getClickCount", 
+Clazz.defineMethod (c$, "getClickCount",
 function () {
 return this.clickCount;
 });
-Clazz.defineMethod (c$, "getButton", 
+Clazz.defineMethod (c$, "getButton",
 function () {
 return this.button;
 });
-Clazz.defineMethod (c$, "isPopupTrigger", 
+Clazz.defineMethod (c$, "isPopupTrigger",
 function () {
 return this.popupTrigger;
 });
-c$.getMouseModifiersText = Clazz.defineMethod (c$, "getMouseModifiersText", 
+c$.getMouseModifiersText = Clazz.defineMethod (c$, "getMouseModifiersText",
 function (modifiers) {
 return "[" + modifiers + "]";
 }, "~N");
-Clazz.defineMethod (c$, "paramString", 
+Clazz.defineMethod (c$, "paramString",
 function () {
 var str =  new StringBuilder (80);
 switch (this.id) {
@@ -113,7 +113,7 @@ str.append (",extModifiers=").append (java.awt.event.InputEvent.getModifiersExTe
 }str.append (",clickCount=").append (this.clickCount);
 return str.toString ();
 });
-Clazz.defineMethod (c$, "setNewModifiers", 
+Clazz.defineMethod (c$, "setNewModifiers",
  function () {
 if ((this.modifiers & 16) != 0) {
 this.modifiers |= 1024;
@@ -148,7 +148,7 @@ this.modifiers |= 128;
 }if ((this.modifiers & 32) != 0) {
 this.modifiers |= 8192;
 }});
-Clazz.defineMethod (c$, "setOldModifiers", 
+Clazz.defineMethod (c$, "setOldModifiers",
  function () {
 if (this.id == 501 || this.id == 502 || this.id == 500) {
 switch (this.button) {
@@ -180,15 +180,15 @@ this.modifiers |= 2;
 }if ((this.modifiers & 8192) != 0) {
 this.modifiers |= 32;
 }});
-Clazz.defineMethod (c$, "isControlDown", 
+Clazz.defineMethod (c$, "isControlDown",
 function () {
 return ((this.modifiers & 2) != 0);
 });
-Clazz.overrideMethod (c$, "isShiftDown", 
+Clazz.overrideMethod (c$, "isShiftDown",
 function () {
 return ((this.modifiers & 1) != 0);
 });
-Clazz.overrideMethod (c$, "isAltDown", 
+Clazz.overrideMethod (c$, "isAltDown",
 function () {
 return ((this.modifiers & 8) != 0);
 });

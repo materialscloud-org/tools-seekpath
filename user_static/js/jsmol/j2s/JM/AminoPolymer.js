@@ -4,7 +4,7 @@ c$ = Clazz.decorateAsClass (function () {
 this.structureList = null;
 Clazz.instantialize (this, arguments);
 }, JM, "AminoPolymer", JM.AlphaPolymer);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (monomers, pt0) {
 Clazz.superConstructor (this, JM.AminoPolymer, [monomers, pt0]);
 this.type = 1;
@@ -12,7 +12,7 @@ for (var i = 0; i < this.monomerCount; ++i) if (!(monomers[i]).hasOAtom ()) retu
 
 this.hasWingPoints = true;
 }, "~A,~N");
-Clazz.overrideMethod (c$, "resetHydrogenPoints", 
+Clazz.overrideMethod (c$, "resetHydrogenPoints",
 function () {
 var ps;
 var psLast = null;
@@ -21,13 +21,13 @@ if ((ps = this.getProteinStructure (i)) != null && ps !== psLast) (psLast = ps).
 (this.monomers[i]).resetHydrogenPoint ();
 }
 });
-Clazz.overrideMethod (c$, "calcPhiPsiAngles", 
+Clazz.overrideMethod (c$, "calcPhiPsiAngles",
 function () {
 for (var i = 0; i < this.monomerCount - 1; ++i) this.calcPhiPsiAngles2 (this.monomers[i], this.monomers[i + 1]);
 
 return true;
 });
-Clazz.defineMethod (c$, "calcPhiPsiAngles2", 
+Clazz.defineMethod (c$, "calcPhiPsiAngles2",
  function (residue1, residue2) {
 var nitrogen1 = residue1.getNitrogenAtom ();
 var alphacarbon1 = residue1.getLeadAtom ();
@@ -39,7 +39,7 @@ residue2.setGroupParameter (1111490569, JU.Measure.computeTorsion (carbon1, nitr
 residue1.setGroupParameter (1111490570, JU.Measure.computeTorsion (nitrogen1, alphacarbon1, carbon1, nitrogen2, true));
 residue1.setGroupParameter (1111490568, JU.Measure.computeTorsion (alphacarbon1, carbon1, nitrogen2, alphacarbon2, true));
 }, "JM.AminoMonomer,JM.AminoMonomer");
-Clazz.overrideMethod (c$, "calculateRamachandranHelixAngle", 
+Clazz.overrideMethod (c$, "calculateRamachandranHelixAngle",
 function (m, qtype) {
 var psiLast = (m == 0 ? NaN : this.monomers[m - 1].getGroupParameter (1111490570));
 var psi = this.monomers[m].getGroupParameter (1111490570);
@@ -59,7 +59,7 @@ case 'C':
 return (psi - psiLast + phiNext - phi);
 }
 }, "~N,~S");
-Clazz.overrideMethod (c$, "calcRasmolHydrogenBonds", 
+Clazz.overrideMethod (c$, "calcRasmolHydrogenBonds",
 function (polymer, bsA, bsB, vHBonds, nMaxPerResidue, min, checkDistances, dsspIgnoreHydrogens) {
 if (polymer == null) polymer = this;
 if (!(Clazz.instanceOf (polymer, JM.AminoPolymer))) return;
@@ -81,7 +81,7 @@ if (!checkDistances && source.getCarbonylOxygenAtom () == null) continue;
 this.checkRasmolHydrogenBond (source, polymer, i, pt, (isInA ? bsB : bsA), vHBonds, min1, checkDistances);
 }}
 }, "JM.BioPolymer,JU.BS,JU.BS,JU.Lst,~N,~A,~B,~B");
-Clazz.defineMethod (c$, "checkRasmolHydrogenBond", 
+Clazz.defineMethod (c$, "checkRasmolHydrogenBond",
  function (source, polymer, indexDonor, hydrogenPoint, bsB, vHBonds, min, checkDistances) {
 var sourceAlphaPoint = source.getLeadAtom ();
 var sourceNitrogenPoint = source.getNitrogenAtom ();
@@ -111,7 +111,7 @@ m[2] = energy;
 if (vHBonds != null) for (var i = 0; i < 2; i++) if (min[i][1] >= 0) this.addResidueHydrogenBond (nitrogen, ((polymer).monomers[min[i][1]]).getCarbonylOxygenAtom (), (polymer === this ? indexDonor : -99), min[i][1], min[i][2] / 1000, vHBonds);
 
 }, "JM.AminoMonomer,JM.BioPolymer,~N,JU.P3,JU.BS,JU.Lst,~A,~B");
-Clazz.defineMethod (c$, "calcHbondEnergy", 
+Clazz.defineMethod (c$, "calcHbondEnergy",
  function (nitrogenPoint, hydrogenPoint, target, checkDistances) {
 var targetOxygenPoint = target.getCarbonylOxygenAtom ();
 if (targetOxygenPoint == null) return 0;
@@ -132,7 +132,7 @@ var energy = JM.HBond.getEnergy (distOH, distCH, distCN, distON);
 var isHbond = (energy < -500 && (!checkDistances || distCN > distCH && distOH <= 3.0));
 return (!isHbond && checkDistances || energy < -9900 ? 0 : energy);
 }, "JU.P3,JU.P3,JM.AminoMonomer,~B");
-Clazz.defineMethod (c$, "addResidueHydrogenBond", 
+Clazz.defineMethod (c$, "addResidueHydrogenBond",
  function (nitrogen, oxygen, indexAminoGroup, indexCarbonylGroup, energy, vHBonds) {
 var order;
 switch (indexAminoGroup - indexCarbonylGroup) {
@@ -159,7 +159,7 @@ order = 4096;
 }
 vHBonds.addLast ( new JM.HBond (nitrogen, oxygen, order, 1, 0, energy));
 }, "JM.Atom,JM.Atom,~N,~N,~N,JU.Lst");
-Clazz.overrideMethod (c$, "calculateStructures", 
+Clazz.overrideMethod (c$, "calculateStructures",
 function (alphaOnly) {
 if (alphaOnly) return;
 if (this.structureList == null) this.structureList = this.model.ms.getStructureList ();
@@ -220,25 +220,25 @@ this.addStructureProtected (J.c.STR.TURN, null, 0, 0, start, end);
 }start = end;
 }}
 }, "~B");
-Clazz.defineMethod (c$, "isTurn", 
+Clazz.defineMethod (c$, "isTurn",
  function (psi, phi) {
 return JM.AminoPolymer.checkPhiPsi (this.structureList.get (J.c.STR.TURN), psi, phi);
 }, "~N,~N");
-Clazz.defineMethod (c$, "isSheet", 
+Clazz.defineMethod (c$, "isSheet",
  function (psi, phi) {
 return JM.AminoPolymer.checkPhiPsi (this.structureList.get (J.c.STR.SHEET), psi, phi);
 }, "~N,~N");
-Clazz.defineMethod (c$, "isHelix", 
+Clazz.defineMethod (c$, "isHelix",
  function (psi, phi) {
 return JM.AminoPolymer.checkPhiPsi (this.structureList.get (J.c.STR.HELIX), psi, phi);
 }, "~N,~N");
-c$.checkPhiPsi = Clazz.defineMethod (c$, "checkPhiPsi", 
+c$.checkPhiPsi = Clazz.defineMethod (c$, "checkPhiPsi",
  function (list, psi, phi) {
 for (var i = 0; i < list.length; i += 4) if (phi >= list[i] && phi <= list[i + 1] && psi >= list[i + 2] && psi <= list[i + 3]) return true;
 
 return false;
 }, "~A,~N,~N");
-Clazz.defineMethod (c$, "setStructureList", 
+Clazz.defineMethod (c$, "setStructureList",
 function (structureList) {
 this.structureList = structureList;
 }, "java.util.Map");

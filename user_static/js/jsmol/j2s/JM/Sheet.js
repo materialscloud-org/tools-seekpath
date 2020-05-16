@@ -5,12 +5,12 @@ this.widthUnitVector = null;
 this.heightUnitVector = null;
 Clazz.instantialize (this, arguments);
 }, JM, "Sheet", JM.ProteinStructure);
-Clazz.overrideConstructor (c$, 
+Clazz.overrideConstructor (c$,
 function (apolymer, monomerIndex, monomerCount, subtype) {
 this.setupPS (apolymer, J.c.STR.SHEET, monomerIndex, monomerCount);
 this.subtype = subtype;
 }, "JM.AlphaPolymer,~N,~N,J.c.STR");
-Clazz.overrideMethod (c$, "calcAxis", 
+Clazz.overrideMethod (c$, "calcAxis",
 function () {
 if (this.axisA != null) return;
 if (this.nRes == 2) {
@@ -33,11 +33,11 @@ if (this.notHelixOrSheet (this.monomerIndexFirst + this.nRes)) JU.Measure.projec
 this.axisA = tempA;
 this.axisB = tempB;
 });
-Clazz.defineMethod (c$, "notHelixOrSheet", 
+Clazz.defineMethod (c$, "notHelixOrSheet",
  function (i) {
 return (i < 0 || i >= this.apolymer.monomerCount || !this.apolymer.monomers[i].isHelix () && !this.apolymer.monomers[i].isSheet ());
 }, "~N");
-Clazz.defineMethod (c$, "calcSheetUnitVectors", 
+Clazz.defineMethod (c$, "calcSheetUnitVectors",
 function () {
 if (!(Clazz.instanceOf (this.apolymer, JM.AminoPolymer))) return;
 if (this.widthUnitVector == null) {
@@ -57,7 +57,7 @@ this.heightUnitVector.normalize ();
 this.widthUnitVector = vectorCOSum;
 this.widthUnitVector.cross (this.axisUnitVector, this.heightUnitVector);
 }});
-Clazz.defineMethod (c$, "setBox", 
+Clazz.defineMethod (c$, "setBox",
 function (w, h, pt, vW, vH, ptC, scale) {
 if (this.heightUnitVector == null) this.calcSheetUnitVectors ();
 vW.setT (this.widthUnitVector);

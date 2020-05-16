@@ -1,16 +1,16 @@
 Clazz.declarePackage ("JSV.dialog");
 Clazz.load (["JSV.dialog.JSVDialog"], "JSV.dialog.IntegrationDialog", ["java.lang.Double", "JU.DF", "JSV.common.Annotation"], function () {
 c$ = Clazz.declareType (JSV.dialog, "IntegrationDialog", JSV.dialog.JSVDialog);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, JSV.dialog.IntegrationDialog, []);
 this.type = JSV.common.Annotation.AType.Integration;
 });
-Clazz.overrideMethod (c$, "getPosXY", 
+Clazz.overrideMethod (c$, "getPosXY",
 function () {
 return JSV.dialog.IntegrationDialog.posXY;
 });
-Clazz.defineMethod (c$, "addUniqueControls", 
+Clazz.defineMethod (c$, "addUniqueControls",
 function () {
 this.txt1 = this.dialog.addTextField ("txtBaselineOffset", "Baseline Offset", null, "%", "" + this.vwr.parameters.integralOffset, true);
 this.txt2 = this.dialog.addTextField ("txtScale", "Scale", null, "%", "" + this.vwr.parameters.integralRange, true);
@@ -20,11 +20,11 @@ this.dialog.addButton ("btnAuto", "Auto");
 this.dialog.addButton ("btnDelete", "Delete");
 this.dialog.addButton ("btnNormalize", "Normalize");
 });
-Clazz.overrideMethod (c$, "applyFromFields", 
+Clazz.overrideMethod (c$, "applyFromFields",
 function () {
 this.apply ( Clazz.newArray (-1, [this.dialog.getText (this.txt1), this.dialog.getText (this.txt2)]));
 });
-Clazz.overrideMethod (c$, "callback", 
+Clazz.overrideMethod (c$, "callback",
 function (id, msg) {
 var val;
 try {
@@ -60,14 +60,14 @@ throw ex;
 }
 return true;
 }, "~S,~S");
-Clazz.defineMethod (c$, "checkSelectedIntegral", 
+Clazz.defineMethod (c$, "checkSelectedIntegral",
  function () {
 if (this.iSelected < 0) {
 this.showMessage ("Select a line on the table first, then click this button.", "Integration", 1);
 return false;
 }return true;
 });
-Clazz.defineMethod (c$, "deleteIntegral", 
+Clazz.defineMethod (c$, "deleteIntegral",
  function () {
 if (!this.checkSelectedIntegral ()) return;
 this.xyData.removeItemAt (this.iSelected);

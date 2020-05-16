@@ -1,42 +1,42 @@
 Clazz.declarePackage ("J.quantum");
 Clazz.load (null, "J.quantum.QS", ["java.lang.Character", "JU.PT", "$.SB"], function () {
 c$ = Clazz.declareType (J.quantum, "QS");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-c$.isQuantumBasisSupported = Clazz.defineMethod (c$, "isQuantumBasisSupported", 
+c$.isQuantumBasisSupported = Clazz.defineMethod (c$, "isQuantumBasisSupported",
 function (ch) {
 return ("SPLDF".indexOf (Character.toUpperCase (ch)) >= 0);
 }, "~S");
-c$.getNewDfCoefMap = Clazz.defineMethod (c$, "getNewDfCoefMap", 
+c$.getNewDfCoefMap = Clazz.defineMethod (c$, "getNewDfCoefMap",
 function () {
 return  Clazz.newArray (-1, [ Clazz.newIntArray (1, 0),  Clazz.newIntArray (3, 0),  Clazz.newIntArray (4, 0),  Clazz.newIntArray (5, 0),  Clazz.newIntArray (6, 0),  Clazz.newIntArray (7, 0),  Clazz.newIntArray (10, 0),  Clazz.newIntArray (9, 0),  Clazz.newIntArray (15, 0),  Clazz.newIntArray (11, 0),  Clazz.newIntArray (21, 0),  Clazz.newIntArray (13, 0),  Clazz.newIntArray (28, 0)]);
 });
-c$.getItem = Clazz.defineMethod (c$, "getItem", 
+c$.getItem = Clazz.defineMethod (c$, "getItem",
 function (i) {
 return (i >= 0 && i < 13 ? i : -1);
 }, "~N");
-c$.getQuantumShellTagID = Clazz.defineMethod (c$, "getQuantumShellTagID", 
+c$.getQuantumShellTagID = Clazz.defineMethod (c$, "getQuantumShellTagID",
 function (tag) {
 return (tag.equals ("L") ? 2 : J.quantum.QS.getQuantumShell (tag));
 }, "~S");
-c$.getQuantumShell = Clazz.defineMethod (c$, "getQuantumShell", 
+c$.getQuantumShell = Clazz.defineMethod (c$, "getQuantumShell",
  function (tag) {
 for (var i = 0; i < 13; i++) if (J.quantum.QS.tags[i].equals (tag) || J.quantum.QS.tags2[i].equals (tag)) return i;
 
 return -1;
 }, "~S");
-c$.getQuantumShellTagIDSpherical = Clazz.defineMethod (c$, "getQuantumShellTagIDSpherical", 
+c$.getQuantumShellTagIDSpherical = Clazz.defineMethod (c$, "getQuantumShellTagIDSpherical",
 function (tag) {
 if (tag.equals ("L")) return 2;
 var id = J.quantum.QS.getQuantumShell (tag);
 return (id < 0 ? id : J.quantum.QS.idSpherical[id]);
 }, "~S");
-c$.getQuantumShellTag = Clazz.defineMethod (c$, "getQuantumShellTag", 
+c$.getQuantumShellTag = Clazz.defineMethod (c$, "getQuantumShellTag",
 function (id) {
 return (id >= 0 && id < 13 ? J.quantum.QS.tags[id] : "" + id);
 }, "~N");
-c$.getMOString = Clazz.defineMethod (c$, "getMOString", 
+c$.getMOString = Clazz.defineMethod (c$, "getMOString",
 function (lc) {
 var sb =  new JU.SB ();
 if (lc.length == 2) return "" + Clazz.floatToInt (lc[0] < 0 ? -lc[1] : lc[1]);
@@ -48,7 +48,7 @@ sb.appendF (lc[i]).append (" ").appendI (Clazz.floatToInt (lc[i + 1]));
 sb.appendC (']');
 return sb.toString ();
 }, "~A");
-c$.createDFMap = Clazz.defineMethod (c$, "createDFMap", 
+c$.createDFMap = Clazz.defineMethod (c$, "createDFMap",
 function (map, fileList, jmolList, minLength) {
 var tokens = JU.PT.getTokens (fileList);
 var isOK = true;

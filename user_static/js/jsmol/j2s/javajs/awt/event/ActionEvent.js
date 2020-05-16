@@ -4,7 +4,7 @@ c$ = Clazz.decorateAsClass (function () {
 this.actionCommand = null;
 Clazz.instantialize (this, arguments);
 }, javajs.awt.event, "ActionEvent", javajs.awt.event.Event);
-Clazz.defineMethod (c$, "getActionCommand", 
+Clazz.defineMethod (c$, "getActionCommand",
 function () {
 return this.actionCommand;
 });

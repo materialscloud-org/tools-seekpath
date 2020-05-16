@@ -6,16 +6,16 @@ this.b = 0;
 this.c = 0;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.xml, "XmlQEReader", J.adapter.readers.xml.XmlReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.adapter.readers.xml.XmlQEReader, []);
 });
-Clazz.overrideMethod (c$, "processXml", 
+Clazz.overrideMethod (c$, "processXml",
 function (parent, saxReader) {
 parent.doProcessLines = true;
 this.processXml2 (parent, saxReader);
 }, "J.adapter.readers.xml.XmlReader,~O");
-Clazz.overrideMethod (c$, "processStartElement", 
+Clazz.overrideMethod (c$, "processStartElement",
 function (localName, nodeName) {
 if (this.debugging) JU.Logger.debug ("xmlqe: start " + localName);
 if (!this.parent.continuing) return;
@@ -34,7 +34,7 @@ this.asc.newAtomSet ();
 return;
 }if (!this.parent.doProcessLines) return;
 }, "~S,~S");
-Clazz.overrideMethod (c$, "processEndElement", 
+Clazz.overrideMethod (c$, "processEndElement",
 function (localName) {
 if (this.debugging) JU.Logger.debug ("xmlqe: end " + localName);
 while (true) {

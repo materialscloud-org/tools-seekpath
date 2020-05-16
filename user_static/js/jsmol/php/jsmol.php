@@ -14,12 +14,12 @@
 //
 //////// note to administrators:
 //
-// from http://us3.php.net/file_get_contents: 
+// from http://us3.php.net/file_get_contents:
 //
-// A URL can be used as a filename with this function if the fopen wrappers 
-// have been enabled. See fopen() for more details on how to specify the 
-// filename. See the Supported Protocols and Wrappers for links to information 
-// about what abilities the various wrappers have, notes on their usage, and 
+// A URL can be used as a filename with this function if the fopen wrappers
+// have been enabled. See fopen() for more details on how to specify the
+// filename. See the Supported Protocols and Wrappers for links to information
+// about what abilities the various wrappers have, notes on their usage, and
 // information on any predefined variables they may provide.
 ///////
 //
@@ -31,11 +31,11 @@
 //   call
 //         "saveFile"
 //             returns posted data in "data=" with mime type "mimetype=" to file name "filename="
-//         "getInfoFromDatabase" 
+//         "getInfoFromDatabase"
 //             returns XML data
 //             requires database="=" (RCSB REST service)
 //         "getRawDataFromDatabase"
-//               "_" 
+//               "_"
 //                  just use $query
 //               (anything else)
 //                  use $database.$query
@@ -43,7 +43,7 @@
 //   encoding
 //         ""        no encoding (default)
 //         "base64"  BASE64-encoded binary files for Chrome synchronous AJAX
-//                      prepends ";base64," to encoded output  
+//                      prepends ";base64," to encoded output
 //
 // simple server tests:
 //
@@ -121,7 +121,7 @@ if ($call == "getInfoFromDatabase") {
 				$QQQQ = strtoupper($query);
 				if (strpos("123456789", substr($QQQQ, 0, 1)) == 0 && strpos($output, $QQQQ) > 0) {
 					$output = "$QQQQ\n".$output.str_replace("$QQQQ\n", "",$output);
-				}		  
+				}
 			}
 			if ($n > 50) {
 				$output = substr($output, 0, 250);
@@ -134,7 +134,7 @@ if ($call == "getInfoFromDatabase") {
 	} else {
 	  $myerror = "jsmol.php cannot use $call with $database";
 	}
-	
+
 } else if ($call == "getRawDataFromDatabase") {
 	$isBinary = (strpos($query, ".gz") >= 0);
 		if ($database != "_")
@@ -171,7 +171,7 @@ ob_start();
 
  if ($myerror != "") {
    $output = $myerror;
- } else { 
+ } else {
    if ($imagedata != "") {
   	$output = $imagedata;
   	header('Content-Type: '.$contentType);
@@ -196,7 +196,7 @@ ob_start();
    if ($encoding == "base64") {
   	 $output = ";base64,".base64_encode($output);
    }
- } 
+ }
  header('Last-Modified: '.date('r'));
  header('Accept-Ranges: bytes');
  header('Content-Length: '.strlen($output));

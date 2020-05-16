@@ -11,10 +11,10 @@ this.latticeType = "P";
 this.intlTableNo = null;
 Clazz.instantialize (this, arguments);
 }, JS, "SymmetryInfo");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "setSymmetryInfo", 
+Clazz.defineMethod (c$, "setSymmetryInfo",
 function (info, unitCellParams) {
 this.cellRange = info.get ("unitCellRange");
 this.sgName = info.get ("spaceGroup");

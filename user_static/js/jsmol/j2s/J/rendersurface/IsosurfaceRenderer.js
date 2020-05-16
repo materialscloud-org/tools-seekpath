@@ -18,11 +18,11 @@ this.mySlabValue = 0;
 this.globalSlabValue = 0;
 Clazz.instantialize (this, arguments);
 }, J.rendersurface, "IsosurfaceRenderer", J.render.MeshRenderer);
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 return this.renderIso ();
 });
-Clazz.defineMethod (c$, "renderIso", 
+Clazz.defineMethod (c$, "renderIso",
 function () {
 this.setGlobals ();
 for (var i = this.isosurface.meshCount; --i >= 0; ) {
@@ -38,7 +38,7 @@ this.exportPass = 2;
 }}}
 return this.needTranslucent;
 });
-Clazz.defineMethod (c$, "setGlobals", 
+Clazz.defineMethod (c$, "setGlobals",
  function () {
 this.needTranslucent = false;
 this.antialias = this.g3d.isAntialiased ();
@@ -53,7 +53,7 @@ this.meshScale = -1;
 this.globalSlabValue = this.vwr.gdata.slab;
 this.mySlabValue = (this.isNavigationMode ? Clazz.floatToInt (this.tm.getNavigationOffset ().z) : 2147483647);
 });
-Clazz.defineMethod (c$, "renderInfo", 
+Clazz.defineMethod (c$, "renderInfo",
 function () {
 if (this.isExport || !this.hasColorRange || this.imesh.colorEncoder == null || Boolean.TRUE !== this.showKey) return;
 this.showKey = Boolean.FALSE;
@@ -99,7 +99,7 @@ this.g3d.fillTextRect (x, y, 5, -2147483648, dx, dy);
 }
 this.isosurface.keyXy[1] = Clazz.doubleToInt ((y + dy) / factor);
 });
-Clazz.defineMethod (c$, "renderMeshSlab", 
+Clazz.defineMethod (c$, "renderMeshSlab",
  function () {
 this.volumeRender = (this.imesh.jvxlData.colorDensity && this.imesh.jvxlData.allowVolumeRender);
 var thisSlabValue = this.mySlabValue;
@@ -134,7 +134,7 @@ isOK = this.renderMesh2 (this.mesh);
 }this.vwr.gdata.translucentCoverOnly = tCover;
 return isOK;
 });
-Clazz.overrideMethod (c$, "render2", 
+Clazz.overrideMethod (c$, "render2",
 function (isExport) {
 if (this.volumeRender) {
 this.renderPoints ();
@@ -152,7 +152,7 @@ this.render2b (isExport);
 if (!this.g3d.setC (4)) return;
 if (this.imesh.showContourLines) this.renderContourLines ();
 }, "~B");
-Clazz.defineMethod (c$, "renderLonePair", 
+Clazz.defineMethod (c$, "renderLonePair",
  function (isRadical) {
 this.pt2f.setT (this.vertices[1]);
 this.tm.transformPt3f (this.pt2f, this.pt2f);
@@ -176,7 +176,7 @@ this.g3d.fillSphereI (r, this.screens[0]);
 }this.screens[1].set (Math.round (this.pt2f.x), Math.round (this.pt2f.y), Math.round (this.pt2f.z));
 this.g3d.fillSphereI (r, this.screens[1]);
 }, "~B");
-Clazz.defineMethod (c$, "renderContourLines", 
+Clazz.defineMethod (c$, "renderContourLines",
  function () {
 var vContours = this.imesh.getContours ();
 if (vContours == null) {
@@ -205,7 +205,7 @@ this.g3d.fillCylinderBits (1, diam, this.pt1f, this.pt2f);
 }}
 }
 });
-Clazz.overrideMethod (c$, "renderPoints", 
+Clazz.overrideMethod (c$, "renderPoints",
 function () {
 try {
 if (this.volumeRender) this.g3d.volumeRender (true);
@@ -251,7 +251,7 @@ this.g3d.fillSphereI (diam, this.screens[i]);
 }
 if (this.volumeRender) this.g3d.volumeRender (false);
 });
-Clazz.overrideMethod (c$, "renderTriangles", 
+Clazz.overrideMethod (c$, "renderTriangles",
 function (fill, iShowTriangles, isExport) {
 this.g3d.addRenderer (1073742182);
 var polygonIndexes = this.mesh.pis;
@@ -349,7 +349,7 @@ continue;
 }}
 if (generateSet) this.exportSurface (colorSolid ? colix : 0);
 }, "~B,~B,~B");
-Clazz.defineMethod (c$, "getDiameter", 
+Clazz.defineMethod (c$, "getDiameter",
  function () {
 var diam;
 if (this.mesh.diameter <= 0) {
@@ -360,7 +360,7 @@ diam = Clazz.doubleToInt (this.vwr.getScreenDim () / 100);
 }if (diam < 1) diam = 1;
 return diam;
 });
-Clazz.defineMethod (c$, "renderNormals", 
+Clazz.defineMethod (c$, "renderNormals",
  function () {
 if (!this.g3d.setC (JU.C.copyColixTranslucency (this.mesh.colix, 8))) return;
 this.vwr.gdata.setFontFid (this.vwr.gdata.getFontFidFS ("Monospaced", 24));

@@ -1,7 +1,7 @@
 Clazz.declarePackage ("JM.FF");
 Clazz.load (["JM.FF.Calculation"], "JM.FF.MMFFVDWCalc", null, function () {
 c$ = Clazz.declareType (JM.FF, "MMFFVDWCalc", JM.FF.Calculation);
-Clazz.overrideMethod (c$, "setData", 
+Clazz.overrideMethod (c$, "setData",
 function (calc, ia, ib, dd) {
 this.a = this.calcs.minAtoms[ia];
 this.b = this.calcs.minAtoms[ib];
@@ -29,7 +29,7 @@ rs *= 0.8;
 eps *= 0.5;
 }calc.addLast ( Clazz.newArray (-1, [ Clazz.newIntArray (-1, [ia, ib]),  Clazz.newDoubleArray (-1, [rs, eps])]));
 }, "JU.Lst,~N,~N,~N");
-Clazz.overrideMethod (c$, "compute", 
+Clazz.overrideMethod (c$, "compute",
 function (dataIn) {
 this.getPointers (dataIn);
 this.calcs.setPairVariables (this);

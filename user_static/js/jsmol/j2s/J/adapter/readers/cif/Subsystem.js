@@ -10,24 +10,24 @@ this.modMatrices = null;
 this.isFinalized = false;
 Clazz.instantialize (this, arguments);
 }, J.adapter.readers.cif, "Subsystem");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (msRdr, code, w) {
 this.msRdr = msRdr;
 this.code = code;
 this.w = w;
 this.d = w.getArray ().length - 3;
 }, "J.adapter.readers.cif.MSRdr,~S,JU.Matrix");
-Clazz.defineMethod (c$, "getSymmetry", 
+Clazz.defineMethod (c$, "getSymmetry",
 function () {
 if (!this.isFinalized) this.setSymmetry (true);
 return this.symmetry;
 });
-Clazz.defineMethod (c$, "getModMatrices", 
+Clazz.defineMethod (c$, "getModMatrices",
 function () {
 if (!this.isFinalized) this.setSymmetry (true);
 return this.modMatrices;
 });
-Clazz.defineMethod (c$, "setSymmetry", 
+Clazz.defineMethod (c$, "setSymmetry",
  function (setOperators) {
 var a;
 JU.Logger.info ("[subsystem " + this.code + "]");
@@ -90,7 +90,7 @@ break;
 JU.Logger.info (this.code + "." + (iop + 1) + (this.code.equals (code) ? "   " : ">" + code + " ") + jf);
 }
 }, "~B");
-Clazz.defineMethod (c$, "isMixed", 
+Clazz.defineMethod (c$, "isMixed",
  function (r) {
 var a = r.getArray ();
 for (var i = 3; --i >= 0; ) for (var j = 3 + this.d; --j >= 3; ) if (a[i][j] != 0) return true;
@@ -98,7 +98,7 @@ for (var i = 3; --i >= 0; ) for (var j = 3 + this.d; --j >= 3; ) if (a[i][j] != 
 
 return false;
 }, "JU.Matrix");
-Clazz.overrideMethod (c$, "toString", 
+Clazz.overrideMethod (c$, "toString",
 function () {
 return "Subsystem " + this.code + "\n" + this.w;
 });

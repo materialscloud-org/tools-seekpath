@@ -5,11 +5,11 @@ this.b = 0;
 this.isOrthographic = false;
 Clazz.instantialize (this, arguments);
 }, J.g3d, "PrecisionRenderer");
-Clazz.defineMethod (c$, "getZCurrent", 
+Clazz.defineMethod (c$, "getZCurrent",
 function (a, b, x) {
 return Math.round (a == 1.4E-45 ? b : this.isOrthographic ? a * x + b : a / (b - x));
 }, "~N,~N,~N");
-Clazz.defineMethod (c$, "setRastABFloat", 
+Clazz.defineMethod (c$, "setRastABFloat",
 function (xa, za, xb, zb) {
 var zdif = (zb - za);
 var xdif = (xb - xa);
@@ -24,7 +24,7 @@ this.b = za - this.a * xa;
 this.a = xdif * za * (zb / zdif);
 this.b = (xb * zb - xa * za) / zdif;
 }}, "~N,~N,~N,~N");
-Clazz.defineMethod (c$, "setRastAB", 
+Clazz.defineMethod (c$, "setRastAB",
 function (xa, za, xb, zb) {
 var zdif = (zb - za);
 var xdif = (xb - xa);

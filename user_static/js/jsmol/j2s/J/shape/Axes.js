@@ -26,7 +26,7 @@ this.fixedOriginUC =  new JU.P3 ();
 this.ptTemp =  new JU.P3 ();
 this.corner =  new JU.V3 ();
 });
-Clazz.overrideMethod (c$, "setProperty", 
+Clazz.overrideMethod (c$, "setProperty",
 function (propertyName, value, bs) {
 if ("position" === propertyName) {
 var doSetScale = (this.axisXY.z == 0 && (value).z != 0);
@@ -55,7 +55,7 @@ this.axisType = value;
 if (this.axisType.equals ("abc")) this.axisType = null;
 }this.setPropFLS (propertyName, value);
 }, "~S,~O,JU.BS");
-Clazz.overrideMethod (c$, "initShape", 
+Clazz.overrideMethod (c$, "initShape",
 function () {
 this.translucentAllowed = false;
 this.myType = "axes";
@@ -81,26 +81,26 @@ return;
 }}this.originPoint.setT (this.fixedOrigin != null ? this.fixedOrigin : axesMode == 603979809 ? this.vwr.getBoundBoxCenter () : this.pt0);
 this.setScale (this.vwr.getFloat (570425346) / 2);
 });
-Clazz.defineMethod (c$, "reinitShape", 
+Clazz.defineMethod (c$, "reinitShape",
 function () {
 var f = this.font3d;
 this.initShape ();
 if (f != null) this.font3d = f;
 });
-Clazz.defineMethod (c$, "getAxisPoint", 
+Clazz.defineMethod (c$, "getAxisPoint",
 function (i, isDataFrame) {
 if (!isDataFrame && this.axisXY.z == 0) return this.axisPoints[i];
 this.ptTemp.sub2 (this.axisPoints[i], this.originPoint);
 this.ptTemp.scale (0.5);
 return this.ptTemp;
 }, "~N,~B");
-Clazz.overrideMethod (c$, "getProperty", 
+Clazz.overrideMethod (c$, "getProperty",
 function (property, index) {
 if (property === "origin") return this.fixedOrigin;
 if (property === "axesTypeXY") return (this.axisXY.z == 0 ? Boolean.FALSE : Boolean.TRUE);
 return null;
 }, "~S,~N");
-Clazz.defineMethod (c$, "setScale", 
+Clazz.defineMethod (c$, "setScale",
 function (scale) {
 this.scale = scale;
 this.corner.setT (this.vwr.getBoundBoxCornerVector ());

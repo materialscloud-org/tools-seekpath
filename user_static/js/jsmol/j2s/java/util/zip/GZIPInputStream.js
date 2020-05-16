@@ -11,17 +11,17 @@ Clazz.prepareFields (c$, function () {
 this.crc =  new java.util.zip.CRC32 ();
 this.tmpbuf =  Clazz.newByteArray (128, 0);
 });
-Clazz.defineMethod (c$, "ensureOpen", 
+Clazz.defineMethod (c$, "ensureOpen",
  function () {
 if (this.$closed) {
 throw  new java.io.IOException ("Stream closed");
 }});
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function ($in, size) {
 Clazz.superConstructor (this, java.util.zip.GZIPInputStream, [$in,  new java.util.zip.Inflater ().init (0, true), size]);
 this.readHeader ($in);
 }, "java.io.InputStream,~N");
-Clazz.defineMethod (c$, "read", 
+Clazz.defineMethod (c$, "read",
 function (buf, off, len) {
 this.ensureOpen ();
 if (this.eos) {
@@ -34,14 +34,14 @@ if (this.readTrailer ()) this.eos = true;
 this.crc.update (buf, off, n);
 }return n;
 }, "~A,~N,~N");
-Clazz.defineMethod (c$, "close", 
+Clazz.defineMethod (c$, "close",
 function () {
 if (!this.$closed) {
 Clazz.superCall (this, java.util.zip.GZIPInputStream, "close", []);
 this.eos = true;
 this.$closed = true;
 }});
-Clazz.defineMethod (c$, "readHeader", 
+Clazz.defineMethod (c$, "readHeader",
  function (this_in) {
 var $in =  new java.util.zip.CheckedInputStream (this_in).set (this.crc);
 this.crc.reset ();
@@ -72,16 +72,16 @@ throw  new java.util.zip.ZipException ("Corrupt GZIP header");
 }this.crc.reset ();
 return n;
 }, "java.io.InputStream");
-Clazz.defineMethod (c$, "readTrailer", 
+Clazz.defineMethod (c$, "readTrailer",
  function () {
 return true;
 });
-Clazz.defineMethod (c$, "readUShort", 
+Clazz.defineMethod (c$, "readUShort",
  function ($in) {
 var b = this.readUByte ($in);
 return (this.readUByte ($in) << 8) | b;
 }, "java.io.InputStream");
-Clazz.defineMethod (c$, "readUByte", 
+Clazz.defineMethod (c$, "readUByte",
  function ($in) {
 var b = $in.readByteAsInt ();
 if (b == -1) {
@@ -90,7 +90,7 @@ throw  new java.io.EOFException ();
 throw  new java.io.IOException (this.$in.getClass ().getName () + ".read() returned value out of range -1..255: " + b);
 }return b;
 }, "java.io.InputStream");
-Clazz.defineMethod (c$, "skipBytes", 
+Clazz.defineMethod (c$, "skipBytes",
  function ($in, n) {
 while (n > 0) {
 var len = $in.read (this.tmpbuf, 0, n < this.tmpbuf.length ? n : this.tmpbuf.length);

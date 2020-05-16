@@ -5,21 +5,21 @@ this.nFilePoints = 0;
 this.nSkip = 0;
 Clazz.instantialize (this, arguments);
 }, J.jvxl.readers, "CastepDensityReader", J.jvxl.readers.PeriodicVolumeFileReader);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 Clazz.superConstructor (this, J.jvxl.readers.CastepDensityReader, []);
 });
-Clazz.overrideMethod (c$, "init2", 
+Clazz.overrideMethod (c$, "init2",
 function (sg, br) {
 this.init2VFR (sg, br);
 this.isProgressive = false;
 this.isAngstroms = true;
 }, "J.jvxl.readers.SurfaceGenerator,java.io.BufferedReader");
-Clazz.overrideMethod (c$, "gotoData", 
+Clazz.overrideMethod (c$, "gotoData",
 function (n, nPoints) {
 this.nSkip = n;
 }, "~N,~N");
-Clazz.overrideMethod (c$, "readParameters", 
+Clazz.overrideMethod (c$, "readParameters",
 function () {
 this.jvxlFileHeaderBuffer =  new JU.SB ();
 while (this.rd () != null && this.line.indexOf (".") < 0) {
@@ -43,7 +43,7 @@ if (this.isAnisotropic) this.setVectorAnisotropy (this.volumetricVectors[i]);
 while (this.rd ().trim ().length > 0) {
 }
 });
-Clazz.overrideMethod (c$, "getPeriodicVoxels", 
+Clazz.overrideMethod (c$, "getPeriodicVoxels",
 function () {
 this.rd ();
 var tokens = this.getTokens ();
@@ -73,7 +73,7 @@ this.voxelData[x][y][z] = this.recordData (this.parseFloat ());
 this.rd ();
 }
 }});
-Clazz.defineMethod (c$, "skipPoints", 
+Clazz.defineMethod (c$, "skipPoints",
  function (n) {
 var pt = this.next[0];
 for (var i = 0; i < n; i++) {

@@ -1,6 +1,6 @@
 Clazz.declarePackage ("JU");
 c$ = Clazz.declareType (JU, "JZlib");
-c$.version = Clazz.defineMethod (c$, "version", 
+c$.version = Clazz.defineMethod (c$, "version",
 function () {
 return "1.1.0";
 });

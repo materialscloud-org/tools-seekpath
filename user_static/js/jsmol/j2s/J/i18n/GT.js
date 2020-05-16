@@ -7,14 +7,14 @@ this.doTranslate = true;
 this.language = null;
 Clazz.instantialize (this, arguments);
 }, J.i18n, "GT", null, J.api.Translator);
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.overrideMethod (c$, "translate", 
+Clazz.overrideMethod (c$, "translate",
 function (s) {
 return J.i18n.GT._ (s);
 }, "~S");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (vwr, langCode) {
 {
 }this.resources = null;
@@ -68,47 +68,47 @@ this.addBundles (vwr, "JmolApplet", null, la_co, null);
 if (!J.i18n.GT.$ignoreApplicationBundle) this.addBundles (vwr, "Jmol", null, null, la);
 this.addBundles (vwr, "JmolApplet", null, null, la);
 }, "JV.Viewer,~S");
-c$.getLanguageList = Clazz.defineMethod (c$, "getLanguageList", 
+c$.getLanguageList = Clazz.defineMethod (c$, "getLanguageList",
 function (gt) {
 if (J.i18n.GT.languageList == null) {
 if (gt == null) gt = J.i18n.GT.getTextWrapper ();
 gt.createLanguageList ();
 }return J.i18n.GT.languageList;
 }, "J.i18n.GT");
-c$.getLanguage = Clazz.defineMethod (c$, "getLanguage", 
+c$.getLanguage = Clazz.defineMethod (c$, "getLanguage",
 function () {
 return J.i18n.GT.getTextWrapper ().language;
 });
-c$.ignoreApplicationBundle = Clazz.defineMethod (c$, "ignoreApplicationBundle", 
+c$.ignoreApplicationBundle = Clazz.defineMethod (c$, "ignoreApplicationBundle",
 function () {
 J.i18n.GT.$ignoreApplicationBundle = true;
 });
-c$.setDoTranslate = Clazz.defineMethod (c$, "setDoTranslate", 
+c$.setDoTranslate = Clazz.defineMethod (c$, "setDoTranslate",
 function (TF) {
 var b = J.i18n.GT.getDoTranslate ();
 J.i18n.GT.getTextWrapper ().doTranslate = TF;
 return b;
 }, "~B");
-c$.getDoTranslate = Clazz.defineMethod (c$, "getDoTranslate", 
+c$.getDoTranslate = Clazz.defineMethod (c$, "getDoTranslate",
 function () {
 return J.i18n.GT.getTextWrapper ().doTranslate;
 });
-c$._ = Clazz.defineMethod (c$, "_", 
+c$._ = Clazz.defineMethod (c$, "_",
 function (string) {
 return J.i18n.GT.getTextWrapper ().getString (string);
 }, "~S");
-c$.o = Clazz.defineMethod (c$, "o", 
+c$.o = Clazz.defineMethod (c$, "o",
 function (s, o) {
 if (Clazz.instanceOf (o, Array)) {
 if ((o).length != 1) return java.text.MessageFormat.format (s, o);
 o = (o)[0];
 }return JU.PT.rep (s, "{0}", o.toString ());
 }, "~S,~O");
-c$.i = Clazz.defineMethod (c$, "i", 
+c$.i = Clazz.defineMethod (c$, "i",
 function (s, n) {
 return JU.PT.rep (s, "{0}", "" + n);
 }, "~S,~N");
-c$.escapeHTML = Clazz.defineMethod (c$, "escapeHTML", 
+c$.escapeHTML = Clazz.defineMethod (c$, "escapeHTML",
 function (msg) {
 var ch;
 for (var i = msg.length; --i >= 0; ) if ((ch = msg.charAt (i)).charCodeAt (0) > 0x7F) {
@@ -116,18 +116,18 @@ msg = msg.substring (0, i) + "&#" + ((ch).charCodeAt (0)) + ";" + msg.substring 
 }
 return msg;
 }, "~S");
-c$.getTextWrapper = Clazz.defineMethod (c$, "getTextWrapper", 
+c$.getTextWrapper = Clazz.defineMethod (c$, "getTextWrapper",
  function () {
 return (J.i18n.GT.$getTextWrapper == null ? J.i18n.GT.$getTextWrapper =  new J.i18n.GT (null, null) : J.i18n.GT.$getTextWrapper);
 });
-Clazz.defineMethod (c$, "createLanguageList", 
+Clazz.defineMethod (c$, "createLanguageList",
  function () {
 var wasTranslating = this.doTranslate;
 this.doTranslate = false;
 J.i18n.GT.languageList = J.i18n.Language.getLanguageList ();
 this.doTranslate = wasTranslating;
 });
-Clazz.defineMethod (c$, "getSupported", 
+Clazz.defineMethod (c$, "getSupported",
  function (code) {
 if (code == null) return null;
 var s = J.i18n.GT.htLanguages.get (code);
@@ -136,7 +136,7 @@ s = J.i18n.Language.getSupported (J.i18n.GT.getLanguageList (this), code);
 J.i18n.GT.htLanguages.put (code, (s == null ? "" : s));
 return s;
 }, "~S");
-Clazz.defineMethod (c$, "addBundles", 
+Clazz.defineMethod (c$, "addBundles",
  function (vwr, type, la_co_va, la_co, la) {
 try {
 var className = "J.translation." + type + ".";
@@ -153,7 +153,7 @@ throw exception;
 }
 }
 }, "JV.Viewer,~S,~S,~S,~S");
-Clazz.defineMethod (c$, "addBundle", 
+Clazz.defineMethod (c$, "addBundle",
  function (vwr, className, name) {
 var resource = J.i18n.Resource.getResource (vwr, className, name);
 if (resource != null) {
@@ -164,7 +164,7 @@ this.resourceCount = 0;
 this.resourceCount++;
 if (J.i18n.GT.allowDebug) JU.Logger.debug ("GT adding " + className);
 }}, "JV.Viewer,~S,~S");
-Clazz.defineMethod (c$, "getString", 
+Clazz.defineMethod (c$, "getString",
  function (s) {
 var trans = null;
 if (this.doTranslate) {

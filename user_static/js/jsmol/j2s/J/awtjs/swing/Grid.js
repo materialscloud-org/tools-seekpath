@@ -7,11 +7,11 @@ this.grid = null;
 this.renderer = null;
 Clazz.instantialize (this, arguments);
 }, J.awtjs.swing, "Grid");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function (rows, cols) {
 this.grid =  Clazz.newArray (0, 0, null);
 }, "~N,~N");
-Clazz.defineMethod (c$, "add", 
+Clazz.defineMethod (c$, "add",
 function (btn, c) {
 if (c.gridx >= this.ncols) {
 this.ncols = c.gridx + 1;
@@ -28,7 +28,7 @@ this.grid = g;
 this.nrows = c.gridy + 1;
 }this.grid[c.gridy][c.gridx] =  new J.awtjs.swing.Cell (btn, c);
 }, "J.awtjs.swing.JComponent,J.awtjs.swing.GridBagConstraints");
-Clazz.defineMethod (c$, "toHTML", 
+Clazz.defineMethod (c$, "toHTML",
 function (id) {
 var sb =  new JU.SB ();
 id += "_grid";

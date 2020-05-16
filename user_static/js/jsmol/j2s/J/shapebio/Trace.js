@@ -1,21 +1,21 @@
 Clazz.declarePackage ("J.shapebio");
 Clazz.load (["J.shapebio.BioShapeCollection"], "J.shapebio.Trace", ["J.atomdata.RadiusData", "J.c.VDW"], function () {
 c$ = Clazz.declareType (J.shapebio, "Trace", J.shapebio.BioShapeCollection);
-Clazz.overrideMethod (c$, "initShape", 
+Clazz.overrideMethod (c$, "initShape",
 function () {
 this.madOn = 600;
 this.madHelixSheet = 1500;
 this.madTurnRandom = 500;
 this.madDnaRna = 1500;
 });
-Clazz.overrideMethod (c$, "setProperty", 
+Clazz.overrideMethod (c$, "setProperty",
 function (propertyName, value, bsSelected) {
 if (propertyName === "putty") {
 this.setPutty (value, bsSelected);
 return;
 }this.setPropBSC (propertyName, value, bsSelected);
 }, "~S,~O,JU.BS");
-Clazz.defineMethod (c$, "setPutty", 
+Clazz.defineMethod (c$, "setPutty",
  function (info, bsAtoms) {
 var n = bsAtoms.cardinality ();
 if (n == 0) return;

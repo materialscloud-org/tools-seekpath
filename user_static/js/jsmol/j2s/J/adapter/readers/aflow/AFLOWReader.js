@@ -17,7 +17,7 @@ Clazz.instantialize (this, arguments);
 Clazz.prepareFields (c$, function () {
 this.keyMap =  new java.util.Hashtable ();
 });
-Clazz.overrideMethod (c$, "initializeReader", 
+Clazz.overrideMethod (c$, "initializeReader",
 function () {
 this.readPRE = this.checkFilterKey ("PRE");
 var s;
@@ -41,7 +41,7 @@ this.asc.bsAtoms =  new JU.BS ();
 this.addJmolScript ("unitcell off;axes off;");
 this.havePRE = (this.line.indexOf ("Structure PRE") >= 0);
 });
-Clazz.overrideMethod (c$, "checkLine", 
+Clazz.overrideMethod (c$, "checkLine",
 function () {
 if (!this.havePRE) this.discardLinesUntilContains ("Structure PRE");
 this.havePRE = false;
@@ -49,7 +49,7 @@ if (this.line == null) return false;
 this.continuing = new Boolean (this.continuing & this.readPrePost ()).valueOf ();
 return this.continuing;
 });
-Clazz.defineMethod (c$, "readPrePost", 
+Clazz.defineMethod (c$, "readPrePost",
  function () {
 this.fileModelNumber++;
 this.titleMsg = "#" + (this.modelNumber + 1) + (this.getComposition ? "," + this.fileModelNumber + ", Cb=" + this.fracB : "");
@@ -70,11 +70,11 @@ this.doCheckUnitCell = false;
 if (n0 != this.asc.bsAtoms.cardinality ()) JU.Logger.info ("AFLOW: file#, saved#, atoms: " + this.fileModelNumber + " " + this.modelNumber + " " + (this.asc.bsAtoms.cardinality () - n0));
 return !this.haveModel || this.modelNumber != this.desiredModelNumber;
 });
-Clazz.defineMethod (c$, "finalizeModel", 
+Clazz.defineMethod (c$, "finalizeModel",
  function () {
 this.asc.removeLastUnselectedAtoms ();
 });
-Clazz.defineMethod (c$, "readElementLabelsOnly", 
+Clazz.defineMethod (c$, "readElementLabelsOnly",
  function () {
 this.readLines (5);
 this.rdline ();
@@ -96,7 +96,7 @@ last = s;
 }
 if (s == null) this.elementLabel = this.defaultLabels;
 });
-Clazz.defineMethod (c$, "getData", 
+Clazz.defineMethod (c$, "getData",
  function () {
 this.discardLinesUntilContains ("- DATA -");
 var htAFLOW =  new java.util.Hashtable ();
@@ -155,7 +155,7 @@ if (kvclean !== kv[0]) htAFLOW.put (kvclean, o);
 this.asc.setCurrentModelInfo ("aflowInfo", htAFLOW);
 return true;
 });
-Clazz.defineMethod (c$, "cleanKey", 
+Clazz.defineMethod (c$, "cleanKey",
  function (key) {
 var kclean = this.keyMap.get (key);
 if (kclean != null) return kclean;
@@ -165,13 +165,13 @@ for (var i = chars.length; --i >= 0; ) if (!JU.PT.isLetterOrDigit (chars[i])) ch
 this.keyMap.put (key, kclean = JU.PT.trim (JU.PT.rep ( String.instantialize (chars), "__", "_"), "_"));
 return kclean;
 }, "~S");
-Clazz.overrideMethod (c$, "finalizeSubclassReader", 
+Clazz.overrideMethod (c$, "finalizeSubclassReader",
 function () {
 this.alignUnitCells ();
 this.listCompositions ();
 this.finalizeReaderASCR ();
 });
-Clazz.defineMethod (c$, "listCompositions", 
+Clazz.defineMethod (c$, "listCompositions",
  function () {
 var list =  new JU.Lst ();
 for (var e, $e = this.compositions.entrySet ().iterator (); $e.hasNext () && ((e = $e.next ()) || true);) {
@@ -184,7 +184,7 @@ java.util.Arrays.sort (a);
 for (var i = 0, n = a.length; i < n; i++) this.appendLoadNote (this.aabb + "\t" + a[i]);
 
 });
-Clazz.defineMethod (c$, "alignUnitCells", 
+Clazz.defineMethod (c$, "alignUnitCells",
  function () {
 });
 });

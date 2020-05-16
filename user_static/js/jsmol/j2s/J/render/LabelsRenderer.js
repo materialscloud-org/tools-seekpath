@@ -30,7 +30,7 @@ this.xy =  Clazz.newFloatArray (3, 0);
 this.screen =  new JU.P3i ();
 this.pTemp =  new JU.P3 ();
 });
-Clazz.overrideMethod (c$, "render", 
+Clazz.overrideMethod (c$, "render",
 function () {
 this.fidPrevious = 0;
 var labels = this.shape;
@@ -88,7 +88,7 @@ this.boxXY[1] /= 2;
 }
 return false;
 });
-Clazz.defineMethod (c$, "renderLabelOrMeasure", 
+Clazz.defineMethod (c$, "renderLabelOrMeasure",
 function (text, label) {
 var newText = false;
 if (text != null) {

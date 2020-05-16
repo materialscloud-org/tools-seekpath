@@ -26,10 +26,10 @@ this.vH = null;
 this.meshSurface = null;
 Clazz.instantialize (this, arguments);
 }, J.renderbio, "RocketRenderer");
-Clazz.makeConstructor (c$, 
+Clazz.makeConstructor (c$,
 function () {
 });
-Clazz.defineMethod (c$, "set", 
+Clazz.defineMethod (c$, "set",
 function (rr) {
 this.screenA =  new JU.P3 ();
 this.screenB =  new JU.P3 ();
@@ -41,7 +41,7 @@ this.tm = rr.vwr.tm;
 this.isRockets = rr.isRockets;
 return this;
 }, "J.renderbio.RocketsRenderer");
-Clazz.defineMethod (c$, "renderRockets", 
+Clazz.defineMethod (c$, "renderRockets",
 function () {
 this.g3d = this.rr.g3d;
 this.tPending = false;
@@ -56,7 +56,7 @@ this.rr.renderHermiteConic (i, true, 7);
 }}
 this.renderPending ();
 });
-Clazz.defineMethod (c$, "renderSpecialSegment", 
+Clazz.defineMethod (c$, "renderSpecialSegment",
  function (monomer, thisColix, thisMad) {
 var proteinstructure = monomer.proteinStructure;
 if (this.tPending) {
@@ -70,7 +70,7 @@ this.colix = thisColix;
 this.mad = thisMad;
 this.tPending = true;
 }, "JM.AlphaMonomer,~N,~N");
-Clazz.defineMethod (c$, "renderPending", 
+Clazz.defineMethod (c$, "renderPending",
  function () {
 if (!this.tPending) return;
 var segments = this.proteinstructurePending.getSegments ();
@@ -79,7 +79,7 @@ if (Clazz.instanceOf (this.proteinstructurePending, JM.Helix)) this.renderPendin
  else if (Clazz.instanceOf (this.proteinstructurePending, JM.Sheet) && Clazz.instanceOf ((this.proteinstructurePending).apolymer, JM.AminoPolymer)) this.renderPendingSheetPlank (segments[this.startIndexPending], segments[this.endIndexPending], segments[this.endIndexPending + 1], renderArrowHead);
 this.tPending = false;
 });
-Clazz.defineMethod (c$, "renderPendingRocketSegment", 
+Clazz.defineMethod (c$, "renderPendingRocketSegment",
  function (i, pointStart, pointBeforeEnd, pointEnd, renderArrowHead) {
 if (this.g3d.setC (this.colix)) {
 this.tm.transformPt3f (pointStart, this.screenA);
@@ -99,7 +99,7 @@ var t = this.screenB;
 this.screenB = this.screenC;
 this.screenC = t;
 }}, "~N,JU.P3,JU.P3,JU.P3,~B");
-Clazz.defineMethod (c$, "renderPendingSheetPlank", 
+Clazz.defineMethod (c$, "renderPendingSheetPlank",
  function (ptStart, pointBeforeEnd, ptEnd, renderArrowHead) {
 if (!this.g3d.setC (this.colix)) return;
 if (this.corners == null) {
@@ -132,11 +132,11 @@ if (this.vtemp.lengthSquared () == 0) return;
 this.buildBox (this.ptC, this.vW, this.vH, this.vtemp);
 this.renderPart (J.renderbio.RocketRenderer.boxFaces);
 }, "JU.P3,JU.P3,JU.P3,~B");
-Clazz.defineMethod (c$, "setBox", 
+Clazz.defineMethod (c$, "setBox",
  function (w, h, pt) {
 (this.proteinstructurePending).setBox (w, h, pt, this.vW, this.vH, this.ptC, this.mad / 1000);
 }, "~N,~N,JU.P3");
-Clazz.defineMethod (c$, "buildBox", 
+Clazz.defineMethod (c$, "buildBox",
  function (pointCorner, scaledWidthVector, scaledHeightVector, lengthVector) {
 for (var i = 8; --i >= 0; ) {
 var corner = this.corners[i];
@@ -146,7 +146,7 @@ if ((i & 2) != 0) corner.add (scaledHeightVector);
 if ((i & 4) != 0) corner.add (lengthVector);
 }
 }, "JU.P3,JU.V3,JU.V3,JU.V3");
-Clazz.defineMethod (c$, "renderPart", 
+Clazz.defineMethod (c$, "renderPart",
  function (planes) {
 if (this.rr.exportType == 1) {
 if (this.meshSurface == null) {
