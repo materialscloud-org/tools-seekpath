@@ -16,6 +16,7 @@ jobs:
 
       - name: Install python dependencies (prospector, etc.)
         run: |
+          pip install -r requirements.txt
           pip install -r dev-requirements.txt
           pip freeze
 
@@ -43,6 +44,7 @@ jobs:
 
       - name: Install python dependencies (pytest, etc.)
         run: |
+          pip install -r requirements.txt
           pip install -r dev-requirements.txt
           pip freeze
 
