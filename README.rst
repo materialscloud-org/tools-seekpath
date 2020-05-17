@@ -68,7 +68,8 @@ Docker images are automatically built and hosted on `DockerHub under the reposit
 
 If you want to run locally the latest version, you can execute::
 
-  docker run -p 8092:80 materialscloud/tools-seekpath
+  docker pull materialscloud/tools-seekpath:latest
+  docker run -p 8092:80 materialscloud/tools-seekpath:latest
 
 and then connect to ``http://localhost:8092`` with your browser.
 
