@@ -18,7 +18,7 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install -r dev-requirements.txt
-          pip install -e git+https://github.com/materialscloud-org/tools-barebone.git@develop#egg=tools_barebone
+          pip install -r barebone-requirements.txt
           pip freeze
 
       - name: Run pre-commit
