@@ -25,4 +25,4 @@ COPY ./user_views/ /home/app/code/webservice/user_views/
 # Set proper permissions on files just copied
 RUN chown -R app:app /home/app/code/webservice/
 
-
+EXPOSE 80
