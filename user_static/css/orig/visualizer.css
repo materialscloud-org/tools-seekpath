@@ -160,6 +160,11 @@ height: 100%
     overflow: hidden;
 }
 
+.structure-container {
+  height: 300px;
+}
+
+
 @media screen and (max-width: 900px) {
     #structure {
         height: 300px;

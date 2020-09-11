@@ -24,5 +24,8 @@ COPY ./user_views/ /home/app/code/webservice/user_views/
 
 # Set proper permissions on files just copied
 RUN chown -R app:app /home/app/code/webservice/
+# Make sure files are readable by everybody (and executable where appropriate)
+# (e.g. to avoid unreadable folders by apache etc.)
+RUN chmod -R a+rX /home/app/code/webservice/
 
 
