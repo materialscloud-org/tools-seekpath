@@ -17,7 +17,7 @@ from tools_barebone import logme, get_tools_barebone_version
 from tools_barebone.structure_importers import get_structure_tuple, UnknownFormatError
 
 # Version of tools-seekpath
-__version__ = "20.05.0"
+__version__ = "20.09.1"
 
 
 class FlaskRedirectException(Exception):
