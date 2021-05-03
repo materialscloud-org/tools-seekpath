@@ -14,3 +14,13 @@ additional_accordion_entries:
     template_page: definitions.html
 
 about_section_title: "What SeeK-path does"
+
+upload_structure_block_order:
+  - qeinp-qetools
+  - cif-ase
+  - cif-pymatgen
+  - xyz-ase
+  - xsf-ase
+  - vasp-ase
+  - castep-ase
+  - pdb-ase
