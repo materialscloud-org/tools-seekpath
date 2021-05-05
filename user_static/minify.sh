@@ -1,7 +1,7 @@
 #!/bin/bash
 ## To install:
 ## npm install clean-css-cli -g
-## npm install uglifyjs -g
+## npm install uglify-js -g
 
 
 for cssfile in css/orig/*.css
