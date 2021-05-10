@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ../user_static
+cd user_static
 ./minify.sh
 cd ..
 
