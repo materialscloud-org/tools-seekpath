@@ -1,1 +1,1 @@
-tools-barebone==1.1.3
+tools-barebone==1.2.0
