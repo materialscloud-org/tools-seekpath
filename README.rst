@@ -77,6 +77,6 @@ and then connect to ``http://localhost:8092`` with your browser.
 .. _JOURNAL LINK: http://dx.doi.org/10.1016/j.commatsci.2016.10.015
 .. _arXiv link: https://arxiv.org/abs/1602.06402
 .. _spglib: http://atztogo.github.io/spglib/
-.. _Materials Cloud: http://www.materialscloud.org/tools/seekpath/
+.. _Materials Cloud: https://www.materialscloud.org/tools/seekpath
 .. _seekpath: http://www.github.com/giovannipizzi/seekpath/
 .. _DockerHub under the repository materialscloud/tools-seekpath: https://hub.docker.com/repository/docker/materialscloud/tools-seekpath
