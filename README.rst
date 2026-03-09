@@ -2,6 +2,10 @@
 tools-seekpath
 ##############
 
+.. image:: https://raw.githubusercontent.com/materialscloud-org/mcloud-badge/main/badges/img/mcloud_badge_tools.svg
+   :target: https://www.materialscloud.org/work/tools/seekpath
+   :alt: Materials Cloud Tool Seekpath
+
 In this repository we provide the code to deploy an online service for
 the visualization of the band paths and primitive cells of the crystal
 structures. A live demo is currently hosted on the `Materials Cloud`_ web portal.
