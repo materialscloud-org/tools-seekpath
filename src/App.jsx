@@ -6,11 +6,8 @@ import InfoAccordions from "./AccordionContent";
 import CrystalUpload from "./FileUpload";
 import SeekPath from "./SeekPath";
 
-import { McAppHeader, McShareButton, toStructureShare } from "mc-react-library";
-
-// kv-store for share links. .env.development points `pnpm dev` at the dev
-// store; unset (production builds) means the Materials Cloud production store.
-const KV_URL = import.meta.env.VITE_KV_URL;
+// Current policy is no mc-keyvalues-stores allowed in apps
+import { McAppHeader /* , McShareButton, toStructureShare */ } from "mc-react-library";
 
 function App() {
   // { structure, fileName, format, shareId? }
@@ -42,7 +39,7 @@ function App() {
             <div className="mx-auto max-w-4xl px-6 py-8 sm:px-10">
               <div className="space-y-3">
                 <InfoAccordions />
-                <CrystalUpload kvUrl={KV_URL} onStructureParsed={setLoaded} />
+                <CrystalUpload onStructureParsed={setLoaded} />
               </div>
             </div>
 
@@ -51,13 +48,13 @@ function App() {
               className="max-w-6xl mx-auto py-4"
             />
 
+            {/* Current policy is no mc-keyvalues-stores allowed in apps
             <McShareButton
-              kvUrl={KV_URL}
               data={loaded}
               toDocument={toStructureShare}
               shareId={loaded?.shareId}
               className="mx-auto max-w-6xl px-6 sm:px-10"
-            />
+            /> */}
           </div>
         </div>
       </main>

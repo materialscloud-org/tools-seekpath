@@ -11,10 +11,19 @@ pnpm install
 pnpm dev     # http://localhost:5173
 pnpm build   # static site in dist/
 pnpm lint
+pnpm test    # k-paths vs Python seekpath (tests/)
 ```
 
-## Share links
+## Tests
 
-Share links are stored on the Materials Cloud kv-store at `VITE_KV_URL`.
-`pnpm dev` uses the dev store (`.env.development`); builds use the
-production store. The deployed origin must be on the store's allow-list.
+`tests/seekpath.test.js` compares the k-paths the app computes (matsci-parse's
+`getExplicitKPath`, with the app's options) with those of Python seekpath, on
+one structure per space group (1-230) and the app's examples (one per
+extended Bravais lattice), with and without time reversal: space group,
+Bravais lattice, path, high-symmetry points, primitive and reciprocal cells,
+and the explicit k-points (labels and count).
+
+Python seekpath runs at the start of the test, on the structures it makes
+(`tests/reference/seekpath_reference.py`), so `pnpm test` needs
+[uv](https://docs.astral.sh/uv/); the first run installs its environment
+(the seekpath version is pinned in `tests/reference/pyproject.toml`).

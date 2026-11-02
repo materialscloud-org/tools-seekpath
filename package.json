@@ -7,13 +7,14 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
+    "test": "vitest run",
     "preview": "vite preview"
   },
   "dependencies": {
     "brillouinzone-visualizer": "0.4.4",
-    "matsci-parse": "0.18.15",
+    "matsci-parse": "0.18.20",
     "mc-react-header": "0.7.2",
-    "mc-react-library": "^0.7.8",
+    "mc-react-library": "^0.7.11",
     "mc-react-structure-visualizer": "^0.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -23,6 +24,7 @@
     "@vitejs/plugin-react": "^5.0.0",
     "oxlint": "^1.89.0",
     "tailwindcss": "^4.1.16",
-    "vite": "^7.1.2"
+    "vite": "^7.1.2",
+    "vitest": "^5.0.5"
   }
 }

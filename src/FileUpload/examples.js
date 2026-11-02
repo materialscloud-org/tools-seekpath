@@ -1,19 +1,6 @@
 // Example structures loaded on click from /public/examples.
 export const examples = [
   {
-    symbol: "aP2",
-    label: "aP2 · Triclinic P",
-    family: "Triclinic",
-    url: "/examples/aP2/POSCAR",
-  },
-  {
-    symbol: "aP3",
-    label: "aP3 · Triclinic P",
-    family: "Triclinic",
-    url: "/examples/aP3/POSCAR",
-  },
-
-  {
     symbol: "mC1",
     label: "mC1 · Monoclinic C",
     family: "Monoclinic",
@@ -37,7 +24,6 @@ export const examples = [
     family: "Monoclinic",
     url: "/examples/mP1/POSCAR",
   },
-
   {
     symbol: "oA1",
     label: "oA1 · Orthorhombic A",
@@ -178,5 +164,17 @@ export const examples = [
     label: "cF2 · Cubic F",
     family: "Cubic",
     url: "/examples/cF2/POSCAR",
+  },
+  {
+    symbol: "aP2",
+    label: "aP2 · Triclinic P",
+    family: "Triclinic",
+    url: "/examples/aP2/POSCAR",
+  },
+  {
+    symbol: "aP3",
+    label: "aP3 · Triclinic P",
+    family: "Triclinic",
+    url: "/examples/aP3/POSCAR",
   },
 ];
