@@ -12,14 +12,14 @@ importers:
         specifier: 0.4.4
         version: 0.4.4
       matsci-parse:
-        specifier: 0.18.20
-        version: 0.18.20
+        specifier: 0.18.21
+        version: 0.18.21
       mc-react-header:
         specifier: 0.7.2
         version: 0.7.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       mc-react-library:
         specifier: ^0.7.11
-        version: 0.7.11(matsci-parse@0.18.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 0.7.11(matsci-parse@0.18.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       mc-react-structure-visualizer:
         specifier: ^0.11.1
         version: 0.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -939,8 +939,8 @@ packages:
     engines: {node: '>= 18'}
     hasBin: true
 
-  matsci-parse@0.18.20:
-    resolution: {integrity: sha512-xrRN7jnvAjWyaJgnTJR8CVE09f04jeTNavnf8TepCsngUN+Ye49kW2MIF4hZ7GqxamHvV3l34t1YWEnBpNbUzQ==}
+  matsci-parse@0.18.21:
+    resolution: {integrity: sha512-u4TPeLivvmG+gOCs4eV61+wUzxkpdkGGs4gUJuroYAMs4cZsIELXqSJo16CoUvzbkf5wZzNJxeC8EEoxkPbrEw==}
 
   matsci-parse@0.8.4:
     resolution: {integrity: sha512-mQ2KF8XEfHPJWfJoF2I3O7QRUHZs/Q4Gzz9D5tahqeXVCauiiSh1VgCMi6SzXI1dyS7k2nyb0v2/0v7VPZZhWw==}
@@ -1849,7 +1849,7 @@ snapshots:
       tiny-emitter: 2.1.0
       typed-function: 4.2.2
 
-  matsci-parse@0.18.20:
+  matsci-parse@0.18.21:
     dependencies:
       '@spglib/moyo-wasm': 0.21.0
       txml: 6.0.3
@@ -1866,9 +1866,9 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  mc-react-library@0.7.11(matsci-parse@0.18.20)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  mc-react-library@0.7.11(matsci-parse@0.18.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
-      matsci-parse: 0.18.20
+      matsci-parse: 0.18.21
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createBZVisualizer } from "brillouinzone-visualizer";
 import StructureVisualizer from "mc-react-structure-visualizer";
-import { cartesian } from "matsci-parse";
+import { CRYSTAL_MAX_BAND_LINES, cartesian } from "matsci-parse";
 
 import { formatPath, formatSpaceGroupSymbol, prettify } from "../formatting";
 
@@ -352,6 +352,14 @@ export default function SeekPath({ structure, className = "" }) {
                 setOutputsOpen((prev) => (prev === "pw" ? null : "pw"))
               }
             />
+            {data.kpath.segments.length > CRYSTAL_MAX_BAND_LINES && (
+              <p className="rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">
+                This path has {data.kpath.segments.length} segments, and
+                CRYSTAL&apos;s BAND reads at most {CRYSTAL_MAX_BAND_LINES}: the
+                CRYSTAL file below has them all, with a warning in its title.
+                Assuming time-reversal symmetry halves the path.
+              </p>
+            )}
             <McCopyAccordion
               title="CRYSTAL D3 BAND"
               text={crystalD3Text}
