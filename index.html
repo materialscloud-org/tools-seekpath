@@ -2,11 +2,59 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/seekpath.png" />
+    <link rel="icon" type="image/png" href="/seekpath.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SeeK-path: the k-path finder and visualizer</title>
+    <meta
+      name="description"
+      content="Find the high-symmetry k-path of a crystal for band structure calculations, visualize its Brillouin zone, and get inputs for VASP, Quantum ESPRESSO, CRYSTAL and CP2K. Based on the HPKOT paper (Hinuma et al., Comp. Mat. Sci. 2017)."
+    />
+    <link rel="canonical" href="https://seekpath.materialscloud.io/" />
+
+    <!-- Link previews (Slack, Mastodon, LinkedIn...) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Materials Cloud" />
+    <meta
+      property="og:title"
+      content="SeeK-path: the k-path finder and visualizer"
+    />
+    <meta
+      property="og:description"
+      content="High-symmetry k-paths and Brillouin zones of crystals, with inputs for VASP, Quantum ESPRESSO, CRYSTAL and CP2K."
+    />
+    <meta property="og:url" content="https://seekpath.materialscloud.io/" />
+    <meta
+      property="og:image"
+      content="https://seekpath.materialscloud.io/seekpath.png"
+    />
+    <meta name="twitter:card" content="summary" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "SeeK-path",
+        "url": "https://seekpath.materialscloud.io/",
+        "applicationCategory": "ScientificApplication",
+        "operatingSystem": "Any (web browser)",
+        "isAccessibleForFree": true,
+        "description": "Finds the high-symmetry k-path of a crystal structure for band structure calculations and visualizes its Brillouin zone.",
+        "provider": {
+          "@type": "Organization",
+          "name": "Materials Cloud",
+          "url": "https://www.materialscloud.org"
+        },
+        "citation": "https://doi.org/10.1016/j.commatsci.2016.10.015"
+      }
+    </script>
   </head>
   <body>
+    <noscript>
+      SeeK-path finds the high-symmetry k-path of a crystal for band structure
+      calculations and visualizes its Brillouin zone. This tool needs
+      JavaScript to run.
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
