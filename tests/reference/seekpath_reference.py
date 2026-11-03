@@ -7,7 +7,8 @@ the app's options, on
   with generic parameters for its crystal system, so that the structure has
   exactly that space group (one element alone would add symmetry: one atom,
   or a pair, is its own inversion centre);
-- the app's examples (public/examples), one per extended Bravais lattice
+- the app's examples (public/examples), per extended Bravais lattice with
+  and without inversion
   (the variants depend on cell ratios a single cell per group cannot cover).
 
 each with and without time reversal. Prints them, with the structures, as
@@ -125,8 +126,9 @@ def main():
         if found != number:
             raise SystemExit(f"space group {number}: the structure has space group {found}")
         entries.append(e)
-    for poscar in sorted(EXAMPLES.glob("*/POSCAR")):
-        entries.append(entry(f"example {poscar.parent.name}", Poscar.from_file(poscar).structure))
+    for poscar in sorted(EXAMPLES.glob("*/POSCAR_*")):
+        name = f"{poscar.parent.name} {poscar.name.removeprefix('POSCAR_')}"
+        entries.append(entry(f"example {name}", Poscar.from_file(poscar).structure))
 
     meta = {
         "seekpath": version("seekpath"),

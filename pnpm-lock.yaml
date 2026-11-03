@@ -18,8 +18,8 @@ importers:
         specifier: 0.7.2
         version: 0.7.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       mc-react-library:
-        specifier: ^0.7.11
-        version: 0.7.11(matsci-parse@0.18.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^0.7.12
+        version: 0.7.12(matsci-parse@0.18.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       mc-react-structure-visualizer:
         specifier: ^0.11.1
         version: 0.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -954,8 +954,8 @@ packages:
       react: ^18.2.0
       react-dom: ^18.2.0
 
-  mc-react-library@0.7.11:
-    resolution: {integrity: sha512-v8r9d0aBeO997A7zqFpqXeiIRF2EDzcZt3y9+R1s0UybLyyMFtB0AhxNAvyVAImSB5D/pFZgJIRxAH3yzfhnTw==}
+  mc-react-library@0.7.12:
+    resolution: {integrity: sha512-t6Jsm/CowO9v6IwIudhLIQAA16tdNqg0WTRftdCCcDx9hjWGjNqxncMNN+UQYs2CdZA+Pq6dbntpJBmK6Y4E7A==}
     peerDependencies:
       matsci-parse: '>=0.18.9'
       react: ^18.2.0
@@ -1866,7 +1866,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  mc-react-library@0.7.11(matsci-parse@0.18.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  mc-react-library@0.7.12(matsci-parse@0.18.21)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       matsci-parse: 0.18.21
       react: 18.3.1

@@ -12,6 +12,7 @@ import {
   McResults,
 } from "mc-react-library";
 
+import { BRAVAIS_HASH } from "../BravaisModal";
 import CoordinatesTable from "./CoordinatesTable";
 import { computeKPath, downloads } from "./downloads";
 
@@ -154,7 +155,13 @@ export default function SeekPath({ structure, className = "" }) {
                       <span className="text-slate-500">
                         ({data.has_inversion_symmetry ? "with" : "without"}{" "}
                         inversion symmetry)
-                      </span>
+                      </span>{" "}
+                      <a
+                        href={BRAVAIS_HASH}
+                        className="text-blue-600 hover:underline"
+                      >
+                        What is this?
+                      </a>
                     </InfoRow>
                     <InfoRow label="Space group">
                       {formatSpaceGroupSymbol(data.spacegroup_international)}{" "}

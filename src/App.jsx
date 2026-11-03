@@ -3,11 +3,14 @@ import MaterialsCloudHeader from "mc-react-header";
 import { useState } from "react";
 
 import InfoAccordions from "./AccordionContent";
+import BravaisModal from "./BravaisModal";
 import CrystalUpload from "./FileUpload";
 import SeekPath from "./SeekPath";
 
 // Current policy is no mc-keyvalues-stores allowed in apps
-import { McAppHeader /* , McShareButton, toStructureShare */ } from "mc-react-library";
+import {
+  McAppHeader /* , McShareButton, toStructureShare */,
+} from "mc-react-library";
 
 function App() {
   // { structure, fileName, format, shareId? }
@@ -34,9 +37,11 @@ function App() {
               title="SeeK-path: the k-path finder and visualizer"
               logo={`${import.meta.env.BASE_URL}seekpath.png`}
               logoAlt="SeeK-path logo"
-              dois={[{ doi: "10.1016/j.commatsci.2016.10.015", label: "Paper DOI" }]}
+              dois={[
+                { doi: "10.1016/j.commatsci.2016.10.015", label: "Paper DOI" },
+              ]}
             />
-            <div className="mx-auto max-w-4xl px-6 py-8 sm:px-10">
+            <div className="mx-auto max-w-5xl px-6 py-8 sm:px-10">
               <div className="space-y-3">
                 <InfoAccordions />
                 <CrystalUpload onStructureParsed={setLoaded} />
@@ -57,6 +62,7 @@ function App() {
             /> */}
           </div>
         </div>
+        <BravaisModal />
       </main>
     </>
   );
