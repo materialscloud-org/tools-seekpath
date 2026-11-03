@@ -115,6 +115,7 @@ export default function SeekPath({ structure, className = "" }) {
   const vaspKpointsText = files?.kpoints ?? "";
   const crystalD3Text = files?.crystalD3 ?? "";
   const pwInputText = files?.pw ?? "";
+  const jsonText = files?.json ?? "";
 
   return (
     <div className={`space-y-3 px-2 sm:px-4 ${className}`}>
@@ -374,6 +375,15 @@ export default function SeekPath({ structure, className = "" }) {
               open={outputsOpen === "d3"}
               onToggle={() =>
                 setOutputsOpen((prev) => (prev === "d3" ? null : "d3"))
+              }
+            />
+            <McCopyAccordion
+              title="Raw data (JSON)"
+              text={jsonText}
+              filename="seekpath.json"
+              open={outputsOpen === "json"}
+              onToggle={() =>
+                setOutputsOpen((prev) => (prev === "json" ? null : "json"))
               }
             />
           </>

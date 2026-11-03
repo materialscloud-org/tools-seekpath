@@ -1,9 +1,10 @@
 // The k-path of a structure as the app computes it, and its downloads
-// (VASP KPOINTS, Quantum ESPRESSO pw.x input, CRYSTAL D3 BAND). Plain
+// (VASP KPOINTS, Quantum ESPRESSO pw.x input, CRYSTAL D3 BAND, raw JSON). Plain
 // JavaScript, outside the component: test-suite runs it on MC3D and compares
 // the files with those of the legacy tools-seekpath app.
 
 import {
+  cartesian,
   getBrillouinZoneData,
   getExplicitKPath,
   primitiveStructure,
@@ -37,5 +38,30 @@ export function downloads({ data, primitive }, pointsPerLine) {
       kpoints: { ...data.kpath, density: pointsPerLine },
     }),
     crystalD3: toCrystalD3(data.kpath, "SeeK-path band path", pointsPerLine),
+    json: JSON.stringify(rawData({ data, primitive }), null, 2),
+  };
+}
+
+/**
+ * The legacy app's "Raw data (JSON)": the reciprocal vectors, the k-points
+ * (absolute and relative) and the path, with seekpath's primitive cell.
+ */
+function rawData({ data, primitive }) {
+  const basis = primitive.lattice.basis.data;
+  return {
+    b1: data.b1,
+    b2: data.b2,
+    b3: data.b3,
+    kpoints: data.kpoints,
+    kpoints_rel: data.kpoints_rel,
+    path: data.path,
+    primitive_lattice: [0, 1, 2].map((i) =>
+      Array.from(basis.slice(3 * i, 3 * i + 3)),
+    ),
+    primitive_positions: primitive.sites.map((site) => [...site.frac]),
+    primitive_positions_cartesian: primitive.sites.map((site) => [
+      ...cartesian(primitive.lattice, site),
+    ]),
+    primitive_symbols: primitive.sites.map((site) => site.species.symbol),
   };
 }
