@@ -354,7 +354,7 @@ export default function SeekPath({ structure, className = "" }) {
               }
             />
             <McCopyAccordion
-              title="CP2K band structure"
+              title="CP2K input"
               text={cp2kText}
               filename="cp2k_bands.inp"
               open={outputsOpen === "cp2k"}

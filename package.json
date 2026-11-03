@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "brillouinzone-visualizer": "0.4.4",
-    "matsci-parse": "0.18.21",
+    "matsci-parse": "0.18.23",
     "mc-react-header": "0.7.2",
     "mc-react-library": "^0.7.12",
     "mc-react-structure-visualizer": "^0.11.1",
