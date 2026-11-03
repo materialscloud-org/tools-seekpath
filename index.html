@@ -11,6 +11,21 @@
     />
     <link rel="canonical" href="https://seekpath.materialscloud.io/" />
 
+    <!-- Plausible analytics -->
+    <script type="text/javascript">
+      var header = document.getElementsByTagName("head")[0];
+      var plausible = document.createElement("script");
+      var domain_name = window.location.hostname;
+      var rollup_name = "plausible-rollup.materialscloud.org";
+
+      plausible.async = "";
+      plausible.defer = "";
+      plausible.dataset["domain"] = domain_name + "," + rollup_name;
+      plausible.src = "https://plausible.io/js/plausible.js";
+      header.appendChild(plausible);
+    </script>
+    <!-- end Plausible analytics -->
+
     <!-- Link previews (Slack, Mastodon, LinkedIn...) -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Materials Cloud" />
@@ -52,8 +67,8 @@
   <body>
     <noscript>
       SeeK-path finds the high-symmetry k-path of a crystal for band structure
-      calculations and visualizes its Brillouin zone. This tool needs
-      JavaScript to run.
+      calculations and visualizes its Brillouin zone. This tool needs JavaScript
+      to run.
     </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
