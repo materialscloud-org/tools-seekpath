@@ -113,6 +113,7 @@ export default function SeekPath({ structure, className = "" }) {
   const files =
     data && primitive ? downloads({ data, primitive }, pointsPerLine) : null;
   const vaspKpointsText = files?.kpoints ?? "";
+  const vaspHybridText = files?.kpointsHybrid ?? "";
   const crystalD3Text = files?.crystalD3 ?? "";
   const pwInputText = files?.pw ?? "";
   const jsonText = files?.json ?? "";
@@ -343,15 +344,6 @@ export default function SeekPath({ structure, className = "" }) {
               </InfoRow>
             </dl>
             <McCopyAccordion
-              title="KPOINTS (VASP)"
-              text={vaspKpointsText}
-              filename="KPOINTS"
-              open={outputsOpen === "vasp"}
-              onToggle={() =>
-                setOutputsOpen((prev) => (prev === "vasp" ? null : "vasp"))
-              }
-            />
-            <McCopyAccordion
               title="Quantum ESPRESSO pw.x input"
               text={pwInputText}
               filename="PW.in"
@@ -360,6 +352,7 @@ export default function SeekPath({ structure, className = "" }) {
                 setOutputsOpen((prev) => (prev === "pw" ? null : "pw"))
               }
             />
+
             {data.kpath.segments.length > CRYSTAL_MAX_BAND_LINES && (
               <p className="rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">
                 This path has {data.kpath.segments.length} segments, and
@@ -368,6 +361,7 @@ export default function SeekPath({ structure, className = "" }) {
                 Assuming time-reversal symmetry halves the path.
               </p>
             )}
+
             <McCopyAccordion
               title="CRYSTAL D3 BAND"
               text={crystalD3Text}
@@ -377,6 +371,28 @@ export default function SeekPath({ structure, className = "" }) {
                 setOutputsOpen((prev) => (prev === "d3" ? null : "d3"))
               }
             />
+
+            <McCopyAccordion
+              title="VASP KPOINTS for LDA/GGA"
+              text={vaspKpointsText}
+              filename="KPOINTS"
+              open={outputsOpen === "vasp"}
+              onToggle={() =>
+                setOutputsOpen((prev) => (prev === "vasp" ? null : "vasp"))
+              }
+            />
+            <McCopyAccordion
+              title="VASP KPOINTS for LDA/GGA/Hybrid/GW"
+              text={vaspHybridText}
+              filename="KPOINTS"
+              open={outputsOpen === "vaspHybrid"}
+              onToggle={() =>
+                setOutputsOpen((prev) =>
+                  prev === "vaspHybrid" ? null : "vaspHybrid",
+                )
+              }
+            />
+
             <McCopyAccordion
               title="Raw data (JSON)"
               text={jsonText}

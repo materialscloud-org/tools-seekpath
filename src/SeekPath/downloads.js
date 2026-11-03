@@ -1,5 +1,6 @@
 // The k-path of a structure as the app computes it, and its downloads
-// (VASP KPOINTS, Quantum ESPRESSO pw.x input, CRYSTAL D3 BAND, raw JSON). Plain
+// (VASP KPOINTS, line mode and for hybrids/GW, Quantum ESPRESSO pw.x input,
+// CRYSTAL D3 BAND, raw JSON). Plain
 // JavaScript, outside the component: test-suite runs it on MC3D and compares
 // the files with those of the legacy tools-seekpath app.
 
@@ -31,6 +32,7 @@ export async function computeKPath(structure, options) {
 export function downloads({ data, primitive }, pointsPerLine) {
   return {
     kpoints: toKPOINTS(data.kpath, pointsPerLine),
+    kpointsHybrid: vaspHybridKPOINTS(data.explicit_kpoints_rel),
     // The k-points are in the reciprocal crystal coordinates of seekpath's
     // primitive cell, so the input is that cell
     pw: toPW(primitive, {
@@ -40,6 +42,32 @@ export function downloads({ data, primitive }, pointsPerLine) {
     crystalD3: toCrystalD3(data.kpath, "SeeK-path band path", pointsPerLine),
     json: JSON.stringify(rawData({ data, primitive }), null, 2),
   };
+}
+
+const fmt = (x) => x.toFixed(10).padStart(16);
+
+/**
+ * The legacy app's KPOINTS for hybrids and GW: the k-points of the
+ * self-consistent run (IBZKPT, pasted by the user) followed by the explicit
+ * path with zero weight.
+ */
+function vaspHybridKPOINTS(explicitPoints) {
+  const kpointsLength = explicitPoints.length;
+
+  // set all points to zero Weight
+  const zeroWeightKpoints = explicitPoints.map(
+    (k) => `${k.map(fmt).join(" ")} 0`,
+  );
+
+  return [
+    "Explicit k-points list for band structure",
+    `<...>  !Total number of k-points = ${kpointsLength} + No. of k-points from IBZKPT file`,
+    "reciprocal",
+    "<...Copy the kpoints coordinates block from IBZKPT here...>",
+    "",
+    "",
+    ...zeroWeightKpoints,
+  ].join("\n");
 }
 
 /**
