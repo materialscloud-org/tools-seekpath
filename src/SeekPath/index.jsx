@@ -116,6 +116,7 @@ export default function SeekPath({ structure, className = "" }) {
   const vaspHybridText = files?.kpointsHybrid ?? "";
   const crystalD3Text = files?.crystalD3 ?? "";
   const pwInputText = files?.pw ?? "";
+  const cp2kText = files?.cp2k ?? "";
   const jsonText = files?.json ?? "";
 
   return (
@@ -352,6 +353,15 @@ export default function SeekPath({ structure, className = "" }) {
                 setOutputsOpen((prev) => (prev === "pw" ? null : "pw"))
               }
             />
+            <McCopyAccordion
+              title="CP2K band structure"
+              text={cp2kText}
+              filename="cp2k_bands.inp"
+              open={outputsOpen === "cp2k"}
+              onToggle={() =>
+                setOutputsOpen((prev) => (prev === "cp2k" ? null : "cp2k"))
+              }
+            />
 
             {data.kpath.segments.length > CRYSTAL_MAX_BAND_LINES && (
               <p className="rounded-lg bg-amber-50 px-3 py-2 text-sm text-amber-800">
@@ -361,7 +371,6 @@ export default function SeekPath({ structure, className = "" }) {
                 Assuming time-reversal symmetry halves the path.
               </p>
             )}
-
             <McCopyAccordion
               title="CRYSTAL D3 BAND"
               text={crystalD3Text}
@@ -371,7 +380,6 @@ export default function SeekPath({ structure, className = "" }) {
                 setOutputsOpen((prev) => (prev === "d3" ? null : "d3"))
               }
             />
-
             <McCopyAccordion
               title="VASP KPOINTS for LDA/GGA"
               text={vaspKpointsText}
@@ -392,7 +400,6 @@ export default function SeekPath({ structure, className = "" }) {
                 )
               }
             />
-
             <McCopyAccordion
               title="Raw data (JSON)"
               text={jsonText}
