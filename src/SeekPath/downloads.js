@@ -27,7 +27,7 @@ export async function computeKPath(structure, options) {
 export function downloads({ data, primitive }, pointsPerLine) {
   return {
     kpoints: toKPOINTS(data.kpath, pointsPerLine),
-    kpointsHybrid: vaspHybridKPOINTS(data.explicit_kpoints_rel),
+    kpointsHybrid: vaspHybridKPOINTS(linePoints(data, pointsPerLine)),
     // The k-points are in the reciprocal crystal coordinates of seekpath's
     // primitive cell, so the input is that cell
     pw: toPW(primitive, {
@@ -35,7 +35,7 @@ export function downloads({ data, primitive }, pointsPerLine) {
       kpoints: { ...data.kpath, density: pointsPerLine },
     }),
     crystalD3: toCrystalD3(data.kpath, "SeeK-path band path", pointsPerLine),
-    cp2k: cp2kInput({ data, primitive }),
+    cp2k: cp2kInput({ data, primitive }, pointsPerLine),
     json: JSON.stringify(rawData({ data, primitive }), null, 2),
   };
 }
@@ -43,9 +43,26 @@ export function downloads({ data, primitive }, pointsPerLine) {
 const fmt = (x) => x.toFixed(10).padStart(16);
 
 /**
+ * The k-points of the line-mode downloads (as VASP generates them):
+ * `pointsPerLine` evenly spaced points on each segment of the path, both
+ * ends included, in reciprocal crystal coordinates.
+ */
+export function linePoints(data, pointsPerLine) {
+  const n = Math.max(pointsPerLine, 2);
+  return data.path.flatMap(([start, end]) => {
+    const a = data.kpoints_rel[start];
+    const b = data.kpoints_rel[end];
+    return Array.from({ length: n }, (_, i) =>
+      Array.from({ length: 3 }, (_, c) => a[c] + ((b[c] - a[c]) * i) / (n - 1)),
+    );
+  });
+}
+
+/**
  * The legacy app's KPOINTS for hybrids and GW: the k-points of the
  * self-consistent run (IBZKPT, pasted by the user) followed by the explicit
- * path with zero weight.
+ * path with zero weight (here the line-mode points, where the legacy app
+ * used seekpath's explicit k-points).
  */
 function vaspHybridKPOINTS(explicitPoints) {
   const kpointsLength = explicitPoints.length;
@@ -70,9 +87,10 @@ function vaspHybridKPOINTS(explicitPoints) {
  * The legacy app's CP2K input (get_cp2k), the same text: a template with the
  * band path (a KPOINT_SET per segment) and seekpath's primitive cell and
  * atoms (Cartesian), placeholders <...> for the rest. The KIND blocks are in
- * the order the elements first appear (the legacy app's order was arbitrary).
+ * the order the elements first appear (the legacy app's order was arbitrary),
+ * and NPOINTS is `pointsPerLine` (the legacy app's was always 10).
  */
-function cp2kInput({ data, primitive }) {
+function cp2kInput({ data, primitive }, pointsPerLine) {
   const point = (label) =>
     `               SPECIAL_POINT ${label.padStart(5)}${data.kpoints_rel[label].map((c) => ` ${fmt(c)}`).join("")}`;
   const basis = primitive.lattice.basis.data;
@@ -108,7 +126,7 @@ function cp2kInput({ data, primitive }) {
       "               UNITS B_VECTOR",
       point(start),
       point(end),
-      "               NPOINTS 10",
+      `               NPOINTS ${pointsPerLine}`,
       "            &END KPOINT_SET",
     ]),
     "            ",

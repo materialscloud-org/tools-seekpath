@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      brillouinzone-visualizer:
-        specifier: 0.4.4
-        version: 0.4.4
+      bz-visualizer:
+        specifier: file:vendor/bz-visualizer-0.0.1.tgz
+        version: file:vendor/bz-visualizer-0.0.1.tgz(react@18.3.1)(three@0.187.0)
       matsci-parse:
         specifier: 0.18.23
         version: 0.18.23
@@ -29,6 +29,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
+      three:
+        specifier: ^0.187.0
+        version: 0.187.0
     devDependencies:
       '@tailwindcss/vite':
         specifier: ^4.1.16
@@ -734,13 +737,20 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  brillouinzone-visualizer@0.4.4:
-    resolution: {integrity: sha512-a7jTXivF5UPhE26+K8+c4d4+2WnpU9hPpZCs7UHkd21gG/vJPVPoN59IzTalkcxPGALN3Eg76B4yh9IYMlCOoQ==}
-
   browserslist@4.29.0:
     resolution: {integrity: sha512-3GSvyjvDI4Dur1Meg2BekJquu5uF+9R9a1+5M1Mde192eZoXbeXjzgOsgqPS2V8D5wrrip0gR5Hf/GhWQ9ZzaA==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
+
+  bz-visualizer@file:vendor/bz-visualizer-0.0.1.tgz:
+    resolution: {integrity: sha512-Pa5UbE4Lh8brus2SyQ1Fz5gMIkLMmerhb5AUY+1e1BqGfA2r5lC3d2XID1WDlLNyJpCV+Nff2fFts1VjoDUtqQ==, tarball: file:vendor/bz-visualizer-0.0.1.tgz}
+    version: 0.0.1
+    peerDependencies:
+      react: '>=18'
+      three: '>=0.170.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   caniuse-lite@1.0.30001810:
     resolution: {integrity: sha512-TITQPUkaz+aVk5GL6NhOdwk1aEaNTSDPsGFWrTuhKGtjTF70jL/Oht2W4c6rXUe5fu7Ie19VIahAXHIIiWWNeg==}
@@ -1058,8 +1068,8 @@ packages:
     resolution: {integrity: sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==}
     engines: {node: '>=6'}
 
-  three@0.180.0:
-    resolution: {integrity: sha512-o+qycAMZrh+TsE01GqWUxUIKR1AL0S8pq7zDkYOQw8GqfX8b8VoCKYUoHbhiX5j+7hr8XsuHDVU6+gkQJQKg9w==}
+  three@0.187.0:
+    resolution: {integrity: sha512-Qiu7R+Cmh8CstZsY1uJOSWnVlfo7ZtNLV7mF8Jltk3LB3AtDu9cRZlcnRKkAk8Y4z6KKw35z7Y7Urd7jWY8etA==}
 
   tiny-emitter@2.1.0:
     resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==}
@@ -1671,10 +1681,6 @@ snapshots:
 
   baseline-browser-mapping@2.11.25: {}
 
-  brillouinzone-visualizer@0.4.4:
-    dependencies:
-      three: 0.180.0
-
   browserslist@4.29.0:
     dependencies:
       baseline-browser-mapping: 2.11.25
@@ -1682,6 +1688,12 @@ snapshots:
       electron-to-chromium: 1.5.433
       node-releases: 2.0.56
       update-browserslist-db: 1.3.3(browserslist@4.29.0)
+
+  bz-visualizer@file:vendor/bz-visualizer-0.0.1.tgz(react@18.3.1)(three@0.187.0):
+    dependencies:
+      three: 0.187.0
+    optionalDependencies:
+      react: 18.3.1
 
   caniuse-lite@1.0.30001810: {}
 
@@ -1989,7 +2001,7 @@ snapshots:
 
   tapable@2.3.3: {}
 
-  three@0.180.0: {}
+  three@0.187.0: {}
 
   tiny-emitter@2.1.0: {}
 

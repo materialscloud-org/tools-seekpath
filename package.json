@@ -11,13 +11,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "brillouinzone-visualizer": "0.4.4",
+    "bz-visualizer": "file:vendor/bz-visualizer-0.0.1.tgz",
     "matsci-parse": "0.18.23",
     "mc-react-header": "0.7.2",
     "mc-react-library": "^0.7.12",
     "mc-react-structure-visualizer": "^0.11.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "three": "^0.187.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.16",

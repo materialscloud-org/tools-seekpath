@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { createBZVisualizer } from "brillouinzone-visualizer";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { BZVisualizer } from "bz-visualizer/react";
+import "bz-visualizer/style.css";
 import StructureVisualizer from "mc-react-structure-visualizer";
 import { CRYSTAL_MAX_BAND_LINES, cartesian } from "matsci-parse";
 
@@ -14,9 +15,15 @@ import {
 
 import { BRAVAIS_HASH } from "../BravaisModal";
 import CoordinatesTable from "./CoordinatesTable";
-import { computeKPath, downloads } from "./downloads";
+import { computeKPath, downloads, linePoints } from "./downloads";
 
 const DEFAULT_REFERENCE_DISTANCE = 0.025;
+// The colours of the legacy visualizer: a pink zone and a blue k-path
+const BZ_COLORS = {
+  zone: "#d53e4f",
+  kpath: "#3288bd",
+  highSymmetryPoints: "#3288bd",
+};
 const MIN_POINTS_PER_LINE = 2;
 const MAX_POINTS_PER_LINE = 100;
 const DEFAULT_POINTS_PER_LINE = 40;
@@ -51,7 +58,17 @@ export default function SeekPath({ structure, className = "" }) {
   // Closed at first; opened or closed, it stays so for the next structures
   const [infoOpen, setInfoOpen] = useState(false);
 
-  const containerRef = useRef(null);
+  // The zone with the points of the line-mode downloads, not seekpath's
+  // explicit k-points (spaced by the reference distance)
+  const viewerData = useMemo(
+    () =>
+      data && {
+        ...data,
+        explicit_kpoints_rel: linePoints(data, pointsPerLine),
+        explicit_kpoints_abs: undefined,
+      },
+    [data, pointsPerLine],
+  );
 
   const compute = useCallback(
     async (wtr, refDist) => {
@@ -82,21 +99,6 @@ export default function SeekPath({ structure, className = "" }) {
     }
     compute(withTimeReversal, referenceDistance);
   }, [structure, compute]);
-
-  useEffect(() => {
-    if (!data || !containerRef.current) return;
-
-    const container = containerRef.current;
-    const viz = createBZVisualizer(container, data, {
-      showPathpoints: false,
-      disableInteractOverlay: true,
-    });
-
-    return () => {
-      window.removeEventListener("resize", viz.resizeRenderer);
-      if (container) container.innerHTML = "";
-    };
-  }, [data]);
 
   const handleToggleTimeReversal = (e) => {
     const wtr = e.target.checked;
@@ -224,8 +226,11 @@ export default function SeekPath({ structure, className = "" }) {
           <div className="grid gap-3 lg:grid-cols-2">
             <div className="relative overflow-hidden">
               <ViewerTitle>Brillouin zone</ViewerTitle>
-              <div
-                ref={containerRef}
+              <BZVisualizer
+                seekpath={viewerData}
+                showKPoints
+                clickToInteract={false}
+                colors={BZ_COLORS}
                 className="h-[480px] w-full overflow-hidden"
               />
             </div>
