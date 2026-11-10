@@ -1,0 +1,9 @@
+allowBuilds:
+  esbuild: true
+minimumReleaseAgeExclude:
+  - matsci-parse
+  - mc-react-library
+# matsci-parse imports moyo-wasm, which vite.config excludes from pre-bundling.
+# Vite resolves that import from the app root, so link it there too.
+publicHoistPattern:
+  - "@spglib/moyo-wasm"
