@@ -26,7 +26,7 @@ const BZ_COLORS = {
 };
 const MIN_POINTS_PER_LINE = 2;
 const MAX_POINTS_PER_LINE = 100;
-const DEFAULT_POINTS_PER_LINE = 40;
+const DEFAULT_POINTS_PER_LINE = 10;
 
 // Title laid over the top-left corner of a viewer; clicks pass through.
 function ViewerTitle({ children }) {
