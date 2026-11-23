@@ -1,7 +1,6 @@
 // Content of the information accordions of the landing page.
 
-import { useState } from "react";
-import { DoiBadge, McInfoAccordion } from "mc-react-library";
+import { DoiBadge, McInfoAccordions } from "mc-react-library";
 
 import { BRAVAIS_HASH } from "./BravaisModal";
 
@@ -169,15 +168,5 @@ const ACCORDIONS = [
 
 /** The information accordions at the top of the page, one open at a time. */
 export default function InfoAccordions() {
-  const [open, setOpen] = useState(null);
-  return ACCORDIONS.map(({ title, content }, i) => (
-    <McInfoAccordion
-      key={title}
-      title={title}
-      open={open === i}
-      onToggle={() => setOpen(open === i ? null : i)}
-    >
-      {content}
-    </McInfoAccordion>
-  ));
+  return <McInfoAccordions items={ACCORDIONS} />;
 }
