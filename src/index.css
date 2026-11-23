@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-xs: 480px;
+}
+
+@layer base {
+  .mc-navbrand img {
+    max-height: 50px;
+  }
+
+  a {
+    @apply text-[#337ab7] hover:text-[#337ac8] hover:underline;
+  }
+
+  body {
+    background-color: aliceblue;
+  }
+}

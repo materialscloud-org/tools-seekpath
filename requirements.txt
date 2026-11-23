@@ -1,3 +1,0 @@
-seekpath==2.1.0
-# The following is needed to get the Brillouin zone
-scipy==1.5.4
